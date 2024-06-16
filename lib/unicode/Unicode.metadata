@@ -1,5 +1,0 @@
-CharacterMap cheader_filename = "unicode-character-map.h"
-CodepointList cheader_filename = "unicode-codepoint-list.h"
-UNICHAR_MAX cheader_filename = "unicode-codepoint-list.h"
-Standard cheader_filename = "unicode-info.h"
-SearchBar cheader_filename = "unicode-search-bar.h"

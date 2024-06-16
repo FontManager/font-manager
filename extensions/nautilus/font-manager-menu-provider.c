@@ -1,6 +1,6 @@
 /* font-manager-menu-provider.c
  *
- * Copyright (C) 2018-2022 Jerry Casiano
+ * Copyright (C) 2018-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,22 +20,8 @@
 
 #include <gio/gio.h>
 
+#include "extension-common.h"
 #include "font-manager-menu-provider.h"
-
-#define FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
-#define FONT_VIEWER_BUS_PATH "/org/gnome/FontViewer"
-
-#define N_MIMETYPES 7
-
-static const gchar *MIMETYPES [N_MIMETYPES] = {
-    "font/ttf",
-    "font/ttc",
-    "font/otf",
-    "font/collection",
-    "application/x-font-ttf",
-    "application/x-font-ttc",
-    "application/x-font-otf",
-};
 
 struct _FontManagerMenuProvider
 {

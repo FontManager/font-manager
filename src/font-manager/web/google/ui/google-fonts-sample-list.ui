@@ -1,31 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <requires lib="gtk+" version="3.22"/>
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerGoogleFontsSampleList" parent="GtkPopover">
-    <property name="can-focus">False</property>
-    <child>
+    <property name="child">
       <object class="GtkScrolledWindow">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
-        <property name="propagate-natural-width">True</property>
-        <property name="propagate-natural-height">True</property>
-        <child>
+        <property name="child">
           <object class="GtkViewport">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
-            <property name="shadow-type">none</property>
-            <child>
+            <property name="child">
               <object class="GtkListBox" id="sample_list">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
+                <signal name="row-activated" handler="on_row_activated" swapped="no"/>
               </object>
-            </child>
+            </property>
           </object>
-        </child>
+        </property>
+        <property name="focusable">1</property>
+        <property name="propagate-natural-height">True</property>
+        <property name="propagate-natural-width">True</property>
       </object>
-    </child>
-    <style>
-      <class name="view"/>
-    </style>
+    </property>
   </template>
 </interface>
+

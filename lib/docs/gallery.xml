@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<para role="gallery">
+  <link linkend="FontManagerFontScale">
+    <inlinegraphic fileref="FontScale.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPreviewControls">
+    <inlinegraphic fileref="PreviewControls.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPreviewPage">
+    <inlinegraphic fileref="PreviewPage.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPropertiesPage">
+    <inlinegraphic fileref="PropertiesPage.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerLicensePage">
+    <inlinegraphic fileref="LicensePage.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerCharacterMap">
+    <inlinegraphic fileref="CharacterMap.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPlaceHolder">
+    <inlinegraphic fileref="PlaceHolder.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPreviewPane">
+    <inlinegraphic fileref="PreviewPane.png" format="PNG"/>
+  </link>
+  <link linkend="FontManagerPreferenceRow">
+    <inlinegraphic fileref="PreferenceRow.png" format="PNG"/>
+  </link>
+</para>
+

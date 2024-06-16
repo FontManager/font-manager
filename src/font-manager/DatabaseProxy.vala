@@ -1,6 +1,6 @@
 /* DatabaseProxy.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,44 +22,26 @@ namespace FontManager {
 
     public class DatabaseProxy : Object {
 
-        public signal void status_changed ();
         public signal void update_started ();
         public signal void update_complete ();
 
-        int n_db_types = 4;
         GLib.Cancellable? cancellable = null;
-        GLib.HashTable <int, bool>? status = null;
         ProgressCallback? progress = null;
 
-        public DatabaseProxy () {
-            status = new GLib.HashTable <DatabaseType, bool> (null, null);
-            for (int i = 0; i < n_db_types; i++)
-                status.insert((DatabaseType) i, false);
-            status_changed.connect(() => {
-                for (int i = 1; i < n_db_types; i++)
-                    if (status[i])
-                        continue;
-                    else
-                        return;
-                update_complete();
-            });
-            try {
-                Database main = get_database(DatabaseType.BASE);
-                for (int i = 1; i < n_db_types; i++) {
-                    try {
-                        get_database((DatabaseType) i);
-                        main.attach((DatabaseType) i);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
-            } catch (Error e) {
-                critical(e.message);
-            }
-        }
+        // static Database? db = null;
 
-        public bool ready (DatabaseType type) {
-            return status[type];
+        // ~ DatabaseProxy () {
+        //     while (db is Database)
+        //         db.unref();
+        //     db = null;
+        // }
+
+        public static Database get_default_db () {
+            // if (db == null)
+            //     db = new Database();
+            // db.ref();
+            // return db;
+            return new Database();
         }
 
         public void set_cancellable (Cancellable? cancellable) {
@@ -72,43 +54,30 @@ namespace FontManager {
             return;
         }
 
-        public void update (Json.Object available_fonts) {
+        public void update (Json.Array available_fonts) {
             update_started();
-            var available_files = new StringSet();
-            foreach (string path in list_available_font_files())
-                available_files.add(path);
-            for (int i = 1; i < n_db_types; i++) {
-                var type = (DatabaseType) i;
-                status.replace(type, false);
-                try {
-                    var child = get_database(type);
-                    update_database.begin(
-                        child,
-                        type,
-                        available_fonts,
-                        available_files,
-                        progress,
-                        cancellable,
-                        (obj, res) => {
-                            try {
-                                bool result = update_database.end(res);
-                                status.replace(type, result);
-                                Idle.add(() => {
-                                    status_changed();
-                                    return GLib.Source.REMOVE;
-                                });
-                            } catch (Error e) {
-                                critical(e.message);
-                            }
-                        }
-                    );
-                } catch (Error e) {
-                    critical(e.message);
+            Database database = new Database();
+            update_database.begin(
+                database,
+                available_fonts,
+                progress,
+                cancellable,
+                (obj, res) => {
+                    try {
+                        update_database.end(res);
+                        update_complete();
+                        // if (db != null)
+                        //     db = new Database();
+                    } catch (Error e) {
+                        critical(e.message);
+                    }
                 }
-            }
+            );
             return;
         }
 
     }
 
 }
+
+

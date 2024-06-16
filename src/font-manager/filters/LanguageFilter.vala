@@ -1,6 +1,6 @@
 /* LanguageFilter.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,28 +31,25 @@ namespace FontManager {
 
     public class LanguageFilter : Category {
 
-        public signal void selections_changed ();
-
-        public StringSet selected { get; set; }
         public double coverage { get; set; default = 90; }
-        public LanguageFilterSettings settings { get; private set; }
+        public StringSet selections { get; set; default = new StringSet(); }
 
-        public override int size {
+        public LanguageFilterSettings settings {
             get {
-                return ((int) selected.size);
+                if (filter_settings != null)
+                    return filter_settings;
+                filter_settings = new LanguageFilterSettings();
+                BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+                bind_property("coverage", settings, "coverage", flags);
+                bind_property("selections", settings, "selections", flags);
+                filter_settings.update();
+                filter_settings.changed.connect(on_change);
+                return filter_settings;
             }
         }
 
-        construct {
-            selected = new StringSet();
-            settings = new LanguageFilterSettings(this);
-            settings.selections_changed.connect(() => {
-                Idle.add(() => {
-                    update.begin((obj, res) => { update.end(res); });
-                    return GLib.Source.REMOVE;
-                });
-            });
-        }
+        GLib.Settings? gsettings = null;
+        LanguageFilterSettings? filter_settings = null;
 
         public LanguageFilter () {
             base(_("Supported Orthographies"),
@@ -60,198 +57,200 @@ namespace FontManager {
                  "preferences-desktop-locale-symbolic",
                  SELECT_ON_LANGUAGE,
                  CategoryIndex.LANGUAGE);
-            GLib.Settings? settings = get_default_application().settings;
-            if (settings != null)
-                restore_state(settings);
+            // XXX : Here for testing purposes? or for good?
+            gsettings = get_gsettings(BUS_ID);
+            restore_state(gsettings);
+            selections.changed.connect(on_change);
+        }
+
+        void on_change () {
+            Idle.add(() => {
+                save_state(gsettings);
+                return GLib.Source.REMOVE;
+            });
+            update.begin((obj, res) => {
+                update.end(res);
+                changed();
+            });
+            return;
         }
 
         public void restore_state (GLib.Settings settings) {
             foreach (var entry in settings.get_strv("language-filter-list"))
-                selected.add(entry);
+                selections.add(entry);
             coverage = settings.get_double("language-filter-min-coverage");
-            update.begin((obj, res) => { update.end(res); });
+            update.begin();
             return;
         }
 
         public void save_state (GLib.Settings settings) {
-            settings.set_strv("language-filter-list", list());
+            settings.set_strv("language-filter-list", selections.to_strv());
             settings.set_double("language-filter-min-coverage", coverage);
             return;
         }
 
-        public void add (string language) {
-            selected.add(language);
-            update.begin((obj, res) => { update.end(res); });
-            return;
-        }
-
-        public string [] list () {
-            string [] result = {};
-            foreach (string language in selected)
-                result += language;
-            return result;
-        }
-
-        public new async void update () {
-            descriptions.clear();
+        public override async void update () {
             families.clear();
+            variations.clear();
             try {
-                Database db = get_database(db_type);
-                foreach (string language in selected) {
+                Database db = DatabaseProxy.get_default_db();
+                foreach (string language in selections) {
                     var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
                     Intl.setlocale(LocaleCategory.ALL, "C");
                     string _sql_ = sql.printf(language, coverage);
                     Intl.setlocale(LocaleCategory.ALL, pref_loc);
-                    get_matching_families_and_fonts(db, families, descriptions, _sql_);
-                    Idle.add(update.callback);
-                    yield;
+                    get_matching_families_and_fonts(db, families, variations, _sql_);
                 }
-            } catch (DatabaseError error) {
-                warning(error.message);
+            } catch (Error e) {
+                warning(e.message);
             }
-            StringSet? available_families = get_default_application().available_families;
-            assert(available_families != null);
-            families.retain_all(available_families);
-            Idle.add(() => {  selections_changed(); return GLib.Source.REMOVE; });
+            // Model update
+            changed();
             return;
         }
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-language-filter-settings.ui")]
+    public class LanguageListRow : ListItemRow {
+
+        public signal void changed (LanguageListRow item);
+
+        public bool active { get; set; default = false; }
+
+        public string orthography { get; private set; }
+        public string local_name { get; private set; }
+        public string native_name { get; private set; }
+
+        public class LanguageListRow (BaseOrthographyData data) {
+            orthography = data.name;
+            local_name = dgettext(null, data.name);
+            native_name = data.native;
+            item_state.visible = true;
+            item_label.set_label(native_name);
+            item_label.ellipsize = Pango.EllipsizeMode.NONE;
+            item_count.remove_css_class("count");
+            item_count.add_css_class("dim-label");
+            item_count.visible = true;
+            item_count.sensitive = true;
+            string markup = "<span size=\"x-small\" font=\"mono\">%s</span>";
+            item_count.set_markup(markup.printf(local_name));
+            item_count.ellipsize = Pango.EllipsizeMode.MIDDLE;
+            set_tooltip_text(local_name);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("active", item_state, "active", flags);
+            item_state.toggled.connect(() => { changed(this); });
+        }
+
+    }
+
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-language-filter-settings.ui")]
     public class LanguageFilterSettings : Gtk.Box {
 
-        public signal void selections_changed ();
+        public signal void changed ();
 
-        weak LanguageFilter filter;
+        public double coverage { get; set; default = 90.0; }
+        public StringSet selections { get; set; default = new StringSet(); }
 
+        [GtkChild] public unowned Gtk.SearchBar search_bar { get; }
+        [GtkChild] public unowned Gtk.SearchEntry search_entry { get; }
+
+        [GtkChild] unowned Gtk.Button clear_button;
+        [GtkChild] unowned Gtk.ListBox listbox;
         [GtkChild] unowned Gtk.SpinButton coverage_spin;
-        [GtkChild] unowned Gtk.SearchEntry search_entry;
-        [GtkChild] unowned Gtk.TreeView treeview;
 
-        uint? search_timeout;
-        uint16 text_length = 0;
-        Gtk.ListStore real_model;
-        Gtk.TreeModelFilter? search_filter = null;
-
-        construct {
-            real_model = new Gtk.ListStore(3, typeof(string), typeof(string), typeof(string));
-            search_filter = new Gtk.TreeModelFilter(real_model, null);
-            search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
-            treeview.set_model(search_filter);
-            treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
-            Gtk.TreeIter iter;
-            foreach (var entry in Orthographies) {
-                real_model.append(out iter);
-                string local = dgettext(null, entry.name);
-                /* Prefer the actual native name but fallback to localized name, if available. */
-                string native = entry.native != entry.name ? entry.native : local;
-                /* Store all three for use during filtering */
-                real_model.set(iter, 0, entry.name, 1, native, 2, local, -1);
-            }
-            var text = new Gtk.CellRendererText();
-            text.ellipsize = Pango.EllipsizeMode.END;
-            var toggle = new Gtk.CellRendererToggle();
-            toggle.toggled.connect(on_toggled);
-            treeview.row_activated.connect((path, col) => { on_toggled(path.to_string()); });
-            treeview.insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
-            treeview.insert_column_with_attributes(-1, "", text, "text", 1, null);
-            treeview.set_search_entry(search_entry);
-            /* XXX : Remove placeholder icon set in ui file to avoid Gtk warning */
-            search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
-            base.constructed();
-            return;
-        }
-
-        public LanguageFilterSettings (LanguageFilter filter) {
-            this.filter = filter;
+        public LanguageFilterSettings () {
+            widget_set_name(this, "FontManagerLanguageFilterSettings");
+            listbox.set_filter_func((Gtk.ListBoxFilterFunc) matches_search);
+            listbox.set_selection_mode(Gtk.SelectionMode.NONE);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            filter.bind_property("coverage", coverage_spin, "value", flags);
+            bind_property("coverage", coverage_spin, "value", flags);
+            populate_list_box();
+            clear_button.set_sensitive(selections.size > 0);
         }
 
-        bool refilter () {
-            /* Unset the model to prevent updates while filtering */
-            treeview.set_model(null);
-            search_filter.refilter();
-            treeview.set_model(search_filter);
-            search_timeout = null;
-            return false;
-        }
-
-        [GtkCallback]
-        void on_search_changed () {
-            queue_refilter();
-            text_length = search_entry.get_text_length();
-            return;
-        }
-
-        [GtkCallback]
-        void on_back_button_clicked () {
-            get_default_application().main_window.sidebar.mode = "Standard";
-            search_entry.set_text("");
-            return;
-        }
-
-        [GtkCallback]
-        void on_clear_button_clicked () {
-            filter.selected.clear();
-            treeview.queue_draw();
-            selections_changed();
-            return;
-        }
-
-        void on_toggled (string path) {
-            Gtk.TreeIter iter;
-            Value val;
-            search_filter.get_iter_from_string(out iter, path);
-            search_filter.get_value(iter, 0, out val);
-            var lang = (string) val;
-            if (lang in filter.selected)
-                filter.selected.remove(lang);
+        void on_item_changed (LanguageListRow item) {
+            if (item.active)
+                selections.add(item.orthography);
             else
-                filter.selected.add(lang);
-            val.unset();
-            treeview.queue_draw();
-            selections_changed();
+                selections.remove(item.orthography);
+            clear_button.set_sensitive(selections.size > 0);
+            debug("LanguageFilterSettings : %s %s %s selected items",
+                  item.orthography, item.active ? "added" : "removed",
+                  item.active ? "to" : "from");
             return;
         }
 
-        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, 0, out val);
-            cell.set_property("active", (filter.selected.contains((string) val)));
-            val.unset();
-            return;
-        }
-
-        /* Add slight delay to avoid filtering while search is still changing */
-        void queue_refilter () {
-            if (search_timeout != null)
-                GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add(333, refilter);
-            return;
-        }
-
-        bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            bool search_match = true;
-            if (text_length > 0) {
-                string needle = search_entry.get_text().casefold();
-                for (int i = 0; i <= 2; i++) {
-                    Value val;
-                    model.get_value(iter, i, out val);
-                    var haystack = (string) val;
-                    search_match = haystack.casefold().contains(needle);
-                    if (search_match)
-                        break;
-                }
-
+        public void update () {
+            int i = 0;
+            Gtk.ListBoxRow? widget = listbox.get_row_at_index(i);
+            while (widget != null) {
+                var row = (LanguageListRow) widget.get_child();
+                row.active = (row.orthography in selections);
+                i++;
+                widget = listbox.get_row_at_index(i);
             }
-            return search_match;
+            return;
+        }
+
+        void populate_list_box () {
+            foreach (var entry in Orthographies) {
+                var item = new LanguageListRow(entry);
+                listbox.append(item);
+                item.active = (item.orthography in selections);
+                item.changed.connect(on_item_changed);
+            }
+            return;
+        }
+
+        [CCode (instance_pos = -1)]
+        // Necessary to generate valid C code for this function since self gets
+        // passed as user_data argument in call to gtk_list_box_set_filter_func
+        bool matches_search (Gtk.ListBoxRow list_box_row) {
+            bool match = true;
+            var search_term = search_entry.get_text().dup();
+            if (search_term == null)
+                return match;
+            string needle = search_term.strip().casefold();
+            if (needle.length < 1)
+                return match;
+            var row = (LanguageListRow) list_box_row.get_child();
+            match = row.native_name.casefold().contains(needle);
+            if (!match)
+                match = row.local_name.casefold().contains(needle);
+            return match;
+        }
+
+        [GtkCallback]
+        void on_search_changed (Gtk.SearchEntry entry) {
+            listbox.invalidate_filter();
+            return;
+        }
+
+        [GtkCallback]
+        void on_clear_button_clicked (Gtk.Button button) {
+            int i = 0;
+            Gtk.ListBoxRow? widget = listbox.get_row_at_index(i);
+            while (widget != null) {
+                var row = (LanguageListRow) widget.get_child();
+                row.active = false;
+                i++;
+                widget = listbox.get_row_at_index(i);
+            }
+            return;
+        }
+
+        [GtkCallback]
+        void on_coverage_changed () {
+            Idle.add(() => {
+                changed();
+                return GLib.Source.REMOVE;
+            });
+            debug("%s::coverage : %0.1f", name, coverage);
+            return;
         }
 
     }
 
 }
+
+

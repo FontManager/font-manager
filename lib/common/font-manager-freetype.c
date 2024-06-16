@@ -1,6 +1,6 @@
 /* font-manager-freetype.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 
 /**
  * SECTION: font-manager-freetype
- * @short_description: FreeType utilty functions
+ * @short_description: FreeType utility functions
  * @title: FreeType Utility Functions
  * @include: font-manager-freetype.h
  * @see_also: #FontManagerFontInfo
@@ -52,9 +52,23 @@ static void ensure_vendor (JsonObject *json_obj, const FT_Face face);
 static void cleanup_version_string (JsonObject *json_obj);
 static void correct_filetype (JsonObject *json_obj);
 
+static void
+set_error (FT_Error ft_error, const gchar *ctx, GError **error)
+{
+    g_return_if_fail(error == NULL || *error == NULL);
+    const gchar *msg_format = "Freetype Error : (%s) [%i] - %s";
+    g_debug(msg_format, ctx, ft_error, FT_Error_Message(ft_error));
+    g_set_error(error,
+                FONT_MANAGER_FREETYPE_ERROR,
+                FONT_MANAGER_FREETYPE_ERROR_FAILED,
+                msg_format, ctx, ft_error, FT_Error_Message(ft_error));
+    return;
+}
+
 /**
  * font_manager_get_face_count:
  * @filepath:       full path to font file to examine
+ * @error:      #GError or %NULL to ignore errors
  *
  * This function never fails. In case of an error this function returns 1.
  * Any valid font file should contain at least one variation.
@@ -62,17 +76,23 @@ static void correct_filetype (JsonObject *json_obj);
  * Returns:         the number of variations contained in filepath
  */
 glong
-font_manager_get_face_count (const gchar *filepath)
+font_manager_get_face_count (const gchar *filepath, GError **error)
 {
     FT_Face         face;
     FT_Library      library;
     FT_Long         num_faces;
+    FT_Error        ft_error = FT_Init_FreeType(&library);
 
     /* Index 0 is always valid */
-    if (G_UNLIKELY(FT_Init_FreeType(&library) != 0))
+    if (G_UNLIKELY(ft_error != 0)) {
+        set_error(ft_error, "FT_Init_FreeType", error);
         return 1;
+    }
 
-    if (G_UNLIKELY(FT_New_Face(library, filepath, 0, &face) != 0)) {
+    ft_error = FT_New_Face(library, filepath, 0, &face);
+
+    if (G_UNLIKELY(ft_error != 0)) {
+        set_error(ft_error, "FT_New_Face", error);
         FT_Done_FreeType(library);
         return 1;
     }
@@ -91,19 +111,6 @@ static const gchar *ensure_member [] = {
     "license-url",
     NULL
 };
-
-static void
-set_error (FT_Error ft_error, const gchar *ctx, GError **error)
-{
-    g_return_if_fail(error == NULL || *error == NULL);
-    const gchar *msg_format = "Freetype Error : (%s) [%i] - %s";
-    g_debug(msg_format, ctx, ft_error, FT_Error_Message(ft_error));
-    g_set_error(error,
-                FONT_MANAGER_FREETYPE_ERROR,
-                FONT_MANAGER_FREETYPE_ERROR_FAILED,
-                msg_format, ctx, ft_error, FT_Error_Message(ft_error));
-    return;
-}
 
 /**
  * font_manager_get_metadata:
@@ -150,7 +157,7 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
     ft_error = FT_New_Memory_Face(library, (const FT_Byte *) font, (FT_Long) filesize, index, &face);
 
     if (G_UNLIKELY(ft_error)) {
-        set_error(ft_error, "FT_Init_FreeType", error);
+        set_error(ft_error, "FT_New_Memory_Face", error);
         return NULL;
     }
 
@@ -247,68 +254,6 @@ font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
             if (!g_file_make_directory_with_parents(parent, NULL, error))
                 g_clear_object(&target);
     return target;
-}
-
-GType
-font_manager_fsType_get_type (void)
-{
-  static gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { FONT_MANAGER_FSTYPE_INSTALLABLE, "FONT_MANAGER_FSTYPE_INSTALLABLE", "installable" },
-        { FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE, "FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE", "restricted_license" },
-        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT", "preview_and_print" },
-        { FONT_MANAGER_FSTYPE_EDITABLE, "FONT_MANAGER_FSTYPE_EDITABLE", "editable" },
-        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET", "preview_and_print_no_subset" },
-        { FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET, "FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET", "editable_no_subset" },
-        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY", "preview_and_print_bitmap_only" },
-        { FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY", "editable_bitmap_only" },
-        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY", "preview_and_print_no_subset_bitmap_only" },
-        { FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY", "editable_no_subset_bitmap_only" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("FontManagerfsType"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-
-/**
- * font_manager_fsType_to_string: (skip)
- * @fstype: #FontManagerfsType
- *
- * Returns a description of the fsType field suitable for display.
- *
- * Returns: (transfer none) (nullable): @fstype as a string
- */
-const gchar *
-font_manager_fsType_to_string (FontManagerfsType fstype) {
-    switch (fstype) {
-        case FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE:
-            return _("Restricted License Embedding");
-        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT:
-            return _("Preview & Print Embedding");
-        case FONT_MANAGER_FSTYPE_EDITABLE:
-            return _("Editable Embedding");
-        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET:
-            return _("Preview & Print Embedding | No Subsetting");
-        case FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET:
-            return _("Editable Embedding | No Subsetting");
-        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY:
-            return _("Preview & Print Embedding | Bitmap Embedding Only");
-        case FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY:
-            return _("Editable Embedding | Bitmap Embedding Only");
-        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY:
-            return _("Preview & Print Embedding | No Subsetting | Bitmap Embedding Only");
-        case FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY:
-            return _("Editable Embedding | No Subsetting | Bitmap Embedding Only");
-        default:
-            return _("Installable Embedding");
-    }
 }
 
 /*
@@ -445,6 +390,8 @@ get_os2_info (JsonObject *json_obj, const FT_Face face)
         for (gint i = 0; i < PANOSE_ENTRIES; i++)
             json_array_add_int_element(json_arr, os2->panose[i]);
         json_object_set_array_member(json_obj, "panose", json_arr);
+        // XXX
+        //g_message("%s : %i", json_object_get_string_member(json_obj, "filepath"), (int) os2->sFamilyClass >> 8);
     }
     return;
 }
@@ -473,7 +420,6 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
         if (sname.platform_id != TT_PLATFORM_MICROSOFT)
             continue;
 
-        /* XXX : ? */
         if (sname.string == NULL)
             continue;
 
@@ -697,16 +643,9 @@ get_fs_type (JsonObject *json_obj, const FT_Face face)
 static void
 ensure_vendor (JsonObject *json_obj, const FT_Face face)
 {
-    if (!json_object_has_member(json_obj, "vendor")) {
+    if (!json_object_has_member(json_obj, "vendor"))
         /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
         json_object_set_string_member(json_obj, "vendor", N_("Unknown Vendor"));
-        /* XXX : Is this even worth checking for? */
-        BDF_PropertyRec prop;
-        int result = FT_Get_BDF_Property(face, "FOUNDRY", &prop);
-        if (G_UNLIKELY(result == 0 && prop.type == BDF_PROPERTY_TYPE_ATOM)) {
-            json_object_set_string_member(json_obj, "vendor", prop.u.atom);
-        }
-    }
     return;
 }
 
@@ -799,3 +738,4 @@ cleanup_version_string (JsonObject *json_obj)
     _cleanup_version_string(json_obj, ":");
     return;
 }
+

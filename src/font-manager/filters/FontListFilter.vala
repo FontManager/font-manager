@@ -1,6 +1,6 @@
 /* FontListFilter.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,28 +20,172 @@
 
 namespace FontManager {
 
-    public int filter_sort (Filter a, Filter b) {
+    public int filter_sort (FontListFilter a, FontListFilter b) {
         return (a.index - b.index);
     }
 
-    public class Filter : Cacheable {
+    public class FontListFilter : Cacheable {
 
         public virtual string name { owned get; set; }
         public virtual string icon { owned get; set; }
         public virtual string comment { owned get; set; }
         public virtual int index { get; set; default = 0; }
         public virtual int size { get { return 0; } }
+        public virtual int depth { get; set; default = 0; }
 
-        public bool requires_update { get; set; default = true; }
+        public virtual async void update () {}
 
-        public virtual void update () {
+        public virtual bool matches (Object? item) {
+            return item != null ? true : false;
+        }
+
+    }
+
+    public class FontListFilterModel : Object, ListModel {
+
+        public GenericArray <FontListFilter>? items { get; set; default = null; }
+
+        construct {
+            items = new GenericArray <FontListFilter> ();
+        }
+
+        public Type get_item_type () {
+            return typeof(FontListFilter);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return_val_if_fail(items[position] != null, null);
+            return items[position];
+        }
+
+        public void clear () {
+            uint n_items = get_n_items();
+            items = null;
+            items_changed(0, n_items, 0);
+            items = new GenericArray <FontListFilter> ();
             return;
         }
 
-        public virtual bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            return true;
+        public virtual void add_item (FontListFilter item) {
+            items.add(item);
+            item.index = (int) get_n_items() - 1;
+            items_changed(item.index, 0, 1);
+            item.changed.connect(() => {
+                int n_items = (int) items.length;
+                items_changed(0, n_items, n_items);
+            });
+            return;
+        }
+
+        public virtual void remove_item (FontListFilter item) {
+            for (uint i = 0; i < items.length; i++)
+                if (items[i] == item)
+                    if (items.remove(item))
+                        items_changed(i, 1, 0);
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-filter-list-view.ui")]
+    public class FilterListView : Gtk.Box {
+
+        public signal void selection_changed (FontListFilter? item);
+
+        public uint selected_position { get; set; default = 0; }
+        public FontListFilter? selected_item { get; set; default = null; }
+        public Gtk.TreeListModel? treemodel { get; protected set; default = null; }
+        public Gtk.SingleSelection? selection { get; protected set; default = null; }
+
+        public FontListFilterModel? model {
+            get {
+                return treemodel != null ? ((FontListFilterModel) treemodel.model) : null;
+            }
+        }
+
+        [GtkChild] protected unowned Gtk.ListView listview;
+
+        construct {
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            listview.add_controller(right_click);
+            notify["selection"].connect_after((pspec) => {
+                listview.set_model(selection);
+                listview.set_factory(get_factory());
+                if (selection == null)
+                    return;
+                selection.set_autoselect(false);
+                selection.set_can_unselect(true);
+                selection.selection_changed.connect(on_selection_changed);
+                BindingFlags flags = BindingFlags.SYNC_CREATE;
+            });
+        }
+
+        protected virtual void on_show_context_menu (int n_press, double x, double y) {}
+        protected virtual void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {}
+        protected virtual void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {}
+
+        Gtk.SignalListItemFactory get_factory () {
+            var factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect(setup_list_row);
+            factory.bind.connect(bind_list_row);
+            return factory;
+        }
+
+        protected virtual void collapse_all ()
+        requires (treemodel != null) {
+            uint n_items = treemodel.get_n_items();
+            for (uint i = 0; i < n_items; i++) {
+                var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
+                if (list_row != null && list_row.expanded)
+                    list_row.set_expanded(false);
+            }
+            return;
+        }
+
+        protected virtual void on_row_selected (Gtk.TreeListRow row) {
+            if (selected_item.depth > 0)
+                return;
+            collapse_all();
+            if (row.expandable)
+                row.set_expanded(true);
+            return;
+        }
+
+        // NOTE:
+        // @position doesn't necessarily point to the actual selection
+        // within the ListView, the actual selection lies somewhere
+        // between @position + @n_items. The precise location within that
+        // range appears to be affected by a variety of factors i.e.
+        // previous selection, multiple selections, directional changes, etc.
+        protected virtual void on_selection_changed (uint position, uint n_items)
+        requires (selection != null && treemodel != null) {
+            // The minimum value present in this bitset accurately points
+            // to the first currently selected row in the ListView.
+            Gtk.Bitset selections = selection.get_selection();
+            if (selections.get_size() == 0)
+                return;
+            uint i = selections.get_minimum();
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
+            Object? item = list_row.get_item();
+            selected_item = (FontListFilter) item;
+            selected_position = i;
+            selection_changed((FontListFilter) item);
+            Idle.add(() => {
+                on_row_selected(list_row);
+                return GLib.Source.REMOVE;
+            });
+            debug("%s::selection_changed : %s", listview.name, selected_item.name);
+            return;
         }
 
     }
 
 }
+

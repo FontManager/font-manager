@@ -1,12 +1,11 @@
-# These functions are not called directly anywhere in our code.
 
-{
-    dl-init
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:_dl_init
-}
+################################### BEGIN ######################################
+
+# This section contains all the suppresions required to get a "clean" bill of
+# health from Valgrind when executing hello-world-gtk.c from
+# https://www.gtk.org/docs/getting-started/hello-world/
+
+# Fontconfig
 
 {
     FcConfigValues
@@ -25,14 +24,6 @@
 }
 
 {
-    FcPatternObjectAddWithBinding
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:FcPatternObjectAddWithBinding
-}
-
-{
     FcFontRenderPrepare
     Memcheck:Leak
     fun:*alloc
@@ -40,12 +31,60 @@
     fun:FcFontRenderPrepare
 }
 
+# GObject
+
 {
-    gtk_widget_draw_internal
+    g_application_register
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_widget_draw_internal
+    fun:g_application_register
+}
+
+# GSK
+
+{
+    gsk_renderer_*
+    Memcheck:Leak
+    match-leak-kinds:all
+    fun:*
+    ...
+    src:gskrenderer.c:*
+}
+
+{
+    gsk_ngl_renderer_*
+    Memcheck:Leak
+    match-leak-kinds:all
+    fun:*
+    ...
+    fun:gsknglrenderer.c:*
+}
+
+{
+    gsknglrendererjob
+    Memcheck:Leak
+    fun:*
+    ...
+    src:gsknglrenderjob.c:*
+}
+
+# GTK
+
+{
+    gtk_init
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_init*
+}
+
+{
+    gtk_css_node_validate_internal
+    Memcheck:Leak
+    fun:*lloc
+    ...
+    fun:gtk_css_node_validate_internal
 }
 
 {
@@ -57,79 +96,52 @@
 }
 
 {
-    gtk_widget_get_preferred*
+    gtk_at_context_create
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_widget_get_preferred*
+    fun:gtk_at_context_create
 }
 
+# Mesa
+
 {
-    gtk_container_propagate_draw
+    nir_serialize
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_container_propagate_draw
+    src:nir_serialize.c:*
 }
 
+    # Intel driver
+    {
+        crocus*
+        Memcheck:Leak
+        match-leak-kinds:all
+        fun:*alloc
+        ...
+        fun:crocus*
+    }
+
+# Pango
+
 {
-    gtk_builder_extend_with_template
+    Pango.sort_in_thread
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_builder_extend_with_template
+    fun:FcFontSetSort
+    fun:sort_in_thread
 }
 
+##################################### END ######################################
+
+
 {
-    pango_layout_get_extents_internal
+    pango_fc_font_map_load_fontset
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:pango_layout_get_extents_internal*
+    fun:pango_fc_font_map_load_fontset
 }
 
-{
-    rsvg_rust_handle_close
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:rsvg_rust_handle_close
-}
-
-# Triggered by font installation / removal.
-{
-    gtk_settings_notify
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:settings_update_fontconfig
-    fun:gtk_settings_notify
-}
-
-# These functions are called directly by our code...
-
-# but this one returns a boolean...
-{
-    FcConfigAppFontAdd*
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:FcConfigAppFontAdd*
-}
-
-# and this one returns nothing.
-{
-    gtk_text_buffer_insert_markup
-    Memcheck:Leak
-    fun:g_type_create_instance
-    ...
-    fun:gtk_text_buffer_insert_markup
-}
-
-{
-    gtk_text_buffer_insert_markup
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:gtk_text_buffer_insert_markup
-}

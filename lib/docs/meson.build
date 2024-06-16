@@ -1,4 +1,6 @@
 
+subdir('images')
+
 gtk_doc = dependency('gtk-doc', version: '>= 1.25')
 
 glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')
@@ -11,14 +13,17 @@ font_manager_reference = configure_file(
     configuration: config
 )
 
+doc_deps = declare_dependency(
+    dependencies: [base_deps, vapi],
+    link_with: libfontmanager,
+)
+
 gnome.gtkdoc('font-manager',
-    main_xml: join_paths(meson.build_root(), 'lib', 'docs', 'font-manager.xml'),
-    namespace: 'font_manager',
-    src_dir: [
-        join_paths(meson.source_root(), 'lib', 'common'),
-        join_paths(meson.build_root(), 'lib', 'common'),
-        join_paths(meson.source_root(), 'lib', 'unicode')
-    ],
+    main_xml: join_paths(meson.current_build_dir(), 'font-manager.xml'),
+    content_files: 'gallery.xml',
+    html_assets: html_assets,
+    namespace: meson.project_name(),
+    src_dir: src_includes,
     scan_args: [
         '--rebuild-types',
         '--rebuild-sections',
@@ -35,6 +40,7 @@ gnome.gtkdoc('font-manager',
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'pango')),
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'libxml2')),
     ],
-    dependencies: libfontmanager_deps,
+    dependencies: doc_deps,
     install: true
 )
+

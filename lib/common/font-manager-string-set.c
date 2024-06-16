@@ -1,6 +1,6 @@
 /* font-manager-string-set.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,11 +29,6 @@
  * #FontManagerStringSet provides a convenient way to store and access a set of strings.
  */
 
-struct _FontManagerStringSetClass
-{
-    GObjectClass parent_class;
-};
-
 typedef struct
 {
     GPtrArray *strings;
@@ -48,6 +43,14 @@ enum
     PROP_SIZE,
     N_PROPERTIES
 };
+
+enum
+{
+    CHANGED,
+    NUM_SIGNALS
+};
+
+static guint signals[NUM_SIGNALS];
 
 static void
 font_manager_string_set_dispose (GObject *gobject)
@@ -101,6 +104,19 @@ font_manager_string_set_class_init (FontManagerStringSetClass *klass)
                                                       "Number of entries",
                                                       0, G_MAXUINT, 0,
                                                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+    /**
+     * FontManagerStringSet:changed:
+     *
+     * Emitted whenever the number of strings in set changes
+     */
+    signals[CHANGED] = g_signal_new(g_intern_static_string("changed"),
+                                    G_TYPE_FROM_CLASS(object_class),
+                                    G_SIGNAL_RUN_LAST,
+                                    G_STRUCT_OFFSET(FontManagerStringSetClass, changed),
+                                    NULL, NULL, NULL,
+                                    G_TYPE_NONE, 0);
+
     return;
 }
 
@@ -115,7 +131,7 @@ font_manager_string_set_init (FontManagerStringSet *self)
 
 /**
  * font_manager_string_set_add:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  * @str:    string to add to #FontManagerStringSet
  */
 void
@@ -126,13 +142,14 @@ font_manager_string_set_add (FontManagerStringSet *self, const gchar *str)
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     if (!font_manager_string_set_contains(self, str))
         g_ptr_array_add(priv->strings, g_strdup(str));
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
 /**
  * font_manager_string_set_add_all:
- * @self:   a #FontManagerStringSet
- * @add: (transfer none): #FontManagerStringSet to add to @self
+ * @self:                   #FontManagerStringSet
+ * @add: (transfer none):   #FontManagerStringSet to add to @self
  */
 void
 font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSet *add)
@@ -146,7 +163,7 @@ font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSe
 
 /**
  * font_manager_string_set_contains:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  * @str:    string to look for in #FontManagerStringSet
  *
  * Returns: %TRUE if @self contains str
@@ -161,8 +178,8 @@ font_manager_string_set_contains (FontManagerStringSet *self, const gchar *str)
 
 /**
  * font_manager_string_set_contains_all:
- * @self:   a #FontManagerStringSet
- * @contents: (transfer none): #FontManagerStringSet to check against
+ * @self:                       #FontManagerStringSet
+ * @contents: (transfer none):  #FontManagerStringSet to check against
  *
  * Returns: %TRUE if all strings in @contents are contained in @self
  */
@@ -179,7 +196,7 @@ font_manager_string_set_contains_all (FontManagerStringSet *self, FontManagerStr
 
 /**
  * font_manager_string_set_remove:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  * @str:    string to remove from #FontManagerStringSet
  */
 void
@@ -190,13 +207,14 @@ font_manager_string_set_remove (FontManagerStringSet *self, const gchar *str)
     guint index;
     if (g_ptr_array_find_with_equal_func(priv->strings, str, (GEqualFunc) g_str_equal, &index))
         g_ptr_array_remove_index(priv->strings, index);
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
 /**
  * font_manager_string_set_remove_all:
- * @self:   a #FontManagerStringSet
- * @remove: (transfer none): #FontManagerStringSet containing entries to remove
+ * @self:                       #FontManagerStringSet
+ * @remove: (transfer none):    #FontManagerStringSet containing strings to remove
  */
 void
 font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStringSet *remove)
@@ -210,8 +228,8 @@ font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStrin
 
 /**
  * font_manager_string_set_retain_all:
- * @self:   a #FontManagerStringSet
- * @retain: (transfer none): #FontManagerStringSet
+ * @self:                       #FontManagerStringSet
+ * @retain: (transfer none):    #FontManagerStringSet
  *
  * Remove any elements not contained in @retain
  */
@@ -230,12 +248,13 @@ font_manager_string_set_retain_all (FontManagerStringSet *self, FontManagerStrin
     }
     g_ptr_array_free(priv->strings, TRUE);
     priv->strings = tmp;
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
 /**
  * font_manager_string_set_size:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  *
  * Returns: Returns the number of strings contained in @self
  */
@@ -249,7 +268,7 @@ font_manager_string_set_size (FontManagerStringSet *self)
 
 /**
  * font_manager_string_set_list:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  *
  * Returns: (element-type utf8) (transfer full): A #GList containing
  * the contents of #FontManagerStringSet.
@@ -269,12 +288,12 @@ font_manager_string_set_list (FontManagerStringSet *self)
 
 /**
  * font_manager_string_set_foreach:
- * @self:                   a #FontManagerStringSet
- * @func: (scope call):     a #GFunc to call for each string in the set
+ * @self:                   #FontManagerStringSet
+ * @func: (scope call):     #GFunc to call for each string in the set
  * @user_data:              user data to pass to the function
  *
- * Calls a function for each sting of a #FontManagerStringSet.
- * func must not add elements to or remove elements from the #FontManagerStringSet.
+ * Calls a function for each string of a #FontManagerStringSet.
+ * @func must not add elements to or remove elements from the #FontManagerStringSet.
  */
 void
 font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer user_data)
@@ -287,7 +306,7 @@ font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer
 
 /**
  * font_manager_string_set_clear:
- * @self:   a #FontManagerStringSet
+ * @self:   #FontManagerStringSet
  *
  * Clear all strings from @self
  */
@@ -297,22 +316,23 @@ font_manager_string_set_clear (FontManagerStringSet *self)
     g_return_if_fail(self != NULL);
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     g_ptr_array_remove_range(priv->strings, 0, priv->strings->len);
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
 /**
  * font_manager_string_set_sort:
- * @self:                   a #FontManagerStringSet
- * @func: (scope call):     a #GCompareFunc
+ * @self:                       #FontManagerStringSet
+ * @compare_func: (scope call): #GCompareFunc
  *
- * Sorts the set, using compare_func
+ * Sorts the set, using @compare_func
  */
 void
-font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc func)
+font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func)
 {
     g_return_if_fail(self != NULL);
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
-    g_ptr_array_sort(priv->strings, func);
+    g_ptr_array_sort(priv->strings, compare_func);
     return;
 }
 
@@ -322,7 +342,7 @@ font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc func)
  * @index:  index of entry to retrieve
  *
  * Returns: (transfer none) (nullable): A string which is owned by #FontManagerStringSet
- * and should not be modified or freed or %NULL if index could not be retrieved.
+ * and should not be modified or freed. %NULL on error or if index could not be retrieved.
  */
 const gchar *
 font_manager_string_set_get (FontManagerStringSet *self, guint index)
@@ -331,6 +351,28 @@ font_manager_string_set_get (FontManagerStringSet *self, guint index)
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     g_return_val_if_fail(index >= 0 && index < priv->strings->len, NULL);
     return g_ptr_array_index(priv->strings, index);
+}
+
+static void
+add_string_to_array (gchar *str, GStrvBuilder *strv)
+{
+    g_strv_builder_add(strv, str);
+    return;
+}
+
+/**
+ * font_manager_string_set_to_strv:
+ * @self:   a #FontManagerStringSet
+ *
+ * Returns: (array zero-terminated=1) (element-type utf8) (transfer full):
+ * The returned value should be freed with #g_strfreev() when no longer needed.
+ */
+GStrv
+font_manager_string_set_to_strv (FontManagerStringSet *self)
+{
+    g_autoptr(GStrvBuilder) strv = g_strv_builder_new();
+    font_manager_string_set_foreach(self, (GFunc) add_string_to_array, strv);
+    return g_strv_builder_end(strv);
 }
 
 /**
@@ -344,3 +386,22 @@ font_manager_string_set_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_STRING_SET, NULL);
 }
+
+/**
+ * font_manager_string_set_new_from_strv:
+ * @strv: (array zero-terminated=1) (element-type utf8) (not nullable) (transfer none) :
+ * %NULL terminated array of strings to include in the returned set
+ *
+ * Returns: (transfer full): A newly-created #FontManagerStringSet.
+ * Free the returned object using #g_object_unref().
+ **/
+FontManagerStringSet *
+font_manager_string_set_new_from_strv (GStrv strv)
+{
+    FontManagerStringSet *set = font_manager_string_set_new();
+    for (int i = 0; strv[i] != NULL; i++)
+        font_manager_string_set_add(set, strv[i]);
+    return set;
+}
+
+

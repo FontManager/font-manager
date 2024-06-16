@@ -1,3 +1,4 @@
 usr/lib/*/font-manager/libfontmanager*
 usr/share/help/*/font-manager
 usr/share/locale/*/LC_MESSAGES/font-manager.mo
+usr/share/glib-2.0/schemas/com.github.FontManager.FontManager.gschema.xml

@@ -1,6 +1,6 @@
 /* font-manager-string-set.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,23 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#ifndef __FONT_MANAGER_STRING_SET_H__
-#define __FONT_MANAGER_STRING_SET_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
 
-G_BEGIN_DECLS
-
 #define FONT_MANAGER_TYPE_STRING_SET (font_manager_string_set_get_type())
 G_DECLARE_DERIVABLE_TYPE(FontManagerStringSet, font_manager_string_set, FONT_MANAGER, STRING_SET, GObject)
 
+struct _FontManagerStringSetClass
+{
+    GObjectClass parent_class;
+
+    void (* changed) (FontManagerStringSet *self);
+};
+
 FontManagerStringSet * font_manager_string_set_new (void);
+FontManagerStringSet * font_manager_string_set_new_from_strv (GStrv strv);
 guint font_manager_string_set_size (FontManagerStringSet *self);
 const gchar * font_manager_string_set_get (FontManagerStringSet *self, guint index);
 void font_manager_string_set_add (FontManagerStringSet *self, const gchar *str);
@@ -41,10 +46,7 @@ void font_manager_string_set_remove_all (FontManagerStringSet *self, FontManager
 void font_manager_string_set_retain_all (FontManagerStringSet *self, FontManagerStringSet *retain);
 GList * font_manager_string_set_list (FontManagerStringSet *self);
 void font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer user_data);
-void font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc func);
+void font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func);
 void font_manager_string_set_clear (FontManagerStringSet *self);
-
-G_END_DECLS
-
-#endif /* __FONT_MANAGER_STRING_SET_H__ */
+GStrv font_manager_string_set_to_strv (FontManagerStringSet *self);
 

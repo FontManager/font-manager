@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,247 +22,467 @@
 
 namespace FontManager.GoogleFonts {
 
-    public class FontListControls : Gtk.EventBox {
+    public async bool download_font_files (Font [] fonts) {
+        var session = new Soup.Session();
+        bool retval = true;
+        foreach (var font in fonts) {
+            string font_dir = Path.build_filename(get_font_directory(), font.family);
+            if (DirUtils.create_with_parents(font_dir, 0755) != 0) {
+                warning("Failed to create directory : %s", font_dir);
+                return_val_if_fail(exists(font_dir), false);
+            }
+            string filename = font.get_filename();
+            string filepath = Path.build_filename(font_dir, filename);
+            var message = new Soup.Message(GET, font.url);
+            try {
+                Bytes? bytes = session.send_and_read(message, null);
+                assert(bytes != null);
+                File font_file = File.new_for_path(filepath);
+                // File.create errors out if file already exists regardless of flags
+                if (font_file.query_exists())
+                    font_file.delete();
+                FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
+                try {
+                    stream.write_bytes(bytes);
+                    stream.close();
+                } catch (Error e) {
+                    retval = false;
+                    warning("Failed to write data to file : %s : %s", filepath, e.message);
+                }
+            } catch (Error e) {
+                retval = false;
+                warning("Failed to read data for : %s :: %i :: %s",
+                        filename,
+                        (int) message.status_code,
+                        e.message);
+            }
+            Idle.add(download_font_files.callback);
+            yield;
+        }
+        return retval;
+    }
 
-        /**
-         * Emitted when the expand_button is clicked
-         */
-        public signal void expand_all (bool expand);
+    public class FontModel : Object, ListModel {
 
-        public bool expanded { get; private set; }
-        public Gtk.Button expand_button { get; private set; }
-        public Gtk.SearchEntry entry { get; private set; }
+        public Json.Array? entries { get; set; default = null; }
+        public GenericArray <Family>? items { get; protected set; default = null; }
 
-        Gtk.Box box;
-        Gtk.Image arrow;
+        public string? search_term { get; set; default = null; }
+        public FontListFilter? filter { get; set; default = null; }
 
-        string expand_icon = "pan-end-symbolic";
-        string collapse_icon = "pan-down-symbolic";
+        construct {
+            string [] requires_update = { "entries", "filter" };
+            foreach (string property in requires_update) {
+                notify[property].connect(() => {
+                    Idle.add(() => {
+                        update_items();
+                        if (property == "filter" && filter != null)
+                            filter.changed.connect(update_items);
+                        return GLib.Source.REMOVE;
+                    });
+                });
+            }
+        }
 
-        public FontListControls () {
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
-            box.border_width = 2;
-            set_button_relief_style(box);
-            if (get_direction() == Gtk.TextDirection.RTL)
-                expand_icon = "pan-start-symbolic";
-            expand_button = new Gtk.Button();
-            arrow = new Gtk.Image.from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
-            expand_button.add(arrow);
-            expand_button.set_tooltip_text(_("Expand all"));
-            entry = new Gtk.SearchEntry();
-            entry.set_size_request(0, 0);
-            entry.margin_end = MIN_MARGIN;
-            entry.placeholder_text = _("Search Families…");
-            entry.set_tooltip_text(_("Case insensitive search of family names."));
-            box.pack_end(entry, false, false, 0);
-            box.pack_start(expand_button, false, false, 0);
-            set_button_relief_style(box);
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            set_size_request(0, 0);
-            expand_button.clicked.connect((w) => {
-                expanded = !expanded;
-                expand_all(expanded);
-                expand_button.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
-                if (expanded)
-                    arrow.set_from_icon_name(collapse_icon, Gtk.IconSize.SMALL_TOOLBAR);
-                else
-                    arrow.set_from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
+        public Type get_item_type () {
+            return typeof(Family);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length : 0;
+        }
+
+        public Object? get_item (uint position)
+        requires (items != null)
+        requires (position >= 0)
+        requires (position < get_n_items()) {
+            return items[position];
+        }
+
+        bool variant_matches (Family item, string search) {
+            var variants = new GenericArray <Font> ();
+            item.variants.foreach((f) => {
+                string style = f.style.casefold();
+                string weight = ((Weight) f.weight).to_translatable_string();
+                weight = weight.casefold();
+                if (style.contains(search) || weight.contains(search))
+                    variants.add(f);
             });
-            entry.show();
-            arrow.show();
-            expand_button.show();
-            add(box);
-            box.show();
+            item.variants = variants;
+            return item.count > 0;
+        }
+
+        bool matches_search_term (Family item) {
+            bool item_matches = true;
+            if (search_term == null || search_term.strip().length == 0)
+                return item_matches;
+            var search = search_term.strip().casefold();
+            // Best case scenario, searching for a particular family
+            item_matches = item.family.casefold().contains(search);
+            // Possible the search term matches a variant
+            if (!item_matches)
+                item_matches = variant_matches(item, search);
+            return item_matches;
+        }
+
+        bool matches_filter (Family item) {
+            if (filter == null)
+                return true;
+            return filter.matches(item);
+        }
+
+        void on_item_changed(Family item) {
+            items_changed(item.position, 0, 0);
+            return;
+        }
+
+        public void update_items () {
+            uint n_items = get_n_items();
+            items = null;
+            items = new GenericArray <Family> ();
+            items_changed(0, n_items, 0);
+            if (entries != null) {
+                entries.foreach_element((array, index, node) => {
+                    Family item = new Family(node.get_object());
+                    if (matches_filter(item) && matches_search_term(item)) {
+                        items.add(item);
+                        item.changed.connect(() => { on_item_changed(item); });
+                        foreach (var font in item.variants)
+                            font.changed.connect(() => { on_item_changed(item); });
+                    }
+                });
+                items_changed(0, 0, get_n_items());
+            }
+            return;
+        }
+
+        public ListModel? get_child_model (Object item) {
+            if (!(item is Family))
+                return null;
+            var parent = (Family) item;
+            var child = new VariantModel();
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            parent.bind_property("variants", child, "items", flags);
+            return child;
         }
 
     }
 
-    public class FontListPane : Gtk.Overlay {
+    public class VariantModel : Object, ListModel {
 
-        public FontListControls controls { get; protected set; }
-        public Filters? filter { get; set; default = null; }
-        public PlaceHolder place_holder { get; set; }
+        public GenericArray <Font>? items { get; set; default = null; }
 
-        public Gtk.TreeView fontlist {
-            get {
-                return ((Gtk.TreeView) scrolled_window.get_child());
-            }
-            set {
-                Gtk.Widget? current_child = scrolled_window.get_child();
-                if (current_child != null)
-                    scrolled_window.remove(current_child);
-                scrolled_window.add(value);
-                value.expand = true;
-                value.headers_visible = false;
-                value.show();
-            }
+        void on_item_changed(Font item) {
+            items_changed(item.position, 0, 0);
+            return;
         }
 
-        public Gtk.TreeModel? model {
-            get {
-                return real_model;
-            }
-            set {
-                real_set_model(value);
-            }
+        void on_items_changed () {
+            foreach (var font in items)
+                font.changed.connect(on_item_changed);
         }
-
-        uint? search_timeout;
-        uint16 text_length = 0;
-        Gtk.Box box;
-        Gtk.TreeModel? real_model = null;
-        Gtk.TreeModelFilter? search_filter = null;
-        Gtk.ScrolledWindow scrolled_window;
 
         construct {
-            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            controls = new FontListControls();
-            box.pack_start(controls, false, true, 0);
-            scrolled_window = new Gtk.ScrolledWindow(null, null) { expand = true };
-            scrolled_window.shadow_type = Gtk.ShadowType.NONE;
-            box.pack_end(scrolled_window, true, true, 0);
-            fontlist = new Gtk.TreeView();
-            var text = new Gtk.CellRendererText();
-            var count = new CellRendererStyleCount();
-            fontlist.insert_column_with_attributes(-1, "", text, "text", 1, null);
-            fontlist.insert_column_with_attributes(-1, "", count, "count", 2, null);
-            fontlist.get_column(0).expand = true;
-            text.ellipsize = Pango.EllipsizeMode.END;
-            fontlist.get_column(1).expand = false;
-            connect_signals();
-            controls.show();
-            scrolled_window.show();
-            add(box);
-            box.show();
-            var view = new Gtk.EventBox();
-            place_holder = new PlaceHolder(null, null, null, null);
-            view.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            view.expand = true;
-            view.add(place_holder);
-            place_holder.show.connect(() => { view.show(); });
-            place_holder.hide.connect(() => { view.hide(); });
-            add_overlay(view);
+            notify["items"].connect(on_items_changed);
         }
 
-        public bool refilter () {
-            /* NOTE :
-             * Creating a new Gtk.TreeModelFilter is cheaper than calling
-             * refilter on an existing one with a large child model.
-             */
-            var saved_model = real_model;
-            real_set_model(null);
-            real_set_model(saved_model);
-            select_first_row();
-            if (controls.expanded)
-                fontlist.expand_all();
-            search_timeout = null;
-            return GLib.Source.REMOVE;
+        public Type get_item_type () {
+            return typeof(Font);
         }
 
-        void real_set_model (Gtk.TreeModel? model) {
-            real_model = model;
-            if (model != null) {
-                search_filter = new Gtk.TreeModelFilter(model, null);
-                search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
-                fontlist.model = search_filter;
-            } else {
-                search_filter = null;
-                fontlist.model = null;
-            }
+        public uint get_n_items () {
+            return items != null ? items.length : 0;
+        }
+
+        public Object? get_item (uint position)
+        requires (items != null) {
+            return_val_if_fail(items[position] != null, null);
+            return items[position];
+        }
+
+    }
+
+    public class FontListRow : ListItemRow {
+
+        public signal void state_changed ();
+
+        public uint position { get; set; default = 0; }
+
+        ulong signal_id = 0;
+
+        protected override void reset () {
+            item_state.visible = true;
+            item_label.set("label", "", "attributes", null, null);
+            item_preview.visible = false;
+            item_count.visible = true;
+            item_count.set_label("");
+            if (signal_id != 0)
+                SignalHandler.disconnect(item_state, signal_id);
+            signal_id = 0;
+        }
+
+        void on_family_changed (Family family) {
+            foreach (var font in family.variants)
+                font.changed();
+            family.changed();
             return;
         }
 
-        public void select_first_row () {
-            if (model == null)
-                return;
-            Gtk.TreePath path = new Gtk.TreePath.first();
-            Gtk.TreeSelection selection = fontlist.get_selection();
-            selection.unselect_all();
-            selection.select_path(path);
-            if (selection.path_is_selected(path))
-                fontlist.scroll_to_cell(path, null, true, 0.5f, 0.5f);
-            return;
-        }
-
-        public void select_next_row (bool forward = true) {
-            Gtk.TreeSelection selection = fontlist.get_selection();
-            GLib.List <Gtk.TreePath> paths = selection.get_selected_rows(null);
-            Gtk.TreePath path = paths.nth_data(0);
-            if (path != null) {
-                bool path_changed = false;
-                if (forward)
-                    path.next();
-                else
-                    path_changed = path.prev();
-                if (forward || path_changed) {
-                    selection.unselect_all();
-                    selection.select_path(path);
+        void on_item_state_change (Object item) {
+            state_changed();
+            if (item is Family) {
+                var family = ((Family) item);
+                if (item_state.active) {
+                    download_font_files.begin(family.variants.data, (obj, res) => {
+                        if (download_font_files.end(res))
+                            on_family_changed(family);
+                    });
+                } else {
+                    string font_dir = get_font_directory();
+                    string target_dir = Path.build_filename(font_dir, family.family);
+                    File file = File.new_for_path(target_dir);
+                    if (remove_directory(file))
+                        on_family_changed(family);
                 }
-            }
-            if (!selection.path_is_selected(path))
-                select_first_row();
-            else if (path != null)
-                fontlist.scroll_to_cell(path, null, true, 0.0f, 0.0f);
+            } else if (item is Font) {
+                var font = ((Font) item);
+                if (item_state.active) {
+                    download_font_files.begin({ font }, (obj, res) => {
+                        if (download_font_files.end(res))
+                            font.changed();
+                    });
+                } else {
+                    string font_dir = get_font_directory();
+                    string file_name = font.get_filename();
+                    string target_dir = Path.build_filename(font_dir, font.family);
+                    string target_file = Path.build_filename(target_dir, file_name);
+                    File dir = File.new_for_path(target_dir);
+                    File file = File.new_for_path(target_file);
+                    try {
+                        if (file.delete())
+                            remove_directory_tree_if_empty(dir);
+                    } catch (Error e) {
+                        if (e.code != FileError.NOENT)
+                            warning(e.message);
+                    }
+                    font.changed();
+                }
+            } else
+                return_if_reached();
             return;
         }
 
-        /* Add slight delay to avoid filtering while search is still changing */
+        protected override void on_item_set () {
+            reset();
+            if (item == null)
+                return;
+            bool root = item is Family;
+            item_count.visible = root;
+            if (root) {
+                var count = ((Family) item).count;
+                var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
+                item_count.set_label(count_label.printf(count));
+                item_label.set_text(((Family) item).family);
+                int installed = 0;
+                foreach (var font in ((Family) item).variants)
+                    if (font.get_installation_status() != FileStatus.NOT_INSTALLED)
+                        installed++;
+                item_state.active = (installed > 0);
+                item_state.inconsistent = (installed > 0 && installed < count);
+            } else {
+                var font = ((Font) item);
+                item_label.set_text(font.to_display_name());
+                var installation_status = font.get_installation_status();
+                item_state.active = (installation_status != FileStatus.NOT_INSTALLED);
+                if (installation_status == FileStatus.REQUIRES_UPDATE)
+                    download_font_files.begin({ font }, (obj, res) => {
+                        if (!(download_font_files.end(res)))
+                            warning("Failed to download update data for %s", font.get_filename());
+                    });
+            }
+            signal_id = item_state.toggled.connect_after(() => { on_item_state_change(item); });
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-font-list-view.ui")]
+    public class FontListView : Gtk.Box {
+
+        public signal void selection_changed (Object? item);
+
+        public Object? selected_item { get; set; default = null; }
+        public Json.Array? available_families { get; set; default = null; }
+        public FontListFilter filter { get; set; default = null; }
+
+        public FontModel model {
+            get {
+                return ((FontModel) treemodel.model);
+            }
+        }
+
+        [GtkChild] unowned Gtk.ListView listview;
+        [GtkChild] unowned Gtk.Expander expander;
+        [GtkChild] unowned Gtk.SearchEntry search;
+
+        bool changed = false;
+        bool initialized = false;
+        uint current_selection = 0;
+        uint search_timeout = 0;
+        Gtk.TreeListModel treemodel;
+        Gtk.SingleSelection selection;
+
+        construct {
+            widget_set_name(listview, "FontManagerGoogleFontsFontListView");
+        }
+
+        // Add slight delay to avoid filtering while search is still changing
         public void queue_refilter () {
-            if (search_timeout != null)
+            if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
             search_timeout = Timeout.add(333, refilter);
             return;
         }
 
-        void connect_signals () {
-            notify["filter"].connect(() => {
-                refilter();
-                filter.changed.connect(() => { refilter(); });
-            });
-            controls.entry.search_changed.connect(() => {
-                queue_refilter();
-                text_length = controls.entry.get_text_length();
-            });
-            controls.expand_all.connect((e) => {
-                if (e)
-                    fontlist.expand_all();
-                else
-                    fontlist.collapse_all();
-            });
-            controls.entry.next_match.connect(() => {
-                select_next_row();
-            });
-            controls.entry.previous_match.connect(() => {
-                select_next_row(false);
-            });
-            controls.entry.activate.connect(() => {
-                select_next_row();
+        public void focus_search_entry () {
+            search.grab_focus();
+            return;
+        }
+
+        public void select_item (uint position) {
+            listview.activate_action("list.select-item", "(ubb)", position, false, false);
+            listview.activate_action("list.scroll-to-item", "u", position);
+            // The above does result in selection but doesn't trigger this signal...
+            selection.selection_changed(position, 1);
+            return;
+        }
+
+        [GtkCallback]
+        void on_expander_activated (Gtk.Expander _expander) {
+            bool expanded = expander.expanded;
+            treemodel.set_autoexpand(expanded);
+            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
+            queue_update();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_map () {
+            if (initialized)
+                return;
+            var fontmodel = new FontModel();
+            treemodel = new Gtk.TreeListModel(fontmodel,
+                                              false,
+                                              false,
+                                              fontmodel.get_child_model);
+            selection = new Gtk.SingleSelection(treemodel);
+            listview.set_factory(get_factory());
+            listview.set_model(selection);
+            selection.selection_changed.connect(on_selection_changed);
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("filter", fontmodel, "filter", flags, null, null);
+            bind_property("available-families", model, "entries", flags, null, null);
+            search.search_changed.connect(queue_refilter);
+            search.activate.connect(next_match);
+            search.next_match.connect(next_match);
+            search.previous_match.connect(previous_match);
+            initialized = true;
+            return;
+        }
+
+        [GtkCallback]
+        public void on_unmap () {
+            if (changed)
+                get_default_application().reload();
+            return;
+        }
+
+        Gtk.SignalListItemFactory get_factory () {
+            var factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect(setup_list_row);
+            factory.bind.connect(bind_list_row);
+            return factory;
+        }
+
+        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var tree_expander = new Gtk.TreeExpander();
+            var row = new FontListRow();
+            row.margin_top = 4;
+            row.margin_bottom = 4;
+            tree_expander.set_child(row);
+            list_item.set_child(tree_expander);
+            return;
+        }
+
+        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            uint position = list_item.get_position();
+            var list_row = treemodel.get_row(position);
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.margin_start = 2;
+            tree_expander.set_list_row(list_row);
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            // Setting item triggers update to row widget
+            row.set("position", position, "item", _item, null);
+            row.state_changed.connect(() => { changed = true; });
+            return;
+        }
+
+        void queue_update (uint position = 0) {
+            Idle.add(() => {
+                model.search_term = search.text.strip();
+                model.update_items();
+                select_item(position);
+                return GLib.Source.REMOVE;
             });
             return;
         }
 
-        bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            bool search_match = true;
-            if (text_length > 0) {
-                Value val;
-                model.get_value(iter, FontModelColumn.OBJECT, out val);
-                Object object = val.get_object();
-                string needle = controls.entry.get_text().casefold();
-                string family = get_family_from_object(object).casefold();
-                search_match = family.contains(needle);
-            }
-            if (filter != null)
-                return search_match && filter.visible_func(model, iter);
-            return search_match;
+        void next_match (Gtk.SearchEntry entry) {
+            select_item(current_selection + 1);
+            return;
         }
 
-    }
+        void previous_match (Gtk.SearchEntry entry) {
+            select_item(current_selection - 1);
+            return;
+        }
 
-    internal string get_family_from_object (Object object)
-    requires (object is Family || object is Font) {
-        return (object is Family) ? ((Family) object).family : ((Font) object).family;
+        bool refilter () {
+            queue_update();
+            search_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        void on_selection_changed (uint position, uint n_items) {
+            selected_item = null;
+            current_selection = 0;
+            uint i = selection.get_selected();
+            current_selection = i;
+            if (i == Gtk.INVALID_LIST_POSITION)
+                return;
+            assert(selection.is_selected(i));
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
+            Object? item = list_row.get_item();
+            selected_item = item;
+            selection_changed(item);
+            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
+                string? description = null;
+                if (selected_item is Family)
+                    description = ((Family) selected_item).family;
+                else
+                    description = "%s %s".printf(((Font) selected_item).family,
+                                                 ((Font) selected_item).style);
+                debug("%s::selection_changed : %s", listview.name, description);
+            }
+            return;
+        }
+
     }
 
 }
 
 #endif /* HAVE_WEBKIT */
+

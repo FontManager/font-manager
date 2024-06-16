@@ -1,5 +1,6 @@
 
-service = ['org.gnome.FontManager', 'org.gnome.FontViewer']
+service = ['com.github.FontManager.FontManager',
+	   'com.github.FontManager.FontViewer']
 
 appdata_dir = join_paths(datadir, 'metainfo')
 dbus_service_dir = join_paths(datadir, 'dbus-1', 'services')
@@ -17,20 +18,18 @@ configure_file(
 )
 
 foreach path: service
-    if (path == 'org.gnome.FontManager' and not get_option('manager'))
+    if (path == 'com.github.FontManager.FontManager' and not get_option('manager'))
         continue
     endif
-    if (path == 'org.gnome.FontViewer' and not get_option('viewer'))
+    if (path == 'com.github.FontManager.FontViewer' and not get_option('viewer'))
         continue
     endif
     install_data('@0@.gschema.xml'.format(path), install_dir: schema_dir)
 
-    sizes = [ '128', '256' ]
-    icon_name = 'preferences-desktop-font-@0@.png'
-    foreach size: sizes
-        size_dir = '@0@x@1@'.format(size, size)
-        icon_dir = join_paths(datadir, 'icons', 'hicolor', size_dir, 'apps')
-        install_data(icon_name.format(size), install_dir: icon_dir, rename: '@0@.png'.format(path))
+    icons = [ 'com.github.FontManager.FontManager.svg' ]
+    foreach icon: icons
+        icon_dir = join_paths(datadir, 'icons', 'hicolor', 'scalable', 'apps')
+        install_data(icon, install_dir: icon_dir, rename: '@0@.svg'.format(path))
     endforeach
 
     i18n.merge_file(
@@ -90,8 +89,16 @@ if get_option('manager')
     )
 
     if get_option('search-provider')
-        install_data('org.gnome.FontManager.SearchProvider.ini', install_dir: search_provider_dir)
+        install_data('com.github.FontManager.FontManager.SearchProvider.ini',
+        	     install_dir: search_provider_dir)
     endif
+
+    if get_option('app-armor')
+    	aa_config_dir = join_paths(get_option('sysconfdir'), 'apparmor.d')
+    	aa_profile = join_paths(meson.current_build_dir(), 'font-manager.aap')
+    	configure_file(input: 'font-manager.aap.in', output: 'font-manager.aap', configuration: config)
+		install_data(aa_profile, install_dir: aa_config_dir, rename: 'font-manager')
+	endif
 
 endif
 

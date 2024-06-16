@@ -1,225 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk+" version="3.22"/>
-  <template class="FontManagerCompare" parent="GtkBox">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerComparePane" parent="GtkBox">
+    <property name="css-name">FontManagerCompare</property>
+    <property name="css-classes">FontManagerCompare</property>
     <property name="orientation">vertical</property>
-    <child>
-      <object class="FontManagerFontScale" id="fontscale">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="pack_type">end</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
+    <signal name="map" handler="on_map"/>
+    <signal name="unmap" handler="on_unmap"/>
     <child>
       <object class="GtkBox" id="controls">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_start">1</property>
-        <property name="margin_end">1</property>
-        <property name="margin_top">1</property>
-        <property name="margin_bottom">1</property>
-        <property name="border_width">2</property>
-        <property name="spacing">4</property>
-        <child type="center">
-          <object class="FontManagerPreviewEntry" id="entry">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="margin_left">2</property>
-            <property name="margin_right">2</property>
-            <property name="margin_top">2</property>
-            <property name="margin_bottom">2</property>
-            <property name="hexpand">True</property>
-            <signal name="changed" handler="on_entry_changed" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="padding">2</property>
-            <property name="position">4</property>
-          </packing>
-        </child>
+        <property name="spacing">2</property>
+        <style>
+          <class name="background" />
+        </style>
         <child>
           <object class="GtkButton" id="add_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="focus_on_click">False</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Add selected font to comparison</property>
+            <property name="margin_start">4</property>
+            <property name="focusable">1</property>
+            <property name="focus_on_click">0</property>
+            <property name="receives_default">1</property>
+            <property name="tooltip_text" translatable="1">Add selected font to comparison</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
-            <signal name="clicked" handler="on_add_button_clicked" swapped="no"/>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-            </child>
+            <property name="has-frame">False</property>
+            <property name="icon_name">list-add-symbolic</property>
+            <signal name="clicked" handler="on_add_button_clicked" swapped="no" />
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">1</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkButton" id="remove_button">
-            <property name="visible">True</property>
-            <property name="sensitive">False</property>
-            <property name="can_focus">True</property>
-            <property name="focus_on_click">False</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Remove selected font from comparison</property>
-            <property name="halign">start</property>
+            <property name="sensitive">0</property>
+            <property name="focusable">1</property>
+            <property name="focus_on_click">0</property>
+            <property name="tooltip_text" translatable="1">Remove selected font from comparison</property>
+            <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
+            <property name="has-frame">False</property>
             <property name="opacity">0.45</property>
-            <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">list-remove-symbolic</property>
-              </object>
-            </child>
+            <property name="icon_name">list-remove-symbolic</property>
+            <signal name="clicked" handler="on_remove_button_clicked" swapped="no" />
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">1</property>
-            <property name="position">1</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkButton" id="pinned_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Pinned Comparisons</property>
-            <property name="halign">start</property>
+          <object class="GtkMenuButton" id="pinned_button">
+            <property name="focusable">1</property>
+            <property name="tooltip_text" translatable="1">Pinned Comparisons</property>
+            <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="relief">none</property>
+            <property name="has-frame">False</property>
             <property name="opacity">0.45</property>
-            <signal name="clicked" handler="on_pinned_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
                 <property name="opacity">0.9</property>
                 <property name="icon_name">view-pin-symbolic</property>
               </object>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="position">2</property>
-          </packing>
         </child>
-        <child>
-          <object class="GtkColorButton" id="bg_color_button">
+        <child type="center">
+          <object class="FontManagerPreviewEntry" id="entry">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Select background color</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="use_alpha">True</property>
-            <property name="title" translatable="yes">Select background color</property>
-            <property name="alpha">65535</property>
-            <property name="rgba">rgb(255,255,255)</property>
+            <property name="margin-start">2</property>
+            <property name="margin-end">2</property>
+            <property name="margin-top">2</property>
+            <property name="margin-bottom">2</property>
+            <property name="hexpand">1</property>
+            <signal name="changed" handler="on_entry_changed" swapped="no" />
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">1</property>
-            <property name="pack_type">end</property>
-            <property name="position">3</property>
-          </packing>
         </child>
         <child>
-          <object class="GtkColorButton" id="fg_color_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Select text color</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="use_alpha">True</property>
-            <property name="title" translatable="yes">Select text color</property>
-            <property name="alpha">65535</property>
-            <property name="rgba">rgb(0,0,0)</property>
+          <object class="FontManagerPreviewColors" id="preview_colors">
+            <property name="margin_end">4</property>
+            <property name="focusable">1</property>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-            <property name="padding">1</property>
-            <property name="pack_type">end</property>
-            <property name="position">3</property>
-          </packing>
         </child>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkSeparator">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
       </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">True</property>
-        <property name="position">2</property>
-      </packing>
     </child>
     <child>
       <object class="GtkScrolledWindow">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <child>
+        <property name="vexpand">1</property>
+        <property name="focusable">1</property>
+        <property name="child">
           <object class="GtkViewport">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="shadow_type">none</property>
-            <child>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <property name="child">
               <object class="GtkListBox" id="list">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no" />
               </object>
-            </child>
+            </property>
           </object>
-        </child>
+        </property>
       </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">3</property>
-      </packing>
+    </child>
+    <child>
+      <object class="FontManagerFontScale" id="fontscale">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+      </object>
     </child>
     <style>
-      <class name="view"/>
+      <class name="view" />
     </style>
   </template>
 </interface>
+

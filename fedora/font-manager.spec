@@ -1,11 +1,12 @@
 %global MajorVersion 0
-%global MinorVersion 8
-%global PatchVersion 9
+%global MinorVersion 9
+%global PatchVersion 0
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
-%global DBusName org.gnome.FontManager
-%global DBusName2 org.gnome.FontViewer
+%global DBusName com.github.FontManager.FontManager
+%global DBusName2 com.github.FontManager.FontViewer
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
+%bcond adwaita 1
 %bcond nautilus 1
 %bcond nemo 1
 %bcond thunar 1
@@ -22,20 +23,20 @@ Source0:    %{git_archive}
 BuildRequires: gettext
 BuildRequires: meson
 BuildRequires: fontconfig-devel >= 2.12
-BuildRequires: freetype-devel
-BuildRequires: glib2-devel >= 2.44
+BuildRequires: freetype-devel >= 2.10
+BuildRequires: glib2-devel >= 2.62
 BuildRequires: gobject-introspection-devel
-BuildRequires: gtk3-devel >= 3.22
-BuildRequires: json-glib-devel
+BuildRequires: gtk4-devel >= 4.12
+BuildRequires: json-glib-devel >= 1.5
 BuildRequires: libappstream-glib
-BuildRequires: libxml2-devel
-BuildRequires: pango-devel
-BuildRequires: sqlite-devel
+BuildRequires: libxml2-devel >= 2.9.10
+BuildRequires: pango-devel >= 1.45
+BuildRequires: sqlite-devel >= 3.35
 BuildRequires: vala >= 0.42
 BuildRequires: yelp-tools
 %if %{with webkit}
-BuildRequires: libsoup3-devel
-BuildRequires: webkit2gtk4.1-devel
+BuildRequires: libsoup3-devel >= 3.2
+BuildRequires: webkitgtk6.0-devel >= 2.4
 %endif
 
 %if %{with nautilus}
@@ -52,12 +53,12 @@ Requires: fontconfig
 Requires: %{name}-common
 Requires: font-viewer
 Requires: freetype
-Requires: gtk3 >= 3.22
+Requires: gtk4 >= 4.12
 Requires: sqlite
 Requires: yelp
 %if %{with webkit}
 Requires: libsoup3
-Requires: webkit2gtk4.1
+Requires: webkitgtk6.0
 %endif
 
 %description
@@ -114,6 +115,7 @@ This package provides integration with the Thunar file manager.
 
 %build
 %meson --buildtype=release \
+    -Dadwaita=%{?with_adwaita:true}%{!?with_adwaita:false} \
     -Dnautilus=%{?with_nautilus:true}%{!?with_nautilus:false} \
     -Dnemo=%{?with_nemo:true}%{!?with_nemo:false} \
     -Dthunar=%{?with_thunar:true}%{!?with_thunar:false} \
@@ -131,22 +133,24 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %posttrans
 /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+/usr/bin/gtk4-update-icon-cache -q -t -f %{_datadir}/icons/hicolor &> /dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &> /dev/null || :
 
 %files
 %{_bindir}/%{name}
 %{_datadir}/metainfo/%{DBusName}.appdata.xml
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
-%{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
 %{_datadir}/gnome-shell/search-providers/%{DBusName}.SearchProvider.ini
-%{_datadir}/icons/hicolor/128x128/apps/%{DBusName}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{DBusName}.png
+%{_datadir}/icons/hicolor/scalable/apps/%{DBusName}.svg
+%{_datadir}/icons/hicolor/symbolic/apps/%{DBusName}.svg
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
 %license COPYING
 %{_libdir}/%{name}
 %{_datadir}/help/*/%{name}
+%{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
 
 %files -n font-viewer
 %{_libexecdir}/%{name}/font-viewer
@@ -154,8 +158,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/applications/%{DBusName2}.desktop
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
-%{_datadir}/icons/hicolor/128x128/apps/%{DBusName2}.png
-%{_datadir}/icons/hicolor/256x256/apps/%{DBusName2}.png
+%{_datadir}/icons/hicolor/scalable/apps/%{DBusName2}.svg
+%{_datadir}/icons/hicolor/symbolic/apps/%{DBusName2}.svg
 
 %if %{with nautilus}
 %files -n nautilus-%{name}
@@ -173,6 +177,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %endif
 
 %changelog
-* Sun May 5 2024 JerryCasiano <JerryCasiano@gmail.com> 0.8.9-1
+* Tue Jun 4 2024 JerryCasiano <JerryCasiano@gmail.com> 0.9.0-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 

@@ -1,8 +1,8 @@
 
-# Font Manager <img src="help/C/media/preferences-desktop-font.png" align="right">
+# Font Manager <img src="help/C/media/com.github.FontManager.FontManager.svg" align="right">
 Un manager de fonturi simplu pentru Mediile Desktop GTK.
 
-![Main Window](https://github.com/FontManager/resources/blob/master/font-manager.png?raw=true)
+![Main Window](https://raw.githubusercontent.com/FontManager/font-manager/master/help/C/media/main-window.png)
 
 Font Manager este proiectat pentru a furniza utilizatorilor normali o cale uşoară de a administra fonturile de desktop, făra a fi nevoie de a recurge la command line sau la editarea manuală a fişierelor de configurare. Deşi este proiectat în special pentru Gnome Desktop Environment, ar trebui să meargă bine şi cu alte medii desktop GTK.
 
@@ -85,15 +85,15 @@ Extensia Thunar are, de asemenea, suport de bază pentru redenumire bulk.
 
 Va trebui să vă asiguraţi că următoarele depentenţe sunt instalate:
 
-- `meson >= 0.53`
+- `meson >= 0.59`
 - `ninja`
 - `glib >= 2.62`
-- `vala >= 0.42`
-- `freetype2 >= 2.5`
-- `gtk+-3.0 >= 3.22`
-- `json-glib-1.0 >= 0.15`
-- `libxml-2.0 >= 2.9`
-- `sqlite3 >= 3.8`
+- `vala >= 0.56`
+- `freetype2 >= 2.10`
+- `gtk+-4.0 >= 4.12`
+- `json-glib-1.0 >= 1.5`
+- `libxml-2.0 >= 2.9.10`
+- `sqlite3 >= 3.35`
 - `gobject-introspection`
 - `yelp-tools` (opţional)
 - `gettext` (opţional)
@@ -106,8 +106,8 @@ Dacă doriţi să construiţi şi extensiile pentru managerul de fişiere, veţi
 
 Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată implicit, următoarele biblioteci sunt necesare:
 
-- `webkit2gtk-4.1 >= 2.42`
-- `libsoup3 >= 3.0`
+- `webkitgtk-6.0 >= 2.4`
+- `libsoup3 >= 3.2`
 
 Pentru a construi aplicaţia:
 

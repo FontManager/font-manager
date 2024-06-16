@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<gresources>
-    <gresource prefix="">
-        <file compressed="true" preprocess="xml-stripblanks">ui/unicode-character-map-zoom-window.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/unicode-search-bar.ui</file>
-    </gresource>
-</gresources>

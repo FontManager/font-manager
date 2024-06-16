@@ -1,6 +1,6 @@
 /* Cacheable.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ namespace FontManager {
                                                      Value val,
                                                      ParamSpec pspec) {
             Json.Node node;
-            /* XXX : Value.strdup_contents() is marked unstable */
+            // XXX : Value.strdup_contents() is marked unstable
             if (val.strdup_contents() == "NULL")
                 node = new Json.Node(Json.NodeType.NULL);
             else {
@@ -52,3 +52,4 @@ namespace FontManager {
     }
 
 }
+

@@ -28,12 +28,9 @@ from pprint import pprint
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
-#ifndef __FONT_MANAGER_VENDOR_H__
-#define __FONT_MANAGER_VENDOR_H__
+#pragma once
 
 #include <glib.h>
-
-G_BEGIN_DECLS
 
 #ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_MAX_VENDOR_ID_LENGTH 4
@@ -95,10 +92,6 @@ FOOTER = """};
 #define FONT_MANAGER_NOTICE_ENTRIES G_N_ELEMENTS(FontManagerNoticeData)
 #define FONT_MANAGER_VENDOR_ENTRIES G_N_ELEMENTS(FontManagerVendorData)
 #endif
-
-G_END_DECLS
-
-#endif /* __FONT_MANAGER_VENDOR_H__ */
 
 """
 

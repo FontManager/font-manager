@@ -20,10 +20,8 @@
 
 #include <gio/gio.h>
 
+#include "extension-common.h"
 #include "font-manager-menu-provider.h"
-
-#define FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
-#define FONT_VIEWER_BUS_PATH "/org/gnome/FontViewer"
 
 struct _FontManagerMenuProvider
 {

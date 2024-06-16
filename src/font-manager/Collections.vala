@@ -1,6 +1,6 @@
 /* Collections.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,9 +22,41 @@ namespace FontManager {
 
     const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
 
-    public class Collections : Cacheable {
+    public class CollectionListModel : FontListFilterModel {
 
-        public GLib.HashTable <string, Collection> entries { get; set; }
+        public signal void changed ();
+
+        public SortType sort_type { get; set; default = SortType.NONE; }
+        public Reject? disabled_families { get; set; default = null; }
+        public StringSet? available_families { get; set; default = null; }
+
+        construct {
+            available_families = list_available_font_families();
+            load();
+            notify["sort-type"].connect_after(() => {
+                Idle.add(() => { on_sort_type_changed(); return GLib.Source.REMOVE; });
+            });
+        }
+
+        void on_sort_type_changed () {
+            if (items == null)
+                return;
+            var tmp = items;
+            clear();
+            if (sort_type == SortType.NAME)
+                tmp.sort_with_data((a, b) => { return natural_sort(a.name, b.name); });
+            else if (sort_type == SortType.SIZE)
+                tmp.sort_with_data((a, b) => {
+                    int a_size = a.size;
+                    int b_size = b.size;
+                    return a_size == b_size ? 0 : a_size < b_size ? 1 : -1;
+                });
+            else
+                tmp.sort_with_data((a, b) => { return filter_sort(a, b); });
+            items = tmp;
+            items_changed(0, 0, get_n_items());
+            return;
+        }
 
         public static string get_cache_file () {
             string dirpath = get_package_config_directory();
@@ -33,183 +65,111 @@ namespace FontManager {
             return filepath;
         }
 
-        public Collections () {
-            entries = new GLib.HashTable <string, Collection> (str_hash, str_equal);
-        }
-
-        public void update () {
-            Reject? reject = get_default_application().reject;
-            return_if_fail(reject != null);
-            foreach (Collection collection in entries.get_values())
-                collection.set_active_from_fonts(reject);
-            return;
-        }
-
-        public void rename_collection (Collection collection, string new_name) {
-            string old_name = collection.name;
-            collection.name = new_name;
-            if (this.entries.contains(old_name)) {
-                this.entries.set(collection.name, collection);
-                this.entries.remove(old_name);
-            }
-            return;
+        public static ListModel? get_child_model (Object item) {
+            var collection = ((Collection) item);
+            var child = new CollectionListModel();
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            collection.bind_property("children", child, "items", flags);
+            return child;
         }
 
         public StringSet get_full_contents () {
             var full_contents = new StringSet ();
-            foreach (var entry in entries.get_values())
-                full_contents.add_all(entry.get_full_contents());
+            foreach (var entry in items.data)
+                full_contents.add_all(((Collection) entry).get_full_contents());
             return full_contents;
         }
 
-        public override bool deserialize_property (string prop_name,
-                                                        out Value val,
-                                                        ParamSpec pspec,
-                                                        Json.Node node) {
-            if (pspec.value_type == typeof(GLib.HashTable)) {
-                var collections = new GLib.HashTable <string, Collection> (str_hash, str_equal);
-                node.get_object().foreach_member((obj, name, node) => {
-                    Object collection = Json.gobject_deserialize(typeof(Collection), node);
-                    collections[name] = collection as Collection;
-                });
-                val = collections;
-                return true;
-            } else
-                return base.deserialize_property(prop_name, out val, pspec, node);
+        public override void add_item (FontListFilter item) {
+            base.add_item(item);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("available-families", ((Collection) item), "available-families", flags);
+            bind_property("disabled-families", ((Collection) item), "disabled-families", flags);
+            return;
         }
 
-        public override Json.Node serialize_property (string prop_name,
-                                                            Value val,
-                                                            ParamSpec pspec) {
-            if (pspec.value_type == typeof(GLib.HashTable)) {
-                var node = new Json.Node(Json.NodeType.OBJECT);
-                var obj = new Json.Object();
-                foreach (var collection in entries.get_values())
-                    obj.set_member(collection.name.escape(""), Json.gobject_serialize(collection));
-                node.set_object(obj);
-                return node;
-            } else
-                return base.serialize_property(prop_name, val, pspec);
+        void add_from_json_node (Json.Node node) {
+            Object collection = Json.gobject_deserialize(typeof(Collection), node);
+            add_item((Collection) collection);
+            ((Collection) collection).changed.connect(() => { save(); changed(); });
+            return;
         }
 
-        public bool save () {
-            if (!write_json_file(Json.gobject_serialize(this), get_cache_file(), true)) {
-                warning("Failed to save collection cache file.");
-                return false;
-            }
-            return true;
-        }
-
-        public static Collections load () {
-            Collections? collections = null;
-            string cache = Collections.get_cache_file();
-            Json.Node? root = load_json_file(cache);
-            if (root != null)
-                collections = (Collections) Json.gobject_deserialize(typeof(Collections), root);
-            return collections != null ? collections : new Collections();
-        }
-
-    }
-
-    public class CollectionModel : Gtk.TreeStore {
-
-        public Collections collections {
-            get {
-                return _collections;
-            }
-            set {
-                _collections = value;
-                this.update();
-            }
-        }
-
-        Collections _collections;
-
-        construct {
-            set_column_types({typeof(Object), typeof(string), typeof(string)});
-            collections = Collections.load();
-        }
-
-        public void update () {
-            clear();
-            if (_collections == null || _collections.entries.get_values() == null)
+        public void load () {
+            Json.Node? root = load_json_file(get_cache_file());
+            if (root == null)
                 return;
-            GLib.List <weak Collection> sorted = _collections.entries.get_values();
-            sorted.sort_with_data((CompareDataFunc) filter_sort);
-            foreach (Collection collection in sorted) {
-                Gtk.TreeIter iter;
-                this.append(out iter, null);
-                this.set(iter, 0, collection, 2, collection.comment, -1);
-                insert_children(collection.children, iter);
+            Json.NodeType node_type = root.get_node_type();
+            if (node_type == Json.NodeType.ARRAY) {
+                Json.Array array = root.get_array();
+                array.foreach_element((a, i, n) => { add_from_json_node(n); });
+            } else if (node_type == Json.NodeType.OBJECT) {
+                // For compatibility with previous version
+                Json.Object obj = root.get_object();
+                assert(obj.has_member("entries"));
+                Json.Object entries = obj.get_object_member("entries");
+                entries.foreach_member((o, s, n) => { add_from_json_node(n); });
+            } else {
+                assert_not_reached();
             }
             return;
         }
 
-        public void update_group_index () {
-            if (_collections == null || _collections.entries.get_values() == null)
+        public bool save () {
+            var node = new Json.Node(Json.NodeType.ARRAY);
+            var array = new Json.Array();
+            foreach (var collection in items)
+                array.add_element(Json.gobject_serialize(collection));
+            node.set_array(array);
+            return write_json_file(node, get_cache_file(), true);
+        }
+
+    }
+
+    public class CollectionListRow : TreeListItemRow {
+
+        public signal void changed ();
+
+        Binding? name_binding = null;
+        Binding? state_binding = null;
+
+        construct {
+            margin_start = 0;
+            item_state.visible = true;
+            item_state.active = false;
+            item_count.visible = true;
+        }
+
+        public override void reset () {
+            if (name_binding != null)
+                name_binding.unbind();
+            if (state_binding != null)
+                state_binding.unbind();
+            name_binding = null;
+            state_binding = null;
+            return;
+        }
+
+        protected override void on_item_set () {
+            reset();
+            if (item == null)
                 return;
-            foreach (Collection collection in _collections.entries.get_values())
-                collection.clear_children();
-            /* (model, path, iter) */
-            this.foreach((m, p, i) => {
-                /* Update index */
-                Value child;
-                m.get_value(i, CollectionColumn.OBJECT, out child);
-                var collection = child as Collection;
-                /* This means we got an empty row, ignore this call */
-                if (collection == null) {
-                    child.unset();
-                    return false;
-                }
-                int depth = p.get_depth();
-                int []? indices = p.get_indices();
-                /* XXX : VALA BUG? : avoid possible dereference of null pointer */
-                assert(indices != null);
-                collection.index = indices[depth-1];
-                /* Bail if this is a root node */
-                if (depth <= 1) {
-                    /* In case this wasn't a root node before, make it a root node */
-                    if (!(_collections.entries.contains(collection.name)))
-                        _collections.entries[collection.name] = collection;
-                    child.unset();
-                    return false;
-                }
-                /* Have a child node, need to add it to its parent */
-                Value parent;
-                Gtk.TreeIter piter;
-                m.iter_parent(out piter, i);
-                m.get_value(piter, CollectionColumn.OBJECT, out parent);
-                ((Collection) parent).children.add(collection);
-                /* In case this used to be a root node */
-                if (_collections.entries.contains(collection.name))
-                    _collections.entries.remove(collection.name);
-                parent.unset();
-                child.unset();
-                return false;
-            });
-        }
-
-        void insert_children (GenericArray <Collection> children, Gtk.TreeIter parent) {
-            children.sort_with_data((CompareDataFunc) filter_sort);
-            children.foreach((child) => {
-                Gtk.TreeIter _iter;
-                this.append(out _iter, parent);
-                this.set(_iter, 0, child, 1, child.comment, -1);
-                insert_children(child.children, _iter);
-            });
+            var collection = (Collection) item;
+            item_icon.visible = collection.icon != null;
+            if (item_icon.visible)
+                item_icon.set_from_icon_name(collection.icon);
+            item_count.set_label(collection.size.to_string());
+            item_state.active = collection.active;
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            name_binding = collection.bind_property("name", item_label, "label", flags);
+            state_binding = item_state.bind_property("active", collection, "active", BindingFlags.DEFAULT);
+            return;
         }
 
     }
 
-    public enum CollectionColumn {
-        OBJECT,
-        NAME,
-        COMMENT,
-        N_COLUMNS
-    }
-
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-collection-rename-popover.ui")]
-    internal class CollectionRenamePopover : Gtk.Popover {
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-collection-rename-popover.ui")]
+    class CollectionRenamePopover : Gtk.Popover {
 
         public signal void renamed (string new_name);
 
@@ -217,17 +177,11 @@ namespace FontManager {
         [GtkChild] public unowned Gtk.Button rename_button { get; }
 
         public override void constructed () {
+            name_entry.grab_focus();
+            set_default_widget(rename_button);
             rename_button.clicked.connect(() => {
                 renamed(name_entry.get_text().strip());
                 Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
-            });
-            key_press_event.connect((ev) => {
-                if (ev.keyval == Gdk.Key.KP_Enter || ev.keyval == Gdk.Key.Return) {
-                    renamed(name_entry.get_text().strip());
-                    Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
-                    return Gdk.EVENT_STOP;
-                }
-                return Gdk.EVENT_PROPAGATE;
             });
             base.constructed();
             return;
@@ -235,160 +189,174 @@ namespace FontManager {
 
     }
 
-    public class CollectionTree : BaseTreeView {
+    public class CollectionListView : FilterListView {
 
         public signal void changed ();
-        public signal void selection_changed (Collection? group);
-        public signal void collection_added ();
 
-        public string selected_iter { get; protected set; default = "-1"; }
-        public Collection? selected_filter { get; protected set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
 
-        public new CollectionModel? model {
-            get {
-                return ((CollectionModel) base.get_model());
-            }
-            set {
-                base.set_model(value);
-                select_first_row();
-                value.row_deleted.connect((t, p) => { update_and_cache_collections(); });
-                value.row_inserted.connect((t, p, i) => { update_and_cache_collections(); });
-                value.rows_reordered.connect((t, p, i) => { update_and_cache_collections(); });
-                value.row_changed.connect((t, p, i) => { update_and_cache_collections(); });
-                update_and_cache_collections();
-            }
-        }
+        uint update_timeout = 0;
 
-        Gtk.Menu context_menu;
-        Gtk.MenuItem menu_header;
-        Gtk.TreeIter _selected_iter_;
-        Gtk.CellRendererText renderer;
+        Gtk.Label menu_title;
+        Gtk.PopoverMenu context_menu;
+        Gdk.Rectangle clicked_area;
 
         CollectionRenamePopover? rename_popover = null;
 
+        static construct {
+            var file_roller = new ArchiveManager();
+            if (file_roller.available)
+                install_action("compress", null, (Gtk.WidgetActionActivateFunc) compress);
+            install_action("copy_to", null, (Gtk.WidgetActionActivateFunc) copy_to);
+            install_action("rename", null, (Gtk.WidgetActionActivateFunc) rename_selected_collection);
+            add_binding_action(Gdk.Key.F2, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "rename", null);
+        }
+
         construct {
-            name = "FontManagerCollectionTree";
-            expand = true;
-            level_indentation = 12;
-            headers_visible = false;
-            reorderable = true;
-            show_expanders = false;
-            renderer = new Gtk.CellRendererText();
-            var count_renderer = new CellRendererCount();
-            var toggle = new Gtk.CellRendererToggle();
-            toggle.toggled.connect(on_collection_toggled);
-            renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
-            renderer.set_property("ellipsize-set", true);
-            renderer.editable = true;
-            insert_column_with_data_func(0, "", toggle, toggle_cell_data_func);
-            insert_column_with_data_func(1, "", renderer, text_cell_data_func);
-            insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
-            for (int i = 0; i < CollectionColumn.N_COLUMNS; i++)
-                get_column(i).expand = (i == CollectionColumn.NAME);
-            set_tooltip_column(CollectionColumn.COMMENT);
-            context_menu = get_context_menu();
-            connect_signals();
-            model = new CollectionModel();
+            widget_set_name(listview, "FontManagerCollectionListView");
+            var collection_model = new CollectionListModel();
+            treemodel = new Gtk.TreeListModel(collection_model,
+                                              false,
+                                              true,
+                                              CollectionListModel.get_child_model);
+            selection = new Gtk.SingleSelection(treemodel);
+            add_drop_target(listview);
+            init_context_menu();
+            selection_changed.connect_after(update_context_menu);
+            collection_model.changed.connect(() => { changed(); queue_update(); });
+            clicked_area = Gdk.Rectangle();
+            Gtk.Gesture click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_PRIMARY
+            };
+            ((Gtk.GestureClick) click).pressed.connect(on_click);
+            listview.add_controller(click);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("disabled-families", model, "disabled-families", flags);
+            selection.set_selected(Gtk.INVALID_LIST_POSITION);
         }
 
-        void connect_signals () {
-            get_selection().changed.connect(on_selection_changed);
-            renderer.edited.connect(on_edited);
-            Reject? reject = get_default_application().reject;
-            return_if_fail(reject != null);
-            reject.changed.connect(() => {
-                model.collections.update();
-                get_column(0).queue_resize();
+        bool update () {
+            // Force complete update
+            listview.set_model(null);
+            listview.set_model(selection);
+            update_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        public void queue_update () {
+            if (update_timeout != 0)
+                GLib.Source.remove(update_timeout);
+            update_timeout = Timeout.add(333, update);
+            return;
+        }
+
+        void on_click (int n_press, double x, double y) {
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            context_menu.set_pointing_to(clicked_area);
+            return;
+        }
+
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var tree_expander = new Gtk.TreeExpander();
+            tree_expander.set_indent_for_icon(false);
+            var row = new CollectionListRow();
+            row.expander = tree_expander;
+            row.selection = selection;
+            tree_expander.set_child(row);
+            list_item.set_child(tree_expander);
+            add_drag_source(row);
+            add_drop_target(row);
+            return;
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.set_list_row(list_row);
+            var row = (CollectionListRow) tree_expander.get_child();
+            Object? object = list_row.get_item();
+            var collection = (Collection) object;
+            collection.depth = (int) list_row.get_depth();
+            // Setting item triggers update to row widget
+            row.item = object;
+            // Nesting is allowed so we need the entire list refreshed if a
+            // single row changes otherwise parent nodes would not update
+            row.changed.connect(() => {
+                changed();
+                queue_update();
             });
+            collection.activated.connect(on_collection_activated);
             return;
         }
 
-        public void select_first_row () {
-            if (model == null)
-                return;
-            Gtk.TreePath path = new Gtk.TreePath.first();
-            Gtk.TreeSelection selection = get_selection();
-            selection.unselect_all();
-            selection.select_path(path);
-            if (selection.path_is_selected(path))
-                scroll_to_cell(path, null, true, 0.5f, 0.5f);
-            return;
-        }
-
-        public void on_add_collection (StringSet? families = null) {
-            string default_collection_name = DEFAULT_COLLECTION_NAME;
-            int i = 1;
-            while (model.collections.entries.contains(default_collection_name)) {
-                default_collection_name = "%s %i".printf(DEFAULT_COLLECTION_NAME, i);
-                i++;
-            }
-            var group = new Collection(default_collection_name, null);
-            if (families != null) {
-                group.families.add_all(families);
-                Reject? reject = get_default_application().reject;
-                group.set_active_from_fonts(reject);
-            }
-            model.collections.entries[default_collection_name] = group;
-            Gtk.TreeIter iter;
-            model.append(out iter, null);
-            model.set(iter, 0, group, 1, group.comment, -1);
-            grab_focus();
-            set_cursor(model.get_path(iter), get_column(CollectionColumn.NAME), true);
-            collection_added();
-            return;
-        }
-
-        public void on_remove_collection ()
-        requires (selected_filter != null) {
-            if (!model.iter_is_valid(_selected_iter_))
-                return;
-            var collections = model.collections.entries;
-            if (collections.contains(selected_filter.name))
-                collections.remove(selected_filter.name);
-            ((Gtk.TreeStore) model).remove(ref _selected_iter_);
+        void on_collection_activated (bool active, StringSet families) {
+            if (active)
+                disabled_families.remove_all(families);
+            else
+                disabled_families.add_all(families);
+            disabled_families.save();
+            ((CollectionListModel) model).save();
             changed();
             return;
         }
 
-        public void remove_fonts (StringSet fonts)
-        requires (selected_filter != null) {
-            selected_filter.families.remove_all(fonts);
-            Idle.add(() => {
-                model.collections.save();
-                return GLib.Source.REMOVE;
-            });
-            Reject? reject = get_default_application().reject;
-            selected_filter.set_active_from_fonts(reject);
-            changed();
+        const MenuEntry [] collection_menu_entries = {
+            {"copy_to", N_("Copy to…")},
+            {"compress", N_("Compress…")},
+            {"rename", N_("Rename…")}
+        };
+
+        void init_context_menu () {
+            var base_menu = new BaseContextMenu(listview);
+            context_menu = base_menu.popover;
+            menu_title = base_menu.menu_title;
+            var menu = base_menu.menu;
+            foreach (var entry in collection_menu_entries) {
+                var item = new GLib.MenuItem(entry.display_name, entry.action_name);
+                menu.append_item(item);
+            }
             return;
         }
 
-        protected override bool show_context_menu (Gdk.EventButton e) {
-            if (selected_filter != null)
-                context_menu.popup_at_pointer(e);
-            return true;
+        void update_context_menu () {
+            menu_title.set_label(selected_item.name);
+            return;
         }
 
-        void copy_to ()
-        requires (selected_filter != null) {
-            string? target_dir = FileSelector.get_target_directory();
-            if (target_dir == null)
+        protected override void on_show_context_menu (int n_press, double x, double y) {
+            if (selected_item == null)
                 return;
-            string destination = Path.build_filename(target_dir, selected_filter.name);
-            return_if_fail(DirUtils.create_with_parents(destination, 0755) == 0);
-            File tmp = File.new_for_path(destination);
-            copy_files.begin(selected_filter.get_filelist(),
-                             tmp,
-                             true,
-                             (obj, res) => {
-                                copy_files.end(res);
-                             }
-            );
+            context_menu.popup();
             return;
         }
 
-        void compress ()
-        requires (selected_filter != null) {
+        void on_folder_selection_ready (Object? obj, AsyncResult res) {
+            return_if_fail(obj != null);
+            try {
+                var dialog = (Gtk.FileDialog) obj;
+                File target_dir = dialog.select_folder.end(res);
+                string destination = Path.build_filename(target_dir.get_path(), selected_item.name);
+                return_if_fail(DirUtils.create_with_parents(destination, 0755) == 0);
+                File tmp = File.new_for_path(destination);
+                copy_files.begin(((Collection) selected_item).get_filelist(),
+                                 tmp,
+                                 true,
+                                 (obj, res) => {
+                                    copy_files.end(res);
+                                 });
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return;
+        }
+
+        void compress (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
             var file_roller = new ArchiveManager();
             return_if_fail(file_roller.available);
             string temp_dir;
@@ -399,10 +367,11 @@ namespace FontManager {
                 critical(e.message);
                 return_if_reached();
             }
-            string tmp_path = Path.build_filename(temp_dir, selected_filter.name);
+            string tmp_path = Path.build_filename(temp_dir, selected_item.name);
             assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
             File tmp = File.new_for_path(tmp_path);
-            copy_files.begin(selected_filter.get_filelist(), tmp, false, (obj, res) => {
+            copy_files.begin(((Collection) selected_item).get_filelist(), tmp, false, (obj, res) => {
+                copy_files.end(res);
                 string? [] filelist = { tmp.get_uri(), null };
                 unowned string home = Environment.get_home_dir();
                 string destination = File.new_for_path(home).get_uri();
@@ -411,194 +380,229 @@ namespace FontManager {
             return;
         }
 
-        Gdk.Rectangle get_selected_area () {
-            Gdk.Rectangle area;
-            Gtk.TreePath path = new Gtk.TreePath.from_string(selected_iter);
-            get_cell_area(path, get_column(CollectionColumn.NAME), out area);
-            return area;
+        void copy_to (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            var dialog = FileSelector.get_target_directory();
+            dialog.select_folder.begin(get_parent_window(this),
+                                       null,
+                                       on_folder_selection_ready);
+            return;
         }
 
-        void rename ()
-        requires (selected_filter != null) {
+        public void add_new_collection () {
+            collapse_all();
+            clicked_area.x = listview.get_width() / 2;
+            clicked_area.y = listview.get_height() / 2;
+            ((CollectionListModel) model).add_item(new Collection(null, null));
+            listview.scroll_to(model.get_n_items() - 1, Gtk.ListScrollFlags.SELECT, null);
+            Idle.add(() => {
+                rename_selected_collection(listview, null, null);
+                return GLib.Source.REMOVE;
+            });
+            return;
+        }
+
+        public void remove_selected_collection () {
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(selected_position);
+            FontListFilterModel target_model = model;
+            Gtk.TreeListRow? parent_row = list_row.get_parent();
+            if (parent_row != null)
+                target_model = ((FontListFilterModel) parent_row.get_children());
+            else
+                parent_row = list_row;
+            target_model.remove_item(selected_item);
+            parent_row.set_expanded((target_model.get_n_items() != 0));
+            ((CollectionListModel) model).save();
+            // Necessary to update parent row count label
+            queue_update();
+            return;
+        }
+
+        void rename_selected_collection (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
             if (rename_popover == null) {
                 rename_popover = new CollectionRenamePopover();
-                rename_popover.set_relative_to(this);
+                rename_popover.set_parent(listview);
                 rename_popover.renamed.connect((new_name) => {
-                    if (new_name == "" || new_name == selected_filter.name)
+                    if (new_name == "" || new_name == selected_item.name)
                         return;
-                    model.collections.rename_collection(selected_filter, new_name);
-                    queue_draw();
-                    menu_header.label = new_name;
+                    selected_item.name = new_name;
+                    selected_item.changed();
                     Idle.add(() => {
-                        model.collections.save();
+                        ((CollectionListModel) model).save();
                         return GLib.Source.REMOVE;
                     });
                 });
             }
-            rename_popover.name_entry.set_text(selected_filter.name);
-            rename_popover.name_entry.grab_focus();
-            rename_popover.set_pointing_to(get_selected_area());
+            rename_popover.name_entry.set_text(selected_item.name);
+            rename_popover.set_pointing_to(clicked_area);
             rename_popover.popup();
+            rename_popover.name_entry.grab_focus();
             return;
         }
 
-        /* TODO :
-         * Implement and group all context menus used in the application so that
-         * they're easy to modify/extend in one place.
-         */
-        Gtk.Menu get_context_menu () {
-            /* action_name, display_name, detailed_action_name, accelerator, method */
-            MenuEntry [] context_menu_entries = {
-                MenuEntry("copy_to", _("Copy to…"), "app.copy_to", null, new MenuCallbackWrapper(copy_to)),
-                MenuEntry("compress", _("Compress…"), "app.compress", null, new MenuCallbackWrapper(compress)),
-                MenuEntry("rename", _("Rename…"), "app.rename", null, new MenuCallbackWrapper(rename)),
-            };
-            var popup_menu = new Gtk.Menu();
-            menu_header = new Gtk.MenuItem.with_label("");
-            menu_header.sensitive = false;
-            menu_header.get_style_context().add_class("SensitiveChildLabel");
-            menu_header.opacity = 0.8;
-            menu_header.show();
-            popup_menu.append(menu_header);
-            var label = ((Gtk.Bin) menu_header).get_child();
-            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
-            var separator = new Gtk.SeparatorMenuItem();
-            separator.show();
-            popup_menu.append(separator);
-            foreach (MenuEntry entry in context_menu_entries) {
-                var item = new Gtk.MenuItem.with_label(entry.display_name);
-                item.activate.connect(() => { entry.method.run(); });
-                item.show();
-                popup_menu.append(item);
-                if (entry.action_name == "compress") {
-                    var file_roller = new ArchiveManager();
-                    item.set_visible(file_roller.available);
+        // BEGIN - COLLECTION DRAG AND DROP SUPPORT
+
+        void add_drop_target (Gtk.Widget widget) {
+            Gdk.DragAction actions = Gdk.DragAction.COPY | Gdk.DragAction.MOVE;
+            var target = new Gtk.DropTarget(Type.INVALID, actions);
+            target.set_gtypes({ typeof(FontListFilter), typeof(GenericArray) });
+            widget.add_controller(target);
+            target.accept.connect(on_accept_drop);
+            target.drop.connect(on_drop);
+            return;
+        }
+
+        void add_drag_source (CollectionListRow row) {
+            var drag_source = new Gtk.DragSource();
+            row.add_controller(drag_source);
+            drag_source.prepare.connect(on_prepare_drag);
+            drag_source.drag_begin.connect(on_drag_begin);
+            drag_source.drag_end.connect(on_drag_end);
+            drag_source.set_actions(Gdk.DragAction.MOVE);
+            return;
+        }
+
+        Gdk.ContentProvider on_prepare_drag (Gtk.DragSource source, double x, double y) {
+            var row = ((CollectionListRow) source.widget);
+            Value selection = Value(typeof(FontListFilter));
+            selection.set_object((FontListFilter) row.item);
+            return new Gdk.ContentProvider.for_value(selection);
+        }
+
+        void on_drag_begin (Gtk.DragSource source, Gdk.Drag drag) {
+            var row = ((CollectionListRow) source.widget);
+            var drag_icon = new Gtk.Label(row.item_label.label);
+            drag_icon.add_css_class("FontManagerListRowDrag");
+            var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
+            gtk_drag_icon.set_child(drag_icon);
+            return;
+        }
+
+        Gtk.TreeListRow? get_list_row_for_widget (Gtk.Widget widget) {
+            var e_type = typeof(Gtk.TreeExpander);
+            var expander = (Gtk.TreeExpander) widget.get_ancestor(e_type);
+            return (Gtk.TreeListRow) expander.get_list_row();
+        }
+
+        void on_drag_end (Gtk.DragSource source, Gdk.Drag drag, bool delete_data) {
+            // Only handle move operations
+            if (!delete_data)
+                return;
+            Gtk.TreeListRow? list_row = get_list_row_for_widget(source.widget);
+            return_if_fail(list_row != null);
+            FontListFilterModel target_model = model;
+            Gtk.TreeListRow? parent_row = list_row.get_parent();
+            Collection? dropped_collection = null;
+            try {
+                var content = drag.content;
+                Value val = Value(typeof(FontListFilter));
+                content.get_value(ref val);
+                dropped_collection = (Collection) val.get_object();
+            } catch (Error e) {
+                warning(e.message);
+                dropped_collection = ((Collection) list_row.item);
+            }
+            if (parent_row != null)
+                target_model = ((FontListFilterModel) parent_row.get_children());
+            else
+                parent_row = list_row;
+            target_model.remove_item(dropped_collection);
+            parent_row.set_expanded((target_model.get_n_items() != 0));
+            ((CollectionListModel) model).save();
+            // Necessary to update parent row count label
+            queue_update();
+            return;
+        }
+
+        bool on_accept_drop (Gtk.DropTarget target, Gdk.Drop drop) {
+            var formats = drop.drag.content.formats;
+            if (formats.contain_gtype(typeof(GenericArray)))
+                return (target.widget is CollectionListRow);
+            if (!(formats.contain_gtype(typeof(FontListFilter))))
+                return false;
+            Collection? dropped_collection = null;
+            try {
+                var content = drop.drag.content;
+                Value? val = Value(typeof(Object));
+                content.get_value(ref val);
+                Object object = val.get_object();
+                dropped_collection = (Collection) object;
+            } catch (Error e) {
+                warning(e.message);
+                return false;
+            }
+            if (target.widget is CollectionListRow) {
+                Gtk.TreeListRow? list_row = get_list_row_for_widget(target.widget);
+                return_val_if_fail(list_row != null, false);
+                Collection target_collection = ((Collection) list_row.item);
+                // Cancelled drop or dropped in the same position
+                if (target_collection == dropped_collection)
+                    return false;
+                Gtk.TreeListRow? parent_row = list_row.get_parent();
+                while (parent_row != null) {
+                    Collection? parent = ((Collection) parent_row.item);
+                    // Say no to recursive collection practices
+                    if (dropped_collection == parent)
+                        return false;
+                    parent_row = parent_row.get_parent();
                 }
+                // Reject duplicate drops
+                if (target_collection.contains(dropped_collection))
+                    return false;
             }
-            /* Wayland complains if not set */
-            popup_menu.realize.connect(() => {
-                Gdk.Window child = popup_menu.get_window();
-                child.set_type_hint(Gdk.WindowTypeHint.POPUP_MENU);
-                child.set_transient_for(this.get_window());
-            });
-            return popup_menu;
+            return (target.widget is CollectionListRow ||
+                    target.widget is Gtk.ListView &&
+                    target.widget.name == listview.name &&
+                    dropped_collection.depth > 0);
         }
 
-        void on_edited (Gtk.CellRendererText renderer, string path, string new_text)
-        requires (selected_filter != null) {
-            string new_name = new_text.strip();
-            if (new_name == selected_filter.name || new_name == "" || model.collections.entries.contains(new_name)) {
-                return;
-            } else if (new_name == DEFAULT_COLLECTION_NAME) {
-                grab_focus();
-                set_cursor(new Gtk.TreePath.from_string(path), get_column(CollectionColumn.NAME), true);
-                return;
+        bool on_external_drop (Gtk.DropTarget target, Value val, double x, double y) {
+            var objects = (GenericArray <Object>) val;
+            Gtk.TreeListRow? list_row = get_list_row_for_widget(target.widget);
+            return_val_if_fail(list_row != null, false);
+            Collection? collection = ((Collection) list_row.item);
+            StringSet new_families = new StringSet();
+            foreach (var object in objects) {
+                if (object is Family)
+                    new_families.add(((Family) object).family);
             }
-            Gtk.TreeIter iter;
-            Value val;
-            model.get_iter_from_string(out iter, path);
-            model.get_value(iter, CollectionColumn.OBJECT, out val);
-            var group = (Collection) val.get_object();
-            model.collections.rename_collection(group, new_name);
-            menu_header.label = new_name;
-            val.unset();
+            collection.add(new_families);
             Idle.add(() => {
-                model.collections.save();
+                changed();
+                queue_update();
                 return GLib.Source.REMOVE;
             });
-            return;
+            return true;
         }
 
-        void on_collection_toggled (string path) {
-            Gtk.TreeIter iter;
-            Value val;
-            model.get_iter_from_string(out iter, path);
-            model.get_value(iter, CollectionColumn.OBJECT, out val);
-            var group = (Collection) val.get_object();
-            group.active = !(group.active);
-            Reject? reject = get_default_application().reject;
-            group.update(reject);
-            group.set_active_from_fonts(reject);
-            val.unset();
-            changed();
-            Idle.add(() => {
-                model.collections.save();
-                return GLib.Source.REMOVE;
-            });
-            return;
-        }
-
-        void on_selection_changed (Gtk.TreeSelection selection) {
-            Gtk.TreeIter iter;
-            Gtk.TreeModel model;
-            GLib.Value val;
-            selected_filter = null;
-            selected_iter = "-1";
-            if (!selection.get_selected(out model, out iter)) {
-                selection_changed(null);
-                return;
+        bool on_drop (Gtk.DropTarget target, Value val, double x, double y) {
+            if (val.holds(typeof(GenericArray)))
+                return on_external_drop(target, val, x, y);
+            return_val_if_fail(val.holds(typeof(FontListFilter)), false);
+            var widget = target.widget;
+            var filter = (Collection) val.get_object();
+            filter.depth = 0;
+            FontListFilterModel? target_model = model;
+            if (widget is CollectionListRow) {
+                Gtk.TreeListRow? list_row = get_list_row_for_widget(target.widget);
+                return_val_if_fail(list_row != null, false);
+                Collection? collection = ((Collection) list_row.item);
+                return_val_if_fail(collection != null, false);
+                if (collection.contains(filter))
+                    return false;
+                target_model = (FontListFilterModel) list_row.get_children();
+                filter.depth = (int) list_row.depth + 1;
             }
-            Gtk.TreePath path = model.get_path(iter);
-            if (path.get_depth() < 2) {
-                collapse_all();
-                get_column(0).queue_resize();
-            }
-            expand_to_path(path);
-            model.get_value(iter, 0, out val);
-            selected_filter = ((Collection) val);
-            menu_header.label = ((Collection) val).name;
-            _selected_iter_ = iter;
-            selected_iter = model.get_string_from_iter(iter);
-            val.unset();
-            selection_changed(selected_filter);
-            return;
+            if (target_model == null)
+                return false;
+            target_model.add_item(filter);
+            return true;
         }
 
-        void text_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, CollectionColumn.OBJECT, out val);
-            var obj = (Collection) val.get_object();
-            cell.set_property("text", obj.name);
-            val.unset();
-            return;
-        }
-
-        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, CollectionColumn.OBJECT, out val);
-            var obj = (Collection) val.get_object();
-            cell.set_property("active", obj.active);
-            val.unset();
-            return;
-        }
-
-        void count_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, CollectionColumn.OBJECT, out val);
-            var obj = (Collection) val.get_object();
-            cell.set_property("count", obj.size);
-            val.unset();
-            return;
-        }
-
-        void update_and_cache_collections () {
-            model.update_group_index();
-            Idle.add(() => {
-                model.collections.save();
-                return GLib.Source.REMOVE;
-            });
-            return;
-        }
+        // END - COLLECTION DRAG AND DROP SUPPORT
 
     }
 
 }
+

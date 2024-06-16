@@ -1,6 +1,6 @@
 /* font-manager-database.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,9 @@
 
 #include "font-manager-database.h"
 
+#include "font-manager-database-iterator.h"
+#include "font-manager-database-error.h"
+
 /**
  * SECTION: font-manager-database
  * @short_description: Database related functions
@@ -28,13 +31,6 @@
  * @stability: Unstable
  *
  * Database class and related functions.
- *
- * The current design uses a three separate database files.
- * The first holds information required for basic font identification,
- * the second holds all the metadata extracted from the font file
- * itself and the third has information related to orthography support.
- *
- * These are then attached to the "base" database for access.
  */
 
 #define CREATE_FONTS_TABLE "CREATE TABLE IF NOT EXISTS Fonts ( " \
@@ -78,24 +74,17 @@
 #define FONT_PROPERTIES FontProperties
 #define INFO_PROPERTIES InfoProperties
 
-typedef struct
+struct _FontManagerDatabase
 {
+    GObject parent_instance;
+
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
     gboolean in_transaction;
     gchar *file;
-}
-FontManagerDatabasePrivate;
-
-G_DEFINE_TYPE_WITH_PRIVATE(FontManagerDatabase, font_manager_database, G_TYPE_OBJECT)
-G_DEFINE_QUARK(font-manager-database-error-quark, font_manager_database_error)
-
-enum
-{
-    PROP_RESERVED,
-    PROP_FILE,
-    N_PROPERTIES
 };
 
-static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
+G_DEFINE_TYPE(FontManagerDatabase, font_manager_database, G_TYPE_OBJECT)
 
 static void
 set_error (FontManagerDatabase *self, const gchar *ctx, GError **error)
@@ -115,7 +104,6 @@ sqlite3_open_failed (FontManagerDatabase *self, GError **error)
 {
     g_return_val_if_fail(self != NULL, TRUE);
     g_return_val_if_fail((error == NULL || *error == NULL), TRUE);
-    g_clear_pointer(&self->stmt, sqlite3_finalize);
     if (self->db != NULL)
         return FALSE;
     GError *err = NULL;
@@ -139,19 +127,19 @@ sqlite3_step_succeeded (FontManagerDatabase *db, int expected_result)
     return FALSE;
 }
 
-/* font_manager_database_close:
+/**
+ * font_manager_database_close:
  * @self:   #FontManagerDatabase
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Close database.
  * It is not necessary to call this function in normal usage.
  */
-static void
+void
 font_manager_database_close (FontManagerDatabase *self, GError **error)
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(error == NULL || *error == NULL);
-    g_clear_pointer(&self->stmt, sqlite3_finalize);
     sqlite3_exec(self->db, "PRAGMA optimize;", NULL, NULL, NULL);
     if (self->db && (sqlite3_close(self->db) != SQLITE_OK))
         set_error(self, "sqlite3_close", error);
@@ -164,77 +152,18 @@ font_manager_database_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerDatabase *self = FONT_MANAGER_DATABASE(gobject);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
+    font_manager_database_end_query(self);
     font_manager_database_close(self, NULL);
-    g_clear_pointer(&priv->file, g_free);
+    g_clear_pointer(&self->file, g_free);
     G_OBJECT_CLASS(font_manager_database_parent_class)->dispose(gobject);
-    return;
-}
-
-static void
-font_manager_database_get_property (GObject *gobject,
-                                    guint property_id,
-                                    GValue *value,
-                                    GParamSpec *pspec)
-{
-    g_return_if_fail(gobject != NULL);
-    FontManagerDatabase *self = FONT_MANAGER_DATABASE(gobject);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    switch (property_id) {
-        case PROP_FILE:
-            g_value_set_string(value, priv->file);
-            break;
-        default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
-            break;
-    }
-    return;
-}
-
-static void
-font_manager_database_set_property (GObject *gobject,
-                                    guint property_id,
-                                    const GValue *value,
-                                    GParamSpec *pspec)
-{
-    g_return_if_fail(gobject != NULL);
-    FontManagerDatabase *self = FONT_MANAGER_DATABASE(gobject);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    switch (property_id) {
-        case PROP_FILE:
-            font_manager_database_close(self, NULL);
-            g_free(priv->file);
-            priv->file = g_value_dup_string(value);
-            break;
-        default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
-            break;
-    }
     return;
 }
 
 static void
 font_manager_database_class_init (FontManagerDatabaseClass *klass)
 {
-
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     object_class->dispose = font_manager_database_dispose;
-    object_class->get_property = font_manager_database_get_property;
-    object_class->set_property = font_manager_database_set_property;
-
-    /**
-     * FontManagerDatabase:file:
-     *
-     * Filepath to database.
-     */
-    obj_properties[PROP_FILE] = g_param_spec_string("file",
-                                                    NULL,
-                                                    "Database file",
-                                                    NULL,
-                                                    G_PARAM_READWRITE |
-                                                    G_PARAM_STATIC_STRINGS);
-
-    g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
 
@@ -242,44 +171,12 @@ static void
 font_manager_database_init (FontManagerDatabase *self)
 {
     g_return_if_fail(self != NULL);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    priv->file = g_strdup(":memory:");
-    return;
-}
-
-/**
- * font_manager_database_get_type_name:
- * @type: #FontManagerDatabaseType
- *
- * Returns: Database type name
- */
-const gchar *
-font_manager_database_get_type_name (FontManagerDatabaseType type)
-{
-    switch (type) {
-        case FONT_MANAGER_DATABASE_TYPE_FONT:
-            return "Fonts";
-        case FONT_MANAGER_DATABASE_TYPE_METADATA:
-            return "Metadata";
-        case FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY:
-            return "Orthography";
-        default:
-            return "";
-    }
-}
-
-/**
- * font_manager_database_get_file:
- * @type: #FontManagerDatabaseType
- *
- * Returns: (nullable): A newly allocated string or %NULL
- */
-gchar *
-font_manager_database_get_file (FontManagerDatabaseType type)
-{
     g_autofree gchar *cache_dir = font_manager_get_package_cache_directory();
-    g_autofree gchar *filename = g_strdup_printf("%s.sqlite", font_manager_database_get_type_name(type));
-    return g_build_filename(cache_dir, filename, NULL);
+    g_autofree gchar *db_file = g_strdup_printf("%s.sqlite", PACKAGE_NAME);
+    self->file = g_build_filename(cache_dir, db_file, NULL);
+    font_manager_database_open(self, NULL);
+    font_manager_database_initialize(self, NULL);
+    return;
 }
 
 /**
@@ -299,8 +196,7 @@ font_manager_database_open (FontManagerDatabase *self, GError **error)
     g_return_if_fail(error == NULL || *error == NULL);
     if (self->db != NULL)
         return;
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    if (sqlite3_open(priv->file, &self->db) != SQLITE_OK)
+    if (sqlite3_open(self->file, &self->db) != SQLITE_OK)
         set_error(self, "sqlite3_open", error);
     return;
 }
@@ -318,15 +214,26 @@ font_manager_database_begin_transaction (FontManagerDatabase *self, GError **err
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(error == NULL || *error == NULL);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    if (priv->in_transaction)
+    if (self->in_transaction)
         return;
     if (sqlite3_open_failed(self, error))
         return;
     if (sqlite3_exec(self->db, "BEGIN;", NULL, NULL, NULL) != SQLITE_OK)
         set_error(self, "sqlite3_exec", error);
-    priv->in_transaction = TRUE;
+    self->in_transaction = TRUE;
     return;
+}
+
+/**
+ * font_manager_database_get_cursor: (skip)
+ * @self:   #FontManagerDatabase
+ *
+ * Returns: (transfer none) (nullable): #sqlite3_stmt or %NULL
+ */
+sqlite3_stmt *
+font_manager_database_get_cursor (FontManagerDatabase *self) {
+    g_return_val_if_fail(self != NULL, NULL);
+    return self->stmt;
 }
 
 /**
@@ -342,15 +249,14 @@ font_manager_database_commit_transaction (FontManagerDatabase *self, GError **er
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(error == NULL || *error == NULL);
-    FontManagerDatabasePrivate *priv = font_manager_database_get_instance_private(self);
-    if (!priv->in_transaction) {
+    if (!self->in_transaction) {
         g_set_error(error, FONT_MANAGER_DATABASE_ERROR, FONT_MANAGER_DATABASE_ERROR_MISUSE,
                     G_STRLOC" : Not in transaction. Nothing to commit.");
         g_return_if_reached();
     }
     if (sqlite3_exec(self->db, "COMMIT;", NULL, NULL, NULL) != SQLITE_OK)
         set_error(self, "sqlite3_exec", error);
-    priv->in_transaction = FALSE;
+    self->in_transaction = FALSE;
     return;
 }
 
@@ -359,6 +265,8 @@ font_manager_database_commit_transaction (FontManagerDatabase *self, GError **er
  * @self:   #FontManagerDatabase
  * @sql:    Valid SQL query
  * @error: (nullable): #GError or %NULL to ignore errors
+ *
+ * Calls to this function must be paired with a call to #font_manager_database_end_query
  */
 void
 font_manager_database_execute_query (FontManagerDatabase *self, const gchar *sql, GError **error)
@@ -370,6 +278,20 @@ font_manager_database_execute_query (FontManagerDatabase *self, const gchar *sql
         return;
     if (sqlite3_prepare_v2(self->db, sql, -1, &self->stmt, NULL) != SQLITE_OK)
         set_error(self, sql, error);
+    return;
+}
+
+/**
+ * font_manager_database_end_query:
+ * @self:   #fontManagerDatabase
+ *
+ * Finalize the prepared statement created by a previous call to #font_manager_database_execute_query
+ */
+void
+font_manager_database_end_query (FontManagerDatabase *self)
+{
+    g_return_if_fail(self != NULL);
+    g_clear_pointer(&self->stmt, sqlite3_finalize);
     return;
 }
 
@@ -392,30 +314,8 @@ font_manager_database_get_version (FontManagerDatabase *self, GError **error)
     g_return_val_if_fail(error == NULL || *error == NULL, result);
     if (sqlite3_step(self->stmt) == SQLITE_ROW)
         result = sqlite3_column_int(self->stmt, 0);
+    font_manager_database_end_query(self);
     return result;
-}
-
-/**
- * font_manager_database_set_version:
- * @self:       #FontManagerDatabase
- * @version:    version number
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Set database schema version.
- */
-void
-font_manager_database_set_version (FontManagerDatabase *self, int version, GError **error)
-{
-    g_return_if_fail(self != NULL);
-    g_return_if_fail(error == NULL || *error == NULL);
-    if (sqlite3_open_failed(self, error))
-        return;
-    g_autofree gchar *sql = g_strdup_printf("PRAGMA user_version = %i", version);
-    font_manager_database_execute_query(self, sql, error);
-    g_return_if_fail(error == NULL || *error == NULL);
-    if (!sqlite3_step_succeeded(self, SQLITE_DONE))
-        set_error(self, "sqlite3_step", error);
-    return;
 }
 
 /**
@@ -438,62 +338,8 @@ font_manager_database_vacuum (FontManagerDatabase *self, GError **error)
 }
 
 /**
- * font_manager_database_detach:
- * @self:   #FontManagerDatabase instance
- * @type:   #FontManagerDatabaseType
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Detaches speficied database.
- */
-void
-font_manager_database_detach (FontManagerDatabase *self,
-                              FontManagerDatabaseType type,
-                              GError **error)
-{
-    g_return_if_fail(self != NULL);
-    g_return_if_fail(error == NULL || *error == NULL);
-    if (sqlite3_open_failed(self, error))
-        return;
-    const gchar *sql = "DETACH DATABASE %s;";
-    const gchar *type_name = font_manager_database_get_type_name(type);
-    g_autofree gchar *query = g_strdup_printf(sql, type_name);
-    int result = sqlite3_exec(self->db, query, NULL, NULL, NULL);
-    /* Ignore most errors here, more than likely means db is not attached */
-    if (result != SQLITE_OK && result != SQLITE_ERROR)
-        set_error(self, "sqlite3_exec", error);
-    return;
-}
-
-/**
- * font_manager_database_attach:
- * @self:   #FontManagerDatabase instance
- * @type:   #FontManagerDatabaseType
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Attaches speficied database.
- */
-void
-font_manager_database_attach (FontManagerDatabase *self,
-                              FontManagerDatabaseType type,
-                              GError **error)
-{
-    g_return_if_fail(self != NULL);
-    g_return_if_fail(error == NULL || *error == NULL);
-    if (sqlite3_open_failed(self, error))
-        return;
-    const gchar *sql = "ATTACH DATABASE '%s' AS %s;";
-    const gchar *type_name = font_manager_database_get_type_name(type);
-    g_autofree gchar *filepath = font_manager_database_get_file(type);
-    g_autofree gchar *query = g_strdup_printf(sql, filepath, type_name);
-    if (sqlite3_exec(self->db, query, NULL, NULL, NULL) != SQLITE_OK)
-        set_error(self, "sqlite3_exec", error);
-    return;
-}
-
-/**
  * font_manager_database_initialize:
  * @self:   #FontManagerDatabase instance
- * @type:   #FontManagerDatabaseType
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Ensures database is at latest schema version.
@@ -501,63 +347,39 @@ font_manager_database_attach (FontManagerDatabase *self,
  */
 void
 font_manager_database_initialize (FontManagerDatabase *self,
-                                  FontManagerDatabaseType type,
                                   GError **error)
 {
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(self));
     g_return_if_fail(error == NULL || *error == NULL);
 
-    if (font_manager_database_get_version(self, NULL) == FONT_MANAGER_CURRENT_DATABASE_VERSION)
+    bool db_exists = font_manager_exists(self->file);
+    int CURRENT_VERSION = FONT_MANAGER_CURRENT_DATABASE_VERSION;
+
+    if (db_exists && font_manager_database_get_version(self, NULL) == CURRENT_VERSION) {
+        g_debug("Database version is current, skipping initialization");
+        font_manager_database_close(self, error);
         return;
-
-    font_manager_database_close(self, error);
-    g_return_if_fail(error == NULL || *error == NULL);
-
-    g_autofree gchar *db_file = NULL;
-    g_object_get(self, "file", &db_file, NULL);
-    if (db_file != NULL && g_file_test(db_file, G_FILE_TEST_EXISTS))
-        if (g_remove(db_file) == -1)
-            g_critical("Failed to remove outdated database file : %s", db_file);
-
-    if (type != FONT_MANAGER_DATABASE_TYPE_BASE) {
-        font_manager_database_execute_query(self, "PRAGMA journal_mode=WAL;\n", NULL);
-        g_assert(sqlite3_step_succeeded(self, SQLITE_ROW));
-        g_assert(sqlite3_strnicmp((const char *) sqlite3_column_text(self->stmt, 0), "wal", 3) == 0);
+    } else if (db_exists) {
+        g_debug("Database version is outdated, removing file");
+        font_manager_database_close(self, error);
+        if (g_remove(self->file) < 0)
+            g_critical("Failed to remove outdated database file : %s", self->file);
+    } else {
+        g_debug("Database file not found, creating and initializing database");
     }
-
-    if (type == FONT_MANAGER_DATABASE_TYPE_FONT) {
-
-        font_manager_database_execute_query(self, CREATE_FONTS_TABLE, error);
-        g_return_if_fail(error == NULL || *error == NULL);
-        if (!sqlite3_step_succeeded(self, SQLITE_DONE))
-            set_error(self, "sqlite3_step", error);
-        g_return_if_fail(error == NULL || *error == NULL);
-
-    } else if (type == FONT_MANAGER_DATABASE_TYPE_METADATA) {
-
-        font_manager_database_execute_query(self, CREATE_INFO_TABLE, error);
-        g_return_if_fail(error == NULL || *error == NULL);
-        if (!sqlite3_step_succeeded(self, SQLITE_DONE))
-            set_error(self, "sqlite3_step", error);
-        g_return_if_fail(error == NULL || *error == NULL);
-
-        font_manager_database_execute_query(self, CREATE_PANOSE_TABLE, error);
-        g_return_if_fail(error == NULL || *error == NULL);
-        if (!sqlite3_step_succeeded(self, SQLITE_DONE))
-            set_error(self, "sqlite3_step", error);
-        g_return_if_fail(error == NULL || *error == NULL);
-
-    } else if (type == FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY) {
-
-        font_manager_database_execute_query(self, CREATE_ORTH_TABLE, error);
-        g_return_if_fail(error == NULL || *error == NULL);
-        if (!sqlite3_step_succeeded(self, SQLITE_DONE))
-            set_error(self, "sqlite3_step", error);
-        g_return_if_fail(error == NULL || *error == NULL);
-
-    }
-
-    font_manager_database_set_version(self, FONT_MANAGER_CURRENT_DATABASE_VERSION, NULL);
+    if (self->db == NULL)
+        font_manager_database_open(self, NULL);
+    sqlite3_exec(self->db, "PRAGMA journal_mode = WAL;", NULL, 0, 0);
+    sqlite3_exec(self->db, "PRAGMA synchronous = NORMAL;", NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_FONTS_TABLE, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_INFO_TABLE, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_PANOSE_TABLE, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_ORTH_TABLE, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_FONT_MATCH_INDEX, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_INFO_MATCH_INDEX, NULL, 0, 0);
+    sqlite3_exec(self->db, CREATE_PANOSE_MATCH_INDEX, NULL, 0, 0);
+    g_autofree gchar *sql = g_strdup_printf("PRAGMA user_version = %i", CURRENT_VERSION);
+    sqlite3_exec(self->db, sql, NULL, 0, 0);
     return;
 }
 
@@ -608,7 +430,7 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
                 break;
         }
     }
-
+    font_manager_database_end_query(self);
     if (json_object_get_size(obj) < 1)
         g_clear_pointer(&obj, json_object_unref);
     return obj;
@@ -625,175 +447,33 @@ font_manager_database_new (void)
     return g_object_new(FONT_MANAGER_TYPE_DATABASE, NULL);
 }
 
-/**
- * font_manager_database_iterator:
- * @self:   #FontManagerDatabase
- *
- * Returns: (transfer full):   #FontManagerDatabaseIterator.
- * Free the return object using g_object_unref().
- */
-FontManagerDatabaseIterator *
-font_manager_database_iterator (FontManagerDatabase *self)
-{
-    return font_manager_database_iterator_new(self);
-}
-
-struct _FontManagerDatabaseIterator
-{
-    GObjectClass parent_class;
-
-    FontManagerDatabase *db;
-};
-
-G_DEFINE_TYPE(FontManagerDatabaseIterator, font_manager_database_iterator, G_TYPE_OBJECT)
-
-static void
-font_manager_database_iterator_dispose (GObject *gobject)
-{
-    g_return_if_fail(gobject != NULL);
-    FontManagerDatabaseIterator *self = FONT_MANAGER_DATABASE_ITERATOR(gobject);
-    g_clear_pointer(&self->db->stmt, sqlite3_finalize);
-    g_clear_object(&self->db);
-    G_OBJECT_CLASS(font_manager_database_iterator_parent_class)->dispose(gobject);
-    return;
-}
-
-static void
-font_manager_database_iterator_class_init (FontManagerDatabaseIteratorClass *klass)
-{
-    G_OBJECT_CLASS(klass)->dispose = font_manager_database_iterator_dispose;
-    return;
-}
-
-static void
-font_manager_database_iterator_init (G_GNUC_UNUSED FontManagerDatabaseIterator *self)
-{
-    return;
-}
-
-/**
- * font_manager_database_next:
- * @self:   #FontManagerDatabase
- *
- * Returns: %TRUE if there are more results in set
- */
-gboolean
-font_manager_database_iterator_next (FontManagerDatabaseIterator *self)
-{
-    g_return_val_if_fail(self != NULL, FALSE);
-    g_return_val_if_fail(self->db->stmt != NULL, FALSE);
-    return sqlite3_step_succeeded(self->db, SQLITE_ROW);
-}
-
-/**
- * font_manager_database_iterator_get: (skip)
- * @self:   #FontManagerDatabase
- *
- * Returns: (transfer none): #sqlite3_stmt
- */
-sqlite3_stmt *
-font_manager_database_iterator_get (FontManagerDatabaseIterator *self)
-{
-    g_return_val_if_fail(self != NULL, NULL);
-    return self->db->stmt;
-}
-
-/**
- * font_manager_database_iterator_new:
- * @db: #FontManagerDatabase
- *
- * Returns: (transfer full): A newly created #FontManagerDatabaseIterator.
- * Free the returned object using g_object_unref().
- */
-FontManagerDatabaseIterator *
-font_manager_database_iterator_new (FontManagerDatabase *db)
-{
-    g_return_val_if_fail(db != NULL, NULL);
-    g_return_val_if_fail(db->stmt != NULL, NULL);
-    GObject *gobject = g_object_new(FONT_MANAGER_TYPE_DATABASE_ITERATOR, NULL);
-    FontManagerDatabaseIterator *self = FONT_MANAGER_DATABASE_ITERATOR(gobject);
-    self->db = g_object_ref(db);
-    return self;
-}
-
 /* Related functions */
 
-typedef void (*InsertCallback) (FontManagerDatabase *db, JsonObject *face, gpointer data);
-
-typedef struct
-{
-    gchar *table;
-    gchar *sql;
-    JsonObject *available_fonts;
-    FontManagerStringSet *available_files;
-    InsertCallback callback;
-    FontManagerProgressCallback progress;
-    gpointer data;
-}
-InsertData;
-
-static InsertData *
-get_insert_data (const gchar *table, const gchar *sql,
-                 JsonObject *available_fonts, FontManagerStringSet *available_files,
-                 InsertCallback callback, FontManagerProgressCallback progress,
-                 gpointer data)
-{
-    InsertData *res = g_new0(InsertData, 1);
-    res->table = g_strdup(table);
-    res->sql = g_strdup(sql);
-    res->available_fonts = json_object_ref(available_fonts);
-    res->available_files = g_object_ref(available_files);
-    res->callback = callback;
-    res->progress = progress;
-    res->data = data;
-    return res;
-}
-
-static void
-free_insert_data (InsertData *data)
-{
-    g_clear_pointer(&data->table, g_free);
-    g_clear_pointer(&data->sql, g_free);
-    g_clear_pointer(&data->available_fonts, json_object_unref);
-    g_clear_object(&data->available_files);
-    g_clear_pointer(&data, g_free);
-    return;
-}
-
-G_DEFINE_AUTOPTR_CLEANUP_FUNC(InsertData, free_insert_data);
-
 typedef struct
 {
     FontManagerDatabase *db;
-    FontManagerDatabaseType type;
-    JsonObject *available_fonts;
-    FontManagerStringSet *available_files;
+    JsonArray *available_fonts;
     FontManagerProgressCallback progress;
 }
 DatabaseSyncData;
 
 static DatabaseSyncData *
-get_sync_data (FontManagerDatabase *db,
-               FontManagerDatabaseType type,
-               JsonObject *available_fonts,
-               FontManagerStringSet *available_files,
+sync_data_new (FontManagerDatabase *db,
+               JsonArray *available_fonts,
                FontManagerProgressCallback progress)
 {
     DatabaseSyncData *sync_data = g_new0(DatabaseSyncData, 1);
     sync_data->db = g_object_ref(db);
-    sync_data->type = type;
-    sync_data->available_fonts = json_object_ref(available_fonts);
-    sync_data->available_files = g_object_ref(available_files);
+    sync_data->available_fonts = json_array_ref(available_fonts);
     sync_data->progress = progress;
     return sync_data;
 }
 
 static void
-free_sync_data (DatabaseSyncData *data)
+sync_data_free (DatabaseSyncData *data)
 {
     g_clear_object(&data->db);
-    g_clear_pointer(&data->available_fonts, json_object_unref);
-    g_clear_object(&data->available_files);
+    g_clear_pointer(&data->available_fonts, json_array_unref);
     g_clear_pointer(&data, g_free);
     return;
 }
@@ -801,18 +481,20 @@ free_sync_data (DatabaseSyncData *data)
 static void
 bind_from_properties (sqlite3_stmt *stmt,
                       JsonObject *json,
-                      const FontManagerJsonProxyProperties *properties,
+                      const FontManagerJsonProxyProperty *properties,
                       gint n_properties)
 {
     for (gint i = 0; i < n_properties; i++) {
         const gchar *str = NULL;
         switch (properties[i].type) {
-            case G_TYPE_INT:
+            case G_TYPE_INT64:
                 g_assert(json_object_has_member(json, properties[i].name));
                 gint val = json_object_get_int_member(json, properties[i].name);
                 g_assert(val >= -1 && sqlite3_bind_int(stmt, i, val) == SQLITE_OK);
                 break;
             case G_TYPE_STRING:
+                if (g_strcmp0(properties[i].name, "preview-text") == 0)
+                    break;
                 if (json_object_has_member(json, properties[i].name))
                     str = json_object_get_string_member(json, properties[i].name);
                 g_assert(sqlite3_bind_text(stmt, i, str, -1, SQLITE_STATIC) == SQLITE_OK);
@@ -825,12 +507,11 @@ bind_from_properties (sqlite3_stmt *stmt,
 }
 
 static FontManagerStringSet *
-get_known_files (FontManagerDatabase *db, const gchar *table)
+get_known_files (FontManagerDatabase *db)
 {
     FontManagerStringSet *result = font_manager_string_set_new();
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), result);
-    g_return_val_if_fail(table != NULL, result);
-    g_autofree gchar *sql = g_strdup_printf("SELECT DISTINCT filepath FROM %s", table);
+    const gchar *sql = "SELECT DISTINCT filepath FROM Metadata";
     g_autoptr(GError) error = NULL;
     font_manager_database_execute_query(db, sql, &error);
     if (error != NULL) {
@@ -844,84 +525,8 @@ get_known_files (FontManagerDatabase *db, const gchar *table)
         if (val)
             font_manager_string_set_add(result, val);
     }
+    font_manager_database_end_query(db);
     return result;
-}
-
-static void
-sync_fonts_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpointer data)
-{
-    bind_from_properties(db->stmt, face, FONT_PROPERTIES, G_N_ELEMENTS(FONT_PROPERTIES));
-    g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-    sqlite3_clear_bindings(db->stmt);
-    sqlite3_reset(db->stmt);
-    return;
-}
-
-static void
-sync_metadata_table (FontManagerDatabase *db, JsonObject *face, gpointer data)
-{
-    JsonArray *panose_info = data;
-    int index = json_object_get_int_member(face, "findex");
-    const gchar *filepath = json_object_get_string_member(face, "filepath");
-    GError *error = NULL;
-    g_autoptr(JsonObject) _face = font_manager_get_metadata(filepath, index, &error);
-    if (error != NULL) {
-        g_critical("Failed to get metadata for %s::%i - %s", filepath, index, error->message);
-        return;
-    }
-    bind_from_properties(db->stmt, _face, INFO_PROPERTIES, G_N_ELEMENTS(INFO_PROPERTIES));
-    g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-    sqlite3_clear_bindings(db->stmt);
-    sqlite3_reset(db->stmt);
-    JsonNode *_panose = json_object_dup_member(_face, "panose");
-    if (_panose) {
-        JsonObject *panose = json_object_new();
-        json_object_set_string_member(panose, "filepath", filepath);
-        json_object_set_int_member(panose, "findex", index);
-        json_object_set_member(panose, "panose", _panose);
-        json_array_add_object_element(panose_info, panose);
-    }
-    return;
-}
-
-static void
-sync_panose_table (FontManagerDatabase *db,
-                   JsonArray *panose,
-                   GCancellable *cancellable,
-                   GError **error)
-{
-    g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
-    g_return_if_fail(panose != NULL);
-    g_return_if_fail(error == NULL || *error == NULL);
-
-    guint total = json_array_get_length(panose);
-    if (total == 0)
-        return;
-    font_manager_database_begin_transaction(db, error);
-    g_return_if_fail(error == NULL || *error == NULL);
-    font_manager_database_execute_query(db, INSERT_PANOSE_ROW, error);
-    g_return_if_fail(error == NULL || *error == NULL);
-    for (guint processed = 0; processed < total; processed++) {
-        if (g_cancellable_is_cancelled(cancellable))
-            break;
-        int val;
-        JsonObject *obj = json_array_get_object_element(panose, processed);
-        JsonArray *_panose = json_object_get_array_member(obj, "panose");
-        for (int i = 0; i < 10; i++) {
-            int index = i + 1;
-            val = (int) json_array_get_int_element(_panose, i);
-            g_assert(sqlite3_bind_int(db->stmt, index, val) == SQLITE_OK);
-        }
-        const gchar *filepath = json_object_get_string_member(obj, "filepath");
-        g_assert(sqlite3_bind_text(db->stmt, 11, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
-        val = json_object_get_int_member(obj, "findex");
-        g_assert(sqlite3_bind_int(db->stmt, 12, val) == SQLITE_OK);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-        sqlite3_clear_bindings(db->stmt);
-        sqlite3_reset(db->stmt);
-    }
-    font_manager_database_commit_transaction(db, error);
-    return;
 }
 
 static const gchar *FONT_MANAGER_SKIP_ORTH_SCAN[] = {
@@ -931,54 +536,25 @@ static const gchar *FONT_MANAGER_SKIP_ORTH_SCAN[] = {
 };
 
 static void
-sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpointer data)
-{
-    int index = json_object_get_int_member(face, "findex");
-    const gchar *filepath = json_object_get_string_member(face, "filepath");
-    const gchar *family = json_object_get_string_member(face, "family");
-    gboolean blank_font = FALSE;
-    if (g_strv_contains(FONT_MANAGER_SKIP_ORTH_SCAN, family))
-        blank_font = TRUE;
-    g_autoptr(JsonObject) orth = font_manager_get_orthography_results(blank_font ? NULL : face);
-    g_autofree gchar *json_obj = font_manager_print_json_object(orth, FALSE);
-    const gchar *sample = json_object_get_string_member(orth, "sample");
-    g_assert(sqlite3_bind_text(db->stmt, 1, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
-    g_assert(sqlite3_bind_int(db->stmt, 2, index) == SQLITE_OK);
-    g_assert(sqlite3_bind_text(db->stmt, 3, json_obj, -1, SQLITE_STATIC) == SQLITE_OK);
-    g_assert(sqlite3_bind_text(db->stmt, 4, sample, -1, SQLITE_STATIC) == SQLITE_OK);
-    g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-    sqlite3_clear_bindings(db->stmt);
-    sqlite3_reset(db->stmt);
-    return;
-}
-
-static void
-update_available_fonts (FontManagerDatabase *db,
-                        InsertData *insert,
+update_available_fonts (DatabaseSyncData *data,
                         GCancellable *cancellable,
                         GError **error)
 {
-    g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
+    g_return_if_fail(FONT_MANAGER_IS_DATABASE(data->db));
     g_return_if_fail(error == NULL || *error == NULL);
 
-    g_autoptr(FontManagerProgressData) progress = NULL;
-    g_autoptr(FontManagerStringSet) known_files = get_known_files(db, insert->table);
+    FontManagerDatabase *db = FONT_MANAGER_DATABASE(data->db);
 
-    if (font_manager_string_set_contains_all(known_files, insert->available_files))
-        return;
-
-    guint processed = 0, total = json_object_get_size(insert->available_fonts);
+    uint processed = 0;
+    uint total = json_array_get_length(data->available_fonts);
+    const gchar *message = _("Updating Database…");
+    g_autoptr(FontManagerStringSet) known_files = get_known_files(db);
+    FontManagerProgressData *progress = font_manager_progress_data_new(message, processed, total);
 
     font_manager_database_begin_transaction(db, error);
     g_return_if_fail(error == NULL || *error == NULL);
-    font_manager_database_execute_query(db, insert->sql, error);
-    g_return_if_fail(error == NULL || *error == NULL);
 
-    JsonObjectIter f_iter;
-    const gchar *f_name;
-    JsonNode *f_node;
-    json_object_iter_init(&f_iter, insert->available_fonts);
-    while (json_object_iter_next(&f_iter, &f_name, &f_node)) {
+    for (uint i = 0; i < total; i++) {
         if (g_cancellable_is_cancelled(cancellable))
             break;
         /* Stash results periodically so we don't lose everything if closed */
@@ -987,113 +563,108 @@ update_available_fonts (FontManagerDatabase *db,
             g_return_if_fail(error == NULL || *error == NULL);
             font_manager_database_begin_transaction(db, error);
             g_return_if_fail(error == NULL || *error == NULL);
-            /* Previous call frees the prepared statement we were using */
-            font_manager_database_execute_query(db, insert->sql, error);
-            g_return_if_fail(error == NULL || *error == NULL);
         }
-        if (insert->progress) {
-
-            if (!progress)
-                progress = font_manager_progress_data_new(insert->table, processed, total);
-
-            g_object_ref(progress);
-            g_object_set(progress, "message", insert->table, "processed", processed, "total", total, NULL);
-
-            g_main_context_invoke_full(g_main_context_get_thread_default(),
-                                       G_PRIORITY_HIGH_IDLE,
-                                       (GSourceFunc) insert->progress,
-                                       progress,
-                                       (GDestroyNotify) g_object_unref);
-
-        }
-        JsonObject *family = json_node_get_object(f_node);
-        JsonObjectIter s_iter;
-        const gchar *s_name;
-        JsonNode *s_node;
-        json_object_iter_init(&s_iter, family);
-        while (json_object_iter_next(&s_iter, &s_name, &s_node)) {
-            JsonObject *face = json_node_get_object(s_node);
+        JsonObject *family = json_array_get_object_element(data->available_fonts, i);
+        const gchar *family_name = json_object_get_string_member(family, "family");
+        JsonArray *variations = json_object_get_array_member(family, "variations");
+        uint n_variations = json_array_get_length(variations);
+        for (uint v = 0; v < n_variations; v++) {
+            // g_autofree gchar *json_data = font_manager_print_json_object(json, FALSE);
+            // g_debug("Database.update_available_fonts : processing : %s", json_data);
+            JsonObject *face = json_array_get_object_element(variations, v);
+            int index = json_object_get_int_member(face, "findex");
             const gchar *filepath = json_object_get_string_member(face, "filepath");
-            if (font_manager_string_set_contains(known_files, filepath))
+            // Font table
+            font_manager_database_execute_query(db, INSERT_FONT_ROW, error);
+            g_return_if_fail(error == NULL || *error == NULL);
+            bind_from_properties(db->stmt, face, FONT_PROPERTIES, G_N_ELEMENTS(FONT_PROPERTIES));
+            g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
+            g_return_if_fail(error == NULL || *error == NULL);
+            font_manager_database_end_query(db);
+            if (font_manager_string_set_contains(known_files, filepath)) {
+                /* g_debug("Database.update_available_fonts : ignoring known font path : %i : %s", index, filepath); */
                 continue;
-            else
-                insert->callback(db, face, insert->data);
+            } else {
+                g_debug("Database.update_available_fonts : adding new font path : %i : %s", index, filepath);
+                // Metadata table
+                g_autoptr(JsonObject) _face = font_manager_get_metadata(filepath, index, error);
+                if (error != NULL && *error != NULL) {
+                    GError *err = *error;
+                    g_critical("Failed to get metadata for %s::%i - %s", filepath, index, err->message);
+                    g_return_if_fail(error == NULL || *error == NULL);
+                }
+                font_manager_database_execute_query(db, INSERT_INFO_ROW, error);
+                g_return_if_fail(error == NULL || *error == NULL);
+                bind_from_properties(db->stmt, _face, INFO_PROPERTIES, G_N_ELEMENTS(INFO_PROPERTIES));
+                g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
+                font_manager_database_end_query(db);
+                // Panose table
+                if (json_object_has_member(_face, "panose")) {
+                    JsonArray *panose = json_object_get_array_member(_face, "panose");
+                    if (panose && json_array_get_length(panose) > 0) {
+                        font_manager_database_execute_query(db, INSERT_PANOSE_ROW, error);
+                        g_return_if_fail(error == NULL || *error == NULL);
+                        for (int i = 0; i < 10; i++) {
+                            int _index = i + 1;
+                            int val = (int) json_array_get_int_element(panose, i);
+                            g_assert(sqlite3_bind_int(db->stmt, _index, val) == SQLITE_OK);
+                        }
+                        g_assert(sqlite3_bind_text(db->stmt, 11, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
+                        g_assert(sqlite3_bind_int(db->stmt, 12, index) == SQLITE_OK);
+                        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
+                        font_manager_database_end_query(db);
+                    }
+                }
+                // Orthogaphy table
+                gboolean blank_font = FALSE;
+                if (g_strv_contains(FONT_MANAGER_SKIP_ORTH_SCAN, family_name))
+                    blank_font = TRUE;
+                g_autoptr(JsonObject) orth = font_manager_get_orthography_results(blank_font ? NULL : face);
+                g_autofree gchar *json_obj = font_manager_print_json_object(orth, FALSE);
+                const gchar *sample = json_object_get_string_member(orth, "sample");
+                font_manager_database_execute_query(db, INSERT_ORTH_ROW, error);
+                g_assert(sqlite3_bind_text(db->stmt, 1, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
+                g_assert(sqlite3_bind_int(db->stmt, 2, index) == SQLITE_OK);
+                g_assert(sqlite3_bind_text(db->stmt, 3, json_obj, -1, SQLITE_STATIC) == SQLITE_OK);
+                g_assert(sqlite3_bind_text(db->stmt, 4, sample, -1, SQLITE_STATIC) == SQLITE_OK);
+                g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
+                font_manager_database_end_query(db);
+            }
         }
         processed++;
+        if (data->progress) {
+            g_object_ref(progress);
+            g_object_set(progress, "processed", processed, "total", total, NULL);
+            g_main_context_invoke_full(g_main_context_get_thread_default(),
+                                       G_PRIORITY_HIGH_IDLE,
+                                       (GSourceFunc) data->progress,
+                                       progress,
+                                       (GDestroyNotify) g_object_unref);
+        }
     }
     font_manager_database_commit_transaction(db, error);
+    g_object_unref(progress);
     return;
 }
 
-/**
- * font_manager_update_database_sync:
- * @db: #FontManagerDatabase instance
- * @type: #FontManagerDatabaseType
- * @available_fonts: #JsonObject returned by #font_manager_list_available_fonts
- * @available_files: #FontManagerStringSet containing filepaths for all available font files
- * @progress: (scope call) (nullable): #FontManagerProgressCallback
- * @cancellable: (nullable): #GCancellable or %NULL
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Update application database as needed.
- *
- * Returns: %TRUE on success
- */
 gboolean
-font_manager_update_database_sync (FontManagerDatabase *db,
-                                    FontManagerDatabaseType type,
-                                    JsonObject *available_fonts,
-                                    FontManagerStringSet *available_files,
-                                    FontManagerProgressCallback progress,
-                                    GCancellable *cancellable,
-                                    GError **error)
+font_manager_update_database_sync (DatabaseSyncData *data,
+                                   GCancellable *cancellable,
+                                   GError **error)
 {
-    g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), FALSE);
-    g_return_val_if_fail(type != FONT_MANAGER_DATABASE_TYPE_BASE, FALSE);
+    g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(data->db), FALSE);
     g_return_val_if_fail((error == NULL || *error == NULL), FALSE);
-
-    g_autoptr(InsertData) data = NULL;
-    g_autoptr(JsonArray) panose = NULL;
-    const gchar *table = font_manager_database_get_type_name(type);
 
     if (g_cancellable_is_cancelled(cancellable))
         return FALSE;
 
-    if (type == FONT_MANAGER_DATABASE_TYPE_FONT) {
+    if (data->db->db == NULL)
+        font_manager_database_open(data->db, NULL);
 
-        font_manager_database_execute_query(db, DROP_FONT_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-        data = get_insert_data(table, INSERT_FONT_ROW, available_fonts, available_files,
-                                      (InsertCallback) sync_fonts_table, progress, NULL);
-        update_available_fonts(db, data, cancellable, error);
-        font_manager_database_execute_query(db, CREATE_FONT_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-
-    } else if (type == FONT_MANAGER_DATABASE_TYPE_METADATA) {
-
-        font_manager_database_execute_query(db, DROP_INFO_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-        font_manager_database_execute_query(db, DROP_PANOSE_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-        panose = json_array_new();
-        data = get_insert_data(table, INSERT_INFO_ROW, available_fonts, available_files,
-                                (InsertCallback) sync_metadata_table, progress, panose);
-        update_available_fonts(db, data, cancellable, error);
-        g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
-        sync_panose_table(db, panose, cancellable, error);
-        font_manager_database_execute_query(db, CREATE_INFO_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-        font_manager_database_execute_query(db, CREATE_PANOSE_MATCH_INDEX, NULL);
-        g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-
-    } else if (type == FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY) {
-
-        data = get_insert_data(table, INSERT_ORTH_ROW, available_fonts, available_files,
-                                       (InsertCallback) sync_orth_table, progress, NULL);
-        update_available_fonts(db, data, cancellable, error);
-
-    }
-
+    sqlite3_exec(data->db->db, "DELETE FROM Fonts;", NULL, 0, 0);
+    sqlite3_exec(data->db->db, CREATE_FONTS_TABLE, NULL, 0, 0);
+    sqlite3_exec(data->db->db, CREATE_FONT_MATCH_INDEX, NULL, 0, 0);
+    update_available_fonts(data, cancellable, error);
     g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
     return TRUE;
 }
@@ -1109,9 +680,7 @@ sync_database_thread (GTask *task,
     gboolean result = FALSE;
     DatabaseSyncData *data = task_data;
 
-    result = font_manager_update_database_sync(data->db, data->type, data->available_fonts,
-                                               data->available_files, data->progress, cancellable,
-                                               &error);
+    result = font_manager_update_database_sync(data, cancellable, &error);
 
     if (error == NULL)
         g_task_return_boolean(task, result);
@@ -1122,9 +691,7 @@ sync_database_thread (GTask *task,
 /**
  * font_manager_update_database:
  * @db: #FontManagerDatabase instance
- * @type: #FontManagerDatabaseType
- * @available_fonts: #JsonObject returned by #font_manager_list_available_fonts
- * @available_files: #FontManagerStringSet containing filepaths for all available font files
+ * @available_fonts: #JsonArray returned by #font_manager_sort_json_listing
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
  * @cancellable: (nullable): #GCancellable or %NULL
  * @callback: (nullable) (scope async): #GAsyncReadyCallback or %NULL
@@ -1134,20 +701,18 @@ sync_database_thread (GTask *task,
  */
 void
 font_manager_update_database (FontManagerDatabase *db,
-                              FontManagerDatabaseType type,
-                              JsonObject *available_fonts,
-                              FontManagerStringSet *available_files,
+                              JsonArray *available_fonts,
                               FontManagerProgressCallback progress,
                               GCancellable *cancellable,
                               GAsyncReadyCallback callback,
                               gpointer user_data)
 {
     g_return_if_fail(cancellable == NULL || G_IS_CANCELLABLE (cancellable));
-    DatabaseSyncData *sync_data = get_sync_data(db, type, available_fonts, available_files, progress);
+    DatabaseSyncData *sync_data = sync_data_new(db, available_fonts, progress);
     g_autoptr(GTask) task = g_task_new(NULL, cancellable, callback, user_data);
     g_task_set_priority(task, G_PRIORITY_DEFAULT);
     g_task_set_return_on_cancel(task, FALSE);
-    g_task_set_task_data(task, (gpointer) sync_data, (GDestroyNotify) free_sync_data);
+    g_task_set_task_data(task, (gpointer) sync_data, (GDestroyNotify) sync_data_free);
     g_task_run_in_thread(task, sync_database_thread);
     return;
 }
@@ -1195,7 +760,9 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
     g_autoptr(FontManagerDatabaseIterator) iter = font_manager_database_iterator(db);
     while (font_manager_database_iterator_next(iter)) {
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
-        g_assert(sqlite3_column_count(stmt) >= 2);
+        g_warn_if_fail(sqlite3_column_count(stmt) >= 2);
+        if (!(sqlite3_column_count(stmt) >= 2))
+            continue;
         const gchar *family = (const gchar *) sqlite3_column_text(stmt, 0);
         const gchar *font = (const gchar *) sqlite3_column_text(stmt, 1);
         if (family == NULL || font == NULL)
@@ -1203,103 +770,7 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
         font_manager_string_set_add(families, family);
         font_manager_string_set_add(fonts, font);
     }
+    font_manager_database_end_query(db);
     return;
 }
 
-static FontManagerDatabase *main_database = NULL;
-
-/**
- * font_manager_get_database:
- * @type:   #FontManagerDatabaseType
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Convenience function which initializes the database and sets default options.
- *
- * Returns: (transfer full) (nullable): The requested #FontManagerDatabase or %NULL on error.
- * Free the returned object using #g_object_unref().
- */
-FontManagerDatabase *
-font_manager_get_database (FontManagerDatabaseType type, GError **error)
-{
-    g_return_val_if_fail((error == NULL || *error == NULL), NULL);
-    if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database != NULL)
-        return g_object_ref(main_database);
-    FontManagerDatabase *db = font_manager_database_new();
-    g_autofree gchar *db_file = font_manager_database_get_file(type);
-    g_object_set(db, "file", db_file, NULL);
-    font_manager_database_initialize(db, type, error);
-    if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database == NULL)
-        main_database = g_object_ref(db);
-    return db;
-}
-
-GType
-font_manager_database_error_get_type (void)
-{
-  static gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { FONT_MANAGER_DATABASE_ERROR_OK, "FONT_MANAGER_DATABASE_ERROR_OK", "ok" },
-        { FONT_MANAGER_DATABASE_ERROR_ERROR, "FONT_MANAGER_DATABASE_ERROR_ERROR", "error" },
-        { FONT_MANAGER_DATABASE_ERROR_INTERNAL, "FONT_MANAGER_DATABASE_ERROR_INTERNAL", "internal" },
-        { FONT_MANAGER_DATABASE_ERROR_PERM, "FONT_MANAGER_DATABASE_ERROR_PERM", "perm" },
-        { FONT_MANAGER_DATABASE_ERROR_ABORT, "FONT_MANAGER_DATABASE_ERROR_ABORT", "abort" },
-        { FONT_MANAGER_DATABASE_ERROR_BUSY, "FONT_MANAGER_DATABASE_ERROR_BUSY", "busy" },
-        { FONT_MANAGER_DATABASE_ERROR_LOCKED, "FONT_MANAGER_DATABASE_ERROR_LOCKED", "locked" },
-        { FONT_MANAGER_DATABASE_ERROR_NOMEM, "FONT_MANAGER_DATABASE_ERROR_NOMEM", "nomem" },
-        { FONT_MANAGER_DATABASE_ERROR_READONLY, "FONT_MANAGER_DATABASE_ERROR_READONLY", "readonly" },
-        { FONT_MANAGER_DATABASE_ERROR_INTERRUPT, "FONT_MANAGER_DATABASE_ERROR_INTERRUPT", "interrupt" },
-        { FONT_MANAGER_DATABASE_ERROR_IOERR, "FONT_MANAGER_DATABASE_ERROR_IOERR", "ioerr" },
-        { FONT_MANAGER_DATABASE_ERROR_CORRUPT, "FONT_MANAGER_DATABASE_ERROR_CORRUPT", "corrupt" },
-        { FONT_MANAGER_DATABASE_ERROR_NOTFOUND, "FONT_MANAGER_DATABASE_ERROR_NOTFOUND", "notfound" },
-        { FONT_MANAGER_DATABASE_ERROR_FULL, "FONT_MANAGER_DATABASE_ERROR_FULL", "full" },
-        { FONT_MANAGER_DATABASE_ERROR_CANTOPEN, "FONT_MANAGER_DATABASE_ERROR_CANTOPEN", "cantopen" },
-        { FONT_MANAGER_DATABASE_ERROR_PROTOCOL, "FONT_MANAGER_DATABASE_ERROR_PROTOCOL", "protocol" },
-        { FONT_MANAGER_DATABASE_ERROR_EMPTY, "FONT_MANAGER_DATABASE_ERROR_EMPTY", "empty" },
-        { FONT_MANAGER_DATABASE_ERROR_SCHEMA, "FONT_MANAGER_DATABASE_ERROR_SCHEMA", "schema" },
-        { FONT_MANAGER_DATABASE_ERROR_TOOBIG, "FONT_MANAGER_DATABASE_ERROR_TOOBIG", "toobig" },
-        { FONT_MANAGER_DATABASE_ERROR_CONSTRAINT, "FONT_MANAGER_DATABASE_ERROR_CONSTRAINT", "constraint" },
-        { FONT_MANAGER_DATABASE_ERROR_MISMATCH, "FONT_MANAGER_DATABASE_ERROR_MISMATCH", "mismatch" },
-        { FONT_MANAGER_DATABASE_ERROR_MISUSE, "FONT_MANAGER_DATABASE_ERROR_MISUSE", "misuse" },
-        { FONT_MANAGER_DATABASE_ERROR_NOLFS, "FONT_MANAGER_DATABASE_ERROR_NOLFS", "nolfs" },
-        { FONT_MANAGER_DATABASE_ERROR_AUTH, "FONT_MANAGER_DATABASE_ERROR_AUTH", "auth" },
-        { FONT_MANAGER_DATABASE_ERROR_FORMAT, "FONT_MANAGER_DATABASE_ERROR_FORMAT", "format" },
-        { FONT_MANAGER_DATABASE_ERROR_RANGE, "FONT_MANAGER_DATABASE_ERROR_RANGE", "range" },
-        { FONT_MANAGER_DATABASE_ERROR_NOTADB, "FONT_MANAGER_DATABASE_ERROR_NOTADB", "notadb" },
-        { FONT_MANAGER_DATABASE_ERROR_NOTICE, "FONT_MANAGER_DATABASE_ERROR_NOTICE", "notice" },
-        { FONT_MANAGER_DATABASE_ERROR_WARNING, "FONT_MANAGER_DATABASE_ERROR_WARNING", "warning" },
-        { FONT_MANAGER_DATABASE_ERROR_ROW, "FONT_MANAGER_DATABASE_ERROR_ROW", "row" },
-        { FONT_MANAGER_DATABASE_ERROR_DONE, "FONT_MANAGER_DATABASE_ERROR_DONE", "done" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("FontManagerDatabaseError"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}
-
-GType
-font_manager_database_type_get_type (void)
-{
-  static gsize g_define_type_id__volatile = 0;
-
-  if (g_once_init_enter (&g_define_type_id__volatile))
-    {
-      static const GEnumValue values[] = {
-        { FONT_MANAGER_DATABASE_TYPE_BASE, "FONT_MANAGER_DATABASE_TYPE_BASE", "base" },
-        { FONT_MANAGER_DATABASE_TYPE_FONT, "FONT_MANAGER_DATABASE_TYPE_FONT", "font" },
-        { FONT_MANAGER_DATABASE_TYPE_METADATA, "FONT_MANAGER_DATABASE_TYPE_METADATA", "metadata" },
-        { FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY, "FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY", "orthography" },
-        { 0, NULL, NULL }
-      };
-      GType g_define_type_id =
-        g_enum_register_static (g_intern_static_string ("FontManagerDatabaseType"), values);
-      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
-    }
-
-  return g_define_type_id__volatile;
-}

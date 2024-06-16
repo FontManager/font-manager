@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerUserDataExportDialog" parent="GtkWindow">
+    <property name="modal">True</property>
+    <property name="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="show-title-buttons">False</property>
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="css-classes">heading</property>
+            <property name="justify">center</property>
+            <property name="label" translatable="yes">User Data</property>
+            <property name="opacity">0.8</property>
+          </object>
+        </property>
+        <child type="start">
+          <object class="GtkButton" id="cancel_button">
+            <property name="label" translatable="yes">Cancel</property>
+            <signal name="clicked" handler="on_cancel_clicked" swapped="no"/>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkButton" id="export_button">
+            <property name="label" translatable="yes">Export</property>
+            <signal name="clicked" handler="on_export_clicked" swapped="no"/>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>
+

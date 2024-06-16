@@ -1,6 +1,6 @@
 /* UserActions.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,11 +30,11 @@ namespace FontManager {
 
         construct {
             notify["executable"].connect(() => {
-                /* Try to retrieve application details, if available. */
+                // Try to retrieve application details, if available.
                 var exec = executable.contains("/") ? Path.get_basename(executable) : executable;
-                var desktop_files = DesktopAppInfo.search(exec);
+                var desktop_files = GLib.DesktopAppInfo.search(exec);
                 if (desktop_files != null && desktop_files[0] != null) {
-                    var app_info = new DesktopAppInfo(desktop_files[0][0]);
+                    var app_info = new GLib.DesktopAppInfo(desktop_files[0][0]);
                     if (app_info.get_executable() == exec) {
                         action_icon = app_info.get_icon().to_string();
                         if (action_name == "")
@@ -46,6 +46,10 @@ namespace FontManager {
                     }
                     app_info = null;
                 }
+                // ??? : Without this we leak this array?
+                foreach (var arr in desktop_files)
+                    GLib.strfreev(arr);
+                desktop_files = null;
             });
             notify.connect(() => { changed(); });
         }
@@ -58,11 +62,13 @@ namespace FontManager {
                 builder.append(Environment.find_program_in_path(executable));
             builder.append(" ");
             string args = arguments;
-            if (font.is_valid()) {
+            if (font != null) {
                 string filepath = Shell.quote(font.filepath);
-                args.replace("FILEPATH", filepath).replace("FAMILY", font.family).replace("STYLE", font.style);
+                args.replace("FILEPATH", filepath);
+                args.replace("FAMILY", font.family);
+                args.replace("STYLE", font.style);
                 builder.append(args);
-                if (!args.contains(font.filepath)) {
+                if (!args.contains(filepath)) {
                     builder.append(" ");
                     builder.append(filepath);
                 }
@@ -81,13 +87,7 @@ namespace FontManager {
 
     public class UserActionModel : Object, ListModel {
 
-        public GenericArray <UserAction> items { get; private set; }
-
-        construct {
-            items = new GenericArray <UserAction> ();
-            load();
-            items_changed.connect(() => { save(); });
-        }
+        public GenericArray <UserAction> items { get; private set; default = new GenericArray <UserAction> (); }
 
         public Type get_item_type () {
             return typeof(UserAction);
@@ -107,8 +107,8 @@ namespace FontManager {
             }
         }
 
-        public new UserAction get (uint index) {
-            assert(index < size);
+        public new UserAction get (uint index)
+        requires (index < size) {
             return ((UserAction) get_item(index));
         }
 
@@ -138,15 +138,38 @@ namespace FontManager {
             if (node != null) {
                 node.get_array().foreach_element(
                     (arr, index, node) => {
-                        var item = Json.gobject_deserialize(typeof(UserAction), node);
-                        add_item((UserAction) item);
+                        //
+                        UserAction item = (UserAction) Json.gobject_deserialize(typeof(UserAction), node);
+                        add_item(item);
                     }
                 );
             }
             return;
         }
 
+        public void clear () {
+            uint n_items = get_n_items();
+            items = null;
+            items_changed(0, n_items, 0);
+            items = new GenericArray <UserAction> ();
+            return;
+        }
+
+        public void reload () {
+            clear();
+            load();
+            items_changed.connect(() => {
+                Idle.add(() => {
+                    save();
+                    return GLib.Source.REMOVE;
+                });
+            });
+            return;
+        }
+
         public void save () {
+            if (items == null)
+                return;
             Json.Node node = new Json.Node(Json.NodeType.ARRAY);
             Json.Array array = new Json.Array.sized(size);
             items.foreach((item) => {
@@ -160,7 +183,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-action-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-user-action-row.ui")]
     public class UserActionRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Image action_icon;
@@ -181,17 +204,30 @@ namespace FontManager {
             return row;
         }
 
+        void on_file_selections_ready (Object? obj, AsyncResult res) {
+            return_if_fail(obj != null);
+            try {
+                var dialog = (Gtk.FileDialog) obj;
+                File file = dialog.open.end(res);
+                executable.set_text(file.get_path());
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return;
+        }
+
         [GtkCallback]
-        void on_executable_icon_press (Gtk.EntryIconPosition position, Gdk.Event event) {
-            var bin = FileSelector.get_executable();
-            executable.set_text(bin != null ? bin : "");
+        void on_executable_icon_press (Gtk.Entry entry, Gtk.EntryIconPosition position) {
+            var dialog = FileSelector.get_executable();
+            dialog.open.begin(get_parent_window(this),
+                              null,
+                              on_file_selections_ready);
             return;
         }
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-action-list.ui")]
-    public class UserActionList : Gtk.Box {
+    public class UserActionList : PreferenceList {
 
         const string help_text =
 
@@ -201,52 +237,44 @@ By default the filepath for the selected font will be appended to the end of the
 To control where the filepath is inserted use FILEPATH as a placeholder.
 If FAMILY or STYLE are found in the argument list they will also be replaced.""");
 
-        [GtkChild] unowned Gtk.ListBox list;
-        [GtkChild] unowned BaseControls controls;
-
-        InlineHelp help;
-
         public UserActionModel model { get; set; }
 
         public UserActionList () {
+            widget_set_name(this, "FontManagerUserActionList");
+            controls.visible = true;
             notify["model"].connect(() => { list.bind_model(model, UserActionRow.from_item); });
             model = new UserActionModel();
-            var place_holder = new PlaceHolder(_("User Actions"), null, _("Custom context menu entries"), "open-menu-symbolic");
+            var place_holder = new PlaceHolder(_("User Actions"),
+                                               null,
+                                               _("Custom context menu entries"),
+                                                 "open-menu-symbolic");
             list.set_placeholder(place_holder);
-            set_control_sensitivity(controls.remove_button, false);
-            help = new InlineHelp();
-            help.margin_start = help.margin_end = 2;
-            help.message.set_text(help_text);
-            ((Gtk.Image) help.get_child()).set_pixel_size(22);
-            controls.box.pack_end(help, false, false, 0);
-            controls.add_selected.connect(() => {
-                model.add_item(new UserAction());
-            });
-            controls.remove_selected.connect(() => {
-                if (list.get_selected_row() == null)
-                    return;
-                uint position = list.get_selected_row().get_index();
-                model.remove_item(position);
-                while (position > 0 && position >= model.get_n_items()) { position--; }
-                list.select_row(list.get_row_at_index((int) position));
-            });
-            place_holder.map.connect(() => {
-                controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                controls.add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            });
-            place_holder.unmap.connect(() => {
-                controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
-                controls.add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            });
-            place_holder.show();
+            controls.append(inline_help_widget(help_text));
         }
 
-        [GtkCallback]
-        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            set_control_sensitivity(controls.remove_button, row != null);
+        public override void on_map () {
+            model.reload();
+            base.on_map();
+            return;
+        }
+
+        protected override void on_add_selected () {
+            model.add_item(new UserAction());
+            return;
+        }
+
+        protected override void on_remove_selected () {
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            model.remove_item(position);
+            while (position > 0 && position >= model.get_n_items()) { position--; }
+            list.select_row(list.get_row_at_index((int) position));
             return;
         }
 
     }
 
 }
+
+

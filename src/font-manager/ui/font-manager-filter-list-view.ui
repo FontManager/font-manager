@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerFilterListView" parent="GtkBox">
+    <property name="margin-top">12</property>
+    <property name="margin-bottom">12</property>
+    <child>
+      <object class="GtkRevealer" id="revealer">
+        <property name="hexpand">True</property>
+        <property name="reveal-child">True</property>
+        <property name="vexpand">True</property>
+        <child>
+          <object class="GtkListView" id="listview">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
+
+

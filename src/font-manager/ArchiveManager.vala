@@ -1,6 +1,6 @@
 /* ArchiveManager.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,7 +114,6 @@ namespace FontManager {
 #else
         public bool compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog = true)
 #endif
-
         requires (file_roller != null) {
             try {
                 file_roller.compress(uris, destination, use_progress_dialog);
@@ -167,3 +166,4 @@ namespace FontManager {
     }
 
 }
+

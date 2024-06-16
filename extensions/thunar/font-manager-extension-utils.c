@@ -18,19 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#include "extension-common.h"
 #include "font-manager-extension-utils.h"
-
-#define N_MIMETYPES 7
-
-static const gchar *MIMETYPES [N_MIMETYPES] = {
-    "font/ttf",
-    "font/ttc",
-    "font/otf",
-    "font/collection",
-    "application/x-font-ttf",
-    "application/x-font-ttc",
-    "application/x-font-otf",
-};
 
 gboolean
 thunarx_file_info_is_font_file (ThunarxFileInfo *fileinfo)

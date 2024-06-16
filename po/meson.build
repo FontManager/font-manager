@@ -23,10 +23,10 @@ POTFILES = '''
 from glob import glob
 
 data = [
-    'data/org.gnome.FontManager.appdata.xml.in.in',
-    'data/org.gnome.FontManager.desktop.in.in',
-    'data/org.gnome.FontViewer.appdata.xml.in.in',
-    'data/org.gnome.FontViewer.desktop.in.in'
+    'data/com.github.FontManager.FontManager.appdata.xml.in.in',
+    'data/com.github.FontManager.FontManager.desktop.in.in',
+    'data/com.github.FontManager.FontViewer.appdata.xml.in.in',
+    'data/com.github.FontManager.FontViewer.desktop.in.in'
 ]
 
 def filelist (ext):

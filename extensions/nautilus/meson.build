@@ -34,6 +34,7 @@ if nautilus.found() or nautilus4.found()
                                           dependencies: nautilus_deps,
                                           c_args: args,
                                           link_with: libfontmanager,
+                                          include_directories: extension_includes,
                                           name_prefix: '',
                                           install: true,
                                           install_dir: nautilus_extension_dir,

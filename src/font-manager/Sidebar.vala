@@ -1,6 +1,6 @@
 /* Sidebar.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,138 +20,241 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-sidebar.ui")]
-    public class Sidebar : Gtk.Stack {
+    public class SidebarControls : Gtk.Box {
 
-        public string mode {
+        public signal void add_selected ();
+        public signal void remove_selected ();
+        public signal void edit_selected ();
+
+        public Gtk.Button add_button { get; protected set; }
+        public Gtk.Button remove_button { get; protected set; }
+        public Gtk.Button edit_button { get; protected set; }
+
+        public bool removable {
             get {
-                return get_visible_child_name();
+                return remove_button.sensitive;
             }
             set {
-                set_visible_child_name(value);
+                set_control_sensitivity(remove_button, value);
             }
         }
 
-        public StandardSidebar? standard {
+        public bool editable {
             get {
-                return (StandardSidebar) get_child_by_name("Standard");
+                return edit_button.sensitive;
+            }
+            set {
+                set_control_sensitivity(edit_button, value);
             }
         }
 
-        public OrthographyList? orthographies {
+        construct {
+            opacity = 0.9;
+            spacing = DEFAULT_MARGIN;
+            widget_set_margin(this, MIN_MARGIN * 2);
+            add_button = new Gtk.Button.from_icon_name("list-add-symbolic") {
+                has_frame = false,
+                tooltip_text = _("Add new collection")
+            };
+            remove_button = new Gtk.Button.from_icon_name("list-remove-symbolic") {
+                has_frame = false,
+                tooltip_text = _("Remove selected item")
+            };
+            edit_button = new Gtk.Button.from_icon_name("document-edit-symbolic") {
+                hexpand = true,
+                has_frame = false,
+                halign = Gtk.Align.END,
+                tooltip_text = _("Edit selected item")
+            };
+            set_control_sensitivity(remove_button, false);
+            set_control_sensitivity(edit_button, false);
+            add_button.clicked.connect((w) => { add_selected(); });
+            remove_button.clicked.connect(() => { remove_selected(); });
+            edit_button.clicked.connect(() => { edit_selected(); });
+            append(add_button);
+            append(remove_button);
+            append(edit_button);
+        }
+
+    }
+
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-sidebar.ui")]
+    public class Sidebar : Gtk.Box {
+
+        public signal void changed();
+
+        public FontListFilter? filter { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
+        public SortType sort_type { get; set; default = SortType.NONE; }
+
+        public CategoryListModel category_model {
             get {
-                return (OrthographyList) get_child_by_name("Orthographies");
+                return (CategoryListModel) categories.model;
             }
         }
 
-        public override void constructed () {
-            add_view(new FontManager.StandardSidebar(), "Standard");
-            add_view(new FontManager.OrthographyList(), "Orthographies");
-            notify["visible-child-name"].connect(() => {
-                if (get_visible_child_name() == "Standard")
-                    set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
-                else
-                    set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
+        public CollectionListModel collection_model {
+            get {
+                return (CollectionListModel) collections.model;
+            }
+        }
+
+        SidebarControls controls;
+
+        [GtkChild] unowned CategoryListView categories;
+        [GtkChild] unowned CollectionListView collections;
+        [GtkChild] unowned Gtk.MenuButton collection_sort_type;
+
+        static construct {
+            install_property_action("sort-type", "sort-type");
+        }
+
+        public Sidebar () {
+            controls = new SidebarControls();
+            controls.valign = Gtk.Align.END;
+            append(controls);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("disabled-families", categories, "disabled-families", flags);
+            bind_property("disabled-families", collections, "disabled-families", flags);
+            bind_property("sort-type", collection_model, "sort-type", BindingFlags.BIDIRECTIONAL);
+            categories.selection_changed.connect(on_category_changed);
+            collections.selection_changed.connect(on_collection_changed);
+            controls.add_selected.connect(on_add_selected);
+            controls.remove_selected.connect(on_remove_selected);
+            controls.edit_selected.connect(on_edit_selected);
+            categories.selection.select_item(0, true);
+            collection_sort_type.set_menu_model(get_sort_type_menu_model());
+            categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
+            collections.changed.connect(() => {
+                changed();
+                categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
             });
-            standard.category_tree.notify["language-filter"].connect((o, p) => {
-                add_view(standard.category_tree.language_filter.settings, "LanguageFilterSettings");
-            });
-            base.constructed();
+        }
+
+        public void select_first_row () {
+            categories.select_item(0);
             return;
         }
 
-        public void add_view (Gtk.Widget sidebar_view, string name) {
-            add_named(sidebar_view, name);
-            sidebar_view.show();
+        public void update_collections () {
+            collections.queue_update();
+            return;
+        }
+
+        void on_add_selected () {
+            collections.add_new_collection();
+            return;
+        }
+
+        void on_edit_selected () requires (categories.language_filter != null) {
+            var main_window = get_default_application().main_window;
+            var filter_settings = categories.language_filter.settings;
+            var dialog = new LanguageSettingsDialog(main_window, filter_settings);
+            dialog.present();
+            return;
+        }
+
+        void on_remove_selected () {
+            collections.remove_selected_collection();
+            return;
+        }
+
+        void on_selection_changed (FilterListView view, FontListFilter? item) {
+            filter = item;
+            view.selection.unselect_item(view.selected_position);
+            bool removable = (filter is Collection);
+            bool language_filter = filter is LanguageFilter;
+            controls.removable = removable;
+            controls.editable = language_filter;
+            if (language_filter) {
+                controls.edit_button.has_frame = true;
+                controls.edit_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            } else {
+                controls.edit_button.has_frame = false;
+                controls.edit_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            }
+            return;
+        }
+
+        void on_category_changed (FontListFilter? item) {
+            on_selection_changed(collections, item);
+            return;
+        }
+
+        void on_collection_changed (FontListFilter? item) {
+            on_selection_changed(categories, item);
             return;
         }
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-standard-sidebar.ui")]
-    public class StandardSidebar : Gtk.Box {
+    public class SidebarStack : Gtk.Box {
 
-        public signal void selection_changed (Filter? filter);
+        public signal void changed();
 
-        [GtkChild] public unowned CategoryTree category_tree { get; }
-        [GtkChild] public unowned CollectionTree collection_tree { get; }
-        [GtkChild] public unowned Gtk.Expander collection_expander { get; }
+        public Object? selected_item { get; set; default = null; }
+        public GLib.Settings? settings { get; protected set; default = null; }
+        public FontListFilter? filter { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
+        public Orthography? selected_orthography { get; set; default = null; }
 
-        [GtkChild] unowned Gtk.Button add_button;
-        [GtkChild] unowned Gtk.Button edit_button;
-        [GtkChild] unowned Gtk.Button remove_button;
-        [GtkChild] unowned Gtk.ScrolledWindow sidebar_scroll;
+        public PreviewPanePage mode {
+            set {
+                if (value == PreviewPanePage.CHARACTER_MAP)
+                    stack.set_visible_child(orthographies);
+                else
+                    stack.set_visible_child(sidebar);
+            }
+        }
 
-        public void on_tree_selection_changed (BaseTreeView tree, Filter? filter) {
-            if (filter == null)
-                return;
-            Gtk.TreeView sibling = (tree is CollectionTree) ? (Gtk.TreeView) category_tree :
-                                                              (Gtk.TreeView) collection_tree;
-            Gtk.TreeSelection selection = sibling.get_selection();
-            selection.unselect_all();
-            selection_changed(filter);
+        public CategoryListModel category_model {
+            get {
+                return sidebar.category_model;
+            }
+        }
+
+        public CollectionListModel collection_model {
+            get {
+                return sidebar.collection_model;
+            }
+        }
+
+        Gtk.Stack stack;
+        Sidebar sidebar;
+        OrthographyList orthographies;
+
+        public SidebarStack (GLib.Settings? settings) {
+            Object(settings: settings);
+            stack = new Gtk.Stack() {
+                transition_duration = 500,
+                transition_type = Gtk.StackTransitionType.OVER_RIGHT_LEFT
+            };
+            append(stack);
+            sidebar = new Sidebar();
+            orthographies = new OrthographyList();
+            stack.add_child(orthographies);
+            stack.add_child(sidebar);
+            stack.set_visible_child(sidebar);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            sidebar.bind_property("filter", this, "filter", flags);
+            bind_property("available-fonts", sidebar, "available-fonts", flags);
+            bind_property("disabled-families", sidebar, "disabled-families", flags);
+            bind_property("selected-item", orthographies, "selected-item", flags);
+            orthographies.bind_property("selected-orthography", this, "selected-orthography", flags);
+            sidebar.changed.connect(() => { changed(); });
+            if (settings != null)
+                settings.bind("sort-type", collection_model, "sort-type", SettingsBindFlags.DEFAULT);
+        }
+
+        public void select_first_category () {
+            sidebar.select_first_row();
             return;
         }
 
-        public override void constructed () {
-
-            category_tree.selection_changed.connect((f) => {
-                on_tree_selection_changed(category_tree, f);
-                bool is_lang_filter = (f != null && f.index == CategoryIndex.LANGUAGE);
-                set_control_sensitivity(edit_button, is_lang_filter);
-                if (is_lang_filter) {
-                    edit_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                    edit_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                } else {
-                    edit_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                    edit_button.set_relief(Gtk.ReliefStyle.NONE);
-                }
-            });
-            collection_tree.selection_changed.connect((f) => {
-                on_tree_selection_changed(collection_tree, f);
-                set_control_sensitivity(remove_button, f != null);
-            });
-
-            add_button.clicked.connect(() => {
-                collection_tree.on_add_collection();
-                add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                add_button.set_relief(Gtk.ReliefStyle.NONE);
-            });
-
-            edit_button.clicked.connect(() => {
-                get_default_application().main_window.sidebar.mode = "LanguageFilterSettings";
-            });
-
-            remove_button.clicked.connect(() => {
-                collection_tree.on_remove_collection();
-                if (collection_tree.model.iter_n_children(null) < 1) {
-                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                }
-            });
-
-            collection_expander.notify["expanded"].connect_after((o, p) => {
-                bool expanded = collection_expander.get_expanded();
-                set_control_sensitivity(add_button, expanded);
-                if (!expanded && collection_tree.selected_filter != null)
-                    category_tree.select_first_row();
-                if (expanded && collection_tree.model.iter_n_children(null) < 1) {
-                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                } else {
-                    add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                    add_button.set_relief(Gtk.ReliefStyle.NONE);
-                }
-            });
-
-            collection_tree.collection_added.connect(() => {
-                Idle.add(() => {
-                    sidebar_scroll.vadjustment.set_value(sidebar_scroll.vadjustment.get_upper());
-                    return GLib.Source.REMOVE;
-                });
-            });
-
-            base.constructed();
+        public void update_collections () {
+            sidebar.update_collections();
             return;
         }
 

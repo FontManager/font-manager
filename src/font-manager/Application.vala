@@ -1,22 +1,23 @@
-/* Application.vala
- *
- * Copyright (C) 2009-2022 Jerry Casiano
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.
- *
- * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-*/
+/* Application.vala */
+public const string DISPLAY_NAME = _("Font Manager");
+public const string COMMENT = _("Simple font management for GTK+ desktop environments");
+public const string COPYRIGHT = "Copyright © 2009-2024 Jerry Casiano";
+public const string LICENSE = _("""
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.
+
+    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+""");
 
 namespace FontManager {
 
@@ -24,7 +25,7 @@ namespace FontManager {
         return ((FontManager.Application) GLib.Application.get_default());
     }
 
-    [DBus (name = "org.gnome.FontManager")]
+    [DBus (name = "com.github.FontManager.FontManager")]
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
@@ -32,21 +33,20 @@ namespace FontManager {
         [DBus (visible = false)]
         public GLib.Settings? settings { get; private set; default = null; }
         [DBus (visible = false)]
-        public FontModel? model { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
         [DBus (visible = false)]
         public MainWindow? main_window { get; private set; default = null; }
         [DBus (visible = false)]
         public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
         [DBus (visible = false)]
-        public Reject? reject { get; private set; default = new Reject(); }
+        public Reject? disabled_families { get; private set; default = new Reject(); }
         [DBus (visible = false)]
         public StringSet? temp_files { get; private set; default = new StringSet(); }
-        [DBus (visible = false)]
-        public StringSet? available_families { get; private set; default = new StringSet(); }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
             { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
+            { "debug", 0, 0, OptionArg.NONE, null, "Enable debug messages", null },
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
             { "enable", 'e', 0, OptionArg.NONE, null, "Space separated list of font families to enable", null },
             { "disable", 'd', 0, OptionArg.NONE, null, "Space separated list of font families to disable", null },
@@ -63,16 +63,30 @@ namespace FontManager {
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
-            settings = get_gsettings(app_id);
         }
 
         public override void startup () {
             base.startup();
-            reject.load();
-            Gtk.Settings gtk = Gtk.Settings.get_default();
-            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
-            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
-            gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
+            disabled_families.load();
+            settings = get_gsettings(application_id);
+            if (settings != null) {
+                Gtk.Settings gtk = Gtk.Settings.get_default();
+                bool prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+#if HAVE_ADWAITA
+                if (settings.get_boolean("use-adwaita-stylesheet")) {
+                    Adw.StyleManager style_manager = Adw.StyleManager.get_default();
+                    Adw.ColorScheme color_scheme = prefer_dark_theme ?
+                                                   Adw.ColorScheme.PREFER_DARK :
+                                                   Adw.ColorScheme.PREFER_LIGHT;
+                    style_manager.set_color_scheme(color_scheme);
+                } else
+                    gtk.gtk_application_prefer_dark_theme = prefer_dark_theme;
+#else
+                gtk.gtk_application_prefer_dark_theme = prefer_dark_theme;
+#endif
+                gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+            }
+            notify["update-in-progress"].connect(progress_visible);
             db.update_started.connect(() => { update_in_progress = true; });
             db.update_complete.connect(() => { update_in_progress = false; });
             return;
@@ -106,48 +120,29 @@ namespace FontManager {
             if (options.contains("install") || options.contains("update")) {
                 if (options.contains("install") && filelist != null) {
                     if (main_window != null) {
-                        main_window.install_fonts(filelist);
+                        main_window.install_selections(filelist);
                     } else {
                         var installer = new Library.Installer();
                         installer.progress.connect((m, p, t) => {
                             var data = new ProgressData(m, p, t);
                             data.print();
                         });
-                        stdout.printf("Installing Font Files\n");
+                        GLib.stdout.printf("%s\n", _("Installing Font Files…"));
                         installer.process_sync(filelist);
                         stdout.printf("\n");
                     }
                 }
                 if (main_window != null) {
-                    refresh();
+                    reload();
                 } else {
                     update_font_configuration();
-                    try {
-                        load_user_font_resources(reject.get_rejected_files(), null);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                    DatabaseType [] db_types = {
-                        DatabaseType.FONT,
-                        DatabaseType.METADATA,
-                        DatabaseType.ORTHOGRAPHY
-                    };
-                    Json.Object available_fonts = get_available_fonts(null);
-                    var available_files = new StringSet();
-                    foreach (string path in list_available_font_files())
-                        available_files.add(path);
-                    foreach (var type in db_types) {
-                        try {
-                            stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
-                            update_database_sync(get_database(type), type,
-                                                 available_fonts, available_files,
-                                                 ProgressData.print, null);
-                            stdout.printf("\n");
-                        } catch (Error e) {
-                            critical(e.message);
-                            return e.code;
-                        }
-                    }
+                    load_user_font_resources();
+                    available_fonts = get_sorted_font_list(null);
+                    db.update_started.connect(() => { hold(); });
+                    db.update_complete.connect(() => { GLib.stdout.printf("\n"); release(); });
+                    db.set_progress_callback(ProgressData.print);
+                    GLib.stdout.printf("%s\n", _("Updating Database…"));
+                    db.update(available_fonts);
                 }
             } else if (filelist != null) {
                 File [] files = { File.new_for_path(filelist[0]) };
@@ -161,9 +156,9 @@ namespace FontManager {
         }
 
         public string list () throws GLib.DBusError, GLib.IOError {
-            load_user_font_resources(null, null);
-            GLib.List <string> families = list_available_font_families();
-            assert(families.length() > 0);
+            load_user_font_resources();
+            var families = list_available_font_families();
+            assert(families.size > 0);
             StringBuilder builder = new StringBuilder();
             foreach (string family in families)
                 builder.append("%s\n".printf(family));
@@ -172,28 +167,24 @@ namespace FontManager {
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
             update_font_configuration();
-            try {
-                load_user_font_resources(reject.get_rejected_files(), null);
-            } catch (Error e) {
-                critical(e.message);
-            }
-            Json.Object available_fonts = get_available_fonts(null);
-            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+            load_user_font_resources();
+            Json.Object _fonts = get_available_fonts(null);
+            Json.Array sorted_fonts = sort_json_font_listing(_fonts);
             return print_json_array(sorted_fonts, true);
         }
 
         public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
             foreach (var family in families)
-                if (family in reject)
-                    reject.remove(family);
-            reject.save();
+                if (family in disabled_families)
+                    disabled_families.remove(family);
+            disabled_families.save();
             return;
         }
 
         public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
             foreach (var family in families)
-                reject.add(family);
-            reject.save();
+                disabled_families.add(family);
+            disabled_families.save();
             return;
         }
 
@@ -206,36 +197,49 @@ namespace FontManager {
             return;
         }
 
+        public void search (string needle) throws GLib.DBusError, GLib.IOError {
+            if (main_window == null || !main_window.is_visible())
+                activate();
+            main_window.search(needle);
+            return;
+        }
+
         public override int handle_local_options (VariantDict options) {
 
             int exit_status = -1;
 
             if (options.contains("version")) {
-                stdout.printf("%s %s\n", About.NAME, About.VERSION);
+                stdout.printf("%s %s\n", Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
                 return 0;
             }
 
             if (options.contains("about")) {
-                About.print();
+                stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n", Config.PACKAGE_NAME, COMMENT, COPYRIGHT, LICENSE);
                 return 0;
             }
 
             if (options.contains("enable")) {
                 var accept = get_command_line_input(options);
                 return_val_if_fail(accept != null, -1);
-                foreach (var family in accept)
-                    if (family in reject)
-                        reject.remove(family);
-                reject.save();
-                exit_status = 0;
+                try {
+                    enable(accept.to_strv());
+                    exit_status = 0;
+                } catch (Error e) {
+                    critical(e.message);
+                    exit_status = 1;
+                }
             }
 
             if (options.contains("disable")) {
                 var rejects = get_command_line_input(options);
                 return_val_if_fail(rejects != null, -1);
-                foreach (var family in rejects)
-                    reject.add(family);
-                reject.save();
+                try {
+                    disable(rejects.to_strv());
+                    exit_status = 0;
+                } catch (Error e) {
+                    critical(e.message);
+                    exit_status = 1;
+                }
                 exit_status = 0;
             }
 
@@ -262,70 +266,48 @@ namespace FontManager {
             return exit_status;
         }
 
-        void refresh_async () {
-            ThreadFunc <bool> run_in_thread = () => {
-                if (main_window != null)
-                    Idle.add(() => { model = null; return GLib.Source.REMOVE; });
-//                enable_user_font_configuration(false);
-                update_font_configuration();
-                try {
-                    load_user_font_resources(reject.get_rejected_files(), null);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                Json.Object available_fonts = get_available_fonts(null);
-                db.update(available_fonts);
-                Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-                var font_model = new FontModel();
-                font_model.source_array = sorted_fonts;
-                available_families.clear();
-                foreach (string family in available_fonts.get_members())
-                    available_families.add(family);
-                if (main_window != null) {
-                    Idle.add(() => {
-                        clear_pango_cache(main_window.get_pango_context());
-                        model = font_model;
-                        return GLib.Source.REMOVE;
-                    });
-                }
-//                enable_user_font_configuration(true);
-                return true;
-            };
-            new Thread <bool> ("refresh_async", (owned) run_in_thread);
+        void progress_visible () {
+            if (main_window != null)
+                main_window.progress.set_visible(update_in_progress);
             return;
         }
 
         [DBus (visible = false)]
-        public void refresh () {
+        public void reload ()
+        requires (main_window != null) {
             if (update_in_progress)
                 return;
-            update_in_progress = true;
-            refresh_async();
+            var ctx = main_window.get_pango_context();
+            available_fonts = get_sorted_font_list(ctx);
+            db.update(available_fonts);
             return;
         }
 
         protected override void activate () {
             if (main_window == null) {
-                main_window = new MainWindow();
+                main_window = new MainWindow(settings);
                 add_window(main_window);
-                BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
-                bind_property("model", main_window, "model", flags);
-                model = new FontModel();
-                db.set_progress_callback((data) => {
-                    data.ref();
-                    /* XXX : FIXME : main_window.set_progress() -> children */
-                    get_default_application().main_window.titlebar.progress.database(data);
-                    data.unref();
+                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                bind_property("available-fonts", main_window, "available-fonts", flags);
+                bind_property("disabled-families", main_window, "disabled-families", flags);
+                // Why is this needed?
+                shutdown.connect(() => { quit(); });
+            }
+            db.update_complete.connect(() => {
+                update_item_preview_text(available_fonts);
+                if (main_window.mode == Mode.BROWSE)
+                    main_window.browse_pane.queue_update();
+                Idle.add(() => {
+                    main_window.category_model.update_items();
+                    main_window.select_first_font();
                     return GLib.Source.REMOVE;
                 });
-                SimpleAction quit = new SimpleAction("quit", null);
-                add_action(quit);
-                quit.activate.connect(() => { main_window.close(); });
-                const string? [] accels = {"<Ctrl>q", "<Ctrl>w", null };
-                set_accels_for_action("app.quit", accels);
-            }
-            main_window.present_with_time(Gdk.CURRENT_TIME);
-            refresh();
+            });
+            db.set_progress_callback((data) => {
+                return get_default_application().main_window.progress_update(data);
+            });
+            main_window.present();
+            Idle.add(() => { reload(); return GLib.Source.REMOVE; });
             return;
         }
 
@@ -333,72 +315,7 @@ namespace FontManager {
         public new void quit () {
             foreach (string path in temp_files)
                 remove_directory(File.new_for_path(path));
-            /* Try to prevent noise during memcheck */
-            {
-                clear_application_fonts();
-                try {
-                    Database main = get_database(DatabaseType.BASE);
-                    main.unref();
-                } catch (Error e) {}
-                main_window = null;
-            }
             base.quit();
-            return;
-        }
-
-        [DBus (visible = false)]
-        public void import () {
-            import_user_data();
-            Idle.add(() => {
-                refresh();
-                return GLib.Source.REMOVE;
-            });
-            return;
-        }
-
-        [DBus (visible = false)]
-        public void export () {
-            export_user_data();
-            return;
-        }
-
-        [DBus (visible = false)]
-        public void about () {
-            Gtk.show_about_dialog(main_window,
-                                "program-name", About.DISPLAY_NAME,
-                                "logo-icon-name", About.ICON,
-                                "version", About.VERSION,
-                                "copyright", About.COPYRIGHT,
-                                "comments", About.COMMENT,
-                                "website", About.HOMEPAGE,
-                                "authors", About.AUTHORS,
-                                "license", About.LICENSE,
-                                "translator-credits", About.TRANSLATORS,
-                                null);
-            return;
-        }
-
-        [DBus (visible = false)]
-        public void help () {
-            try {
-                Gtk.show_uri_on_window(main_window, "help:%s".printf(Config.PACKAGE_NAME), Gdk.CURRENT_TIME);
-            } catch (Error e) {
-                critical("There was an error displaying help contents : %s", e.message);
-            }
-            return;
-        }
-
-        [DBus (visible = false)]
-        public void shortcuts () {
-            string ui = Path.build_path("/", BUS_PATH, "ui", "font-manager-shortcuts-window.ui");
-            var builder = new Gtk.Builder.from_resource(ui);
-            var shortcuts_window = builder.get_object("shortcuts-window") as Gtk.Window;
-            shortcuts_window.delete_event.connect(() => {
-                shortcuts_window.destroy();
-                return true;
-            });
-            shortcuts_window.set_transient_for(main_window);
-            shortcuts_window.show();
             return;
         }
 
@@ -421,14 +338,28 @@ namespace FontManager {
             return;
         }
 
+        static void set_debug_level (string [] args) {
+            foreach (var arg in args) {
+                if (!arg.contains("debug"))
+                    continue;
+                Environment.set_variable("G_MESSAGES_DEBUG", "[font-manager]", true);
+                stdout.printf("\n%s %s\n\n", DISPLAY_NAME, Config.PACKAGE_VERSION);
+                print_library_versions();
+                break;
+            }
+            return;
+        }
+
         public static int main (string [] args) {
-            GLib.Intl.bindtextdomain(Config.PACKAGE_NAME, null);
-            GLib.Intl.bind_textdomain_codeset(Config.PACKAGE_NAME, null);
-            GLib.Intl.textdomain(Config.PACKAGE_NAME);
-            GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-            Environment.set_application_name(About.DISPLAY_NAME);
-            Gtk.init(ref args);
-            set_application_style();
+            set_debug_level(args);
+            setup_i18n();
+            Environment.set_application_name(DISPLAY_NAME);
+#if HAVE_ADWAITA
+            var settings = get_gsettings(BUS_ID);
+            if (settings != null)
+                if (settings.get_boolean("use-adwaita-stylesheet"))
+                    Adw.init();
+#endif
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |
                                       ApplicationFlags.HANDLES_COMMAND_LINE);
             return new Application(BUS_ID, FLAGS).run(args);
@@ -437,3 +368,6 @@ namespace FontManager {
     }
 
 }
+
+
+

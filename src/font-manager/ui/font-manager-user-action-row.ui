@@ -1,92 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk+" version="3.22"/>
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerUserActionRow" parent="GtkGrid">
     <property name="name">FontManagerUserActionRow</property>
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <child>
       <object class="GtkEntry" id="action_name">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        <property name="focusable">1</property>
         <property name="margin-end">18</property>
         <property name="margin-top">18</property>
         <property name="margin-bottom">3</property>
-        <property name="hexpand">True</property>
-        <property name="placeholder-text" translatable="yes">Name</property>
+        <property name="hexpand">1</property>
+        <property name="placeholder-text" translatable="1">Name</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="row">0</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">1</property>
-        <property name="top-attach">0</property>
-      </packing>
     </child>
     <child>
       <object class="GtkEntry" id="comment">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        <property name="focusable">1</property>
         <property name="margin-end">18</property>
         <property name="margin-top">3</property>
         <property name="margin-bottom">3</property>
-        <property name="hexpand">True</property>
-        <property name="placeholder-text" translatable="yes">Comment</property>
+        <property name="hexpand">1</property>
+        <property name="placeholder-text" translatable="1">Comment</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="row">1</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">1</property>
-        <property name="top-attach">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkEntry" id="executable">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        <property name="focusable">1</property>
         <property name="margin-end">18</property>
         <property name="margin-top">3</property>
         <property name="margin-bottom">3</property>
-        <property name="hexpand">True</property>
+        <property name="hexpand">1</property>
         <property name="secondary-icon-name">folder-symbolic</property>
-        <property name="placeholder-text" translatable="yes">Executable</property>
+        <property name="placeholder-text" translatable="1">Executable</property>
         <signal name="icon-press" handler="on_executable_icon_press" swapped="no"/>
+        <layout>
+          <property name="column">1</property>
+          <property name="row">2</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">1</property>
-        <property name="top-attach">2</property>
-      </packing>
     </child>
     <child>
       <object class="GtkEntry" id="arguments">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        <property name="focusable">1</property>
         <property name="margin-end">18</property>
         <property name="margin-top">3</property>
         <property name="margin-bottom">18</property>
-        <property name="hexpand">True</property>
-        <property name="placeholder-text" translatable="yes">Arguments</property>
+        <property name="hexpand">1</property>
+        <property name="placeholder-text" translatable="1">Arguments</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="row">3</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">1</property>
-        <property name="top-attach">3</property>
-      </packing>
     </child>
     <child>
       <object class="GtkImage" id="action_icon">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="margin-start">36</property>
         <property name="margin-end">36</property>
         <property name="margin-top">36</property>
         <property name="margin-bottom">36</property>
         <property name="pixel-size">64</property>
         <property name="icon-name">system-run-symbolic</property>
-        <property name="icon_size">6</property>
+        <property name="icon_size">2</property>
         <style>
           <class name="row"/>
         </style>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">0</property>
+          <property name="row-span">4</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">0</property>
-        <property name="top-attach">0</property>
-        <property name="height">4</property>
-      </packing>
     </child>
   </template>
 </interface>
+

@@ -1,6 +1,6 @@
 
 PACKAGE_NAME = font-manager
-PACKAGE_VERSION = 0.8.9
+PACKAGE_VERSION = 0.9.0
 
 ABS_TOP_SRCDIR = $(shell realpath ../)
 ABS_SRCDIR = $(shell realpath .)
@@ -8,7 +8,7 @@ UNICODE_DATA_DIR = $(ABS_SRCDIR)/unicode/
 PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
 UNICODE_URL = http://www.unicode.org/Public
-UNICODE_VERSION = 15.1.0
+UNICODE_VERSION = 14.0.0
 WGET = $(shell which wget)
 WGETFLAGS = -np -nd -rc -P $(UNICODE_DATA_DIR)
 UNZIP = $(shell which unzip)
@@ -42,25 +42,25 @@ unicode-headers: download-unicode-data
 	PROG_UNZIP=$(UNZIP) ./gen-unicode-headers.pl $(UNICODE_VERSION) $(UNICODE_DATA_DIR) && \
 	for f in $(UNICODE_SOURCES); \
 	do \
-		mv $${f} $(PKG_LIB_DIR)/unicode/; \
+		mv $${f} $(PKG_LIB_DIR)/data/ucd; \
 	done && \
 	rm -rf $(UNICODE_DATA_DIR)
 
 $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)  && \
-	meson build && \
+	meson setup build && \
 	ninja -C build font-manager-pot && \
 	ninja -C build help-font-manager-pot && \
 	cd $(ABS_SRCDIR)
 
 $(PACKAGE_NAME)-license.h:
 	cd license && \
-	./genheader.py $(PKG_LIB_DIR)/common && \
+	./genheader.py $(PKG_LIB_DIR)/data && \
 	cd ..
 
 $(PACKAGE_NAME)-vendor.h:
 	cd vendor && \
-	./genheader.py $(PKG_LIB_DIR)/common && \
+	./genheader.py $(PKG_LIB_DIR)/data && \
 	cd ..
 
 update-headers: $(PACKAGE_NAME)-license.h $(PACKAGE_NAME)-vendor.h unicode-headers
@@ -82,12 +82,13 @@ BUILD_DEPENDS = \
 	valac \
 	meson \
 	libxml2-dev \
-	libfreetype6-dev \
-	libfontconfig1-dev \
+	libfreetype-dev \
+	libfontconfig-dev \
 	libglib2.0-dev \
 	libjson-glib-dev \
 	libcairo2-dev \
-	libgtk-3-dev \
+	libgtk-4-dev \
+	libadwaita-1-dev \
 	libpango1.0-dev \
 	libsqlite3-dev \
 	libgirepository1.0-dev \
@@ -95,8 +96,8 @@ BUILD_DEPENDS = \
 	python3 \
 	python-gi-dev \
 	python3-nautilus \
-	libsoup3.0-dev \
-	libwebkit2gtk-4.0-dev \
+	libsoup2.4-dev \
+	libwebkitgtk-6.0-dev \
 	libnautilus-extension-dev \
 	libnemo-extension-dev \
 	libthunarx-3-dev
@@ -105,7 +106,7 @@ deb:
 	@echo -e '\n*** Need to ensure build dependencies are installed ***\n\n'
 	pkexec apt install $(BUILD_DEPENDS)
 	cd $(ABS_TOP_SRCDIR) || exit && \
-	meson build && \
+	meson setup build && \
 	ninja -C build dist && \
 	cd build/meson-dist/ || exit && \
 	tar -xvf $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz && \

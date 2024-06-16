@@ -1,6 +1,6 @@
-/* Interface.vala
+/* UserInterface.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,34 +20,7 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-title-button-style.ui")]
-    public class TitleButtonStyle : Gtk.Box {
-
-        [GtkChild] unowned Gtk.ComboBoxText combo;
-
-        public string active {
-            get {
-                return combo.get_active() == 0 ? "Normal" : "Flat";
-            }
-            set {
-                combo.set_active(value == "Normal" ? 0 : 1);
-            }
-        }
-
-        construct {
-            combo.changed.connect(() => {
-                this.notify_property("active");
-                MainWindow? main_window = get_default_application().main_window;
-                if (main_window != null) {
-                    var style = active == "Normal" ? Gtk.ReliefStyle.NORMAL : Gtk.ReliefStyle.NONE;
-                    main_window.titlebar.set_button_style(style);
-                }
-            });
-        }
-
-    }
-
-    internal enum PredefinedWaterfallSize {
+    public enum PredefinedWaterfallSize {
 
         LINEAR_48,
         72_11,
@@ -57,6 +30,27 @@ namespace FontManager {
         144_13,
         192_14,
         CUSTOM;
+
+        public string to_string () {
+            switch (this) {
+                case LINEAR_48:
+                    return _("Up to 48 points (Linear Scaling)");
+                case 72_11:
+                    return _("Up to 72 points (1.1 Common Ratio)");
+                case LINEAR_96:
+                    return _("Up to 96 points (Linear Scaling)");
+                case 96_11:
+                    return _("Up to 96 points (1.1 Common Ratio)");
+                case 120_12:
+                    return _("Up to 120 points (1.2 Common Ratio)");
+                case 144_13:
+                    return _("Up to 144 points (1.3 Common Ratio)");
+                case 192_14:
+                    return _("Up to 192 points (1.4 Common Ratio)");
+                default:
+                    return _("Custom Size Settings");
+            }
+        }
 
         public double [] to_size_array () {
             switch (this) {
@@ -79,7 +73,7 @@ namespace FontManager {
             }
         }
 
-        /* GSettingsBind*Mapping functions */
+        // GSettingsBind*Mapping functions
 
         public static Variant to_setting (Value val, VariantType type) {
             switch (val.get_int()) {
@@ -134,154 +128,178 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-waterfall-size.ui")]
-    public class WaterfallSize : Gtk.Box {
+    public class WaterfallSize : Object {
 
-        [GtkChild] public unowned Gtk.SpinButton min { get; }
-        [GtkChild] public unowned Gtk.SpinButton max { get; }
-        [GtkChild] public unowned Gtk.SpinButton ratio { get; }
-        [GtkChild] public unowned Gtk.ComboBoxText selection { get; }
-        [GtkChild] public unowned Gtk.Revealer revealer { get; }
-        [GtkChild] public unowned Gtk.Switch show_line_size { get; }
+        public int predefined_size { get; set; }
+        public double minimum { get; set; }
+        public double maximum { get; set; }
+        public double ratio { get; set; }
 
-        [GtkCallback]
-        bool on_show_line_size_state_set () {
-            MainWindow? main_window = get_default_application().main_window;
-            if (main_window != null) {
-                main_window.preview_pane.show_line_size = show_line_size.active;
-#if HAVE_WEBKIT
-                var google_fonts_pane = (GoogleFonts.Catalog) main_window.web_pane.get_child();
-                google_fonts_pane.preview_pane.show_line_size = show_line_size.active;
-#endif /* HAVE_WEBKIT */
-            }
-            return Gdk.EVENT_PROPAGATE;
+        public PreferenceRow row { get; private set; }
+
+        Gtk.SpinButton min;
+        Gtk.SpinButton max;
+        Gtk.SpinButton rat;
+        Gtk.DropDown selection;
+
+        public WaterfallSize () {
+            var selections = new GLib.Array <string> ();
+            for (int i = 0; i <= PredefinedWaterfallSize.CUSTOM; i++)
+                selections.append_val(((PredefinedWaterfallSize) i).to_string());
+            var selection_list = new Gtk.StringList(selections.data);
+            selection = new Gtk.DropDown(selection_list, null);
+            row = new PreferenceRow(_("Waterfall Preview Size Settings"), null, null, selection);
+            min = new Gtk.SpinButton.with_range(6.0, 48.0, 1.0) { value = 8.0 };
+            max = new Gtk.SpinButton.with_range(24.0, 192.0, 1.0) {
+                value = 48.0,
+                tooltip_text = _("Higher values may adversely affect performance")
+            };
+            rat = new Gtk.SpinButton.with_range(1.0, 24.0, 0.10) { value = 48.0 };
+            var child = new PreferenceRow(_("Minimum Waterfall Preview Point Size"), null, null, min);
+            row.append_child(child);
+            child = new PreferenceRow(_("Waterfall Preview Point Size Common Ratio"), null, null, rat);
+            row.append_child(child);
+            child = new PreferenceRow(_("Maximum Waterfall Preview Point Size"), null, null, max);
+            row.append_child(child);
+            selection.notify["selected"].connect(on_selection_changed);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("minimum", min, "value", flags);
+            bind_property("maximum", max, "value", flags);
+            bind_property("ratio", rat, "value", flags);
+            bind_property("predefined-size", selection, "selected", flags);
         }
 
-        [GtkCallback]
-        void on_value_changed () {
-            MainWindow? main_window = get_default_application().main_window;
-            if (main_window != null) {
-                main_window.preview_pane.set_waterfall_size(min.value, max.value, ratio.value);
-#if HAVE_WEBKIT
-                var google_fonts_pane = (GoogleFonts.Catalog) main_window.web_pane.get_child();
-                google_fonts_pane.preview_pane.set_waterfall_size(min.value, max.value, ratio.value);
-#endif /* HAVE_WEBKIT */
-            }
-            return;
-        }
-
-        [GtkCallback]
         void on_selection_changed () {
-            double [] selected = ((PredefinedWaterfallSize) selection.active).to_size_array();
+            var selected_size = ((PredefinedWaterfallSize) selection.selected);
+            double [] selected = selected_size.to_size_array();
             bool custom = selected[0] == 0.0;
-            revealer.set_reveal_child(custom);
+            row.set_reveal_child(custom);
             if (custom)
                 return;
             min.value = selected[0];
             max.value = selected[1];
-            ratio.value = selected[2];
-            on_value_changed();
+            rat.value = selected[2];
             return;
         }
 
     }
 
-    public class UserInterfacePreferences : SettingsPage {
+    public class UserInterfacePreferences : PreferenceList {
 
-        public LabeledSwitch wide_layout { get; private set; }
-        public LabeledSwitch use_csd { get; private set; }
-        public LabeledSwitch enable_animations { get; private set; }
-        public LabeledSwitch prefer_dark_theme { get; private set; }
-        public TitleButtonStyle button_style { get; private set; }
-        public WaterfallSize waterfall_size { get; private set; }
+        public GLib.Settings? settings { get; set; default = null; }
 
-        Gtk.Settings default_gtk_settings;
-        Gtk.Revealer wide_layout_options;
+        bool initialized = false;
+        Gtk.Switch wide_layout;
+        Gtk.Switch enable_animations;
+        Gtk.Switch prefer_dark_theme;
+#if HAVE_ADWAITA
+        Gtk.Switch use_adwaita_stylesheet;
+#endif
+        Gtk.Switch show_line_size;
         Gtk.CheckButton on_maximize;
+        Gtk.DropDown button_style;
 
-        public UserInterfacePreferences () {
-            wide_layout = new LabeledSwitch(_("Wide Layout"));
-            wide_layout_options = new Gtk.Revealer();
-            wide_layout_options.set_transition_duration(450);
-            on_maximize = new Gtk.CheckButton.with_label(_("Only When Maximized"));
-            on_maximize.margin = DEFAULT_MARGIN / 2;
-            on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN * 4;
-            use_csd = new LabeledSwitch(_("Client Side Decorations"));
-            wide_layout_options.add(on_maximize);
-            on_maximize.show();
-            wide_layout_options.show();
-            enable_animations = new LabeledSwitch(_("Enable Animations"));
-            prefer_dark_theme = new LabeledSwitch(_("Prefer Dark Theme"));
-            button_style = new TitleButtonStyle();
+        WaterfallSize waterfall_size;
+
+        public UserInterfacePreferences (GLib.Settings? settings) {
+            this.settings = settings;
+            widget_set_name(this, "FontManagerUserInterfacePreferences");
+            list.set_selection_mode(Gtk.SelectionMode.NONE);
+        }
+
+        void generate_options_list () {
+            if (initialized)
+                return;
+            wide_layout = add_preference_switch(_("Wide Layout"));
+            var widget = wide_layout.get_ancestor(typeof(PreferenceRow)) as PreferenceRow;
+            on_maximize = new Gtk.CheckButton();
+            var child = new PreferenceRow(_("Only When Maximized"), null, null, on_maximize);
+            widget.append_child(child);
+            enable_animations = add_preference_switch(_("Enable Animations"));
+            prefer_dark_theme = add_preference_switch(_("Prefer Dark Theme"));
+#if HAVE_ADWAITA
+            use_adwaita_stylesheet = add_preference_switch(_("Use Adwaita Stylesheet"));
+#endif
+            string [] button_styles = { _("Raised"), _("Flat") };
+            var style_list = new Gtk.StringList(button_styles);
+            button_style = new Gtk.DropDown(style_list, null);
+            append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
+            show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
             waterfall_size = new WaterfallSize();
-            var scroll = new Gtk.ScrolledWindow(null, null);
-            var list = new Gtk.ListBox();
-            Gtk.Widget [] widgets = { wide_layout, wide_layout_options, use_csd, enable_animations,
-                                                 prefer_dark_theme, button_style, waterfall_size };
-            foreach (var widget in widgets) {
-                var row = new Gtk.ListBoxRow() {
-                    activatable = false,
-                    selectable = false
-                };
-                row.add(widget);
-                list.add(row);
-                widget.show();
-                row.show();
-            }
-            box.pack_end(scroll);
-            scroll.add(list);
-            list.show();
-            scroll.show();
-            default_gtk_settings = Gtk.Settings.get_default();
-            connect_signals();
+            append_row(waterfall_size.row);
             bind_properties();
-            revealer.set_reveal_child(false);
+            initialized = true;
+            return;
+        }
+
+        protected override void on_map () {
+            generate_options_list();
+            return;
         }
 
         void bind_properties () {
-            GLib.Settings? settings = get_default_application().settings;
+            if (settings == null)
+                settings = get_gsettings(BUS_ID);
             return_if_fail(settings != null);
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
-            settings.bind("use-csd", use_csd.toggle, "active", flags);
-            settings.bind("wide-layout", wide_layout.toggle, "active", flags);
+            settings.bind("wide-layout", wide_layout, "active", flags);
             settings.bind("wide-layout-on-maximize", on_maximize, "active", flags);
-            settings.bind("enable-animations", enable_animations.toggle, "active", flags);
-            settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", flags);
-            settings.bind("title-button-style", button_style, "active", flags);
-            settings.bind("min-waterfall-size", waterfall_size.min, "value", flags);
-            settings.bind("max-waterfall-size", waterfall_size.max, "value", flags);
-            settings.bind("waterfall-size-ratio", waterfall_size.ratio, "value", flags);
-            settings.bind("waterfall-show-line-size", waterfall_size.show_line_size, "active", flags);
-            settings.bind_with_mapping("predefined-waterfall-size", waterfall_size.selection,
-                                        "active", flags, PredefinedWaterfallSize.from_setting,
-                                        PredefinedWaterfallSize.to_setting, null, null);
-            return;
-        }
+            settings.bind("enable-animations", enable_animations, "active", flags);
 
-        void connect_signals () {
-            wide_layout.toggle.state_set.connect((active) => {
-                wide_layout_options.set_reveal_child(active);
-                return false;
-            });
-            use_csd.toggle.state_set.connect((active) => {
-                if (active)
-                    show_message(_("CSD enabled. Change will take effect next time the application is started."));
-                else
-                    show_message(_("CSD disabled. Change will take effect next time the application is started."));
-                return false;
-            });
-            enable_animations.toggle.state_set.connect((active) => {
-                default_gtk_settings.gtk_enable_animations = active;
-                return false;
-            });
-            prefer_dark_theme.toggle.state_set.connect((active) => {
-                default_gtk_settings.gtk_application_prefer_dark_theme = active;
-                return false;
-            });
-            return;
+            Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
+            const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
+            if (gtk_settings != null) {
+#if HAVE_ADWAITA
+                if (settings.get_boolean("use-adwaita-stylesheet")) {
+                    prefer_dark_theme.notify["active"].connect(() => {
+                        Adw.StyleManager style_manager = Adw.StyleManager.get_default();
+                        Adw.ColorScheme color_scheme = prefer_dark_theme.active ?
+                                                       Adw.ColorScheme.PREFER_DARK :
+                                                       Adw.ColorScheme.PREFER_LIGHT;
+                        style_manager.set_color_scheme(color_scheme);
+                    });
+                } else
+                    settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#else
+                settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#endif
+                settings.bind("enable-animations", gtk_settings, "gtk-enable-animations", flags);
+            }
+            warn_if_fail(gtk_settings != null);
 
+            settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
+#if HAVE_ADWAITA
+            settings.bind("use-adwaita-stylesheet", use_adwaita_stylesheet, "active", flags);
+#endif
+            settings.bind("waterfall-show-line-size", show_line_size, "active", flags);
+            settings.bind("min-waterfall-size", waterfall_size, "minimum", flags);
+            settings.bind("max-waterfall-size", waterfall_size, "maximum", flags);
+            settings.bind("waterfall-size-ratio", waterfall_size, "ratio", flags);
+            settings.bind_with_mapping("headerbar-button-style",
+                                       button_style,
+                                       "selected",
+                                       flags,
+                                       (val, v) => {
+                                           val.set_uint(((string) v) == "Normal" ? 0 : 1);
+                                           return true;
+                                       },
+                                       (v, t) => {
+                                           string val = v.get_uint() == 0 ? "Normal" : "Flat";
+                                           return new Variant.string(val);
+                                       },
+                                       null, null);
+            settings.bind_with_mapping("predefined-waterfall-size",
+                                       waterfall_size,
+                                       "predefined-size",
+                                       flags,
+                                       PredefinedWaterfallSize.from_setting,
+                                       PredefinedWaterfallSize.to_setting,
+                                       null, null);
+
+            return;
         }
 
     }
 
 }
+

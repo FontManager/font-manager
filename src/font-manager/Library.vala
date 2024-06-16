@@ -1,6 +1,6 @@
 /* Library.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,50 +20,22 @@
 
 namespace FontManager {
 
-    public const string [] TYPE1_METRICS = {
-        ".afm",
-        ".pfa",
-        ".pfm"
-    };
-
     namespace Library {
 
-        public async void remove (StringSet selections) {
-            SourceFunc callback = remove.callback;
-            ThreadFunc <Object?> _remove = () => {
-                foreach (var path in selections) {
-                    try {
-                        File file = File.new_for_path(path);
-                        if (!file.query_exists())
-                            continue;
-                        File parent = file.get_parent();
-                        FileInfo info = file.query_info(FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
-                        if (file.delete()) {
-                            if (info.get_content_type().contains("type1"))
-                                purge_type1_files(file, parent);
-                        } else {
-                            warning("Failed to remove %s", path);
-                        }
-                        remove_directory_tree_if_empty(parent);
-                    } catch (Error e) {
-                        warning(e.message);
-                    }
-                }
-                purge_entries(selections);
-                Idle.add((owned) callback);
-                return null;
-            };
-            new Thread <Object?> ("remove", (owned) _remove);
-            yield;
-            return;
-        }
+        const string [] TYPE1_METRICS = { ".afm", ".pfa", ".pfm" };
 
+        bool is_metrics_file (string name) {
+            foreach (var ext in TYPE1_METRICS)
+                if (name.down().has_suffix(ext))
+                    return true;
+            return false;
+        }
 
         public class Installer : Object {
 
             public signal void progress (string message, uint processed, uint total);
 
-            static File? tmp_file = null;
+            File? tmp_file = null;
 
             public void process_sync (StringSet filelist) {
                 var sorter = new Sorter();
@@ -76,49 +48,29 @@ namespace FontManager {
                 return;
             }
 
-            public async void process (StringSet filelist) {
-                SourceFunc callback = process.callback;
-                ThreadFunc <Object?> install = () => {
-                    var sorter = new Sorter();
-                    sorter.sort(filelist);
-                    process_files(sorter.fonts);
-                    process_archives(sorter.archives);
-                    if (tmp_file != null)
-                        remove_directory(tmp_file);
-                    tmp_file = null;
-                    Idle.add((owned) callback);
-                    return null;
-                };
-                new Thread <Object?> ("Install -> process", (owned) install);
-                yield;
+            static void install_filelist (Task task,
+                                          Object source,
+                                          void* data,
+                                          Cancellable? cancellable = null) {
+                return_if_fail(source is Installer);
+                Installer self = (Installer) source;
+                StringSet filelist = self.get_data("filelist");
+                var sorter = new Sorter();
+                sorter.sort(filelist);
+                self.process_files(sorter.fonts);
+                self.process_archives(sorter.archives);
+                if (self.tmp_file != null)
+                    remove_directory(self.tmp_file);
+                self.tmp_file = null;
+                self.set_data("filelist", null);
+                filelist = null;
                 return;
             }
 
-            public static void try_copy (File original, File copy) {
-                try {
-                    FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                          FileCopyFlags.ALL_METADATA |
-                                          FileCopyFlags.TARGET_DEFAULT_PERMS;
-                    original.copy(copy, flags);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                return;
-            }
-
-            public static void copy_font_metrics (File file, FontInfo info, string destdir) {
-                string basename = file.get_basename().split_set(".")[0];
-                foreach (var _ext in TYPE1_METRICS) {
-                    string dir = file.get_parent().get_path();
-                    string child = "%s%s".printf(basename, _ext);
-                    File metrics = File.new_for_path(Path.build_filename(dir, child));
-                    if (metrics.query_exists()) {
-                        string _name = "%s %s%s".printf(info.family, info.style, _ext).replace(" ", "_");
-                        string _path = Path.build_filename(destdir, _name);
-                        File _target = File.new_for_path(_path);
-                        try_copy(file, _target);
-                    }
-                }
+            public void process (StringSet filelist, TaskReadyCallback callback) {
+                this.set_data("filelist", filelist);
+                GLib.Task task = new GLib.Task(this, null, callback);
+                task.run_in_thread(install_filelist);
                 return;
             }
 
@@ -202,58 +154,7 @@ namespace FontManager {
 
         }
 
-        internal void purge_type1_files (File file, File parent) {
-            try {
-                string name = file.get_basename().split_set(".")[0];
-                foreach (string ext in TYPE1_METRICS) {
-                    string dir = parent.get_path();
-                    string child = name + ext;
-                    File metrics = File.new_for_path(Path.build_filename(dir, child));
-                    if (metrics.query_exists())
-                        metrics.delete();
-                }
-            } catch (Error e) {
-                warning(e.message);
-            }
-            return;
-        }
-
-        internal void purge_entries (StringSet selections) {
-            DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
-            try {
-                Database? db = get_database(DatabaseType.BASE);
-                Reject? reject = get_default_application().reject;
-                foreach (var path in selections) {
-                    db.execute_query("SELECT family FROM Fonts WHERE filepath = \"%s\"".printf(path));
-                    foreach (unowned Sqlite.Statement row in db)
-                        if (reject != null)
-                            reject.remove(row.column_text(0));
-                    foreach (var type in types) {
-                        var name = Database.get_type_name(type);
-                        db.execute_query("DELETE FROM %s WHERE filepath = \"%s\"".printf(name, path));
-                        db.stmt.step();
-                    }
-                }
-                db = null;
-                foreach (var type in types) {
-                    db = get_database(type);
-                    db.execute_query("VACUUM");
-                    db.stmt.step();
-                }
-            } catch (DatabaseError e) {
-                warning(e.message);
-            }
-            return;
-        }
-
-        internal bool is_metrics_file (string name) {
-            foreach (var ext in TYPE1_METRICS)
-                if (name.down().has_suffix(ext))
-                    return true;
-            return false;
-        }
-
-        internal class Sorter : Object {
+        class Sorter : Object {
 
             public StringSet? fonts { get; private set; default = null; }
             public StringSet? archives { get; private set; default = null; }
@@ -282,24 +183,21 @@ namespace FontManager {
 
             void process_directory (File dir) {
                 try {
+                    StringSet files = new StringSet();
                     FileInfo fileinfo;
-                    var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME, FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
+                    var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME,
+                                                  FileAttribute.STANDARD_CONTENT_TYPE,
+                                                  FileAttribute.STANDARD_TYPE);
                     var enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
                     while ((fileinfo = enumerator.next_file ()) != null) {
-                        string content_type = fileinfo.get_content_type();
                         string name = fileinfo.get_name();
-                        if (fileinfo.get_file_type() == FileType.DIRECTORY) {
+                        string path = dir.get_child(name).get_path();
+                        if (fileinfo.get_file_type() == FileType.DIRECTORY)
                             process_directory(dir.get_child(name));
-                        } else {
-                            string path = dir.get_child(name).get_path();
-                            if (content_type.contains("font") && !is_metrics_file(name))
-                                fonts.add(path);
-                            else if (content_type in supported_archives)
-                                archives.add(path);
-                            else
-                                message("Ignoring unsupported filetype : %s", name);
-                        }
+                        else
+                            files.add(path);
                     }
+                    process_files(files);
                 } catch (Error e) {
                     warning("%s :: %s", e.message, dir.get_path());
                 }

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerGoogleFontsSampleRow" parent="GtkBox">
+    <property name="height-request">0</property>
+    <property name="hexpand">True</property>
+    <property name="margin-bottom">6</property>
+    <property name="margin-end">6</property>
+    <property name="margin-start">6</property>
+    <property name="margin-top">6</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">2</property>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="halign">center</property>
+        <property name="justify">center</property>
+        <property name="margin-bottom">2</property>
+        <property name="margin-end">2</property>
+        <property name="margin-start">2</property>
+        <property name="margin-top">2</property>
+        <property name="valign">center</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkInscription" id="sample">
+        <property name="min-chars">26</property>
+        <property name="nat-chars">36</property>
+        <property name="halign">center</property>
+        <property name="margin-bottom">2</property>
+        <property name="margin-end">2</property>
+        <property name="margin-start">2</property>
+        <property name="margin-top">2</property>
+        <property name="valign">center</property>
+        <property name="xalign">0.5</property>
+        <style><class name="dim-label"/></style>
+      </object>
+    </child>
+  </template>
+</interface>
+

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerProgressDialog" parent="GtkWindow">
+    <property name="css-classes">view csd dialog message</property>
+    <property name="default-height">125</property>
+    <property name="default-width">475</property>
+    <property name="hide-on-close">True</property>
+    <property name="modal">True</property>
+    <property name="titlebar">
+      <object class="GtkBox">
+        <property name="visible">False</property>
+      </object>
+    </property>
+    <child>
+      <object class="GtkWindowHandle">
+        <child>
+          <object class="GtkOverlay" id="overlay">
+            <child>
+              <object class="GtkBox" id="message_box">
+                <property name="margin-bottom">24</property>
+                <property name="margin-end">36</property>
+                <property name="margin-start">36</property>
+                <property name="margin-top">24</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkCenterBox">
+                    <child type="start">
+                      <object class="GtkImage" id="app_icon">
+                        <property name="visible">False</property>
+                        <property name="css-classes">icon-shadow</property>
+                        <property name="icon-name">font-x-generic</property>
+                        <property name="icon-size">large</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="margin-end">2</property>
+                        <property name="margin-start">2</property>
+                        <property name="margin-top">2</property>
+                        <property name="opacity">0.9</property>
+                        <property name="pixel-size">64</property>
+                      </object>
+                    </child>
+                    <child type="center">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkLabel" id="title_label">
+                            <property name="css-classes">title-3
+dim-label</property>
+                            <property name="label">title</property>
+                            <property name="margin-bottom">6</property>
+                            <property name="margin-end">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-top">6</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="message_label">
+                            <property name="css-classes">heading
+dim-label</property>
+                            <property name="label">message</property>
+                            <property name="margin-bottom">6</property>
+                            <property name="margin-end">6</property>
+                            <property name="margin-start">6</property>
+                            <property name="margin-top">6</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkProgressBar" id="progress_bar">
+                    <property name="margin-bottom">12</property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-top">12</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="view"/>
+    </style>
+  </template>
+</interface>
+
+

@@ -1,6 +1,6 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,234 +20,169 @@
 
 namespace FontManager.FontViewer {
 
-    internal const string w1 = _("Font Viewer");
-    internal const string w2 = _("Preview font files before installing them.");
-    internal const string w3 = _("To preview a font simply drag it onto this area.");
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-viewer-main-window.ui")]
+    public class MainWindow : FontManager.ApplicationWindow {
 
-    internal const int DEFAULT_WIDTH = 600;
-    internal const int DEFAULT_HEIGHT = 400;
+        File? current_file;
+        File? current_target;
+        FileStatus file_status;
 
-    internal const Gtk.TargetEntry [] DragTargets = {
-        { "text/uri-list", Gtk.TargetFlags.OTHER_APP, DragTargetType.EXTERNAL }
-    };
-
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-viewer-main-window.ui")]
-    public class MainWindow : Gtk.ApplicationWindow {
-
+        [GtkChild] unowned Gtk.Label title_label;
+        [GtkChild] unowned Gtk.Label subtitle_label;
         [GtkChild] unowned Gtk.Stack stack;
-        [GtkChild] unowned Gtk.HeaderBar titlebar;
-        [GtkChild] unowned Gtk.Button install;
+        [GtkChild] unowned Gtk.Button action_button;
+        [GtkChild] unowned Gtk.HeaderBar headerbar;
         [GtkChild] unowned PreviewPane preview_pane;
 
-        int w = -1;
-        int h = -1;
-        int x = -1;
-        int y = -1;
-        bool is_tiled = false;
-        PlaceHolder welcome;
-        StringSet installed;
+        enum FileStatus {
+            NOT_INSTALLED,
+            INSTALLED,
+            WOULD_DOWNGRADE;
+        }
 
-        public override void constructed () {
-            installed = new StringSet();
-            welcome = new PlaceHolder(w1, w2, w3, "font-x-generic-symbolic");
-            welcome.show();
-            stack.add_named(welcome, "Welcome");
-            stack.set_visible_child_name("Welcome");
-            preview_pane.set_action_widget(install, Gtk.PackType.END);
+        public class MainWindow (GLib.Settings? settings) {
+            Object(settings: settings);
+            var target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
+            target.drop.connect(on_drop);
+            stack.add_controller(target);
+            stack.set_visible_child_name("PlaceHolder");
+            preview_pane.set_action_widget(action_button, Gtk.PackType.END);
             preview_pane.changed.connect(this.update);
-            add_actions();
-            update_install_state();
-            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
-            base.constructed();
-            return;
+            preview_pane.realize.connect(() => {
+                preview_pane.restore_state(get_gsettings(FontManager.BUS_ID));
+            });
+            update_action_button();
         }
 
-        void zoom (bool zoom_in, bool zoom_out) {
-            var page = (PreviewPanePage) preview_pane.get_current_page();
-            if (zoom_in) {
-                if (page == PreviewPanePage.CHARACTER_MAP)
-                    preview_pane.character_map_preview_size += 0.5;
-                else
-                    preview_pane.preview_size += 0.5;
-            } else if (zoom_out) {
-                if (page == PreviewPanePage.CHARACTER_MAP)
-                    preview_pane.character_map_preview_size -= 0.5;
-                else
-                    preview_pane.preview_size -= 0.5;
-            } else {
-                if (page == PreviewPanePage.CHARACTER_MAP)
-                    preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
-                else
-                    preview_pane.preview_size = DEFAULT_PREVIEW_SIZE;
-            }
-            return;
+        public bool show_uri (string uri, int index = 0) {
+            return preview_pane.show_uri(uri, index);
         }
 
-        void add_actions () {
-            var action = new SimpleAction("zoom_in", null);
-            action.activate.connect((a, v) => { zoom(true, false); });
-            string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
-            add_keyboard_shortcut(action, "zoom_in", accels);
-            action = new SimpleAction("zoom_out", null);
-            action.activate.connect((a, v) => { zoom(false, true); });
-            accels = { "<Ctrl>minus", null };
-            add_keyboard_shortcut(action, "zoom_out", accels);
-            action = new SimpleAction("zoom_default", null);
-            action.activate.connect((a, v) => { zoom(false, false); });
-            accels = { "<Ctrl>0", null };
-            add_keyboard_shortcut(action, "zoom_default", accels);
-            return;
+        public bool open (File file, int index = 0) {
+            return preview_pane.show_uri(file.get_uri(), index);
         }
 
-        public void open (string arg, int index)  {
-            preview_pane.show_uri(arg, index);
-            update();
-            return;
-        }
-
-        public void update () {
-            bool have_valid_source = preview_pane.font != null && preview_pane.font.is_valid();
-            if (have_valid_source)
-                update_titlebar(preview_pane.font.family, preview_pane.font.style);
-            else
-                update_titlebar(null, null);
-            stack.set_visible_child_name(have_valid_source ? "Preview" : "Welcome");
-            update_install_state();
-            queue_draw();
-            return;
-        }
-
-        void update_titlebar (string? family, string? style) {
-            if (family == null && style == null) {
-                titlebar.set_title(_("No file selected"));
-                titlebar.set_subtitle(_("Or unsupported filetype."));
-                return;
-            }
-            titlebar.set_title(family);
-            titlebar.set_subtitle(style);
-            const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
-            titlebar.set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
-            return;
-        }
-
-        string? conflicts (Font font) {
-            try {
-                Database db = get_database(DatabaseType.FONT);
-                db.execute_query("SELECT DISTINCT filepath FROM Fonts WHERE description = \"%s\"".printf(font.description));
-                if (db.stmt.step() == Sqlite.ROW)
-                    return db.stmt.column_text(0);
-            } catch (Error e) { }
-            return null;
-        }
-
-        bool is_installed (FontInfo info) {
-            if (installed.contains(preview_pane.metadata.checksum))
-                return true;
-            GLib.List <string> filelist = list_available_font_files();
-            if (filelist.find_custom(info.filepath, strcmp) != null)
-                return true;
-            try {
-                Database db = get_database(DatabaseType.METADATA);
-                db.execute_query("SELECT DISTINCT filepath FROM Metadata WHERE checksum = \"%s\"".printf(info.checksum));
-                foreach (unowned Sqlite.Statement row in db)
-                    if (filelist.find_custom(row.column_text(0), strcmp) != null)
-                        return true;
-            } catch (Error e) { }
-            return false;
-        }
-
-        void update_install_state () {
-            bool have_valid_source = preview_pane.font != null && preview_pane.font.is_valid();
-            install.set_visible(have_valid_source);
-            if (!have_valid_source)
-                return;
-            clear_application_fonts();
-            return_if_fail(preview_pane.metadata.is_valid());
-            bool _installed = is_installed(preview_pane.metadata);
-            string? conflict = conflicts(preview_pane.font);
-            add_application_font(preview_pane.metadata.filepath);
-            install.sensitive = false;
-            install.get_style_context().add_class("SensitiveChildLabel");
-            if (conflict != null && exists(conflict) && timecmp(conflict, preview_pane.font.filepath) > 0) {
-                install.set_label(_("Newer version already installed"));
-            } else if (_installed) {
-                install.set_label(_("Installed"));
-            } else {
-                install.get_style_context().remove_class("SensitiveChildLabel");
-                install.set_label(_("Install Font"));
-                install.sensitive = true;
-            }
-            return;
-        }
-
-        [GtkCallback]
-        bool on_window_state_event (Gtk.Widget widget, Gdk.EventWindowState event) {
-            if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
-                is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
-            return Gdk.EVENT_PROPAGATE;
-        }
-
-        [GtkCallback]
-        void on_size_allocate (Gtk.Widget widget, Gtk.Allocation allocation) {
-            if (is_maximized || is_tiled)
-                return;
-            get_size(out w, out h);
-            get_position(out x, out y);
-            return;
-        }
-
-        [GtkCallback]
-        public void on_install_clicked () {
-            try {
-                File file = File.new_for_path(preview_pane.font.filepath);
-                File install_dir = File.new_for_path(get_user_font_directory());
-                FontManager.install_file(file, install_dir);
-                installed.add(preview_pane.metadata.checksum);
-                update_install_state();
-            } catch (Error e) {
-                critical(e.message);
-            }
-            return;
-        }
-
-        [GtkCallback]
-        public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
-            var settings = ((FontViewer.Application) application).settings;
-            if (settings != null) {
-                settings.delay();
-                settings.set("window-size", "(ii)", w, h);
-                settings.set("window-position", "(ii)", x, y);
-                settings.apply();
-            }
-            ((FontViewer.Application) application).quit();
+        bool on_drop (Value val, double x, double y) {
+            unowned SList <File> files = (SList) val.get_boxed();
+            if (files.length() > 0)
+                show_uri(files.nth_data(0).get_uri());
             return true;
         }
 
-        [GtkCallback]
-        public void on_realize (Gtk.Widget widget) {
-            var settings = ((FontViewer.Application) application).settings;
-            if (settings == null)
-                return;
-            settings.get("window-size", "(ii)", out w, out h);
-            settings.get("window-position", "(ii)", out x, out y);
-            set_default_size(w, h);
-            move(x, y);
-            preview_pane.restore_state(settings);
+        public void update () {
+            if (preview_pane.font != null) {
+                current_file = File.new_for_path(preview_pane.font.filepath);
+                string family = preview_pane.font.family;
+                string style = preview_pane.font.style;
+                title_label.set_label(family);
+                subtitle_label.set_label(style);
+                const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
+                headerbar.set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
+            } else {
+                current_file = null;
+                title_label.set_label(_("No file selected"));
+                subtitle_label.set_label(_("Or unsupported filetype."));
+                headerbar.set_tooltip_markup(null);
+            }
+            stack.set_visible_child_name(preview_pane.font != null ? "Preview" : "PlaceHolder");
+            current_target = null;
+            file_status = get_file_status();
+            update_action_button();
             return;
         }
 
+        FileStatus get_file_status () {
+            if (current_file == null)
+                return FileStatus.NOT_INSTALLED;
+            File font_dir = File.new_for_path(get_user_font_directory());
+            if (current_file.get_path().contains(font_dir.get_path()))
+                current_target = current_file;
+            if (current_target == null) {
+                try {
+                    current_target = get_installation_target(current_file, font_dir, false);
+                } catch (Error e) {
+                    return FileStatus.NOT_INSTALLED;
+                }
+            }
+            if (current_target.query_exists()) {
+                if (timecmp(current_target, current_file) > 0)
+                    return FileStatus.WOULD_DOWNGRADE;
+                else
+                    return FileStatus.INSTALLED;
+            } else
+                return FileStatus.NOT_INSTALLED;
+        }
+
+        void update_action_button () {
+            action_button.remove_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+            action_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            action_button.set_tooltip_text(null);
+            action_button.set_visible(preview_pane.font != null);
+            if (preview_pane.font == null)
+                return;
+            switch (file_status) {
+                case FileStatus.WOULD_DOWNGRADE:
+                    action_button.set_label(_("Newer version already installed"));
+                    action_button.add_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+                    action_button.set_tooltip_text(_("Click to overwrite"));
+                    break;
+                case FileStatus.INSTALLED:
+                    action_button.set_label(_("Remove Font"));
+                    action_button.add_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+                    break;
+                default:
+                    action_button.set_label(_("Install Font"));
+                    action_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+                    break;
+            }
+            return;
+        }
+
+        bool remove_directory_tree_if_empty (File dir) {
+            try {
+                var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,
+                                                        FileQueryInfoFlags.NONE);
+                if (enumerator.next_file() != null)
+                    return false;
+                File parent = dir.get_parent();
+                dir.delete();
+                if (parent != null)
+                    remove_directory_tree_if_empty(parent);
+                return true;
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return false;
+        }
+
         [GtkCallback]
-        public void on_drag_data_received (Gdk.DragContext context,
-                                           int x,
-                                           int y,
-                                           Gtk.SelectionData selection_data,
-                                           uint info,
-                                           uint time) {
-            if (info == DragTargetType.EXTERNAL)
-                open(selection_data.get_uris()[0], 0);
+        public void on_action_button_clicked () {
+            File font_dir = File.new_for_path(get_user_font_directory());
+            switch (file_status) {
+                case FileStatus.INSTALLED:
+                    try {
+                        File parent = current_target.get_parent();
+                        current_target.delete(null);
+                        remove_directory_tree_if_empty(parent);
+                        preview_pane.font = null;
+                        update();
+                    } catch (Error e) {
+                        critical("Failed to remove %s", current_target.get_path());
+                    }
+                    break;
+                default:
+                    try {
+                        install_file(current_file, font_dir);
+                        update_action_button();
+                    } catch (Error e) {
+                        critical("Failed to install %s", current_file.get_path());
+                    }
+                    break;
+            }
             return;
         }
 
     }
 
 }
+

@@ -1,6 +1,6 @@
-/* BaseControls.vala
+/* Controls.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,158 +20,35 @@
 
 namespace FontManager {
 
-    /**
-     * Base class for controls that allow adding or removing.
-     * By default includes add/remove buttons packed at start of @box
-     */
-    public class BaseControls : Gtk.EventBox {
+    public class BaseControls : Gtk.Box {
 
-        /**
-         * Emitted when @add_button has been clicked
-         */
         public signal void add_selected ();
-
-        /**
-         * Emitted when @remove_button is clicked
-         */
         public signal void remove_selected ();
 
-        public Gtk.Box box { get; protected set; }
-
         public Gtk.Button add_button { get; protected set; }
-
         public Gtk.Button remove_button { get; protected set; }
 
         construct {
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
-            box.border_width = 2;
-            set_size_request(0, 0);
-            add_button = new Gtk.Button();
-            add_button.set_image(new Gtk.Image.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU));
-            remove_button = new Gtk.Button();
-            remove_button.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            box.pack_start(add_button, false, false, 1);
-            box.pack_start(remove_button, false, false, 1);
-            set_button_relief_style(box);
-            add(box);
+            spacing = DEFAULT_MARGIN;
+            widget_set_margin(this, MIN_MARGIN * 2);
+            add_button = new Gtk.Button.from_icon_name("list-add-symbolic") {
+                opacity = 0.9,
+                has_frame = false
+            };
+            remove_button = new Gtk.Button.from_icon_name("list-remove-symbolic") {
+                opacity = 0.9,
+                has_frame = false
+            };
+            set_control_sensitivity(remove_button, false);
+            append(add_button);
+            append(remove_button);
             add_button.clicked.connect((w) => { add_selected(); });
             remove_button.clicked.connect(() => { remove_selected(); });
-            add_button.show();
-            remove_button.show();
-            box.show();
         }
 
     }
 
-    /**
-     * Row like widget containing two #GtkLabel and a #GtkSwitch.
-     * Use #GtkLabel.set_text() / #GtkLabel.set_markup()
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-switch.ui")]
-    public class LabeledSwitch : Gtk.Box {
-
-        [GtkChild] public unowned Gtk.Label label { get; }
-
-        /**
-         * Centered Label with dim-label style class
-         */
-        [GtkChild] public unowned Gtk.Label description { get; }
-
-        [GtkChild] public unowned Gtk.Switch toggle { get; }
-
-        public LabeledSwitch (string? label = null) {
-            this.label.set_text(label != null ? label : "");
-        }
-
-    }
-
-    /**
-     * Row like widget containing a #GtkLabel and a #GtkSpinButton.
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-spin-button.ui")]
-    public class LabeledSpinButton : Gtk.Box {
-
-        [GtkChild] public unowned Gtk.Label label { get; }
-
-        /**
-         * Centered Label with dim-label style class
-         */
-        [GtkChild] public unowned Gtk.Label description { get; }
-
-        public double @value { get; set; default = 0.0; }
-
-        [GtkChild] unowned Gtk.SpinButton spin;
-
-        public LabeledSpinButton (string? label, double min, double max, double step) {
-            this.label.set_text(label != null ? label : "");
-            spin.set_adjustment(new Gtk.Adjustment(0, min, max, step, 0, 0));
-            bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-        }
-
-    }
-
-    /**
-     * Row like widget containing two #GtkLabel and a #GtkSwitch.
-     * Use #GtkLabel.set_text() / #GtkLabel.set_markup()
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-font-button.ui")]
-    public class LabeledFontButton : Gtk.Box {
-
-        [GtkChild] public unowned Gtk.Label label { get; }
-
-        /**
-         * Centered Label with dim-label style class
-         */
-        [GtkChild] public unowned Gtk.Label description { get; }
-
-        [GtkChild] public unowned Gtk.FontButton button { get; }
-
-        public string font { get; set; default = DEFAULT_FONT; }
-
-        public LabeledFontButton (string? label = null) {
-            this.label.set_text(label != null ? label : "");
-            bind_property("font", button, "font", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-        }
-
-    }
-
-    /**
-     * Row like widget containing a Label displayed centered above the scale.
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-option-scale.ui")]
-    public class OptionScale : Gtk.Box {
-
-        public double @value { get; set; default = 0.0; }
-
-        public Gtk.Adjustment adjustment {
-            get {
-                return scale.get_adjustment();
-            }
-        }
-
-        public string [] options { get; construct set;}
-
-        [GtkChild] unowned Gtk.Label label;
-        [GtkChild] unowned Gtk.Scale scale;
-
-        public OptionScale (string? heading, string [] options) {
-            this.options = options;
-            label.set_text(heading);
-            scale.set_adjustment(new Gtk.Adjustment(0.0, 0.0, ((double) options.length - 1), 1.0, 1.0, 0.0));
-            for (int i = 0; i < options.length; i++)
-                scale.add_mark(i, Gtk.PositionType.BOTTOM, options[i]);
-            bind_property("value", scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-        }
-
-        [GtkCallback]
-        void on_scale_value_changed () {
-            scale.set_value(Math.round(scale.adjustment.get_value()));
-            return;
-        }
-
-    }
-
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-entry.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-entry.ui")]
     public class PreviewEntry : Gtk.Entry {
 
         public override void constructed () {
@@ -181,7 +58,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        void on_icon_press_event (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
+        void on_icon_press_event (Gtk.Entry entry, Gtk.EntryIconPosition position) {
             if (position == Gtk.EntryIconPosition.SECONDARY)
                 set_text("");
             return;
@@ -189,137 +66,258 @@ namespace FontManager {
 
         [GtkCallback]
         void on_changed_event () {
-            string icon_name = (text_length > 0) ? "edit-clear-symbolic" : "document-edit-symbolic";
+            bool empty = (text_length == 0);
+            string icon_name = !empty ? "edit-clear-symbolic" : "document-edit-symbolic";
             set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name);
-            set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, (text_length > 0));
+            set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, !empty);
+            set_icon_sensitive(Gtk.EntryIconPosition.SECONDARY, !empty);
             return;
         }
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-inline-help.ui")]
-    public class InlineHelp : Gtk.MenuButton {
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-colors.ui")]
+    public class PreviewColors : Gtk.Box {
 
-        public Gtk.Label message {
-            get {
-                return ((Gtk.Label) popover.get_child());
-            }
+        public signal void color_set ();
+
+        public Gdk.RGBA foreground_color { get; set; }
+        public Gdk.RGBA background_color { get; set; }
+
+        [GtkChild] unowned Gtk.ColorDialogButton bg_color_button;
+        [GtkChild] unowned Gtk.ColorDialogButton fg_color_button;
+
+        void flatten_color_button (Gtk.ColorDialogButton button) {
+            button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
+            button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
+            return;
         }
 
-        construct {
-            var style_context = get_style_context();
-            style_context.remove_class("toggle");
-            style_context.remove_class(Gtk.STYLE_CLASS_POPUP);
-            style_context.add_class("image-button");
-            popover.get_style_context().remove_class(Gtk.STYLE_CLASS_BACKGROUND);
+        public override void constructed () {
+            flatten_color_button(bg_color_button);
+            flatten_color_button(fg_color_button);
+            bg_color_button.set_dialog(new Gtk.ColorDialog() {
+                title = _("Select background color")
+            });
+            fg_color_button.set_dialog(new Gtk.ColorDialog() {
+                title = _("Select text color")
+            });
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL;
+            bind_property("background-color", bg_color_button, "rgba", flags);
+            bind_property("foreground-color", fg_color_button, "rgba", flags);
+            Gdk.RGBA rgba = Gdk.RGBA();
+            if (rgba.parse("rgb(255,255,255)"))
+                bg_color_button.set_rgba(rgba);
+            if (rgba.parse("rgb(0,0,0)"))
+                fg_color_button.set_rgba(rgba);
+            bg_color_button.notify["rgba"].connect(() => { color_set(); });
+            fg_color_button.notify["rgba"].connect(() => { color_set(); });
+            base.constructed();
+            return;
         }
 
     }
 
-    /**
-     * Widget allowing user to select pixel layout.
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-subpixel-geometry.ui")]
-    public class SubpixelGeometry : Gtk.Box {
+    const MenuEntry [] app_menu_entries = {
+        { "win.show-help-overlay", N_("Keyboard Shortcuts") },
+        { "help", N_("Help") },
+        { "about",  N_("About Font Manager")}
+    };
 
-        public int rgba {
-            get {
-                return _rgba;
+    GLib.MenuModel get_app_menu_model () {
+        var section = new GLib.Menu();
+        var preferences = new GLib.Menu();
+        var preferences_menu_item = new GLib.MenuItem(_("Preferences"), "show-preferences");
+        preferences.append_item(preferences_menu_item);
+        section.prepend_section(null, preferences);
+        var user_data = new GLib.Menu();
+        var import_menu_item = new GLib.MenuItem(_("Import"), "import");
+        var export_menu_item = new GLib.MenuItem(_("Export"), "export");
+        user_data.append_item(import_menu_item);
+        user_data.append_item(export_menu_item);
+        var user_data_submenu = new GLib.MenuItem.submenu(_("User Data"), user_data);
+        section.prepend_item(user_data_submenu);
+        var standard_entries = new GLib.Menu();
+        foreach (var entry in app_menu_entries) {
+            GLib.MenuItem item = new MenuItem(entry.display_name, entry.action_name);
+            standard_entries.append_item(item);
+        }
+        section.append_section(null, standard_entries);
+        return (GLib.MenuModel) section;
+    }
+
+    GLib.MenuModel get_main_menu_model () {
+        var section = new GLib.Menu();
+        EnumClass mode_class = ((EnumClass) typeof(Mode).class_ref());
+        for (int i = 0; i < Mode.N_MODES; i++) {
+            string nick = mode_class.get_value(i).value_nick;
+            var item = new MenuItem(((Mode) i).to_translatable_string(), null);
+            item.set_action_and_target("mode", "s", nick);
+            section.append_item(item);
+        }
+        return (GLib.MenuModel) section;
+    }
+
+    public enum SortType {
+
+        NAME,
+        SIZE,
+        NONE,
+        N_SORT_OPTIONS;
+
+        public string to_translatable_string () {
+            switch (this) {
+                case NAME:
+                    return _("Name");
+                case SIZE:
+                    return _("Size");
+                default:
+                    return _("None");
             }
+        }
+
+        public string to_string () {
+            switch (this) {
+                case NAME:
+                    return "name";
+                case SIZE:
+                    return "size";
+                default:
+                    return "none";
+            }
+        }
+
+    }
+
+    GLib.MenuModel get_sort_type_menu_model () {
+        var section = new GLib.Menu();
+        EnumClass mode_class = ((EnumClass) typeof(SortType).class_ref());
+        for (int i = 0; i < SortType.N_SORT_OPTIONS; i++) {
+            string nick = mode_class.get_value(i).value_nick;
+            var item = new MenuItem(((SortType) i).to_translatable_string(), null);
+            item.set_action_and_target("sort-type", "s", nick);
+            section.append_item(item);
+        }
+        return (GLib.MenuModel) section;
+    }
+
+    void toggle_spinner (Gtk.Spinner spinner, Gtk.Button button, string? icon_name = null) {
+        if (icon_name == null) {
+            spinner.start();
+            button.set_child(spinner);
+            button.sensitive = false;
+        } else {
+            spinner.stop();
+            var icon = new Gtk.Image.from_icon_name(icon_name);
+            button.set_child(icon);
+            button.sensitive = true;
+        }
+        return;
+    }
+
+    public class HeaderBarWidgets : Object {
+
+        public Gtk.MenuButton main_menu { get; protected set; }
+        public Gtk.MenuButton app_menu { get; protected set; }
+        public Gtk.Label main_menu_label { get; set; }
+        public Gtk.Label title_label { get; protected set; }
+        public Gtk.Button back_button { get; protected set; }
+        public GLib.Settings? settings { get; protected set; default = null; }
+
+        public bool installing_files {
             set {
-                if (value < 0 || value >= ((int) options.length))
-                    return;
-                _rgba = value;
-                options[_rgba].active = true;
+                toggle_spinner(spinner, manage_controls.add_button,
+                                value ? null : "list-add-symbolic");
             }
         }
 
-        public GenericArray <Gtk.RadioButton> options { get; private set; }
-
-        int _rgba;
-
-        [GtkChild] unowned Gtk.ButtonBox button_box;
-
-        public SubpixelGeometry () {
-            options = new GenericArray <Gtk.RadioButton> ();
-            for (int i = 0; i < SubpixelOrder.NONE; i++) {
-                if (i == 0)
-                    options.insert(i, new Gtk.RadioButton(null));
-                else
-                    options.insert(i, new Gtk.RadioButton.from_widget(options[0]));
-                Gtk.RadioButton button = options[i];
-                var icon = new SubpixelGeometryIcon((SubpixelOrder) i);
-                button.add(icon);
-                button.set_tooltip_text(((SubpixelOrder) i).to_string());
-                button.toggled.connect(() => {
-                    if (button.active) {
-                        uint index;
-                        options.find(button, out index);
-                        rgba = (int) index;
-                    }
-                });
-                button_box.pack_start(button);
-                icon.show();
-                button.show();
+        public bool removing_files {
+            set {
+                toggle_spinner(spinner, manage_controls.remove_button,
+                                value ? null : "list-remove-symbolic");
             }
         }
 
-    }
+        public Gtk.Revealer revealer { get; set; }
+        protected Gtk.Spinner spinner { get; set; }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-subpixel-geometry-icon.ui")]
-    public class SubpixelGeometryIcon : Gtk.Box {
+        BaseControls manage_controls;
 
-        public int size { get; set; default = 36; }
+        public void reveal_manage_controls (bool reveal) {
+            revealer.set_reveal_child(reveal);
+            return;
+        }
 
-        [GtkChild] unowned Gtk.Label l1;
-        [GtkChild] unowned Gtk.Label l2;
-        [GtkChild] unowned Gtk.Label l3;
-
-        public SubpixelGeometryIcon (SubpixelOrder rgba) {
-
-            string [,] colors = {
-                { "gray", "gray", "gray" },
-                { "red", "green", "blue" },
-                { "blue", "green", "red" },
-                { "red", "green", "blue" },
-                { "blue", "green", "red" },
-                { "gray", "gray", "gray" }
+        public HeaderBarWidgets (GLib.Settings? settings) {
+            Object(settings: settings);
+            title_label = new Gtk.Label(DISPLAY_NAME) {
+                ellipsize = Pango.EllipsizeMode.NONE,
+                single_line_mode = true
             };
-
-            bool vertical = (rgba == SubpixelOrder.VBGR || rgba == SubpixelOrder.VRGB);
-            orientation = vertical ? Gtk.Orientation.VERTICAL : Gtk.Orientation.HORIZONTAL;
-
-            Gtk.Label [] labels = { l1, l2, l3 };
-            for (int i = 0; i < labels.length; i++) {
-                /* @color: defined in FontManager.css */
-                labels[i].get_style_context().add_class(colors[rgba,i]);
+            title_label.add_css_class("title");
+            main_menu = new Gtk.MenuButton() { opacity = 0.9 };
+            var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic");
+            var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            main_menu_container.append(main_menu_icon);
+            main_menu_label = new Gtk.Label(null);
+            string markup = "<b>%s</b>".printf(Mode.parse("Default").to_translatable_string());
+            main_menu_label.set_markup(markup);
+            main_menu_container.append(main_menu_label);
+            main_menu.set_child(main_menu_container);
+            main_menu.set_menu_model(get_main_menu_model());
+            app_menu = new Gtk.MenuButton() { opacity = 0.9 };
+            app_menu.set_menu_model(get_app_menu_model());
+            app_menu.set_icon_name("open-menu-symbolic");
+            revealer = new Gtk.Revealer();
+            revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
+            manage_controls = new BaseControls() { spacing = 4 };
+            widget_set_margin(manage_controls, 0);
+            manage_controls.add_button.has_frame = true;
+            manage_controls.remove_button.has_frame = true;
+            set_control_sensitivity(manage_controls.remove_button, true);
+            manage_controls.add_button.set_action_name("install");
+            manage_controls.remove_button.set_action_name("remove");
+            manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
+            manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
+            var separator = new Gtk.Separator(Gtk.Orientation.VERTICAL) {
+                margin_end = 4,
+                margin_top = 2,
+                margin_bottom = 2
+            };
+            separator.add_css_class("separator");
+            manage_controls.prepend(separator);
+            revealer.set_child(manage_controls);
+            revealer.set_reveal_child(true);
+            back_button = new Gtk.Button.from_icon_name("go-previous-symbolic") {
+                opacity = 0.9,
+                visible = false,
+                tooltip_text = _("Back"),
+                action_name = "show-preferences"
+            };
+            spinner = new Gtk.Spinner();
+            if (settings != null) {
+                set_button_style();
+                settings.changed.connect((key) => {
+                    if (key == "headerbar-button-style")
+                        set_button_style();
+                });
             }
-
-        }
-
-        /* Used to force square widget */
-
-        public override void get_preferred_width (out int minimum_size, out int natural_size) {
-            minimum_size = natural_size = size;
             return;
         }
 
-        public override void get_preferred_height (out int minimum_size, out int natural_size) {
-            minimum_size = natural_size = size;
-            return;
-        }
-
-        public override void get_preferred_height_for_width (int width, out int minimum_height, out int natural_height) {
-            minimum_height = natural_height = width;
-            return;
-        }
-
-        public override void get_preferred_width_for_height (int height, out int minimum_width, out int natural_width) {
-            minimum_width = natural_width = height;
+        void set_button_style () requires (settings != null) {
+            Gtk.Widget [] buttons = { main_menu, app_menu, back_button,
+                                      manage_controls.add_button,
+                                      manage_controls.remove_button };
+            int raised = settings.get_enum("headerbar-button-style");
+            foreach (var button in buttons)
+                if (button is Gtk.MenuButton)
+                    ((Gtk.MenuButton) button).set_has_frame(raised == 0);
+                else
+                    ((Gtk.Button) button).set_has_frame(raised == 0);
             return;
         }
 
     }
 
 }
-

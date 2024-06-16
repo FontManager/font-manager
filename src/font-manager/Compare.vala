@@ -1,6 +1,6 @@
 /* Compare.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,8 +30,8 @@ namespace FontManager {
 
     public class CompareEntry : Object {
 
-        public string? description { get; set; default = null; }
-        public double preview_size { get; set; default = MIN_FONT_SIZE; }
+        public Object item { get; set; default = null; }
+        public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public Pango.FontDescription? font_desc { get; set; default = null; }
@@ -46,12 +46,22 @@ namespace FontManager {
             }
         }
 
+        public string? description {
+            get {
+                Json.Object? source_object = null;
+                item.get(JSON_PROXY_SOURCE, out source_object, null);
+                if (source_object != null)
+                    return source_object.get_string_member("description");
+                return null;
+            }
+        }
+
         string? _preview_text = null;
         string? initial_preview = null;
         string? local_pangram = null;
 
-        public CompareEntry (string description, string preview_text, string default_preview) {
-            Object(description: description, preview_text: preview_text);
+        public CompareEntry (Object item, string preview_text, string default_preview) {
+            Object(item: item, preview_text: preview_text);
             initial_preview = default_preview;
             local_pangram = get_localized_pangram();
             font_desc = Pango.FontDescription.from_string(description);
@@ -121,7 +131,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-compare-row.ui")]
     public class CompareRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Label description;
@@ -138,18 +148,15 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
-    public class Compare : Gtk.Box {
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-compare-view.ui")]
+    public class ComparePane : Gtk.Box {
 
-        public signal void color_set ();
-
-        public double preview_size { get; set; }
+        public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
-        public Gtk.Adjustment adjustment { get; set; }
-        public GLib.HashTable <string, string>? samples { get; set; default = null; }
-        public GenericArray <string>? selected_fonts { get; set; default = null; }
-        public Font? selected_font { get; set; default = null; }
+        public GenericArray <Object>? selected_items { get; set; default = null; }
+        public GLib.Settings? settings { get; set; default = null; }
+        public StringSet? available_families { get; set; default = null; }
         public CompareModel model { get; set; }
         public PinnedComparisons pinned { get; private set; }
 
@@ -162,66 +169,58 @@ namespace FontManager {
             }
         }
 
-        [GtkChild] public unowned PreviewEntry entry { get; }
         [GtkChild] public unowned FontScale fontscale { get; }
-        [GtkChild] public unowned Gtk.ColorButton bg_color_button { get; }
-        [GtkChild] public unowned Gtk.ColorButton fg_color_button { get; }
+        [GtkChild] public unowned PreviewColors preview_colors { get; }
+        [GtkChild] public unowned PreviewEntry entry { get; }
 
-        [GtkChild] unowned Gtk.Box controls;
         [GtkChild] unowned Gtk.Button add_button;
         [GtkChild] unowned Gtk.Button remove_button;
-        [GtkChild] unowned Gtk.Button pinned_button;
+        [GtkChild] unowned Gtk.MenuButton pinned_button;
         [GtkChild] unowned Gtk.ListBox list;
 
+        bool initialized = false;
         string? _preview_text = null;
         string? default_preview_text = null;
 
-        public override void constructed () {
-            name = "FontManagerCompare";
+        public ComparePane (GLib.Settings? settings) {
+            Object(settings: settings);
+            widget_set_name(this, "FontManagerCompare");
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
             pinned = new PinnedComparisons();
-            pinned.relative_to = pinned_button;
             pinned.compare = this;
+            pinned_button.set_popover(pinned);
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
-            set_button_relief_style(controls);
-            add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-            foreground_color = fg_color_button.get_rgba();
-            background_color = bg_color_button.get_rgba();
+            add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            bind_property("foreground_color", fg_color_button, "rgba", flags);
-            bind_property("background_color", bg_color_button, "rgba", flags);
+            preview_colors.bind_property("foreground-color", this, "foreground-color", flags);
+            preview_colors.bind_property("background-color", this, "background-color", flags);
             bind_property("preview-size", fontscale, "value", flags);
-            fontscale.bind_property("adjustment", this, "adjustment", flags);
             set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
-            bg_color_button.color_set.connect(() => { color_set(); });
-            fg_color_button.color_set.connect(() => { color_set(); });
             model.items_changed.connect(on_items_changed);
-            notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
             pinned.closed.connect(() => {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
             });
-            base.constructed();
-            return;
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
-            if (model.get_n_items() > 0) {
-                add_button.set_relief(Gtk.ReliefStyle.NONE);
-                add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            } else {
-                add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            }
+            if (model.get_n_items() > 0)
+                add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            else
+                add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             set_control_sensitivity(pinned_button, have_items);
             return;
         }
 
-        public void restore_state (GLib.Settings settings) {
+        [GtkCallback]
+        public void on_map () {
+            if (initialized)
+                return;
+            if (settings == null)
+                return;
             preview_size = settings.get_double("compare-font-size");
             entry.text = settings.get_string("compare-preview-text");
             Idle.add(() => {
@@ -230,67 +229,70 @@ namespace FontManager {
                 bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
                 bool background_set = background.parse(settings.get_string("compare-background-color"));
                 if (foreground_set) {
-                    if (foreground.alpha == 0.0)
-                        foreground.alpha = 1.0;
-                    ((Gtk.ColorChooser) fg_color_button).set_rgba(foreground);
+                    if (foreground.alpha == 0.0f)
+                        foreground.alpha = 1.0f;
+                    preview_colors.foreground_color = foreground;
                 }
                 if (background_set) {
-                    if (background.alpha == 0.0)
-                        background.alpha = 1.0;
-                    ((Gtk.ColorChooser) bg_color_button).set_rgba(background);
+                    if (background.alpha == 0.0f)
+                        background.alpha = 1.0f;
+                    preview_colors.background_color = background;
                 }
-                return GLib.Source.REMOVE;
-            });
-            Idle.add(() => {
-                if (samples == null)
-                    return GLib.Source.CONTINUE;
-                add_from_string_array(settings.get_strv("compare-list"));
                 return GLib.Source.REMOVE;
             });
             settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
+            initialized = true;
             return;
         }
 
-        public void save_state (GLib.Settings settings) {
-            settings.set_strv("compare-list", list_items());
+        [GtkCallback]
+        public void on_unmap () {
+            if (settings == null)
+                return;
             settings.set_string("compare-foreground-color", foreground_color.to_string());
             settings.set_string("compare-background-color", background_color.to_string());
             return;
         }
 
-        public void add_from_string_array (string [] additions) {
-            GLib.List <string>? checklist = null;
-            StringSet? available_families = get_default_application().available_families;
-            if (available_families != null)
-                checklist = available_families.list();
-            foreach (var entry in additions)
-                add_from_string(entry, checklist);
+        void add_entry (Object item) {
+            string? p = null;
+            item.get("preview-text", out p, null);
+            var preview = entry.text_length > 0 ? entry.text : p != null ? p : preview_text;
+            var default_preview = p != null ? p : default_preview_text;
+            var entry = new CompareEntry(item, preview, default_preview);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("preview-size", entry, "preview-size", flags);
+            bind_property("preview-text", entry, "preview-text", flags);
+            bind_property("foreground-color", entry, "foreground-color", flags);
+            bind_property("background-color", entry, "background-color", flags);
+            model.add_item(entry);
             return;
         }
 
-        public void add_from_string (string description, GLib.List <string>? checklist = null) {
-            Pango.FontDescription _desc = Pango.FontDescription.from_string(description);
-            if (checklist == null || checklist.find_custom(_desc.get_family(), strcmp) != null) {
-                var preview = entry.text_length > 0 ? entry.text :
-                              (samples != null && samples.contains(description)) ?
-                              samples.lookup(description) : preview_text;
-                var default_preview = (samples != null && samples.contains(description)) ?
-                                       samples.lookup(description) : default_preview_text;
-                var item = new CompareEntry(description, preview, default_preview);
-                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-                bind_property("preview-size", item, "preview-size", flags);
-                bind_property("preview-text", item, "preview-text", flags);
-                bind_property("foreground-color", item, "foreground-color", flags);
-                bind_property("background-color", item, "background-color", flags);
-                model.add_item(item);
+        public void add_items (GenericArray <Object> items) {
+            foreach (Object item in items) {
+                string? family = null;
+                item.get("family", out family, null);
+                if (available_families == null || family in available_families) {
+                    if (item is Family) {
+                        Json.Array variations = ((Family) item).variations;
+                        variations.foreach_element((a, i, n) => {
+                            var _item = new Font();
+                            _item.source_object = n.get_object();
+                            add_entry(_item);
+                        });
+                    } else {
+                        add_entry(item);
+                    }
+                }
             }
             return;
         }
 
-        public string [] list_items () {
-            string [] results = {};
-            model.items.foreach((item) => { results += item.description; });
+        public GenericArray <Font> list_items () {
+            var results = new GenericArray <Font> ();
+            model.items.foreach((it) => { results.add((Font) it.item); });
             return results;
         }
 
@@ -308,10 +310,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_add_button_clicked () {
-            if (selected_fonts != null)
-                add_from_string_array(selected_fonts.data);
-            else
-                add_from_string(selected_font.description);
+            add_items(selected_items);
             return;
         }
 
@@ -326,18 +325,12 @@ namespace FontManager {
             return;
         }
 
-        [GtkCallback]
-        void on_pinned_button_clicked () {
-            pinned.popup();
-            return;
-        }
-
     }
 
     public class PinnedComparison : Object {
         public string? label { get; set; default = ""; }
         public string? created { get; set; default = new GLib.DateTime.now_local().format("%c"); }
-        public string [] items { get; set; default = {}; }
+        public GenericArray <Object>? items { get; set; default = null; }
     }
 
     public class PinnedComparisonModel : Object, ListModel {
@@ -371,27 +364,38 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
     public class PinnedComparisonRow : Gtk.Grid {
+
+        public signal void activated ();
 
         [GtkChild] unowned Gtk.Entry label;
         [GtkChild] unowned Gtk.Label created;
 
+        const string placeholder_text = _("Saved Comparison");
+
         construct {
-            label.set_placeholder_text(_("Saved Comparison"));
+            label.set_placeholder_text(placeholder_text);
+            ((Gtk.Entry) label).activate.connect(() => { activated(); });
         }
 
         public static PinnedComparisonRow from_item (Object item) {
             var row = new PinnedComparisonRow();
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            item.bind_property("label", row.label.buffer, "text", flags);
+            item.bind_property("label", row.label, "text", flags);
             item.bind_property("created", row.created, "label", flags);
             return row;
         }
 
+        public override bool grab_focus () {
+            base.grab_focus();
+            label.grab_focus();
+            return label.has_focus;
+        }
+
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-pinned-comparisons.ui")]
     public class PinnedComparisons : Gtk.Popover {
 
         [GtkChild] unowned Gtk.ListBox list;
@@ -399,7 +403,7 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Button remove_button;
         [GtkChild] unowned Gtk.Button restore_button;
 
-        public Compare? compare { get; set; default = null; }
+        public ComparePane? compare { get; set; default = null; }
         public PinnedComparisonModel? model { get; set; default = null; }
 
         public override void constructed () {
@@ -407,15 +411,16 @@ namespace FontManager {
             var place_holder_text = _("Save the current comparison\nby clicking the + button");
             var place_holder = new PlaceHolder(null, null, place_holder_text, "view-pin-symbolic");
             list.set_placeholder(place_holder);
-            place_holder.show();
             notify["compare"].connect(() => {
                 if (compare != null)
-                    compare.model.items_changed.connect((p, a, r) => {
-                        set_control_sensitivity(save_button, compare.model.get_n_items() > 0);
+                    compare.model.items_changed.connect((p, r, a) => {
+                        set_control_sensitivity(save_button,
+                                                compare.model.get_n_items() > 0);
                     });
             });
             notify["model"].connect((obj, pspec) => {
                 list.bind_model(model, PinnedComparisonRow.from_item);
+                model.items_changed.connect(on_items_changed);
             });
             model = new PinnedComparisonModel();
             load();
@@ -425,9 +430,20 @@ namespace FontManager {
 
         static string get_cache_file () {
             string dirpath = get_package_config_directory();
-            string filepath = Path.build_filename(dirpath, "Comparisons.json");
+            string filepath = Path.build_filename(dirpath, "PinnedComparisons.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;
+        }
+
+        void on_items_changed (uint position, uint removed, uint added) {
+            if (added > 0) {
+                Gtk.ListBoxRow row = list.get_row_at_index((int) position);
+                var widget = (PinnedComparisonRow) row.get_child();
+                list.select_row(row);
+                widget.grab_focus();
+                widget.activated.connect(() => { popdown(); });
+            }
+            return;
         }
 
         public void load () {
@@ -439,11 +455,13 @@ namespace FontManager {
                 var item = new PinnedComparison();
                 item.label = obj.get_string_member("label");
                 item.created = obj.get_string_member("created");
-                string [] _items = {};
+                item.items = new GenericArray <Object> ();
                 obj.get_array_member("items").foreach_element((a, i, n) => {
-                    _items += a.get_string_element(i);
+                    var o = n.get_object();
+                    var entry = new Font();
+                    entry.source_object = o;
+                    item.items.add(entry);
                 });
-                item.items = _items;
                 model.add_item(item);
             });
             return;
@@ -472,8 +490,8 @@ namespace FontManager {
                 obj.set_string_member("label", item.label);
                 obj.set_string_member("created", item.created);
                 var _arr = new Json.Array();
-                foreach (var _item in item.items)
-                    _arr.add_string_element(_item);
+                foreach (var it in item.items)
+                    _arr.add_object_element(((Font) it).source_object);
                 obj.set_array_member("items", _arr);
                 arr.add_object_element(obj);
             }
@@ -511,10 +529,15 @@ namespace FontManager {
             return_if_fail(compare != null);
             while (compare.model.get_n_items() > 0)
                 compare.model.remove_item(0);
-            compare.add_from_string_array(((PinnedComparison) item).items);
+            var items = new GenericArray <Object> ();
+            foreach (var it in ((PinnedComparison) item).items)
+                items.add(it);
+            compare.add_items(items);
+            popdown();
             return;
         }
 
     }
 
 }
+

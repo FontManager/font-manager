@@ -1,6 +1,6 @@
 /* WebFont.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,14 @@
 
 namespace FontManager.GoogleFonts {
 
-    const string FONT_FACE = "@font-face { font-family: '%s'; font-style: %s; font-weight: %i; src: local('%s'), local('%s'), url(%s) format('truetype'); }";
+    const string FONT_FACE = """
+    @font-face {
+        font-family: '%s';
+        font-style: %s;
+        font-weight: %i;
+        src: local('%s'), local('%s'), url(%s) format('truetype');
+    }
+    """;
 
     public enum FileStatus {
         NOT_INSTALLED,
@@ -30,53 +37,17 @@ namespace FontManager.GoogleFonts {
         REQUIRES_UPDATE;
     }
 
-    public async bool download_font_files (Font [] fonts) {
-        var session = new Soup.Session();
-        bool retval = true;
-        foreach (var font in fonts) {
-            string font_dir = Path.build_filename(get_font_directory(), font.family);
-            if (DirUtils.create_with_parents(font_dir, 0755) != 0) {
-                warning("Failed to create directory : %s", font_dir);
-                return false;
-            }
-            string filename = font.get_filename();
-            string filepath = Path.build_filename(font_dir, filename);
-            var message = new Soup.Message(GET, font.url);
-            try {
-                Bytes? bytes = session.send_and_read(message, null);
-                assert(bytes != null);
-                File font_file = File.new_for_path(filepath);
-                // File.create errors out if file already exists regardless of flags
-                if (font_file.query_exists())
-                    font_file.delete();
-                FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
-                try {
-                    stream.write_bytes(bytes);
-                    stream.close();
-                } catch (Error e) {
-                    retval = false;
-                    warning("Failed to write data to file : %s : %s", filepath, e.message);
-                }
-            } catch (Error e) {
-                retval = false;
-                warning("Failed to read data for : %s :: %i :: %s",
-                        filename,
-                        (int) message.status_code,
-                        e.message);
-            }
-            Idle.add(download_font_files.callback);
-            yield;
-        }
-        return retval;
-    }
-
     public class Family : Object {
+
+        public signal void changed ();
+
+        public uint position { get; set; default = 0; }
 
         public string family { get; set; }
         public string category { get; set; }
         public GenericArray <Font> variants { get; set; }
         public StringSet subsets { get; set; }
-        public int count { get; private set; default = 0; }
+        public int count { get { return variants.length; } }
         public int version { get; private set; default = 1; }
 
         public Family (Json.Object source) {
@@ -89,7 +60,6 @@ namespace FontManager.GoogleFonts {
                 var entry = node.get_string();
                 var variant = new Font(family, entry, filelist.get_string_member(entry), subsets);
                 variants.insert((int) index, variant);
-                count++;
             });
             source.get_array_member("subsets").foreach_element((array, index, node) => {
                 subsets.add(node.get_string());
@@ -126,7 +96,75 @@ namespace FontManager.GoogleFonts {
 
     }
 
+    public enum Weight {
+
+        THIN = 100,
+        EXTRA_LIGHT = 200,
+        LIGHT = 300,
+        REGULAR = 400,
+        MEDIUM = 500,
+        SEMI_BOLD = 600,
+        BOLD = 700,
+        EXTRA_BOLD = 800,
+        BLACK = 900;
+
+        public string to_string () {
+            switch (this) {
+                case THIN:
+                    return "Thin";
+                case EXTRA_LIGHT:
+                    return "ExtraLight";
+                case LIGHT:
+                    return "Light";
+                case REGULAR:
+                    return "Regular";
+                case MEDIUM:
+                    return "Medium";
+                case SEMI_BOLD:
+                    return "SemiBold";
+                case BOLD:
+                    return "Bold";
+                case EXTRA_BOLD:
+                    return "ExtraBold";
+                case BLACK:
+                    return "Black";
+                default:
+                    assert_not_reached();
+            }
+        }
+
+        public string to_translatable_string () {
+            switch (this) {
+                case THIN:
+                    return _("Thin");
+                case EXTRA_LIGHT:
+                    return _("ExtraLight");
+                case LIGHT:
+                    return _("Light");
+                case REGULAR:
+                    return _("Regular");
+                case MEDIUM:
+                    return _("Medium");
+                case SEMI_BOLD:
+                    return _("SemiBold");
+                case BOLD:
+                    return _("Bold");
+                case EXTRA_BOLD:
+                    return _("ExtraBold");
+                case BLACK:
+                    return _("Black");
+                default:
+                    assert_not_reached();
+            }
+        }
+
+    }
+
     public class Font : Object {
+
+        public signal void changed ();
+
+        public uint position { get; set; default = 0; }
 
         public string family { get; set; }
         public string url { get; set; }
@@ -200,3 +238,4 @@ namespace FontManager.GoogleFonts {
 }
 
 #endif /* HAVE_WEBKIT */
+

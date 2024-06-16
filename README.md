@@ -1,11 +1,11 @@
 |[English](README.md)|[Română](README.ro.md)|
 |--------------------|----------------------|
 
-# Font Manager <img src="help/C/media/preferences-desktop-font.png" align="right">
+# Font Manager <img src="help/C/media/com.github.FontManager.FontManager.svg" align="right">
 
 A simple font management application for GTK Desktop Environments
 
-![Main Window](https://github.com/FontManager/resources/blob/master/font-manager.png?raw=true)
+![Main Window](https://raw.githubusercontent.com/FontManager/font-manager/master/help/C/media/main-window.png)
 
 Font Manager is intended to provide a way for average users to easily manage desktop fonts, without having to resort to command line tools or editing configuration files by hand. While designed primarily with the Gnome Desktop Environment in mind, it should work well with other GTK desktop environments.
 
@@ -93,15 +93,15 @@ The Thunar extension also has very basic bulk renamer support.
 
 You'll need to ensure the following dependencies are installed:
 
-- `meson >= 0.53`
+- `meson >= 0.59`
 - `ninja`
 - `glib >= 2.62`
-- `vala >= 0.42`
-- `freetype2 >= 2.5`
-- `gtk+-3.0 >= 3.22`
-- `json-glib-1.0 >= 0.15`
-- `libxml-2.0 >= 2.9`
-- `sqlite3 >= 3.8`
+- `vala >= 0.56`
+- `freetype2 >= 2.10`
+- `gtk+-4.0 >= 4.12`
+- `json-glib-1.0 >= 1.5`
+- `libxml-2.0 >= 2.9.10`
+- `sqlite3 >= 3.35`
 - `gobject-introspection`
 - `yelp-tools` (optional)
 - `gettext` (optional)
@@ -114,8 +114,8 @@ If you wish to also build file manager extensions, you will need corresponding d
 
 If you wish to also build Google Fonts integration, which is enabled by default, the following libraries are required:
 
-- `webkit2gtk-4.1 >= 2.42`
-- `libsoup3 >= 3.0`
+- `webkitgtk-6.0 >= 2.4`
+- `libsoup3 >= 3.2`
 
 To build the application:
 

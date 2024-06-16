@@ -1,4 +1,10 @@
 
+list_help_files = '''
+from glob import glob
+for f in sorted(glob('**/*.page', recursive=False)):
+    print(f)
+'''
+
 if get_option('manager')
 
     install_man(
@@ -33,7 +39,7 @@ if get_option('yelp-doc')
 
     #                                                              #
 
-    result = run_command(python, '-c', file_list_template.format('page'), check: true)
+    result = run_command(python, '-c', list_help_files, check: true)
 
     help_files = []
 
@@ -48,10 +54,10 @@ if get_option('yelp-doc')
         'media/list-remove-symbolic.svg',
         'media/main-window.png',
         'media/metadata.png',
+        'media/open-menu.svg',
         'media/orthographies.png',
-        'media/preferences-desktop-font.png',
-        'media/preferences-desktop-font-16.png',
-        'media/preferences-system-symbolic.svg'
+        'media/com.github.FontManager.FontManager-48.png',
+        'media/com.github.FontManager.FontManager-64.png'
     ]
 
     gnome.yelp(meson.project_name(), sources: help_files, media: help_media)

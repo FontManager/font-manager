@@ -1,6 +1,6 @@
 /* Orthographies.vala
  *
- * Copyright (C) 2019-2022 Jerry Casiano
+ * Copyright (C) 2019-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ namespace FontManager {
         { N_("Cherokee"), "ᏣᎳᎩ" },
         { N_("Chess Symbols"), "Chess Symbols" },
 
-        /* CJK entries added manually */
+        // CJK entries added manually
         { N_("CJK Unified"), "CJK Unified" },
         { N_("CJK Unified Extension A"), "CJK Unified Extension A" },
         { N_("CJK Unified Extension B"), "CJK Unified Extension B" },
@@ -64,7 +64,7 @@ namespace FontManager {
         { N_("CJK Unified Extension E"), "CJK Unified Extension E" },
         { N_("CJK Compatibility Ideographs"), "CJK Compatibility Ideographs" },
         { N_("CJK Compatibility Ideographs Supplement"), "CJK Compatibility Ideographs Supplement" },
-        /* End CJK entries */
+        // End CJK entries
 
         { N_("Claudian Letters"), "Claudian Letters" },
         { N_("Coptic"), "Ⲙⲉⲧⲣⲉⲙ̀ⲛⲭⲏⲙⲓ" },
@@ -76,7 +76,7 @@ namespace FontManager {
         { N_("Emoticons"), "Emoticons" },
         { N_("Ethiopic"), "ግዕዝ" },
 
-        /* This "orthography" contains only the euro symbol... */
+        // This "orthography" contains only the euro symbol...
         //{ "Euro", "Euro" },
 
         { N_("Farsi"), "فارسی" },
@@ -123,9 +123,8 @@ namespace FontManager {
         { N_("Miao"), "Miao" },
         { N_("Mongolian"), "Mongolian" },
 
-        /* Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
-         * Contains lots of duplicates, doubt many would find it useful
-         */
+        // Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+        // Contains lots of duplicates, doubt many would find it useful
         //{ "MUFI 3.0", "MUFI 3.0" },
 
         { N_("Myanmar"), "မြန်မာအက္ခရာ" },
@@ -177,3 +176,4 @@ namespace FontManager {
     };
 
 }
+

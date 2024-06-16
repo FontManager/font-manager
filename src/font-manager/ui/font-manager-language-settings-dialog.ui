@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerLanguageSettingsDialog" parent="GtkWindow">
+    <property name="modal">True</property>
+    <property name="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="show-title-buttons">True</property>
+        <property name="title-widget">
+          <object class="GtkLabel">
+            <property name="css-classes">heading</property>
+            <property name="justify">center</property>
+            <property name="label">Language Filter Settings</property>
+            <property name="opacity">0.8</property>
+          </object>
+        </property>
+        <child type="start">
+          <object class="GtkToggleButton" id="search_toggle">
+            <property name="icon-name">edit-find-symbolic</property>
+            <property name="can-focus">False</property>
+          </object>
+        </child>
+      </object>
+    </property>
+  </template>
+</interface>

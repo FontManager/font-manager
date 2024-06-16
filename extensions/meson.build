@@ -1,4 +1,6 @@
 
+extension_includes = includes + [ include_directories('.') ]
+
 if get_option('nautilus')
     subdir('nautilus')
 endif

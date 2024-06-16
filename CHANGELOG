@@ -1,3 +1,12 @@
+0.8.9 -> 0.9.0
+- Port to GTK 4
+- Add option to sort collections by name or size - Issue #297
+- Improve search to include variations and partial matches - Issue #316
+- Add editable preview mode to Google Fonts preview pane - Issue #250
+- Double click selected orthography filter to deselect - Issue #332
+- Drop Fonts table every update to avoid missing fonts - Issue #330
+- Update vendor list
+
 0.8.8 -> 0.8.9
 
 - Bumps libsoup version to 3.0 - Issue #343

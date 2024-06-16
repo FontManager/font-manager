@@ -22,9 +22,9 @@
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
                     <gui>
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    <media type="image" src="media/open-menu.svg"/>
                     </gui>
-                    at the top of the window.
+                    at the top of the window and selecting Preferences from the menu.
                     </p>
                 </item>
                 <item>
@@ -79,9 +79,9 @@
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
                     <gui>
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    <media type="image" src="media/open-menu.svg"/>
                     </gui>
-                    at the top of the window.
+                    at the top of the window and selecting Preferences from the menu.
                     </p>
                 </item>
                 <item>
@@ -105,33 +105,6 @@
                     <p>
                         Click <gui style="button">Save</gui> to write the
                         configuration file when done.
-                    </p>
-                </item>
-            </steps>
-        </item>
-        <item>
-            <title>To remove all substitutes:</title>
-            <steps>
-                <item>
-                    <p>
-                    Open the <app>Font Manager</app> preferences dialog
-                    by clicking
-                    <gui>
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
-                    </gui>
-                    at the top of the window.
-                    </p>
-                </item>
-                <item>
-                    <p>Select "Substitutions" from the sidebar</p>
-                </item>
-                <item>
-                    <p>
-                        Click
-                        <gui style="button">
-                        Discard
-                        </gui>
-                        in the substitutions pane.
                     </p>
                 </item>
             </steps>

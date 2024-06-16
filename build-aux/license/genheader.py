@@ -28,13 +28,10 @@ from os import path
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
-#ifndef __FONT_MANAGER_LICENSE_H__
-#define __FONT_MANAGER_LICENSE_H__
+#pragma once
 
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-
-G_BEGIN_DECLS
 
 #ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_MAX_KEYWORD_ENTRIES 25
@@ -56,10 +53,6 @@ FOOTER = """
 #ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_LICENSE_ENTRIES G_N_ELEMENTS(FontManagerLicenseData)
 #endif
-
-G_END_DECLS
-
-#endif /* __FONT_MANAGER_LICENSE_H__ */
 
 """
 

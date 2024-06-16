@@ -1,6 +1,6 @@
 /* Disabled.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,34 @@ namespace FontManager {
 
     public class Disabled : Category {
 
+        public Reject disabled_families { get; set; default = new Reject(); }
+
         public Disabled () {
-            base(_("Disabled"), _("Fonts which have been disabled"), "list-remove-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.DISABLED);
+            base(_("Disabled"),
+                 _("Fonts which have been disabled"),
+                 "list-remove-symbolic",
+                 "%s WHERE family=\"%s\";",
+                 CategoryIndex.DISABLED);
+            disabled_families.load();
         }
 
-        public new async void update (StringSet reject) {
-            SourceFunc callback = update.callback;
-            base.update.begin((obj, res) => {
-                base.update.end(res);
-                families.retain_all(reject);
-                Idle.add((owned) callback);
-            });
-            yield;
+        public override async void update () {
+            families.clear();
+            variations.clear();
+            try {
+                Database db = DatabaseProxy.get_default_db();
+                foreach (var family in disabled_families) {
+                    var query = sql.printf(SELECT_FROM_FONTS, family);
+                    get_matching_families_and_fonts(db, families, variations, query);
+                }
+            } catch (Error e) {
+                warning(e.message);
+            }
+            changed();
             return;
         }
 
     }
 
 }
+

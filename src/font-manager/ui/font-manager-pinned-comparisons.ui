@@ -1,161 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk+" version="3.22"/>
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerPinnedComparisons" parent="GtkPopover">
-    <property name="can-focus">False</property>
-    <property name="position">bottom</property>
-    <signal name="closed" handler="on_closed" swapped="no"/>
-    <child>
+    <signal name="closed" handler="on_closed" swapped="no" />
+    <property name="autohide">True</property>
+    <property name="child">
       <object class="GtkBox">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
-        <property name="margin-start">2</property>
-        <property name="margin-end">2</property>
-        <property name="margin-top">2</property>
-        <property name="margin-bottom">2</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="hexpand">1</property>
+        <property name="vexpand">1</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can-focus">False</property>
             <property name="margin-top">2</property>
+            <property name="margin-bottom">2</property>
             <property name="spacing">2</property>
             <child>
               <object class="GtkButton" id="save_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
+                <property name="sensitive">0</property>
                 <property name="opacity">0.45</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Save current comparison</property>
-                <property name="halign">start</property>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+                <property name="tooltip-text" translatable="1">Save current comparison</property>
+                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="margin-start">2</property>
                 <property name="margin-end">2</property>
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="on_save_clicked" swapped="no"/>
+                <property name="has-frame">False</property>
+                <signal name="clicked" handler="on_save_clicked" swapped="no" />
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">list-add-symbolic</property>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="remove_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
+                <property name="sensitive">0</property>
                 <property name="opacity">0.45</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Remove selected comparison</property>
-                <property name="halign">start</property>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+                <property name="tooltip-text" translatable="1">Remove selected comparison</property>
+                <property name="halign">center</property>
                 <property name="valign">center</property>
                 <property name="margin-start">2</property>
                 <property name="margin-end">2</property>
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="on_remove_clicked" swapped="no"/>
+                <property name="has-frame">False</property>
+                <signal name="clicked" handler="on_remove_clicked" swapped="no" />
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">list-remove-symbolic</property>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child>
               <object class="GtkButton" id="restore_button">
-                <property name="visible">True</property>
-                <property name="sensitive">False</property>
+                <property name="sensitive">0</property>
                 <property name="opacity">0.45</property>
-                <property name="can-focus">True</property>
-                <property name="receives-default">True</property>
-                <property name="tooltip-text" translatable="yes">Restore selected comparison</property>
-                <property name="relief">none</property>
-                <signal name="clicked" handler="on_restore_button_clicked" swapped="no"/>
+                <property name="focusable">1</property>
+                <property name="receives-default">1</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="margin-start">2</property>
+                <property name="margin-end">2</property>
+                <property name="margin-top">2</property>
+                <property name="margin-bottom">2</property>
+                <property name="tooltip-text" translatable="1">Restore selected comparison</property>
+                <property name="has-frame">False</property>
+                <signal name="clicked" handler="on_restore_button_clicked" swapped="no" />
                 <child>
                   <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
                     <property name="icon-name">view-restore-symbolic</property>
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="pack-type">end</property>
-                <property name="position">2</property>
-              </packing>
             </child>
           </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack-type">end</property>
-            <property name="position">0</property>
-          </packing>
         </child>
         <child>
           <object class="GtkScrolledWindow">
-            <property name="visible">True</property>
-            <property name="can-focus">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
+            <property name="focusable">1</property>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
             <property name="hscrollbar-policy">never</property>
-            <property name="shadow-type">in</property>
-            <property name="min-content-height">240</property>
-            <property name="propagate-natural-width">True</property>
-            <child>
+            <property name="min-content-height">320</property>
+            <property name="propagate-natural-width">1</property>
+            <property name="child">
               <object class="GtkViewport">
-                <property name="visible">True</property>
-                <property name="can-focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
                 <property name="hscroll-policy">natural</property>
                 <property name="vscroll-policy">natural</property>
-                <property name="shadow-type">none</property>
-                <child>
+                <property name="width-request">270</property>
+                <property name="child">
                   <object class="GtkListBox" id="list">
                     <property name="name">FontManagerComparisonHistoryList</property>
-                    <property name="visible">True</property>
-                    <property name="can-focus">False</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="activate-on-single-click">False</property>
-                    <signal name="row-activated" handler="on_list_row_activated" swapped="no"/>
-                    <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
+                    <property name="activate-on-single-click">0</property>
+                    <signal name="row-activated" handler="on_list_row_activated" swapped="no" />
+                    <signal name="row-selected" handler="on_list_row_selected" swapped="no" />
                   </object>
-                </child>
+                </property>
               </object>
-            </child>
+            </property>
           </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
         </child>
       </object>
-    </child>
+    </property>
   </template>
 </interface>
+

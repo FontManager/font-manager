@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerPreviewColors" parent="GtkBox">
+    <child>
+      <object class="GtkColorDialogButton" id="bg_color_button">
+        <property name="focusable">1</property>
+        <property name="tooltip_text" translatable="1">Select background color</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkColorDialogButton" id="fg_color_button">
+        <property name="focusable">1</property>
+        <property name="tooltip_text" translatable="1">Select text color</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+      </object>
+    </child>
+  </template>
+</interface>
+    

@@ -5,7 +5,7 @@
     <info>
         <desc>Getting started with Font Manager.</desc>
         <title type='link' role="trail">
-            <media type="image" src="media/preferences-desktop-font-16.png"/>
+            <media type="image" src="media/com.github.FontManager.FontManager-48.png"/>
         </title>
         <title type="link">Font Manager</title>
         <title type="text">Font Manager</title>
@@ -27,7 +27,7 @@
     </info>
 
     <title>
-    <media type="image" mime="image/png" src="media/preferences-desktop-font.png">
+    <media type="image" mime="image/png" src="media/com.github.FontManager.FontManager-64.png">
     Font Manager logo
     </media>
     Font Manager

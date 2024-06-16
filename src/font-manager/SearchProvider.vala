@@ -1,6 +1,6 @@
 /* SearchProvider.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ namespace FontManager {
     public class SearchProvider : GLib.Object {
 
         uint dbus_id = 0;
-        const string SEARCH_PROVIDER_BUS_PATH = "/org/gnome/FontManager/SearchProvider";
+        const string SEARCH_PROVIDER_BUS_PATH = "/com/github/FontManager/FontManager/SearchProvider";
 
         enum ID {
             FILEPATH,
@@ -64,18 +64,14 @@ namespace FontManager {
             string [] result_set = {};
             var search_term = get_search_term(terms);
             try {
-                Database db = get_database(DatabaseType.BASE);
-                /* Application is not running - trigger a refresh in case the db is empty */
-                StringSet? available_families = get_default_application().available_families;
-                return_val_if_fail(available_families != null, result_set);
-                if (available_families.size == 0)
-                    get_default_application().refresh();
+                Database db = DatabaseProxy.get_default_db();
                 db.execute_query(QUERY.printf(search_term));
                 foreach (unowned Sqlite.Statement row in db)
                     result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
                                                           row.column_int(ID.INDEX),
                                                           row.column_text(ID.FAMILY),
                                                           row.column_text(ID.STYLE));
+                db.end_query();
             } catch (Error e) {
                 warning(e.message);
             }
@@ -139,27 +135,21 @@ namespace FontManager {
 
         public void launch_search (string [] terms, uint32 timestamp)
         throws GLib.DBusError, GLib.IOError {
-            var application = get_default_application();
-            application.activate();
             string search_term = get_search_term(terms);
-            /* XXX : FIXME */
-            Timeout.add(1000, () => {
-                MainWindow? main_window = get_default_application().main_window;
-                return_val_if_fail(main_window != null, GLib.Source.REMOVE);
-                var categories = main_window.sidebar.standard.category_tree;
-                if (application.update_in_progress || categories.update_in_progress)
-                    return GLib.Source.CONTINUE;
-                Idle.add(() => {
-                    main_window.mode = Mode.MANAGE;
-                    main_window.sidebar.mode = "Standard";
-                    categories.select_first_row();
-                    main_window.fontlist_pane.controls.entry.set_text(search_term);
-                    if (!categories.get_selection().path_is_selected(new Gtk.TreePath.first()))
-                        return GLib.Source.CONTINUE;
-                    return GLib.Source.REMOVE;
-                });
-                return GLib.Source.REMOVE;
-            });
+            try {
+                DBusConnection conn = Bus.get_sync(BusType.SESSION);
+                conn.call_sync(BUS_ID,
+                               BUS_PATH,
+                               BUS_ID,
+                               "Search",
+                               new Variant("s", search_term),
+                               null,
+                               DBusCallFlags.NONE,
+                               -1,
+                               null);
+            } catch (Error e) {
+                critical("Method call to %s failed : %s", BUS_ID, e.message);
+            }
             return;
         }
 

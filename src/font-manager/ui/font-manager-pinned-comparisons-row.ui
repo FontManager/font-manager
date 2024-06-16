@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface>
-  <requires lib="gtk+" version="3.22"/>
-  <!-- n-columns=3 n-rows=3 -->
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerPinnedComparisonRow" parent="GtkGrid">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
     <property name="margin-start">12</property>
     <property name="margin-end">12</property>
     <property name="margin-top">6</property>
@@ -13,8 +10,6 @@
     <property name="column-spacing">2</property>
     <child>
       <object class="GtkLabel">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="opacity">0.94999999999999996</property>
         <property name="halign">start</property>
         <property name="valign">end</property>
@@ -22,39 +17,36 @@
         <property name="margin-end">4</property>
         <property name="margin-top">4</property>
         <property name="margin-bottom">4</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
-        <property name="label" translatable="yes">Created : </property>
+        <property name="hexpand">1</property>
+        <property name="vexpand">1</property>
+        <property name="label" translatable="1">Created :</property>
         <attributes>
-          <attribute name="weight" value="light"/>
+          <attribute name="weight" value="light" />
         </attributes>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">1</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">0</property>
-        <property name="top-attach">1</property>
-      </packing>
     </child>
     <child>
       <object class="GtkEntry" id="label">
-        <property name="visible">True</property>
-        <property name="can-focus">True</property>
+        <property name="focusable">1</property>
         <property name="margin-start">4</property>
         <property name="margin-end">4</property>
         <property name="margin-top">4</property>
         <property name="margin-bottom">4</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="hexpand">1</property>
+        <property name="vexpand">1</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">0</property>
+          <property name="column-span">2</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">0</property>
-        <property name="top-attach">0</property>
-        <property name="width">2</property>
-      </packing>
     </child>
     <child>
       <object class="GtkLabel" id="created">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
         <property name="opacity">0.9499999997764825</property>
         <property name="halign">start</property>
         <property name="valign">end</property>
@@ -62,31 +54,17 @@
         <property name="margin-end">4</property>
         <property name="margin-top">4</property>
         <property name="margin-bottom">4</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+        <property name="hexpand">1</property>
+        <property name="vexpand">1</property>
         <attributes>
-          <attribute name="weight" value="light"/>
+          <attribute name="weight" value="light" />
         </attributes>
+        <layout>
+          <property name="column">1</property>
+          <property name="row">1</property>
+        </layout>
       </object>
-      <packing>
-        <property name="left-attach">1</property>
-        <property name="top-attach">1</property>
-      </packing>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
-    </child>
-    <child>
-      <placeholder/>
     </child>
   </template>
 </interface>
+

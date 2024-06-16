@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-    <gresource prefix="/org/gnome/FontManager">
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-main-window.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-view.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
+    <gresource prefix="/com/github/FontManager/FontManager">
+        <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-pane.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-preview.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-collection-rename-popover.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-filter-list-view.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-controls.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-list-item-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-paned.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-config-controls.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-pane.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-preview-tile.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-inline-help.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-font-button.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-switch.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-spin-button.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-option-scale.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-box-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preferences.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-shortcuts-window.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-colors.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preference-list.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-export-dialog.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-settings-dialog.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-progress-dialog.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-remove-dialog.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-sidebar.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-standard-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry-icon.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-title-button-style.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-data.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-list.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-waterfall-size.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-catalog.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-font-filters.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-preview-pane.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sidebar.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-font-list-view.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-preview-page.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sample-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sample-list.ui</file>
     </gresource>
 </gresources>
+

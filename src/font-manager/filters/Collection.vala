@@ -1,6 +1,6 @@
 /* Collection.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,36 +20,45 @@
 
 namespace FontManager {
 
-    int get_collection_total (Collection root) {
-        int total = (int) root.families.size;
-        root.children.foreach((child) => { total += get_collection_total(child); });
-        return total;
-    }
+    public class Collection : FontListFilter {
 
-    public class Collection : Filter {
+        public signal void activated (bool active, StringSet families);
 
+        public StringSet? available_families { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
         public StringSet families { get; set; }
 
         public override int size {
             get {
-                return get_collection_total(this);
+                return get_collection_total();
             }
         }
 
-        public Collection (string? name, string? comment) {
-            Object(name: name, comment: comment);
-            requires_update = false;
+        construct {
             children = new GenericArray <Collection> ();
             families = new StringSet();
-            /* XXX : Translatable string as default argument generates broken vapi ? */
-            if (name == null)
-                name = _("New Collection");
-            if (comment == null) {
-                string default_comment = _("Created : %s").printf(get_local_time());
-                comment = default_comment;
-            }
+            notify["available-families"].connect(() => {
+                foreach (var child in children) {
+                    BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                    bind_property("available-families", child, "available-families", flags);
+                }
+            });
+            notify["disabled-families"].connect(() => {
+                foreach (var child in children) {
+                    BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                    bind_property("disabled-families", child, "disabled-families", flags);
+                }
+            });
+            notify["active"].connect(() => { activated(active, families); });
+        }
+
+        public Collection (string? name, string? comment) {
+            string default_name = _("New Collection");
+            string default_comment = _("Created : %s").printf(get_local_time());
+            this.name = name != null ? name : default_name;
+            this.comment = comment != null ? comment : default_comment;
         }
 
         public void clear_children () {
@@ -59,18 +68,42 @@ namespace FontManager {
             return;
         }
 
-        public void set_active_from_fonts (Reject? reject) {
-            if (reject == null)
-                return;
-            active = false;
-            foreach (string family in families) {
-                if (!(family in reject)) {
-                    active = true;
-                    break;
-                }
-            }
-            children.foreach((child) => { child.set_active_from_fonts(reject); });
+        public void remove (string family) {
+            families.remove(family);
+            set_active_from_fonts();
+            changed();
             return;
+        }
+
+        public void add (StringSet new_families) {
+            families.add_all(new_families);
+            set_active_from_fonts();
+            changed();
+            return;
+        }
+
+        public bool contains (Collection collection) {
+            for (uint i = 0; i < children.length; i++)
+                if (children[i].name == collection.name)
+                    return true;
+            return false;
+        }
+
+        public void set_active_from_fonts () {
+            active = (families.size > 0);
+            children.foreach((child) => { child.set_active_from_fonts(); });
+            return;
+        }
+
+        int get_collection_total () {
+            int total = (int) families.size;
+            if (available_families != null) {
+                foreach (var family in families)
+                    if (!(family in available_families))
+                        total--;
+            }
+            children.foreach((child) => { total += child.get_collection_total(); });
+            return total;
         }
 
         void add_child_contents (Collection child, StringSet full_contents) {
@@ -89,12 +122,14 @@ namespace FontManager {
         public StringSet get_filelist () {
             var results = new StringSet();
             try {
-                Database db = get_database(DatabaseType.BASE);
+                Database db = DatabaseProxy.get_default_db();
                 var contents = get_full_contents();
                 foreach (var family in contents) {
-                    db.execute_query("SELECT filepath FROM Fonts WHERE family = \"%s\"".printf(family));
+                    string sql = "SELECT filepath FROM Fonts WHERE family = \"%s\"";
+                    db.execute_query(sql.printf(family));
                     foreach (unowned Sqlite.Statement row in db)
                         results.add(row.column_text(0));
+                    db.end_query();
                 }
             } catch (Error e) {
                 warning(e.message);
@@ -102,38 +137,18 @@ namespace FontManager {
             return results;
         }
 
-        public new void update (Reject? reject) {
-            if (reject == null)
-                return;
-            if (active)
-                reject.remove_all(families);
-            else
-                reject.add_all(families);
-            reject.save();
-            children.foreach((child) => {
-                child.active = active;
-                child.update(reject);
-            });
-            return;
-        }
-
-        public override bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            Value? val = null;
+        public override bool matches (Object? item) {
             bool visible = false;
-            model.get_value(iter, FontModelColumn.OBJECT, out val);
-            Object object = val.get_object();
-            string family = (object is Family) ?
-                            ((Family) object).family :
-                            ((Font) object).family;
-            visible = (family in families);
-            val.unset();
+            string family;
+            item.get("family", out family, null);
+            visible = (family in get_full_contents());
             return visible;
         }
 
         public override bool deserialize_property (string prop_name,
-                                                      out Value val,
-                                                      ParamSpec pspec,
-                                                      Json.Node node) {
+                                                   out Value val,
+                                                   ParamSpec pspec,
+                                                   Json.Node node) {
             val = Value(pspec.value_type);
             if (pspec.value_type == typeof(GenericArray)) {
                 GenericArray <Collection> res = new GenericArray <Collection> ();
@@ -150,14 +165,18 @@ namespace FontManager {
                 });
                 val.set_object(res);
                 return true;
+            } else if (pspec.value_type == typeof(Reject)) {
+                var res = new Reject();
+                val.set_object(res);
+                return true;
             } else {
                 return base.deserialize_property(prop_name, out val, pspec, node);
             }
         }
 
         public override Json.Node serialize_property (string prop_name,
-                                                         Value val,
-                                                         ParamSpec pspec) {
+                                                      Value val,
+                                                      ParamSpec pspec) {
             if (pspec.value_type == typeof(GenericArray)) {
                 var node = new Json.Node(Json.NodeType.OBJECT);
                 var obj = new Json.Object();
@@ -169,8 +188,14 @@ namespace FontManager {
             } else if (pspec.value_type == typeof(StringSet)) {
                 var node = new Json.Node(Json.NodeType.ARRAY);
                 var arr = new Json.Array();
-                foreach (string family in families)
-                    arr.add_string_element(family);
+                if (prop_name == "families")
+                    foreach (string family in families)
+                        arr.add_string_element(family);
+                node.set_array(arr);
+                return node;
+            } else if (pspec.value_type == typeof(Reject)) {
+                var node = new Json.Node(Json.NodeType.ARRAY);
+                var arr = new Json.Array();
                 node.set_array(arr);
                 return node;
             } else {
@@ -181,3 +206,5 @@ namespace FontManager {
     }
 
 }
+
+

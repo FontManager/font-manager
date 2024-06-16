@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,928 +18,778 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-namespace FontManager {
-
-    public class FontListControls : BaseControls {
-
-        /**
-         * Emitted when the expand_button is clicked
-         */
-        public signal void expand_all (bool expand);
-
-        public bool expanded { get; private set; }
-        public Gtk.Button expand_button { get; private set; }
-        public Gtk.SearchEntry entry { get; private set; }
-
-        Gtk.Image arrow;
-
-        string expand_icon = "pan-end-symbolic";
-        string collapse_icon = "pan-down-symbolic";
-
-        public FontListControls () {
-            Object(name: "FontListControls", margin: 1);
-            if (get_direction() == Gtk.TextDirection.RTL)
-                expand_icon = "pan-start-symbolic";
-            remove_button.set_tooltip_text(_("Remove selected font from collection"));
-            add_button.destroy();
-            expand_button = new Gtk.Button();
-            arrow = new Gtk.Image.from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
-            expand_button.add(arrow);
-            expand_button.set_tooltip_text(_("Expand all"));
-            entry = new Gtk.SearchEntry();
-            entry.set_size_request(0, 0);
-            entry.margin_end = MIN_MARGIN;
-            entry.placeholder_text = _("Search Families…");
-            entry.set_tooltip_text(_("""Case insensitive search of family names.
+const string search_tip = _("""Case insensitive search of family names.
 
 Start search using %s to filter based on filepath.
-Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARATOR_S,
-                                                                 Path.SEARCHPATH_SEPARATOR_S));
-            box.pack_end(entry, false, false, 0);
-            box.pack_start(expand_button, false, false, 0);
-            box.reorder_child(expand_button, 0);
-            set_button_relief_style(box);
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            get_style_context().add_class(name);
-            set_size_request(0, 0);
-            expand_button.clicked.connect((w) => {
-                expanded = !expanded;
-                expand_all(expanded);
-                expand_button.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
-                if (expanded)
-                    arrow.set_from_icon_name(collapse_icon, Gtk.IconSize.SMALL_TOOLBAR);
-                else
-                    arrow.set_from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
-            });
-            entry.show();
-            arrow.show();
-            expand_button.show();
-            add_button.hide();
-        }
+Start search using %s to filter based on characters.""");
 
-        /**
-         * set_remove_sensitivity:
-         * @sensitive:  %TRUE if remove function should be available.
-         *              %FALSE if remove function is unavailable.
-         */
-        public void set_remove_sensitivity (bool sensitive) {
-            set_control_sensitivity(remove_button, sensitive);
-            return;
-        }
+namespace FontManager {
 
-    }
+    public class FontListRow : ListItemRow {
 
-    enum FontListColumn {
-        TOGGLE,
-        TEXT,
-        COUNT,
-        N_COLUMNS
-    }
+        Binding? binding = null;
 
-    public abstract class BaseFontList : BaseTreeView {
-
-        public string selected_iter { get; protected set; default = "0"; }
-        public GLib.HashTable <string, string>? samples { get; set; default = null; }
-
-        protected Gtk.CellRendererToggle toggle;
-
-        string default_sample;
-        string local_sample;
+        Pango.AttrList? attrs = null;
 
         construct {
-            name = "BaseFontList";
-            headers_visible = false;
-            expand = true;
-            toggle = new Gtk.CellRendererToggle();
-            var text = new Gtk.CellRendererText();
-            var count = new CellRendererStyleCount();
-            var preview = new Gtk.CellRendererText();
-            text.ellipsize = Pango.EllipsizeMode.END;
-            preview.ellipsize = Pango.EllipsizeMode.END;
-            insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
-            insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
-            insert_column_with_data_func(FontListColumn.COUNT, "", count, count_cell_data_func);
-            for (int i = 0; i < FontListColumn.N_COLUMNS; i++) {
-                var column = get_column(i);
-                column.resizable = true;
-                column.sizing = Gtk.TreeViewColumnSizing.AUTOSIZE;
-                column.expand = (i != FontListColumn.TOGGLE && i != FontListColumn.COUNT);
-            }
-            connect_signals();
-            default_sample = Pango.Language.from_string("xx").get_sample_string();
-            local_sample = get_localized_pangram();
-        }
-
-        protected virtual void on_selection_changed (Gtk.TreeSelection selection) {
-            return;
-        }
-
-        protected virtual void on_toggled (string path) {
-            return;
-        }
-
-        protected virtual void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                                      Gtk.CellRenderer cell,
-                                                      Gtk.TreeModel model,
-                                                      Gtk.TreeIter treeiter)
-        {
-            return;
-        }
-
-        void connect_signals () {
-            get_selection().changed.connect(on_selection_changed);
-            toggle.toggled.connect(on_toggled);
-            row_activated.connect((path, col) => { on_toggled(path.to_string()); });
-            return;
-        }
-
-        public void select_first_row () {
-            if (model == null)
-                return;
-            Gtk.TreePath path = new Gtk.TreePath.first();
-            Gtk.TreeSelection selection = get_selection();
-            selection.unselect_all();
-            selection.select_path(path);
-            if (selection.path_is_selected(path))
-                scroll_to_cell(path, null, true, 0.5f, 0.5f);
-            return;
-        }
-
-        public void select_next_row (bool forward = true) {
-            Gtk.TreeSelection selection = get_selection();
-            GLib.List <Gtk.TreePath> paths = selection.get_selected_rows(null);
-            Gtk.TreePath path = paths.nth_data(0);
-            if (path != null) {
-                bool path_changed = false;
-                if (forward)
-                    path.next();
-                else
-                    path_changed = path.prev();
-                if (forward || path_changed) {
-                    selection.unselect_all();
-                    selection.select_path(path);
-                }
-            }
-            if (!selection.path_is_selected(path))
-                select_first_row();
-            else if (path != null)
-                scroll_to_cell(path, null, true, 0.0f, 0.0f);
-            return;
-        }
-
-        void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string? family) {
-            Reject? reject = get_default_application().reject;
-            bool inactive = (reject != null && family != null ? family in reject : false);
-            cell.set_property("strikethrough" , inactive);
-            if (inactive && get_selection().iter_is_selected(treeiter))
-                cell.set_property("sensitive" , true);
-            else
-                cell.set_property("sensitive" , !inactive);
-            return;
-        }
-
-        protected virtual void preview_cell_data_func (Gtk.TreeViewColumn layout,
-                                                       Gtk.CellRenderer cell,
-                                                       Gtk.TreeModel model,
-                                                       Gtk.TreeIter treeiter) {
-            Gtk.TreeIter? parent;
-            cell.set_property("markup", "");
-            cell.set_property("visible", false);
-            if (model.iter_parent(out parent, treeiter)) {
-                Gtk.TreePath path = model.get_path(parent);
-                if (!is_row_expanded(path))
-                    return;
-            }
-            Value val;
-            model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-            Object obj = val.get_object();
-            Pango.AttrList attrs = new Pango.AttrList();
+            attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
-            string description = ((Font) obj).description;
-            string? sample = description;
-            if (samples != null && samples.contains(description)) {
-                string _sample = samples.lookup(description);
-                if (_sample != default_sample && _sample != local_sample)
-                    sample = _sample;
-            }
-            string markup = """<span font="%s">%s</span>""".printf(GLib.Markup.escape_text(description),
-                                                                    GLib.Markup.escape_text(sample));
-            cell.set_property("markup", markup);
-            cell.set_property("visible", true);
-            set_sensitivity(cell, treeiter, ((Font) obj).family);
-            val.unset();
+            Pango.FontDescription font_desc = Pango.FontDescription.from_string("Sans");
+            attrs.insert(new Pango.AttrFontDesc(font_desc));
+            item_preview.set_attributes(attrs);
+        }
+
+        protected override void reset () {
+            if (binding != null)
+                binding.unbind();
+            if (binding is Binding)
+                binding.unref();
+            binding = null;
+            item_state.set("active", true, "visible", false, "sensitive", true, null);
+            item_label.set("label", "", "attributes", null, null);
+            item_preview.set("text", "", "visible", false, null);
+            item_count.visible = true;
+            item_count.set_label("");
             return;
         }
 
-        /* NOTE :
-         * Iterating through children is necessary to get an accurate count.
-         * Family objects have n_variations which could be used, but would be
-         * inaccurate whenever a category which limits variations is selected.
-         */
-        protected virtual void count_cell_data_func (Gtk.TreeViewColumn layout,
-                                                     Gtk.CellRenderer cell,
-                                                     Gtk.TreeModel model,
-                                                     Gtk.TreeIter treeiter) {
-            if (model.iter_has_child(treeiter)) {
-                cell.set_property("count", model.iter_n_children(treeiter));
-                cell.set_property("visible", true);
+        protected override void on_item_set () {
+            reset();
+            if (item == null)
+                return;
+            bool root = item is Family;
+            BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
+            binding = item.bind_property("active", item_state, "active", flags, null, null);
+            item_state.set("sensitive", root, "visible", root, null);
+            item_count.visible = drag_area.sensitive = drag_handle.visible = root;
+            string f; string d; string? p = null;
+            item.get("family", out f, "description", out d, "preview-text", out p, null);
+            string label = root ? f : p != null ? p : d;
+            if (root) {
+                var count = (int) ((Family) item).n_variations;
+                var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
+                item_count.set_label(count_label.printf(count));
+                item_label.set_text(label);
             } else {
-                cell.set_property("count", 0);
-                cell.set_property("visible", false);
+                Pango.FontDescription font_desc = Pango.FontDescription.from_string(d);
+                attrs.change(new Pango.AttrFontDesc(font_desc));
+                item_preview.set_text(label);
+                item_preview.set_visible(true);
             }
-            return;
-        }
-
-        protected virtual void text_cell_data_func (Gtk.TreeViewColumn layout,
-                                                    Gtk.CellRenderer cell,
-                                                    Gtk.TreeModel model,
-                                                    Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-            Object obj = val.get_object();
-            string family = get_family_from_object(obj);
-            if (obj is Family) {
-                cell.set_property("markup", family);
-                set_sensitivity(cell, treeiter, family);
-                cell.set_padding(0, 0);
-            } else {
-                preview_cell_data_func(layout, cell, model, treeiter);
-                cell.set_padding(12, 4);
-            }
-            val.unset();
             return;
         }
 
     }
 
-    public class FontList : BaseFontList {
+    public class FontListBase : Gtk.Box {
 
-        public new Gtk.TreeModel? model {
-            get {
-                return base.get_model();
-            }
-            set {
-                base.set_model(value);
-                select_first_row();
-            }
-        }
+        public signal void activated (uint position);
+        public signal void selection_changed (Object? item);
 
-        public string? selected_family { get; private set; default = null; }
-        public GenericArray <string>? selected_fonts { get; set; default = null; }
-        public Font? selected_font { get; private set; default = null; }
-        public UserActionModel? user_actions { get; set; default = null; }
-        public UserSourceModel? user_sources { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
+        public FontListFilter? filter { get; set; default = null; }
 
-        bool refresh_required = false;
-        string? saved_iter = null;
-        Gtk.Menu context_menu;
-        Gtk.MenuItem? filename = null;
-        Gtk.MenuItem? n_selected = null;
-        Gtk.MenuItem? installable = null;
-        Gtk.Overlay? drag_icon = null;
+        public BaseFontModel? model { get; protected set; default = null; }
+        protected Gtk.SelectionModel? selection { get; protected set; default = null; }
+        protected Gtk.ListBase? list { get; protected set; default = null; }
+        protected unowned Gtk.SearchEntry? search_entry { get; protected set; default = null; }
 
-        public FontList () {
-            name = "FontList";
-            set_rubber_banding(true);
-            get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
-            context_menu = get_context_menu();
-            selected_font = new Font();
-            connect_signals();
-        }
+        // Currently selected position
+        public uint current_selection { get; protected set; default = 0; }
+        // This array contains all currently selected positions
+        public GenericArray <uint>? current_selections { get; protected set; default = null; }
 
-        void connect_signals () {
-            notify["user-actions"].connect(() => {
-                context_menu = get_context_menu();
-                user_actions.items_changed.connect(() => {
-                    context_menu = get_context_menu();
-                });
-            });
-            DatabaseProxy? db = get_default_application().db;
-            return_if_fail(db != null);
-            db.update_started.connect(() => { saved_iter = selected_iter; refresh_required = true; });
-            db.status_changed.connect(() => {
-                if (refresh_required && db.ready(DatabaseType.METADATA)) {
-                    refresh_required = false;
-                    Idle.add(() => { restore_saved_iter(); return GLib.Source.REMOVE; });
+        // Currently selected item. This is either the only item selected or the first selection
+        // if multiple items are selected, this can be either a Family object or a Font object
+        // depending on whether selecting children is allowed in the list
+        public Object? selected_item { get; protected set; default = null; }
+        // This array contains all currently selected Family objects
+        public GenericArray <Object>? selected_items { get; protected set; default = null; }
+        // This array contains all currently selected Font objects
+        public GenericArray <Object>? selected_children { get; protected set; default = null; }
+
+        uint search_timeout = 0;
+
+        construct {
+            orientation = Gtk.Orientation.VERTICAL;
+            notify["list"].connect(() => {
+                if (list is Gtk.ListView) {
+                    ((Gtk.ListView) list).set_factory(get_factory());
+                    ((Gtk.ListView) list).activate.connect((position) => { activated(position); });
+                } else if (list is Gtk.GridView) {
+                    ((Gtk.GridView) list).set_factory(get_factory());
+                    ((Gtk.GridView) list).activate.connect((position) => { activated(position); });
                 }
             });
-            db.update_complete.connect(() => {
-                if (refresh_required) {
-                    refresh_required = false;
-                    Idle.add(() => { restore_saved_iter(); return GLib.Source.REMOVE; });
-                }
+            notify["selection"].connect(() => {
+                selection.selection_changed.connect(on_selection_changed);
+                if (list == null)
+                    warning("list must be set before selection");
+                return_if_fail(list != null);
+                if (list is Gtk.ListView)
+                    ((Gtk.ListView) list).set_model(selection);
+                else if (list is Gtk.GridView)
+                    ((Gtk.GridView) list).set_model(selection);
+            });
+            notify["model"].connect(() => {
+                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                bind_property("available-fonts", model, "entries", flags, null, null);
+                bind_property("filter", model, "filter", flags, null, null);
+            });
+            notify["search-entry"].connect(() => {
+                search_entry.activate.connect(next_match);
+                search_entry.next_match.connect(next_match);
+                search_entry.previous_match.connect(previous_match);
+                search_entry.search_changed.connect(queue_update);
+                string hint = search_tip.printf(Path.DIR_SEPARATOR_S, Path.SEARCHPATH_SEPARATOR_S);
+                search_entry.set_tooltip_text(hint);
+            });
+            notify["disabled-families"].connect(() => {
+                if (disabled_families != null)
+                    disabled_families.changed.connect(() => { update(current_selection); });
+            });
+            notify["filter"].connect_after(() => {
+                Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
             });
         }
 
-        void restore_saved_iter () {
-            Gtk.TreeIter iter;
-            Gtk.TreeSelection selection = get_selection();
-            selection.unselect_all();
-            if (model.get_iter_from_string(out iter, saved_iter))
-                selection.select_iter(iter);
+        public void select_item (uint position) {
+            list.activate_action("list.select-item", "(ubb)", position, false, false);
+            list.activate_action("list.scroll-to-item", "u", position);
             return;
         }
 
-        public StringSet get_selected_families () {
-            var selected = new StringSet();
-            List <Gtk.TreePath> _selected = get_selection().get_selected_rows(null);
-            foreach (Gtk.TreePath path in _selected) {
-                Value val;
-                Gtk.TreeIter iter;
-                model.get_iter(out iter, path);
-                model.get_value(iter, FontModelColumn.OBJECT, out val);
-                string family = get_family_from_object(val.get_object());
-                selected.add(family);
-                val.unset();
-            }
-            return selected;
-        }
-
-        public override void drag_begin (Gdk.DragContext context) {
-            drag_icon = null;
-            drag_icon = new Gtk.Overlay() {
-                border_width = 8
-            };
-            var icon = new Gtk.Image();
-            icon.set_from_icon_name("font-x-generic", Gtk.IconSize.DIALOG);
-            drag_icon.add(icon);
-            var drag_count = new Gtk.Label(null) {
-                name = "FontManagerFontListDragCount",
-                opacity = 0.9,
-                halign = Gtk.Align.END,
-                valign = Gtk.Align.START,
-                label = get_selection().get_selected_rows(null).length().to_string()
-            };
-            drag_icon.add_overlay(drag_count);
-            drag_icon.show_all();
-            Gtk.drag_set_icon_widget(context, drag_icon, 20, 40);
-            return;
-        }
-
-        bool selection_is_sourced () requires (selected_font != null) {
-            if (user_sources != null)
-                foreach (string path in user_sources)
-                    if (selected_font.filepath.contains(path))
-                        return true;
-            return false;
-        }
-
-        void update_selected_fonts (GLib.List <Gtk.TreePath> selected) {
-            selected_fonts = null;
-            context_menu = null;
-            if (selected.length() == 1) {
-                context_menu = get_context_menu();
-                return;
-            }
-            selected_fonts = new GenericArray <string> ();
-            foreach (var path in selected) {
-                Value val;
-                Gtk.TreeIter iter;
-                model.get_iter(out iter, path);
-                model.get_value(iter, FontModelColumn.DESCRIPTION, out val);
-                selected_fonts.add((string) val);
-                val.unset();
-            }
-            context_menu = get_multiple_selection_context_menu();
-            int n_items = (int) selected.length();
-            /* Translators : Even though singular form is not used yet, it is here
-            to make for a proper ngettext call. Still it is advisable to translate it. */
-            n_selected.label = ngettext("%i selected item",
-                                        "%i selected items",
-                                        (ulong) n_items).printf(n_items);
-            return;
-        }
-
-        protected override void on_selection_changed (Gtk.TreeSelection selection) {
-            List <Gtk.TreePath> selected = selection.get_selected_rows(null);
-            if (selected == null || selected.length() < 1)
-                return;
-            update_selected_fonts(selected);
-            Gtk.TreePath path = selected.nth_data(0);
-            Gtk.TreeIter iter;
-            model.get_iter(out iter, path);
-            Value val;
-            model.get_value(iter, FontModelColumn.OBJECT, out val);
-            Object object = val.get_object();
-            if (object is Family) {
-                selected_font.source_object = ((Family) object).get_default_variant();
-                notify_property("selected-font");
-            } else {
-                selected_font = null;
-                selected_font = ((Font) object);
-            }
-            selected_family = selected_font.family;
-            selected_iter = model.get_string_from_iter(iter);
-            val.unset();
+        public virtual void update (uint position = 0)
+        requires (model != null) {
             Idle.add(() => {
-                if (filename != null)
-                    filename.label = Path.get_basename(selected_font.filepath);
-                if (installable != null)
-                    installable.set_visible(selection_is_sourced());
+                if (search_entry != null)
+                    model.search_term = search_entry.text.strip();
+                model.update_items();
+                select_item(position);
                 return GLib.Source.REMOVE;
             });
             return;
         }
 
-        StringSet get_files_for_family (Family family) {
-            var results = new StringSet();
-            foreach (var node in family.variations.get_elements()) {
-                var object = node.get_object();
-                results.add(object.get_string_member("filepath"));
-            }
-            return results;
-        }
-
-        protected override void on_toggled (string path) {
-            Reject? reject = get_default_application().reject;
-            if (reject == null)
-                return;
-            Gtk.TreeIter iter;
-            Value val;
-            model.get_iter_from_string(out iter, path);
-            model.get_value(iter, FontModelColumn.OBJECT, out val);
-            var family_object = val.get_object() as Family;
-            if (family_object != null) {
-                string family = get_family_from_object(family_object);
-                if (family in reject)
-                    reject.remove(family);
-                else {
-                    foreach (var filepath in get_files_for_family(family_object))
-                        add_application_font(filepath);
-                    reject.add(family);
-                }
-                reject.save();
-            }
-            val.unset();
-            queue_draw();
-            return;
-        }
-
-        protected override void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                                       Gtk.CellRenderer cell,
-                                                       Gtk.TreeModel model,
-                                                       Gtk.TreeIter treeiter) {
-            Reject? reject = get_default_application().reject;
-            if (reject != null && model.iter_has_child(treeiter)) {
-                Value val;
-                model.get_value(treeiter, FontModelColumn.NAME, out val);
-                cell.set_property("visible", true);
-                cell.set_property("active", !(reject.contains((string) val)));
-                val.unset();
-            } else {
-                cell.set_property("visible", false);
-            }
-            return;
-        }
-
-        protected override bool show_context_menu (Gdk.EventButton e) {
-            context_menu.popup_at_pointer(e);
-            return true;
-        }
-
-        /* TODO :
-         * Implement and group all context menus used in the application so that
-         * they're easy to modify/extend in one place.
-         */
-        Gtk.Menu get_context_menu () {
-            /* action_name, display_name, detailed_action_name, accelerator, method */
-            MenuEntry [] context_menu_entries = {
-                MenuEntry("install", _("Install"), "app.install", null, new MenuCallbackWrapper(install)),
-                MenuEntry("copy_location", _("Copy Location"), "app.copy_location", null, new MenuCallbackWrapper(copy_location)),
-                MenuEntry("show_in_folder", _("Show in Folder"), "app.show_in_folder", null, new MenuCallbackWrapper(show_in_folder)),
-            };
-            var popup_menu = new Gtk.Menu();
-            popup_menu.reserve_toggle_size = false;
-            filename = new Gtk.MenuItem.with_label("");
-            filename.set_halign(Gtk.Align.CENTER);
-            filename.set_margin_start(DEFAULT_MARGIN * 3);
-            filename.set_margin_end(DEFAULT_MARGIN * 3);
-            filename.sensitive = false;
-            filename.get_style_context().add_class("SensitiveChildLabel");
-            filename.get_child().opacity = 0.7;
-            filename.show();
-            filename.label = selected_font.is_valid() ? Path.get_basename(selected_font.filepath) : null;
-            popup_menu.append(filename);
-            var label = ((Gtk.Bin) filename).get_child();
-            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
-            var separator = new Gtk.SeparatorMenuItem();
-            separator.show();
-            popup_menu.append(separator);
-            foreach (MenuEntry entry in context_menu_entries) {
-                var item = new Gtk.MenuItem.with_label(entry.display_name);
-                item.get_child().set_halign(Gtk.Align.CENTER);
-                item.activate.connect(() => { entry.method.run(); });
-                item.show();
-                popup_menu.append(item);
-                if (entry.action_name == "install")
-                    installable = item;
-            }
-            if (user_actions != null && user_actions.get_n_items() > 0) {
-                foreach (var entry in user_actions) {
-                    var item = new Gtk.MenuItem.with_label(entry.action_name);
-                    if (entry.comment != null)
-                        item.set_tooltip_text(entry.comment);
-                    item.get_child().set_halign(Gtk.Align.CENTER);
-                    item.activate.connect(() => { entry.run(selected_font); });
-                    item.show();
-                    popup_menu.append(item);
-                }
-            }
-            /* Wayland complains if not set */
-            popup_menu.realize.connect(() => {
-                Gdk.Window child = popup_menu.get_window();
-                child.set_type_hint(Gdk.WindowTypeHint.POPUP_MENU);
-            });
-            return popup_menu;
-        }
-
-        void toggle_selected_fonts (bool enable) {
-            Reject? reject = get_default_application().reject;
-            if (reject == null)
-                return;
-            foreach (var family in get_selected_families()) {
-                if (enable)
-                    reject.remove(family);
-                else
-                    reject.add(family);
-            }
-            reject.save();
-            queue_draw();
-            return;
-        }
-
-        Gtk.Menu get_multiple_selection_context_menu () {
-            /* action_name, display_name, detailed_action_name, accelerator, method */
-            MenuEntry [] context_menu_entries = {
-                MenuEntry("enable", _("Enable selected items"), "app.install", null,
-                          new MenuCallbackWrapper(() => { toggle_selected_fonts(true); })),
-                MenuEntry("disable", _("Disable selected items"), "app.copy_location", null,
-                          new MenuCallbackWrapper(() => { toggle_selected_fonts(false); })),
-            };
-            var popup_menu = new Gtk.Menu();
-            popup_menu.reserve_toggle_size = false;
-            n_selected = new Gtk.MenuItem.with_label("");
-            n_selected.set_halign(Gtk.Align.CENTER);
-            n_selected.set_margin_start(DEFAULT_MARGIN * 4);
-            n_selected.set_margin_end(DEFAULT_MARGIN * 4);
-            n_selected.sensitive = false;
-            n_selected.get_style_context().add_class("SensitiveChildLabel");
-            n_selected.get_child().opacity = 0.7;
-            n_selected.show();
-            popup_menu.append(n_selected);
-            var label = ((Gtk.Bin) n_selected).get_child();
-            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
-            var separator = new Gtk.SeparatorMenuItem();
-            separator.show();
-            popup_menu.append(separator);
-            foreach (MenuEntry entry in context_menu_entries) {
-                var item = new Gtk.MenuItem.with_label(entry.display_name);
-                item.get_child().set_halign(Gtk.Align.CENTER);
-                item.activate.connect(() => { entry.method.run(); });
-                item.show();
-                popup_menu.append(item);
-            }
-            /* Wayland complains if not set */
-            popup_menu.realize.connect(() => {
-                Gdk.Window child = popup_menu.get_window();
-                child.set_type_hint(Gdk.WindowTypeHint.POPUP_MENU);
-            });
-            return popup_menu;
-        }
-
-        public void install () {
-            var filelist = new StringSet();
-            filelist.add(selected_font.filepath);
-            var installer = new Library.Installer();
-            installer.process.begin(filelist, (obj, res) => {
-                installer.process.end(res);
-                Timeout.add_seconds(3, () => {
-                    get_default_application().refresh();
-                    return GLib.Source.REMOVE;
-                });
-            });
-            return;
-        }
-
-        public void show_in_folder () {
-            string directory = GLib.Path.get_dirname(selected_font.filepath);
-            string uri = "file://%s".printf(directory);
-            try {
-                Gtk.show_uri_on_window(get_default_application().main_window, uri, Gdk.CURRENT_TIME);
-            } catch (Error e) {
-                warning(e.message);
-            }
-            return;
-        }
-
-        public void copy_location () {
-            Gdk.Display display = Gdk.Display.get_default();
-            Gtk.Clipboard clipboard = Gtk.Clipboard.get_default(display);
-            clipboard.set_text(selected_font.filepath, -1);
-            return;
-        }
-
-    }
-
-    public class UserFontList : BaseFontList {
-
-        StringSet selected_families;
-        StringSet selected_fonts;
-
-        public UserFontList () {
-            name = "UserFontList";
-            get_selection().set_mode(Gtk.SelectionMode.SINGLE);
-            selected_families = new StringSet ();
-            selected_fonts = new StringSet ();
-        }
-
-        public StringSet get_selections () {
-            var selections = new StringSet();
-            try {
-                Database db = get_database(DatabaseType.BASE);
-                string user_font_dir = get_user_font_directory();
-                string sql = "SELECT DISTINCT filepath FROM Fonts WHERE description = \"%s\" AND filepath LIKE \"%%s%\"";
-                foreach (var description in selected_fonts) {
-                    db.execute_query(sql.printf(description, user_font_dir));
-                    foreach (unowned Sqlite.Statement row in db)
-                        selections.add(row.column_text(0));
-                }
-            } catch (Error e) {
-                critical(e.message);
-            }
-            return selections;
-        }
-
-        void family_toggled (Family family, bool enabled) {
-            var font = new Font();
-            GLib.List <unowned Json.Node> variations = family.variations.get_elements();
-            foreach (var node in variations) {
-                font.source_object = node.get_object();
-                if (enabled)
-                    selected_fonts.add(font.description);
-                else
-                    selected_fonts.remove(font.description);
-            }
-            return;
-        }
-
-        protected override void on_toggled (string path) {
-            Gtk.TreeIter iter;
-            Value val;
-            model.get_iter_from_string(out iter, path);
-            model.get_value(iter, FontModelColumn.OBJECT, out val);
-            Object obj = val.get_object();
-            if (obj is Family) {
-                var family = obj as Family;
-                if (selected_families.contains(family.family)) {
-                    selected_families.remove(family.family);
-                    family_toggled(family, false);
-                } else {
-                    selected_families.add(family.family);
-                    family_toggled(family, true);
-                }
-            } else {
-                var font = obj as Font;
-                if (selected_fonts.contains(font.description))
-                    selected_fonts.remove(font.description);
-                else
-                    selected_fonts.add(font.description);
-            }
-            val.unset();
-            queue_draw();
-            return;
-        }
-
-        protected override void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                                       Gtk.CellRenderer cell,
-                                                       Gtk.TreeModel model,
-                                                       Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-            var obj = val.get_object();
-            cell.set_property("visible", true);
-            cell.set_property("sensitive", true);
-            cell.set_property("inconsistent", false);
-            bool active = false;
-            if (obj is Family)
-                active = selected_families.contains(((Family) obj).family);
-            else
-                active = selected_fonts.contains(((Font) obj).description);
-            cell.set_property("active", active);
-            val.unset();
-            return;
-        }
-
-    }
-
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-pane.ui")]
-    public class FontListPane : Gtk.Box {
-
-        public FontListControls controls { get; protected set; }
-        public Filter? filter { get; set; default = null; }
-
-        public BaseFontList fontlist {
-            get {
-                return ((BaseFontList) scrolled_window.get_child());
-            }
-            set {
-                Gtk.Widget? current_child = scrolled_window.get_child();
-                if (current_child != null)
-                    scrolled_window.remove(current_child);
-                scrolled_window.add(value);
-                value.show();
-            }
-        }
-
-        public Gtk.TreeModel? model {
-            get {
-                return real_model;
-            }
-            set {
-                real_set_model(value);
-            }
-        }
-
-        public Gtk.TreeModelFilter model_filter { get { return search_filter; } }
-
-        public bool show_controls {
-            get {
-                return revealer.get_reveal_child();
-            }
-            set {
-                revealer.set_reveal_child(value);
-            }
-        }
-
-        uint? search_timeout;
-        uint16 text_length = 0;
-        bool refresh_required = false;
-        Gtk.TreeModel? real_model = null;
-        Gtk.TreeModelFilter? search_filter = null;
-        GLib.HashTable <string, string> filter_state;
-        [GtkChild] unowned Gtk.Revealer revealer;
-        [GtkChild] unowned Gtk.ScrolledWindow scrolled_window;
-
-        string? char_search = null;
-        Json.Object? char_support = null;
-
-        public override void constructed () {
-            controls = new FontListControls();
-            controls.set_remove_sensitivity(false);
-            fontlist = new FontList();
-            revealer.add(controls);
-            connect_signals();
-            controls.show();
-            filter_state = new HashTable <string, string> (str_hash, str_equal);
-            base.constructed();
-            return;
-        }
-
-        public bool refilter () {
-            /* NOTE :
-             * Creating a new Gtk.TreeModelFilter is cheaper than calling
-             * refilter on an existing one with a large child model.
-             */
-            var saved_model = real_model;
-            real_set_model(null);
-            real_set_model(saved_model);
-            fontlist.select_first_row();
-            if (controls.expanded)
-                fontlist.expand_all();
-            search_timeout = null;
+        bool _queue_update () {
+            search_timeout = 0;
+            update();
             return GLib.Source.REMOVE;
         }
 
-        void real_set_model (Gtk.TreeModel? model) {
-            real_model = model;
-            if (model != null) {
-                search_filter = new Gtk.TreeModelFilter(model, null);
-                search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
-                fontlist.model = search_filter;
-            } else {
-                search_filter = null;
-                fontlist.model = null;
-            }
-            return;
-        }
-
-        /* Add slight delay to avoid filtering while search is still changing */
-        public void queue_refilter () {
-            if (search_timeout != null)
+        // Add slight delay to avoid filtering while search is still changing
+        public void queue_update () {
+            if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add(333, refilter);
+            search_timeout = Timeout.add(333, _queue_update);
             return;
         }
 
-        /* XXX : Prevents selections in the wrong category at startup. Shouldn't need this. */
-        public void begin_selection_tracking () {
-            notify["filter"].connect(() => {
-                string? saved_iter = null;
-                if (filter != null && filter_state.contains(filter.name))
-                    saved_iter = filter_state[filter.name];
-                refilter();
-                if (saved_iter != null)
-                    restore_last_selected_treepath(fontlist, saved_iter);
-            });
-            fontlist.notify["selected-iter"].connect(() => {
-                if (filter != null)
-                    filter_state[filter.name] = fontlist.selected_iter;
-            });
-            if (filter != null)
-                filter_state[filter.name] = fontlist.selected_iter;
+        protected void next_match (Gtk.SearchEntry entry) {
+            select_item(current_selection + 1);
             return;
         }
 
-        void update () {
-            refresh_required = false;
-            refilter();
-            queue_draw();
-            fontlist.samples = get_non_latin_samples();
-            if (fontlist.samples == null)
-                warning("Failed to generate previews for fonts which do not support Basic Latin");
+        protected void previous_match (Gtk.SearchEntry entry) {
+            select_item(current_selection - 1);
             return;
         }
 
-        void connect_signals () {
-            controls.entry.search_changed.connect(() => {
-                queue_refilter();
-                text_length = controls.entry.get_text_length();
-            });
-            controls.expand_all.connect((e) => {
-                if (e)
-                    fontlist.expand_all();
-                else
-                    fontlist.collapse_all();
-            });
-            controls.entry.next_match.connect(() => {
-                fontlist.select_next_row();
-            });
-            controls.entry.previous_match.connect(() => {
-                fontlist.select_next_row(false);
-            });
-            controls.entry.activate.connect(() => {
-                fontlist.select_next_row();
-            });
-            DatabaseProxy? db = get_default_application().db;
-            return_if_fail(db != null);
-            db.update_started.connect(() => { refresh_required = true; });
-            db.status_changed.connect(() => {
-                if (refresh_required && db.ready(DatabaseType.METADATA))
-                    update();
-            });
-            db.update_complete.connect(() => {
-                if (refresh_required)
-                    update();
-            });
-            return;
+        protected virtual void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            return_if_reached();
         }
 
-        bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            bool search_match = true;
-            if (text_length > 0) {
-                Value val;
-                model.get_value(iter, FontModelColumn.OBJECT, out val);
-                Object object = val.get_object();
-                string needle = controls.entry.get_text().casefold();
-                if (needle.has_prefix(Path.DIR_SEPARATOR_S)) {
-                    string filepath = get_filepath_from_object(object).casefold();
-                    search_match = filepath.contains(needle);
-                } else if (needle.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
-                    string _needle = needle.replace(Path.SEARCHPATH_SEPARATOR_S, "");
-                    string family_name = get_family_from_object(object);
-                    if (char_search != _needle || char_support == null) {
-                        char_search = _needle;
-                        char_support = get_available_fonts_for_chars(char_search);
-                    }
-                    search_match = char_support.has_member(family_name);
-                    if (search_match && object is Font) {
-                        Json.Object family = char_support.get_object_member(family_name);
-                        search_match = family.has_member(((Font) object).style);
-                    }
-                } else {
-                    string family = get_family_from_object(object).casefold();
-                    search_match = family.contains(needle);
+        protected virtual void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            return_if_reached();
+        }
+
+        // NOTE:
+        // @position doesn't necessarily point to the actual selection
+        // within a TreeListModel, the actual selection lies somewhere
+        // between @position + @n_items. The precise location within that
+        // range appears to be affected by a variety of factors i.e.
+        // previous selection, multiple selections, directional changes, etc.
+        protected virtual void on_selection_changed (uint position, uint n_items) {
+            current_selection = 0;
+            current_selections = new GenericArray <uint> ();
+            // The minimum value present in this bitset accurately points
+            // to the first currently selected row in the ListView.
+            Gtk.Bitset selections = selection.get_selection();
+            uint i = selections.get_minimum();
+            return_if_fail(i != uint.MAX && selection.is_selected(i));
+            current_selection = i;
+            uint n = selections.get_maximum();
+            if (n >= i) {
+                while (i <= n) {
+                    if (selection.is_selected(i))
+                        current_selections.add(i);
+                    i++;
                 }
             }
-            if (filter != null)
-                return search_match && filter.visible_func(model, iter);
-            return search_match;
+            return;
+        }
+
+        Gtk.SignalListItemFactory get_factory () {
+            var factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect(setup_list_row);
+            factory.bind.connect(bind_list_row);
+            return factory;
         }
 
     }
 
-    internal string get_family_from_object (Object object)
-    requires (object is Family || object is Font) {
-        return (object is Family) ? ((Family) object).family : ((Font) object).family;
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-font-list-controls.ui")]
+    public class FontListControls : Gtk.Box {
+
+        public signal void expander_activated (bool expanded);
+        public signal void remove_clicked ();
+
+        [GtkChild] public unowned Gtk.Button remove_button { get; }
+        [GtkChild] public unowned Gtk.Expander expander { get; }
+        [GtkChild] public unowned Gtk.SearchEntry search { get; }
+
+        [GtkCallback]
+        protected void on_remove_clicked () {
+            remove_clicked();
+            return;
+        }
+
+        [GtkCallback]
+        protected virtual void on_expander_activated (Gtk.Expander expander) {
+            expander_activated(expander.expanded);
+            expander.set_tooltip_text(expander.expanded ? _("Collapse all") : _("Expand all"));
+            return;
+        }
+
     }
 
-    internal string get_filepath_from_object (Object object)
-    requires (object is Family || object is Font) {
-        return (object is Family) ?
-               ((Family) object).get_default_variant().get_string_member("filepath") :
-               ((Font) object).filepath;
+    public class BaseFontListView : FontListBase {
+
+        protected Gtk.TreeListModel treemodel;
+
+        protected FontListControls controls;
+
+        construct {
+            controls = new FontListControls();
+            list = new Gtk.ListView(null, null) { hexpand = true, vexpand = true };
+            var scroll = new Gtk.ScrolledWindow();
+            scroll.set_child(list);
+            model = new FontModel();
+            treemodel = new Gtk.TreeListModel(model,
+                                              false,
+                                              false,
+                                              ((FontModel) model).get_child_model);
+            selection = new Gtk.MultiSelection(treemodel);
+            append(scroll);
+            prepend(controls);
+            search_entry = controls.search;
+            search_entry.set_key_capture_widget(this);
+            controls.expander_activated.connect(on_expander_activated);
+            ((Gtk.ListView) list).activate.connect(on_activate);
+        }
+
+        public void focus_search_entry () {
+            search_entry.grab_focus();
+            return;
+        }
+
+        protected virtual void on_activate (uint position) {}
+
+        protected virtual void on_expander_activated (bool expanded) {
+            treemodel.set_autoexpand(expanded);
+            queue_update();
+            return;
+        }
+
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var tree_expander = new Gtk.TreeExpander();
+            var row = new FontListRow();
+            tree_expander.set_child(row);
+            list_item.set_child(tree_expander);
+            return;
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.margin_start = 2;
+            tree_expander.set_list_row(list_row);
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            // Setting item triggers update to row widget
+            row.item = _item;
+            return;
+        }
+
+        protected override void on_selection_changed (uint position, uint n_items) {
+            selected_items = new GenericArray <Object> ();
+            selected_children = new GenericArray <Object> ();
+            base.on_selection_changed(position, n_items);
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(current_selection);
+            Object? item = list_row.get_item();
+            selected_item = item;
+            selection_changed(item);
+            for (uint i = 0; i < current_selections.length; i++) {
+                Gtk.TreeListRow row = (Gtk.TreeListRow) treemodel.get_item(i);
+                item = row.get_item();
+                if (item != null && item is Family)
+                    selected_items.add(item);
+                else if (item != null)
+                    selected_children.add(item);
+            }
+            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
+                string? description = null;
+                selected_item.get("description", out description, null);
+                debug("%s::selection_changed : %s", list.name, description);
+            }
+            return;
+        }
+
+    }
+
+    // TODO
+    //      - Context menu
+    //          - Send to collection?
+    //          - Export?
+
+    public class FontListView : BaseFontListView {
+
+        public signal void collection_changed ();
+
+        public UserActionModel? user_actions { get; set; default = null; }
+        public UserSourceModel? user_sources { get; set; default = null; }
+
+        uint state_change_timeout = 0;
+
+        bool show_menu = true;
+        GLib.Menu menu;
+        GLib.Array <GLib.MenuItem> menu_items;
+        Gtk.Label menu_title;
+        Gtk.PopoverMenu context_menu;
+
+        static construct {
+            install_action("copy-location", null, (Gtk.WidgetActionActivateFunc) copy_location);
+            install_action("show-in-folder", null, (Gtk.WidgetActionActivateFunc) show_in_folder);
+            install_action("enable-selected", null, (Gtk.WidgetActionActivateFunc) enable_selected);
+            install_action("disable-selected", null, (Gtk.WidgetActionActivateFunc) disable_selected);
+        }
+
+        construct {
+            widget_set_name(list, "FontManagerFontListView");
+            ((Gtk.ListView) list).set_enable_rubberband(true);
+            selected_items = new GenericArray <Object> ();
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            list.add_controller(right_click);
+            Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+            notify["filter"].connect(() => {
+                Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+                update_remove_sensitivity();
+            });
+            var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
+            add_controller(drop_target);
+            drop_target.drop.connect(on_drag_data_received);
+            init_context_menu();
+            controls.remove_clicked.connect(on_remove_clicked);
+        }
+
+        public void set_search_term (string needle) {
+            ((Gtk.Editable) controls.search).set_text(needle);
+            return;
+        }
+
+        public Font get_selected_font () {
+            Font font = new Font();
+            if (selected_item is Family)
+                font.source_object = ((Family) selected_item).get_default_variant();
+            else
+                font = ((Font) selected_item);
+            return font;
+        }
+
+        protected override void on_activate (uint position) {
+            if (selected_items.length < 1)
+                return;
+            selected_items.foreach((i) => { var f = (Family) i; f.active = !f.active; });
+            current_selections.foreach((i) => { treemodel.items_changed(i, 0, 0); });
+            return;
+        }
+
+        protected void on_remove_clicked () requires (filter is Collection) {
+            var collection = (Collection) filter;
+            selected_items.foreach((i) => { collection.remove(((Family) i).family); });
+            uint i = current_selection;
+            while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
+            Idle.add(() => {
+                update(i);
+                update_remove_sensitivity();
+                return GLib.Source.REMOVE;
+            });
+            collection_changed();
+            return;
+        }
+
+        string get_path_to_selected_item ()
+        requires (selected_item != null) {
+            Font font = get_selected_font();
+            return font.filepath;
+        }
+
+        void set_selected_items_active (bool active) {
+            foreach (var item in selected_items)
+                ((Family) item).active = active;
+            return;
+        }
+
+        void enable_selected (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_items.length > 1) {
+            set_selected_items_active(true);
+            return;
+        }
+
+        void disable_selected (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_items.length > 1) {
+            set_selected_items_active(false);
+            return;
+        }
+
+        void copy_location (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            Gdk.Display display = Gdk.Display.get_default();
+            Gdk.Clipboard clipboard = display.get_clipboard();
+            string filepath = get_path_to_selected_item();
+            clipboard.set_text((selected_item is Family) ? Path.get_dirname(filepath) : filepath);
+            return;
+        }
+
+        void show_in_folder (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            string directory = GLib.Path.get_dirname(get_path_to_selected_item());
+            File file = File.new_for_path(directory);
+            var launcher = new Gtk.FileLauncher(file);
+            launcher.launch.begin(null, null);
+            return;
+        }
+
+        const MenuEntry [] fontlist_menu_entries = {
+            {"install", N_("Install")},
+            {"copy-location", N_("Copy Location")},
+            {"show-in-folder",N_("Show in Folder")},
+            {"enable-selected", N_("Enable selected items")},
+            {"disable-selected",N_("Disable selected items")},
+        };
+
+        enum FontListMenuItem {
+            INSTALL,
+            COPY,
+            SHOW,
+            ENABLE,
+            DISABLE
+        }
+
+        void init_context_menu () {
+            menu_items = new GLib.Array <GLib.MenuItem> ();
+            var base_menu = new BaseContextMenu(list);
+            context_menu = base_menu.popover;
+            menu_title = base_menu.menu_title;
+            menu = base_menu.menu;
+            foreach (var entry in fontlist_menu_entries) {
+                var item = new GLib.MenuItem(entry.display_name, entry.action_name);
+                menu_items.append_val(item);
+            }
+            return;
+        }
+
+        bool is_sourced (Font font) {
+            foreach (var source in user_sources.items) {
+                string path = ((Source) source).path;
+                if (font.filepath.contains(path))
+                    return true;
+            }
+            return false;
+        }
+
+        bool selections_are_sourced () {
+            return_val_if_fail(user_sources != null, false);
+            if (selected_children.length >= 1) {
+                foreach (var selection in selected_children) {
+                    if (is_sourced((Font) selection))
+                        continue;
+                    return false;
+                }
+                return true;
+            } else if (selected_item != null) {
+                if (selected_item is Font) {
+                    return is_sourced((Font) selected_item);
+                } else {
+                    Json.Array array = ((Family) selected_item).variations;
+                    for (uint i = 0; i < array.get_length(); i++) {
+                        var font = new Font();
+                        font.source_object = array.get_object_element(i);
+                        if (is_sourced(font))
+                            continue;
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void update_context_menu () {
+            menu.remove_all();
+            show_menu = true;
+            if (selected_items.length > 1) {
+                int n_items = selected_items.length;
+                // Translators : Even though singular form is not used yet, it is here
+                // to make for a proper ngettext call. Still it is advisable to translate it.
+                menu_title.set_label(ngettext("%i selected item",
+                                              "%i selected items",
+                                              (ulong) n_items).printf((int) n_items));
+                menu.append_item(menu_items.data[FontListMenuItem.ENABLE]);
+                menu.append_item(menu_items.data[FontListMenuItem.DISABLE]);
+            } else if (selected_children.length > 1) {
+                int n_items = selected_children.length;
+                // Translators : Even though singular form is not used yet, it is here
+                // to make for a proper ngettext call. Still it is advisable to translate it.
+                menu_title.set_label(ngettext("%i selected item",
+                                              "%i selected items",
+                                              (ulong) n_items).printf((int) n_items));
+                if (selections_are_sourced())
+                    menu.append_item(menu_items.data[FontListMenuItem.INSTALL]);
+                else
+                    show_menu = false;
+            } else {
+                string? description = null;
+                string? family = null;
+                selected_item.get("description", out description, "family", out family, null);
+                menu_title.set_label((selected_item is Family) ? family : description);
+                if (selections_are_sourced())
+                    menu.append_item(menu_items.data[FontListMenuItem.INSTALL]);
+                menu.append_item(menu_items.data[FontListMenuItem.COPY]);
+                menu.append_item(menu_items.data[FontListMenuItem.SHOW]);
+                if (user_actions != null && user_actions.get_n_items() > 0) {
+                    var action_menu = new GLib.Menu();
+                    var submenu = new GLib.MenuItem.submenu(_("Actions"), action_menu);
+                    menu.append_item(submenu);
+                    int i = 0;
+                    foreach (var entry in user_actions) {
+                        var item = new GLib.MenuItem(entry.action_name, null);
+                        item.set_attribute("custom", "s", i.to_string());
+                        action_menu.append_item(item);
+                        var widget = new Gtk.Button.with_label(entry.action_name);
+                        var label = (Gtk.Label) widget.get_child();
+                        label.set_xalign(0.0f);
+                        widget.remove_css_class("button");
+                        widget.add_css_class("flat");
+                        widget.add_css_class("row");
+                        context_menu.add_child(widget, i.to_string());
+                        var target = get_selected_font();
+                        widget.clicked.connect(() => {
+                            entry.run(target);
+                        });
+                        i++;
+                    }
+                }
+            }
+            return;
+        }
+
+        void on_show_context_menu (int n_press, double x, double y) {
+            if (!show_menu || selected_item == null && selected_children.length < 1)
+                return;
+            var rect = Gdk.Rectangle() {x = (int) x, y = (int) y, width = 2, height = 2};
+            context_menu.set_pointing_to(rect);
+            update_context_menu();
+            context_menu.popup();
+            return;
+        }
+
+        Gdk.ContentProvider prepare_drag (Gtk.DragSource source, double x, double y) {
+            var selections = new GenericArray <Object> ();
+            var e_type = typeof(Gtk.TreeExpander);
+            var expander = (Gtk.TreeExpander) source.widget.get_ancestor(e_type);
+            var list_row = (Gtk.TreeListRow) expander.get_list_row();
+            // Dragged row is not necessarily the currently selected row
+            if (list_row.item is Family)
+                selections.add(list_row.item);
+            // If we have multiple rows selected we need to add them here
+            if (selected_items.length > 1)
+                foreach (var item in selected_items)
+                    if (item != list_row.item)
+                        selections.add(item);
+            return new Gdk.ContentProvider.for_value(selections);
+        }
+
+        void drag_begin (Gtk.DragSource drag_source, Gdk.Drag drag) {
+            var drag_icon = new Gtk.Overlay();
+            var icon = new Gtk.Image.from_icon_name("font-x-generic");
+            icon.set_pixel_size(64);
+            drag_icon.set_child(icon);
+            var drag_count = new Gtk.Label(null) {
+                opacity = 0.9,
+                halign = Gtk.Align.END,
+                valign = Gtk.Align.START,
+            };
+            widget_set_name(drag_count, "FontManagerListDragCount");
+            drag_icon.add_overlay(drag_count);
+            drag_count.set_label(selected_items.length.to_string());
+            var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
+            gtk_drag_icon.set_child(drag_icon);
+            return;
+        }
+
+        bool on_drag_data_received (Value value, double x, double y) {
+            if (value.holds(typeof(Gdk.FileList))) {
+                var selections = new StringSet();
+                GLib.SList <File>* filelist = value.get_boxed();
+                for (int i = 0; i < filelist->length(); i++) {
+                    File* file = filelist->nth_data(i);
+                    selections.add(file->get_path());
+                }
+                if (selections.size > 0) {
+                    get_default_application().main_window.install_selections(selections);
+                }
+                Idle.add(() => {
+                    get_default_application().reload();
+                    return GLib.Source.REMOVE;
+                });
+            }
+            return true;
+        }
+
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.setup_list_row(factory, item);
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var row = (FontListRow) ((Gtk.TreeExpander) list_item.get_child()).get_child();
+            var drag_source = new Gtk.DragSource();
+            row.drag_area.add_controller(drag_source);
+            drag_source.prepare.connect(prepare_drag);
+            drag_source.drag_begin.connect(drag_begin);
+            return;
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.bind_list_row(factory, item);
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            if (_item is Family)
+                row.item_state.active = !(((Family) _item).family in disabled_families);
+            row.item_state_changed.connect(on_item_state_changed);
+            return;
+        }
+
+        bool save_item_state_change () {
+            disabled_families.save();
+            state_change_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        void queue_item_state_update () {
+            if (state_change_timeout != 0)
+                GLib.Source.remove(state_change_timeout);
+            state_change_timeout = Timeout.add(333, save_item_state_change);
+            return;
+        }
+
+        void on_item_state_changed (Object? item) {
+            var family = ((Family) item);
+            if (family.active)
+                disabled_families.remove(family.family);
+            else
+                disabled_families.add(family.family);
+            // Slight delay in saving selections to file in case
+            // multiple changes are taking place at the same time.
+            queue_item_state_update();
+            return;
+        }
+
+        void update_remove_sensitivity () {
+            bool remove_available = current_selection != uint.MAX &&
+                                    filter is Collection &&
+                                    ((Collection) filter).families.size > 0;
+            set_control_sensitivity(controls.remove_button, remove_available);
+            return;
+        }
+
+        protected override void on_selection_changed (uint position, uint n_items) {
+            base.on_selection_changed(position, n_items);
+            update_remove_sensitivity();
+            return;
+        }
+
+    }
+
+    public class RemoveListView : BaseFontListView {
+
+        public signal void changed ();
+
+        public StringSet selected_files { get; set; default = null; }
+
+        construct {
+            widget_set_name(list, "FontManagerRemoveListView");
+            controls.remove_button.visible = false;
+            controls.expander.visible = false;
+            controls.search.halign = Gtk.Align.CENTER;
+            treemodel.set_autoexpand(true);
+            selected_files = new StringSet();
+            selection = new Gtk.NoSelection(treemodel);
+            filter = new UserFonts();
+            filter.update.begin();
+            controls.set_visible(filter.size > 20);
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.bind_list_row(factory, item);
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            row.drag_handle.visible = false;
+            row.drag_area.sensitive = true;
+            row.margin_start = 0;
+            row.margin_end = 12;
+            row.item_state.set("sensitive", true, "visible", !(_item is Family), null);
+            row.item_state.toggled.connect((c) => {
+                on_item_state_changed(list_row);
+            });
+            if (_item is Family) {
+                row.item_label.add_css_class("heading");
+                row.item_label.add_css_class("dim-label");
+            } else {
+                row.item_label.remove_css_class("heading");
+                row.item_label.remove_css_class("dim-label");
+            }
+            tree_expander.set_hide_expander(true);
+            return;
+        }
+
+        void on_item_state_changed (Gtk.TreeListRow? row) {
+            Object? item = row.get_item();
+            if (!(item is Font))
+                return;
+            Font font = (Font) item;
+            if (font.active)
+                selected_files.add(font.filepath);
+            else
+                selected_files.remove(font.filepath);
+            changed();
+            return;
+        }
+
     }
 
 }
+
+
+
 

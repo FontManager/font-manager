@@ -1,6 +1,6 @@
 /* font-manager-freetype.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,8 +18,7 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#ifndef __FREETYPE_H__
-#define __FREETYPE_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
@@ -42,8 +41,6 @@
 #include "font-manager-utils.h"
 #include "font-manager-vendor.h"
 
-G_BEGIN_DECLS
-
 GQuark font_manager_freetype_error_quark ();
 #define FONT_MANAGER_FREETYPE_ERROR font_manager_freetype_error_quark()
 
@@ -57,56 +54,16 @@ typedef enum
 }
 FontManagerFreetypeError;
 
-/**
- * FontManagerfsType:
- * @FONT_MANAGER_FSTYPE_INSTALLABLE:
- * Installable embedding
- * @FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE:
- * Use prohibited without permission
- * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT:
- * Temporary read only access allowed.
- * @FONT_MANAGER_FSTYPE_EDITABLE:
- * Temporary read/write access allowed
- * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET:
- * Same as @PREVIEW_AND_PRINT with an additional restriction on subsetting
- * @FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET:
- * Same as @EDITABLE with an additional restriction on subsetting
- * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY:
- * Same as @PREVIEW_AND_PRINT but only bitmaps can be embeeded
- * @FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY:
- * Same as @EDITABLE but only bitmaps can be embeeded
- * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY:
- * Same as @PREVIEW_AND_PRINT but only bitmaps can be embeeded and no subsetting is allowed
- * @FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY:
- * Same as @EDITABLE but only bitmaps can be embeeded and no subsetting is allowed
- */
-typedef enum
-{
-    FONT_MANAGER_FSTYPE_INSTALLABLE = 0,
-    FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE = 2,
-    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT = 4,
-    FONT_MANAGER_FSTYPE_EDITABLE = 8,
-    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET = 20,
-    FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET = 24,
-    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY = 36,
-    FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY = 40,
-    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY = 52,
-    FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY = 56
-}
-FontManagerfsType;
+glong font_manager_get_face_count (const gchar * filepath, GError **error);
 
-GType font_manager_fsType_get_type (void);
-#define FONT_MANAGER_TYPE_FSTYPE (font_manager_fsType_get_type ())
-
-const gchar * font_manager_fsType_to_string (FontManagerfsType fstype);
-
-glong font_manager_get_face_count (const gchar * filepath);
-JsonObject * font_manager_get_metadata (const gchar * filepath, gint index, GError **error);
+JsonObject * font_manager_get_metadata (const gchar  *filepath,
+                                        gint          index,
+                                        GError      **error);
 
 gchar * font_manager_get_suggested_filename (JsonObject *metadata);
-GFile * font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
-                                              gboolean create_directories, GError **error);
 
-G_END_DECLS
+GFile * font_manager_get_installation_target (GFile     *font_file,
+                                              GFile     *target_dir,
+                                              gboolean   create_directories,
+                                              GError   **error);
 
-#endif /* __FREETYPE_H__ */

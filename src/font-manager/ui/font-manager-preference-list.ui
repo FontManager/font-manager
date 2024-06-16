@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerPreferenceList" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <signal name="map" handler="on_map" swapped="no"/>
+    <signal name="unmap" handler="on_unmap" swapped="no"/>
+    <child>
+      <object class="FontManagerBaseControls" id="controls">
+        <property name="visible">False</property>
+        <property name="can_focus">False</property>
+        <property name="valign">start</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">False</property>
+        <signal name="add-selected" handler="on_add_selected" swapped="no"/>
+        <signal name="remove-selected" handler="on_remove_selected" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator" id="separator">
+        <style>
+          <class name="thin-separator"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="vexpand">1</property>
+        <property name="focusable">1</property>
+        <property name="child">
+          <object class="GtkViewport">
+            <property name="child">
+              <object class="GtkListBox" id="list">
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
+                <style>
+                    <class name="rich-list"/>
+                </style>
+              </object>
+            </property>
+          </object>
+        </property>
+      </object>
+    </child>
+    <style>
+      <class name="view"/>
+    </style>
+  </template>
+</interface>
+

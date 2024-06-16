@@ -1,67 +1,63 @@
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.8.9')
 
-if meson.version().version_compare('< 0.53')
-    error('Meson version is @0@ but project requires >= 0.53'.format(meson.version()))
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.9.0')
+
+if meson.version().version_compare('< 0.59')
+    error('Meson version is @0@ but project requires >= 0.59'.format(meson.version()))
 endif
 
-cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
-if not valac.version().version_compare('>= 0.42')
-    error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
+if not valac.version().version_compare('>= 0.56.3')
+    error('Vala compiler version is @0@ but project requires >= 0.56.3'.format(valac.version()))
 endif
 if valac.version().version_compare('>= 0.56.17')
     add_global_arguments('-D', 'VALA_0_56_17', language: 'vala')
 endif
+
+cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)
+
+i18n = import('i18n')
 fontconfig = dependency('fontconfig', version: '>= 2.12')
-freetype = dependency('freetype2', version: '>= 2.5')
-json = dependency('json-glib-1.0', version: '>= 0.15')
-gio = dependency('gio-2.0', version: '>= 2.44')
-gio_unix = dependency('gio-unix-2.0', version: '>= 2.44')
+freetype = dependency('freetype2', version: '>= 2.10')
+gio = dependency('gio-2.0', version: '>= 2.7')
+gio_unix = dependency('gio-unix-2.0', version: '>= 2.7')
 glib = dependency('glib-2.0', version: '>= 2.62')
-gmodule = dependency('gmodule-2.0', version: '>= 2.44')
-gobject = dependency('gobject-2.0', version: '>= 2.44')
-gtk = dependency('gtk+-3.0', version: '>= 3.22')
-harfbuzz = dependency('harfbuzz', version: '>= 2.0')
-pango = dependency('pango', version: '>= 1.4')
-pangoft2 = dependency('pangoft2', version: '>= 1.4')
-sqlite = dependency('sqlite3', version: '>= 3.8')
-xml = dependency('libxml-2.0', version: '>= 2.9')
+gmodule = dependency('gmodule-2.0', version: '>= 2.50')
+gtk = dependency('gtk4', version: '>= 4.12')
+harfbuzz = dependency('harfbuzz', version: '>= 2.5')
+json = dependency('json-glib-1.0', version: '>= 1.5')
+pangoft2 = dependency('pangoft2', version: '>= 1.45')
+python = import('python').find_installation('python3')
+sqlite = dependency('sqlite3', version: '>= 3.35')
+xml = dependency('libxml-2.0', version: '>= 2.9.10')
+
+gnome = import('gnome')
+
+# This dependency cannot be used for vala targets
+base_deps = declare_dependency(
+    dependencies: [ fontconfig, freetype, glib, gmodule, gtk, harfbuzz,
+                    json, m_dep, pangoft2, sqlite, xml ]
+)
+
+vala_deps = declare_dependency(
+    dependencies: [ glib, gio, gio_unix, gmodule, gtk, json, m_dep, sqlite, xml ]
+)
+
+if get_option('adwaita')
+    adwaita = dependency('libadwaita-1')
+    add_global_arguments('-D', 'HAVE_ADWAITA', language: 'vala')
+endif
 
 if get_option('webkit')
-    soup = dependency('libsoup-3.0', version: '>= 3.0')
-    webkit = dependency('webkit2gtk-4.1', version: '>= 2.42')
+    soup = dependency('libsoup-3.0', version: '>= 3.2')
+    webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
     add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
 endif
 
-base_deps = declare_dependency(
-    dependencies: [m_dep, json, gio, gio_unix, glib, gmodule, gobject, gtk, pango, sqlite, xml],
-    include_directories: include_directories('.', 'lib/common', 'lib/orthographies', 'lib/unicode')
-)
+includes = [ include_directories('.') ]
 
-# This dependency cannot be used for vala targets
-project_deps = declare_dependency(
-    dependencies: [ base_deps, fontconfig, freetype, harfbuzz, pangoft2 ]
-)
-
-i18n = import('i18n')
-gnome= import('gnome')
-python = import('python').find_installation('python3')
-
-reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
-use_deprecated_gtk_api = get_option('webkit') or get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
-
-add_global_arguments(
-    '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
-    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
-    reproducible,
-    '-DGDK_DISABLE_DEPRECATED',
-    use_deprecated_gtk_api,
-    language: 'c'
-)
-
-config_vapi_file = files('config.vapi')
+config_vapi = files('config.vapi')
 prefix = get_option('prefix')
 datadir = get_option('datadir')
 pkglib_dir = join_paths(prefix, get_option('libdir'), meson.project_name())
@@ -74,46 +70,63 @@ config.set('PACKAGE_URL', 'http://fontmanager.github.io/')
 config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())
 config.set('PKGLIBEXECDIR', pkglibexec_dir)
-config.set('prefix', prefix)
-config.set('abs_top_srcdir', meson.current_build_dir())
+config.set('PREFIX', prefix)
+config.set('BINDIR', join_paths(prefix, 'bin'))
+config.set('LOCALEDIR', join_paths(prefix, datadir, 'locale'))
+config.set('SRCDIR', meson.current_build_dir())
+config.set('SYSCONFDIR', get_option('sysconfdir'))
+
 configure_file(input: 'config.h.meson', output: 'config.h', configuration: config)
 
-file_list_template = '''
-from glob import glob
-for f in sorted(glob('**/*.@0@', recursive=True)):
-    print(f)
-'''
+reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
 
-list_sources = file_list_template.format('c')
-list_headers = file_list_template.format('h')
-list_vala_sources = file_list_template.format('vala')
+add_project_arguments(
+    '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
+    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+    reproducible,
+    language: 'c'
+)
+
+if get_option('unihan')
+    add_global_arguments('-DINCLUDE_UNIHAN_DATA=1', language: 'c')
+else
+    add_global_arguments('-DINCLUDE_UNIHAN_DATA=0', language: 'c')
+endif
+
+subdir('lib')
+subdir('src')
+subdir('extensions')
+subdir('help')
+subdir('data')
 
 if get_option('enable-nls')
     subdir('po')
 endif
 
-subdir('help')
-subdir('lib')
-subdir('src')
-subdir('data')
-subdir('extensions')
-
-meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
+
+gnome.post_install(
+    glib_compile_schemas: true,
+    gtk_update_icon_cache: true,
+    update_desktop_database: true
+)
 
 summary(
     {
-        'Font Manager': get_option('manager'),
-        'Font Viewer': get_option('viewer'),
-        'Help Documents': get_option('yelp-doc'),
-        'GNOME search provider': get_option('search-provider'),
-        'Google Fonts Integration ': get_option('webkit'),
-        'Nautilus extension': get_option('nautilus'),
-        'Nemo extension': get_option('nemo'),
-        'Thunar extension': get_option('thunar'),
-        'Translations': get_option('enable-nls'),
-        'API Documentation': get_option('gtk-doc'),
-        'Reproducible build': get_option('reproducible')
+        ' Font Manager ': get_option('manager'),
+        ' Font Viewer ': get_option('viewer'),
+        ' Help Documents ': get_option('yelp-doc'),
+        ' GNOME search provider ': get_option('search-provider'),
+        ' Use Adwaita stylesheet ': get_option('adwaita'),
+        ' Google Fonts Integration ': get_option('webkit'),
+        ' Nautilus extension ': get_option('nautilus'),
+        ' Nemo extension ': get_option('nemo'),
+        ' Thunar extension ': get_option('thunar'),
+        ' Translations ': get_option('enable-nls'),
+        ' Unihan data ' : get_option('unihan'),
+        ' API Documentation ': get_option('gtk-doc'),
+        ' Reproducible build ': get_option('reproducible'),
+        ' AppArmor Profile (unconfined) ' : get_option('app-armor')
     },
     section: '''Project options
     ''',
@@ -122,11 +135,12 @@ summary(
 
 summary(
     {
-        'prefix': prefix,
-        'bindir': join_paths(prefix, get_option('bindir')),
-        'libdir': join_paths(prefix, get_option('libdir'), meson.project_name()),
-        'libexecdir': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
-        'datadir': join_paths(prefix, datadir)
+        ' prefix ': prefix,
+        ' bindir ': join_paths(prefix, get_option('bindir')),
+        ' libdir ': join_paths(prefix, get_option('libdir'), meson.project_name()),
+        ' libexecdir ': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
+        ' datadir ': join_paths(prefix, datadir),
+        ' sysconfdir ' : join_paths('/', get_option('sysconfdir'))
     },
     section: '''Directories
     '''

@@ -1,4 +1,9 @@
 #pragma once
+
+#define PREFIX "@PREFIX@"
+#define BINDIR "@BINDIR@"
+#define SRCDIR "@SRCDIR@"
+#define LOCALEDIR "@LOCALEDIR@"
 #define PACKAGE "@PACKAGE_NAME@"
 #define PACKAGE_NAME "@PACKAGE_NAME@"
 #define PACKAGE_URL "@PACKAGE_URL@"
