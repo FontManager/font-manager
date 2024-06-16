@@ -774,16 +774,12 @@ msgstr ""
 "通过单击 + 按钮\n"
 "保存当前比较"
 
-==== BASE ====
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
 msgstr "选择可执行文件"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
-==== BASE ====
 msgid "_Select"
 msgstr "选择(_S)"
 
@@ -859,8 +855,6 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
-==== BASE ====
-==== BASE ====
 
 #: src/font-manager/FontList.vala:261
 #: src/font-manager/web/google/FontList.vala:364
@@ -1952,17 +1946,13 @@ msgstr "服务器错误"
 msgid "Adlam"
 msgstr ""
 
-==== BASE ====
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr "需要有效的互联网连接才能访问 Google 字体目录"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:35
-==== BASE ====
 msgid "Chinese (Hong Kong)"
 msgstr "中文（香港）"
 
@@ -2028,314 +2018,214 @@ msgstr "希腊"
 msgid "Greek Extended"
 msgstr "希腊（扩展）"
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:46
 msgid "Japanese"
 msgstr "日语"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:49
 msgid "Korean"
 msgstr "韩语"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin"
 msgstr "拉丁"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:51
 msgid "Latin Extended"
 msgstr "拉丁（扩展）"
-==== BASE ====
 
-==== BASE ====
 #. TRANSLATORS : The replacement character here refers to a language name
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
 msgstr "没有可用的%s示例"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr "请创建问题以请求更新可用示例。"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
 msgstr "更新字体家族"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Font"
 msgstr "更新字体"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Family"
 msgstr "删除字体家族"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Font"
 msgstr "删除字体"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Family"
 msgstr "下载字体家族"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Font"
 msgstr "下载字体"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/PreviewPane.vala:313
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i 个可用语言样本"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
 msgstr "特细(ExtraLight)"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Weight.vala:75
 msgid "SemiBold"
 msgstr "半粗(SemiBold)"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Weight.vala:79
 msgid "ExtraBold"
 msgstr "特粗(ExtraBold)"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
 msgstr "黑"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
 msgstr "安装前预览字体文件。"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:25
 msgid "To preview a font simply drag it onto this area."
 msgstr "要预览字体，只需将其拖动到此区域。"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
 msgstr "未选择文件"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:123
 msgid "Or unsupported filetype."
 msgstr "或不支持该文件类型。"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "新版本已安装"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
 msgstr "已安装"
-==== BASE ====
 
-==== BASE ====
 #: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "安装字体"
-==== BASE ====
 
-==== BASE ====
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
 msgstr "复制"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
 msgstr "列表视图"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
 msgstr "网格视图"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
 msgstr "输入预览文本…"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
 msgstr "上一页"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
 msgstr "下一页"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
 msgid "Collection Name"
 msgstr "集锦名称"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
 msgstr "重命名(_R)"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
 msgstr "添加选中的字体进行比较"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
 msgstr "删除比较组中选中的字体"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
 msgstr "固定比较"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
 msgid "Select background color"
 msgstr "选择背景颜色"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-compare-view.ui:157
 #: src/font-manager/ui/font-manager-compare-view.ui:161
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
 msgid "Select text color"
 msgstr "选择文本颜色"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
 msgstr "丢弃"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
 msgstr "任何更改要想生效，都可能需要重启运行中的应用程序。"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
 msgstr "保存"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
 msgstr "回退"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
 msgid "Search Orthographies…"
 msgstr "搜索拼写体系…"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
 msgstr "全部不选"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
 msgstr "最小覆盖"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "清除所选过滤器"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
 msgid "Created : "
 msgstr "创建: "
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
 msgstr "保存当前比较"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
 msgid "Remove selected comparison"
 msgstr "删除所选比较"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
 msgid "Restore selected comparison"
 msgstr "还原所选比较"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
-==== BASE ====
 msgid "General"
 msgstr "常规(_G)"
 
