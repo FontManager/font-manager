@@ -1,5 +1,5 @@
 
-# Font Manager <img src="help/C/media/com.github.FontManager.FontManager.svg" align="right">
+# Font Manager <img src="help/C/media/com.github.FontManager.FontManager-48.png" align="right">
 Un manager de fonturi simplu pentru Mediile Desktop GTK.
 
 ![Main Window](https://raw.githubusercontent.com/FontManager/font-manager/master/help/C/media/main-window.png)

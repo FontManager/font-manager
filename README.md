@@ -1,7 +1,7 @@
 |[English](README.md)|[Română](README.ro.md)|
 |--------------------|----------------------|
 
-# Font Manager <img src="help/C/media/com.github.FontManager.FontManager.svg" align="right">
+# Font Manager <img src="help/C/media/com.github.FontManager.FontManager-48.png" align="right">
 
 A simple font management application for GTK Desktop Environments
 
