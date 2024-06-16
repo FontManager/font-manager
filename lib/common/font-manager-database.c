@@ -355,7 +355,7 @@ font_manager_database_initialize (FontManagerDatabase *self,
     bool db_exists = font_manager_exists(self->file);
     int CURRENT_VERSION = FONT_MANAGER_CURRENT_DATABASE_VERSION;
 
-    if (font_manager_database_get_version(self, NULL) == CURRENT_VERSION) {
+    if (db_exists && font_manager_database_get_version(self, NULL) == CURRENT_VERSION) {
         g_debug("Database version is current, skipping initialization");
         font_manager_database_close(self, error);
         return;

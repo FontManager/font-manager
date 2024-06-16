@@ -220,6 +220,7 @@ namespace FontManager {
         public Gtk.MenuButton main_menu { get; protected set; }
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
+        public Gtk.Label title_label { get; protected set; }
         public Gtk.Button back_button { get; protected set; }
         public GLib.Settings? settings { get; protected set; default = null; }
 
@@ -249,6 +250,11 @@ namespace FontManager {
 
         public HeaderBarWidgets (GLib.Settings? settings) {
             Object(settings: settings);
+            title_label = new Gtk.Label(DISPLAY_NAME) {
+                ellipsize = Pango.EllipsizeMode.NONE,
+                single_line_mode = true
+            };
+            title_label.add_css_class("title");
             main_menu = new Gtk.MenuButton() { opacity = 0.9 };
             var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic");
             var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);

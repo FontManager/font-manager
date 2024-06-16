@@ -161,6 +161,7 @@ namespace FontManager {
             header.pack_start(header_widgets.main_menu);
             header.pack_start(header_widgets.revealer);
             header.pack_end(header_widgets.app_menu);
+            header.set_title_widget(header_widgets.title_label);
             set_titlebar(header);
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
@@ -262,7 +263,10 @@ namespace FontManager {
             var installer = new Library.Installer();
             installer.process(selections, (object, task) => {
                 header_widgets.installing_files = false;
-                get_default_application().reload();
+                Timeout.add_seconds(3, () => {
+                    get_default_application().reload();
+                    return GLib.Source.REMOVE;
+                });
             });
             return;
         }

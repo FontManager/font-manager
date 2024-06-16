@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-06-11 22:58-0400\n"
+"POT-Creation-Date: 2024-06-15 21:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,7 +191,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/font-manager-character-map.page:24
 msgctxt "_"
-msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+msgid "external ref='media/character-map.png' md5='f5c11ea1511808e98e4ae1ae9ad8340e'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -245,7 +245,7 @@ msgstr ""
 #: ../help/C/font-manager-substitutions.page:37
 #: ../help/C/font-manager-substitutions.page:51
 msgctxt "_"
-msgid "external ref='media/list-add-symbolic.svg' md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+msgid "external ref='media/list-add-symbolic.svg' md5='cdb139c1ad5f1e6b4564cd1496251338'"
 msgstr ""
 
 #. (itstool) path: item/p
@@ -287,7 +287,7 @@ msgstr ""
 #: ../help/C/font-manager-font-sources.page:84
 #: ../help/C/font-manager-substitutions.page:99
 msgctxt "_"
-msgid "external ref='media/list-remove-symbolic.svg' md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+msgid "external ref='media/list-remove-symbolic.svg' md5='962f7ae06837373bfad4e143cbf89a15'"
 msgstr ""
 
 #. (itstool) path: item/p
@@ -540,18 +540,17 @@ msgstr ""
 #: ../help/C/font-manager-font-sources.page:98
 #: ../help/C/font-manager-substitutions.page:25
 #: ../help/C/font-manager-substitutions.page:82
-#: ../help/C/font-manager-substitutions.page:120
 msgctxt "_"
-msgid "external ref='media/preferences-system-symbolic.svg' md5='63ed081f78639fc6ec234a9351cf52e6'"
+msgid "external ref='media/open-menu.svg' md5='53c42fca9e64a93b4c572d5ba805fd4d'"
 msgstr ""
 
 #. (itstool) path: item/p
 #: ../help/C/font-manager-font-sources.page:30
 #: ../help/C/font-manager-font-sources.page:62
+#: ../help/C/font-manager-font-sources.page:94
 #: ../help/C/font-manager-substitutions.page:21
 #: ../help/C/font-manager-substitutions.page:78
-#: ../help/C/font-manager-substitutions.page:116
-msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
+msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/open-menu.svg\"/> </gui> at the top of the window and selecting Preferences from the menu."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -589,11 +588,6 @@ msgstr ""
 #. (itstool) path: item/title
 #: ../help/C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
-
-#. (itstool) path: item/p
-#: ../help/C/font-manager-font-sources.page:94
-msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -703,7 +697,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/font-manager-introduction.page:57
 msgctxt "_"
-msgid "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+msgid "external ref='media/main-window.png' md5='0947d29731b952e41fe720ab4fab7bb3'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -748,7 +742,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/font-manager-license.page:23
 msgctxt "_"
-msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgid "external ref='media/license.png' md5='5c7a8640b105ef8f0862fe9310a9402d'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -788,7 +782,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/font-manager-metadata.page:23
 msgctxt "_"
-msgid "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+msgid "external ref='media/metadata.png' md5='062f728a7d69be29ddfa02f4eb3afe28'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -828,7 +822,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/font-manager-orthographies.page:29
 msgctxt "_"
-msgid "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+msgid "external ref='media/orthographies.png' md5='ba678b7230c85fb943b91db0a971cbf9'"
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -854,7 +848,6 @@ msgstr ""
 #. (itstool) path: item/p
 #: ../help/C/font-manager-substitutions.page:31
 #: ../help/C/font-manager-substitutions.page:88
-#: ../help/C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
 msgstr ""
 
@@ -904,23 +897,13 @@ msgstr ""
 msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> in the substitutions pane."
 msgstr ""
 
-#. (itstool) path: item/title
-#: ../help/C/font-manager-substitutions.page:113
-msgid "To remove all substitutes:"
-msgstr ""
-
-#. (itstool) path: item/p
-#: ../help/C/font-manager-substitutions.page:129
-msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
-msgstr ""
-
 #. (itstool) path: note/p
-#: ../help/C/font-manager-substitutions.page:142
+#: ../help/C/font-manager-substitutions.page:115
 msgid "Fonts matching the target family are edited to prepend the list of preferred families before the matching family, append the acceptable families after the matching family and append the default families to the end of the family list."
 msgstr ""
 
 #. (itstool) path: note/p
-#: ../help/C/font-manager-substitutions.page:148
+#: ../help/C/font-manager-substitutions.page:121
 msgid "While changes are applied immediately open applications may need to be restarted."
 msgstr ""
 
@@ -956,7 +939,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/index.page:8
 msgctxt "_"
-msgid "external ref='media/preferences-desktop-font-16.png' md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+msgid "external ref='media/com.github.FontManager.FontManager-48.png' md5='9aae4e17bb334c3572c2ff3981d0c407'"
 msgstr ""
 
 #. (itstool) path: info/title
@@ -998,12 +981,12 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: ../help/C/index.page:30
 msgctxt "_"
-msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
+msgid "external ref='media/com.github.FontManager.FontManager-64.png' md5='6c87b4f87f89a112474814611a30f2a9'"
 msgstr ""
 
 #. (itstool) path: page/title
 #: ../help/C/index.page:29
-msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
+msgid "<media type=\"image\" mime=\"image/png\" src=\"media/com.github.FontManager.FontManager-64.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
 
 #. (itstool) path: section/title

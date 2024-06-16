@@ -133,6 +133,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %posttrans
 /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+/usr/bin/gtk4-update-icon-cache -q -t -f %{_datadir}/icons/hicolor &> /dev/null || :
+/usr/bin/update-desktop-database -q %{_datadir}/applications &> /dev/null || :
 
 %files
 %{_bindir}/%{name}

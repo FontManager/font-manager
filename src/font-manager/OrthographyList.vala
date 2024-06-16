@@ -131,6 +131,7 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Revealer clear_revealer;
 
         PlaceHolder place_holder;
+        int selected_index = int.MAX;
 
         public OrthographyList () {
             notify["model"].connect(() => {
@@ -157,8 +158,16 @@ namespace FontManager {
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
             clear_revealer.set_reveal_child(row != null);
             selected_orthography = null;
-            if (row != null)
-                selected_orthography = (Orthography) model.get_item(row.get_index());
+            if (row != null) {
+                int index = row.get_index();
+                if (index == selected_index) {
+                    selected_index = int.MAX;
+                    Idle.add(() => { list.unselect_all(); return GLib.Source.REMOVE; });
+                } else {
+                    selected_index = index;
+                    selected_orthography = (Orthography) model.get_item(selected_index);
+                }
+            }
             orthography_selected(selected_orthography);
             return;
         }
@@ -250,5 +259,6 @@ namespace FontManager {
     }
 
 }
+
 
 

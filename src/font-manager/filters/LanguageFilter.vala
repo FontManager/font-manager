@@ -33,15 +33,23 @@ namespace FontManager {
 
         public double coverage { get; set; default = 90; }
         public StringSet selections { get; set; default = new StringSet(); }
-        public LanguageFilterSettings settings { get; private set; default = new LanguageFilterSettings(); }
+
+        public LanguageFilterSettings settings {
+            get {
+                if (filter_settings != null)
+                    return filter_settings;
+                filter_settings = new LanguageFilterSettings();
+                BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+                bind_property("coverage", settings, "coverage", flags);
+                bind_property("selections", settings, "selections", flags);
+                filter_settings.update();
+                filter_settings.changed.connect(on_change);
+                return filter_settings;
+            }
+        }
 
         GLib.Settings? gsettings = null;
-
-        // public override int size {
-        //     get {
-        //         return ((int) selections.size);
-        //     }
-        // }
+        LanguageFilterSettings? filter_settings = null;
 
         public LanguageFilter () {
             base(_("Supported Orthographies"),
@@ -49,15 +57,10 @@ namespace FontManager {
                  "preferences-desktop-locale-symbolic",
                  SELECT_ON_LANGUAGE,
                  CategoryIndex.LANGUAGE);
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            bind_property("coverage", settings, "coverage", flags);
-            bind_property("selections", settings, "selections", flags);
             // XXX : Here for testing purposes? or for good?
             gsettings = get_gsettings(BUS_ID);
             restore_state(gsettings);
-            settings.update();
             selections.changed.connect(on_change);
-            settings.changed.connect(on_change);
         }
 
         void on_change () {

@@ -222,7 +222,6 @@ namespace FontManager {
                                       FileCopyFlags.TARGET_DEFAULT_PERMS;
                 try {
                     FileInfo fileinfo;
-                    StringSet? filelist = null;
                     var enumerator = target_directory.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
                     string root = target_directory.get_path();
                     while ((fileinfo = enumerator.next_file()) != null) {
@@ -235,8 +234,10 @@ namespace FontManager {
                                 File config_dir = File.new_for_path(get_user_fontconfig_directory());
                                 copy_directory(config_files, config_dir, flags);
                             } else if (name == "fonts") {
-                                filelist = new StringSet();
-                                filelist.add(Path.build_filename(root, name));
+                                string font_dir = get_user_font_directory();
+                                File user_font_dir = File.new_for_path(font_dir);
+                                File backup = File.new_for_path(Path.build_filename(root, name));
+                                copy_directory(backup, user_font_dir, flags);
                             }
                         } else if (source_type == GLib.FileType.REGULAR) {
                             string [] config_files = { "Collections.json", "Comparisons.json", "Sources.xml", "Actions.json" };
@@ -248,14 +249,10 @@ namespace FontManager {
                             }
                         }
                     }
-                    if (filelist != null) {
-                        get_default_application().main_window.install_selections(filelist);
-                    } else {
-                        Timeout.add_seconds(4, () => {
-                            get_default_application().reload();
-                            return GLib.Source.REMOVE;
-                        });
-                    }
+                    Timeout.add_seconds(4, () => {
+                        get_default_application().reload();
+                        return GLib.Source.REMOVE;
+                    });
                 } catch (Error e) {
                     critical(e.message);
                 }

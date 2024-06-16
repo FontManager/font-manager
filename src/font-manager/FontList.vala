@@ -286,6 +286,7 @@ namespace FontManager {
             search_entry = controls.search;
             search_entry.set_key_capture_widget(this);
             controls.expander_activated.connect(on_expander_activated);
+            ((Gtk.ListView) list).activate.connect(on_activate);
         }
 
         public void focus_search_entry () {

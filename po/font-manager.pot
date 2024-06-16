@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.9.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-11 22:58-0400\n"
+"POT-Creation-Date: 2024-06-15 21:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
 msgid "Font Manager project"
 msgstr ""
 
@@ -62,7 +63,7 @@ msgstr ""
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr ""
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:9
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
@@ -71,11 +72,11 @@ msgstr ""
 msgid "Font Viewer"
 msgstr ""
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:11
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:13
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
@@ -89,7 +90,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:473
+#: src/font-manager/FontList.vala:480
 msgid "Install"
 msgstr ""
 
@@ -109,7 +110,7 @@ msgstr ""
 msgid "Font Properties"
 msgstr ""
 
-#: lib/common/font-manager-database.c:554 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
 msgid "Updating Database…"
 msgstr ""
 
@@ -777,56 +778,56 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:274
+#: src/font-manager/Controls.vala:280
 msgid "Add Fonts"
 msgstr ""
 
-#: src/font-manager/Controls.vala:275
+#: src/font-manager/Controls.vala:281
 msgid "Remove Fonts"
 msgstr ""
 
-#: src/font-manager/Controls.vala:288
+#: src/font-manager/Controls.vala:294
 msgid "Back"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:50 src/font-manager/Dialogs.vala:61
+#: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
 msgid "_Select"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:51
+#: src/font-manager/Dialogs.vala:49
 msgid "Select Executable"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:62
+#: src/font-manager/Dialogs.vala:60
 msgid "Select a Directory"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:77
+#: src/font-manager/Dialogs.vala:75
 msgid "Select Files to Install"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:86
+#: src/font-manager/Dialogs.vala:84
 msgid "Select Source Directories"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:120
+#: src/font-manager/Dialogs.vala:118
 msgid "Font Configuration"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:121
+#: src/font-manager/Dialogs.vala:119
 msgid "Font Collections"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:122
-#: src/font-manager/preferences/UserSources.vala:141
+#: src/font-manager/Dialogs.vala:120
+#: src/font-manager/preferences/UserSources.vala:152
 msgid "Font Sources"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:123
+#: src/font-manager/Dialogs.vala:121
 msgid "Installed Fonts"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:124
+#: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr ""
 
@@ -867,44 +868,44 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/font-manager/FontList.vala:261
-#: src/font-manager/web/google/FontList.vala:359
+#: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr ""
 
 #: src/font-manager/FontList.vala:261
-#: src/font-manager/web/google/FontList.vala:359
+#: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
 msgid "Expand all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:474
+#: src/font-manager/FontList.vala:481
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:475
+#: src/font-manager/FontList.vala:482
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/FontList.vala:476
+#: src/font-manager/FontList.vala:483
 msgid "Enable selected items"
 msgstr ""
 
-#: src/font-manager/FontList.vala:477
+#: src/font-manager/FontList.vala:484
 msgid "Disable selected items"
 msgstr ""
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:530 src/font-manager/FontList.vala:539
+#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/font-manager/FontList.vala:557
+#: src/font-manager/FontList.vala:578
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr ""
@@ -1521,22 +1522,22 @@ msgstr ""
 msgid "Coverage"
 msgstr ""
 
-#: src/font-manager/OrthographyList.vala:142
-#: src/font-manager/filters/LanguageFilter.vala:47
+#: src/font-manager/OrthographyList.vala:143
+#: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
 msgstr ""
 
-#: src/font-manager/OrthographyList.vala:197
+#: src/font-manager/OrthographyList.vala:206
 msgid "No items selected"
 msgstr ""
 
-#: src/font-manager/OrthographyList.vala:202
+#: src/font-manager/OrthographyList.vala:211
 msgid "Update in progress"
 msgstr ""
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:228
+#: src/font-manager/OrthographyList.vala:237
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1862,7 +1863,7 @@ msgstr ""
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
-#: src/font-manager/preferences/UserSources.vala:130
+#: src/font-manager/preferences/UserSources.vala:141
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -1870,44 +1871,44 @@ msgid ""
 "enabled."
 msgstr ""
 
-#: src/font-manager/preferences/UserSources.vala:142
+#: src/font-manager/preferences/UserSources.vala:153
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 
-#: src/font-manager/preferences/UserSources.vala:143
+#: src/font-manager/preferences/UserSources.vala:154
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:138
+#: src/font-manager/web/google/GoogleFonts.vala:155
 msgid "Network Access Disabled"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:139
+#: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Contact your system administrator to request access."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:142
+#: src/font-manager/web/google/GoogleFonts.vala:159
 msgid "Network Offline"
 msgstr ""
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:144
+#: src/font-manager/web/google/GoogleFonts.vala:161
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:154
+#: src/font-manager/web/google/GoogleFonts.vala:171
 msgid "Client Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:155
+#: src/font-manager/web/google/GoogleFonts.vala:172
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:158
+#: src/font-manager/web/google/GoogleFonts.vala:175
 msgid "Server Error"
 msgstr ""
 
@@ -2339,42 +2340,51 @@ msgid "Reset preview size"
 msgstr ""
 
 #: src/font-manager/gtk/help-overlay.ui:44
-msgid "Reload"
+msgid "Focus search entry"
 msgstr ""
 
 #: src/font-manager/gtk/help-overlay.ui:51
+msgid "Reload"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:58
+#: src/font-manager/gtk/help-overlay.ui:65
 msgid "Quit the application"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:59
+#: src/font-manager/gtk/help-overlay.ui:73
 msgid "Mode"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:64
+#: src/font-manager/gtk/help-overlay.ui:78
 msgid "Switch to Manage mode"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:71
+#: src/font-manager/gtk/help-overlay.ui:85
 msgid "Switch to Browse mode"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:78
+#: src/font-manager/gtk/help-overlay.ui:92
 msgid "Switch to Compare mode"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:86
+#: src/font-manager/gtk/help-overlay.ui:99
+msgid "Switch to Google Fonts mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:91
+#: src/font-manager/gtk/help-overlay.ui:112
 msgid "Switch to Standard preview"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:98
+#: src/font-manager/gtk/help-overlay.ui:119
 msgid "Switch to Waterfall preview"
 msgstr ""
 
-#: src/font-manager/gtk/help-overlay.ui:105
+#: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr ""
 
