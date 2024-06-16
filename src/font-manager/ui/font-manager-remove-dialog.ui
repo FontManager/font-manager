@@ -17,20 +17,27 @@
         <child type="start">
           <object class="GtkButton" id="cancel_button">
             <property name="label" translatable="yes">Cancel</property>
-            <signal name="clicked" handler="on_cancel_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_cancel_clicked"/>
           </object>
         </child>
         <child type="end">
           <object class="GtkButton" id="delete_button">
             <property name="label" translatable="yes">Delete</property>
-            <signal name="clicked" handler="on_delete_clicked" swapped="no"/>
+            <signal name="clicked" handler="on_delete_clicked"/>
           </object>
         </child>
       </object>
     </property>
     <child>
-      <object class="FontManagerRemoveListView" id="remove_list"/>
+      <object class="GtkStack" id="stack">
+        <child>
+          <object class="GtkStackPage" id="remove">
+            <property name="child">
+              <object class="FontManagerRemoveListView" id="remove_list"/>
+            </property>
+          </object>
+        </child>
+      </object>
     </child>
   </template>
 </interface>
-

@@ -341,6 +341,8 @@ namespace FontManager {
         [GtkChild] public unowned Gtk.Button delete_button { get; }
         [GtkChild] public unowned RemoveListView remove_list { get; }
 
+        [GtkChild] unowned Gtk.Stack stack;
+
         public RemoveDialog (Gtk.Window? parent) {
             set_transient_for(parent);
             set_default_dialog_size(parent, this, 70, 70);
@@ -368,6 +370,12 @@ namespace FontManager {
                     delete_button.remove_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
                 }
             });
+            if (remove_list.model.n_items < 1) {
+                var msg = _("Fonts installed in your home directory will appear here.");
+                var empty = new PlaceHolder(null, null, msg, "go-home-symbolic");
+                stack.add_named(empty, "empty");
+                stack.set_visible_child_name("empty");
+            }
         }
 
         [GtkCallback]
