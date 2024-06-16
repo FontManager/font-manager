@@ -377,7 +377,9 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
         return G_SOURCE_REMOVE;
     gint index = 0;
     GError *error = NULL;
-    g_autofree gchar *filepath = NULL;
+    // XXX: ???
+    // g_autofree gchar *filepath = NULL;
+    gchar *filepath = NULL;
     g_autoptr(JsonObject) res = NULL;
     if (!self->db)
         self->db = font_manager_database_new();
@@ -399,6 +401,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
             g_clear_error(&error);
         }
     }
+    g_free(filepath);
     if (res) {
         for (gint i = 0; i < NUM_STYLE_DETAILS; i++) {
             gint value;
