@@ -79,6 +79,7 @@ namespace FontManager {
             sidebar.bind_property("filter", fontlist, "filter", flags);
             fontlist.bind_property("selected-item", sidebar, "selected-item", flags);
             fontlist.bind_property("selected-items", compare, "selected-items", flags);
+            fontlist.bind_property("selected-children", compare, "selected-children", flags);
             preview.bind_property("page", sidebar, "mode", flags);
             sidebar.bind_property("selected-orthography", preview, "orthography", flags);
             notify["mode"].connect(on_mode_changed);

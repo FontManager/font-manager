@@ -155,6 +155,7 @@ namespace FontManager {
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public GenericArray <Object>? selected_items { get; set; default = null; }
+        public GenericArray <Object>? selected_children { get; set; default = null; }
         public GLib.Settings? settings { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
         public CompareModel model { get; set; }
@@ -311,6 +312,7 @@ namespace FontManager {
         [GtkCallback]
         void on_add_button_clicked () {
             add_items(selected_items);
+            add_items(selected_children);
             return;
         }
 

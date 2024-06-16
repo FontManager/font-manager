@@ -211,21 +211,17 @@ namespace FontManager {
         // range appears to be affected by a variety of factors i.e.
         // previous selection, multiple selections, directional changes, etc.
         protected virtual void on_selection_changed (uint position, uint n_items) {
-            current_selection = 0;
+            current_selection = Gtk.INVALID_LIST_POSITION;
             current_selections = new GenericArray <uint> ();
             // The minimum value present in this bitset accurately points
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
-            uint i = selections.get_minimum();
-            return_if_fail(i != uint.MAX && selection.is_selected(i));
-            current_selection = i;
-            uint n = selections.get_maximum();
-            if (n >= i) {
-                while (i <= n) {
-                    if (selection.is_selected(i))
-                        current_selections.add(i);
-                    i++;
-                }
+            current_selection = selections.get_minimum();
+            uint i = 0;
+            uint64 n = selections.get_size();
+            while (i < n) {
+                current_selections.add(selections.get_nth(i));
+                i++;
             }
             return;
         }
@@ -333,7 +329,7 @@ namespace FontManager {
             selected_item = item;
             selection_changed(item);
             for (uint i = 0; i < current_selections.length; i++) {
-                Gtk.TreeListRow row = (Gtk.TreeListRow) treemodel.get_item(i);
+                var row = (Gtk.TreeListRow) treemodel.get_item(current_selections[i]);
                 item = row.get_item();
                 if (item != null && item is Family)
                     selected_items.add(item);
