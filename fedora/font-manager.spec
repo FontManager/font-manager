@@ -156,7 +156,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/gnome-shell/search-providers/%{DBusName}.SearchProvider.ini
 %{_datadir}/icons/hicolor/scalable/apps/%{DBusName}.svg
-%{_datadir}/icons/hicolor/symbolic/apps/%{DBusName}.svg
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
@@ -172,7 +171,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
 %{_datadir}/icons/hicolor/scalable/apps/%{DBusName2}.svg
-%{_datadir}/icons/hicolor/symbolic/apps/%{DBusName2}.svg
 
 %if %{with nautilus}
 %files -n nautilus-%{name}
