@@ -312,7 +312,12 @@ namespace FontManager {
         [GtkCallback]
         void on_add_button_clicked () {
             add_items(selected_items);
-            add_items(selected_children);
+            var selected_families = new StringSet();
+            foreach (var item in selected_items)
+                selected_families.add(((Family) item).family);
+            foreach (var item in selected_children)
+                if (!(((Font) item).family in selected_families))
+                    add_entry(item);
             return;
         }
 
