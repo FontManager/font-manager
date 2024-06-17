@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2022-02-11 07:00+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
@@ -384,30 +384,30 @@ msgid "Waterfall"
 msgstr "Kaskad"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
 msgstr "Tecken"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
 msgstr "Egenskaper"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licens"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr "Sök tillgängliga tecken"
 
@@ -897,6 +897,10 @@ msgstr "Installerade teckensnitt"
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr "Anpassade åtgärder"
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
+msgstr "Teckensnitt installerade i din hemkatalog visas här."
 
 #. FontList.vala
 #. *
@@ -2746,9 +2750,6 @@ msgstr "Dra ett teckensnitt till det här området, för att förhandsgranska."
 
 #~ msgid "_Open"
 #~ msgstr "_Öppna"
-
-#~ msgid "Fonts installed in your home directory will appear here."
-#~ msgstr "Teckensnitt installerade i din hemkatalog visas här."
 
 #~ msgid "Remove selected font from collection"
 #~ msgstr "Ta bort markerat teckensnitt från kollektionen"

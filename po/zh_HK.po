@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2019-10-03 02:39-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -393,32 +393,32 @@ msgid "Waterfall"
 msgstr "瀑布"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 #, fuzzy
 msgid "Properties"
 msgstr "比例(Proportional)"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "许可证"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "常规(Regular)"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "正常(Normal)"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr ""
 
@@ -869,6 +869,10 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
 #. FontList.vala

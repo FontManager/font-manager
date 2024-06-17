@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2024-03-14 02:22+0000\n"
 "Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/font-"
@@ -391,30 +391,30 @@ msgid "Waterfall"
 msgstr "Cascata"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
 msgstr "Caracteres"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
 msgstr "Propriedades"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licença"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "Regular"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr "Pesquisar caracteres disponíveis"
 
@@ -902,6 +902,10 @@ msgstr "Fontes instaladas"
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr "Ações personalizadas"
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
+msgstr "As fontes instaladas em seu diretório Home aparecerão aqui."
 
 #. FontList.vala
 #. *
@@ -2751,9 +2755,6 @@ msgstr "Para visualizar uma fonte, simplesmente arraste-a para esta área."
 
 #~ msgid "_Open"
 #~ msgstr "_Abrir"
-
-#~ msgid "Fonts installed in your home directory will appear here."
-#~ msgstr "As fontes instaladas em seu diretório Home aparecerão aqui."
 
 #~ msgid "Remove selected font from collection"
 #~ msgstr "Remover fonte selecionada da coleção"
