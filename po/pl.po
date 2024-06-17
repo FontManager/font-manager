@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2023-04-17 21:50+0000\n"
 "Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
@@ -384,30 +384,30 @@ msgid "Waterfall"
 msgstr "Wodospad"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
 msgstr "Znaki"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
 msgstr "Właściwości"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licencja"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "Zwykły"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normalne"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr "Przeszukuj dostępne znaki"
 
@@ -896,6 +896,10 @@ msgstr "Zainstalowane czcionki"
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr "Niestandardowe akcje"
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
+msgstr "Czcionki zapisane w twoim folderze domowym pojawią się tutaj."
 
 #. FontList.vala
 #. *
@@ -2745,9 +2749,6 @@ msgstr "Aby dokonać podglądu czcionki po prostu przeciągnij ją na ten obszar
 
 #~ msgid "_Open"
 #~ msgstr "_Otwórz"
-
-#~ msgid "Fonts installed in your home directory will appear here."
-#~ msgstr "Czcionki zapisane w twoim folderze domowym pojawią się tutaj."
 
 #~ msgid "Remove selected font from collection"
 #~ msgstr "Usuń wybraną czcionkę z kolekcji"

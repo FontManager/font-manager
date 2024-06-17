@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2024-04-22 17:07+0000\n"
 "Last-Translator: Roberto Guido <bob4job@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
@@ -389,30 +389,30 @@ msgid "Waterfall"
 msgstr "A cascata"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
 msgstr "Caratteri"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
 msgstr "Proprietà"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licenza"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "Normale"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normale"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr "Cerca i caratteri disponibili"
 
@@ -868,6 +868,11 @@ msgstr "Tipi di carattere installati"
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr "Azioni personalizzate"
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+"I tipi di carattere installati nella tua home directory appariranno qui."
 
 #. FontList.vala
 #. *
@@ -2703,10 +2708,6 @@ msgstr ""
 
 #~ msgid "_Open"
 #~ msgstr "_Apri"
-
-#~ msgid "Fonts installed in your home directory will appear here."
-#~ msgstr ""
-#~ "I tipi di carattere installati nella tua home directory appariranno qui."
 
 #~ msgid "Remove selected font from collection"
 #~ msgstr "Rimuovi il tipo di carattere selezionato dalla collezione"

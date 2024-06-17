@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-15 21:58-0400\n"
+"POT-Creation-Date: 2024-06-16 12:00-0400\n"
 "PO-Revision-Date: 2023-11-06 18:33+0000\n"
 "Last-Translator: Stephan Kurz <stephan.kurz@oeaw.ac.at>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
@@ -407,30 +407,30 @@ msgid "Waterfall"
 msgstr "Wasserfall"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:552
+#: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
 msgstr "Zeichentabelle"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:553
+#: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
 msgstr "Eigenschaften"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:554 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Lizenz"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
 msgid "Regular"
 msgstr "Standard"
 
-#: lib/gtk/font-manager-preview-pane.c:422 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:476
+#: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
 msgstr "Verfügbare Schriftzeichen durchsuchen"
 
@@ -923,6 +923,11 @@ msgstr "Installierte Schriften"
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
 msgstr "Benutzerbefehle"
+
+#: src/font-manager/Dialogs.vala:374
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+"In Deinem Heim-Verzeichnis installierte Schriftarten werden hier angezeigt."
 
 #. FontList.vala
 #. *
@@ -2779,11 +2784,6 @@ msgstr "Für eine Schriften-Vorschau ziehe die Schrift auf dieses Feld."
 
 #~ msgid "_Open"
 #~ msgstr "_Öffnen"
-
-#~ msgid "Fonts installed in your home directory will appear here."
-#~ msgstr ""
-#~ "In Deinem Heim-Verzeichnis installierte Schriftarten werden hier "
-#~ "angezeigt."
 
 #~ msgid "Remove selected font from collection"
 #~ msgstr "Ausgewählte Schrift aus der Sammlung entfernen"
