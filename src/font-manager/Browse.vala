@@ -82,9 +82,13 @@ namespace FontManager {
         public Pango.AttrList? attrs { get; protected set; default = new Pango.AttrList(); }
         public Gtk.Inscription? preview { get; protected set; default = null; }
 
+        Gtk.Label item_count;
+        Gtk.Overlay overlay;
+
         public FontPreviewTile () {
             widget_set_name(this, "FontManagerFontPreviewTile");
             widget_set_margin(this, 6);
+            overlay = new Gtk.Overlay();
             preview = new Gtk.Inscription(null) {
                 halign = Gtk.Align.FILL,
                 valign = Gtk.Align.FILL,
@@ -99,7 +103,18 @@ namespace FontManager {
             Pango.FontDescription font_desc = Pango.FontDescription.from_string("Sans");
             attrs.insert(new Pango.AttrFontDesc(font_desc));
             preview.set_attributes(attrs);
-            set_child(preview);
+            overlay.set_child(preview);
+            set_child(overlay);
+            item_count = new Gtk.Label(null) {
+                halign = Gtk.Align.END,
+                valign = Gtk.Align.END,
+                margin_bottom = 6,
+                margin_end = 9,
+                margin_start = 9,
+                margin_top = 6
+            };
+            item_count.add_css_class("dim-label");
+            overlay.add_overlay(item_count);
             notify["item"].connect((pspec) => { on_item_set(); });
         }
 
@@ -121,6 +136,9 @@ namespace FontManager {
             Pango.FontDescription font_desc;
             font_desc = Pango.FontDescription.from_string(f.description);
             attrs.change(new Pango.AttrFontDesc(font_desc));
+            var count = (int) f.n_variations;
+            item_count.set_label(count.to_string());
+            item_count.set_visible(count > 1);
             return;
         }
 
