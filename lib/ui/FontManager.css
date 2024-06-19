@@ -236,8 +236,7 @@ row:selected .count {
     border-radius: 0.333em;
 }
 
-.FontManagerSubstituteRow list row:hover,
-.FontManagerSubstituteRow list row list row:hover,
+.FontManagerSubstituteRow > list > row:hover,
 .FontManagerPreferenceList list row:hover,
 .FontManagerLanguageFilterSettings list row:hover,
 .FontManagerGoogleFontsOrthographies row:hover {
