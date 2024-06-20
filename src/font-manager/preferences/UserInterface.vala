@@ -207,6 +207,17 @@ namespace FontManager {
             list.set_selection_mode(Gtk.SelectionMode.NONE);
         }
 
+        void on_restart_required () {
+            var title = _("Selected setting requires restart to apply");
+            var body = _("Changes will take effect next time the application is started");
+            var notification = new GLib.Notification(title);
+            notification.set_body(body);
+            var icon = new GLib.ThemedIcon(BUS_ID);
+            notification.set_icon(icon);
+            get_default_application().send_notification ("restart-required", notification);
+            return;
+        }
+
         void generate_options_list () {
             if (initialized)
                 return;
@@ -234,6 +245,9 @@ namespace FontManager {
 
         protected override void on_map () {
             generate_options_list();
+#if HAVE_ADWAITA
+            use_adwaita_stylesheet.notify["active"].connect(() => { on_restart_required(); });
+#endif
             return;
         }
 
