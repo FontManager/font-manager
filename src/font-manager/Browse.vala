@@ -388,8 +388,10 @@ namespace FontManager {
 
         static construct {
             install_action("toggle-search", null, (Gtk.WidgetActionActivateFunc) toggle_search);
+            install_action("toggle-panel", null, (Gtk.WidgetActionActivateFunc) toggle_panel);
             Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
             add_binding_action(Gdk.Key.F, mode_mask, "toggle-search", null);
+            add_binding_action(Gdk.Key.F9, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "toggle-panel", null);
         }
 
         public BrowsePane (GLib.Settings? settings) {
@@ -449,6 +451,11 @@ namespace FontManager {
 
         public void queue_update () {
             gridview.update();
+            return;
+        }
+
+        void toggle_panel (Gtk.Widget widget, string? action, Variant? parameter) {
+            panel_toggle.set_active(!panel_toggle.active);
             return;
         }
 

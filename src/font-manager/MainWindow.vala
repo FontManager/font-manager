@@ -139,6 +139,7 @@ namespace FontManager {
                 add_binding_action(mode_accels[i], mode_mask, "mode", "s", nick);
             }
             add_binding_action(Gdk.Key.R, mode_mask, "reload", null);
+            add_binding_action(Gdk.Key.comma, mode_mask, "show-preferences", null);
         }
 
         public MainWindow (GLib.Settings? settings) {
