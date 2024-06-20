@@ -217,11 +217,12 @@ namespace FontManager {
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
             current_selection = selections.get_minimum();
-            uint i = 0;
-            uint64 n = selections.get_size();
-            while (i < n) {
-                current_selections.add(selections.get_nth(i));
-                i++;
+            uint val;
+            Gtk.BitsetIter iter = Gtk.BitsetIter();
+            if (iter.init_first(selections, out val)) {
+                current_selections.add(val);
+                while (iter.next(out val))
+                    current_selections.add(val);
             }
             return;
         }
@@ -644,8 +645,8 @@ namespace FontManager {
             if (value.holds(typeof(Gdk.FileList))) {
                 var selections = new StringSet();
                 GLib.SList <File>* filelist = value.get_boxed();
-                for (int i = 0; i < filelist->length(); i++) {
-                    File* file = filelist->nth_data(i);
+                for (GLib.SList <File>* files = filelist; files != null; files = files->next) {
+                    File* file = files->data;
                     selections.add(file->get_path());
                 }
                 if (selections.size > 0) {

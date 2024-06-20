@@ -232,8 +232,8 @@ They will not be visible to other applications until the source is actually enab
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
                 GLib.SList <File>* filelist = value.get_boxed();
-                for (int i = 0; i < filelist->length(); i++) {
-                    File* file = filelist->nth_data(i);
+                for (GLib.SList <File>* files = filelist; files != null; files = files->next) {
+                    File* file = files->data;
                     var source = new Source(file);
                     model.add_item(source);
                 }
