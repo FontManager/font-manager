@@ -241,6 +241,13 @@ update (FontManagerPropertiesPage *self)
 
     }
 
+    // Addresses issue #292
+    // Unfortunately also makes pane adjustments pointless.
+    GtkPaned *paned = (GtkPaned *) gtk_widget_get_first_child(GTK_WIDGET(self));
+    GtkRequisition *req = gtk_requisition_new();
+    gtk_widget_get_preferred_size(GTK_WIDGET(self->grid), NULL, req);
+    gtk_paned_set_position(paned, req->width);
+
     const gchar *copyright = NULL;
     const gchar *description = NULL;
     const gchar *designer = NULL;
