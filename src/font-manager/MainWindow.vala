@@ -129,6 +129,7 @@ namespace FontManager {
             install_action("import", null, (Gtk.WidgetActionActivateFunc) import);
             install_action("export", null, (Gtk.WidgetActionActivateFunc) export);
             install_action("reload", null, (Gtk.WidgetActionActivateFunc) reload);
+            install_action("focus-search", null, (Gtk.WidgetActionActivateFunc) focus_search);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
             uint [] mode_accels = { Gdk.Key.@1, Gdk.Key.@2, Gdk.Key.@3, Gdk.Key.@4 };
@@ -138,6 +139,7 @@ namespace FontManager {
                 string nick = mode_class.get_value(i).value_nick;
                 add_binding_action(mode_accels[i], mode_mask, "mode", "s", nick);
             }
+            add_binding_action(Gdk.Key.F, mode_mask, "focus-search", null);
             add_binding_action(Gdk.Key.R, mode_mask, "reload", null);
             add_binding_action(Gdk.Key.comma, mode_mask, "show-preferences", null);
         }
@@ -202,6 +204,14 @@ namespace FontManager {
                 else
                     Idle.add(() => { mode = Mode.BROWSE; return GLib.Source.REMOVE; });
             });
+        }
+
+        public void focus_search (Gtk.Widget widget, string? action, Variant? parameter) {
+            if (mode == Mode.MANAGE)
+                main_pane.focus_search_entry();
+            else if (mode == Mode.BROWSE)
+                browse_pane.toggle_search();
+            return;
         }
 
         public void search (string needle) {
@@ -326,7 +336,8 @@ namespace FontManager {
                 browse_pane.select_first_font();
 #if HAVE_WEBKIT
             else if (mode == Mode.GOOGLE_FONTS)
-                google_fonts.select_first_font();
+                // Try to avoid warnings caused by empty Google Fonts FontList
+                Idle.add(() => { google_fonts.select_first_font(); return GLib.Source.REMOVE; });
 #endif /* HAVE_WEBKIT */
             return;
         }

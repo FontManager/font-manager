@@ -139,6 +139,7 @@
                                 <property name="has-frame">False</property>
                                 <property name="icon-name">view-sort-descending-symbolic</property>
                                 <property name="opacity">0.95</property>
+                                <property name="tooltip-text" translatable="yes">Sort Order</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>

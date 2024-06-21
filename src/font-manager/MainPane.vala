@@ -48,12 +48,6 @@ namespace FontManager {
         ComparePane compare;
         PreviewPane preview;
 
-        static construct {
-            install_action("focus-search", null, (Gtk.WidgetActionActivateFunc) focus_search_entry);
-            Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
-            add_binding_action(Gdk.Key.F, mode_mask, "focus-search", null);
-        }
-
         public MainPane (GLib.Settings? settings) {
             base(settings);
             sidebar = new SidebarStack(settings);
@@ -108,7 +102,7 @@ namespace FontManager {
             return;
         }
 
-        void focus_search_entry (Gtk.Widget widget, string? action, Variant? parameter) {
+        public void focus_search_entry () {
             fontlist.focus_search_entry();
             return;
         }

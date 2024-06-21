@@ -387,10 +387,8 @@ namespace FontManager {
         FontGridView gridview;
 
         static construct {
-            install_action("toggle-search", null, (Gtk.WidgetActionActivateFunc) toggle_search);
             install_action("toggle-panel", null, (Gtk.WidgetActionActivateFunc) toggle_panel);
             Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
-            add_binding_action(Gdk.Key.F, mode_mask, "toggle-search", null);
             add_binding_action(Gdk.Key.F9, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "toggle-panel", null);
         }
 
@@ -459,7 +457,7 @@ namespace FontManager {
             return;
         }
 
-        void toggle_search (Gtk.Widget widget, string? action, Variant? parameter) {
+        public void toggle_search () {
             search_bar.set_search_mode(!search_bar.get_search_mode());
             return;
         }
