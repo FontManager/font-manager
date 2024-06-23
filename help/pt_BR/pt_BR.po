@@ -1,10 +1,11 @@
 # Marcos Leite <m.abner@live.co.uk>, 2024.
+# Paul Janzen <pj@paulgjanzen.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2024-03-14 02:22+0000\n"
-"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
+"PO-Revision-Date: 2024-06-23 10:09+0000\n"
+"Last-Translator: Paul Janzen <pj@paulgjanzen.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -79,6 +80,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Classificado por Tipo de Família — Requer informações Panose para estar "
+"presente em metadados de fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -166,7 +169,7 @@ msgstr "Sem classificação"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Fontes não presentes em nenhuma de suas coleções."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -176,12 +179,12 @@ msgstr "Desativada"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Famílias de fonte atualmente desabilitadas."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Ver caracteres individuais e seus detalhes"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
@@ -194,6 +197,8 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
 msgstr ""
+"No modo \"Gerenciar\" o painel de visualização contém uma aba rotulada "
+"\"Caracteres\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -201,11 +206,13 @@ msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
 msgstr ""
+"A seleção dessa guia permite visualizar todos os glifos contidos na fonte "
+"selecionada no momento."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Guia Mapa de Caracteres</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -221,7 +228,7 @@ msgstr ""
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Arraste caracteres em outras aplicações para usá-los."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7

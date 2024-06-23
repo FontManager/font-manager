@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-06-16 12:00-0400\n"
-"PO-Revision-Date: 2024-06-20 22:03+0000\n"
+"PO-Revision-Date: 2024-06-21 14:34+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -39,10 +39,8 @@ msgstr ""
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
 msgid "Font Manager project"
-msgstr "Font Manager"
+msgstr "Projekt „Font Manager”"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:10
@@ -118,7 +116,7 @@ msgstr "Program za pregled fontova s raznim funkcijama"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:480 src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "Instaliraj"
 
@@ -245,7 +243,7 @@ msgstr "Proporcijalni"
 
 #: lib/fontconfig/font-manager-fontconfig.c:756
 msgid "Dual Width"
-msgstr "Dvostruke širine"
+msgstr "Jednometrični s dvije širine"
 
 #: lib/fontconfig/font-manager-fontconfig.c:758
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
@@ -760,12 +758,12 @@ msgstr "Komprimiraj …"
 msgid "Rename…"
 msgstr "Preimenuj …"
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:375 src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr "Spremljena usporedba"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:411 src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -792,10 +790,8 @@ msgid "Help"
 msgstr "Pomoć"
 
 #: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Font Manager"
+msgstr "O Font Manageru"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
@@ -842,26 +838,18 @@ msgid "_Select"
 msgstr "Oda_beri"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "Odaberi izvršnu datoteku"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "Odaberi boju teksta"
+msgstr "Odaberi mapu"
 
 #: src/font-manager/Dialogs.vala:75
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
 msgstr "Odaberi datoteke koje želiš instalirati"
 
 #: src/font-manager/Dialogs.vala:84
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
 msgstr "Odaberi izvorne mape"
 
@@ -934,6 +922,7 @@ msgstr[2] "%i varijanta "
 
 #: src/font-manager/FontList.vala:261
 #: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/FontList.vala:258
 msgid "Collapse all"
 msgstr "Sklopi sve"
 
@@ -942,28 +931,30 @@ msgstr "Sklopi sve"
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
+#: src/font-manager/FontList.vala:258
 msgid "Expand all"
 msgstr "Rasklopi sve"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:481 src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr "Mjesto kopije"
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:482 src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr "Prikaži u mapi"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:483 src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr "Aktiviraj odabrane elemente"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:484 src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr "Deaktiviraj odabrane elemente"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
@@ -973,6 +964,7 @@ msgstr[2] "%i odabranih elemenata"
 
 #: src/font-manager/FontList.vala:578
 #: src/font-manager/preferences/Preferences.vala:46
+#: src/font-manager/FontList.vala:575
 msgid "Actions"
 msgstr "Radnje"
 
@@ -1592,13 +1584,11 @@ msgstr "Pokrivenost"
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
-msgstr "Podržani sustavi znakova"
+msgstr "Podržane ortografije"
 
 #: src/font-manager/OrthographyList.vala:206
-#, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
-msgstr "Nijedna datoteka nije odabrana"
+msgstr "Nijedan element nije odabran"
 
 #: src/font-manager/OrthographyList.vala:211
 msgid "Update in progress"
@@ -1607,7 +1597,7 @@ msgstr "Aktualiziranje u tijeku"
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:237
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "Nema valjanih ortografija za odabir"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
@@ -1616,10 +1606,8 @@ msgstr "Dodaj novu zbirku"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:30
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
-msgstr "Ukloni odabrani alias"
+msgstr "Ukloni odabrani element"
 
 #: src/font-manager/Sidebar.vala:67
 msgid "Edit selected item"
@@ -1791,15 +1779,6 @@ msgid "Rendering"
 msgstr "Iscrtavanje"
 
 #: src/font-manager/preferences/Preferences.vala:130
-#, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1807,11 +1786,10 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Odaberi „Spremi” za generiranje konfiguracijske datoteke iz gornjih "
-"postavki.\n"
+"Fontconfig konfiguracijska datoteka će se generirati iz ovih postavki.\n"
 "\n"
-"Odaberi „Odbaci” za uklanjanje konfiguracijske datoteke i vraćanje na "
-"standardne postavke.\n"
+"Pokrenute aplikacije se možda moraju ponovo pokrenuti kako bi promjene "
+"stupile na snagu.\n"
 "\n"
 "Napomena: Neka okruženja i programi ne poštuju ove postavke."
 
@@ -1926,38 +1904,47 @@ msgid "Maximum Waterfall Preview Point Size"
 msgstr "Najveća veličina fonta u kaskadnom prikazu"
 
 #: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr "Široki format"
 
 #: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr "Samo kad je prozor maksimalno rastvoren"
 
 #: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr "Aktiviraj animacije"
 
 #: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr "Preferiraj tamnu temu"
 
 #: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr "Koristi Adwaita stilove"
 
 #: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr "Nadignuto"
 
 #: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr "Plošno"
 
 #: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr "Stil gumbova u naslovnoj traci"
 
 #: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr "Prikaži veličine fonta u kaskadnom prikazu"
 
@@ -1986,7 +1973,7 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:155
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Pristup mreži je deaktiviran"
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Contact your system administrator to request access."
@@ -2085,7 +2072,7 @@ msgstr "Ciparski"
 
 #: src/font-manager/web/google/LanguageData.vala:61
 msgid "Cypro Minoan"
-msgstr ""
+msgstr "Ciparsko-minojsko"
 
 #: src/font-manager/web/google/LanguageData.vala:62
 msgid "Cyrillic"
@@ -2096,26 +2083,24 @@ msgid "Cyrillic Extended"
 msgstr "Ćirilica, prošireno"
 
 #: src/font-manager/web/google/LanguageData.vala:64
-#, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
-msgstr "Odznači sve"
+msgstr "Deseret"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr ""
+msgstr "Duployé stenografija"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr ""
+msgstr "Elbasanski"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
-msgstr ""
+msgstr "Elimaidski"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
-msgstr ""
+msgstr "Grantha"
 
 #: src/font-manager/web/google/LanguageData.vala:75
 msgid "Greek"
@@ -2127,25 +2112,23 @@ msgstr "Grčki, prošireno"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
-msgstr ""
+msgstr "Gunjala Gondi"
 
 #: src/font-manager/web/google/LanguageData.vala:80
 msgid "Hanifi Rohingya"
-msgstr ""
+msgstr "Hanifi Rohingya"
 
 #: src/font-manager/web/google/LanguageData.vala:81
-#, fuzzy
-#| msgid "Hanunó'o"
 msgid "Hanunoo"
-msgstr "Hanunó'o"
+msgstr "Hanunoo"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
-msgstr ""
+msgstr "Hatran"
 
 #: src/font-manager/web/google/LanguageData.vala:84
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "Carski aramejski"
 
 #: src/font-manager/web/google/LanguageData.vala:85
 msgid "Indic Siyaq Numbers"
@@ -2153,11 +2136,11 @@ msgstr "Indijski Siyaq brojevi"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "Natpisni Pahlavi"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "Natpisni Parthian"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
@@ -2173,7 +2156,7 @@ msgstr "Khojki"
 
 #: src/font-manager/web/google/LanguageData.vala:97
 msgid "Khudawadi"
-msgstr ""
+msgstr "Khudabadi"
 
 #: src/font-manager/web/google/LanguageData.vala:98
 msgid "Korean"
@@ -2197,27 +2180,27 @@ msgstr "Linearni B"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
-msgstr ""
+msgstr "Lisu"
 
 #: src/font-manager/web/google/LanguageData.vala:107
 msgid "Lycian"
-msgstr ""
+msgstr "Lycian"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"
-msgstr ""
+msgstr "Lydian"
 
 #: src/font-manager/web/google/LanguageData.vala:109
 msgid "Mahajani"
-msgstr ""
+msgstr "Mahajani"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
-msgstr ""
+msgstr "Mandaic"
 
 #: src/font-manager/web/google/LanguageData.vala:112
 msgid "Manichaean"
-msgstr ""
+msgstr "Maniheski"
 
 #: src/font-manager/web/google/LanguageData.vala:113
 msgid "Math"
@@ -2225,11 +2208,11 @@ msgstr "Matematički"
 
 #: src/font-manager/web/google/LanguageData.vala:114
 msgid "Marchen"
-msgstr ""
+msgstr "Marchen"
 
 #: src/font-manager/web/google/LanguageData.vala:115
 msgid "Masaram Gondi"
-msgstr ""
+msgstr "Masaram Gondi"
 
 #: src/font-manager/web/google/LanguageData.vala:116
 msgid "Mayan Numerals"
@@ -2237,13 +2220,11 @@ msgstr "Mayan znamenke"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
-msgstr ""
+msgstr "Medefaidrin"
 
 #: src/font-manager/web/google/LanguageData.vala:118
-#, fuzzy
-#| msgid "Meetei Mayak"
 msgid "Meetei Mayek"
-msgstr "Meetei Mayak"
+msgstr "Meetei Mayek"
 
 #: src/font-manager/web/google/LanguageData.vala:120
 msgid "Meroitic"
@@ -2251,15 +2232,15 @@ msgstr "Meroitski"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
-msgstr ""
+msgstr "Modi"
 
 #: src/font-manager/web/google/LanguageData.vala:126
 msgid "Mro"
-msgstr ""
+msgstr "Mro"
 
 #: src/font-manager/web/google/LanguageData.vala:127
 msgid "Multani"
-msgstr ""
+msgstr "Multani"
 
 #: src/font-manager/web/google/LanguageData.vala:128
 msgid "Music"
@@ -2267,26 +2248,24 @@ msgstr "Glazba"
 
 #: src/font-manager/web/google/LanguageData.vala:130
 msgid "Nabataean"
-msgstr ""
+msgstr "Nabatejski"
 
 #: src/font-manager/web/google/LanguageData.vala:131
 msgid "Nag Mundari"
-msgstr ""
+msgstr "Nag Mundari"
 
 #: src/font-manager/web/google/LanguageData.vala:132
-#, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
-msgstr "Devanagari"
+msgstr "Nandinagari"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
-msgstr ""
+msgstr "Newa"
 
 #. { N_(""), "nko", "" },
 #: src/font-manager/web/google/LanguageData.vala:136
 msgid "Nüshu"
-msgstr ""
+msgstr "Nüshu"
 
 #: src/font-manager/web/google/LanguageData.vala:139
 msgid "Old Hungarian"
@@ -2298,17 +2277,15 @@ msgstr "Stari sjevernoarapski"
 
 #: src/font-manager/web/google/LanguageData.vala:142
 msgid "Old Permic"
-msgstr ""
+msgstr "Staro permsko"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
 msgstr "Stari perzijski"
 
 #: src/font-manager/web/google/LanguageData.vala:144
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Sogdian"
-msgstr "Stari južnoarapski"
+msgstr "Stari sogdijanski"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 msgid "Old Turkic"
@@ -2316,19 +2293,19 @@ msgstr "Stari turski"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
-msgstr ""
+msgstr "Osage"
 
 #: src/font-manager/web/google/LanguageData.vala:150
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Pahawh Hmong"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
-msgstr ""
+msgstr "Palmyrene"
 
 #: src/font-manager/web/google/LanguageData.vala:152
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Pau Cin Hau"
 
 #: src/font-manager/web/google/LanguageData.vala:154
 msgid "Phoenician"
@@ -2336,47 +2313,47 @@ msgstr "Feničanski"
 
 #: src/font-manager/web/google/LanguageData.vala:155
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Psalter Pahlavi"
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
-msgstr ""
+msgstr "Samarićanski"
 
 #: src/font-manager/web/google/LanguageData.vala:160
 msgid "Sharada"
-msgstr ""
+msgstr "Sharada"
 
 #: src/font-manager/web/google/LanguageData.vala:161
 msgid "Shavian"
-msgstr ""
+msgstr "Shavian"
 
 #: src/font-manager/web/google/LanguageData.vala:162
 msgid "Siddham"
-msgstr ""
+msgstr "Siddham"
 
 #: src/font-manager/web/google/LanguageData.vala:163
 msgid "SignWriting"
-msgstr ""
+msgstr "Znakovni jezik"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
-msgstr ""
+msgstr "Sogdijski"
 
 #: src/font-manager/web/google/LanguageData.vala:166
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "Sora Sompeng"
 
 #: src/font-manager/web/google/LanguageData.vala:167
 msgid "Soyombo"
-msgstr ""
+msgstr "Soyombo"
 
 #: src/font-manager/web/google/LanguageData.vala:172
 msgid "Tagalog"
-msgstr ""
+msgstr "Tagaloški"
 
 #: src/font-manager/web/google/LanguageData.vala:173
 msgid "Tagbanwa"
-msgstr ""
+msgstr "Tagbanwa"
 
 #. TRANSLATORS : The replacement character here refers to a language name.
 #: src/font-manager/web/google/LanguageData.vala:190
@@ -2457,7 +2434,7 @@ msgstr "Resetiraj veličinu prikaza"
 
 #: src/font-manager/gtk/help-overlay.ui:44
 msgid "Focus search entry"
-msgstr ""
+msgstr "Fokusiraj unos pretrage"
 
 #: src/font-manager/gtk/help-overlay.ui:51
 msgid "Reload"
@@ -2572,28 +2549,25 @@ msgid "Select fonts to remove"
 msgstr "Odaberi fontove koje želiš ukloniti"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
-#, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
-msgstr "_Izbriši"
+msgstr "Izbriši"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
 msgstr "Kategorije"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
-#, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
-msgstr "Zbirke fontova"
+msgstr "Pametne zbirke"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr "Zbirke"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:22
 msgid "Enter target family"
-msgstr "Upiši željenu obitelj"
+msgstr "Upiši ciljanu obitelj"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
@@ -2644,6 +2618,7 @@ msgid "Trending"
 msgstr "U trendu"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+#: src/font-manager/ui/font-manager-sidebar.ui:142
 msgid "Sort Order"
 msgstr "Redoslijed"
 
@@ -2686,6 +2661,14 @@ msgstr "Pregledaj fontove prije instaliranja."
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
 msgstr "Za pregled fonta, jednostavno ga povuci na ovo područje."
+
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr "Odabrana postavka zahtijeva ponovno pokretanje"
+
+#: src/font-manager/preferences/UserInterface.vala:212
+msgid "Changes will take effect next time the application is started"
+msgstr "Promjene će se primijeniti pri sljedećem pokretanju programa"
 
 #~ msgid "Select Destination"
 #~ msgstr "Odaberi odredište"
