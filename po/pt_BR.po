@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2024-06-23 10:09+0000\n"
 "Last-Translator: Paul Janzen <pj@paulgjanzen.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
-"font-manager/font-manager/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/font-"
+"manager/font-manager/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -620,23 +620,6 @@ msgstr "Separador, Espaço"
 
 #: src/font-manager/Application.vala:5
 #, fuzzy
-#| msgid ""
-#| "\n"
-#| "    This program is free software: you can redistribute it and/or modify\n"
-#| "    it under the terms of the GNU General Public License as published by\n"
-#| "    the Free Software Foundation, either version 3 of the License, or\n"
-#| "    (at your option) any later version.\n"
-#| "\n"
-#| "    This program is distributed in the hope that it will be useful,\n"
-#| "    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-#| "    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-#| "    GNU General Public License for more details.\n"
-#| "\n"
-#| "    You should have received a copy of the GNU General Public License\n"
-#| "    along with this program.\n"
-#| "\n"
-#| "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-#| "    "
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -673,7 +656,6 @@ msgstr ""
 
 #: src/font-manager/Application.vala:130
 #, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
 msgstr "Instalar fonte"
 
@@ -807,7 +789,6 @@ msgstr "Ajuda"
 
 #: src/font-manager/Controls.vala:124
 #, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
 msgstr "Gerenciador de Fontes"
 
@@ -857,25 +838,21 @@ msgstr "_Selecionar"
 
 #: src/font-manager/Dialogs.vala:49
 #, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "Selecionar executável"
 
 #: src/font-manager/Dialogs.vala:60
 #, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
 msgstr "Selecionar a cor do texto"
 
 #: src/font-manager/Dialogs.vala:75
 #, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
 msgstr "Selecionar arquivos para instalar"
 
 #: src/font-manager/Dialogs.vala:84
 #, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
 msgstr "Selecionar pastas de origem"
 
@@ -997,7 +974,6 @@ msgstr "Comparar"
 
 #: src/font-manager/MainWindow.vala:74
 #, fuzzy
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
 msgstr "Remover fontes"
 
@@ -1609,7 +1585,6 @@ msgstr "Ortografias Suportadas"
 
 #: src/font-manager/OrthographyList.vala:206
 #, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
 msgstr "Nenhum arquivo selecionado"
 
@@ -1630,14 +1605,11 @@ msgstr "Adicionar nova coleção"
 #: src/font-manager/ui/font-manager-font-list-controls.ui:30
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 #, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
 msgstr "Remover o alias selecionado"
 
 #: src/font-manager/Sidebar.vala:67
 #, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
 msgstr "%i item selecionado"
 
@@ -1808,14 +1780,6 @@ msgstr "Renderização"
 
 #: src/font-manager/preferences/Preferences.vala:130
 #, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1951,8 +1915,6 @@ msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:212
 #, fuzzy
-#| msgid ""
-#| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
 msgstr ""
 "CSD ativado. A alteração terá efeito na próxima vez que o programa for "
@@ -1996,14 +1958,6 @@ msgstr "Exibir o tamanho da linha na visualização em cascata"
 
 #: src/font-manager/preferences/UserSources.vala:141
 #, fuzzy
-#| msgid ""
-#| "Fonts in any folders listed here will be available within the "
-#| "application.\n"
-#| "\n"
-#| "They will not be visible to other applications until the source is "
-#| "actually enabled.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -2069,7 +2023,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:34
 #, fuzzy
-#| msgid "Egyptian Hieroglyphs"
 msgid "Anatolian Hieroglyphs"
 msgstr "Hieróglifos egípcios"
 
@@ -2083,7 +2036,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:41
 #, fuzzy
-#| msgid "Surat Batak"
 msgid "Batak"
 msgstr "Surat Batak"
 
@@ -2106,7 +2058,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:49
 #, fuzzy
-#| msgid "Unified Canadian Aboriginal Syllabics"
 msgid "Canadian Aboriginal"
 msgstr "Silabários indígenas canadenses"
 
@@ -2148,7 +2099,6 @@ msgstr "Cirílico Extendido"
 
 #: src/font-manager/web/google/LanguageData.vala:64
 #, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
 msgstr "Desmarcar todos"
 
@@ -2186,7 +2136,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:81
 #, fuzzy
-#| msgid "Hanunó'o"
 msgid "Hanunoo"
 msgstr "Hanunó'o"
 
@@ -2244,7 +2193,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:105
 #, fuzzy
-#| msgid "Linear B Ideograms"
 msgid "Linear B"
 msgstr "Ideogramas lineares B"
 
@@ -2286,7 +2234,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:116
 #, fuzzy
-#| msgid "Mathematical Numerals"
 msgid "Mayan Numerals"
 msgstr "Numerais matemáticos"
 
@@ -2296,13 +2243,11 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:118
 #, fuzzy
-#| msgid "Meetei Mayak"
 msgid "Meetei Mayek"
 msgstr "Meetei Mayak"
 
 #: src/font-manager/web/google/LanguageData.vala:120
 #, fuzzy
-#| msgid "MeroiticCursive"
 msgid "Meroitic"
 msgstr "Meroítica cursiva"
 
@@ -2332,7 +2277,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:132
 #, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
 msgstr "Devanágari"
 
@@ -2347,19 +2291,16 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:139
 #, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Hungarian"
 msgstr "Antiga Arábia do Sul"
 
 #: src/font-manager/web/google/LanguageData.vala:141
 #, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old North Arabian"
 msgstr "Antiga Arábia do Sul"
 
 #: src/font-manager/web/google/LanguageData.vala:142
 #, fuzzy
-#| msgid "Old Italic"
 msgid "Old Permic"
 msgstr "Itálico antigo"
 
@@ -2369,13 +2310,11 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:144
 #, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Sogdian"
 msgstr "Antiga Arábia do Sul"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 #, fuzzy
-#| msgid "Old Italic"
 msgid "Old Turkic"
 msgstr "Itálico antigo"
 
@@ -2421,7 +2360,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:163
 #, fuzzy
-#| msgid "Hinting"
 msgid "SignWriting"
 msgstr "Hinting"
 
@@ -2553,7 +2491,6 @@ msgstr "Alterar para o modo de Comparação"
 
 #: src/font-manager/gtk/help-overlay.ui:99
 #, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
 msgstr "Alternar para o modo de Gerenciamento"
 
@@ -2596,7 +2533,6 @@ msgstr "Fixar comparações"
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
 #, fuzzy
-#| msgid "_Cancel"
 msgid "Cancel"
 msgstr "_Cancelar"
 
@@ -2624,7 +2560,6 @@ msgstr "Limpar filtro selecionado"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
 #, fuzzy
-#| msgid "Created : "
 msgid "Created :"
 msgstr "Criado : "
 
@@ -2646,7 +2581,6 @@ msgstr "Selecionar fontes para remover"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
 #, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "_Excluir"
 
@@ -2656,7 +2590,6 @@ msgstr "Categorias"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 #, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
 msgstr "Coleções de fontes"
 
@@ -2935,3 +2868,9 @@ msgstr "Para visualizar uma fonte, simplesmente arraste-a para esta área."
 
 #~ msgid "Language Support"
 #~ msgstr "Suporte a idiomas"
+
+#~ msgid ""
+#~ "CSD enabled. Change will take effect next time the application is started."
+#~ msgstr ""
+#~ "CSD ativado. A alteração terá efeito na próxima vez que o programa for "
+#~ "iniciado."
