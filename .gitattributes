@@ -5,21 +5,22 @@
 build-aux/* -linguist-detectable
 build-aux/license/* -linguist-detectable
 build-aux/vendor/* -linguist-detectable
-build-aux/orthographies/* -linguist-detectable
+
+# Don't include generated header files
+lib/data/*.h linguist-generated
 
 # Don't include orthography data in language statistics
-build-aux/orthographies/fontaine/* linguist-vendored
-lib/orthographies/* linguist-generated
+lib/data/orthographies/* linguist-generated
 
 # Don't include documentation in language statistics
 help/* linguist-documentation
 
 # Don't include generated Unicode info files
-lib/unicode/unicode-blocks.h linguist-generated
-lib/unicode/unicode-categories.h linguist-generated
-lib/unicode/unicode-names.h linguist-generated
-lib/unicode/unicode-nameslist.h linguist-generated
-lib/unicode/unicode-scripts.h linguist-generated
-lib/unicode/unicode-unihan.h linguist-generated
-lib/unicode/unicode-versions.h linguist-generated
+lib/data/ucd/unicode-blocks.h linguist-generated
+lib/data/ucd/unicode-categories.h linguist-generated
+lib/data/ucd/unicode-names.h linguist-generated
+lib/data/ucd/unicode-nameslist.h linguist-generated
+lib/data/ucd/unicode-scripts.h linguist-generated
+lib/data/ucd/unicode-unihan.h linguist-generated
+lib/data/ucd/unicode-versions.h linguist-generated
 
