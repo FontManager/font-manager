@@ -271,7 +271,7 @@ namespace FontManager {
 
     GenericArray <Category> get_base_categories () {
         var filters = new GenericArray <Category> ();
-        filters.add(new Category(_("All"), _("All Fonts"), "system-users-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
+        filters.add(new Category(_("All"), _("All Fonts"), "edit-select-all-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
         filters.add(new Category(_("System"), _("Fonts available to all users"), "computer-symbolic", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
         filters.add(new UserFonts());
         return filters;
