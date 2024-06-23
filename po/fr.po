@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-16 12:00-0400\n"
+"POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2024-03-14 02:22+0000\n"
 "Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/font-"
@@ -117,7 +117,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "Installer"
 
@@ -755,12 +755,12 @@ msgstr "Compresser…"
 msgid "Rename…"
 msgstr "Renommer…"
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr "Comparaison enregistrée"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -926,12 +926,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i variante"
 msgstr[1] "%i variantes"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr "Tout réduire"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -939,32 +939,32 @@ msgstr "Tout réduire"
 msgid "Expand all"
 msgstr "Tout développer"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr "Copier l’emplacement"
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr "Afficher dans le dossier"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr "Activer les éléments sélectionnés"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr "Désactiver les éléments sélectionnés"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i élément sélectionné"
 msgstr[1] "%i éléments sélectionnés"
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:575
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr "Actions"
@@ -1913,39 +1913,51 @@ msgstr ""
 msgid "Maximum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:212
+#, fuzzy
+#| msgid ""
+#| "CSD enabled. Change will take effect next time the application is started."
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+"CSD activé. Les modifications auront lieu au prochain démarrage du programme."
+
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr "Disposition large"
 
-#: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr "Seulement lorsque maximisé"
 
-#: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr "Activer les animations"
 
-#: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr "Préférer le thème sombre"
 
-#: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr "Plat"
 
-#: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr "Style de boutons de barre de titre"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr "Afficher la taille de ligne en affichage Cascade"
 
@@ -2620,7 +2632,12 @@ msgstr "Catégories"
 msgid "Smart Collections"
 msgstr "Collection de fonte"
 
-#: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "Ordre de tri"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr "Collections"
 
@@ -2675,10 +2692,6 @@ msgstr "Plus populaire"
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
 msgstr "Populaire"
-
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
-msgid "Sort Order"
-msgstr "Ordre de tri"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
@@ -2753,12 +2766,6 @@ msgstr ""
 
 #~ msgid "Client Side Decorations"
 #~ msgstr "Décorations client"
-
-#~ msgid ""
-#~ "CSD enabled. Change will take effect next time the application is started."
-#~ msgstr ""
-#~ "CSD activé. Les modifications auront lieu au prochain démarrage du "
-#~ "programme."
 
 #~ msgid ""
 #~ "CSD disabled. Change will take effect next time the application is "

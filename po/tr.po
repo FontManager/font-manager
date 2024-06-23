@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-16 12:00-0400\n"
+"POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2023-12-25 03:07+0000\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -106,7 +106,7 @@ msgstr "Tam özellikli yazı tipi dosyası önizleme uygulaması"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "Yükle"
 
@@ -777,12 +777,12 @@ msgstr "Sıkıştır…"
 msgid "Rename…"
 msgstr "Yeniden adlandır…"
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr "Kaydedilmiş Karşılaştırma"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -947,12 +947,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Değişimi "
 msgstr[1] "%i Değişimleri "
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr "Tümünü daralt"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -960,32 +960,32 @@ msgstr "Tümünü daralt"
 msgid "Expand all"
 msgstr "Tümünü Genişlet"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr "Konumu Kopyala"
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr "Klasörde Göster"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr "Seçili ögeleri etkinleştir"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr "Seçili ögeleri devre dışı bırak"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i seçili öge"
 msgstr[1] "%i seçili öge"
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:575
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr "Eylemler"
@@ -1945,39 +1945,52 @@ msgstr "Şelale Ön İzlemesi Nokta Boyutu Ortak Oranı"
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
 
-#: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:212
+#, fuzzy
+#| msgid ""
+#| "CSD enabled. Change will take effect next time the application is started."
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+"CSD etkin. Değişiklik, uygulamanın bir sonraki başlatılışında geçerli "
+"olacaktır."
+
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr "Geniş Düzen"
 
-#: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr "Yalnızca Ekranı Kapladığında"
 
-#: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr "Animasyonları Etkinleştir"
 
-#: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr "Koyu Temayı Tercih Et"
 
-#: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr "Düz"
 
-#: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr "Başlık Çubuğu Düğme Tarzı"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr "Şelale ön izlemesinde satır boyutunu görüntüle"
 
@@ -2649,7 +2662,12 @@ msgstr "Kategoriler"
 msgid "Smart Collections"
 msgstr "Yazı Tipi Koleksiyonları"
 
-#: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "Sıralama Düzeni"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr "Koleksiyonlar"
 
@@ -2704,10 +2722,6 @@ msgstr "En Popüler"
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
 msgstr "Trendler"
-
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
-msgid "Sort Order"
-msgstr "Sıralama Düzeni"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
@@ -2793,12 +2807,6 @@ msgstr "Bir yazı tipini önizlemek için bu alana sürüklemeniz yeterlidir."
 
 #~ msgid "Client Side Decorations"
 #~ msgstr "İstemci Tarafı Süslemeleri"
-
-#~ msgid ""
-#~ "CSD enabled. Change will take effect next time the application is started."
-#~ msgstr ""
-#~ "CSD etkin. Değişiklik, uygulamanın bir sonraki başlatılışında geçerli "
-#~ "olacaktır."
 
 #~ msgid ""
 #~ "CSD disabled. Change will take effect next time the application is "

@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-16 12:00-0400\n"
+"POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2023-11-06 18:33+0000\n"
 "Last-Translator: Stephan Kurz <stephan.kurz@oeaw.ac.at>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
@@ -124,7 +124,7 @@ msgstr "Voll funktionsfähige Anwendung zur Vorschau von Schriftdateien"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "Installieren"
 
@@ -798,12 +798,12 @@ msgstr "Komprimieren …"
 msgid "Rename…"
 msgstr "Umbenennen…"
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr "Gespeicherter Vergleich"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -969,12 +969,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Variante "
 msgstr[1] "%i Varianten"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -982,32 +982,32 @@ msgstr "Alle einklappen"
 msgid "Expand all"
 msgstr "Alle ausklappen"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr "Dateipfad kopieren"
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr "Im Ordner zeigen"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr "Ausgewählte Elemente aktivieren"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr "Ausgewählte Elemente deaktivieren"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i ausgewähltes Element"
 msgstr[1] "%i ausgewählte Elemente"
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:575
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr "Befehle"
@@ -1969,39 +1969,52 @@ msgstr "Quotient der Punktgröße der Vorschau beim Wasserfall"
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Maximale Größe der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:212
+#, fuzzy
+#| msgid ""
+#| "CSD enabled. Change will take effect next time the application is started."
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+"Optische Funktionen des Clients sind aktiviert. Änderungen werden erst nach "
+"Neustart des Programms sichtbar."
+
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr "Breites Layout"
 
-#: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr "Nur wenn maximiert"
 
-#: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr "Aktiviere Animationen"
 
-#: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr "Dunkles Thema bevorzugen"
 
-#: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr "Flach"
 
-#: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr "Stil des Titelknopfs"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr "Zeige die Größe der Zeile in der Vorschau beim Wasserfall"
 
@@ -2678,7 +2691,12 @@ msgstr "Kategorien"
 msgid "Smart Collections"
 msgstr "Schriften-Sammlungen"
 
-#: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "Anordnen"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr "Sammlungen"
 
@@ -2733,10 +2751,6 @@ msgstr "Beliebteste"
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
 msgstr "Im Trend"
-
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
-msgid "Sort Order"
-msgstr "Anordnen"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
@@ -2823,12 +2837,6 @@ msgstr "Für eine Schriften-Vorschau ziehe die Schrift auf dieses Feld."
 
 #~ msgid "Client Side Decorations"
 #~ msgstr "Optische Funktionen des Clients"
-
-#~ msgid ""
-#~ "CSD enabled. Change will take effect next time the application is started."
-#~ msgstr ""
-#~ "Optische Funktionen des Clients sind aktiviert. Änderungen werden erst "
-#~ "nach Neustart des Programms sichtbar."
 
 #~ msgid ""
 #~ "CSD disabled. Change will take effect next time the application is "

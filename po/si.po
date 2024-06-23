@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-16 12:00-0400\n"
+"POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2021-07-10 05:32+0000\n"
 "Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
 "Language-Team: Sinhala <https://hosted.weblate.org/projects/font-manager/"
@@ -90,7 +90,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "ස්ථාපනය"
 
@@ -717,12 +717,12 @@ msgstr ""
 msgid "Rename…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr ""
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -871,12 +871,12 @@ msgid_plural "%i Variations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -884,32 +884,32 @@ msgstr ""
 msgid "Expand all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr ""
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr ""
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:575
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr "ක්‍රියාමාර්ග"
@@ -1831,39 +1831,47 @@ msgstr ""
 msgid "Maximum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:212
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
@@ -2471,7 +2479,12 @@ msgstr "ප්‍රවර්ග"
 msgid "Smart Collections"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr ""
 
@@ -2525,10 +2538,6 @@ msgstr ""
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
-msgstr ""
-
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
-msgid "Sort Order"
 msgstr ""
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116

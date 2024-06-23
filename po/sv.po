@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-16 12:00-0400\n"
+"POT-Creation-Date: 2024-06-21 10:31-0400\n"
 "PO-Revision-Date: 2022-02-11 07:00+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
@@ -102,7 +102,7 @@ msgstr "Program för förhandsvisning av teckensnitt"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:477
 msgid "Install"
 msgstr "Installera"
 
@@ -772,12 +772,12 @@ msgstr "Komprimera…"
 msgid "Rename…"
 msgstr "Byt namn…"
 
-#: src/font-manager/Compare.vala:375
+#: src/font-manager/Compare.vala:382
 msgid "Saved Comparison"
 msgstr "Sparade jämförelse"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:411
+#: src/font-manager/Compare.vala:418
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -942,12 +942,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i variation "
 msgstr[1] "%i variationer "
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 msgid "Collapse all"
 msgstr "Komprimera alla"
 
-#: src/font-manager/FontList.vala:261
+#: src/font-manager/FontList.vala:258
 #: src/font-manager/web/google/FontList.vala:364
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -955,32 +955,32 @@ msgstr "Komprimera alla"
 msgid "Expand all"
 msgstr "Expandera alla"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:478
 msgid "Copy Location"
 msgstr "Kopiera plats"
 
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:479
 msgid "Show in Folder"
 msgstr "Visa i mapp"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:480
 msgid "Enable selected items"
 msgstr "Aktivera markerade objekt"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:481
 msgid "Disable selected items"
 msgstr "Inaktivera markerade objekt"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:551 src/font-manager/FontList.vala:560
+#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i markerat objekt"
 msgstr[1] "%i markerade objekt"
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:575
 #: src/font-manager/preferences/Preferences.vala:46
 msgid "Actions"
 msgstr "Åtgärder"
@@ -1941,39 +1941,50 @@ msgstr "Punktstorlek för kaskadliknande förhandsgranskning"
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Största punktstorlek för kaskadliknande förhandsgranskning"
 
-#: src/font-manager/preferences/UserInterface.vala:213
+#: src/font-manager/preferences/UserInterface.vala:211
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:212
+#, fuzzy
+#| msgid ""
+#| "CSD enabled. Change will take effect next time the application is started."
+msgid "Changes will take effect next time the application is started"
+msgstr "CSD är aktiverat. Ändring tillämpas nästa gång programmet startas."
+
+#: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
 msgstr "Bred layout"
 
-#: src/font-manager/preferences/UserInterface.vala:216
+#: src/font-manager/preferences/UserInterface.vala:227
 msgid "Only When Maximized"
 msgstr "Endast vid maximerad"
 
-#: src/font-manager/preferences/UserInterface.vala:218
+#: src/font-manager/preferences/UserInterface.vala:229
 msgid "Enable Animations"
 msgstr "Aktivera animationer"
 
-#: src/font-manager/preferences/UserInterface.vala:219
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Prefer Dark Theme"
 msgstr "Föredra mörkt tema"
 
-#: src/font-manager/preferences/UserInterface.vala:221
+#: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:223
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
 msgstr "Platt"
 
-#: src/font-manager/preferences/UserInterface.vala:226
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Titlebar Button Style"
 msgstr "Knappstil för rubrikfält"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:238
 msgid "Display line size in Waterfall Preview"
 msgstr "Visa radstorlek i kaskadliknande förhandsgranskning"
 
@@ -2645,7 +2656,12 @@ msgstr "Kategorier"
 msgid "Smart Collections"
 msgstr "Teckensnittskollektioner"
 
-#: src/font-manager/ui/font-manager-sidebar.ui:149
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "Sorteringsordning"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
 msgstr "Samlingar"
 
@@ -2700,10 +2716,6 @@ msgstr "Mest populär"
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
 msgstr "Trend"
-
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
-msgid "Sort Order"
-msgstr "Sorteringsordning"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
@@ -2789,10 +2801,6 @@ msgstr "Dra ett teckensnitt till det här området, för att förhandsgranska."
 
 #~ msgid "Client Side Decorations"
 #~ msgstr "Dekorationer på klientsidan"
-
-#~ msgid ""
-#~ "CSD enabled. Change will take effect next time the application is started."
-#~ msgstr "CSD är aktiverat. Ändring tillämpas nästa gång programmet startas."
 
 #~ msgid ""
 #~ "CSD disabled. Change will take effect next time the application is "
