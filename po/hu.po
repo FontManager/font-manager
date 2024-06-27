@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-06-21 10:31-0400\n"
-"PO-Revision-Date: 2023-08-07 11:50+0000\n"
+"PO-Revision-Date: 2024-06-26 23:23+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,12 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
 msgid "Font Manager project"
 msgstr "Betűkészlet-kezelő"
 
@@ -124,10 +122,8 @@ msgid "Font Properties"
 msgstr "Betűtípus tulajdonságai"
 
 #: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "Adatbázis frissítése — Betűtípusok"
+msgstr "Adatbázis frissítése…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:648
@@ -304,7 +300,7 @@ msgstr "Egyszerű betűkészlet-kezelő GTK+ asztali környezetekhez"
 msgid "translator-credits"
 msgstr ""
 "Fordítói elismerések:\n"
-"SziaTomi <sziatomi01@gmail.com> 2022, 2023"
+"SziaTomi <sziatomi01@gmail.com> 2022 ->"
 
 #: lib/gtk/font-manager-fsType.c:74
 msgid "Restricted License Embedding"
@@ -616,24 +612,6 @@ msgid "Separator, Space"
 msgstr "Elválasztó, Térköz"
 
 #: src/font-manager/Application.vala:5
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "    This program is free software: you can redistribute it and/or modify\n"
-#| "    it under the terms of the GNU General Public License as published by\n"
-#| "    the Free Software Foundation, either version 3 of the License, or\n"
-#| "    (at your option) any later version.\n"
-#| "\n"
-#| "    This program is distributed in the hope that it will be useful,\n"
-#| "    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-#| "    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-#| "    GNU General Public License for more details.\n"
-#| "\n"
-#| "    You should have received a copy of the GNU General Public License\n"
-#| "    along with this program.\n"
-#| "\n"
-#| "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-#| "    "
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -666,13 +644,10 @@ msgstr ""
 "     ezzel a programmal együtt.\n"
 "\n"
 "     Ha nem, lásd: <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"    "
 
 #: src/font-manager/Application.vala:130
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "Betűtípus telepítése"
+msgstr "Betűtípusfájlok telepítése…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -805,10 +780,8 @@ msgid "Help"
 msgstr "Segítség"
 
 #: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Betűkészlet-kezelő"
+msgstr "A betűkészlet-kezelőről"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
@@ -836,7 +809,7 @@ msgstr "Név"
 
 #: src/font-manager/Controls.vala:173
 msgid "Size"
-msgstr ""
+msgstr "Méret"
 
 #: src/font-manager/Controls.vala:280
 msgid "Add Fonts"
@@ -855,28 +828,20 @@ msgid "_Select"
 msgstr "_Választ"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "Végrehajtható fájl kiválasztása"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "Válassza ki a szöveg színét"
+msgstr "Könyvtár kiválasztása"
 
 #: src/font-manager/Dialogs.vala:75
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
-msgstr "Válassza ki a telepítendő fájlokat"
+msgstr "Telepítendő fájlok kiválasztása"
 
 #: src/font-manager/Dialogs.vala:84
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
-msgstr "Forrásmappák kiválasztása"
+msgstr "Forráskönyvtárak kiválasztása"
 
 #: src/font-manager/Dialogs.vala:118
 msgid "Font Configuration"
@@ -995,10 +960,8 @@ msgid "Compare"
 msgstr "Összehasonlítás"
 
 #: src/font-manager/MainWindow.vala:74
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
-msgstr "Betűtípusok eltávolítása"
+msgstr "Google betűkészletek"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
@@ -1014,11 +977,11 @@ msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr "Aleut Cirill"
+msgstr "Aleut cirill"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr "Aleut Latin"
+msgstr "Aleut latin"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/LanguageData.vala:35
@@ -1027,7 +990,7 @@ msgstr "Arab"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr "Görög archaikus betűk"
+msgstr "Archaikus görög betűk"
 
 #: src/font-manager/Orthographies.vala:37
 #: src/font-manager/web/google/LanguageData.vala:36
@@ -1084,7 +1047,7 @@ msgstr "Buginese"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr "Egységes kanadaiőslakos-szótagok"
+msgstr "Egységes kanadaiőslakos-szótagírás"
 
 #: src/font-manager/Orthographies.vala:50
 #: src/font-manager/web/google/LanguageData.vala:50
@@ -1167,7 +1130,7 @@ msgstr "Pénznemek"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr "Ciprusi (szótagírás)"
+msgstr "Ciprusi szótagírás"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/LanguageData.vala:65
@@ -1357,7 +1320,7 @@ msgstr "Matematikai operátorok"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr "Meetei Mayak"
+msgstr "Meetei Mayek"
 
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
@@ -1607,10 +1570,8 @@ msgid "Supported Orthographies"
 msgstr "Támogatott helyesírások"
 
 #: src/font-manager/OrthographyList.vala:206
-#, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
-msgstr "Nincs fájl kiválasztva"
+msgstr "Nincsenek kiválasztva elemek"
 
 #: src/font-manager/OrthographyList.vala:211
 msgid "Update in progress"
@@ -1619,7 +1580,7 @@ msgstr "Frissítés folyamatban"
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:237
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "Nincsenek kiválasztható, érvényes helyesírások"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
@@ -1628,17 +1589,12 @@ msgstr "Új gyűjtemény hozzáadása"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:30
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
-msgstr "A kiválasztott alias név eltávolítása"
+msgstr "A kiválasztott elem eltávolítása"
 
 #: src/font-manager/Sidebar.vala:67
-#, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
-msgstr "%i kiválasztott elem"
+msgstr "A kiválasztott elem szerkesztése"
 
 #: src/font-manager/Utils.vala:293
 msgid "Copying files…"
@@ -1757,11 +1713,11 @@ msgstr "A GNOME asztali beállítási séma nem található"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
-msgstr ""
+msgstr "Szürkeárnyalat"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
-msgstr ""
+msgstr "RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:222
 #: src/font-manager/preferences/Display.vala:91
@@ -1806,15 +1762,6 @@ msgid "Rendering"
 msgstr "Renderelés"
 
 #: src/font-manager/preferences/Preferences.vala:130
-#, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1822,18 +1769,16 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Válassza a „Mentés” lehetőséget a fontconfig konfigurációs fájl "
-"létrehozásához a fenti beállításokból.\n"
+"Ezekből a beállításokból egy fontconfig konfigurációs fájl jön létre.\n"
 "\n"
-"Válassza az „Eldob” lehetőséget a konfigurációs fájl eltávolításához és az "
-"alapértelmezett beállítások visszaállításához.\n"
+"A futó alkalmazások újraindítást igényelhetnek a változások tükrözéséhez.\n"
 "\n"
 "Vegye figyelembe, hogy nem minden környezet/alkalmazás tartja tiszteletben "
 "ezeket a beállításokat."
 
 #: src/font-manager/preferences/Preferences.vala:152
 msgid "Reset all values to default"
-msgstr ""
+msgstr "Az összes érték visszaállítása az alapértelmezettre"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
@@ -1946,16 +1891,11 @@ msgstr "A vízesés előnézet maximális pont mérete"
 
 #: src/font-manager/preferences/UserInterface.vala:211
 msgid "Selected setting requires restart to apply"
-msgstr ""
+msgstr "A kiválasztott beállítás alkalmazásához újraindítás szükséges"
 
 #: src/font-manager/preferences/UserInterface.vala:212
-#, fuzzy
-#| msgid ""
-#| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
-msgstr ""
-"Ügyféloldali dekorációk (CSD) engedélyezve. A módosítás az alkalmazás "
-"következő indításakor lép életbe."
+msgstr "A változtatások az alkalmazás következő indításakor lépnek életbe"
 
 #: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
@@ -1975,11 +1915,11 @@ msgstr "Sötét téma előnyben részesítése"
 
 #: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
-msgstr ""
+msgstr "Adwaita stíluslap használata"
 
 #: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
-msgstr ""
+msgstr "Emelt"
 
 #: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
@@ -1994,15 +1934,6 @@ msgid "Display line size in Waterfall Preview"
 msgstr "Sorméret megjelenítése a vízesés előnézetben"
 
 #: src/font-manager/preferences/UserSources.vala:141
-#, fuzzy
-#| msgid ""
-#| "Fonts in any folders listed here will be available within the "
-#| "application.\n"
-#| "\n"
-#| "They will not be visible to other applications until the source is "
-#| "actually enabled.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -2013,10 +1944,7 @@ msgstr ""
 "belül lesznek elérhetők.\n"
 "\n"
 "Addig nem lesznek láthatók más alkalmazások számára, amíg a forrás "
-"ténylegesen nincs engedélyezve.\n"
-"\n"
-"Vegye figyelembe, hogy nem minden környezet/alkalmazás tartja tiszteletben "
-"ezeket a beállításokat."
+"ténylegesen nincs engedélyezve."
 
 #: src/font-manager/preferences/UserSources.vala:153
 msgid "Easily add or preview fonts without actually installing them."
@@ -2034,11 +1962,11 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:155
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "A hálózati hozzáférés le van tiltva"
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "Hozzáférési kéréssel forduljon a rendszergazdához."
 
 #: src/font-manager/web/google/GoogleFonts.vala:159
 msgid "Network Offline"
@@ -2048,11 +1976,13 @@ msgstr "Nincs hálózat"
 #: src/font-manager/web/google/GoogleFonts.vala:161
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
-msgstr "A Google Fonts katalógus eléréséhez aktív internetkapcsolat szükséges"
+msgstr ""
+"A Google betűkészletek katalógusának eléréséhez aktív internetkapcsolat "
+"szükséges"
 
 #: src/font-manager/web/google/GoogleFonts.vala:171
 msgid "Client Error"
-msgstr "Ügyfél hiba"
+msgstr "Ügyfélhiba"
 
 #: src/font-manager/web/google/GoogleFonts.vala:172
 msgid ""
@@ -2068,50 +1998,44 @@ msgstr "Kiszolgáló hiba"
 #. Sample strings used here should be sourced from https://fonts.google.com/
 #: src/font-manager/web/google/LanguageData.vala:33
 msgid "Adlam"
-msgstr ""
+msgstr "Adlam"
 
 #: src/font-manager/web/google/LanguageData.vala:34
-#, fuzzy
-#| msgid "Egyptian Hieroglyphs"
 msgid "Anatolian Hieroglyphs"
-msgstr "Egyiptomi hieroglifák"
+msgstr "Anatóliai hieroglifák"
 
 #: src/font-manager/web/google/LanguageData.vala:37
 msgid "Avestan"
-msgstr ""
+msgstr "Avestan"
 
 #: src/font-manager/web/google/LanguageData.vala:40
 msgid "Bassa Vah"
-msgstr ""
+msgstr "Bassa Vah"
 
 #: src/font-manager/web/google/LanguageData.vala:41
-#, fuzzy
-#| msgid "Surat Batak"
 msgid "Batak"
-msgstr "Surat Batak"
+msgstr "Batak"
 
 #: src/font-manager/web/google/LanguageData.vala:43
 msgid "Bhaiksuki"
-msgstr ""
+msgstr "Bhaiksuki"
 
 #: src/font-manager/web/google/LanguageData.vala:44
 msgid "Brahmi"
-msgstr ""
+msgstr "Brahmi"
 
 #: src/font-manager/web/google/LanguageData.vala:45
 msgid "Braille"
-msgstr ""
+msgstr "Braille"
 
 #. { N_("Buhid"), "buhid", "" },
 #: src/font-manager/web/google/LanguageData.vala:48
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "Kaukázusi albán"
 
 #: src/font-manager/web/google/LanguageData.vala:49
-#, fuzzy
-#| msgid "Unified Canadian Aboriginal Syllabics"
 msgid "Canadian Aboriginal"
-msgstr "Egységes kanadaiőslakos-szótagok"
+msgstr "Kanadai őslakos"
 
 #: src/font-manager/web/google/LanguageData.vala:54
 msgid "Chinese (Hong Kong)"
@@ -2135,11 +2059,11 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:60
 msgid "Cypriot"
-msgstr ""
+msgstr "Ciprusi"
 
 #: src/font-manager/web/google/LanguageData.vala:61
 msgid "Cypro Minoan"
-msgstr ""
+msgstr "Ciprusi minószi"
 
 #: src/font-manager/web/google/LanguageData.vala:62
 msgid "Cyrillic"
@@ -2150,22 +2074,20 @@ msgid "Cyrillic Extended"
 msgstr "Cirill kiterjesztett"
 
 #: src/font-manager/web/google/LanguageData.vala:64
-#, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
-msgstr "Kijelölés(ek) megszüntetése"
+msgstr "Deseret"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr ""
+msgstr "Duployan"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr ""
+msgstr "Elbasan"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
-msgstr ""
+msgstr "Elymaic"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
@@ -2223,11 +2145,11 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:96
 msgid "Khojki"
-msgstr ""
+msgstr "Khojki"
 
 #: src/font-manager/web/google/LanguageData.vala:97
 msgid "Khudawadi"
-msgstr ""
+msgstr "Khudawadi"
 
 #: src/font-manager/web/google/LanguageData.vala:98
 msgid "Korean"
@@ -2243,11 +2165,9 @@ msgstr "Latin kiterjesztett"
 
 #: src/font-manager/web/google/LanguageData.vala:104
 msgid "Linear A"
-msgstr ""
+msgstr "Lineáris A Ideogrammák"
 
 #: src/font-manager/web/google/LanguageData.vala:105
-#, fuzzy
-#| msgid "Linear B Ideograms"
 msgid "Linear B"
 msgstr "Lineáris B Ideogrammák"
 
@@ -2349,38 +2269,28 @@ msgid "Nüshu"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:139
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Hungarian"
-msgstr "Ó dél-Arab"
+msgstr "Ómagyar"
 
 #: src/font-manager/web/google/LanguageData.vala:141
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old North Arabian"
-msgstr "Ó dél-Arab"
+msgstr "Régi észak-arab"
 
 #: src/font-manager/web/google/LanguageData.vala:142
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Permic"
-msgstr "Old Italic"
+msgstr "Régi permik"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
-msgstr ""
+msgstr "Régi perzsa"
 
 #: src/font-manager/web/google/LanguageData.vala:144
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Sogdian"
-msgstr "Ó dél-Arab"
+msgstr "Régi szogd"
 
 #: src/font-manager/web/google/LanguageData.vala:146
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Turkic"
-msgstr "Old Italic"
+msgstr "Régi török"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
@@ -2408,45 +2318,43 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
-msgstr ""
+msgstr "Szamaritánus"
 
 #: src/font-manager/web/google/LanguageData.vala:160
 msgid "Sharada"
-msgstr ""
+msgstr "Sharada"
 
 #: src/font-manager/web/google/LanguageData.vala:161
 msgid "Shavian"
-msgstr ""
+msgstr "Shavian"
 
 #: src/font-manager/web/google/LanguageData.vala:162
 msgid "Siddham"
-msgstr ""
+msgstr "Siddham"
 
 #: src/font-manager/web/google/LanguageData.vala:163
-#, fuzzy
-#| msgid "Hinting"
 msgid "SignWriting"
-msgstr "Útmutatás"
+msgstr "Jelírás"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
-msgstr ""
+msgstr "Szogd"
 
 #: src/font-manager/web/google/LanguageData.vala:166
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "Sora Sompeng"
 
 #: src/font-manager/web/google/LanguageData.vala:167
 msgid "Soyombo"
-msgstr ""
+msgstr "Soyombo"
 
 #: src/font-manager/web/google/LanguageData.vala:172
 msgid "Tagalog"
-msgstr ""
+msgstr "Tagalog"
 
 #: src/font-manager/web/google/LanguageData.vala:173
 msgid "Tagbanwa"
-msgstr ""
+msgstr "Tagbanwa"
 
 #. TRANSLATORS : The replacement character here refers to a language name.
 #: src/font-manager/web/google/LanguageData.vala:190
@@ -2625,10 +2533,8 @@ msgid "Clear selected filter"
 msgstr "A kiválasztott szűrő törlése"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
-#, fuzzy
-#| msgid "Created : "
 msgid "Created :"
-msgstr "Létrehozva: "
+msgstr "Létrehozva:"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
