@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-06-21 10:31-0400\n"
-"PO-Revision-Date: 2024-06-26 23:23+0000\n"
+"PO-Revision-Date: 2024-06-28 00:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
@@ -2110,10 +2110,8 @@ msgid "Hanifi Rohingya"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:81
-#, fuzzy
-#| msgid "Hanunó'o"
 msgid "Hanunoo"
-msgstr "Hanunó'o (mangyan ábc)"
+msgstr "Hanunoo (mangyan ábc)"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
@@ -2208,26 +2206,20 @@ msgid "Masaram Gondi"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:116
-#, fuzzy
-#| msgid "Mathematical Numerals"
 msgid "Mayan Numerals"
-msgstr "Matematikai számok"
+msgstr "Maya számok"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:118
-#, fuzzy
-#| msgid "Meetei Mayak"
 msgid "Meetei Mayek"
-msgstr "Meetei Mayak"
+msgstr "Meetei Mayek"
 
 #: src/font-manager/web/google/LanguageData.vala:120
-#, fuzzy
-#| msgid "MeroiticCursive"
 msgid "Meroitic"
-msgstr "Meroita kurzív"
+msgstr "Meroita"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
@@ -2254,10 +2246,8 @@ msgid "Nag Mundari"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:132
-#, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
-msgstr "Devanagari"
+msgstr "Nandinagari"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
@@ -2462,10 +2452,8 @@ msgid "Switch to Compare mode"
 msgstr "Összehasonlítás módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:99
-#, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
-msgstr "Kezelés módba vált"
+msgstr "Google betűkészletek módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
@@ -2505,8 +2493,6 @@ msgstr "Rögzített összehasonlítások"
 
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
-#, fuzzy
-#| msgid "_Cancel"
 msgid "Cancel"
 msgstr "_Mégse"
 
@@ -2553,8 +2539,6 @@ msgid "Select fonts to remove"
 msgstr "Válassza ki az eltávolítani kívánt betűtípusokat"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
-#, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "_Töröl"
 
@@ -2563,8 +2547,6 @@ msgid "Categories"
 msgstr "Kategóriák"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
-#, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
 msgstr "Betűtípus gyűjtemények"
 
