@@ -193,6 +193,9 @@ namespace FontManager {
             pinned_button.set_popover(pinned);
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
+#if HAVE_ADWAITA
+            if (settings == null || !settings.get_boolean("use-adwaita-stylesheet"))
+#endif
             add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             preview_colors.bind_property("foreground-color", this, "foreground-color", flags);
@@ -207,10 +210,16 @@ namespace FontManager {
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
+#if HAVE_ADWAITA
+            if (settings == null || !settings.get_boolean("use-adwaita-stylesheet")) {
+#endif
             if (model.get_n_items() > 0)
                 add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             else
                 add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+#if HAVE_ADWAITA
+            }
+#endif
             bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             set_control_sensitivity(pinned_button, have_items);
             return;
