@@ -337,6 +337,18 @@ font_manager_database_vacuum (FontManagerDatabase *self, GError **error)
     return;
 }
 
+void
+cache_locale_value (GFile      *locale_file,
+                    const char *current_locale)
+{
+    glong count = g_utf8_strlen(current_locale, -1);
+    g_autoptr(GFileOutputStream) stream = NULL;
+    stream = g_file_create(locale_file, G_FILE_CREATE_PRIVATE, NULL, NULL);
+    g_output_stream_write(G_OUTPUT_STREAM(stream), current_locale, count, NULL, NULL);
+    g_output_stream_close(G_OUTPUT_STREAM(stream), NULL, NULL);
+    return;
+}
+
 /**
  * font_manager_database_initialize:
  * @self:   #FontManagerDatabase instance
@@ -351,6 +363,26 @@ font_manager_database_initialize (FontManagerDatabase *self,
 {
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(self));
     g_return_if_fail(error == NULL || *error == NULL);
+
+    const char *current_locale = setlocale(LC_ALL, NULL);
+    g_autofree gchar *config_dir = font_manager_get_package_cache_directory();
+    g_autofree gchar *locale_stamp = g_build_filename(config_dir, "locale", NULL);
+    g_autoptr(GFile) locale_file = g_file_new_for_path(locale_stamp);
+
+    if (g_file_query_exists(locale_file, NULL)) {
+        g_autofree gchar *stored_locale = NULL;
+        g_file_load_contents(locale_file, NULL, &stored_locale, NULL, NULL, NULL);
+        if (g_strcmp0(current_locale, stored_locale) != 0) {
+            g_debug("Locale change detected, dumping database...");
+            font_manager_database_close(self, error);
+            if (g_remove(self->file) < 0)
+                g_warning("Failed to remove outdated database file");
+            g_file_delete(locale_file, NULL, NULL);
+            cache_locale_value(locale_file, current_locale);
+        }
+    } else {
+        cache_locale_value(locale_file, current_locale);
+    }
 
     bool db_exists = font_manager_exists(self->file);
     int CURRENT_VERSION = FONT_MANAGER_CURRENT_DATABASE_VERSION;
