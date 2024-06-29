@@ -113,6 +113,57 @@ static const gchar *ensure_member [] = {
 };
 
 /**
+ * font_manager_get_font_revision:
+ * @filepath:   full path to font file to examine
+ *
+ * Returns: The version number as a float. This function never fails and returns
+ * 1.0 as a default value if no version is set or if an error occurs.
+ */
+gfloat
+font_manager_get_font_revision (const gchar *filepath)
+{
+    g_return_val_if_fail(filepath != NULL, 1.0);
+
+    FT_Face         face;
+    FT_Library      library;
+    FT_Error        ft_error;
+
+    float result = 1.0;
+    gsize filesize = 0;
+    GError *error = NULL;
+    g_autofree gchar *font = NULL;
+
+    if (G_UNLIKELY(!g_file_get_contents(filepath, &font, &filesize, &error))) {
+        g_critical("%s : %s", error->message, filepath);
+        g_error_free(error);
+        return result;
+    }
+
+    ft_error = FT_Init_FreeType(&library);
+
+    if (G_UNLIKELY(ft_error)) {
+        g_critical("%s : %s", FT_Error_Message(ft_error), filepath);
+        return result;
+    }
+
+    ft_error = FT_New_Memory_Face(library, (const FT_Byte *) font, (FT_Long) filesize, 0, &face);
+
+    if (G_UNLIKELY(ft_error)) {
+        g_critical("%s : %s", FT_Error_Message(ft_error), filepath);
+        return result;
+    }
+
+    TT_Header *head = (TT_Header *) FT_Get_Sfnt_Table(face, FT_SFNT_HEAD);
+    if (head)
+        if (head->Font_Revision)
+            result = (float) head->Font_Revision / 65536.0;
+
+    FT_Done_Face(face);
+    FT_Done_FreeType(library);
+    return result;
+}
+
+/**
  * font_manager_get_metadata:
  * @filepath:   full path to font file to examine
  * @index:      face index to examine

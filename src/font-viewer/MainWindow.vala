@@ -37,7 +37,8 @@ namespace FontManager.FontViewer {
         enum FileStatus {
             NOT_INSTALLED,
             INSTALLED,
-            WOULD_DOWNGRADE;
+            WOULD_DOWNGRADE,
+            WOULD_UPGRADE;
         }
 
         public class MainWindow (GLib.Settings? settings) {
@@ -105,7 +106,11 @@ namespace FontManager.FontViewer {
                 }
             }
             if (current_target.query_exists()) {
-                if (timecmp(current_target, current_file) > 0)
+                float a = get_font_revision(current_target.get_path());
+                float b = get_font_revision(current_file.get_path());
+                if (a < b)
+                    return FileStatus.WOULD_UPGRADE;
+                else if (a > b)
                     return FileStatus.WOULD_DOWNGRADE;
                 else
                     return FileStatus.INSTALLED;
@@ -124,6 +129,11 @@ namespace FontManager.FontViewer {
                 case FileStatus.WOULD_DOWNGRADE:
                     action_button.set_label(_("Newer version already installed"));
                     action_button.add_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+                    action_button.set_tooltip_text(_("Click to overwrite"));
+                    break;
+                case FileStatus.WOULD_UPGRADE:
+                    action_button.set_label(_("Update Font"));
+                    action_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
                     action_button.set_tooltip_text(_("Click to overwrite"));
                     break;
                 case FileStatus.INSTALLED:
@@ -173,7 +183,7 @@ namespace FontManager.FontViewer {
                 default:
                     try {
                         install_file(current_file, font_dir);
-                        update_action_button();
+                        update();
                     } catch (Error e) {
                         critical("Failed to install %s", current_file.get_path());
                     }

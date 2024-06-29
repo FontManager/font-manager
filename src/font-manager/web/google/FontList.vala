@@ -294,11 +294,25 @@ namespace FontManager.GoogleFonts {
                 item_label.set_text(font.to_display_name());
                 var installation_status = font.get_installation_status();
                 item_state.active = (installation_status != FileStatus.NOT_INSTALLED);
-                if (installation_status == FileStatus.REQUIRES_UPDATE)
+                if (installation_status == FileStatus.REQUIRES_UPDATE) {
+                    string font_dir = get_font_directory();
+                    string target_dir = Path.build_filename(font_dir, font.family);
+                    string filepath = Path.build_filename(target_dir, font.get_filename());
+                    File outdated_file = File.new_for_path(filepath);
                     download_font_files.begin({ font }, (obj, res) => {
                         if (!(download_font_files.end(res)))
                             warning("Failed to download update data for %s", font.get_filename());
+                        else
+                            try {
+                                outdated_file.delete();
+                                File outdated_dir = File.new_for_path(target_dir);
+                                remove_directory_tree_if_empty(outdated_dir);
+                            } catch (Error e) {
+                                string path = outdated_file.get_path();
+                                warning("Failed to remove outdated font file : %s", path);
+                            }
                     });
+                }
             }
             signal_id = item_state.toggled.connect_after(() => { on_item_state_change(item); });
             return;

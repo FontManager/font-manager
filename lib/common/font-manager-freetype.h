@@ -55,6 +55,7 @@ typedef enum
 FontManagerFreetypeError;
 
 glong font_manager_get_face_count (const gchar * filepath, GError **error);
+gfloat font_manager_get_font_revision (const gchar *filepath);
 
 JsonObject * font_manager_get_metadata (const gchar  *filepath,
                                         gint          index,

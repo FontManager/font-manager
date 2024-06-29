@@ -4,7 +4,7 @@
   <template class="FontManagerFontViewerMainWindow" parent="FontManagerApplicationWindow">
     <property name="default-width">600</property>
     <property name="default-height">450</property>
-    <property name="icon-name">font-x-generic-symbolic</property>
+    <property name="icon-name">com.github.FontManager.FontManager</property>
     <child>
       <object class="GtkStack" id="stack">
         <property name="transition-type">crossfade</property>
@@ -29,7 +29,7 @@
                 <property name="title" translatable="1">Font Viewer</property>
                 <property name="subtitle" translatable="1">Preview font files before installing them.</property>
                 <property name="message" translatable="1">To preview a font simply drag it onto this area.</property>
-                <property name="icon-name">font-x-generic-symbolic</property>
+                <property name="icon-name">com.github.FontManager.FontManager-symbolic</property>
               </object>
             </property>
           </object>
@@ -62,7 +62,7 @@
         </property>
         <child>
           <object class="GtkImage" id="title_icon">
-            <property name="icon-name">font-x-generic</property>
+            <property name="icon-name">com.github.FontManager.FontManager</property>
             <property name="icon_size">2</property>
             <property name="opacity">0.95</property>
           </object>
