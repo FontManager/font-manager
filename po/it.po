@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-28 22:57-0400\n"
+"POT-Creation-Date: 2024-06-29 15:02-0400\n"
 "PO-Revision-Date: 2024-04-22 17:07+0000\n"
 "Last-Translator: Roberto Guido <bob4job@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
@@ -141,159 +141,159 @@ msgstr "Aggiornamento del database — Tipi di carattere"
 msgid "Unknown Vendor"
 msgstr "Fornitore sconosciuto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:536
+#: lib/fontconfig/font-manager-fontconfig.c:567
 #: src/font-manager/web/google/WebFont.vala:139
 msgid "Thin"
 msgstr "Sottile"
 
-#: lib/fontconfig/font-manager-fontconfig.c:538
+#: lib/fontconfig/font-manager-fontconfig.c:569
 msgid "Ultra-Light"
 msgstr "Ultra Leggero"
 
-#: lib/fontconfig/font-manager-fontconfig.c:540
-#: lib/fontconfig/font-manager-fontconfig.c:893
+#: lib/fontconfig/font-manager-fontconfig.c:571
+#: lib/fontconfig/font-manager-fontconfig.c:924
 #: src/font-manager/web/google/WebFont.vala:143
 msgid "Light"
 msgstr "Leggero"
 
-#: lib/fontconfig/font-manager-fontconfig.c:542
+#: lib/fontconfig/font-manager-fontconfig.c:573
 msgid "Semi-Light"
 msgstr "Semi Leggero"
 
-#: lib/fontconfig/font-manager-fontconfig.c:544
+#: lib/fontconfig/font-manager-fontconfig.c:575
 msgid "Book"
 msgstr "Libro"
 
-#: lib/fontconfig/font-manager-fontconfig.c:546
-#: lib/fontconfig/font-manager-fontconfig.c:850
+#: lib/fontconfig/font-manager-fontconfig.c:577
+#: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:147
 msgid "Medium"
 msgstr "Medio"
 
-#: lib/fontconfig/font-manager-fontconfig.c:548
+#: lib/fontconfig/font-manager-fontconfig.c:579
 msgid "Semi-Bold"
 msgstr "Semi Grassetto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:550
+#: lib/fontconfig/font-manager-fontconfig.c:581
 #: src/font-manager/web/google/WebFont.vala:151
 msgid "Bold"
 msgstr "Grassetto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:552
+#: lib/fontconfig/font-manager-fontconfig.c:583
 msgid "Ultra-Bold"
 msgstr "Ultra Grassetto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:554
+#: lib/fontconfig/font-manager-fontconfig.c:585
 msgid "Heavy"
 msgstr "Pesante"
 
-#: lib/fontconfig/font-manager-fontconfig.c:556
+#: lib/fontconfig/font-manager-fontconfig.c:587
 msgid "Ultra-Heavy"
 msgstr "Ultra Pesante"
 
-#: lib/fontconfig/font-manager-fontconfig.c:631
+#: lib/fontconfig/font-manager-fontconfig.c:662
 #: src/font-manager/web/google/WebFont.vala:189
 msgid "Italic"
 msgstr "Corsivo"
 
-#: lib/fontconfig/font-manager-fontconfig.c:633
+#: lib/fontconfig/font-manager-fontconfig.c:664
 msgid "Oblique"
 msgstr "Obliquo"
 
-#: lib/fontconfig/font-manager-fontconfig.c:671
+#: lib/fontconfig/font-manager-fontconfig.c:702
 msgid "Ultra-Condensed"
 msgstr "Ultra Condensato"
 
-#: lib/fontconfig/font-manager-fontconfig.c:673
+#: lib/fontconfig/font-manager-fontconfig.c:704
 msgid "Extra-Condensed"
 msgstr "Extra Condensato"
 
-#: lib/fontconfig/font-manager-fontconfig.c:675
+#: lib/fontconfig/font-manager-fontconfig.c:706
 msgid "Condensed"
 msgstr "Condensato"
 
-#: lib/fontconfig/font-manager-fontconfig.c:677
+#: lib/fontconfig/font-manager-fontconfig.c:708
 msgid "Semi-Condensed"
 msgstr "Semi Condensato"
 
-#: lib/fontconfig/font-manager-fontconfig.c:679
+#: lib/fontconfig/font-manager-fontconfig.c:710
 msgid "Semi-Expanded"
 msgstr "Semi Espanso"
 
-#: lib/fontconfig/font-manager-fontconfig.c:681
+#: lib/fontconfig/font-manager-fontconfig.c:712
 msgid "Expanded"
 msgstr "Espanso"
 
-#: lib/fontconfig/font-manager-fontconfig.c:683
+#: lib/fontconfig/font-manager-fontconfig.c:714
 msgid "Extra-Expanded"
 msgstr "Extra Espanso"
 
-#: lib/fontconfig/font-manager-fontconfig.c:685
+#: lib/fontconfig/font-manager-fontconfig.c:716
 msgid "Ultra-Expanded"
 msgstr "Ultra Espanso"
 
-#: lib/fontconfig/font-manager-fontconfig.c:754
+#: lib/fontconfig/font-manager-fontconfig.c:785
 msgid "Proportional"
 msgstr "Proporzionale"
 
-#: lib/fontconfig/font-manager-fontconfig.c:756
+#: lib/fontconfig/font-manager-fontconfig.c:787
 msgid "Dual Width"
 msgstr "Doppia Larghezza"
 
-#: lib/fontconfig/font-manager-fontconfig.c:758
+#: lib/fontconfig/font-manager-fontconfig.c:789
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "Monospazio"
 
-#: lib/fontconfig/font-manager-fontconfig.c:760
+#: lib/fontconfig/font-manager-fontconfig.c:791
 msgid "Charcell"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:799
+#: lib/fontconfig/font-manager-fontconfig.c:830
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:801
+#: lib/fontconfig/font-manager-fontconfig.c:832
 msgid "RGB"
 msgstr "RGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:803
+#: lib/fontconfig/font-manager-fontconfig.c:834
 msgid "BGR"
 msgstr "BGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:805
+#: lib/fontconfig/font-manager-fontconfig.c:836
 msgid "VRGB"
 msgstr "VRGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:807
+#: lib/fontconfig/font-manager-fontconfig.c:838
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:809
-#: lib/fontconfig/font-manager-fontconfig.c:854
-#: lib/fontconfig/font-manager-fontconfig.c:897
+#: lib/fontconfig/font-manager-fontconfig.c:840
+#: lib/fontconfig/font-manager-fontconfig.c:885
+#: lib/fontconfig/font-manager-fontconfig.c:928
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
 msgstr "Nessuno"
 
-#: lib/fontconfig/font-manager-fontconfig.c:848
+#: lib/fontconfig/font-manager-fontconfig.c:879
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
 msgstr "Lieve"
 
-#: lib/fontconfig/font-manager-fontconfig.c:852
+#: lib/fontconfig/font-manager-fontconfig.c:883
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
 msgstr "Pieno"
 
-#: lib/fontconfig/font-manager-fontconfig.c:891
+#: lib/fontconfig/font-manager-fontconfig.c:922
 msgid "Default"
 msgstr "Predefinito"
 
-#: lib/fontconfig/font-manager-fontconfig.c:895
+#: lib/fontconfig/font-manager-fontconfig.c:926
 msgid "Legacy"
 msgstr ""
 
@@ -2431,33 +2431,50 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Nessun file selezionato"
 
-#: src/font-viewer/MainWindow.vala:85
+#: src/font-viewer/MainWindow.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "O tipo di file non supportato."
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:137
+#, fuzzy
+#| msgid "System"
+msgid "System Font"
+msgstr "Sistema"
+
+#: src/font-viewer/MainWindow.vala:139
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
 msgstr "La versione più recente è già installata"
 
-#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:135
+#: src/font-viewer/MainWindow.vala:147
 msgid "Update Font"
 msgstr "Aggiorna il tipo di carattere"
 
-#: src/font-viewer/MainWindow.vala:140
+#: src/font-viewer/MainWindow.vala:152
 msgid "Remove Font"
 msgstr "Rimuovi il tipo di carattere"
 
-#: src/font-viewer/MainWindow.vala:144
+#: src/font-viewer/MainWindow.vala:156
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Installa il tipo di carattere"
