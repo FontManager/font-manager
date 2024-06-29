@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-21 10:31-0400\n"
+"POT-Creation-Date: 2024-06-28 22:57-0400\n"
 "PO-Revision-Date: 2024-06-28 00:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
@@ -121,12 +121,12 @@ msgstr "A kiválasztott betűtípusfájlok telepítése"
 msgid "Font Properties"
 msgstr "Betűtípus tulajdonságai"
 
-#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 msgid "Updating Database…"
 msgstr "Adatbázis frissítése…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:648
+#: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
 msgstr "Ismeretlen forgalmazó"
 
@@ -748,12 +748,12 @@ msgstr "Tömörítés…"
 msgid "Rename…"
 msgstr "Átnevezés…"
 
-#: src/font-manager/Compare.vala:382
+#: src/font-manager/Compare.vala:391
 msgid "Saved Comparison"
 msgstr "Mentett összehasonlítás"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:418
+#: src/font-manager/Compare.vala:427
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -909,12 +909,12 @@ msgstr[0] "%i Változat "
 msgstr[1] "%i Változat"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 msgid "Collapse all"
 msgstr "Mindet becsukja"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
@@ -2379,29 +2379,33 @@ msgstr "Extrakövér"
 msgid "Black"
 msgstr "Vastagított"
 
-#: src/font-viewer/MainWindow.vala:83
+#: src/font-viewer/MainWindow.vala:84
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Nincs fájl kiválasztva"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:85
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Vagy nem támogatott fájltípus."
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:130
 msgid "Newer version already installed"
 msgstr "Az újabb verzió már telepítve van"
 
-#: src/font-viewer/MainWindow.vala:127
+#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:135
+msgid "Update Font"
+msgstr "Betűtípus frissítése"
+
+#: src/font-viewer/MainWindow.vala:140
 msgid "Remove Font"
 msgstr "Betűtípus eltávolítása"
 
-#: src/font-viewer/MainWindow.vala:134
+#: src/font-viewer/MainWindow.vala:144
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Betűtípus telepítése"
@@ -2718,9 +2722,6 @@ msgstr "A betűtípus előnézetéhez egyszerűen húzza át erre a területre."
 
 #~ msgid "Update Family"
 #~ msgstr "Család frissítése"
-
-#~ msgid "Update Font"
-#~ msgstr "Betűtípus frissítése"
 
 #~ msgid "Remove Family"
 #~ msgstr "Család eltávolítása"

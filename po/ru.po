@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-21 10:31-0400\n"
+"POT-Creation-Date: 2024-06-28 22:57-0400\n"
 "PO-Revision-Date: 2022-02-06 15:23+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -135,14 +135,14 @@ msgstr "Установить выбранные шрифты"
 msgid "Font Properties"
 msgstr "Свойства шрифта"
 
-#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 #, fuzzy
 #| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
 msgstr "Обновление базы данных — Шрифты"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:648
+#: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
 msgstr "Неизвестный распространитель"
 
@@ -790,12 +790,12 @@ msgstr "Сжать…"
 msgid "Rename…"
 msgstr "Переименовать…"
 
-#: src/font-manager/Compare.vala:382
+#: src/font-manager/Compare.vala:391
 msgid "Saved Comparison"
 msgstr "Сохранённое сравнение"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:418
+#: src/font-manager/Compare.vala:427
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -962,12 +962,12 @@ msgstr[1] "%i варианта"
 msgstr[2] "%i вариантов"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 msgid "Collapse all"
 msgstr "Свернуть все"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
@@ -2497,29 +2497,33 @@ msgstr "Ультражирный"
 msgid "Black"
 msgstr "Чёрный"
 
-#: src/font-viewer/MainWindow.vala:83
+#: src/font-viewer/MainWindow.vala:84
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Файл не выбран"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:85
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Или формат файла не поддерживается."
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:130
 msgid "Newer version already installed"
 msgstr "Последняя версия программы уже установлена"
 
-#: src/font-viewer/MainWindow.vala:127
+#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:135
+msgid "Update Font"
+msgstr "Обновить шрифт"
+
+#: src/font-viewer/MainWindow.vala:140
 msgid "Remove Font"
 msgstr "Удалить шрифт"
 
-#: src/font-viewer/MainWindow.vala:134
+#: src/font-viewer/MainWindow.vala:144
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Установить шрифт"
@@ -2845,9 +2849,6 @@ msgstr "Перетащите файл шрифта в эту область, ч�
 
 #~ msgid "Update Family"
 #~ msgstr "Обновить семейство"
-
-#~ msgid "Update Font"
-#~ msgstr "Обновить шрифт"
 
 #~ msgid "Remove Family"
 #~ msgstr "Удалить семейство"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-21 10:31-0400\n"
+"POT-Creation-Date: 2024-06-28 22:57-0400\n"
 "PO-Revision-Date: 2022-02-11 07:00+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
@@ -122,14 +122,14 @@ msgstr "Installera markerad teckensnittsfiler"
 msgid "Font Properties"
 msgstr "Teckensnittsegenskaper"
 
-#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 #, fuzzy
 #| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
 msgstr "Uppdaterar databas — Teckensnitt"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:648
+#: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
 msgstr "Okänd leverantör"
 
@@ -772,12 +772,12 @@ msgstr "Komprimera…"
 msgid "Rename…"
 msgstr "Byt namn…"
 
-#: src/font-manager/Compare.vala:382
+#: src/font-manager/Compare.vala:391
 msgid "Saved Comparison"
 msgstr "Sparade jämförelse"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:418
+#: src/font-manager/Compare.vala:427
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -943,12 +943,12 @@ msgstr[0] "%i variation "
 msgstr[1] "%i variationer "
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 msgid "Collapse all"
 msgstr "Komprimera alla"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
@@ -2475,29 +2475,33 @@ msgstr "Extra fet"
 msgid "Black"
 msgstr "Svart"
 
-#: src/font-viewer/MainWindow.vala:83
+#: src/font-viewer/MainWindow.vala:84
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Ingen fil vald"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:85
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Eller filtyp utan stöd."
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:130
 msgid "Newer version already installed"
 msgstr "Nyare version är redan installerad"
 
-#: src/font-viewer/MainWindow.vala:127
+#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:135
+msgid "Update Font"
+msgstr "Uppdatera teckensnitt"
+
+#: src/font-viewer/MainWindow.vala:140
 msgid "Remove Font"
 msgstr "Ta bort teckensnitt"
 
-#: src/font-viewer/MainWindow.vala:134
+#: src/font-viewer/MainWindow.vala:144
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Installera teckensnitt"
@@ -2822,9 +2826,6 @@ msgstr "Dra ett teckensnitt till det här området, för att förhandsgranska."
 
 #~ msgid "Update Family"
 #~ msgstr "Uppdatera familj"
-
-#~ msgid "Update Font"
-#~ msgstr "Uppdatera teckensnitt"
 
 #~ msgid "Remove Family"
 #~ msgstr "Ta bort familj"
