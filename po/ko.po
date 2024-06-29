@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-21 10:31-0400\n"
+"POT-Creation-Date: 2024-06-28 22:57-0400\n"
 "PO-Revision-Date: 2022-12-23 13:48+0000\n"
 "Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/font-"
@@ -122,14 +122,14 @@ msgstr "선택한 글꼴 파일 설치하기"
 msgid "Font Properties"
 msgstr "글꼴 속성"
 
-#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 #, fuzzy
 #| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
 msgstr "데이터베이스 업데이트 중 — 글꼴"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:648
+#: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
 msgstr "알 수 없는 공급사"
 
@@ -764,12 +764,12 @@ msgstr "압축하기…"
 msgid "Rename…"
 msgstr "이름 바꾸기…"
 
-#: src/font-manager/Compare.vala:382
+#: src/font-manager/Compare.vala:391
 msgid "Saved Comparison"
 msgstr "저장된 비교"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:418
+#: src/font-manager/Compare.vala:427
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -935,12 +935,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 msgid "Collapse all"
 msgstr "모두 접기"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
@@ -2452,29 +2452,33 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:83
+#: src/font-viewer/MainWindow.vala:84
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "선택한 파일이 없습니다"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:85
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "또는 지원되지 않는 파일 형식입니다."
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:130
 msgid "Newer version already installed"
 msgstr "새 버전이 이미 설치됨"
 
-#: src/font-viewer/MainWindow.vala:127
+#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:135
+msgid "Update Font"
+msgstr "폰트 업데이트"
+
+#: src/font-viewer/MainWindow.vala:140
 msgid "Remove Font"
 msgstr "글꼴 제거"
 
-#: src/font-viewer/MainWindow.vala:134
+#: src/font-viewer/MainWindow.vala:144
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "글꼴 설치"
@@ -2784,9 +2788,6 @@ msgstr "글꼴을 미리 보려면 이 영역으로 드래그하면 됩니다."
 
 #~ msgid "Update Family"
 #~ msgstr "글꼴 집합 업데이트"
-
-#~ msgid "Update Font"
-#~ msgstr "폰트 업데이트"
 
 #~ msgid "Remove Family"
 #~ msgstr "글꼴 집합 제거"

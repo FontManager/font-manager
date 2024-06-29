@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-21 10:31-0400\n"
+"POT-Creation-Date: 2024-06-28 22:57-0400\n"
 "PO-Revision-Date: 2023-04-17 21:50+0000\n"
 "Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
@@ -125,14 +125,14 @@ msgstr "Zainstaluj wybrane pliki czcionek"
 msgid "Font Properties"
 msgstr "Właściwości czcionki"
 
-#: lib/common/font-manager-database.c:550 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 #, fuzzy
 #| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
 msgstr "Aktualizowanie bazy danych — Czcionki"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:648
+#: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
 msgstr "Nieznany dostawca"
 
@@ -771,12 +771,12 @@ msgstr "Skompresuj…"
 msgid "Rename…"
 msgstr "Zmień nazwę…"
 
-#: src/font-manager/Compare.vala:382
+#: src/font-manager/Compare.vala:391
 msgid "Saved Comparison"
 msgstr "Zapisane porównanie"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:418
+#: src/font-manager/Compare.vala:427
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -943,12 +943,12 @@ msgstr[1] "%i warianty "
 msgstr[2] "%i wariantów "
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 msgid "Collapse all"
 msgstr "Zwiń wszystkie"
 
 #: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:364
+#: src/font-manager/web/google/FontList.vala:378
 #: src/font-manager/ui/font-manager-font-list-controls.ui:19
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
@@ -2476,29 +2476,33 @@ msgstr "Ekstra pogrubiona"
 msgid "Black"
 msgstr "Mocno pogrubiona"
 
-#: src/font-viewer/MainWindow.vala:83
+#: src/font-viewer/MainWindow.vala:84
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Nie wybrano pliku"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:85
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Lub nieobsługiwany rodzaj pliku."
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:130
 msgid "Newer version already installed"
 msgstr "Zainstalowana jest nowsza wersja"
 
-#: src/font-viewer/MainWindow.vala:127
+#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:135
+msgid "Update Font"
+msgstr "Aktualizuj czcionkę"
+
+#: src/font-viewer/MainWindow.vala:140
 msgid "Remove Font"
 msgstr "Usuń czcionkę"
 
-#: src/font-viewer/MainWindow.vala:134
+#: src/font-viewer/MainWindow.vala:144
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Zainstaluj czcionkę"
@@ -2825,9 +2829,6 @@ msgstr "Aby dokonać podglądu czcionki po prostu przeciągnij ją na ten obszar
 
 #~ msgid "Update Family"
 #~ msgstr "Aktualizuj rodzinę"
-
-#~ msgid "Update Font"
-#~ msgstr "Aktualizuj czcionkę"
 
 #~ msgid "Remove Family"
 #~ msgstr "Usuń rodzinę"
