@@ -26,6 +26,7 @@ namespace FontManager.FontViewer {
         File? current_file;
         File? current_target;
         FileStatus file_status;
+        List <string> installed_files;
 
         [GtkChild] unowned Gtk.Label title_label;
         [GtkChild] unowned Gtk.Label subtitle_label;
@@ -37,6 +38,7 @@ namespace FontManager.FontViewer {
         enum FileStatus {
             NOT_INSTALLED,
             INSTALLED,
+            SYSTEM_FONT,
             WOULD_DOWNGRADE,
             WOULD_UPGRADE;
         }
@@ -56,11 +58,12 @@ namespace FontManager.FontViewer {
         }
 
         public bool show_uri (string uri, int index = 0) {
+            installed_files = list_available_font_files();
             return preview_pane.show_uri(uri, index);
         }
 
         public bool open (File file, int index = 0) {
-            return preview_pane.show_uri(file.get_uri(), index);
+            return show_uri(file.get_uri(), index);
         }
 
         bool on_drop (Value val, double x, double y) {
@@ -95,6 +98,9 @@ namespace FontManager.FontViewer {
         FileStatus get_file_status () {
             if (current_file == null)
                 return FileStatus.NOT_INSTALLED;
+            string current_path = current_file.get_path();
+            if (installed_files.find_custom(current_path, strcmp) != null && get_file_owner(current_path) != 0)
+                return FileStatus.SYSTEM_FONT;
             File font_dir = File.new_for_path(get_user_font_directory());
             if (current_file.get_path().contains(font_dir.get_path()))
                 current_target = current_file;
@@ -121,11 +127,17 @@ namespace FontManager.FontViewer {
         void update_action_button () {
             action_button.remove_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
             action_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            action_button.remove_css_class(STYLE_CLASS_DIM_LABEL);
             action_button.set_tooltip_text(null);
             action_button.set_visible(preview_pane.font != null);
             if (preview_pane.font == null)
                 return;
             switch (file_status) {
+                case FileStatus.SYSTEM_FONT:
+                    action_button.set_label(_("System Font"));
+                    action_button.add_css_class(STYLE_CLASS_DIM_LABEL);
+                    action_button.set_tooltip_text(_("Selected font file is either installed in a system directory or is not writable by the current user.\n\nIf you wish to remove this font from the list of available fonts use the system package manager to remove the package containing this font file, ask the system administrator to remove it or use a font management application to disable it."));
+                    break;
                 case FileStatus.WOULD_DOWNGRADE:
                     action_button.set_label(_("Newer version already installed"));
                     action_button.add_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
@@ -169,6 +181,12 @@ namespace FontManager.FontViewer {
         public void on_action_button_clicked () {
             File font_dir = File.new_for_path(get_user_font_directory());
             switch (file_status) {
+                case FileStatus.SYSTEM_FONT:
+                    string directory = GLib.Path.get_dirname(current_file.get_path());
+                    File file = File.new_for_path(directory);
+                    var launcher = new Gtk.FileLauncher(file);
+                    launcher.launch.begin(null, null);
+                    break;
                 case FileStatus.INSTALLED:
                     try {
                         File parent = current_target.get_parent();

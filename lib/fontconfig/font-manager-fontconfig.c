@@ -137,6 +137,37 @@ font_manager_clear_application_fonts (void)
 }
 
 /**
+ * font_manager_list_available_font_files:
+ *
+ * Returns: (element-type utf8) (transfer full) (nullable):
+ * a newly created #GSList containing filepaths or %NULL.
+ * Free the returned list using #g_slist_free_full(list, #g_free)
+ */
+GList *
+font_manager_list_available_font_files (void)
+{
+    FcPattern *pattern = FcPatternBuild(NULL,NULL);
+    FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, FC_FONTFORMAT, NULL);
+    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
+    GList *result = NULL;
+
+    for (int i = 0; i < fontset->nfont; i++) {
+        FcChar8 *file;
+        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch) {
+            if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
+                continue;
+            result = g_list_prepend(result, g_strdup_printf("%s", file));
+        }
+    }
+
+    FcObjectSetDestroy(objectset);
+    FcPatternDestroy(pattern);
+    FcFontSetDestroy(fontset);
+    return result;
+}
+
+/**
  * font_manager_list_available_font_families:
  *
  * Returns: (transfer full) (nullable):
