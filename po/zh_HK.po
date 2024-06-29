@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-28 22:57-0400\n"
+"POT-Creation-Date: 2024-06-29 15:02-0400\n"
 "PO-Revision-Date: 2019-10-03 02:39-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -142,159 +142,159 @@ msgstr ""
 msgid "Unknown Vendor"
 msgstr "未知(Unknown)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:536
+#: lib/fontconfig/font-manager-fontconfig.c:567
 #: src/font-manager/web/google/WebFont.vala:139
 msgid "Thin"
 msgstr "轻(Thin)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:538
+#: lib/fontconfig/font-manager-fontconfig.c:569
 msgid "Ultra-Light"
 msgstr "超细(Ultra-Light)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:540
-#: lib/fontconfig/font-manager-fontconfig.c:893
+#: lib/fontconfig/font-manager-fontconfig.c:571
+#: lib/fontconfig/font-manager-fontconfig.c:924
 #: src/font-manager/web/google/WebFont.vala:143
 msgid "Light"
 msgstr "细(Light)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:542
+#: lib/fontconfig/font-manager-fontconfig.c:573
 msgid "Semi-Light"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:544
+#: lib/fontconfig/font-manager-fontconfig.c:575
 msgid "Book"
 msgstr "预设(Book)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:546
-#: lib/fontconfig/font-manager-fontconfig.c:850
+#: lib/fontconfig/font-manager-fontconfig.c:577
+#: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:147
 msgid "Medium"
 msgstr "中等(Medium)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:548
+#: lib/fontconfig/font-manager-fontconfig.c:579
 msgid "Semi-Bold"
 msgstr "半粗(Semi-Bold)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:550
+#: lib/fontconfig/font-manager-fontconfig.c:581
 #: src/font-manager/web/google/WebFont.vala:151
 msgid "Bold"
 msgstr "粗(Bold)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:552
+#: lib/fontconfig/font-manager-fontconfig.c:583
 msgid "Ultra-Bold"
 msgstr "超粗(Ultra-Bold)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:554
+#: lib/fontconfig/font-manager-fontconfig.c:585
 msgid "Heavy"
 msgstr "重(Heavy)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:556
+#: lib/fontconfig/font-manager-fontconfig.c:587
 msgid "Ultra-Heavy"
 msgstr "超重(Ultra-Heavy)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:631
+#: lib/fontconfig/font-manager-fontconfig.c:662
 #: src/font-manager/web/google/WebFont.vala:189
 msgid "Italic"
 msgstr "斜体(Italic)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:633
+#: lib/fontconfig/font-manager-fontconfig.c:664
 msgid "Oblique"
 msgstr "倾斜体(Oblique)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:671
+#: lib/fontconfig/font-manager-fontconfig.c:702
 msgid "Ultra-Condensed"
 msgstr "超窄(Ultra-Condensed)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:673
+#: lib/fontconfig/font-manager-fontconfig.c:704
 msgid "Extra-Condensed"
 msgstr "特窄(Extra-Condensed)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:675
+#: lib/fontconfig/font-manager-fontconfig.c:706
 msgid "Condensed"
 msgstr "窄(Condensed)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:677
+#: lib/fontconfig/font-manager-fontconfig.c:708
 msgid "Semi-Condensed"
 msgstr "半窄(Semi-Condensed)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:679
+#: lib/fontconfig/font-manager-fontconfig.c:710
 msgid "Semi-Expanded"
 msgstr "半宽(Semi-Expanded)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:681
+#: lib/fontconfig/font-manager-fontconfig.c:712
 msgid "Expanded"
 msgstr "宽(Expanded)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:683
+#: lib/fontconfig/font-manager-fontconfig.c:714
 msgid "Extra-Expanded"
 msgstr "特宽(Extra-Expanded)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:685
+#: lib/fontconfig/font-manager-fontconfig.c:716
 msgid "Ultra-Expanded"
 msgstr "超宽(Ultra-Expanded)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:754
+#: lib/fontconfig/font-manager-fontconfig.c:785
 msgid "Proportional"
 msgstr "比例(Proportional)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:756
+#: lib/fontconfig/font-manager-fontconfig.c:787
 msgid "Dual Width"
 msgstr "双宽(Dual Width)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:758
+#: lib/fontconfig/font-manager-fontconfig.c:789
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "等宽(Monospace)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:760
+#: lib/fontconfig/font-manager-fontconfig.c:791
 msgid "Charcell"
 msgstr "等宽等高(Charcell)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:799
+#: lib/fontconfig/font-manager-fontconfig.c:830
 msgid "Unknown"
 msgstr "未知(Unknown)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:801
+#: lib/fontconfig/font-manager-fontconfig.c:832
 msgid "RGB"
 msgstr "RGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:803
+#: lib/fontconfig/font-manager-fontconfig.c:834
 msgid "BGR"
 msgstr "BGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:805
+#: lib/fontconfig/font-manager-fontconfig.c:836
 msgid "VRGB"
 msgstr "VRGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:807
+#: lib/fontconfig/font-manager-fontconfig.c:838
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:809
-#: lib/fontconfig/font-manager-fontconfig.c:854
-#: lib/fontconfig/font-manager-fontconfig.c:897
+#: lib/fontconfig/font-manager-fontconfig.c:840
+#: lib/fontconfig/font-manager-fontconfig.c:885
+#: lib/fontconfig/font-manager-fontconfig.c:928
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
 msgstr "无(None)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:848
+#: lib/fontconfig/font-manager-fontconfig.c:879
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
 msgstr "少量(Slight)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:852
+#: lib/fontconfig/font-manager-fontconfig.c:883
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
 msgstr "全部(Full)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:891
+#: lib/fontconfig/font-manager-fontconfig.c:922
 msgid "Default"
 msgstr "默认(Default)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:895
+#: lib/fontconfig/font-manager-fontconfig.c:926
 msgid "Legacy"
 msgstr "传统(Legacy)"
 
@@ -2359,36 +2359,53 @@ msgstr "超粗(Ultra-Bold)"
 msgid "Black"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:85
+#: src/font-viewer/MainWindow.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:55
 #, fuzzy
 msgid "Or unsupported filetype."
 msgstr "按文件类型分组"
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:137
+#, fuzzy
+#| msgid "System"
+msgid "System Font"
+msgstr "系统"
+
+#: src/font-viewer/MainWindow.vala:139
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
-#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:135
+#: src/font-viewer/MainWindow.vala:147
 #, fuzzy
 msgid "Update Font"
 msgstr "添加字体"
 
-#: src/font-viewer/MainWindow.vala:140
+#: src/font-viewer/MainWindow.vala:152
 #, fuzzy
 msgid "Remove Font"
 msgstr "删除字体"
 
-#: src/font-viewer/MainWindow.vala:144
+#: src/font-viewer/MainWindow.vala:156
 #: src/font-viewer/font-viewer-main-window.ui:74
 #, fuzzy
 msgid "Install Font"

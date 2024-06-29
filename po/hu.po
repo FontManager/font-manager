@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-28 22:57-0400\n"
+"POT-Creation-Date: 2024-06-29 15:02-0400\n"
 "PO-Revision-Date: 2024-06-28 00:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
@@ -130,159 +130,159 @@ msgstr "Adatbázis frissítése…"
 msgid "Unknown Vendor"
 msgstr "Ismeretlen forgalmazó"
 
-#: lib/fontconfig/font-manager-fontconfig.c:536
+#: lib/fontconfig/font-manager-fontconfig.c:567
 #: src/font-manager/web/google/WebFont.vala:139
 msgid "Thin"
 msgstr "Vékony"
 
-#: lib/fontconfig/font-manager-fontconfig.c:538
+#: lib/fontconfig/font-manager-fontconfig.c:569
 msgid "Ultra-Light"
 msgstr "Ultra-könnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:540
-#: lib/fontconfig/font-manager-fontconfig.c:893
+#: lib/fontconfig/font-manager-fontconfig.c:571
+#: lib/fontconfig/font-manager-fontconfig.c:924
 #: src/font-manager/web/google/WebFont.vala:143
 msgid "Light"
 msgstr "Könnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:542
+#: lib/fontconfig/font-manager-fontconfig.c:573
 msgid "Semi-Light"
 msgstr "Félkönnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:544
+#: lib/fontconfig/font-manager-fontconfig.c:575
 msgid "Book"
 msgstr "Könyv"
 
-#: lib/fontconfig/font-manager-fontconfig.c:546
-#: lib/fontconfig/font-manager-fontconfig.c:850
+#: lib/fontconfig/font-manager-fontconfig.c:577
+#: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:147
 msgid "Medium"
 msgstr "Közepes"
 
-#: lib/fontconfig/font-manager-fontconfig.c:548
+#: lib/fontconfig/font-manager-fontconfig.c:579
 msgid "Semi-Bold"
 msgstr "Enyhén kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:550
+#: lib/fontconfig/font-manager-fontconfig.c:581
 #: src/font-manager/web/google/WebFont.vala:151
 msgid "Bold"
 msgstr "Kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:552
+#: lib/fontconfig/font-manager-fontconfig.c:583
 msgid "Ultra-Bold"
 msgstr "Ultra-kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:554
+#: lib/fontconfig/font-manager-fontconfig.c:585
 msgid "Heavy"
 msgstr "Erős"
 
-#: lib/fontconfig/font-manager-fontconfig.c:556
+#: lib/fontconfig/font-manager-fontconfig.c:587
 msgid "Ultra-Heavy"
 msgstr "Ultra-erős"
 
-#: lib/fontconfig/font-manager-fontconfig.c:631
+#: lib/fontconfig/font-manager-fontconfig.c:662
 #: src/font-manager/web/google/WebFont.vala:189
 msgid "Italic"
 msgstr "Dőlt"
 
-#: lib/fontconfig/font-manager-fontconfig.c:633
+#: lib/fontconfig/font-manager-fontconfig.c:664
 msgid "Oblique"
 msgstr "Ferde"
 
-#: lib/fontconfig/font-manager-fontconfig.c:671
+#: lib/fontconfig/font-manager-fontconfig.c:702
 msgid "Ultra-Condensed"
 msgstr "Ultra-keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:673
+#: lib/fontconfig/font-manager-fontconfig.c:704
 msgid "Extra-Condensed"
 msgstr "Extra-keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:675
+#: lib/fontconfig/font-manager-fontconfig.c:706
 msgid "Condensed"
 msgstr "Keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:677
+#: lib/fontconfig/font-manager-fontconfig.c:708
 msgid "Semi-Condensed"
 msgstr "Enyhén keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:679
+#: lib/fontconfig/font-manager-fontconfig.c:710
 msgid "Semi-Expanded"
 msgstr "Enyhén széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:681
+#: lib/fontconfig/font-manager-fontconfig.c:712
 msgid "Expanded"
 msgstr "Széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:683
+#: lib/fontconfig/font-manager-fontconfig.c:714
 msgid "Extra-Expanded"
 msgstr "Extra-széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:685
+#: lib/fontconfig/font-manager-fontconfig.c:716
 msgid "Ultra-Expanded"
 msgstr "Ultra-széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:754
+#: lib/fontconfig/font-manager-fontconfig.c:785
 msgid "Proportional"
 msgstr "Arányos"
 
-#: lib/fontconfig/font-manager-fontconfig.c:756
+#: lib/fontconfig/font-manager-fontconfig.c:787
 msgid "Dual Width"
 msgstr "Duplaszélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:758
+#: lib/fontconfig/font-manager-fontconfig.c:789
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "Rögzített szélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:760
+#: lib/fontconfig/font-manager-fontconfig.c:791
 msgid "Charcell"
 msgstr "Kényszer szélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:799
+#: lib/fontconfig/font-manager-fontconfig.c:830
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: lib/fontconfig/font-manager-fontconfig.c:801
+#: lib/fontconfig/font-manager-fontconfig.c:832
 msgid "RGB"
 msgstr "RGB (Piros-Zöld-Kék szinkeverés)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:803
+#: lib/fontconfig/font-manager-fontconfig.c:834
 msgid "BGR"
 msgstr "BGR (Kék-Zöld-Piros szinkeverés)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:805
+#: lib/fontconfig/font-manager-fontconfig.c:836
 msgid "VRGB"
 msgstr "VRGB (Függőleges RGB)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:807
+#: lib/fontconfig/font-manager-fontconfig.c:838
 msgid "VBGR"
 msgstr "VBGR (Függőleges BGR)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:809
-#: lib/fontconfig/font-manager-fontconfig.c:854
-#: lib/fontconfig/font-manager-fontconfig.c:897
+#: lib/fontconfig/font-manager-fontconfig.c:840
+#: lib/fontconfig/font-manager-fontconfig.c:885
+#: lib/fontconfig/font-manager-fontconfig.c:928
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
 msgstr "Egyik sem"
 
-#: lib/fontconfig/font-manager-fontconfig.c:848
+#: lib/fontconfig/font-manager-fontconfig.c:879
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
 msgstr "Enyhe"
 
-#: lib/fontconfig/font-manager-fontconfig.c:852
+#: lib/fontconfig/font-manager-fontconfig.c:883
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
 msgstr "Teljes"
 
-#: lib/fontconfig/font-manager-fontconfig.c:891
+#: lib/fontconfig/font-manager-fontconfig.c:922
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: lib/fontconfig/font-manager-fontconfig.c:895
+#: lib/fontconfig/font-manager-fontconfig.c:926
 msgid "Legacy"
 msgstr "Örökölt"
 
@@ -2379,33 +2379,50 @@ msgstr "Extrakövér"
 msgid "Black"
 msgstr "Vastagított"
 
-#: src/font-viewer/MainWindow.vala:84
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Nincs fájl kiválasztva"
 
-#: src/font-viewer/MainWindow.vala:85
+#: src/font-viewer/MainWindow.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Vagy nem támogatott fájltípus."
 
-#: src/font-viewer/MainWindow.vala:130
+#: src/font-viewer/MainWindow.vala:137
+#, fuzzy
+#| msgid "System"
+msgid "System Font"
+msgstr "Rendszer"
+
+#: src/font-viewer/MainWindow.vala:139
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
 msgstr "Az újabb verzió már telepítve van"
 
-#: src/font-viewer/MainWindow.vala:132 src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:135
+#: src/font-viewer/MainWindow.vala:147
 msgid "Update Font"
 msgstr "Betűtípus frissítése"
 
-#: src/font-viewer/MainWindow.vala:140
+#: src/font-viewer/MainWindow.vala:152
 msgid "Remove Font"
 msgstr "Betűtípus eltávolítása"
 
-#: src/font-viewer/MainWindow.vala:144
+#: src/font-viewer/MainWindow.vala:156
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Betűtípus telepítése"
