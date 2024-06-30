@@ -1,10 +1,13 @@
 0.8.9 -> 0.9.0
 - Port to GTK 4
+- Add build option to enable loading Adwaita stylesheet, disabled by default.
+- Change application identifier to com.github.FontManager.FontManager - Issue #319
 - Add option to sort collections by name or size - Issue #297
 - Improve search to include variations and partial matches - Issue #316
 - Add editable preview mode to Google Fonts preview pane - Issue #250
 - Double click selected orthography filter to deselect - Issue #332
 - Drop Fonts table every update to avoid missing fonts - Issue #330
+- Track locale and drop database on change to avoid invalid orthographies - Issue #330
 - Update vendor list
 
 0.8.8 -> 0.8.9

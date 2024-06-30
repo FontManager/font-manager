@@ -118,7 +118,7 @@ namespace FontManager {
             int findex = int.parse(data[ID.INDEX]);
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
-                conn.call_sync(FontViewer.BUS_ID,
+                conn.call.begin(FontViewer.BUS_ID,
                                 FontViewer.BUS_PATH,
                                 FontViewer.BUS_ID,
                                 "ShowUri",
@@ -126,6 +126,7 @@ namespace FontManager {
                                 null,
                                 DBusCallFlags.NONE,
                                 -1,
+                                null,
                                 null);
             } catch (Error e) {
                 critical("Method call to %s failed : %s", FontViewer.BUS_ID, e.message);
@@ -138,14 +139,15 @@ namespace FontManager {
             string search_term = get_search_term(terms);
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
-                conn.call_sync(BUS_ID,
+                conn.call.begin(BUS_ID,
                                BUS_PATH,
                                BUS_ID,
                                "Search",
-                               new Variant("s", search_term),
+                               new Variant("(s)", search_term),
                                null,
                                DBusCallFlags.NONE,
                                -1,
+                               null,
                                null);
             } catch (Error e) {
                 critical("Method call to %s failed : %s", BUS_ID, e.message);
