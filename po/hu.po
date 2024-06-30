@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-06-29 15:02-0400\n"
-"PO-Revision-Date: 2024-06-28 00:09+0000\n"
+"PO-Revision-Date: 2024-06-30 16:03+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -2051,11 +2051,11 @@ msgstr "Kínai (hagyományos)"
 
 #: src/font-manager/web/google/LanguageData.vala:57
 msgid "Chorasmian"
-msgstr ""
+msgstr "Chorasmian"
 
 #: src/font-manager/web/google/LanguageData.vala:59
 msgid "Cuneiform"
-msgstr ""
+msgstr "Sumér-Akkád ékírás"
 
 #: src/font-manager/web/google/LanguageData.vala:60
 msgid "Cypriot"
@@ -2079,11 +2079,11 @@ msgstr "Deseret"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr "Duployan"
+msgstr "Duployan gyorsírás"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr "Elbasan"
+msgstr "Elbasan (18. századi albán)"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
@@ -2091,7 +2091,7 @@ msgstr "Elymaic"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
-msgstr ""
+msgstr "Grantha"
 
 #: src/font-manager/web/google/LanguageData.vala:75
 msgid "Greek"
@@ -2103,11 +2103,11 @@ msgstr "Görög kiterjesztett"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
-msgstr ""
+msgstr "Gunjala Gondi"
 
 #: src/font-manager/web/google/LanguageData.vala:80
 msgid "Hanifi Rohingya"
-msgstr ""
+msgstr "Hanifi Rohingya"
 
 #: src/font-manager/web/google/LanguageData.vala:81
 msgid "Hanunoo"
@@ -2115,23 +2115,23 @@ msgstr "Hanunoo (mangyan ábc)"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
-msgstr ""
+msgstr "Hatran"
 
 #: src/font-manager/web/google/LanguageData.vala:84
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "Arámi (birodalmi)"
 
 #: src/font-manager/web/google/LanguageData.vala:85
 msgid "Indic Siyaq Numbers"
-msgstr ""
+msgstr "Indiai siyaq számok"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "Pahlavi felirat (középperzsa írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "Pártus felirat"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
@@ -2139,7 +2139,7 @@ msgstr "Japán"
 
 #: src/font-manager/web/google/LanguageData.vala:93
 msgid "Kawi"
-msgstr ""
+msgstr "Kawi"
 
 #: src/font-manager/web/google/LanguageData.vala:96
 msgid "Khojki"
@@ -2171,11 +2171,11 @@ msgstr "Lineáris B Ideogrammák"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
-msgstr ""
+msgstr "Lisu"
 
 #: src/font-manager/web/google/LanguageData.vala:107
 msgid "Lycian"
-msgstr ""
+msgstr "Ókori líciai"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"

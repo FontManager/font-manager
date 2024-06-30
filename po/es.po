@@ -3,14 +3,14 @@
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
 # Alberto Cañaveras <acmp@tuta.io>, 2021.
-# gallegonovato <fran-carro@hotmail.es>, 2023.
+# gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Toni Estévez <toni.estevez@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-06-29 15:02-0400\n"
-"PO-Revision-Date: 2023-04-01 14:41+0000\n"
+"PO-Revision-Date: 2024-06-30 16:03+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
@@ -847,7 +847,7 @@ msgstr "Nombre"
 
 #: src/font-manager/Controls.vala:173
 msgid "Size"
-msgstr ""
+msgstr "Tamaño"
 
 #: src/font-manager/Controls.vala:280
 msgid "Add Fonts"
