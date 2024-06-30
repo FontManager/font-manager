@@ -125,13 +125,22 @@ namespace FontManager {
             return;
         }
 
+        bool have_valid_preview_text (string? preview_text) {
+            if (preview_text == null)
+                return false;
+            Pango.Language C = Pango.Language.from_string("xx");
+            string default_preview_text = C.get_sample_string();
+            return preview_text != default_preview_text;
+        }
+
         public void on_item_set () {
             reset();
             if (item == null)
                 return;
             Family f = (Family) item;
             set_tooltip_text(f.family);
-            string preview_text = f.preview_text != null ? f.preview_text : f.family;
+            string? sample = f.preview_text;
+            string preview_text = have_valid_preview_text(sample) ? sample : f.family;
             preview.set_text(preview_text);
             Pango.FontDescription font_desc;
             font_desc = Pango.FontDescription.from_string(f.description);

@@ -52,7 +52,7 @@ namespace FontManager {
 
     }
 
-    internal const string SELECT_NON_LATIN_FONTS = """
+    internal const string SELECT_NON_LOCAL_FONTS = """
     SELECT DISTINCT description, Orthography.sample FROM Fonts
     JOIN Orthography USING (filepath, findex)
     WHERE Orthography.sample IS NOT NULL;
@@ -124,11 +124,11 @@ namespace FontManager {
 
     }
 
-    public HashTable <string, string> get_non_latin_samples () {
+    public HashTable <string, string> get_non_local_samples () {
         var result = new HashTable <string, string> (str_hash, str_equal);
         try {
             Database db = DatabaseProxy.get_default_db();
-            db.execute_query(SELECT_NON_LATIN_FONTS);
+            db.execute_query(SELECT_NON_LOCAL_FONTS);
             foreach (unowned Sqlite.Statement row in db) {
                 string? description = row.column_text(0);
                 string? sample = row.column_text(1);
@@ -147,7 +147,7 @@ namespace FontManager {
     }
 
     public void update_item_preview_text (Json.Array available_fonts) {
-        HashTable <string, string> samples = get_non_latin_samples();
+        HashTable <string, string> samples = get_non_local_samples();
         available_fonts.foreach_element((array, index, node) => {
             Json.Object item = node.get_object();
             string description = item.get_string_member("description");

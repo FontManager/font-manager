@@ -30,12 +30,6 @@ FROM Orthography WHERE json_valid(Orthography.support)
 AND Orthography.filepath = "%s"; """.printf(f);
 }
 
-internal const string SELECT_NON_LATIN_FONTS = """
-SELECT DISTINCT description, Orthography.sample FROM Fonts
-JOIN Orthography USING (filepath, findex)
-WHERE Orthography.sample IS NOT NULL;
-""";
-
 internal unowned string GET_NAME (Json.Object o) { return o.get_string_member("name"); }
 internal double GET_COVERAGE (Json.Object o) { return o.get_double_member("coverage"); }
 
