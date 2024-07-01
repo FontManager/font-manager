@@ -142,7 +142,7 @@ This package provides integration with the Thunar file manager.
 %find_lang %{name}
 
 %check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.metainfo.xml
 
 %posttrans
 /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
@@ -151,7 +151,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %files
 %{_bindir}/%{name}
-%{_datadir}/metainfo/%{DBusName}.appdata.xml
+%{_datadir}/metainfo/%{DBusName}.metainfo.xml
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/gnome-shell/search-providers/%{DBusName}.SearchProvider.ini
@@ -166,7 +166,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %files -n font-viewer
 %{_libexecdir}/%{name}/font-viewer
-%{_datadir}/metainfo/%{DBusName2}.appdata.xml
+%{_datadir}/metainfo/%{DBusName2}.metainfo.xml
 %{_datadir}/applications/%{DBusName2}.desktop
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml

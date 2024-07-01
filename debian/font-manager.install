@@ -1,6 +1,6 @@
 etc/apparmor.d/font-manager
 usr/bin/font-manager
-usr/share/metainfo/com.github.FontManager.FontManager.appdata.xml
+usr/share/metainfo/com.github.FontManager.FontManager.metainfo.xml
 usr/share/applications/com.github.FontManager.FontManager.desktop
 usr/share/dbus-1/services/com.github.FontManager.FontManager.service
 usr/share/gnome-shell/search-providers/com.github.FontManager.FontManager.SearchProvider.ini

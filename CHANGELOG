@@ -1,7 +1,8 @@
 0.8.9 -> 0.9.0
 - Port to GTK 4
-- Add build option to enable loading Adwaita stylesheet, disabled by default.
 - Change application identifier to com.github.FontManager.FontManager - Issue #319
+- Add build option to enable loading Adwaita stylesheet, disabled by default.
+- Update appdata file, switch to using metainfo.xml extension.
 - Add option to sort collections by name or size - Issue #297
 - Improve search to include variations and partial matches - Issue #316
 - Add editable preview mode to Google Fonts preview pane - Issue #250

@@ -50,7 +50,7 @@ foreach path: service
                     output: '@0@.appdata.xml.in'.format(path),
                     configuration: config
                 ),
-        output: '@0@.appdata.xml'.format(path),
+        output: '@0@.metainfo.xml'.format(path),
         po_dir: '../po',
         install: true,
         install_dir: appdata_dir
