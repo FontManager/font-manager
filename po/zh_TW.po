@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-29 15:02-0400\n"
+"POT-Creation-Date: 2024-07-01 19:31-0400\n"
 "PO-Revision-Date: 2024-03-12 17:01+0000\n"
 "Last-Translator: D0735 <D0735@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -40,16 +40,8 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 # Not translate very good, just for use.
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
-msgid "Font Manager project"
-msgstr "字形總管"
-
-# Not translate very good, just for use.
 #. Application.vala
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
 #: lib/gtk/font-manager-application-window.c:288
@@ -57,11 +49,11 @@ msgstr "字形總管"
 msgid "Font Manager"
 msgstr "字形總管"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr "一個支援 GTK+ 桌面環境的簡易字型管理軟體"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
@@ -70,13 +62,13 @@ msgstr ""
 "字型總管讓一般使用者能夠簡單的管理桌面字型，而不需要去使用指令列工具或是手動"
 "編輯設定檔。"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:19
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr "雖然主要設計是用 GNOME 桌面環境，應該也能在其他 GTK+ 桌面環境運作。"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr "字型總管不是一個專業級的字型管理解決方案。"
 
@@ -91,7 +83,7 @@ msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "圖形;檢視器;GNOME;GTK;出版;"
 
 # Not translate very good, just for use.
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
@@ -100,11 +92,11 @@ msgstr "圖形;檢視器;GNOME;GTK;出版;"
 msgid "Font Viewer"
 msgstr "字型檢視器"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr "一個支援 GTK+ 桌面環境的字型檢視軟體"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
@@ -1618,29 +1610,29 @@ msgstr "注音符號"
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
-#: src/font-manager/OrthographyList.vala:111
+#: src/font-manager/OrthographyList.vala:105
 #, fuzzy
 msgid "Coverage"
 msgstr "覆蓋率"
 
-#: src/font-manager/OrthographyList.vala:143
+#: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
 msgstr "支援的正寫法"
 
-#: src/font-manager/OrthographyList.vala:206
+#: src/font-manager/OrthographyList.vala:200
 #, fuzzy
 #| msgid "No file selected"
 msgid "No items selected"
 msgstr "未選擇任何檔案"
 
-#: src/font-manager/OrthographyList.vala:211
+#: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
 msgstr "正在更新"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:237
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -2799,6 +2791,12 @@ msgstr "在安裝之前先檢視字體。"
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
 msgstr "將字型檔案拖曳至此以檢視。"
+
+# Not translate very good, just for use.
+#, fuzzy
+#~| msgid "Font Manager"
+#~ msgid "Font Manager project"
+#~ msgstr "字形總管"
 
 #~ msgid "Select Destination"
 #~ msgstr "選擇目的地"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-29 15:02-0400\n"
+"POT-Creation-Date: 2024-07-01 19:31-0400\n"
 "PO-Revision-Date: 2024-03-14 02:22+0000\n"
 "Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/font-"
@@ -24,15 +24,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.5-dev\n"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
-msgid "Font Manager project"
-msgstr "Gestionnaire de police"
-
 #. Application.vala
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
 #: lib/gtk/font-manager-application-window.c:288
@@ -40,13 +33,13 @@ msgstr "Gestionnaire de police"
 msgid "Font Manager"
 msgstr "Gestionnaire de police"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
 "Une application simple de gestion des polices pour les environnements de "
 "bureau Gtk+"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
@@ -57,7 +50,7 @@ msgstr ""
 "recourir à des outils de ligne de commande ou à modifier les fichiers de "
 "configuration à la main."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:19
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
@@ -66,7 +59,7 @@ msgstr ""
 "l’esprit, il devrait bien fonctionner avec d’autres environnements de bureau "
 "Gtk+."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
 "Gestionnaire de polices n’est PAS une solution de gestion des polices de "
@@ -82,7 +75,7 @@ msgstr "Prévisualiser, comparer et gérer les polices"
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Graphisme; Visionneuse; GNOME; GTK; Publication;"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
@@ -91,13 +84,13 @@ msgstr "Graphisme; Visionneuse; GNOME; GTK; Publication;"
 msgid "Font Viewer"
 msgstr "Visionneuse de polices"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
 "Une application de visualisation de polices pour les environnements de "
 "bureau Gtk+"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
@@ -1578,28 +1571,28 @@ msgstr ""
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
-#: src/font-manager/OrthographyList.vala:111
+#: src/font-manager/OrthographyList.vala:105
 msgid "Coverage"
 msgstr "Couverture"
 
-#: src/font-manager/OrthographyList.vala:143
+#: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
 msgstr "Orthographes prises en charge"
 
-#: src/font-manager/OrthographyList.vala:206
+#: src/font-manager/OrthographyList.vala:200
 #, fuzzy
 #| msgid "No file selected"
 msgid "No items selected"
 msgstr "Aucun fichier sélectionné"
 
-#: src/font-manager/OrthographyList.vala:211
+#: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
 msgstr "Mise à jour en cours"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:237
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -2754,6 +2747,11 @@ msgstr "Prévisualisez les fichiers de polices avant de les installer."
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 "Pour prévisualiser une police, faites-la simplement glisser sur cette zone."
+
+#, fuzzy
+#~| msgid "Font Manager"
+#~ msgid "Font Manager project"
+#~ msgstr "Gestionnaire de police"
 
 #~ msgid "Select Destination"
 #~ msgstr "Sélectionnez la destination"

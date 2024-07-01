@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-29 15:02-0400\n"
+"POT-Creation-Date: 2024-07-01 19:31-0400\n"
 "PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
@@ -19,15 +19,8 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Weblate 4.5-dev\n"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
-msgid "Font Manager project"
-msgstr "Manager de fonturi"
-
 #. Application.vala
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
 #: lib/gtk/font-manager-application-window.c:288
@@ -35,12 +28,12 @@ msgstr "Manager de fonturi"
 msgid "Font Manager"
 msgstr "Manager de fonturi"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
 "O aplicație simplă de gestionare a fonturilor pentru Mediile Desktop Gtk +"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
@@ -50,7 +43,7 @@ msgstr ""
 "gestiona cu ușurință fonturile desktop, fără a fi nevoie să recurgă la "
 "instrumente de linie de comandă sau de a edita fișiere de configurare manual."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:19
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
@@ -58,7 +51,7 @@ msgstr ""
 "Deși este conceput în primul rând având în vedere mediul desktop Gnome, "
 "acesta ar trebui să funcționeze bine cu alte medii desktop Gtk +."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
 "Font Manager NU este o soluție profesională de gestionare a fonturilor."
@@ -73,7 +66,7 @@ msgstr "Previzualizați, comparați și gestionați fonturile"
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Grafică; Vizualizator; GNOME; GTK; Editare;"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
@@ -82,11 +75,11 @@ msgstr "Grafică; Vizualizator; GNOME; GTK; Editare;"
 msgid "Font Viewer"
 msgstr "Vizualizator fonturi"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr "O aplicație vizualizator de fonturi pentru Mediile desktop Gtk+"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
@@ -1603,28 +1596,28 @@ msgstr "Chineză Zhuyin Fuhao"
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
-#: src/font-manager/OrthographyList.vala:111
+#: src/font-manager/OrthographyList.vala:105
 msgid "Coverage"
 msgstr "Acoperire"
 
-#: src/font-manager/OrthographyList.vala:143
+#: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
 msgstr "Ortografii acceptate"
 
-#: src/font-manager/OrthographyList.vala:206
+#: src/font-manager/OrthographyList.vala:200
 #, fuzzy
 #| msgid "No file selected"
 msgid "No items selected"
 msgstr "Nici un fișier selectat"
 
-#: src/font-manager/OrthographyList.vala:211
+#: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
 msgstr "Actualizare în curs"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:237
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -2794,6 +2787,11 @@ msgstr "Previzualizați fișierele de fonturi înainte de a le instala."
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
 msgstr "Pentru a previzualiza un font pur și simplu trageți-l în această zonă."
+
+#, fuzzy
+#~| msgid "Font Manager"
+#~ msgid "Font Manager project"
+#~ msgstr "Manager de fonturi"
 
 #~ msgid "Select Destination"
 #~ msgstr "Selectați Destinație"

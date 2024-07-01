@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-06-29 15:02-0400\n"
+"POT-Creation-Date: 2024-07-01 19:31-0400\n"
 "PO-Revision-Date: 2023-04-17 21:50+0000\n"
 "Last-Translator: Eryk Michalak <gnu.ewm@protonmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
@@ -18,15 +18,8 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 4.17\n"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:6
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:6
-#, fuzzy
-#| msgid "Font Manager"
-msgid "Font Manager project"
-msgstr "Zarządzanie czcionkami"
-
 #. Application.vala
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
 #: lib/gtk/font-manager-application-window.c:288
@@ -34,13 +27,13 @@ msgstr "Zarządzanie czcionkami"
 msgid "Font Manager"
 msgstr "Zarządzanie czcionkami"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
 "Prosta aplikacja do zarządzania czcionkami dla środowisk graficznych "
 "opartych o Gtk+"
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
@@ -50,7 +43,7 @@ msgstr ""
 "czcionkami, bez użycia linii komend lub ręcznego edytowania plików "
 "konfiguracyjnych."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:19
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
@@ -58,7 +51,7 @@ msgstr ""
 "Choć aplikacja została stworzona z myślą o środowisku Gnome, powinna działać "
 "dobrze z innymi środowiskami graficznymi opartymi na Gtk+."
 
-#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
 "Font Manager NIE JEST profesjonalną aplikacją do zarządzania czcionkami."
@@ -73,7 +66,7 @@ msgstr "Przeglądaj, porównuj i zarządzaj czcionkami"
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Grafika;Czcionki;Zarządzanie;GNOME;GTK;Publikowanie;"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:10
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
@@ -82,13 +75,13 @@ msgstr "Grafika;Czcionki;Zarządzanie;GNOME;GTK;Publikowanie;"
 msgid "Font Viewer"
 msgstr "Podgląd czcionek"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:11
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
 "Aplikacja do podglądu plików czcionek dla środowisk graficznych opartych o "
 "Gtk+"
 
-#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
@@ -1596,28 +1589,28 @@ msgstr "Chiński Zhuyin Fuhao"
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
-#: src/font-manager/OrthographyList.vala:111
+#: src/font-manager/OrthographyList.vala:105
 msgid "Coverage"
 msgstr "Pokrycie"
 
-#: src/font-manager/OrthographyList.vala:143
+#: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
 msgstr "Wspierane ortografie"
 
-#: src/font-manager/OrthographyList.vala:206
+#: src/font-manager/OrthographyList.vala:200
 #, fuzzy
 #| msgid "No file selected"
 msgid "No items selected"
 msgstr "Nie wybrano pliku"
 
-#: src/font-manager/OrthographyList.vala:211
+#: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
 msgstr "Aktualizacja w toku"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:237
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -2778,6 +2771,11 @@ msgstr "Podejrzyj pliki czcionek przed ich zainstalowaniem."
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
 msgstr "Aby dokonać podglądu czcionki po prostu przeciągnij ją na ten obszar."
+
+#, fuzzy
+#~| msgid "Font Manager"
+#~ msgid "Font Manager project"
+#~ msgstr "Zarządzanie czcionkami"
 
 #~ msgid "Select Destination"
 #~ msgstr "Wybierz miejsce docelowe"
