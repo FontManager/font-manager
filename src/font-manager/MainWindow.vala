@@ -215,7 +215,9 @@ namespace FontManager {
         }
 
         public void search (string needle) {
+            focus_search(this, null, null);
             main_pane.search(needle);
+            browse_pane.search(needle);
             return;
         }
 

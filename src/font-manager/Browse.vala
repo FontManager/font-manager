@@ -471,6 +471,11 @@ namespace FontManager {
             return;
         }
 
+        public void search (string needle) {
+            search_entry.set_text(needle);
+            return;
+        }
+
         [GtkCallback]
         public void on_decrease_size (Gtk.Button unused) {
             icon_size_adjustment.set_value(icon_size_adjustment.get_value() - 1);

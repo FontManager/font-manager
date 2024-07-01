@@ -8,6 +8,7 @@
 - Double click selected orthography filter to deselect - Issue #332
 - Drop Fonts table every update to avoid missing fonts - Issue #330
 - Track locale and drop database on change to avoid invalid orthographies - Issue #330
+- Ensure property values are always visible - Issue #292
 - Update vendor list
 
 0.8.8 -> 0.8.9
