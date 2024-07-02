@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-01 19:31-0400\n"
+"POT-Creation-Date: 2024-07-02 18:04-0400\n"
 "PO-Revision-Date: 2023-02-09 03:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/font-"
@@ -362,7 +362,7 @@ msgid "Undo changes"
 msgstr "Angre endringer"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:197
+#: src/font-manager/ui/font-manager-browse-preview.ui:200
 msgid "Preview"
 msgstr "Forhåndsvisning"
 
@@ -2436,6 +2436,14 @@ msgstr ""
 
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:29
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
 msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
