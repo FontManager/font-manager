@@ -178,7 +178,12 @@ namespace FontManager {
             container.set_child(null);
             if (container.visible)
                 container.set_visible(false);
-            list = new Gtk.GridView(null, null) { hexpand = true, vexpand = true };
+            list = new Gtk.GridView(null, null) {
+                hexpand = true,
+                vexpand = true,
+                min_columns = 2,
+                max_columns = 36
+            };
             selection = new Gtk.SingleSelection(model) { autoselect = false };
             container.set_child(list);
             container.set_visible(true);
