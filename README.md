@@ -93,8 +93,13 @@ You'll need to ensure the following dependencies are installed:
 - `libxml-2.0 >= 2.9.10`
 - `sqlite3 >= 3.35`
 - `gobject-introspection`
-- `yelp-tools` (optional)
-- `gettext` (optional)
+- `yelp-tools (optional)`
+- `gettext (optional)`
+
+Google Fonts integration, which is enabled by default, requires the following libraries:
+
+- `webkitgtk-6.0 >= 2.4`
+- `libsoup3 >= 3.2`
 
 If you wish to also build file manager extensions, you will need corresponding development libraries:
 
@@ -102,10 +107,13 @@ If you wish to also build file manager extensions, you will need corresponding d
 - `libnemo-extension`
 - `thunar`
 
-If you wish to also build Google Fonts integration, which is enabled by default, the following libraries are required:
+Adwaita stylesheet support is available as a build option, which is disabled by default, if enabled you will need the Adwaita library installed:
 
-- `webkitgtk-6.0 >= 2.4`
-- `libsoup3 >= 3.2`
+- `libadwaita-1`
+
+You will also have to enable the option in the Interface section of the preference pane.
+Adwaita support is limited to styling, no other components are used at this time.
+
 
 To build the application:
 

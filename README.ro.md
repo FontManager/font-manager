@@ -90,16 +90,16 @@ Va trebui să vă asiguraţi că următoarele depentenţe sunt instalate:
 - `yelp-tools` (opţional)
 - `gettext` (opţional)
 
+Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată implicit, următoarele biblioteci sunt necesare:
+
+- `webkitgtk-6.0 >= 2.4`
+- `libsoup3 >= 3.2`
+
 Dacă doriţi să construiţi şi extensiile pentru managerul de fişiere, veţi avea nevoie de bibliotecile de dezvoltare corespunzătoare:
 
 - `libnautilus-extension`
 - `libnemo-extension`
 - `thunar`
-
-Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată implicit, următoarele biblioteci sunt necesare:
-
-- `webkitgtk-6.0 >= 2.4`
-- `libsoup3 >= 3.2`
 
 Pentru a construi aplicaţia:
 
