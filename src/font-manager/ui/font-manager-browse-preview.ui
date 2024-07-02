@@ -26,6 +26,9 @@
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
                 <property name="margin-top">6</property>
+                <property name="tooltip-text" translatable="yes">Status of selected family.
+
+Disabling will prevent the selected family from being used by other applications.</property>
                 <property name="valign">center</property>
                 <child type="end">
                   <object class="GtkSwitch" id="font_state">
