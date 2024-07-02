@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-01 19:31-0400\n"
+"POT-Creation-Date: 2024-07-02 18:04-0400\n"
 "PO-Revision-Date: 2022-02-06 15:23+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgid "Undo changes"
 msgstr "Отменить изменения"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:197
+#: src/font-manager/ui/font-manager-browse-preview.ui:200
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
@@ -2604,6 +2604,14 @@ msgstr "Переключиться в режим водопада"
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr "Переключиться в режим предварительного просмотра обычного текста"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:29
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"

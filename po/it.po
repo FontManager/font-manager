@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-01 19:31-0400\n"
+"POT-Creation-Date: 2024-07-02 18:04-0400\n"
 "PO-Revision-Date: 2024-04-22 17:07+0000\n"
 "Last-Translator: Roberto Guido <bob4job@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
@@ -373,7 +373,7 @@ msgid "Undo changes"
 msgstr "Annulla le modifiche"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:197
+#: src/font-manager/ui/font-manager-browse-preview.ui:200
 msgid "Preview"
 msgstr "Anteprima"
 
@@ -2538,6 +2538,14 @@ msgstr "Passa all'anteprima a cascata"
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr "Passa all'anteprima del corpo del testo"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:29
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 #, fuzzy

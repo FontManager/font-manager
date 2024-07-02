@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-01 19:31-0400\n"
+"POT-Creation-Date: 2024-07-02 18:04-0400\n"
 "PO-Revision-Date: 2024-06-21 14:34+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -379,7 +379,7 @@ msgid "Undo changes"
 msgstr "Poništi promjene"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:197
+#: src/font-manager/ui/font-manager-browse-preview.ui:200
 msgid "Preview"
 msgstr "Pregled"
 
@@ -2491,6 +2491,14 @@ msgstr "Prebaci na kaskadni prikaz"
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr "Prebaci na prikaz teksta"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:29
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"

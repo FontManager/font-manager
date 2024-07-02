@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-01 19:31-0400\n"
+"POT-Creation-Date: 2024-07-02 18:04-0400\n"
 "PO-Revision-Date: 2023-05-06 22:52+0000\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/font-manager/font-"
@@ -363,7 +363,7 @@ msgid "Undo changes"
 msgstr "Vrátiť zmeny"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:197
+#: src/font-manager/ui/font-manager-browse-preview.ui:200
 msgid "Preview"
 msgstr "Náhľad"
 
@@ -2467,6 +2467,14 @@ msgstr "Prepnúť na kaskádovitý náhľad"
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr "Prepnúť na náhľad tela textu"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:29
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
