@@ -41,6 +41,14 @@
         <value nick="lorem-ipsum" value="2" />
     </enum>
 
+    <enum id="com.github.FontManager.FontManager.PreviewTileSize">
+        <value nick="small" value="96" />
+        <value nick="medium" value="128" />
+        <value nick="large" value="144" />
+        <value nick="xlarge" value="192" />
+        <value nick="xxlarge" value="256" />
+    </enum>
+
     <enum id="com.github.FontManager.FontManager.HeaderBarButtonStyle">
         <value nick="Normal" value="0" />
         <value nick="Flat" value="1" />
@@ -129,6 +137,12 @@
             <default>true</default>
             <summary>Browse preview visibility</summary>
             <description>Whether the preview pane is visible in browse mode or not</description>
+        </key>
+
+        <key name="browse-preview-tile-size" enum="com.github.FontManager.FontManager.PreviewTileSize">
+            <default>"large"</default>
+            <summary>Browse mode preview tile size</summary>
+            <description>Possible modes are small, medium, large, xlarge and xxlarge.</description>
         </key>
 
         <key name="sidebar-size" type="d">

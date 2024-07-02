@@ -422,6 +422,7 @@ namespace FontManager {
             panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
             search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
             icon_size_adjustment.set_value(size.to_double());
+            notify["size"].connect(() => { icon_size_adjustment.set_value(size.to_double()); });
             paned.notify["position"].connect(() => {
                 double new_position = position_to_percentage();
                 if (pane_position != new_position)
@@ -444,6 +445,7 @@ namespace FontManager {
                 panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
                 settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
                 settings.bind("browse-preview-visible", panel_toggle, "active", SettingsBindFlags.DEFAULT);
+                settings.bind("browse-preview-tile-size", gridview, "size", SettingsBindFlags.DEFAULT);
             }
             Idle.add(() => {
                 paned.set_position(percentage_to_position(pane_position));
