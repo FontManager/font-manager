@@ -204,6 +204,9 @@ namespace FontManager {
                 else
                     Idle.add(() => { mode = Mode.BROWSE; return GLib.Source.REMOVE; });
             });
+            var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
+            overlay.add_controller(drop_target);
+            drop_target.drop.connect(on_drag_data_received);
         }
 
         public void focus_search (Gtk.Widget widget, string? action, Variant? parameter) {
@@ -370,6 +373,25 @@ namespace FontManager {
             google_fonts.set_orientation(orientation);
 #endif /* HAVE_WEBKIT */
             return;
+        }
+
+        bool on_drag_data_received (Value value, double x, double y) {
+            if (value.holds(typeof(Gdk.FileList))) {
+                var selections = new StringSet();
+                GLib.SList <File>* filelist = value.get_boxed();
+                for (GLib.SList <File>* files = filelist; files != null; files = files->next) {
+                    File* file = files->data;
+                    selections.add(file->get_path());
+                }
+                if (selections.size > 0) {
+                    get_default_application().main_window.install_selections(selections);
+                }
+                Idle.add(() => {
+                    get_default_application().reload();
+                    return GLib.Source.REMOVE;
+                });
+            }
+            return true;
         }
 
     }

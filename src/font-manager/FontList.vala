@@ -388,9 +388,6 @@ namespace FontManager {
                 Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
                 update_remove_sensitivity();
             });
-            var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
-            add_controller(drop_target);
-            drop_target.drop.connect(on_drag_data_received);
             init_context_menu();
             controls.remove_clicked.connect(on_remove_clicked);
         }
@@ -639,25 +636,6 @@ namespace FontManager {
             var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
             gtk_drag_icon.set_child(drag_icon);
             return;
-        }
-
-        bool on_drag_data_received (Value value, double x, double y) {
-            if (value.holds(typeof(Gdk.FileList))) {
-                var selections = new StringSet();
-                GLib.SList <File>* filelist = value.get_boxed();
-                for (GLib.SList <File>* files = filelist; files != null; files = files->next) {
-                    File* file = files->data;
-                    selections.add(file->get_path());
-                }
-                if (selections.size > 0) {
-                    get_default_application().main_window.install_selections(selections);
-                }
-                Idle.add(() => {
-                    get_default_application().reload();
-                    return GLib.Source.REMOVE;
-                });
-            }
-            return true;
         }
 
         protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
