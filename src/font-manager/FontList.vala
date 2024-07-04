@@ -600,6 +600,7 @@ namespace FontManager {
             var rect = Gdk.Rectangle() {x = (int) x, y = (int) y, width = 2, height = 2};
             context_menu.set_pointing_to(rect);
             update_context_menu();
+            context_menu.present();
             context_menu.popup();
             return;
         }
