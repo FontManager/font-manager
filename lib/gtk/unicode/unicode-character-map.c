@@ -243,6 +243,27 @@ get_text_for_cell (FontManagerUnicodeCharacterMap *self, gint index)
 }
 
 static void
+resize_context_widget (FontManagerUnicodeCharacterMap *self)
+{
+    g_return_if_fail(self != NULL);
+    ensure_pango_layout(self);
+    g_autofree gchar *cell_text = get_text_for_cell(self, self->active_cell);
+    pango_layout_set_text(self->zoom_layout, cell_text, -1);
+    PangoRectangle char_rect;
+    gint border = FONT_MANAGER_DEFAULT_MARGIN * 4, glyph_pad = border, width = -1, height = -1;
+    pango_layout_get_pixel_size(self->zoom_layout, &width, &height);
+    pango_layout_get_pixel_extents(self->zoom_layout, NULL, &char_rect);
+    if (width < 0) width = char_rect.width;
+    if (height < 0) height = char_rect.height;
+    gint min_width = width + glyph_pad;
+    gint min_height = height + glyph_pad;
+    GtkWidget *parent = gtk_widget_get_parent(self->zoom_center_box);
+    gtk_widget_set_size_request(parent, min_width + (border * 1.25), min_height + (border * 3));
+    gtk_widget_set_size_request(self->zoom_center_box, min_width, min_height);
+    return;
+}
+
+static void
 font_manager_unicode_character_map_resize (GtkDrawingArea *widget, int width, int height)
 {
     FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(widget);
@@ -409,6 +430,7 @@ draw_character_with_metrics (GtkDrawingArea *widget,
     gtk_render_line(ctx, cr, PANGO_RBEARING(char_rect) + ypad, 1, PANGO_RBEARING(char_rect) + ypad, alloc.height - 1);
     gtk_style_context_restore(ctx);
     gtk_render_layout(ctx, cr, char_rect.x + xpad, char_rect.y + ypad, self->zoom_layout);
+    resize_context_widget(self);
     gtk_popover_present(GTK_POPOVER(get_context_widget(self)));
     return;
 }
