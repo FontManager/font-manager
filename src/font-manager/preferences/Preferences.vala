@@ -24,6 +24,7 @@ namespace FontManager {
 
         public UserActionModel user_actions { get; private set; }
         public UserSourceModel user_sources { get; private set; }
+        public UserInterfacePreferences interface_preferences { get; private set; }
 
         Gtk.Stack stack;
         Gtk.StackSidebar sidebar;
@@ -39,7 +40,8 @@ namespace FontManager {
             sidebar.set_stack(stack);
             set_list_widget(stack);
             set_sidebar_widget(sidebar);
-            add_page(new UserInterfacePreferences(settings), "Interface", _("Interface"));
+            interface_preferences = new UserInterfacePreferences(settings);
+            add_page(interface_preferences, "Interface", _("Interface"));
             add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
             var actions = new UserActionList();
             user_actions = actions.model;

@@ -29,6 +29,10 @@ namespace FontManager {
         public UserActionModel user_actions { get; set; }
         public UserSourceModel user_sources { get; set; }
 
+        public WaterfallSettings waterfall_settings { get; set; }
+        public int predefined_size { get; set; }
+        public bool show_line_size { get; set; }
+
         public CategoryListModel category_model {
             get {
                 return sidebar.category_model;
@@ -42,11 +46,17 @@ namespace FontManager {
         }
 
         Gtk.Stack content;
+        Gdk.Rectangle clicked_area;
 
         SidebarStack sidebar;
         FontListView fontlist;
         ComparePane compare;
         PreviewPane preview;
+
+        static construct {
+            install_property_action("predefined-size", "predefined-size");
+            install_property_action("show-line-size", "show-line-size");
+        }
 
         public MainPane (GLib.Settings? settings) {
             base(settings);
@@ -80,6 +90,27 @@ namespace FontManager {
             fontlist.selection_changed.connect(on_selection_changed);
             sidebar.changed.connect(() => { fontlist.queue_update(); });
             fontlist.collection_changed.connect(() => { sidebar.update_collections(); });
+            clicked_area = Gdk.Rectangle();
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            preview.add_controller(right_click);
+            notify["waterfall-settings"].connect(() => {
+                BindingFlags _flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+                waterfall_settings.bind_property("predefined-size", this, "predefined-size", _flags);
+                waterfall_settings.bind_property("show-line-size", this, "show-line-size", _flags);
+            });
+            notify["predefined-size"].connect_after(() => {
+                Idle.add(() => {
+                    // ???: Bind property seems to not trigger notify signal?
+                    waterfall_settings.on_selection_changed();
+                    preview.set_waterfall_size(waterfall_settings.minimum,
+                                                waterfall_settings.maximum,
+                                                waterfall_settings.ratio);
+                    return GLib.Source.REMOVE;
+                });
+            });
             preview.restore_state(settings);
         }
 
@@ -124,8 +155,25 @@ namespace FontManager {
             return;
         }
 
+        void on_show_context_menu (int n_press, double x, double y) {
+            if (waterfall_settings == null)
+                return;
+            if (preview.page != PreviewPanePage.PREVIEW || preview.preview_mode != PreviewPageMode.WATERFALL)
+                return;
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            if (waterfall_settings.context_menu.get_parent() == null)
+                waterfall_settings.context_menu.set_parent(preview);
+            waterfall_settings.context_menu.set_pointing_to(clicked_area);
+            waterfall_settings.context_menu.popup();
+            return;
+        }
+
     }
 
 }
+
 
 

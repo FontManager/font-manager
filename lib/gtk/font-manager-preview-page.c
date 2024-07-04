@@ -972,6 +972,7 @@ font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
     g_settings_bind(settings, "min-waterfall-size", self, "min-waterfall-size", flags);
     g_settings_bind(settings, "max-waterfall-size", self, "max-waterfall-size", flags);
     g_settings_bind(settings, "waterfall-size-ratio", self, "waterfall-size-ratio", flags);
+    font_manager_preview_page_set_waterfall_size(self, -1.0, -1.0, -1.0);
     return;
 }
 

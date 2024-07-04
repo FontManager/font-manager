@@ -171,6 +171,9 @@ namespace FontManager {
             main_pane = new MainPane(settings);
             browse_pane = new BrowsePane(settings);
             prefs_pane = new PreferencePane(settings);
+            var waterfall_settings = new WaterfallSettings(settings);
+            main_pane.waterfall_settings = waterfall_settings;
+            prefs_pane.interface_preferences.waterfall_settings = waterfall_settings;
             string symbolic_icon = "com.github.FontManager.FontManager-symbolic";
             var blank = new PlaceHolder(null, null, null, symbolic_icon) { hexpand = true, vexpand = true };
             main_stack.add_named(blank, "Blank");
@@ -384,7 +387,7 @@ namespace FontManager {
                     selections.add(file->get_path());
                 }
                 if (selections.size > 0) {
-                    get_default_application().main_window.install_selections(selections);
+                    install_selections(selections);
                 }
                 Idle.add(() => {
                     get_default_application().reload();

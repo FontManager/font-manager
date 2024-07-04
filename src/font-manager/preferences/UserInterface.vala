@@ -128,21 +128,65 @@ namespace FontManager {
 
     }
 
-    public class WaterfallSize : Object {
+    public class WaterfallSettings : Object {
+
+        public GLib.Settings? settings { get; set; default = null; }
 
         public int predefined_size { get; set; }
         public double minimum { get; set; }
         public double maximum { get; set; }
         public double ratio { get; set; }
+        public bool show_line_size { get; set; default = true; }
 
-        public PreferenceRow row { get; private set; }
+        public Gtk.PopoverMenu context_menu {
+            get {
+                if (menu == null)
+                    menu = new Gtk.PopoverMenu.from_model(get_context_menu_model());
+                return menu;
+            }
+        }
+
+        public PreferenceRow preference_row {
+            get {
+                if (row == null)
+                    create_preference_row();
+                return row;
+            }
+        }
 
         Gtk.SpinButton min;
         Gtk.SpinButton max;
         Gtk.SpinButton rat;
         Gtk.DropDown selection;
+        Gtk.PopoverMenu? menu = null;
 
-        public WaterfallSize () {
+        PreferenceRow? row = null;
+
+        public WaterfallSettings (GLib.Settings? settings) {
+            this.settings = settings;
+            bind_settings();
+        }
+
+        void bind_settings () {
+            if (settings == null)
+                settings = get_gsettings(BUS_ID);
+            return_if_fail(settings != null);
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("waterfall-show-line-size", this, "show-line-size", flags);
+            settings.bind("min-waterfall-size", this, "minimum", flags);
+            settings.bind("max-waterfall-size", this, "maximum", flags);
+            settings.bind("waterfall-size-ratio", this, "ratio", flags);
+            settings.bind_with_mapping("predefined-waterfall-size",
+                                       this,
+                                       "predefined-size",
+                                       flags,
+                                       PredefinedWaterfallSize.from_setting,
+                                       PredefinedWaterfallSize.to_setting,
+                                       null, null);
+            return;
+        }
+
+        void create_preference_row () {
             var selections = new GLib.Array <string> ();
             for (int i = 0; i <= PredefinedWaterfallSize.CUSTOM; i++)
                 selections.append_val(((PredefinedWaterfallSize) i).to_string());
@@ -161,25 +205,43 @@ namespace FontManager {
             row.append_child(child);
             child = new PreferenceRow(_("Maximum Waterfall Preview Point Size"), null, null, max);
             row.append_child(child);
-            selection.notify["selected"].connect(on_selection_changed);
+            selection.notify["selected"].connect(() => { predefined_size = (int) selection.selected; });
+            notify["predefined-size"].connect_after(() => { on_selection_changed(); });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("minimum", min, "value", flags);
             bind_property("maximum", max, "value", flags);
             bind_property("ratio", rat, "value", flags);
             bind_property("predefined-size", selection, "selected", flags);
+            return;
         }
 
-        void on_selection_changed () {
-            var selected_size = ((PredefinedWaterfallSize) selection.selected);
-            double [] selected = selected_size.to_size_array();
+        public void on_selection_changed () {
+            double [] selected = ((PredefinedWaterfallSize) predefined_size).to_size_array();
             bool custom = selected[0] == 0.0;
-            row.set_reveal_child(custom);
+            if (row != null)
+                row.set_reveal_child(custom);
             if (custom)
                 return;
-            min.value = selected[0];
-            max.value = selected[1];
-            rat.value = selected[2];
+            minimum = selected[0];
+            maximum = selected[1];
+            ratio = selected[2];
             return;
+        }
+
+        GLib.MenuModel get_context_menu_model () {
+            var section = new GLib.Menu();
+            var line_size = new GLib.Menu();
+            var line_size_menu_item = new GLib.MenuItem(_("Show line size"), "show-line-size");
+            line_size.append_item(line_size_menu_item);
+            section.prepend_section(null, line_size);
+            var size_section = new GLib.Menu();
+            for (int i = 0; i < PredefinedWaterfallSize.CUSTOM; i++) {
+                var item = new MenuItem(((PredefinedWaterfallSize) i).to_string(), null);
+                item.set_action_and_target("predefined-size", "i", i);
+                size_section.append_item(item);
+            }
+            section.append_section(null, size_section);
+            return (GLib.MenuModel) section;
         }
 
     }
@@ -187,6 +249,7 @@ namespace FontManager {
     public class UserInterfacePreferences : PreferenceList {
 
         public GLib.Settings? settings { get; set; default = null; }
+        public WaterfallSettings? waterfall_settings { get; set; default = null; }
 
         bool initialized = false;
         Gtk.Switch wide_layout;
@@ -198,8 +261,6 @@ namespace FontManager {
         Gtk.Switch show_line_size;
         Gtk.CheckButton on_maximize;
         Gtk.DropDown button_style;
-
-        WaterfallSize waterfall_size;
 
         public UserInterfacePreferences (GLib.Settings? settings) {
             this.settings = settings;
@@ -236,9 +297,12 @@ namespace FontManager {
             button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
             show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
-            waterfall_size = new WaterfallSize();
-            append_row(waterfall_size.row);
-            bind_properties();
+            if (waterfall_settings == null)
+                waterfall_settings = new WaterfallSettings(settings);
+            append_row(waterfall_settings.preference_row);
+            BindingFlags bind_flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            waterfall_settings.bind_property("show-line-size", show_line_size, "active", bind_flags);
+            bind_settings();
             initialized = true;
             return;
         }
@@ -251,7 +315,7 @@ namespace FontManager {
             return;
         }
 
-        void bind_properties () {
+        void bind_settings () {
             if (settings == null)
                 settings = get_gsettings(BUS_ID);
             return_if_fail(settings != null);
@@ -285,10 +349,6 @@ namespace FontManager {
 #if HAVE_ADWAITA
             settings.bind("use-adwaita-stylesheet", use_adwaita_stylesheet, "active", flags);
 #endif
-            settings.bind("waterfall-show-line-size", show_line_size, "active", flags);
-            settings.bind("min-waterfall-size", waterfall_size, "minimum", flags);
-            settings.bind("max-waterfall-size", waterfall_size, "maximum", flags);
-            settings.bind("waterfall-size-ratio", waterfall_size, "ratio", flags);
             settings.bind_with_mapping("headerbar-button-style",
                                        button_style,
                                        "selected",
@@ -302,14 +362,6 @@ namespace FontManager {
                                            return new Variant.string(val);
                                        },
                                        null, null);
-            settings.bind_with_mapping("predefined-waterfall-size",
-                                       waterfall_size,
-                                       "predefined-size",
-                                       flags,
-                                       PredefinedWaterfallSize.from_setting,
-                                       PredefinedWaterfallSize.to_setting,
-                                       null, null);
-
             return;
         }
 
