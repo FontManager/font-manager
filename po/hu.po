@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-06-30 16:03+0000\n"
+"PO-Revision-Date: 2024-07-04 11:35+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -1315,7 +1315,7 @@ msgstr "Matematikai operátorok"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr "Meetei Mayek"
+msgstr "Meetei Mayak"
 
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
@@ -2174,11 +2174,11 @@ msgstr "Ókori líciai"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"
-msgstr ""
+msgstr "Ókori lüdiai"
 
 #: src/font-manager/web/google/LanguageData.vala:109
 msgid "Mahajani"
-msgstr ""
+msgstr "Mahajani"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
@@ -2385,10 +2385,8 @@ msgid "Or unsupported filetype."
 msgstr "Vagy nem támogatott fájltípus."
 
 #: src/font-viewer/MainWindow.vala:137
-#, fuzzy
-#| msgid "System"
 msgid "System Font"
-msgstr "Rendszer"
+msgstr "Rendszerbetűkészlet"
 
 #: src/font-viewer/MainWindow.vala:139
 msgid ""
