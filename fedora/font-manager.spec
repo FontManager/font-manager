@@ -14,7 +14,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    9
+Release:    10
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -188,6 +188,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.metain
 %endif
 
 %changelog
-* Sun Jun 30 2024 JerryCasiano <JerryCasiano@gmail.com> 0.9.0-9
+* Sun Jun 30 2024 JerryCasiano <JerryCasiano@gmail.com> 0.9.0-10
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 
