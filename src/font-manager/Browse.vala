@@ -35,9 +35,9 @@ namespace FontManager {
                 case MEDIUM:
                     return 12;
                 case XLARGE:
-                    return 20;
-                case XXLARGE:
                     return 24;
+                case XXLARGE:
+                    return 36;
                 default:
                     return 14;
             }
@@ -116,6 +116,9 @@ namespace FontManager {
             item_count.add_css_class("dim-label");
             overlay.add_overlay(item_count);
             notify["item"].connect((pspec) => { on_item_set(); });
+            notify["size"].connect((pspec) => {
+                attrs.change(Pango.AttrSize.new(size.to_preview_size() * Pango.SCALE));
+            });
         }
 
         public void reset () {
