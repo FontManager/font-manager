@@ -125,11 +125,20 @@ namespace FontManager {
             controls.edit_selected.connect(on_edit_selected);
             categories.selection.select_item(0, true);
             collection_sort_type.set_menu_model(get_sort_type_menu_model());
-            categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
+            map.connect_after(() => {
+                categories.sorted = get_available_sorted();
+            });
             collections.changed.connect(() => {
                 changed();
-                categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
+                categories.sorted = get_available_sorted();
             });
+        }
+
+        StringSet get_available_sorted () {
+            var result = ((CollectionListModel) collections.model).get_full_contents();
+            var available = list_available_font_families();
+            result.retain_all(available);
+            return result;
         }
 
         public void select_first_row () {

@@ -46,8 +46,7 @@ namespace FontManager.GoogleFonts {
 
         static construct {
             install_action("focus-search", null, (Gtk.WidgetActionActivateFunc) focus_search_entry);
-            Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
-            add_binding_action(Gdk.Key.F, mode_mask, "focus-search", null);
+            add_binding_action(Gdk.Key.F, Gdk.ModifierType.CONTROL_MASK, "focus-search", null);
         }
 
         public Catalog (GLib.Settings? settings) {

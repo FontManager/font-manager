@@ -24,6 +24,12 @@ namespace FontManager {
 
         public StringSet sorted { get; set; default = new StringSet(); }
 
+        public override int size {
+            get {
+                return (int) (families.size - sorted.size);
+            }
+        }
+
         public Unsorted () {
             base(_("Unsorted"),
                  _("Fonts not present in any collection"),
@@ -38,12 +44,20 @@ namespace FontManager {
             try {
                 Database db = DatabaseProxy.get_default_db();
                 get_matching_families_and_fonts(db, families, variations, sql);
-                families.remove_all(sorted);
             } catch (Error e) {
                 warning(e.message);
             }
             changed();
             return;
+        }
+
+        public override bool matches (Object? item) {
+            bool visible = false;
+            if (item is Family)
+                visible = !(((Family) item).family in sorted);
+            else if (item is Font)
+                visible = !(((Font) item).family in sorted);
+            return visible;
         }
 
     }
