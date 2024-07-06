@@ -5,13 +5,14 @@
 # Oğuz Ersen <oguzersen@protonmail.com>, 2021, 2022.
 # Oğuz Ersen <oguz@ersen.moe>, 2022.
 # Sabri Ünal <libreajans@gmail.com>, 2023.
+# Sabri Ünal <yakushabb@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2023-12-25 03:07+0000\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"PO-Revision-Date: 2024-07-06 15:09+0000\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/tr/>\n"
 "Language: tr\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -120,10 +121,8 @@ msgid "Font Properties"
 msgstr "Yazı Tipi Özellikleri"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "Veritabanı Güncelleniyor — Yazı Tipleri"
+msgstr "Veritabanı Güncelleniyor…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:699
@@ -667,10 +666,8 @@ msgstr ""
 "    "
 
 #: src/font-manager/Application.vala:130
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "Yazı Tipini Yükle"
+msgstr "Yazı Tipi Dosyaları Kuruluyor…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -802,10 +799,8 @@ msgid "Help"
 msgstr "Yardım"
 
 #: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Yazı Tipi Yönetici"
+msgstr "Yazı Tipi Yöneticisi Hakkında"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
@@ -833,7 +828,7 @@ msgstr "Ad"
 
 #: src/font-manager/Controls.vala:173
 msgid "Size"
-msgstr ""
+msgstr "Boyut"
 
 #: src/font-manager/Controls.vala:280
 msgid "Add Fonts"
@@ -852,28 +847,20 @@ msgid "_Select"
 msgstr "_Seç"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
-msgstr "Çalıştırma dosyasını seçiniz"
+msgstr "Çalıştırma Dosyasını Seç"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "Metin rengini seçin"
+msgstr "Dizin Seç"
 
 #: src/font-manager/Dialogs.vala:75
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
-msgstr "Yüklenecek dosyaları seçin"
+msgstr "Kurulacak Dosyaları Seçin"
 
 #: src/font-manager/Dialogs.vala:84
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
-msgstr "Kaynak klasörleri seçin"
+msgstr "Kaynak Dizinleri Seçin"
 
 #: src/font-manager/Dialogs.vala:118
 msgid "Font Configuration"
@@ -992,10 +979,8 @@ msgid "Compare"
 msgstr "Karşılaştır"
 
 #: src/font-manager/MainWindow.vala:74
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
-msgstr "Yazı Tiplerini Kaldır"
+msgstr "Google Yazı Tipleri"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
