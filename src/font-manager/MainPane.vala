@@ -164,8 +164,9 @@ namespace FontManager {
             clicked_area.y = (int) y;
             clicked_area.width = 2;
             clicked_area.height = 2;
-            if (waterfall_settings.context_menu.get_parent() == null)
-                waterfall_settings.context_menu.set_parent(preview);
+            if (waterfall_settings.context_menu.get_parent() != null)
+                waterfall_settings.context_menu.unparent();
+            waterfall_settings.context_menu.set_parent(preview);
             waterfall_settings.context_menu.set_pointing_to(clicked_area);
             waterfall_settings.context_menu.popup();
             return;

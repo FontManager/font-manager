@@ -181,6 +181,7 @@ namespace FontManager {
             main_stack.add_named(browse_pane, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
             google_fonts = new GoogleFonts.Catalog(settings);
+            google_fonts.waterfall_settings = waterfall_settings;
             main_stack.add_named(google_fonts, Mode.GOOGLE_FONTS.to_string());
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");

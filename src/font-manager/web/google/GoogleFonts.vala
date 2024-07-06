@@ -34,6 +34,7 @@ namespace FontManager.GoogleFonts {
     public class Catalog : FontManager.Paned {
 
         public Json.Array? available_families { get; set; default = null; }
+        public WaterfallSettings waterfall_settings { get; set; }
 
         bool initialized = false;
         uint status_code = Soup.Status.NONE;
@@ -73,6 +74,7 @@ namespace FontManager.GoogleFonts {
             network_monitor.network_changed.connect(on_network_changed);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("available-families", fontlist, "available-families", flags);
+            bind_property("waterfall-settings", preview, "waterfall-settings", flags);
             sidebar.bind_property("filter", fontlist, "filter", flags);
             fontlist.bind_property("selected-item", preview, "selected-item", flags);
             sidebar.sort_changed.connect(on_sort_changed);

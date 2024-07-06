@@ -1,6 +1,6 @@
 /* PreviewPage.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -143,6 +143,7 @@ namespace FontManager.GoogleFonts {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-preview-page.ui")]
     public class PreviewPage : Gtk.Box {
 
+        public int predefined_size { get; set; }
         public bool show_line_size { get; set; default = true; }
         public double preview_size { get; set; default = 12.5; }
         public double min_waterfall_size { get; set; default = MIN_FONT_SIZE; }
@@ -152,6 +153,7 @@ namespace FontManager.GoogleFonts {
         public Gtk.Justification justification { get; set; default = Gtk.Justification.CENTER; }
 
         public PreviewPageMode preview_mode { get; set; default = PreviewPageMode.WATERFALL; }
+        public WaterfallSettings waterfall_settings { get; set; }
 
         public string preview_text {
             get {
@@ -177,6 +179,7 @@ namespace FontManager.GoogleFonts {
         PreviewEntry entry;
         PreviewControls preview_controls;
         SampleList samples;
+        Gdk.Rectangle clicked_area;
         WebKit.WebView? webview;
         Gtk.Revealer controls_revealer;
         Gtk.Revealer fontscale_revealer;
@@ -190,6 +193,11 @@ namespace FontManager.GoogleFonts {
                                         "max-waterfall-size",
                                         "waterfall-size-ratio",
                                         "preview-text", "show-line-size" };
+
+        static construct {
+            install_property_action("predefined-size", "predefined-size");
+            install_property_action("show-line-size", "show-line-size");
+        }
 
         public PreviewPage () {
             webview = create_webview();
@@ -223,6 +231,33 @@ namespace FontManager.GoogleFonts {
             preview_controls.edit_toggled.connect(on_edit_toggled);
             update_waterfall_body();
             reload_preview();
+            notify["waterfall-settings"].connect(() => {
+                BindingFlags _flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+                waterfall_settings.bind_property("predefined-size", this, "predefined-size", _flags);
+                waterfall_settings.bind_property("show-line-size", this, "show-line-size", _flags);
+            });
+            notify["predefined-size"].connect_after(() => {
+                Idle.add(() => {
+                    // ???: Bind property seems to not trigger notify signal?
+                    waterfall_settings.on_selection_changed();
+                    min_waterfall_size = waterfall_settings.minimum;
+                    max_waterfall_size = waterfall_settings.maximum;
+                    waterfall_size_ratio = waterfall_settings.ratio;
+                    update_waterfall_body();
+                    reload_preview();
+                    return GLib.Source.REMOVE;
+                });
+            });
+            notify["show-line-size"].connect_after(() => {
+                update_waterfall_body();
+                reload_preview();
+            });
+            clicked_area = Gdk.Rectangle();
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            webview.add_controller(right_click);
         }
 
         public void restore_state (GLib.Settings? settings) {
@@ -410,6 +445,21 @@ namespace FontManager.GoogleFonts {
             Intl.setlocale(LocaleCategory.ALL, pref_loc);
             builder.append(FOOTER);
             return builder.str;
+        }
+
+        void on_show_context_menu (int n_press, double x, double y) {
+            if (waterfall_settings == null || preview_mode != PreviewPageMode.WATERFALL)
+                return;
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            if (waterfall_settings.context_menu.get_parent() != null)
+                waterfall_settings.context_menu.unparent();
+            waterfall_settings.context_menu.set_parent(webview);
+            waterfall_settings.context_menu.set_pointing_to(clicked_area);
+            waterfall_settings.context_menu.popup();
+            return;
         }
 
     }
