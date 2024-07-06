@@ -459,6 +459,15 @@ namespace FontManager {
                 paned.set_position(percentage_to_position(pane_position));
                 return GLib.Source.REMOVE;
             });
+            ApplicationWindow? main_window = get_default_application().main_window;
+            if (main_window != null) {
+                main_window.notify["maximized"].connect(() => {
+                    Idle.add(() => {
+                        paned.position = percentage_to_position(pane_position);
+                        return GLib.Source.REMOVE;
+                    });
+                });
+            }
         }
 
         public void select_first_font () {

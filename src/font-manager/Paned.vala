@@ -172,7 +172,6 @@ namespace FontManager {
             });
             notify_property("sidebar-position");
             notify_property("content-position");
-
             return;
         }
 
