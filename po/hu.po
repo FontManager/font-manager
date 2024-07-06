@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-07-04 11:35+0000\n"
+"PO-Revision-Date: 2024-07-06 15:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -2066,7 +2066,7 @@ msgstr "Cirill"
 
 #: src/font-manager/web/google/LanguageData.vala:63
 msgid "Cyrillic Extended"
-msgstr "Cirill kiterjesztett"
+msgstr "Kiterjesztett cirill"
 
 #: src/font-manager/web/google/LanguageData.vala:64
 msgid "Deseret"
@@ -2094,7 +2094,7 @@ msgstr "Görög"
 
 #: src/font-manager/web/google/LanguageData.vala:76
 msgid "Greek Extended"
-msgstr "Görög kiterjesztett"
+msgstr "Kiterjesztett görög"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
@@ -2122,11 +2122,11 @@ msgstr "Indiai siyaq számok"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr "Pahlavi felirat (középperzsa írás)"
+msgstr "Pahlavi (ókori középperzsa írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr "Pártus felirat"
+msgstr "Pártus (ókori iráni írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
@@ -2154,7 +2154,7 @@ msgstr "Latin"
 
 #: src/font-manager/web/google/LanguageData.vala:102
 msgid "Latin Extended"
-msgstr "Latin kiterjesztett"
+msgstr "Kiterjesztett latin"
 
 #: src/font-manager/web/google/LanguageData.vala:104
 msgid "Linear A"
@@ -2182,23 +2182,23 @@ msgstr "Mahajani"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
-msgstr ""
+msgstr "Mandaic"
 
 #: src/font-manager/web/google/LanguageData.vala:112
 msgid "Manichaean"
-msgstr ""
+msgstr "Manicheus (tartalmazza a szogd, pártus és pars dialektusokat)"
 
 #: src/font-manager/web/google/LanguageData.vala:113
 msgid "Math"
-msgstr ""
+msgstr "Matematikai"
 
 #: src/font-manager/web/google/LanguageData.vala:114
 msgid "Marchen"
-msgstr ""
+msgstr "Marchen (tibeti zhangzung írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:115
 msgid "Masaram Gondi"
-msgstr ""
+msgstr "Masaram Gondi (indiai gondi írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:116
 msgid "Mayan Numerals"
@@ -2206,7 +2206,7 @@ msgstr "Maya számok"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
-msgstr ""
+msgstr "Nigériai medefaidrin írás"
 
 #: src/font-manager/web/google/LanguageData.vala:118
 msgid "Meetei Mayek"
@@ -2218,27 +2218,27 @@ msgstr "Meroita"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
-msgstr ""
+msgstr "Modi (indiai maharashtra írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:126
 msgid "Mro"
-msgstr ""
+msgstr "Mro (a burmai, myanmari mro-khimi nyelv írása)"
 
 #: src/font-manager/web/google/LanguageData.vala:127
 msgid "Multani"
-msgstr ""
+msgstr "Multani (történelmi saraiki írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:128
 msgid "Music"
-msgstr ""
+msgstr "Music (zenei szimbólumok)"
 
 #: src/font-manager/web/google/LanguageData.vala:130
 msgid "Nabataean"
-msgstr ""
+msgstr "Nabataean"
 
 #: src/font-manager/web/google/LanguageData.vala:131
 msgid "Nag Mundari"
-msgstr ""
+msgstr "Nag Mundari (mundari írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:132
 msgid "Nandinagari"
@@ -2246,16 +2246,16 @@ msgstr "Nandinagari"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
-msgstr ""
+msgstr "Newa"
 
 #. { N_(""), "nko", "" },
 #: src/font-manager/web/google/LanguageData.vala:136
 msgid "Nüshu"
-msgstr ""
+msgstr "Nüshu"
 
 #: src/font-manager/web/google/LanguageData.vala:139
 msgid "Old Hungarian"
-msgstr "Ómagyar"
+msgstr "Régi magyar (rovásírás)"
 
 #: src/font-manager/web/google/LanguageData.vala:141
 msgid "Old North Arabian"
@@ -2275,15 +2275,15 @@ msgstr "Régi szogd"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 msgid "Old Turkic"
-msgstr "Régi török"
+msgstr "Régi török (rovásírás)"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
-msgstr ""
+msgstr "Osage"
 
 #: src/font-manager/web/google/LanguageData.vala:150
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Pahawh Hmong (hmnong írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
@@ -2398,6 +2398,13 @@ msgid ""
 "the system administrator to remove it or use a font management application "
 "to disable it."
 msgstr ""
+"A kiválasztott betűtípusfájl vagy egy rendszer könyvtárba van telepítve, "
+"vagy az aktuális felhasználó nem írhatja.\n"
+"\n"
+"Ha el kívánja távolítani ezt a betűtípust az elérhető betűtípusok "
+"listájáról, akkor a rendszer csomagkezelőjének segítségével távolítsa el a "
+"betűtípusfájlt tartalmazó csomagot, vagy kérje meg a rendszergazdát az "
+"eltávolítására vagy letiltására."
 
 #: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
@@ -2651,15 +2658,15 @@ msgstr "Kategória"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
 msgid "4+"
-msgstr ""
+msgstr "4+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
 msgid "8+"
-msgstr ""
+msgstr "8+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
 msgid "12+"
-msgstr ""
+msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
 msgid "Variations"
