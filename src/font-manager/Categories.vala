@@ -126,7 +126,7 @@ namespace FontManager {
 
         public Reject? disabled_families { get; set; default = null; }
         public Disabled? disabled { get; set; default = null; }
-        public StringSet? sorted { get; set; default = null; }
+        public StringSet? sorted { get; set; default = new StringSet(); }
         public Unsorted? unsorted { get; set; default = null; }
         public LanguageFilter language_filter { get; set; default = null; }
 
