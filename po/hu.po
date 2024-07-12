@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-07-06 15:09+0000\n"
+"PO-Revision-Date: 2024-07-07 22:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -2255,7 +2255,7 @@ msgstr "Nüshu"
 
 #: src/font-manager/web/google/LanguageData.vala:139
 msgid "Old Hungarian"
-msgstr "Régi magyar (rovásírás)"
+msgstr "Régi magyar rovásírás"
 
 #: src/font-manager/web/google/LanguageData.vala:141
 msgid "Old North Arabian"
@@ -2275,7 +2275,7 @@ msgstr "Régi szogd"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 msgid "Old Turkic"
-msgstr "Régi török (rovásírás)"
+msgstr "Régi török rovásírás"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
@@ -2287,19 +2287,19 @@ msgstr "Pahawh Hmong (hmnong írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
-msgstr ""
+msgstr "Ókori palmürai írás"
 
 #: src/font-manager/web/google/LanguageData.vala:152
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Pau Cin Hau"
 
 #: src/font-manager/web/google/LanguageData.vala:154
 msgid "Phoenician"
-msgstr ""
+msgstr "Ókori föníciai"
 
 #: src/font-manager/web/google/LanguageData.vala:155
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Pahlavi zsoltár (középperzsa papírra írás)"
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
@@ -2412,7 +2412,7 @@ msgstr "Az újabb verzió már telepítve van"
 
 #: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
-msgstr ""
+msgstr "Kattintson a felülíráshoz"
 
 #: src/font-viewer/MainWindow.vala:147
 msgid "Update Font"
@@ -2499,6 +2499,10 @@ msgid ""
 "Disabling will prevent the selected family from being used by other "
 "applications."
 msgstr ""
+"A kiválasztott család állapota.\n"
+"\n"
+"A letiltása megakadályozza, hogy a kiválasztott családot más alkalmazások "
+"használják."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
