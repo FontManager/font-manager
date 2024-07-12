@@ -16,23 +16,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
+# Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2019-10-03 02:39-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Chinese (China) <@>\n"
+"PO-Revision-Date: 2024-07-12 08:09+0000\n"
+"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
+"Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
+"projects/font-manager/font-manager/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -399,7 +401,7 @@ msgstr "比例(Proportional)"
 #: lib/gtk/font-manager-preview-pane.c:51
 #: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
-msgstr "许可证"
+msgstr "授權"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:145
@@ -429,17 +431,17 @@ msgstr ""
 #: lib/gtk/font-manager-properties-page.c:58
 #: src/font-manager/Categories.vala:259
 msgid "Width"
-msgstr "字宽"
+msgstr "字寬"
 
 #: lib/gtk/font-manager-properties-page.c:59
 #: src/font-manager/Categories.vala:261
 msgid "Slant"
-msgstr "倾斜"
+msgstr "傾斜"
 
 #: lib/gtk/font-manager-properties-page.c:60
 #: src/font-manager/Categories.vala:260
 msgid "Weight"
-msgstr "字重"
+msgstr "厚度"
 
 #: lib/gtk/font-manager-properties-page.c:61
 #: src/font-manager/Categories.vala:262
@@ -454,7 +456,7 @@ msgstr "版本"
 #: lib/gtk/font-manager-properties-page.c:64
 #: src/font-manager/Categories.vala:268
 msgid "Vendor"
-msgstr "供应商"
+msgstr "供應商"
 
 #: lib/gtk/font-manager-properties-page.c:65
 msgid "FileType"
@@ -637,9 +639,8 @@ msgid ""
 msgstr ""
 
 #: src/font-manager/Application.vala:130
-#, fuzzy
 msgid "Installing Font Files…"
-msgstr "全部字体"
+msgstr "安裝字體檔案…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -667,7 +668,7 @@ msgstr "按供应商分组"
 
 #: src/font-manager/Categories.vala:269
 msgid "Filetype"
-msgstr "文件类型"
+msgstr "檔案類型"
 
 #: src/font-manager/Categories.vala:269
 msgid "Grouped by filetype"
@@ -676,7 +677,7 @@ msgstr "按文件类型分组"
 # Do not to translate this one.
 #: src/font-manager/Categories.vala:274
 msgid "All"
-msgstr "全部"
+msgstr "所有字體"
 
 #: src/font-manager/Categories.vala:274
 msgid "All Fonts"
@@ -684,7 +685,7 @@ msgstr "全部字体"
 
 #: src/font-manager/Categories.vala:275
 msgid "System"
-msgstr "系统"
+msgstr "系統"
 
 #: src/font-manager/Categories.vala:275
 msgid "Fonts available to all users"
@@ -692,7 +693,7 @@ msgstr "字体对所有用户可见"
 
 #: src/font-manager/Categories.vala:298
 msgid "Family Kind"
-msgstr "类型"
+msgstr "字形家族種類"
 
 #: src/font-manager/Categories.vala:298
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1621,7 +1622,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:28
 msgid "Unsorted"
-msgstr "未分类"
+msgstr "未排序"
 
 #: src/font-manager/filters/Unsorted.vala:29
 msgid "Fonts not present in any collection"
@@ -1629,7 +1630,7 @@ msgstr "字体未在任何字体集中"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "用户"
+msgstr "使用者"
 
 #: src/font-manager/filters/UserFonts.vala:28
 #, fuzzy
@@ -1740,9 +1741,8 @@ msgid "Desktop"
 msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:49
-#, fuzzy
 msgid "Sources"
-msgstr "管理字体源"
+msgstr "字體來源"
 
 #: src/font-manager/preferences/Preferences.vala:50
 msgid "Substitutions"
@@ -2509,14 +2509,12 @@ msgstr "取消(_C)"
 #: src/font-manager/ui/font-manager-font-list-controls.ui:49
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:42
-#, fuzzy
 msgid "Search Families…"
-msgstr "搜索数据库"
+msgstr "搜尋字體家族…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:29
-#, fuzzy
 msgid "Search Orthographies…"
-msgstr "搜索数据库"
+msgstr "搜尋拼寫體系…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:72
 msgid "Minimum Coverage"
@@ -2563,7 +2561,7 @@ msgstr "删除(_D)"
 # msgstr "区块"
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
-msgstr "分类"
+msgstr "分類"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 #, fuzzy
@@ -2578,7 +2576,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
-msgstr "字体集"
+msgstr "字集"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:22
 msgid "Enter target family"
