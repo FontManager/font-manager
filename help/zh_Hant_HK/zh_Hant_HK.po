@@ -1,14 +1,18 @@
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-07-12 08:09+0000\n"
+"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
+"Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
+"projects/font-manager/font-manager-help-docs/zh_Hant_HK/>\n"
 "Language: zh_Hant_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,7 +27,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "分類"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -35,7 +39,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "所有字體"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -45,7 +49,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "系統"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -55,7 +59,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "使用者"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -65,7 +69,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "字形家族種類"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -77,7 +81,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "字寬"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -87,7 +91,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "厚度"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -97,7 +101,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "傾斜"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -107,7 +111,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "字距"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -117,7 +121,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "授權"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -129,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "供應商"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -141,7 +145,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "檔案類型"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -151,7 +155,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "未排序"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -161,7 +165,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -221,7 +225,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "字集"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -567,7 +571,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "字體來源"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
