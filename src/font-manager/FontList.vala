@@ -312,7 +312,7 @@ namespace FontManager {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
-            tree_expander.margin_start = 2;
+            tree_expander.margin_start = 6;
             tree_expander.set_list_row(list_row);
             var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();

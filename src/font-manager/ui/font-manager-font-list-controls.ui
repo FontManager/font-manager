@@ -15,7 +15,7 @@
               <object class="GtkExpander" id="expander">
                 <property name="halign">center</property>
                 <property name="margin-end">2</property>
-                <property name="margin-start">2</property>
+                <property name="margin-start">6</property>
                 <property name="tooltip-text" translatable="yes">Expand all</property>
                 <property name="valign">center</property>
                 <signal name="activate" handler="on_expander_activated" after="yes"/>
