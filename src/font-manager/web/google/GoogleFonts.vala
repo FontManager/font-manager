@@ -31,7 +31,7 @@ namespace FontManager.GoogleFonts {
         return Path.build_filename(get_user_font_directory(), "Google Fonts");
     }
 
-    public class Catalog : FontManager.Paned {
+    public class Catalog : FontManager.DualPaned {
 
         public Json.Array? available_families { get; set; default = null; }
         public WaterfallSettings waterfall_settings { get; set; }

@@ -20,17 +20,7 @@
             <child>
               <object class="GtkBox">
                 <child>
-                  <object class="GtkPaned" id="paned">
-                    <child>
-                      <object class="GtkScrolledWindow" id="gridview_container"/>
-                    </child>
-                    <child>
-                      <object class="GtkRevealer" id="panel_revealer">
-                        <property name="transition-type">slide-left</property>
-                        <property name="visible">False</property>
-                      </object>
-                    </child>
-                  </object>
+                  <object class="FontManagerPaned" id="paned"/>
                 </child>
               </object>
             </child>

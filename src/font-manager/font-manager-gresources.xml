@@ -13,7 +13,6 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-paned.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>

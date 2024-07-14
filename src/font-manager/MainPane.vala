@@ -20,7 +20,7 @@
 
 namespace FontManager {
 
-    public class MainPane : Paned {
+    public class MainPane : DualPaned {
 
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }

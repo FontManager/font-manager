@@ -393,12 +393,12 @@ namespace FontManager {
 
         [GtkChild] unowned Gtk.SearchBar search_bar;
         [GtkChild] unowned Gtk.SearchEntry search_entry;
-        [GtkChild] unowned Gtk.Revealer panel_revealer;
+        Gtk.Revealer panel_revealer;
         [GtkChild] unowned Gtk.ToggleButton panel_toggle;
         [GtkChild] unowned Gtk.ToggleButton search_toggle;
         [GtkChild] unowned Gtk.Adjustment icon_size_adjustment;
-        [GtkChild] unowned Gtk.ScrolledWindow gridview_container;
-        [GtkChild] unowned Gtk.Paned paned;
+        Gtk.ScrolledWindow gridview_container;
+        [GtkChild] unowned Paned paned;
 
         BrowsePreview preview;
         FontGridView gridview;
@@ -412,12 +412,19 @@ namespace FontManager {
         public BrowsePane (GLib.Settings? settings) {
             Object(settings: settings);
             widget_set_name(this, "FontManagerBrowsePane");
+            gridview_container = new Gtk.ScrolledWindow();
             gridview = new FontGridView(gridview_container);
             gridview.set_search_entry(search_entry);
             gridview_container.set_child(gridview);
             preview = new BrowsePreview();
             preview.margin_bottom = 0;
+            panel_revealer = new Gtk.Revealer() {
+                reveal_child = true,
+                transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
+             };
             panel_revealer.set_child(preview);
+            paned.set_start_child(gridview_container);
+            paned.set_end_child(panel_revealer);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             gridview.bind_property("model", preview, "model", flags);
             gridview.bind_property("selected-item", preview, "selected-item", flags);
@@ -425,22 +432,13 @@ namespace FontManager {
             bind_property("disabled-families", gridview, "disabled-families", flags, null, null);
             bind_property("disabled-families", preview, "disabled-families", flags, null, null);
             flags = BindingFlags.BIDIRECTIONAL;
+            bind_property("pane-position", paned, "position", flags);
             bind_property("size", gridview, "size", flags, null, null);
             panel_toggle.bind_property("active", panel_revealer, "visible", flags);
             panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
             search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
             icon_size_adjustment.set_value(size.to_double());
             notify["size"].connect(() => { icon_size_adjustment.set_value(size.to_double()); });
-            paned.notify["position"].connect(() => {
-                double new_position = position_to_percentage();
-                if (pane_position != new_position)
-                    pane_position = new_position;
-            });
-            notify["pane-position"].connect(() => {
-                double current_position = position_to_percentage();
-                if (pane_position != current_position)
-                    paned.position = percentage_to_position(pane_position);
-            });
             gridview.activated.connect(() => {
                 panel_toggle.set_active(!panel_toggle.active);
             });
@@ -448,26 +446,14 @@ namespace FontManager {
         }
 
         void on_map () {
-            if (settings != null) {
-                pane_position = settings.get_double("browse-pane-position");
-                panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
-                settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
-                settings.bind("browse-preview-visible", panel_toggle, "active", SettingsBindFlags.DEFAULT);
-                settings.bind("browse-preview-tile-size", gridview, "size", SettingsBindFlags.DEFAULT);
-            }
-            Idle.add(() => {
-                paned.set_position(percentage_to_position(pane_position));
-                return GLib.Source.REMOVE;
-            });
-            ApplicationWindow? main_window = get_default_application().main_window;
-            if (main_window != null) {
-                main_window.notify["maximized"].connect(() => {
-                    Idle.add(() => {
-                        paned.position = percentage_to_position(pane_position);
-                        return GLib.Source.REMOVE;
-                    });
-                });
-            }
+            if (settings == null)
+                return;
+            pane_position = settings.get_double("browse-pane-position");
+            panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
+            settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-visible", panel_toggle, "active", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-tile-size", gridview, "size", SettingsBindFlags.DEFAULT);
+            return;
         }
 
         public void select_first_font () {

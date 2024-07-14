@@ -193,7 +193,7 @@ namespace FontManager {
             bind_property("disabled-families", browse_pane, "disabled-families", flags);
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
-            main_pane.bind_property("sidebar-position", prefs_pane, "sidebar-position", flags);
+            main_pane.bind_property("sidebar-position", prefs_pane, "position", flags);
 #if HAVE_WEBKIT
             main_pane.bind_property("content-position", google_fonts, "content-position", flags);
             main_pane.bind_property("sidebar-position", google_fonts, "sidebar-position", flags);
@@ -372,9 +372,9 @@ namespace FontManager {
             bool only_on_maximize = settings.get_boolean("wide-layout-on-maximize");
             if (wide_layout && only_on_maximize && maximized || wide_layout && !only_on_maximize)
                 orientation = Gtk.Orientation.HORIZONTAL;
-            main_pane.set_orientation(orientation);
+            main_pane.orientation = orientation;
 #if HAVE_WEBKIT
-            google_fonts.set_orientation(orientation);
+            google_fonts.orientation = orientation;
 #endif /* HAVE_WEBKIT */
             return;
         }

@@ -20,163 +20,170 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-paned.ui")]
-    public class Paned : Gtk.Box {
+    public class Paned : Gtk.Widget {
+
+        public double position { get; set; default = 50; }
+        public Gtk.Orientation orientation { get; set; default = Gtk.Orientation.HORIZONTAL; }
+
+        Gtk.Paned child;
+
+        construct {
+            set_layout_manager(new Gtk.BoxLayout(Gtk.Orientation.HORIZONTAL));
+            widget_set_expand(this, true);
+            child = new Gtk.Paned(orientation);
+            child.set_parent(this);
+            BindingFlags flags = BindingFlags.DEFAULT;
+            bind_property("orientation", child, "orientation", flags);
+            notify["position"].connect(on_position_set);
+            child.notify["position"].connect(on_child_position_changed);
+            map.connect_after(on_map);
+        }
+
+        public Gtk.Widget? get_start_child () {
+            return child.get_start_child();
+        }
+
+        public Gtk.Widget? get_end_child () {
+            return child.get_end_child();
+        }
+
+        public void set_start_child (Gtk.Widget widget) {
+            child.set_start_child(widget);
+            return;
+        }
+
+        public void set_end_child (Gtk.Widget widget) {
+            child.set_end_child(widget);
+            return;
+        }
+
+        void on_map () {
+            Idle.add(() => { on_position_set(); return GLib.Source.REMOVE; });
+            return;
+        }
+
+        int get_alloc () {
+            return (orientation == Gtk.Orientation.HORIZONTAL) ? get_width() : get_height();
+        }
+
+        void on_position_set () {
+            child.set_position((int) ((position / 100) * (double) get_alloc()));
+            return;
+        }
+
+        void on_child_position_changed () {
+            double new_position = ((double) child.position / (double) get_alloc()) * 100;
+            if (position != new_position)
+                position = new_position;
+            return;
+        }
+
+    }
+
+    public class DualPaned : Gtk.Widget {
 
         public GLib.Settings? settings { get; protected set; default = null; }
-
-        public Gtk.Orientation orientation {
-            get {
-                return content_pane.orientation;
-            }
-            set {
-                if (value == content_pane.orientation)
-                    return;
-                content_pane.orientation = value;
-                Idle.add(() => {
-                    update_pane_positions();
-                    return GLib.Source.REMOVE;
-                });
-            }
-        }
+        public Gtk.Orientation orientation { get; set; default = Gtk.Orientation.VERTICAL; }
 
         public double sidebar_position {
             get {
-                if (orientation == Gtk.Orientation.HORIZONTAL)
-                    return hor_sidebar_pos;
-                else
-                    return sidebar_pos;
+                return (orientation == Gtk.Orientation.HORIZONTAL) ? hor_sidebar_size : sidebar_size;
             }
             set {
                 if (orientation == Gtk.Orientation.HORIZONTAL)
-                    hor_sidebar_pos = value;
+                    hor_sidebar_size = value;
                 else
-                    sidebar_pos = value;
-                update_pane_positions();
+                    sidebar_size = value;
+                notify_property("sidebar-position");
             }
         }
 
         public double content_position {
             get {
-                if (orientation == Gtk.Orientation.HORIZONTAL)
-                    return hor_content_pos;
-                else
-                    return content_pos;
+                return (orientation == Gtk.Orientation.HORIZONTAL) ? hor_content_size : content_size;
             }
             set {
                 if (orientation == Gtk.Orientation.HORIZONTAL)
-                    hor_content_pos = value;
+                    hor_content_size = value;
                 else
-                    content_pos = value;
-                update_pane_positions();
+                    content_size = value;
+                notify_property("content-position");
             }
         }
 
         // These four properties are only here to make binding to GSettings easier
-        public double content_size {
-            get {
-                return content_pos;
-            }
-            set {
-                content_pos = value;
-            }
+        public double content_size { get; set; default = 40; }
+        public double sidebar_size { get; set; default = 33; }
+        public double hor_content_size { get; set; default = 36; }
+        public double hor_sidebar_size { get; set; default = 20; }
+
+        protected Gtk.Overlay overlay;
+
+        Paned main_pane;
+        Paned content_pane;
+        Gtk.Box content_area;
+        Gtk.Box list_area;
+        Gtk.Box sidebar_area;
+
+        construct {
+            set_layout_manager(new Gtk.BoxLayout(Gtk.Orientation.HORIZONTAL));
+            widget_set_expand(this, true);
+            overlay = new Gtk.Overlay();
+            overlay.set_parent(this);
         }
 
-        public double sidebar_size {
-            get {
-                return sidebar_pos;
-            }
-            set {
-                sidebar_pos = value;
-            }
-        }
-
-        public double hor_content_size {
-            get {
-                return hor_content_pos;
-            }
-            set {
-                hor_content_pos = value;
-            }
-        }
-
-        public double hor_sidebar_size {
-            get {
-                return hor_sidebar_pos;
-            }
-            set {
-                hor_sidebar_pos = value;
-            }
-        }
-
-        [GtkChild] protected unowned Gtk.Box content_area;
-        [GtkChild] protected unowned Gtk.Box list_area;
-        [GtkChild] protected unowned Gtk.Box sidebar_area;
-        [GtkChild] protected unowned Gtk.Paned content_pane;
-        [GtkChild] protected unowned Gtk.Paned main_pane;
-        [GtkChild] protected unowned Gtk.Overlay overlay;
-
-        double sidebar_pos = 33.0;
-        double content_pos = 40.0;
-        double hor_sidebar_pos = 20.0;
-        double hor_content_pos = 36.0;
-
-        public Paned (GLib.Settings? settings) {
+        public DualPaned (GLib.Settings? settings) {
             Object(settings: settings);
-            // Necessary to get an acceptable initial size for pane layout
-            sidebar_area.set_size_request(-1, 250);
+            main_pane = new Paned();
+            content_pane = new Paned();
+            main_pane.set_end_child(content_pane);
+            overlay.set_child(main_pane);
+            content_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            content_area.set_size_request(-1, 250);
+            list_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             list_area.set_size_request(-1, 250);
+            sidebar_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            sidebar_area.set_size_request(-1, 250);
+            main_pane.set_start_child(sidebar_area);
+            content_pane.set_start_child(list_area);
+            content_pane.set_end_child(content_area);
             main_pane.notify["position"].connect((obj, pspec) => {
-                var new_pos = position_to_percentage(main_pane).clamp(2, 98);
-                if (orientation == Gtk.Orientation.HORIZONTAL) {
-                    hor_sidebar_pos = new_pos;
-                    notify_property("hor-sidebar-size");
-                } else {
-                    sidebar_pos = new_pos;
-                    notify_property("sidebar-size");
-                }
-                notify_property("sidebar-position");
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    hor_sidebar_size = main_pane.position;
+                else
+                    sidebar_size = main_pane.position;
             });
             content_pane.notify["position"].connect((obj, pspec) => {
-                var new_pos = position_to_percentage(content_pane).clamp(2, 98);
-                if (orientation == Gtk.Orientation.HORIZONTAL) {
-                    hor_content_pos = new_pos;
-                    notify_property("hor-content-size");
-                } else {
-                    content_pos = new_pos;
-                    notify_property("content-size");
-                }
-                notify_property("content-position");
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    hor_content_size = content_pane.position;
+                else
+                    content_size = content_pane.position;
             });
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("orientation", content_pane, "orientation", flags);
+            bind_property("sidebar-position", main_pane, "position", flags);
+            bind_property("content-position", content_pane, "position", flags);
+            map.connect_after(on_map);
         }
 
         [GtkCallback]
         public virtual void on_map () {
-            if (settings != null) {
-                SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
-                settings.bind("sidebar-size", this, "sidebar-size", flags);
-                settings.bind("content-size", this, "content-size", flags);
-                settings.bind("hor-sidebar-size", this, "hor-sidebar-size", flags);
-                settings.bind("hor-content-size", this, "hor-content-size", flags);
-                if (orientation == Gtk.Orientation.HORIZONTAL) {
-                    sidebar_position = settings.get_double("hor-sidebar-size");
-                    content_position = settings.get_double("hor-content-size");
-                } else {
-                    sidebar_position = settings.get_double("sidebar-size");
-                    content_position = settings.get_double("content-size");
-                }
+            if (settings == null)
+                return;
+            if (orientation == Gtk.Orientation.HORIZONTAL) {
+                sidebar_position = settings.get_double("hor-sidebar-size");
+                content_position = settings.get_double("hor-content-size");
+            } else {
+                sidebar_position = settings.get_double("sidebar-size");
+                content_position = settings.get_double("content-size");
             }
-            Idle.add(() => {
-                update_pane_positions();
-                return GLib.Source.REMOVE;
-            });
-            notify_property("sidebar-position");
-            notify_property("content-position");
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("sidebar-size", this, "sidebar-size", flags);
+            settings.bind("content-size", this, "content-size", flags);
+            settings.bind("hor-sidebar-size", this, "hor-sidebar-size", flags);
+            settings.bind("hor-content-size", this, "hor-content-size", flags);
             return;
         }
-
-        [GtkCallback]
-        public virtual void on_unmap () {}
 
         public Gtk.Widget? get_content_widget () {
             return content_area.get_first_child();
@@ -214,36 +221,6 @@ namespace FontManager {
                 parent.append(child);
             }
             return;
-        }
-
-        public bool update_pane_positions () {
-            int pos_a = (int) percentage_to_position(main_pane, sidebar_position);
-            int pos_b = (int) percentage_to_position(content_pane, content_position);
-            if (pos_a == 0 && pos_b == 0)
-                return GLib.Source.REMOVE;
-            main_pane.set_position(pos_a);
-            content_pane.set_position(pos_b);
-            return GLib.Source.REMOVE;
-        }
-
-        int get_alloc (Gtk.Paned paned) {
-            int alloc = paned.max_position;
-            // max_position is more reliable than get_width function
-            // except when it returns the default value of MAX_INT
-            if (alloc != int.MAX)
-                return alloc;
-            // get_width seems to regularly returns a smaller than actual value
-            // which could be due to our use of panes within a pane
-            return (paned.orientation == Gtk.Orientation.HORIZONTAL) ? paned.get_width() : paned.get_height();
-        }
-
-        double position_to_percentage (Gtk.Paned paned) {
-            int position = paned.position;
-            return ((double) position / (double) get_alloc(paned)) * 100;
-        }
-
-        double percentage_to_position (Gtk.Paned paned, double percent) {
-            return (percent / 100) * (double) get_alloc(paned);
         }
 
     }
