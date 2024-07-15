@@ -159,6 +159,15 @@ namespace FontManager {
                 else
                     content_size = content_pane.position;
             });
+            notify["orientation"].connect(() => {
+                if (orientation == Gtk.Orientation.HORIZONTAL) {
+                    main_pane.position = hor_sidebar_size;
+                    content_pane.position = hor_content_size;
+                } else {
+                    main_pane.position = sidebar_size;
+                    content_pane.position = content_size;
+                }
+            });
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("orientation", content_pane, "orientation", flags);
             bind_property("sidebar-position", main_pane, "position", flags);
