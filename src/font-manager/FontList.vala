@@ -312,7 +312,7 @@ namespace FontManager {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
-            tree_expander.margin_start = 6;
+            tree_expander.margin_start = 3;
             tree_expander.set_list_row(list_row);
             var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();
@@ -376,6 +376,7 @@ namespace FontManager {
 
         construct {
             widget_set_name(list, "FontManagerFontListView");
+            widget_set_margin(list, 6);
             ((Gtk.ListView) list).set_enable_rubberband(true);
             selected_items = new GenericArray <Object> ();
             Gtk.Gesture right_click = new Gtk.GestureClick() {
