@@ -149,9 +149,7 @@ namespace FontManager {
                 if (disabled_families != null)
                     disabled_families.changed.connect(() => { update(current_selection); });
             });
-            notify["filter"].connect_after(() => {
-                Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
-            });
+            notify["filter"].connect_after(() => { select_item(0); });
         }
 
         public void select_item (uint position) {
@@ -162,13 +160,10 @@ namespace FontManager {
 
         public virtual void update (uint position = 0)
         requires (model != null) {
-            Idle.add(() => {
-                if (search_entry != null)
-                    model.search_term = search_entry.text.strip();
-                model.update_items();
-                select_item(position);
-                return GLib.Source.REMOVE;
-            });
+            if (search_entry != null)
+                model.search_term = search_entry.text.strip();
+            model.update_items();
+            select_item(position);
             return;
         }
 
@@ -182,7 +177,7 @@ namespace FontManager {
         public void queue_update () {
             if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add(333, _queue_update);
+            search_timeout = Timeout.add_full(GLib.Priority.LOW + 50, 333, _queue_update);
             return;
         }
 
@@ -384,8 +379,8 @@ namespace FontManager {
             };
             ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
             list.add_controller(right_click);
-            Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
-            notify["filter"].connect(() => {
+            select_item(0);
+            notify["filter"].connect_after(() => {
                 Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
                 update_remove_sensitivity();
             });

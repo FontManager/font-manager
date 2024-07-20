@@ -279,6 +279,7 @@ namespace FontManager {
                 return;
             var ctx = main_window.get_pango_context();
             available_fonts = get_sorted_font_list(ctx);
+            main_window.present();
             db.update(available_fonts);
             return;
         }
@@ -306,8 +307,7 @@ namespace FontManager {
             db.set_progress_callback((data) => {
                 return get_default_application().main_window.progress_update(data);
             });
-            main_window.present();
-            Idle.add(() => { reload(); return GLib.Source.REMOVE; });
+            reload();
             return;
         }
 

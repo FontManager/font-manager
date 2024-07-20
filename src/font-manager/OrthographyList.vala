@@ -156,7 +156,7 @@ namespace FontManager {
                 int index = row.get_index();
                 if (index == selected_index) {
                     selected_index = int.MAX;
-                    Idle.add(() => { list.unselect_all(); return GLib.Source.REMOVE; });
+                    list.unselect_all();
                 } else {
                     selected_index = index;
                     selected_orthography = (Orthography) model.get_item(selected_index);
@@ -227,11 +227,8 @@ namespace FontManager {
                 }
                 db.end_query();
                 // No error and no results means this font file is likely broken or empty
-                Idle.add(() => {
-                    place_holder.message = _("No valid orthographies for selection");
-                    place_holder.icon_name = "action-unavailable-symbolic";
-                    return GLib.Source.REMOVE;
-                });
+                place_holder.message = _("No valid orthographies for selection");
+                place_holder.icon_name = "action-unavailable-symbolic";
             } catch (Error e) {
                 // Most likely cause of an error here is the database is currently being updated
                 model.orthography = get_orthography_results(font.source_object);
@@ -246,7 +243,7 @@ namespace FontManager {
                 header.visible = selected_item != null;
             }
             // Show all available characters by default
-            Idle.add(() => { list.unselect_all(); return GLib.Source.REMOVE; });
+            list.unselect_all();
             return;
         }
 

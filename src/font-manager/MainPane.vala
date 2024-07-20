@@ -102,14 +102,10 @@ namespace FontManager {
                 waterfall_settings.bind_property("show-line-size", this, "show-line-size", _flags);
             });
             notify["predefined-size"].connect_after(() => {
-                Idle.add(() => {
-                    // ???: Bind property seems to not trigger notify signal?
-                    waterfall_settings.on_selection_changed();
-                    preview.set_waterfall_size(waterfall_settings.minimum,
-                                                waterfall_settings.maximum,
-                                                waterfall_settings.ratio);
-                    return GLib.Source.REMOVE;
-                });
+                waterfall_settings.on_selection_changed();
+                preview.set_waterfall_size(waterfall_settings.minimum,
+                                           waterfall_settings.maximum,
+                                           waterfall_settings.ratio);
             });
             preview.restore_state(settings);
         }

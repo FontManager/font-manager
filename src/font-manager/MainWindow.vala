@@ -204,9 +204,9 @@ namespace FontManager {
             update_layout_orientation();
             map.connect_after(() => {
                 if (settings != null)
-                    Idle.add(() => { mode = (Mode) settings.get_enum("mode"); return GLib.Source.REMOVE; });
+                    mode = (Mode) settings.get_enum("mode");
                 else
-                    Idle.add(() => { mode = Mode.BROWSE; return GLib.Source.REMOVE; });
+                    mode = Mode.BROWSE;
             });
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             overlay.add_controller(drop_target);
@@ -246,9 +246,9 @@ namespace FontManager {
         void bind_settings () {
             if (settings == null)
                 return;
-            settings.changed.connect((key) => {
+            settings.changed.connect_after((key) => {
                 if (key.contains("wide-layout"))
-                    Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+                    update_layout_orientation();
             });
             settings.bind("mode", this, "mode", SettingsBindFlags.DEFAULT);
             return;
@@ -401,7 +401,5 @@ namespace FontManager {
     }
 
 }
-
-
 
 

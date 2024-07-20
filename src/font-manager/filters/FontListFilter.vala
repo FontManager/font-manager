@@ -177,10 +177,7 @@ namespace FontManager {
             selected_item = (FontListFilter) item;
             selected_position = i;
             selection_changed((FontListFilter) item);
-            Idle.add(() => {
-                on_row_selected(list_row);
-                return GLib.Source.REMOVE;
-            });
+            on_row_selected(list_row);
             debug("%s::selection_changed : %s", listview.name, selected_item.name);
             return;
         }

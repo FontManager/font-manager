@@ -113,11 +113,8 @@ namespace FontManager {
                     return;
                 }
                 bool expanded = row.expanded;
-                Idle.add(() => {
-                    if (row.expandable)
-                        row.expanded = !expanded;
-                    return GLib.Source.REMOVE;
-                });
+                if (row.expandable)
+                    row.expanded = !expanded;
             }
             return;
         }

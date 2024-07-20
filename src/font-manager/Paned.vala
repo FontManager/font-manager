@@ -139,10 +139,11 @@ namespace FontManager {
             main_pane.set_end_child(content_pane);
             overlay.set_child(main_pane);
             content_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            content_area.set_size_request(-1, 250);
             list_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            list_area.set_size_request(-1, 250);
             sidebar_area = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            // Setting size request is necessary to make these empty containers map properly
+            content_area.set_size_request(-1, 250);
+            list_area.set_size_request(-1, 250);
             sidebar_area.set_size_request(-1, 250);
             main_pane.set_start_child(sidebar_area);
             content_pane.set_start_child(list_area);

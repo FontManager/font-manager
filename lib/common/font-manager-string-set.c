@@ -155,9 +155,11 @@ void
 font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSet *add)
 {
     g_return_if_fail(self != NULL);
+    g_object_freeze_notify(G_OBJECT(self));
     guint n_strings = font_manager_string_set_size(add);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_add(self, font_manager_string_set_get(add, i));
+    g_object_thaw_notify(G_OBJECT(self));
     return;
 }
 
@@ -220,9 +222,11 @@ void
 font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStringSet *remove)
 {
     g_return_if_fail(self != NULL);
+    g_object_freeze_notify(G_OBJECT(self));
     guint n_strings = font_manager_string_set_size(remove);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_remove(self, font_manager_string_set_get(remove, i));
+    g_object_thaw_notify(G_OBJECT(self));
     return;
 }
 

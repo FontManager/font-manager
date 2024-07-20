@@ -39,7 +39,7 @@ namespace FontManager {
         construct {
             items = new GenericArray <unowned Json.Object> ();
             notify["entries"].connect(() => { update_items(); });
-            notify["filter"].connect(() => {
+            notify["filter"].connect_after(() => {
                 if (filter == null)
                     return;
                 Idle.add(() => {

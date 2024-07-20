@@ -33,9 +33,7 @@ namespace FontManager {
         construct {
             available_families = list_available_font_families();
             load();
-            notify["sort-type"].connect_after(() => {
-                Idle.add(() => { on_sort_type_changed(); return GLib.Source.REMOVE; });
-            });
+            notify["sort-type"].connect_after(on_sort_type_changed);
         }
 
         void on_sort_type_changed () {
@@ -181,7 +179,7 @@ namespace FontManager {
             set_default_widget(rename_button);
             rename_button.clicked.connect(() => {
                 renamed(name_entry.get_text().strip());
-                Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+                popdown();
             });
             base.constructed();
             return;
@@ -395,10 +393,7 @@ namespace FontManager {
             clicked_area.y = listview.get_height() / 2;
             ((CollectionListModel) model).add_item(new Collection(null, null));
             listview.scroll_to(model.get_n_items() - 1, Gtk.ListScrollFlags.SELECT, null);
-            Idle.add(() => {
-                rename_selected_collection(listview, null, null);
-                return GLib.Source.REMOVE;
-            });
+            rename_selected_collection(listview, null, null);
             return;
         }
 
@@ -428,10 +423,7 @@ namespace FontManager {
                         return;
                     selected_item.name = new_name;
                     selected_item.changed();
-                    Idle.add(() => {
-                        ((CollectionListModel) model).save();
-                        return GLib.Source.REMOVE;
-                    });
+                    Idle.add(() => { ((CollectionListModel) model).save(); return GLib.Source.REMOVE; });
                 });
             }
             rename_popover.name_entry.set_text(selected_item.name);
@@ -567,9 +559,8 @@ namespace FontManager {
                 if (object is Family)
                     new_families.add(((Family) object).family);
             }
-            collection.add(new_families);
             Idle.add(() => {
-                changed();
+                collection.add(new_families);
                 queue_update();
                 return GLib.Source.REMOVE;
             });
@@ -605,4 +596,5 @@ namespace FontManager {
     }
 
 }
+
 

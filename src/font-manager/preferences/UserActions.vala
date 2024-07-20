@@ -158,12 +158,7 @@ namespace FontManager {
         public void reload () {
             clear();
             load();
-            items_changed.connect(() => {
-                Idle.add(() => {
-                    save();
-                    return GLib.Source.REMOVE;
-                });
-            });
+            items_changed.connect_after(save);
             return;
         }
 

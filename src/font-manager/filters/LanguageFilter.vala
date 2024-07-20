@@ -60,14 +60,11 @@ namespace FontManager {
             // XXX : Here for testing purposes? or for good?
             gsettings = get_gsettings(BUS_ID);
             restore_state(gsettings);
-            selections.changed.connect(on_change);
+            selections.changed.connect_after(on_change);
         }
 
         void on_change () {
-            Idle.add(() => {
-                save_state(gsettings);
-                return GLib.Source.REMOVE;
-            });
+            save_state(gsettings);
             update.begin((obj, res) => {
                 update.end(res);
                 changed();
@@ -241,10 +238,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_coverage_changed () {
-            Idle.add(() => {
-                changed();
-                return GLib.Source.REMOVE;
-            });
+            changed();
             debug("%s::coverage : %0.1f", name, coverage);
             return;
         }

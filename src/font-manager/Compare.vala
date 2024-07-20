@@ -233,23 +233,20 @@ namespace FontManager {
                 return;
             preview_size = settings.get_double("compare-font-size");
             entry.text = settings.get_string("compare-preview-text");
-            Idle.add(() => {
-                var foreground = Gdk.RGBA();
-                var background = Gdk.RGBA();
-                bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
-                bool background_set = background.parse(settings.get_string("compare-background-color"));
-                if (foreground_set) {
-                    if (foreground.alpha == 0.0f)
-                        foreground.alpha = 1.0f;
-                    preview_colors.foreground_color = foreground;
-                }
-                if (background_set) {
-                    if (background.alpha == 0.0f)
-                        background.alpha = 1.0f;
-                    preview_colors.background_color = background;
-                }
-                return GLib.Source.REMOVE;
-            });
+            var foreground = Gdk.RGBA();
+            var background = Gdk.RGBA();
+            bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
+            bool background_set = background.parse(settings.get_string("compare-background-color"));
+            if (foreground_set) {
+                if (foreground.alpha == 0.0f)
+                    foreground.alpha = 1.0f;
+                preview_colors.foreground_color = foreground;
+            }
+            if (background_set) {
+                if (background.alpha == 0.0f)
+                    background.alpha = 1.0f;
+                preview_colors.background_color = background;
+            }
             settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
             initialized = true;

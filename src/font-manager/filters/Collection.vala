@@ -70,15 +70,13 @@ namespace FontManager {
 
         public void remove (string family) {
             families.remove(family);
-            set_active_from_fonts();
-            changed();
+            active = (families.size > 0);
             return;
         }
 
         public void add (StringSet new_families) {
             families.add_all(new_families);
-            set_active_from_fonts();
-            changed();
+            active = true;
             return;
         }
 
@@ -87,12 +85,6 @@ namespace FontManager {
                 if (children[i].name == collection.name)
                     return true;
             return false;
-        }
-
-        public void set_active_from_fonts () {
-            active = (families.size > 0);
-            children.foreach((child) => { child.set_active_from_fonts(); });
-            return;
         }
 
         int get_collection_total () {

@@ -54,7 +54,8 @@ namespace FontManager {
                 add_item(item);
             }
             items.sort((a, b) => { return natural_sort(a.name, b.name); });
-            items_changed.connect(() => {
+            items_changed.connect_after(() => {
+                // XXX : FIXME : Timing issue at startup
                 Idle.add(() => {
                     sources.save();
                     save_active_items();
@@ -86,6 +87,7 @@ namespace FontManager {
             return;
         }
 
+        // FIXME : We need to disable remove button until database purge is complete.
         public void remove_item (uint position) {
             var item = items[position];
             sources.remove(item.path);
