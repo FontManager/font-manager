@@ -91,6 +91,7 @@ Disabling will prevent the selected family from being used by other applications
         </child>
         <child type="center">
           <object class="GtkScrolledWindow">
+            <property name="hscrollbar-policy">never</property>
             <property name="child">
               <object class="GtkViewport">
                 <property name="child">

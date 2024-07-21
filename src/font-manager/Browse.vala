@@ -112,6 +112,7 @@ namespace FontManager {
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
         public Pango.AttrList? attrs { get; protected set; default = new Pango.AttrList(); }
         public Gtk.Inscription? preview { get; protected set; default = null; }
+        public string? preview_text { get; set; default = null; }
 
         Gtk.Label item_count;
         Gtk.Overlay overlay;
@@ -166,8 +167,10 @@ namespace FontManager {
             Family f = (Family) item;
             set_tooltip_text(f.family);
             string? sample = f.preview_text;
-            string preview_text = have_valid_preview_text(sample) ? sample : f.family;
-            preview.set_text(preview_text);
+            string display_text = have_valid_preview_text(sample) ? sample : f.family;
+            if (preview_text != null && preview_text.strip() != "")
+                display_text = preview_text;
+            preview.set_text(display_text);
             Pango.FontDescription font_desc;
             font_desc = Pango.FontDescription.from_string(f.description);
             attrs.change(new Pango.AttrFontDesc(font_desc));
@@ -182,6 +185,7 @@ namespace FontManager {
     public class FontGridView : FontListBase {
 
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
+        public string? preview_text { get; set; default = null; }
 
         unowned Gtk.ScrolledWindow container;
 
@@ -190,6 +194,7 @@ namespace FontManager {
             model = new FontModel();
             parent.map.connect(() => { if (list == null) create_gridview(); });
             notify["size"].connect(() => { create_gridview(); });
+            notify["preview-text"].connect_after(() => { update(); });
             bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
         }
 
@@ -225,7 +230,6 @@ namespace FontManager {
             if (list == null)
                 create_gridview();
             base.update(position);
-            select_item(0);
             return;
         }
 
@@ -233,6 +237,7 @@ namespace FontManager {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var child = new FontPreviewTile();
             bind_property("size", child, "size", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            bind_property("preview-text", child, "preview-text", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             list_item.set_child(child);
             return;
         }
@@ -451,8 +456,9 @@ namespace FontManager {
             preview.margin_bottom = 0;
             panel_revealer = new Gtk.Revealer() {
                 reveal_child = true,
-                transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
-             };
+                transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT,
+                margin_end = 6
+            };
             panel_revealer.set_child(preview);
             pane.set_start_child(gridview_container);
             pane.set_end_child(panel_revealer);
@@ -464,6 +470,7 @@ namespace FontManager {
             bind_property("available-fonts", gridview, "available-fonts", flags, null, null);
             bind_property("disabled-families", gridview, "disabled-families", flags, null, null);
             bind_property("disabled-families", preview, "disabled-families", flags, null, null);
+            preview_entry.bind_property("text", gridview, "preview-text", flags);
             preview_entry.bind_property("text", listview, "preview-text", flags);
             flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             listview.bind_property("preview-size", fontscale, "value", flags);
@@ -494,13 +501,12 @@ namespace FontManager {
 
         void on_mode_changed () {
             panel_toggle.set_visible(mode == BrowseMode.GRID);
-            edit_toggle.set_visible(mode == BrowseMode.LIST);
-            if (mode == BrowseMode.GRID)
-                control_stack.set_visible_child_name("scale");
+            if (edit_toggle.active)
+                control_stack.set_visible_child_name("entry");
             else if (mode == BrowseMode.LIST && !edit_toggle.active)
                 control_stack.set_visible_child_name("fontscale");
-            else if (mode == BrowseMode.LIST && edit_toggle.active)
-                control_stack.set_visible_child_name("entry");
+            else if (mode == BrowseMode.GRID && !edit_toggle.active)
+                control_stack.set_visible_child_name("scale");
             return;
         }
 
@@ -549,12 +555,7 @@ namespace FontManager {
 
         [GtkCallback]
         public void on_edit_toggled (Gtk.ToggleButton unused) {
-            if (mode == BrowseMode.GRID)
-                control_stack.set_visible_child_name("scale");
-            else if (mode == BrowseMode.LIST && !edit_toggle.active)
-                control_stack.set_visible_child_name("fontscale");
-            else if (mode == BrowseMode.LIST && edit_toggle.active)
-                control_stack.set_visible_child_name("entry");
+            on_mode_changed();
             if (edit_toggle.active)
                 preview_entry.grab_focus();
             return;

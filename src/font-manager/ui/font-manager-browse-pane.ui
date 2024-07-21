@@ -135,16 +135,6 @@
                 <property name="visible-child-name">scale</property>
               </object>
             </child>
-            <child type="end">
-              <object class="GtkToggleButton" id="edit_toggle">
-                <property name="halign">center</property>
-                <property name="has-frame">False</property>
-                <property name="icon-name">document-edit-symbolic</property>
-                <property name="valign">center</property>
-                <property name="visible">false</property>
-                <signal name="toggled" handler="on_edit_toggled"/>
-              </object>
-            </child>
             <child type="start">
               <object class="GtkToggleButton" id="search_toggle">
                 <property name="halign">center</property>
@@ -159,6 +149,15 @@
                 <property name="has-frame">False</property>
                 <property name="icon-name">panel-right-symbolic</property>
                 <property name="valign">center</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkToggleButton" id="edit_toggle">
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">document-edit-symbolic</property>
+                <property name="valign">center</property>
+                <signal name="toggled" handler="on_edit_toggled"/>
               </object>
             </child>
             <style>
