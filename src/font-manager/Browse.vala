@@ -20,6 +20,30 @@
 
 namespace FontManager {
 
+    public enum BrowseMode {
+
+        GRID,
+        LIST,
+        N_MODES;
+
+        public string to_string () {
+            switch (this) {
+                case LIST:
+                    return "list";
+                default:
+                    return "grid";
+            }
+        }
+
+        public static BrowseMode from_string (string mode) {
+            if (mode == "list" || mode == "1")
+                return BrowseMode.LIST;
+            else
+                return BrowseMode.GRID;
+        }
+
+    }
+
     public enum PreviewTileSize {
 
         SMALL = 96,
@@ -74,7 +98,14 @@ namespace FontManager {
 
     }
 
-    // TODO : Overlay information such as number of variations and state
+    bool have_valid_preview_text (string? preview_text) {
+        if (preview_text == null)
+            return false;
+        Pango.Language C = Pango.Language.from_string("xx");
+        string default_preview_text = C.get_sample_string();
+        return preview_text != default_preview_text;
+    }
+
     public class FontPreviewTile : Gtk.Frame {
 
         public Object? item { get; set; default = null; }
@@ -128,14 +159,6 @@ namespace FontManager {
             return;
         }
 
-        bool have_valid_preview_text (string? preview_text) {
-            if (preview_text == null)
-                return false;
-            Pango.Language C = Pango.Language.from_string("xx");
-            string default_preview_text = C.get_sample_string();
-            return preview_text != default_preview_text;
-        }
-
         public void on_item_set () {
             reset();
             if (item == null)
@@ -165,7 +188,7 @@ namespace FontManager {
         public FontGridView (Gtk.ScrolledWindow parent) {
             container = parent;
             model = new FontModel();
-            parent.map.connect(() => { update(); });
+            parent.map.connect(() => { if (list == null) create_gridview(); });
             notify["size"].connect(() => { create_gridview(); });
             bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
         }
@@ -190,13 +213,11 @@ namespace FontManager {
             selection = new Gtk.SingleSelection(model) { autoselect = false };
             container.set_child(list);
             container.set_visible(true);
-            if (model.get_n_items() > 0)
-                Idle.add(() => {
-                    uint select = previous_selection < model.get_n_items() ?
-                                  previous_selection : 0;
-                    select_item(select);
-                    return GLib.Source.REMOVE;
-                });
+            if (model.get_n_items() > 0) {
+                uint select = previous_selection < model.get_n_items() ?
+                              previous_selection : 0;
+                select_item(select);
+            }
             return;
         }
 
@@ -204,6 +225,7 @@ namespace FontManager {
             if (list == null)
                 create_gridview();
             base.update(position);
+            select_item(0);
             return;
         }
 
@@ -384,24 +406,33 @@ namespace FontManager {
     public class BrowsePane : Gtk.Box {
 
         public GLib.Settings? settings { get; protected set; default = null; }
-
+        public double pane_position { get; set; default = 55.0f; }
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
+        public BrowseMode mode { get; set; default = BrowseMode.GRID; }
 
-        public double pane_position { get; set; default = 55.0f; }
+        [GtkChild] public unowned Gtk.Stack stack { get; }
 
+        [GtkChild] unowned Gtk.Entry preview_entry;
         [GtkChild] unowned Gtk.SearchBar search_bar;
         [GtkChild] unowned Gtk.SearchEntry search_entry;
-        Gtk.Revealer panel_revealer;
+        [GtkChild] unowned Gtk.ToggleButton edit_toggle;
         [GtkChild] unowned Gtk.ToggleButton panel_toggle;
         [GtkChild] unowned Gtk.ToggleButton search_toggle;
         [GtkChild] unowned Gtk.Adjustment icon_size_adjustment;
-        Gtk.ScrolledWindow gridview_container;
-        [GtkChild] unowned Paned paned;
+        [GtkChild] unowned Paned pane;
+        [GtkChild] unowned Gtk.Stack control_stack;
 
+        [GtkChild] unowned BrowseListView listview;
+        [GtkChild] unowned FontScale fontscale;
+
+        Gtk.Revealer panel_revealer;
+        Gtk.ScrolledWindow gridview_container;
         BrowsePreview preview;
         FontGridView gridview;
+
+        bool initialized = false;
 
         static construct {
             install_action("toggle-panel", null, (Gtk.WidgetActionActivateFunc) toggle_panel);
@@ -423,16 +454,21 @@ namespace FontManager {
                 transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
              };
             panel_revealer.set_child(preview);
-            paned.set_start_child(gridview_container);
-            paned.set_end_child(panel_revealer);
+            pane.set_start_child(gridview_container);
+            pane.set_end_child(panel_revealer);
+            set_fontscale_margins();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             gridview.bind_property("model", preview, "model", flags);
+            gridview.bind_property("model", listview, "font-model", flags);
             gridview.bind_property("selected-item", preview, "selected-item", flags);
             bind_property("available-fonts", gridview, "available-fonts", flags, null, null);
             bind_property("disabled-families", gridview, "disabled-families", flags, null, null);
             bind_property("disabled-families", preview, "disabled-families", flags, null, null);
+            preview_entry.bind_property("text", listview, "preview-text", flags);
+            flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            listview.bind_property("preview-size", fontscale, "value", flags);
             flags = BindingFlags.BIDIRECTIONAL;
-            bind_property("pane-position", paned, "position", flags);
+            bind_property("pane-position", pane, "position", flags);
             bind_property("size", gridview, "size", flags, null, null);
             panel_toggle.bind_property("active", panel_revealer, "visible", flags);
             panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
@@ -443,16 +479,46 @@ namespace FontManager {
                 panel_toggle.set_active(!panel_toggle.active);
             });
             map.connect_after(on_map);
+            notify["mode"].connect(on_mode_changed);
+        }
+
+        void set_fontscale_margins () {
+            Gtk.Widget? child = fontscale.get_first_child();
+            while (child != null) {
+                child.margin_bottom = 1;
+                child.margin_top = 1;
+                child = child.get_next_sibling();
+            }
+            return;
+        }
+
+        void on_mode_changed () {
+            panel_toggle.set_visible(mode == BrowseMode.GRID);
+            edit_toggle.set_visible(mode == BrowseMode.LIST);
+            if (mode == BrowseMode.GRID)
+                control_stack.set_visible_child_name("scale");
+            else if (mode == BrowseMode.LIST && !edit_toggle.active)
+                control_stack.set_visible_child_name("fontscale");
+            else if (mode == BrowseMode.LIST && edit_toggle.active)
+                control_stack.set_visible_child_name("entry");
+            return;
         }
 
         void on_map () {
-            if (settings == null)
+            queue_update();
+            if (listview != null)
+                listview.model = null;
+            if (settings == null || initialized)
                 return;
             pane_position = settings.get_double("browse-pane-position");
             panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
+            listview.preview_size = settings.get_double("browse-font-size");
+            preview_entry.text = settings.get_string("browse-preview-text");
             settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
             settings.bind("browse-preview-visible", panel_toggle, "active", SettingsBindFlags.DEFAULT);
             settings.bind("browse-preview-tile-size", gridview, "size", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-font-size", listview, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-text", preview_entry, "text", SettingsBindFlags.DEFAULT);
             return;
         }
 
@@ -482,6 +548,19 @@ namespace FontManager {
         }
 
         [GtkCallback]
+        public void on_edit_toggled (Gtk.ToggleButton unused) {
+            if (mode == BrowseMode.GRID)
+                control_stack.set_visible_child_name("scale");
+            else if (mode == BrowseMode.LIST && !edit_toggle.active)
+                control_stack.set_visible_child_name("fontscale");
+            else if (mode == BrowseMode.LIST && edit_toggle.active)
+                control_stack.set_visible_child_name("entry");
+            if (edit_toggle.active)
+                preview_entry.grab_focus();
+            return;
+        }
+
+        [GtkCallback]
         public void on_decrease_size (Gtk.Button unused) {
             icon_size_adjustment.set_value(icon_size_adjustment.get_value() - 1);
             return;
@@ -500,18 +579,7 @@ namespace FontManager {
             return;
         }
 
-        double position_to_percentage () {
-            return ((double) paned.position / (double) get_width()) * 100;
-        }
-
-        int percentage_to_position (double percent) {
-            return (int) ((percent / 100) * (double) get_width());
-        }
-
     }
 
 }
-
-
-
 

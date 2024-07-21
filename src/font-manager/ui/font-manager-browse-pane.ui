@@ -14,85 +14,159 @@
     </child>
     <child>
       <object class="GtkBox" id="main_container">
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
+          <object class="GtkStack" id="stack">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
             <child>
-              <object class="GtkBox">
-                <child>
-                  <object class="FontManagerPaned" id="paned"/>
-                </child>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="FontManagerPaned" id="pane"/>
+                </property>
+                <property name="name">grid</property>
               </object>
             </child>
             <child>
-              <object class="GtkActionBar">
-                <property name="valign">end</property>
-                <child type="start">
-                  <object class="GtkToggleButton" id="search_toggle">
-                    <property name="has-frame">False</property>
-                    <property name="icon-name">edit-find-symbolic</property>
-                  </object>
-                </child>
-                <child type="end">
-                  <object class="GtkToggleButton" id="panel_toggle">
-                    <property name="has-frame">False</property>
-                    <property name="icon-name">panel-right-symbolic</property>
-                  </object>
-                </child>
-                <child type="center">
-                  <object class="GtkCenterBox">
-                    <property name="halign">center</property>
-                    <property name="hexpand">True</property>
-                    <child type="end">
-                      <object class="GtkButton">
-                        <property name="has-frame">False</property>
-                        <property name="icon-name">zoom-in-symbolic</property>
-                        <property name="opacity">0.75</property>
-                        <signal name="clicked" handler="on_increase_size"/>
-                      </object>
-                    </child>
-                    <child type="start">
-                      <object class="GtkButton">
-                        <property name="has-frame">False</property>
-                        <property name="icon-name">zoom-out-symbolic</property>
-                        <property name="opacity">0.75</property>
-                        <signal name="clicked" handler="on_decrease_size"/>
-                      </object>
-                    </child>
-                    <child type="center">
-                      <object class="GtkScale">
-                        <property name="adjustment">
-                          <object class="GtkAdjustment" id="icon_size_adjustment">
-                            <property name="page-increment">1.0</property>
-                            <property name="page-size">1.0</property>
-                            <property name="step-increment">1.0</property>
-                            <property name="upper">5.0</property>
-                          </object>
-                        </property>
-                        <property name="digits">0</property>
-                        <property name="fill-level">0.0</property>
-                        <property name="has-origin">False</property>
+              <object class="GtkStackPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <child>
+                      <object class="GtkScrolledWindow" id="list_container">
                         <property name="hexpand">True</property>
-                        <property name="margin-end">12</property>
-                        <property name="margin-start">12</property>
-                        <property name="restrict-to-fill-level">False</property>
-                        <property name="valign">center</property>
-                        <property name="value-pos">bottom</property>
-                        <property name="width-request">196</property>
-                        <signal name="value-changed" handler="on_scale_changed"/>
+                        <property name="vexpand">True</property>
+                        <child>
+                          <object class="FontManagerBrowseListView" id="listview">
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                   </object>
-                </child>
-                <style>
-                  <class name="view"/>
-                </style>
+                </property>
+                <property name="name">list</property>
               </object>
             </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkActionBar">
+            <property name="valign">end</property>
+            <child type="center">
+              <object class="GtkStack" id="control_stack">
+                <property name="transition-type">crossfade</property>
+                <property name="transition-duration">100</property>
+                <property name="margin-end">128</property>
+                <property name="margin-start">128</property>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="FontManagerFontScale" id="fontscale">
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">False</property>
+                        <property name="valign">center</property>
+                      </object>
+                    </property>
+                    <property name="name">fontscale</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="FontManagerPreviewEntry" id="preview_entry">
+                        <property name="hexpand">True</property>
+                        <property name="margin-bottom">0</property>
+                        <property name="margin-top">0</property>
+                      </object>
+                    </property>
+                    <property name="name">entry</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkCenterBox" id="size_controls">
+                        <property name="halign">center</property>
+                        <child type="end">
+                          <object class="GtkButton">
+                            <property name="has-frame">False</property>
+                            <property name="icon-name">zoom-in-symbolic</property>
+                            <property name="opacity">0.75</property>
+                            <signal name="clicked" handler="on_increase_size"/>
+                          </object>
+                        </child>
+                        <child type="start">
+                          <object class="GtkButton">
+                            <property name="has-frame">False</property>
+                            <property name="icon-name">zoom-out-symbolic</property>
+                            <property name="opacity">0.75</property>
+                            <signal name="clicked" handler="on_decrease_size"/>
+                          </object>
+                        </child>
+                        <child type="center">
+                          <object class="GtkScale" id="size_scale">
+                            <property name="adjustment">
+                              <object class="GtkAdjustment" id="icon_size_adjustment">
+                                <property name="page-increment">1.0</property>
+                                <property name="page-size">1.0</property>
+                                <property name="step-increment">1.0</property>
+                                <property name="upper">5.0</property>
+                              </object>
+                            </property>
+                            <property name="digits">0</property>
+                            <property name="fill-level">0.0</property>
+                            <property name="has-origin">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-start">12</property>
+                            <property name="restrict-to-fill-level">False</property>
+                            <property name="valign">center</property>
+                            <property name="value-pos">bottom</property>
+                            <property name="width-request">196</property>
+                            <signal name="value-changed" handler="on_scale_changed"/>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="name">scale</property>
+                  </object>
+                </child>
+                <property name="visible-child-name">scale</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkToggleButton" id="edit_toggle">
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">document-edit-symbolic</property>
+                <property name="valign">center</property>
+                <property name="visible">false</property>
+                <signal name="toggled" handler="on_edit_toggled"/>
+              </object>
+            </child>
+            <child type="start">
+              <object class="GtkToggleButton" id="search_toggle">
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">edit-find-symbolic</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkToggleButton" id="panel_toggle">
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">panel-right-symbolic</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <style>
+              <class name="view"/>
+            </style>
           </object>
         </child>
       </object>
     </child>
   </template>
 </interface>
-

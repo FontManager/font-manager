@@ -29,6 +29,11 @@
         <value nick="google-fonts" value="3" />
     </enum>
 
+    <enum id="org.gnome.FontManager.BrowseMode">
+        <value nick="grid" value="0" />
+        <value nick="list" value="1" />
+    </enum>
+
     <enum id="com.github.FontManager.FontManager.SortType">
         <value nick="name" value="0" />
         <value nick="size" value="1" />
@@ -197,14 +202,20 @@
     abcdefghijklmnopqrstuvwxyz
     1234567890.:,;(*!?')
 
-    "</default>
+            "</default>
+        </key>
+
+        <key name="browse-mode" enum="org.gnome.FontManager.BrowseMode">
+            <summary>Browse Mode</summary>
+            <description>Possible modes are List and Grid.</description>
+            <default>"grid"</default>
         </key>
 
         <key name="browse-font-size" type="d">
             <range min="6.0" max="96.0"/>
             <summary>Browser font size</summary>
             <description>Size point to use in Browse mode.</description>
-            <default>12.0</default>
+            <default>24.0</default>
         </key>
 
         <key name="browse-preview-text" type="s">

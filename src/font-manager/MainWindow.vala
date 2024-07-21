@@ -194,6 +194,19 @@ namespace FontManager {
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
             main_pane.bind_property("sidebar-position", prefs_pane, "position", flags);
+            header_widgets.browse_controls.bind_property("mode", browse_pane, "mode", flags);
+            browse_pane.stack.bind_property("visible-child-name",
+                                            header_widgets.browse_controls,
+                                            "mode",
+                                            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE,
+                                            (b, val, ref v) => {
+                                                v.set_enum(BrowseMode.from_string(val.get_string()));
+                                                return true;
+                                            },
+                                            (b, val, ref v) => {
+                                                v.set_string(((BrowseMode) val.get_enum()).to_string());
+                                                return true;
+                                            });
 #if HAVE_WEBKIT
             main_pane.bind_property("content-position", google_fonts, "content-position", flags);
             main_pane.bind_property("sidebar-position", google_fonts, "sidebar-position", flags);
@@ -251,6 +264,7 @@ namespace FontManager {
                     update_layout_orientation();
             });
             settings.bind("mode", this, "mode", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-mode", header_widgets.browse_controls, "mode", SettingsBindFlags.DEFAULT);
             return;
         }
 
@@ -335,7 +349,7 @@ namespace FontManager {
         void on_mode_changed (ParamSpec pspec) {
             string markup = "<b>%s</b>".printf(mode.to_translatable_string());
             header_widgets.main_menu_label.set_markup(markup);
-            header_widgets.reveal_manage_controls(mode == Mode.MANAGE);
+            header_widgets.reveal_controls(mode);
             // Special case as Compare "mode" is part of the default pane
             string visible_child = (mode == Mode.COMPARE) ? "Default" : mode.to_string();
             main_stack.set_visible_child_name(visible_child);

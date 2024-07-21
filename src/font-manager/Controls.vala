@@ -215,6 +215,44 @@ namespace FontManager {
         return;
     }
 
+    public class BrowseControls : Gtk.Box {
+
+        public BrowseMode mode { get; set; default = BrowseMode.GRID; }
+
+        public Gtk.ToggleButton grid { get; private set; }
+        public Gtk.ToggleButton list { get; private set; }
+
+        construct {
+            grid = new Gtk.ToggleButton();
+            list = new Gtk.ToggleButton();
+            string [] icons = { "view-grid-symbolic", "view-list-symbolic" };
+            Gtk.ToggleButton [] buttons = { grid, list };
+            for (int i = 0; i < buttons.length; i++) {
+                var icon = new Gtk.Image.from_icon_name(icons[i]) { opacity = 0.5f };
+                buttons[i].set_child(icon);
+                if (i > 0)
+                    buttons[i].set_group(buttons[0]);
+                append(buttons[i]);
+                buttons[i].toggled.connect(on_toggled);
+            }
+            notify["mode"].connect(() => {
+                if (mode == BrowseMode.GRID)
+                    grid.set_active(true);
+                else
+                    list.set_active(true);
+            });
+        }
+
+        void on_toggled (Gtk.ToggleButton toggle) {
+            if (toggle == grid && toggle.active)
+                mode = BrowseMode.GRID;
+            else
+                mode = BrowseMode.LIST;
+            return;
+        }
+
+    }
+
     public class HeaderBarWidgets : Object {
 
         public Gtk.MenuButton main_menu { get; protected set; }
@@ -238,13 +276,16 @@ namespace FontManager {
             }
         }
 
-        public Gtk.Revealer revealer { get; set; }
+        public Gtk.Revealer revealer { get; private set; }
         protected Gtk.Spinner spinner { get; set; }
 
         BaseControls manage_controls;
+        public BrowseControls browse_controls { get; private set; }
 
-        public void reveal_manage_controls (bool reveal) {
-            revealer.set_reveal_child(reveal);
+        public void reveal_controls (Mode mode) {
+            browse_controls.set_visible(mode == Mode.BROWSE);
+            manage_controls.set_visible(mode == Mode.MANAGE);
+            revealer.set_reveal_child(mode == BROWSE || mode == Mode.MANAGE);
             return;
         }
 
@@ -271,6 +312,8 @@ namespace FontManager {
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls() { spacing = 4 };
+            browse_controls = new BrowseControls();
+            browse_controls.add_css_class("linked");
             widget_set_margin(manage_controls, 0);
             manage_controls.add_button.has_frame = true;
             manage_controls.remove_button.has_frame = true;
@@ -285,9 +328,12 @@ namespace FontManager {
                 margin_bottom = 2
             };
             separator.add_css_class("separator");
-            manage_controls.prepend(separator);
-            revealer.set_child(manage_controls);
-            revealer.set_reveal_child(true);
+            var container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            container.prepend(separator);
+            container.append(manage_controls);
+            container.append(browse_controls);
+            revealer.set_child(container);
+            revealer.set_reveal_child(false);
             back_button = new Gtk.Button.from_icon_name("go-previous-symbolic") {
                 opacity = 0.9,
                 visible = false,
@@ -308,7 +354,9 @@ namespace FontManager {
         void set_button_style () requires (settings != null) {
             Gtk.Widget [] buttons = { main_menu, app_menu, back_button,
                                       manage_controls.add_button,
-                                      manage_controls.remove_button };
+                                      manage_controls.remove_button,
+                                      browse_controls.grid,
+                                      browse_controls.list };
             int raised = settings.get_enum("headerbar-button-style");
             foreach (var button in buttons)
                 if (button is Gtk.MenuButton)
