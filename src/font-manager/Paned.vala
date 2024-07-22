@@ -58,7 +58,8 @@ namespace FontManager {
         }
 
         void on_map () {
-            Idle.add(() => { on_position_set(); return GLib.Source.REMOVE; });
+            Idle.add_full(GLib.Priority.LOW, () => { on_position_set(); return GLib.Source.REMOVE; });
+            Idle.add_full(GLib.Priority.LOW, () => { child.queue_resize(); return GLib.Source.REMOVE; });
             return;
         }
 
