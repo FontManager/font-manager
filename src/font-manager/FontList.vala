@@ -141,7 +141,7 @@ namespace FontManager {
                 search_entry.activate.connect(next_match);
                 search_entry.next_match.connect(next_match);
                 search_entry.previous_match.connect(previous_match);
-                search_entry.search_changed.connect(queue_update);
+                search_entry.search_changed.connect_after(queue_update);
                 string hint = search_tip.printf(Path.DIR_SEPARATOR_S, Path.SEARCHPATH_SEPARATOR_S);
                 search_entry.set_tooltip_text(hint);
             });
@@ -177,7 +177,7 @@ namespace FontManager {
         public void queue_update () {
             if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add_full(GLib.Priority.LOW + 50, 333, _queue_update);
+            search_timeout = Timeout.add_full(GLib.Priority.HIGH_IDLE, 333, _queue_update);
             return;
         }
 
