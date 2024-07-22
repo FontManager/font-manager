@@ -452,7 +452,7 @@ generate_waterfall_preview (FontManagerPreviewPage *self)
     gtk_text_buffer_set_text(buffer, "", -1);
     g_idle_remove_by_data(self);
     current_line = self->min_waterfall_size;
-    g_idle_add((GSourceFunc) generate_waterfall_line, self);
+    g_idle_add_full(G_PRIORITY_HIGH_IDLE, (GSourceFunc) generate_waterfall_line, self, NULL);
     return;
 }
 

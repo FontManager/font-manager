@@ -194,7 +194,7 @@ namespace FontManager {
             model = new FontModel();
             parent.map.connect(() => { if (list == null) create_gridview(); });
             notify["size"].connect(() => { create_gridview(); });
-            notify["preview-text"].connect_after(() => { update(); });
+            notify["preview-text"].connect_after(() => { queue_update(); });
             bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
         }
 
