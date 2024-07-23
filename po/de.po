@@ -22,21 +22,22 @@
 # Milo Ivir <mail@milotype.de>, 2020, 2021.
 # Andreas Klostermaier <andreas.klostermaier@appendx.de>, 2021, 2022.
 # Stephan Kurz <stephan.kurz@oeaw.ac.at>, 2023.
+# Marco <mstffn@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2023-11-06 18:33+0000\n"
-"Last-Translator: Stephan Kurz <stephan.kurz@oeaw.ac.at>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"PO-Revision-Date: 2024-07-23 16:09+0000\n"
+"Last-Translator: Marco <mstffn@gmail.com>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.2-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -689,10 +690,8 @@ msgstr ""
 "    "
 
 #: src/font-manager/Application.vala:130
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "Schriften installieren"
+msgstr "Installiere Schriftarten…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -823,10 +822,8 @@ msgid "Help"
 msgstr "Hilfe"
 
 #: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Font Manager"
+msgstr "Über Font Manager"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
@@ -854,7 +851,7 @@ msgstr "Name"
 
 #: src/font-manager/Controls.vala:173
 msgid "Size"
-msgstr ""
+msgstr "Größe"
 
 #: src/font-manager/Controls.vala:280
 msgid "Add Fonts"
@@ -873,22 +870,16 @@ msgid "_Select"
 msgstr "_Auswählen"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
-msgstr "Ausführbare Datei auswählen"
+msgstr "Anwendung auswählen"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "Wähle Vordergrundfarbe"
+msgstr "Verzeichnis auswählen"
 
 #: src/font-manager/Dialogs.vala:75
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
-msgstr "Dateien zum installieren auswählen"
+msgstr "Dateien zum Installieren auswählen"
 
 #: src/font-manager/Dialogs.vala:84
 #, fuzzy
@@ -1625,10 +1616,8 @@ msgid "Supported Orthographies"
 msgstr "Unterstützte Schriftzeichen"
 
 #: src/font-manager/OrthographyList.vala:200
-#, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
-msgstr "Keine ausgewählte Datei"
+msgstr "Keine Elemente ausgewählt"
 
 #: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
@@ -1637,7 +1626,7 @@ msgstr "Aktualisierung läuft"
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "Keine gültige Rechtschreibung zur Auswahl"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
@@ -1646,17 +1635,12 @@ msgstr "Neue Sammlung hinzufügen"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:30
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
-msgstr "Ausgewählten Alias entfernen"
+msgstr "Ausgewähltes Element entfernen"
 
 #: src/font-manager/Sidebar.vala:67
-#, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
-msgstr "%i ausgewähltes Element"
+msgstr "Ausgewähltes Element bearbeiten"
 
 #: src/font-manager/Utils.vala:293
 msgid "Copying files…"
@@ -1775,11 +1759,11 @@ msgstr "Schema der GNOME-Desktop-Einstellungen nicht gefunden"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
-msgstr ""
+msgstr "Graustufen"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
-msgstr ""
+msgstr "RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:222
 #: src/font-manager/preferences/Display.vala:91
@@ -1851,7 +1835,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:152
 msgid "Reset all values to default"
-msgstr ""
+msgstr "Einstellungen auf Standardwerte zurücksetzen"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
@@ -2089,10 +2073,8 @@ msgid "Adlam"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:34
-#, fuzzy
-#| msgid "Egyptian Hieroglyphs"
 msgid "Anatolian Hieroglyphs"
-msgstr "Ägyptische Hieroglyphen"
+msgstr "Anatolische Hieroglyphen"
 
 #: src/font-manager/web/google/LanguageData.vala:37
 msgid "Avestan"
@@ -2103,10 +2085,8 @@ msgid "Bassa Vah"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:41
-#, fuzzy
-#| msgid "Surat Batak"
 msgid "Batak"
-msgstr "Batak-Schrift"
+msgstr "Batak"
 
 #: src/font-manager/web/google/LanguageData.vala:43
 msgid "Bhaiksuki"
@@ -2126,10 +2106,8 @@ msgid "Caucasian Albanian"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:49
-#, fuzzy
-#| msgid "Unified Canadian Aboriginal Syllabics"
 msgid "Canadian Aboriginal"
-msgstr "Vereinheitlichte Silbenzeichen kanadischer Ureinwohner"
+msgstr "Kanadische Ureinwohner"
 
 #: src/font-manager/web/google/LanguageData.vala:54
 msgid "Chinese (Hong Kong)"
@@ -2168,10 +2146,8 @@ msgid "Cyrillic Extended"
 msgstr "Kyrillisch erweitert"
 
 #: src/font-manager/web/google/LanguageData.vala:64
-#, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
-msgstr "Alle abwählen"
+msgstr "Deseret"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
@@ -2264,10 +2240,8 @@ msgid "Linear A"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:105
-#, fuzzy
-#| msgid "Linear B Ideograms"
 msgid "Linear B"
-msgstr "Linear B Ideogramme"
+msgstr "Linear B"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
@@ -2306,26 +2280,20 @@ msgid "Masaram Gondi"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:116
-#, fuzzy
-#| msgid "Mathematical Numerals"
 msgid "Mayan Numerals"
-msgstr "Mathematische Ziffern"
+msgstr "Maya-Ziffern"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:118
-#, fuzzy
-#| msgid "Meetei Mayak"
 msgid "Meetei Mayek"
-msgstr "Meitei"
+msgstr "Meitei-Mayek"
 
 #: src/font-manager/web/google/LanguageData.vala:120
-#, fuzzy
-#| msgid "MeroiticCursive"
 msgid "Meroitic"
-msgstr "Meroitisch-demotisch"
+msgstr "Meroitisch"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
@@ -2352,10 +2320,8 @@ msgid "Nag Mundari"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:132
-#, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
-msgstr "Devanagari"
+msgstr "Nandinagari"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
@@ -2367,38 +2333,28 @@ msgid "Nüshu"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:139
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Hungarian"
-msgstr "Altsüdarabisch"
+msgstr "Altungarisch"
 
 #: src/font-manager/web/google/LanguageData.vala:141
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old North Arabian"
-msgstr "Altsüdarabisch"
+msgstr "Altnordarabisch"
 
 #: src/font-manager/web/google/LanguageData.vala:142
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Permic"
-msgstr "Alte Kursiv"
+msgstr "Altpermisch"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:144
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Sogdian"
-msgstr "Altsüdarabisch"
+msgstr "Altsogdisch"
 
 #: src/font-manager/web/google/LanguageData.vala:146
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Turkic"
-msgstr "Alte Kursiv"
+msgstr "Alttürkisch"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
@@ -2441,10 +2397,8 @@ msgid "Siddham"
 msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:163
-#, fuzzy
-#| msgid "Hinting"
 msgid "SignWriting"
-msgstr "Hinting"
+msgstr "GebärdenSchrift"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
@@ -2514,10 +2468,8 @@ msgid "Or unsupported filetype."
 msgstr "Oder nicht unterstützende Dateiarten."
 
 #: src/font-viewer/MainWindow.vala:137
-#, fuzzy
-#| msgid "System"
 msgid "System Font"
-msgstr "System"
+msgstr "Systemschrift"
 
 #: src/font-viewer/MainWindow.vala:139
 msgid ""
@@ -2597,10 +2549,8 @@ msgid "Switch to Compare mode"
 msgstr "Gehe auf Vergleichen"
 
 #: src/font-manager/gtk/help-overlay.ui:99
-#, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
-msgstr "Gehe auf Verwalten"
+msgstr "In den Google-Fonts-Modus wechseln"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
@@ -2648,10 +2598,8 @@ msgstr "Fixierte Vergleiche"
 
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
-#, fuzzy
-#| msgid "_Cancel"
 msgid "Cancel"
-msgstr "_Abbrechen"
+msgstr "Abbrechen"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:49
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
@@ -2676,10 +2624,8 @@ msgid "Clear selected filter"
 msgstr "Ausgewählten Filter leeren"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
-#, fuzzy
-#| msgid "Created : "
 msgid "Created :"
-msgstr "Erstellt : "
+msgstr "Erstellt :"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
@@ -2698,10 +2644,8 @@ msgid "Select fonts to remove"
 msgstr "Schriften zum Entfernen auswählen"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
-#, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
-msgstr "_Entfernen"
+msgstr "Löschen"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
