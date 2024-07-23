@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-06-30 16:03+0000\n"
+"PO-Revision-Date: 2024-07-23 16:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -123,10 +123,8 @@ msgid "Font Properties"
 msgstr "Propiedades del tipo de letra"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "Actualizando la base de datos… tipos de letra"
+msgstr "Actualizando base de datos…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:699
@@ -620,24 +618,6 @@ msgid "Separator, Space"
 msgstr "Separador, espacio"
 
 #: src/font-manager/Application.vala:5
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "    This program is free software: you can redistribute it and/or modify\n"
-#| "    it under the terms of the GNU General Public License as published by\n"
-#| "    the Free Software Foundation, either version 3 of the License, or\n"
-#| "    (at your option) any later version.\n"
-#| "\n"
-#| "    This program is distributed in the hope that it will be useful,\n"
-#| "    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-#| "    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-#| "    GNU General Public License for more details.\n"
-#| "\n"
-#| "    You should have received a copy of the GNU General Public License\n"
-#| "    along with this program.\n"
-#| "\n"
-#| "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-#| "    "
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -666,17 +646,14 @@ msgstr ""
 "    COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR.\n"
 "    Consulte la Licencia Pública General GNU para más detalles.\n"
 "\n"
-"    Debería haber recibido una copia de la Licencia Pública General de\n"
+"    Deberías haber recibido una copia de la Licencia Pública General de\n"
 "    GNU con este programa.\n"
 "\n"
-"    Si no es así, consulte <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"    "
+"    Si no es así, consulta <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 
 #: src/font-manager/Application.vala:130
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "Instalar tipo de letra"
+msgstr "Instalando el tipo de letra…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -809,10 +786,8 @@ msgid "Help"
 msgstr "Ayuda"
 
 #: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Gestor de fuentes"
+msgstr "Acerca de Font Manager"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
@@ -859,28 +834,20 @@ msgid "_Select"
 msgstr "_Seleccionar"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "Seleccionar ejecutable"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "Seleccione el color de texto"
+msgstr "Seleccione una ruta"
 
 #: src/font-manager/Dialogs.vala:75
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
 msgstr "Seleccionar los archivos para instalar"
 
 #: src/font-manager/Dialogs.vala:84
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
-msgstr "Seleccionar las carpetas"
+msgstr "Seleccionar directorios de origen"
 
 #: src/font-manager/Dialogs.vala:118
 msgid "Font Configuration"
@@ -999,9 +966,8 @@ msgid "Compare"
 msgstr "Comparar"
 
 #: src/font-manager/MainWindow.vala:74
-#, fuzzy
 msgid "Google Fonts"
-msgstr "Desinstalar tipos de letra"
+msgstr "Google Fonts"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
@@ -1254,7 +1220,7 @@ msgstr "AFI"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr "Igbo Onwu"
+msgstr "Igbo (alfabeto Onwu)"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
@@ -1610,10 +1576,8 @@ msgid "Supported Orthographies"
 msgstr "Ortografías admitidas"
 
 #: src/font-manager/OrthographyList.vala:200
-#, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
-msgstr "No se seleccionó ningún archivo"
+msgstr "Sin elementos seleccionados"
 
 #: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
@@ -1622,7 +1586,7 @@ msgstr "Actualización en curso"
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "No hay ortografía válida para elegir"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
@@ -1631,17 +1595,12 @@ msgstr "Añadir colección nueva"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:30
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
-msgstr "Quitar los alias seleccionados"
+msgstr "Eliminar el elemento seleccionado"
 
 #: src/font-manager/Sidebar.vala:67
-#, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
-msgstr "%i elemento seleccionado"
+msgstr "Editar elemento seleccionado"
 
 #: src/font-manager/Utils.vala:293
 msgid "Copying files…"
@@ -1765,11 +1724,11 @@ msgstr "No se ha encontrado el esquema de configuración de escritorio de GNOME"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
-msgstr ""
+msgstr "Escala de grises"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
-msgstr ""
+msgstr "RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:222
 #: src/font-manager/preferences/Display.vala:91
@@ -1814,15 +1773,6 @@ msgid "Rendering"
 msgstr "Representación"
 
 #: src/font-manager/preferences/Preferences.vala:130
-#, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1830,18 +1780,18 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Seleccione guardar para generar un archivo de configuración fontconfig a "
-"partir de los ajustes anteriores.\n"
+"Se generará un archivo de configuración Fontconfig a partir de estas "
+"configuraciones.\n"
 "\n"
-"Seleccione descartar para eliminar el archivo de configuración y volver a la "
-"configuración por defecto.\n"
+"Es posible que sea necesario reiniciar las aplicaciones en ejecución para "
+"reflejar cualquier cambio.\n"
 "\n"
-"Tenga en cuenta que no todos los entornos/aplicaciones respetarán estos "
-"ajustes."
+"Ten en cuenta que no todos los entornos/aplicaciones respetarán estas "
+"configuraciones."
 
 #: src/font-manager/preferences/Preferences.vala:152
 msgid "Reset all values to default"
-msgstr ""
+msgstr "Restablecer la configuración a los valores predeterminados"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
@@ -1956,16 +1906,11 @@ msgstr "El tamaño máximo de la fuente en la vista previa en cascada"
 
 #: src/font-manager/preferences/UserInterface.vala:211
 msgid "Selected setting requires restart to apply"
-msgstr ""
+msgstr "Es necesario reiniciar para aplicar la configuración seleccionada"
 
 #: src/font-manager/preferences/UserInterface.vala:212
-#, fuzzy
-#| msgid ""
-#| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
-msgstr ""
-"Decoraciones activadas: el cambio tendrá efecto la próxima vez que se inicie "
-"la aplicación."
+msgstr "Los cambios se aplicarán la próxima vez que inicies la aplicación"
 
 #: src/font-manager/preferences/UserInterface.vala:224
 msgid "Wide Layout"
@@ -1985,11 +1930,11 @@ msgstr "Preferir tema oscuro"
 
 #: src/font-manager/preferences/UserInterface.vala:232
 msgid "Use Adwaita Stylesheet"
-msgstr ""
+msgstr "Utilizar la hoja estilo Adwaita"
 
 #: src/font-manager/preferences/UserInterface.vala:234
 msgid "Raised"
-msgstr ""
+msgstr "Elevado"
 
 #: src/font-manager/preferences/UserInterface.vala:234
 msgid "Flat"
@@ -2004,28 +1949,17 @@ msgid "Display line size in Waterfall Preview"
 msgstr "Mostrar el tamaño de fuente de la línea en la vista previa en cascada"
 
 #: src/font-manager/preferences/UserSources.vala:141
-#, fuzzy
-#| msgid ""
-#| "Fonts in any folders listed here will be available within the "
-#| "application.\n"
-#| "\n"
-#| "They will not be visible to other applications until the source is "
-#| "actually enabled.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
 "They will not be visible to other applications until the source is actually "
 "enabled."
 msgstr ""
-"Los tipos de letra en cualquiera de las carpetas aquí enumeradas estarán "
-"disponibles dentro de la aplicación.\n"
+"Las fuentes en cualquier carpeta enumerada aquí estarán disponibles dentro "
+"de la aplicación.\n"
 "\n"
-"No serán visibles al resto de las aplicaciones salvo que se active el "
-"origen.\n"
-"\n"
-"Observe que no todos los entornos y programas respetan estas configuraciones."
+"No serán visibles para otras aplicaciones hasta que la fuente esté realmente "
+"habilitada."
 
 #: src/font-manager/preferences/UserSources.vala:153
 msgid "Easily add or preview fonts without actually installing them."
@@ -2041,11 +1975,11 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:155
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Acceso a la red desactivado"
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "Contacte con el administrador del sistema para solicitar acceso."
 
 #: src/font-manager/web/google/GoogleFonts.vala:159
 msgid "Network Offline"
@@ -2077,50 +2011,44 @@ msgstr "Error en el servidor"
 #. Sample strings used here should be sourced from https://fonts.google.com/
 #: src/font-manager/web/google/LanguageData.vala:33
 msgid "Adlam"
-msgstr ""
+msgstr "Adlam"
 
 #: src/font-manager/web/google/LanguageData.vala:34
-#, fuzzy
-#| msgid "Egyptian Hieroglyphs"
 msgid "Anatolian Hieroglyphs"
-msgstr "Jeroglíficos egipcios"
+msgstr "Anatolian Hieroglyphs"
 
 #: src/font-manager/web/google/LanguageData.vala:37
 msgid "Avestan"
-msgstr ""
+msgstr "Avestan"
 
 #: src/font-manager/web/google/LanguageData.vala:40
 msgid "Bassa Vah"
-msgstr ""
+msgstr "Bassa Vah"
 
 #: src/font-manager/web/google/LanguageData.vala:41
-#, fuzzy
-#| msgid "Surat Batak"
 msgid "Batak"
-msgstr "Surat Batak"
+msgstr "Batak"
 
 #: src/font-manager/web/google/LanguageData.vala:43
 msgid "Bhaiksuki"
-msgstr ""
+msgstr "Bhaiksuki"
 
 #: src/font-manager/web/google/LanguageData.vala:44
 msgid "Brahmi"
-msgstr ""
+msgstr "Brahmi"
 
 #: src/font-manager/web/google/LanguageData.vala:45
 msgid "Braille"
-msgstr ""
+msgstr "Braille"
 
 #. { N_("Buhid"), "buhid", "" },
 #: src/font-manager/web/google/LanguageData.vala:48
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "Albania caucásica"
 
 #: src/font-manager/web/google/LanguageData.vala:49
-#, fuzzy
-#| msgid "Unified Canadian Aboriginal Syllabics"
 msgid "Canadian Aboriginal"
-msgstr "Sílabas aborígenes canadienses unificadas"
+msgstr "Aborigen canadiense"
 
 #: src/font-manager/web/google/LanguageData.vala:54
 msgid "Chinese (Hong Kong)"
@@ -2136,19 +2064,19 @@ msgstr "Chino (tradicional)"
 
 #: src/font-manager/web/google/LanguageData.vala:57
 msgid "Chorasmian"
-msgstr ""
+msgstr "Chorasmian"
 
 #: src/font-manager/web/google/LanguageData.vala:59
 msgid "Cuneiform"
-msgstr ""
+msgstr "Cuneiforme sumerio-acadio"
 
 #: src/font-manager/web/google/LanguageData.vala:60
 msgid "Cypriot"
-msgstr ""
+msgstr "Chipre"
 
 #: src/font-manager/web/google/LanguageData.vala:61
 msgid "Cypro Minoan"
-msgstr ""
+msgstr "Chipriota-minoico"
 
 #: src/font-manager/web/google/LanguageData.vala:62
 msgid "Cyrillic"
@@ -2159,26 +2087,24 @@ msgid "Cyrillic Extended"
 msgstr "Extensión cirílica"
 
 #: src/font-manager/web/google/LanguageData.vala:64
-#, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
-msgstr "No seleccionar nada"
+msgstr "Deseret"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr ""
+msgstr "Estenografía duployeana"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr ""
+msgstr "Elbasan (albanés del siglo XVIII)"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
-msgstr ""
+msgstr "Elimaico"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
-msgstr ""
+msgstr "Grantha"
 
 #: src/font-manager/web/google/LanguageData.vala:75
 msgid "Greek"
@@ -2190,37 +2116,35 @@ msgstr "Griego extendido"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
-msgstr ""
+msgstr "Gunjala Gondi"
 
 #: src/font-manager/web/google/LanguageData.vala:80
 msgid "Hanifi Rohingya"
-msgstr ""
+msgstr "Hanifi Rohingya"
 
 #: src/font-manager/web/google/LanguageData.vala:81
-#, fuzzy
-#| msgid "Hanunó'o"
 msgid "Hanunoo"
-msgstr "Hanunuo"
+msgstr "Hanunó'o (Mangyan)"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
-msgstr ""
+msgstr "Arameo hatreo"
 
 #: src/font-manager/web/google/LanguageData.vala:84
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "Arameo imperial"
 
 #: src/font-manager/web/google/LanguageData.vala:85
 msgid "Indic Siyaq Numbers"
-msgstr ""
+msgstr "Caracteres Unicode/Números índicos siyaq"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "Escritura pelvi"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "Partio inscripcional"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
@@ -2228,15 +2152,15 @@ msgstr "Japonés"
 
 #: src/font-manager/web/google/LanguageData.vala:93
 msgid "Kawi"
-msgstr ""
+msgstr "Kawi"
 
 #: src/font-manager/web/google/LanguageData.vala:96
 msgid "Khojki"
-msgstr ""
+msgstr "Alfabeto khojki"
 
 #: src/font-manager/web/google/LanguageData.vala:97
 msgid "Khudawadi"
-msgstr ""
+msgstr "Alfabeto khudabadi"
 
 #: src/font-manager/web/google/LanguageData.vala:98
 msgid "Korean"
@@ -2252,210 +2176,188 @@ msgstr "Latín extendido"
 
 #: src/font-manager/web/google/LanguageData.vala:104
 msgid "Linear A"
-msgstr ""
+msgstr "Lineal A (escritura minoica de Creta)"
 
 #: src/font-manager/web/google/LanguageData.vala:105
-#, fuzzy
-#| msgid "Linear B Ideograms"
 msgid "Linear B"
-msgstr "Ideogramas del lineal B"
+msgstr "Lineal B"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
-msgstr ""
+msgstr "Lisu"
 
 #: src/font-manager/web/google/LanguageData.vala:107
 msgid "Lycian"
-msgstr ""
+msgstr "Alfabeto licio"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"
-msgstr ""
+msgstr "Modo lidio"
 
 #: src/font-manager/web/google/LanguageData.vala:109
 msgid "Mahajani"
-msgstr ""
+msgstr "Idioma marwari (Mahajani)"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
-msgstr ""
+msgstr "Idioma mandeo"
 
 #: src/font-manager/web/google/LanguageData.vala:112
 msgid "Manichaean"
-msgstr ""
+msgstr "Maniqueísmo"
 
 #: src/font-manager/web/google/LanguageData.vala:113
 msgid "Math"
-msgstr ""
+msgstr "Matemático"
 
 #: src/font-manager/web/google/LanguageData.vala:114
 msgid "Marchen"
-msgstr ""
+msgstr "Marchen (escritura tibetana Zhangzung)"
 
 #: src/font-manager/web/google/LanguageData.vala:115
 msgid "Masaram Gondi"
-msgstr ""
+msgstr "Masaram Gondi (escritura india Gondi)"
 
 #: src/font-manager/web/google/LanguageData.vala:116
-#, fuzzy
-#| msgid "Mathematical Numerals"
 msgid "Mayan Numerals"
-msgstr "Cifras matemáticas"
+msgstr "Numeración Maya"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
-msgstr ""
+msgstr "Medefaidrin"
 
 #: src/font-manager/web/google/LanguageData.vala:118
-#, fuzzy
-#| msgid "Meetei Mayak"
 msgid "Meetei Mayek"
-msgstr "Manipurí"
+msgstr "Meitei"
 
 #: src/font-manager/web/google/LanguageData.vala:120
-#, fuzzy
-#| msgid "MeroiticCursive"
 msgid "Meroitic"
-msgstr "Cursiva meroítica"
+msgstr "Meroítico"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
-msgstr ""
+msgstr "Modi (escritura india de Maharashtra)"
 
 #: src/font-manager/web/google/LanguageData.vala:126
 msgid "Mro"
-msgstr ""
+msgstr "Mro (escritura del idioma birmano, mro-khimi de Myanmar)"
 
 #: src/font-manager/web/google/LanguageData.vala:127
 msgid "Multani"
-msgstr ""
+msgstr "Multani (escritura histórica de Saraiki)"
 
 #: src/font-manager/web/google/LanguageData.vala:128
 msgid "Music"
-msgstr ""
+msgstr "Música"
 
 #: src/font-manager/web/google/LanguageData.vala:130
 msgid "Nabataean"
-msgstr ""
+msgstr "Nabateo"
 
 #: src/font-manager/web/google/LanguageData.vala:131
 msgid "Nag Mundari"
-msgstr ""
+msgstr "Nag Mundari (escritura Mundari)"
 
 #: src/font-manager/web/google/LanguageData.vala:132
-#, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
-msgstr "Devanagari"
+msgstr "Nandinagari"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
-msgstr ""
+msgstr "Newa"
 
 #. { N_(""), "nko", "" },
 #: src/font-manager/web/google/LanguageData.vala:136
 msgid "Nüshu"
-msgstr ""
+msgstr "Nüshu"
 
 #: src/font-manager/web/google/LanguageData.vala:139
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Hungarian"
-msgstr "Alfabeto árabe meridional (Musnad)"
+msgstr "Alfabeto húngaro antiguo"
 
 #: src/font-manager/web/google/LanguageData.vala:141
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old North Arabian"
-msgstr "Alfabeto árabe meridional (Musnad)"
+msgstr "Árabe antiguo septentrional"
 
 #: src/font-manager/web/google/LanguageData.vala:142
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Permic"
-msgstr "Itálico prerromano"
+msgstr "Pérmico antiguo"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
-msgstr ""
+msgstr "Persa antiguo"
 
 #: src/font-manager/web/google/LanguageData.vala:144
-#, fuzzy
-#| msgid "Old South Arabian"
 msgid "Old Sogdian"
-msgstr "Alfabeto árabe meridional (Musnad)"
+msgstr "Alfabeto sogdiano"
 
 #: src/font-manager/web/google/LanguageData.vala:146
-#, fuzzy
-#| msgid "Old Italic"
 msgid "Old Turkic"
-msgstr "Itálico prerromano"
+msgstr "Antiguo alfabeto turco"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
-msgstr ""
+msgstr "Osage"
 
 #: src/font-manager/web/google/LanguageData.vala:150
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Pahawh Hmong"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
-msgstr ""
+msgstr "Palmyrene"
 
 #: src/font-manager/web/google/LanguageData.vala:152
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Pau Cin Hau"
 
 #: src/font-manager/web/google/LanguageData.vala:154
 msgid "Phoenician"
-msgstr ""
+msgstr "Fenicio"
 
 #: src/font-manager/web/google/LanguageData.vala:155
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Salmo Pahlavi (escrito en papel persa medio)"
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
-msgstr ""
+msgstr "Samaritano"
 
 #: src/font-manager/web/google/LanguageData.vala:160
 msgid "Sharada"
-msgstr ""
+msgstr "Alfabeto sharada"
 
 #: src/font-manager/web/google/LanguageData.vala:161
 msgid "Shavian"
-msgstr ""
+msgstr "Shaviano"
 
 #: src/font-manager/web/google/LanguageData.vala:162
 msgid "Siddham"
-msgstr ""
+msgstr "Siddham"
 
 #: src/font-manager/web/google/LanguageData.vala:163
-#, fuzzy
-#| msgid "Hinting"
 msgid "SignWriting"
-msgstr "Optimización de formas"
+msgstr "SignWriting"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
-msgstr ""
+msgstr "Sogdiano"
 
 #: src/font-manager/web/google/LanguageData.vala:166
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "Sora Sompeng"
 
 #: src/font-manager/web/google/LanguageData.vala:167
 msgid "Soyombo"
-msgstr ""
+msgstr "Símbolo Soyombo"
 
 #: src/font-manager/web/google/LanguageData.vala:172
 msgid "Tagalog"
-msgstr ""
+msgstr "Tagalo"
 
 #: src/font-manager/web/google/LanguageData.vala:173
 msgid "Tagbanwa"
-msgstr ""
+msgstr "Tagbanwa"
 
 #. TRANSLATORS : The replacement character here refers to a language name.
 #: src/font-manager/web/google/LanguageData.vala:190
@@ -2503,10 +2405,8 @@ msgid "Or unsupported filetype."
 msgstr "O el tipo de archivo no es compatible."
 
 #: src/font-viewer/MainWindow.vala:137
-#, fuzzy
-#| msgid "System"
 msgid "System Font"
-msgstr "Sistema"
+msgstr "Fuente del sistema"
 
 #: src/font-viewer/MainWindow.vala:139
 msgid ""
@@ -2518,6 +2418,14 @@ msgid ""
 "the system administrator to remove it or use a font management application "
 "to disable it."
 msgstr ""
+"El archivo de fuentes seleccionado está instalado en un directorio del "
+"sistema o el usuario actual no puede escribir en él.\n"
+"\n"
+"Si deseas eliminar esta fuente de la lista de fuentes disponibles, utiliza "
+"el administrador de paquetes del sistema para eliminar el paquete que "
+"contiene este archivo de fuentes, solicita al administrador del sistema que "
+"lo elimine o utilice una aplicación de administración de fuentes para "
+"deshabilitarlo."
 
 #: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
@@ -2525,7 +2433,7 @@ msgstr "Ya se ha instalado una versión más reciente"
 
 #: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
-msgstr ""
+msgstr "Haz clic para sobrescribir"
 
 #: src/font-viewer/MainWindow.vala:147
 msgid "Update Font"
@@ -2558,7 +2466,7 @@ msgstr "Restablecer tamaño de previsualización"
 
 #: src/font-manager/gtk/help-overlay.ui:44
 msgid "Focus search entry"
-msgstr ""
+msgstr "Entrada de búsqueda focal"
 
 #: src/font-manager/gtk/help-overlay.ui:51
 msgid "Reload"
@@ -2586,10 +2494,8 @@ msgid "Switch to Compare mode"
 msgstr "Cambiar al modo de comparación"
 
 #: src/font-manager/gtk/help-overlay.ui:99
-#, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
-msgstr "Cambiar al modo de gestión"
+msgstr "Cambiar al modo Google Fonts"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
@@ -2614,6 +2520,10 @@ msgid ""
 "Disabling will prevent the selected family from being used by other "
 "applications."
 msgstr ""
+"Estado de la familia seleccionada.\n"
+"\n"
+"Al deshabilitarlo se evitará que la familia seleccionada sea utilizada por "
+"otras aplicaciones."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
@@ -2637,10 +2547,8 @@ msgstr "Comparaciones ancladas"
 
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
-#, fuzzy
-#| msgid "_Cancel"
 msgid "Cancel"
-msgstr "_Cancelar"
+msgstr "Cancelar"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:49
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
@@ -2665,10 +2573,8 @@ msgid "Clear selected filter"
 msgstr "Borrar el filtro seleccionado"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
-#, fuzzy
-#| msgid "Created : "
 msgid "Created :"
-msgstr "Creación: "
+msgstr "Creado :"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
@@ -2687,20 +2593,16 @@ msgid "Select fonts to remove"
 msgstr "Seleccionar los tipos para eliminar"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
-#, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
-msgstr "_Eliminar"
+msgstr "Borrar"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
 msgstr "Categorías"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
-#, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
-msgstr "Colecciones tipográficas"
+msgstr "Colecciones inteligentes"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
@@ -2781,15 +2683,15 @@ msgstr "Categoría"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
 msgid "4+"
-msgstr ""
+msgstr "4+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
 msgid "8+"
-msgstr ""
+msgstr "8+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
 msgid "12+"
-msgstr ""
+msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
 msgid "Variations"
