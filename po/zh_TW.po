@@ -23,13 +23,14 @@
 # lemon37564 <stonydragon0701@gmail.com>, 2021.
 # Kisaragi Hiu <mail@kisaragi-hiu.com>, 2022.
 # D0735 <D0735@users.noreply.hosted.weblate.org>, 2024.
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-03-12 17:01+0000\n"
-"Last-Translator: D0735 <D0735@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2024-07-23 16:09+0000\n"
+"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -37,7 +38,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -2657,10 +2658,8 @@ msgid "Clear selected filter"
 msgstr "清除過濾器"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
-#, fuzzy
-#| msgid "Created : "
 msgid "Created :"
-msgstr "建立: "
+msgstr "建立:"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
