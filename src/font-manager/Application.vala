@@ -293,6 +293,7 @@ namespace FontManager {
                 bind_property("disabled-families", main_window, "disabled-families", flags);
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
+                main_window.present();
             }
             db.update_complete.connect(() => {
                 update_item_preview_text(available_fonts);
@@ -300,7 +301,8 @@ namespace FontManager {
                     main_window.browse_pane.queue_update();
                 Idle.add(() => {
                     main_window.category_model.update_items();
-                    main_window.select_first_font();
+                    if (main_window.mode != Mode.BROWSE)
+                        main_window.select_first_font();
                     return GLib.Source.REMOVE;
                 });
             });

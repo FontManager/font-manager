@@ -348,6 +348,7 @@ namespace FontManager.GoogleFonts {
 
         construct {
             widget_set_name(listview, "FontManagerGoogleFontsFontListView");
+            widget_set_margin(listview, 6);
         }
 
         // Add slight delay to avoid filtering while search is still changing

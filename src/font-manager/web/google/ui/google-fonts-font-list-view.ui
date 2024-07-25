@@ -16,6 +16,8 @@
           <object class="GtkCenterBox">
             <property name="margin-bottom">2</property>
             <property name="margin-top">2</property>
+            <property name="margin-start">4</property>
+            <property name="margin-end">4</property>
             <child type="start">
               <object class="GtkBox">
                 <child>
