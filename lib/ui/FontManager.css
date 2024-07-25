@@ -68,6 +68,11 @@ popover contents row:hover {
     border-radius: 0.25em;
 }
 
+treeexpander indent {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
 /* Accelerator visibility is inconsistent between otherwise identical popovers */
 /* Disable accelerator visibility in menu popovers everywhere for consistency */
 accelerator {

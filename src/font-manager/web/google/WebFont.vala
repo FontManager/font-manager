@@ -1,6 +1,6 @@
 /* WebFont.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,6 +43,33 @@ namespace FontManager.GoogleFonts {
 
         public uint position { get; set; default = 0; }
 
+        public bool inconsistent {
+            get {
+                bool possibly_sensitive = active;
+                if (!possibly_sensitive)
+                    return false;
+                int installed = 0;
+                foreach (var entry in variants)
+                    if (entry.active)
+                        installed++;
+                return (possibly_sensitive && installed < count);
+            }
+        }
+
+        public bool active {
+            get {
+                return (get_installation_status() != FileStatus.NOT_INSTALLED);
+            }
+            set {
+                foreach (var entry in variants)
+                    Idle.add(() => {
+                        entry.active = value;
+                        return GLib.Source.REMOVE;
+                    });
+                notify_property("active");
+            }
+        }
+
         public string family { get; set; }
         public string category { get; set; }
         public GenericArray <Font> variants { get; set; }
@@ -60,6 +87,13 @@ namespace FontManager.GoogleFonts {
                 var entry = node.get_string();
                 var variant = new Font(family, entry, filelist.get_string_member(entry), subsets);
                 variants.insert((int) index, variant);
+                variant.notify["active"].connect(() => {
+                    Idle.add_full(GLib.Priority.LOW, () => {
+                        notify_property("active");
+                        notify_property("inconsistent");
+                        return GLib.Source.REMOVE;
+                    });
+                });
             });
             source.get_array_member("subsets").foreach_element((array, index, node) => {
                 subsets.add(node.get_string());
@@ -87,9 +121,8 @@ namespace FontManager.GoogleFonts {
 
         public FileStatus get_installation_status () {
             for (int i = 0; i < variants.length; i++) {
-                var status = variants[i].get_installation_status();
-                if (status != FileStatus.NOT_INSTALLED)
-                    return status;
+                if (variants[i].active)
+                    return FileStatus.INSTALLED;
             }
             return FileStatus.NOT_INSTALLED;
         }
@@ -165,6 +198,16 @@ namespace FontManager.GoogleFonts {
         public signal void changed ();
 
         public uint position { get; set; default = 0; }
+        public bool inconsistent { get { return false; } }
+
+        public bool active {
+            get {
+                return (get_installation_status() != FileStatus.NOT_INSTALLED);
+            }
+            set {
+                set_installation_status(value);
+            }
+        }
 
         public string family { get; set; }
         public string url { get; set; }
@@ -183,6 +226,8 @@ namespace FontManager.GoogleFonts {
                 weight = int.parse(italic ? variant.replace("italic", "") : variant);
             string [] _version = url.split("/");
             version = int.parse(_version[_version.length - 2].replace("v", ""));
+            if (get_installation_status() == FileStatus.REQUIRES_UPDATE)
+                set_installation_status(true);
         }
 
         public string to_display_name () {
@@ -214,7 +259,17 @@ namespace FontManager.GoogleFonts {
             return "%s_%s.%i.%s".printf(family, style, version, ext);
         }
 
-        public FileStatus get_installation_status () {
+        File get_outdated_file () {
+            File font_dir = File.new_for_path(Path.build_filename(get_font_directory(), family));
+            string ext = get_file_extension(url);
+            string style = to_description().replace(" ", "_");
+            string family = family.replace(" ", "_");
+            string filename =  "%s_%s.%i.%s".printf(family, style, version - 1, ext);
+            File outdated = font_dir.get_child(filename);
+            return outdated;
+        }
+
+        FileStatus get_installation_status () {
             string dir = get_font_directory();
             string filepath = Path.build_filename(dir, family, get_filename());
             File font = File.new_for_path(filepath);
@@ -222,15 +277,98 @@ namespace FontManager.GoogleFonts {
                 return FileStatus.INSTALLED;
             File font_dir = File.new_for_path(Path.build_filename(dir, family));
             if (font_dir.query_exists()) {
-                string ext = get_file_extension(url);
-                string style = to_description().replace(" ", "_");
-                string family = family.replace(" ", "_");
-                string filename =  "%s_%s.%i.%s".printf(family, style, version - 1, ext);
-                File outdated = font_dir.get_child(filename);
+                File outdated = get_outdated_file();
                 if (outdated.query_exists())
                     return FileStatus.REQUIRES_UPDATE;
             }
             return FileStatus.NOT_INSTALLED;
+        }
+
+        void remove_outdated_files () {
+            File outdated_file = get_outdated_file();
+            if (!outdated_file.query_exists())
+                return;
+            try {
+                outdated_file.delete();
+                string font_dir = get_font_directory();
+                string target_dir = Path.build_filename(font_dir, family);
+                File outdated_dir = File.new_for_path(target_dir);
+                remove_directory_tree_if_empty(outdated_dir);
+            } catch (Error e) {
+                string path = outdated_file.get_path();
+                warning("Failed to remove outdated font file : %s", path);
+            }
+            return;
+        }
+
+        void on_download_complete (Object? source, GLib.Task task) {
+            if (task.propagate_boolean())
+                remove_outdated_files();
+            notify_property("active");
+            return;
+        }
+
+        static void download_file (Task task, Object source, void* data, Cancellable? cancellable = null) {
+            assert(source is Font);
+            var font = (Font) source;
+            var session = new Soup.Session();
+            string font_dir = Path.build_filename(get_font_directory(), font.family);
+            if (DirUtils.create_with_parents(font_dir, 0755) != 0) {
+                warning("Failed to create directory : %s", font_dir);
+                task.return_boolean(false);
+                return;
+            }
+            string filename = font.get_filename();
+            string filepath = Path.build_filename(font_dir, filename);
+            var message = new Soup.Message(GET, font.url);
+            try {
+                Bytes? bytes = session.send_and_read(message, null);
+                if (bytes == null)
+                    task.return_boolean(false);
+                return_if_fail(bytes != null);
+                File font_file = File.new_for_path(filepath);
+                // File.create errors out if file already exists regardless of flags
+                if (font_file.query_exists())
+                    font_file.delete();
+                FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
+                try {
+                    stream.write_bytes(bytes);
+                    stream.close();
+                } catch (Error e) {
+                    task.return_boolean(false);
+                    warning("Failed to write data to file : %s : %s", filepath, e.message);
+                }
+            } catch (Error e) {
+                task.return_boolean(false);
+                warning("Failed to read data for : %s :: %i :: %s",
+                        filename,
+                        (int) message.status_code,
+                        e.message);
+            }
+            task.return_boolean(true);
+            return;
+        }
+
+        void set_installation_status (bool install) {
+            if (install) {
+                GLib.Task task = new GLib.Task(this, null, on_download_complete);
+                task.run_in_thread(download_file);
+            } else if (active) {
+                string font_dir = get_font_directory();
+                string file_name = get_filename();
+                string target_dir = Path.build_filename(font_dir, family);
+                string target_file = Path.build_filename(target_dir, file_name);
+                File dir = File.new_for_path(target_dir);
+                File file = File.new_for_path(target_file);
+                try {
+                    if (file.delete())
+                        remove_directory_tree_if_empty(dir);
+                } catch (Error e) {
+                    if (e.code != FileError.NOENT)
+                        warning(e.message);
+                }
+            }
+            return;
         }
 
     }

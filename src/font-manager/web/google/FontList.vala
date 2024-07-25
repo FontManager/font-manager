@@ -22,46 +22,6 @@
 
 namespace FontManager.GoogleFonts {
 
-    public async bool download_font_files (Font [] fonts) {
-        var session = new Soup.Session();
-        bool retval = true;
-        foreach (var font in fonts) {
-            string font_dir = Path.build_filename(get_font_directory(), font.family);
-            if (DirUtils.create_with_parents(font_dir, 0755) != 0) {
-                warning("Failed to create directory : %s", font_dir);
-                return_val_if_fail(exists(font_dir), false);
-            }
-            string filename = font.get_filename();
-            string filepath = Path.build_filename(font_dir, filename);
-            var message = new Soup.Message(GET, font.url);
-            try {
-                Bytes? bytes = session.send_and_read(message, null);
-                assert(bytes != null);
-                File font_file = File.new_for_path(filepath);
-                // File.create errors out if file already exists regardless of flags
-                if (font_file.query_exists())
-                    font_file.delete();
-                FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
-                try {
-                    stream.write_bytes(bytes);
-                    stream.close();
-                } catch (Error e) {
-                    retval = false;
-                    warning("Failed to write data to file : %s : %s", filepath, e.message);
-                }
-            } catch (Error e) {
-                retval = false;
-                warning("Failed to read data for : %s :: %i :: %s",
-                        filename,
-                        (int) message.status_code,
-                        e.message);
-            }
-            Idle.add(download_font_files.callback);
-            yield;
-        }
-        return retval;
-    }
-
     public class FontModel : Object, ListModel {
 
         public Json.Array? entries { get; set; default = null; }
@@ -209,6 +169,8 @@ namespace FontManager.GoogleFonts {
         public uint position { get; set; default = 0; }
 
         ulong signal_id = 0;
+        Binding? active = null;
+        Binding? inconsistent = null;
 
         protected override void reset () {
             item_state.visible = true;
@@ -219,57 +181,12 @@ namespace FontManager.GoogleFonts {
             if (signal_id != 0)
                 SignalHandler.disconnect(item_state, signal_id);
             signal_id = 0;
-        }
-
-        void on_family_changed (Family family) {
-            foreach (var font in family.variants)
-                font.changed();
-            family.changed();
-            return;
-        }
-
-        void on_item_state_change (Object item) {
-            state_changed();
-            if (item is Family) {
-                var family = ((Family) item);
-                if (item_state.active) {
-                    download_font_files.begin(family.variants.data, (obj, res) => {
-                        if (download_font_files.end(res))
-                            on_family_changed(family);
-                    });
-                } else {
-                    string font_dir = get_font_directory();
-                    string target_dir = Path.build_filename(font_dir, family.family);
-                    File file = File.new_for_path(target_dir);
-                    if (remove_directory(file))
-                        on_family_changed(family);
-                }
-            } else if (item is Font) {
-                var font = ((Font) item);
-                if (item_state.active) {
-                    download_font_files.begin({ font }, (obj, res) => {
-                        if (download_font_files.end(res))
-                            font.changed();
-                    });
-                } else {
-                    string font_dir = get_font_directory();
-                    string file_name = font.get_filename();
-                    string target_dir = Path.build_filename(font_dir, font.family);
-                    string target_file = Path.build_filename(target_dir, file_name);
-                    File dir = File.new_for_path(target_dir);
-                    File file = File.new_for_path(target_file);
-                    try {
-                        if (file.delete())
-                            remove_directory_tree_if_empty(dir);
-                    } catch (Error e) {
-                        if (e.code != FileError.NOENT)
-                            warning(e.message);
-                    }
-                    font.changed();
-                }
-            } else
-                return_if_reached();
-            return;
+            if (active != null)
+                active.unbind();
+            active = null;
+            if (inconsistent != null)
+                inconsistent.unbind();
+            inconsistent = null;
         }
 
         protected override void on_item_set () {
@@ -283,38 +200,15 @@ namespace FontManager.GoogleFonts {
                 var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
                 item_count.set_label(count_label.printf(count));
                 item_label.set_text(((Family) item).family);
-                int installed = 0;
-                foreach (var font in ((Family) item).variants)
-                    if (font.get_installation_status() != FileStatus.NOT_INSTALLED)
-                        installed++;
-                item_state.active = (installed > 0);
-                item_state.inconsistent = (installed > 0 && installed < count);
             } else {
                 var font = ((Font) item);
                 item_label.set_text(font.to_display_name());
-                var installation_status = font.get_installation_status();
-                item_state.active = (installation_status != FileStatus.NOT_INSTALLED);
-                if (installation_status == FileStatus.REQUIRES_UPDATE) {
-                    string font_dir = get_font_directory();
-                    string target_dir = Path.build_filename(font_dir, font.family);
-                    string filepath = Path.build_filename(target_dir, font.get_filename());
-                    File outdated_file = File.new_for_path(filepath);
-                    download_font_files.begin({ font }, (obj, res) => {
-                        if (!(download_font_files.end(res)))
-                            warning("Failed to download update data for %s", font.get_filename());
-                        else
-                            try {
-                                outdated_file.delete();
-                                File outdated_dir = File.new_for_path(target_dir);
-                                remove_directory_tree_if_empty(outdated_dir);
-                            } catch (Error e) {
-                                string path = outdated_file.get_path();
-                                warning("Failed to remove outdated font file : %s", path);
-                            }
-                    });
-                }
             }
-            signal_id = item_state.toggled.connect_after(() => { on_item_state_change(item); });
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            active = item.bind_property("active", item_state, "active", flags);
+            flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            inconsistent = item.bind_property("inconsistent", item_state, "inconsistent", flags);
+            signal_id = item_state.toggled.connect_after(() => { state_changed(); });
             return;
         }
 
