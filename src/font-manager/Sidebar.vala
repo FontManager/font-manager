@@ -136,6 +136,8 @@ namespace FontManager {
 
         StringSet get_available_sorted () {
             var result = ((CollectionListModel) collections.model).get_full_contents();
+            update_font_configuration();
+            load_user_font_resources();
             var available = list_available_font_families();
             result.retain_all(available);
             return result;
@@ -148,6 +150,7 @@ namespace FontManager {
 
         public void update_collections () {
             collections.queue_update();
+            collections.save();
             return;
         }
 

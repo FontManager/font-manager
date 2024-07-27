@@ -31,6 +31,8 @@ namespace FontManager {
         public StringSet? available_families { get; set; default = null; }
 
         construct {
+            update_font_configuration();
+            load_user_font_resources();
             available_families = list_available_font_families();
             load();
             notify["sort-type"].connect_after(on_sort_type_changed);
@@ -83,13 +85,13 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("available-families", ((Collection) item), "available-families", flags);
             bind_property("disabled-families", ((Collection) item), "disabled-families", flags);
+            ((Collection) item).changed.connect_after(() => { save(); changed(); });
             return;
         }
 
         void add_from_json_node (Json.Node node) {
             Object collection = Json.gobject_deserialize(typeof(Collection), node);
             add_item((Collection) collection);
-            ((Collection) collection).changed.connect(() => { save(); changed(); });
             return;
         }
 
@@ -130,6 +132,7 @@ namespace FontManager {
 
         Binding? name_binding = null;
         Binding? state_binding = null;
+        Binding? _state_binding = null;
 
         construct {
             margin_start = 0;
@@ -143,8 +146,11 @@ namespace FontManager {
                 name_binding.unbind();
             if (state_binding != null)
                 state_binding.unbind();
+            if (_state_binding != null)
+                _state_binding.unbind();
             name_binding = null;
             state_binding = null;
+            _state_binding = null;
             return;
         }
 
@@ -157,10 +163,10 @@ namespace FontManager {
             if (item_icon.visible)
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
-            item_state.active = collection.active;
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             name_binding = collection.bind_property("name", item_label, "label", flags);
-            state_binding = item_state.bind_property("active", collection, "active", BindingFlags.DEFAULT);
+            state_binding = collection.bind_property("active", item_state, "active", flags);
+            _state_binding = collection.bind_property("inconsistent", item_state, "inconsistent", BindingFlags.DEFAULT);
             return;
         }
 
@@ -248,6 +254,12 @@ namespace FontManager {
             return;
         }
 
+        public void save ()
+        requires (model != null) {
+            ((CollectionListModel) model).save();
+            return;
+        }
+
         void on_click (int n_press, double x, double y) {
             clicked_area.x = (int) x;
             clicked_area.y = (int) y;
@@ -288,18 +300,6 @@ namespace FontManager {
                 changed();
                 queue_update();
             });
-            collection.activated.connect(on_collection_activated);
-            return;
-        }
-
-        void on_collection_activated (bool active, StringSet families) {
-            if (active)
-                disabled_families.remove_all(families);
-            else
-                disabled_families.add_all(families);
-            disabled_families.save();
-            ((CollectionListModel) model).save();
-            changed();
             return;
         }
 
@@ -407,7 +407,7 @@ namespace FontManager {
                 parent_row = list_row;
             target_model.remove_item(selected_item);
             parent_row.set_expanded((target_model.get_n_items() != 0));
-            ((CollectionListModel) model).save();
+            save();
             // Necessary to update parent row count label
             queue_update();
             return;
@@ -423,7 +423,7 @@ namespace FontManager {
                         return;
                     selected_item.name = new_name;
                     selected_item.changed();
-                    Idle.add(() => { ((CollectionListModel) model).save(); return GLib.Source.REMOVE; });
+                    Idle.add(() => { save(); return GLib.Source.REMOVE; });
                 });
             }
             rename_popover.name_entry.set_text(selected_item.name);
@@ -501,7 +501,7 @@ namespace FontManager {
                 parent_row = list_row;
             target_model.remove_item(dropped_collection);
             parent_row.set_expanded((target_model.get_n_items() != 0));
-            ((CollectionListModel) model).save();
+            save();
             // Necessary to update parent row count label
             queue_update();
             return;
@@ -559,11 +559,10 @@ namespace FontManager {
                 if (object is Family)
                     new_families.add(((Family) object).family);
             }
-            Idle.add(() => {
-                collection.add(new_families);
-                queue_update();
-                return GLib.Source.REMOVE;
-            });
+            collection.add(new_families);
+            collection.update_state();
+            queue_update();
+            save();
             return true;
         }
 

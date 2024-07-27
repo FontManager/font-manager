@@ -20,13 +20,43 @@
 
 namespace FontManager {
 
-    public class Collection : FontListFilter {
+    public class CollectionState : Object {
 
-        public signal void activated (bool active, StringSet families);
+        public bool is_disabled = false;
+        public bool partially_disabled = false;
+
+        public static void update (Task task,
+                                   Object source,
+                                   void* data,
+                                   Cancellable? cancellable = null) {
+            assert(source is Collection);
+            var collection = (Collection) source;
+            var result = new CollectionState();
+            result.is_disabled = collection.disabled_families != null ?
+                                 collection.disabled_families.contains_all(collection.families) :
+                                 false;
+            result.partially_disabled = false;
+            if (!result.is_disabled && collection.disabled_families != null) {
+                foreach (var family in collection.families)
+                    if (collection.disabled_families.contains(family)) {
+                        result.partially_disabled = true;
+                        break;
+                    }
+            }
+            var return_val = new GLib.Value(typeof(CollectionState));
+            return_val.set_object(result);
+            task.return_value(return_val);
+            return;
+        }
+
+    }
+
+    public class Collection : FontListFilter {
 
         public StringSet? available_families { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public bool active { get; set; default = true; }
+        public bool inconsistent { get; set; default = false; }
         public GenericArray <Collection> children { get; set; }
         public StringSet families { get; set; }
 
@@ -35,6 +65,8 @@ namespace FontManager {
                 return get_collection_total();
             }
         }
+
+        int ignore_activation = -1;
 
         construct {
             children = new GenericArray <Collection> ();
@@ -50,8 +82,19 @@ namespace FontManager {
                     BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                     bind_property("disabled-families", child, "disabled-families", flags);
                 }
+                Idle.add_full(GLib.Priority.LOW + 200, () => {
+                    update_state();
+                    return GLib.Source.REMOVE;
+                });
+                if (disabled_families != null)
+                    disabled_families.changed.connect_after(() => {
+                        Idle.add_full(GLib.Priority.LOW + 200, () => {
+                            update_state();
+                            return GLib.Source.REMOVE;
+                        });
+                    });
             });
-            notify["active"].connect(() => { activated(active, families); });
+            notify["active"].connect(() => { on_collection_activated(); });
         }
 
         public Collection (string? name, string? comment) {
@@ -70,13 +113,11 @@ namespace FontManager {
 
         public void remove (string family) {
             families.remove(family);
-            active = (families.size > 0);
             return;
         }
 
         public void add (StringSet new_families) {
             families.add_all(new_families);
-            active = true;
             return;
         }
 
@@ -85,6 +126,41 @@ namespace FontManager {
                 if (children[i].name == collection.name)
                     return true;
             return false;
+        }
+
+        void on_state_update_complete (Object? source, GLib.Task task) {
+            GLib.Value? val = null;
+            try {
+                task.propagate_value(out val);
+                var state = (CollectionState) val.get_object();
+                active = (families.size != 0 && !state.is_disabled);
+                inconsistent = active && state.partially_disabled;
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return;
+        }
+
+        public void update_state () {
+            ignore_activation++;
+            GLib.Task task = new GLib.Task(this, null, on_state_update_complete);
+            task.run_in_thread(CollectionState.update);
+            foreach (var child in children)
+                child.update_state();
+            return;
+        }
+
+        void on_collection_activated () {
+            if (ignore_activation < 0 || disabled_families != null) {
+                if (active)
+                    disabled_families.remove_all(families);
+                else
+                    disabled_families.add_all(families);
+                disabled_families.save();
+                changed();
+            } else
+                ignore_activation--;
+            return;
         }
 
         int get_collection_total () {
@@ -198,5 +274,6 @@ namespace FontManager {
     }
 
 }
+
 
 

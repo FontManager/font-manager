@@ -156,6 +156,7 @@ namespace FontManager {
         }
 
         public string list () throws GLib.DBusError, GLib.IOError {
+            update_font_configuration();
             load_user_font_resources();
             var families = list_available_font_families();
             assert(families.size > 0);

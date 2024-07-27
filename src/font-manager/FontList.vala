@@ -412,12 +412,15 @@ namespace FontManager {
 
         protected void on_remove_clicked () requires (filter is Collection) {
             var collection = (Collection) filter;
-            selected_items.foreach((i) => { collection.remove(((Family) i).family); });
+            var selected_families = new StringSet();
+            selected_items.foreach((i) => { selected_families.add(((Family) i).family); });
+            collection.families.remove_all(selected_families);
             uint i = current_selection;
             while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
             Idle.add(() => {
                 update(i);
                 update_remove_sensitivity();
+                collection.update_state();
                 return GLib.Source.REMOVE;
             });
             collection_changed();

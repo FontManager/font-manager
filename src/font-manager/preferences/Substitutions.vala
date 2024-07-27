@@ -26,6 +26,8 @@ namespace FontManager {
     internal Gtk.ListStore get_family_completion_model () {
         if (family_completion_model == null) {
             family_completion_model = new Gtk.ListStore(1, typeof(string));
+            update_font_configuration();
+            load_user_font_resources();
             foreach (string family in list_available_font_families()) {
                 Gtk.TreeIter iter;
                 family_completion_model.append(out iter);
