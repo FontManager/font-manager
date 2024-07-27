@@ -146,8 +146,8 @@ namespace FontManager {
                 search_entry.set_tooltip_text(hint);
             });
             notify["disabled-families"].connect(() => {
-                if (disabled_families != null)
-                    disabled_families.changed.connect(() => { update(current_selection); });
+                if (disabled_families != null && model != null)
+                    disabled_families.changed.connect(() => { model.items_changed(current_selection, 0, 0); });
             });
             notify["filter"].connect_after(() => { select_item(0); });
         }

@@ -455,7 +455,8 @@ namespace FontManager {
             preview = new BrowsePreview();
             preview.margin_bottom = 0;
             panel_revealer = new Gtk.Revealer() {
-                reveal_child = true,
+                reveal_child = false,
+                visible = false,
                 transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT,
                 margin_end = 6
             };
@@ -477,8 +478,8 @@ namespace FontManager {
             flags = BindingFlags.BIDIRECTIONAL;
             bind_property("pane-position", pane, "position", flags);
             bind_property("size", gridview, "size", flags, null, null);
-            panel_toggle.bind_property("active", panel_revealer, "visible", flags);
-            panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
+            panel_revealer.bind_property("visible", panel_toggle, "active", flags);
+            panel_revealer.bind_property("reveal-child", panel_toggle, "active", flags);
             search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
             icon_size_adjustment.set_value(size.to_double());
             notify["size"].connect(() => { icon_size_adjustment.set_value(size.to_double()); });
@@ -585,4 +586,5 @@ namespace FontManager {
     }
 
 }
+
 
