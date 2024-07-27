@@ -139,7 +139,7 @@
         </key>
 
         <key name="browse-preview-visible" type="b">
-            <default>true</default>
+            <default>false</default>
             <summary>Browse preview visibility</summary>
             <description>Whether the preview pane is visible in browse mode or not</description>
         </key>

@@ -518,6 +518,8 @@ namespace FontManager {
                 return;
             pane_position = settings.get_double("browse-pane-position");
             panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
+            panel_revealer.set_reveal_child(panel_toggle.active);
+            panel_revealer.set_visible(panel_toggle.active);
             listview.preview_size = settings.get_double("browse-font-size");
             preview_entry.text = settings.get_string("browse-preview-text");
             settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
