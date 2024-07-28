@@ -32,16 +32,21 @@ namespace FontManager {
             assert(source is Collection);
             var collection = (Collection) source;
             var result = new CollectionState();
-            result.is_disabled = collection.disabled_families != null ?
-                                 collection.disabled_families.contains_all(collection.families) :
-                                 false;
-            result.partially_disabled = false;
-            if (!result.is_disabled && collection.disabled_families != null) {
-                foreach (var family in collection.families)
-                    if (collection.disabled_families.contains(family)) {
+            // Copy required, multiple threads access this StringSet
+            // TODO : How do we lock the underlying pointer array?
+            StringSet? disabled_families = new StringSet();
+            if (collection.disabled_families != null) {
+                disabled_families.add_all(collection.disabled_families);
+                result.is_disabled = disabled_families.contains_all(collection.families);
+            } else
+                disabled_families = null;
+            if (!result.is_disabled && disabled_families != null) {
+                foreach (var family in collection.families) {
+                    if (disabled_families.contains(family)) {
                         result.partially_disabled = true;
                         break;
                     }
+                }
             }
             var return_val = new GLib.Value(typeof(CollectionState));
             return_val.set_object(result);
@@ -66,7 +71,7 @@ namespace FontManager {
             }
         }
 
-        int ignore_activation = -1;
+        int ignore_activation = 0;
 
         construct {
             children = new GenericArray <Collection> ();
@@ -77,22 +82,23 @@ namespace FontManager {
                     bind_property("available-families", child, "available-families", flags);
                 }
             });
-            notify["disabled-families"].connect(() => {
+            notify["disabled-families"].connect_after(() => {
                 foreach (var child in children) {
                     BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                     bind_property("disabled-families", child, "disabled-families", flags);
                 }
-                Idle.add_full(GLib.Priority.LOW + 200, () => {
-                    update_state();
-                    return GLib.Source.REMOVE;
-                });
-                if (disabled_families != null)
+                if (disabled_families != null) {
+                    Idle.add_full(GLib.Priority.LOW, () => {
+                        update_state();
+                        return GLib.Source.REMOVE;
+                    });
                     disabled_families.changed.connect_after(() => {
-                        Idle.add_full(GLib.Priority.LOW + 200, () => {
+                        Idle.add_full(GLib.Priority.LOW, () => {
                             update_state();
                             return GLib.Source.REMOVE;
                         });
                     });
+                 }
             });
             notify["active"].connect(() => { on_collection_activated(); });
         }
@@ -142,6 +148,8 @@ namespace FontManager {
         }
 
         public void update_state () {
+            if (disabled_families == null)
+                return;
             ignore_activation++;
             GLib.Task task = new GLib.Task(this, null, on_state_update_complete);
             task.run_in_thread(CollectionState.update);
@@ -151,7 +159,7 @@ namespace FontManager {
         }
 
         void on_collection_activated () {
-            if (ignore_activation < 0 || disabled_families != null) {
+            if (ignore_activation < 0 && disabled_families != null) {
                 if (active)
                     disabled_families.remove_all(families);
                 else
