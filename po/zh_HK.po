@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-07-23 16:09+0000\n"
+"PO-Revision-Date: 2024-07-28 12:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hant_HK/>\n"
@@ -294,9 +294,8 @@ msgstr "传统(Legacy)"
 
 #: lib/fontconfig/font-manager-source.c:305
 #: lib/fontconfig/font-manager-source.c:320
-#, fuzzy
 msgid "Source Unavailable"
-msgstr "%s --> 资源不存在"
+msgstr "無法取得資源"
 
 #: lib/gtk/font-manager-application-window.c:292
 #: src/font-manager/Application.vala:3
