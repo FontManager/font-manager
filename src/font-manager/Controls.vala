@@ -235,6 +235,8 @@ namespace FontManager {
                 append(buttons[i]);
                 buttons[i].toggled.connect(on_toggled);
             }
+            grid.set_tooltip_text(_("Grid View"));
+            list.set_tooltip_text(_("List View"));
             notify["mode"].connect(() => {
                 if (mode == BrowseMode.GRID)
                     grid.set_active(true);

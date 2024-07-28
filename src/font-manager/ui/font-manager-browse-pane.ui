@@ -94,6 +94,7 @@
                             <property name="icon-name">zoom-in-symbolic</property>
                             <property name="opacity">0.75</property>
                             <signal name="clicked" handler="on_increase_size"/>
+                            <property name="tooltip-text" translatable="yes">Increase tile size</property>
                           </object>
                         </child>
                         <child type="start">
@@ -102,6 +103,7 @@
                             <property name="icon-name">zoom-out-symbolic</property>
                             <property name="opacity">0.75</property>
                             <signal name="clicked" handler="on_decrease_size"/>
+                            <property name="tooltip-text" translatable="yes">Decrease tile size</property>
                           </object>
                         </child>
                         <child type="center">
@@ -141,6 +143,7 @@
                 <property name="has-frame">False</property>
                 <property name="icon-name">edit-find-symbolic</property>
                 <property name="valign">center</property>
+                <property name="tooltip-text" translatable="yes">Toggle search entry</property>
               </object>
             </child>
             <child type="end">
@@ -149,6 +152,7 @@
                 <property name="has-frame">False</property>
                 <property name="icon-name">panel-right-symbolic</property>
                 <property name="valign">center</property>
+                <property name="tooltip-text" translatable="yes">Toggle preview panel</property>
               </object>
             </child>
             <child type="end">
@@ -158,6 +162,7 @@
                 <property name="icon-name">document-edit-symbolic</property>
                 <property name="valign">center</property>
                 <signal name="toggled" handler="on_edit_toggled"/>
+                <property name="tooltip-text" translatable="yes">Edit preview text</property>
               </object>
             </child>
             <style>
