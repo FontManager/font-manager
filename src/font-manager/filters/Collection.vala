@@ -48,7 +48,7 @@ namespace FontManager {
                     }
                 }
             }
-            var return_val = new GLib.Value(typeof(CollectionState));
+            var return_val = GLib.Value(typeof(CollectionState));
             return_val.set_object(result);
             task.return_value(return_val);
             return;
@@ -71,6 +71,9 @@ namespace FontManager {
             }
         }
 
+        uint state_change_timeout = 0;
+        bool ignore_activation = false;
+
         construct {
             children = new GenericArray <Collection> ();
             families = new StringSet();
@@ -86,16 +89,8 @@ namespace FontManager {
                     bind_property("disabled-families", child, "disabled-families", flags);
                 }
                 if (disabled_families != null) {
-                    Idle.add_full(GLib.Priority.LOW, () => {
-                        update_state();
-                        return GLib.Source.REMOVE;
-                    });
-                    disabled_families.changed.connect_after(() => {
-                        Idle.add_full(GLib.Priority.LOW, () => {
-                            update_state();
-                            return GLib.Source.REMOVE;
-                        });
-                    });
+                    queue_state_update();
+                    disabled_families.changed.connect_after(queue_state_update);
                  }
             });
         }
@@ -136,33 +131,43 @@ namespace FontManager {
             try {
                 task.propagate_value(out val);
                 var state = (CollectionState) val.get_object();
+                ignore_activation = true;
                 active = (families.size != 0 && !state.is_disabled);
                 inconsistent = active && state.partially_disabled;
+                ignore_activation = false;
             } catch (Error e) {
                 warning(e.message);
             }
             return;
         }
 
-        public void update_state () {
+        bool update_state () {
             if (disabled_families == null)
-                return;
+                return GLib.Source.REMOVE;
             GLib.Task task = new GLib.Task(this, null, on_state_update_complete);
             task.run_in_thread(CollectionState.update);
             foreach (var child in children)
                 child.update_state();
+            state_change_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        public void queue_state_update () {
+            if (state_change_timeout != 0)
+                GLib.Source.remove(state_change_timeout);
+            state_change_timeout = Timeout.add_full(GLib.Priority.LOW, 500, update_state);
             return;
         }
 
         [CCode (instance_pos = -1)]
         public void on_state_toggled (Gtk.CheckButton check) {
-            if (disabled_families != null) {
+            if (disabled_families != null && !ignore_activation) {
                 if (check.active)
                     disabled_families.remove_all(families);
                 else
                     disabled_families.add_all(families);
                 disabled_families.save();
-                update_state();
+                queue_state_update();
             }
             return;
         }

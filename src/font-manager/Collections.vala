@@ -169,7 +169,7 @@ namespace FontManager {
             name_binding = collection.bind_property("name", item_label, "label", flags);
             state_binding = collection.bind_property("active", item_state, "active", flags);
             _state_binding = collection.bind_property("inconsistent", item_state, "inconsistent", flags);
-            signal_id = item_state.toggled.connect_after(collection.on_state_toggled);
+            signal_id = item_state.toggled.connect(collection.on_state_toggled);
             return;
         }
 
@@ -244,7 +244,7 @@ namespace FontManager {
                 if (disabled_families != null) {
                     disabled_families.changed.connect_after(() => {
                         if (selected_item != null)
-                            changed();
+                            treemodel.items_changed(selected_position, 0, 0);
                     });
                  }
             });
@@ -574,7 +574,7 @@ namespace FontManager {
                     new_families.add(((Family) object).family);
             }
             collection.add(new_families);
-            collection.update_state();
+            collection.queue_state_update();
             queue_update();
             save();
             return true;

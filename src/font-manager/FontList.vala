@@ -420,7 +420,7 @@ namespace FontManager {
             Idle.add(() => {
                 update(i);
                 update_remove_sensitivity();
-                collection.update_state();
+                collection.queue_state_update();
                 return GLib.Source.REMOVE;
             });
             collection_changed();
@@ -434,8 +434,11 @@ namespace FontManager {
         }
 
         void set_selected_items_active (bool active) {
-            foreach (var item in selected_items)
-                ((Family) item).active = active;
+            Idle.add(() => {
+                foreach (var item in selected_items)
+                    ((Family) item).active = active;
+                return GLib.Source.REMOVE;
+            });
             return;
         }
 
