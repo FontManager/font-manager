@@ -166,6 +166,8 @@ namespace FontManager {
         // previous selection, multiple selections, directional changes, etc.
         protected virtual void on_selection_changed (uint position, uint n_items)
         requires (selection != null && treemodel != null) {
+            selected_item = null;
+            selected_position = Gtk.INVALID_LIST_POSITION;
             // The minimum value present in this bitset accurately points
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();

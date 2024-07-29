@@ -128,16 +128,15 @@ namespace FontManager {
 
     public class CollectionListRow : TreeListItemRow {
 
-        public signal void changed ();
-
         Binding? name_binding = null;
         Binding? state_binding = null;
         Binding? _state_binding = null;
 
+        ulong signal_id = 0;
+
         construct {
             margin_start = 0;
             item_state.visible = true;
-            item_state.active = false;
             item_count.visible = true;
         }
 
@@ -148,9 +147,12 @@ namespace FontManager {
                 state_binding.unbind();
             if (_state_binding != null)
                 _state_binding.unbind();
+            if (signal_id != 0)
+                SignalHandler.disconnect(item_state, signal_id);
             name_binding = null;
             state_binding = null;
             _state_binding = null;
+            signal_id = 0;
             return;
         }
 
@@ -163,10 +165,11 @@ namespace FontManager {
             if (item_icon.visible)
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             name_binding = collection.bind_property("name", item_label, "label", flags);
             state_binding = collection.bind_property("active", item_state, "active", flags);
-            _state_binding = collection.bind_property("inconsistent", item_state, "inconsistent", BindingFlags.DEFAULT);
+            _state_binding = collection.bind_property("inconsistent", item_state, "inconsistent", flags);
+            signal_id = item_state.toggled.connect_after(collection.on_state_toggled);
             return;
         }
 
@@ -237,6 +240,14 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("disabled-families", model, "disabled-families", flags);
             selection.set_selected(Gtk.INVALID_LIST_POSITION);
+            notify["disabled-families"].connect_after(() => {
+                if (disabled_families != null) {
+                    disabled_families.changed.connect_after(() => {
+                        if (selected_item != null)
+                            changed();
+                    });
+                 }
+            });
         }
 
         bool update () {
@@ -285,7 +296,8 @@ namespace FontManager {
 
         protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
-            var list_row = treemodel.get_row(list_item.get_position());
+            uint position = list_item.get_position();
+            var list_row = treemodel.get_row(position);
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.set_list_row(list_row);
             var row = (CollectionListRow) tree_expander.get_child();
@@ -296,9 +308,11 @@ namespace FontManager {
             row.item = object;
             // Nesting is allowed so we need the entire list refreshed if a
             // single row changes otherwise parent nodes would not update
-            row.changed.connect(() => {
-                changed();
-                queue_update();
+            collection.notify["inconsistent"].connect_after(() => {
+                Idle.add_full(GLib.Priority.LOW, () => {
+                    treemodel.items_changed(position, 0, 0);
+                    return GLib.Source.REMOVE;
+                });
             });
             return;
         }

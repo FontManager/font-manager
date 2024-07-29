@@ -71,8 +71,6 @@ namespace FontManager {
             }
         }
 
-        int ignore_activation = 0;
-
         construct {
             children = new GenericArray <Collection> ();
             families = new StringSet();
@@ -100,7 +98,6 @@ namespace FontManager {
                     });
                  }
             });
-            notify["active"].connect(() => { on_collection_activated(); });
         }
 
         public Collection (string? name, string? comment) {
@@ -150,7 +147,6 @@ namespace FontManager {
         public void update_state () {
             if (disabled_families == null)
                 return;
-            ignore_activation++;
             GLib.Task task = new GLib.Task(this, null, on_state_update_complete);
             task.run_in_thread(CollectionState.update);
             foreach (var child in children)
@@ -158,16 +154,16 @@ namespace FontManager {
             return;
         }
 
-        void on_collection_activated () {
-            if (ignore_activation < 0 && disabled_families != null) {
-                if (active)
+        [CCode (instance_pos = -1)]
+        public void on_state_toggled (Gtk.CheckButton check) {
+            if (disabled_families != null) {
+                if (check.active)
                     disabled_families.remove_all(families);
                 else
                     disabled_families.add_all(families);
                 disabled_families.save();
-                changed();
-            } else
-                ignore_activation--;
+                update_state();
+            }
             return;
         }
 
