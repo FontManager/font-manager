@@ -302,8 +302,12 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_download_complete (Object? source, GLib.Task task) {
-            if (task.propagate_boolean())
-                remove_outdated_files();
+            try {
+                if (task.propagate_boolean())
+                    remove_outdated_files();
+            } catch (Error e) {
+                warning(e.message);
+            }
             notify_property("active");
             return;
         }

@@ -145,9 +145,11 @@ namespace FontManager {
                 string hint = search_tip.printf(Path.DIR_SEPARATOR_S, Path.SEARCHPATH_SEPARATOR_S);
                 search_entry.set_tooltip_text(hint);
             });
-            notify["disabled-families"].connect(() => {
+            notify["disabled-families"].connect_after(() => {
                 if (disabled_families != null && model != null)
-                    disabled_families.changed.connect(() => { model.items_changed(current_selection, 0, 0); });
+                    disabled_families.changed.connect(() => {
+                        model.items_changed(current_selection, 0, 0);
+                    });
             });
             notify["filter"].connect_after(() => { select_item(0); });
         }
@@ -355,6 +357,7 @@ namespace FontManager {
         public UserSourceModel? user_sources { get; set; default = null; }
 
         uint state_change_timeout = 0;
+        bool ignore_state_change = false;
 
         bool show_menu = true;
         GLib.Menu menu;
@@ -383,6 +386,10 @@ namespace FontManager {
             notify["filter"].connect_after(() => {
                 Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
                 update_remove_sensitivity();
+            });
+            notify["disabled-families"].connect_after(() => {
+                if (disabled_families != null && model != null)
+                    disabled_families.changed.connect_after(queue_item_state_update);
             });
             init_context_menu();
             controls.remove_clicked.connect(on_remove_clicked);
@@ -668,9 +675,24 @@ namespace FontManager {
         bool save_item_state_change () {
             disabled_families.save();
             state_change_timeout = 0;
+            // XXX: TODO : Fix this tangled mess...
+            // It will probably require quite a bit of refactoring. :-(
+            if (filter != null && filter is Collection) {
+                ignore_state_change = true;
+                uint n_items = treemodel.get_n_items();
+                for (uint i = 0; i < n_items; i++) {
+                    var item = model.get_item(i);
+                    var obj = (Family) item;
+                    obj.active = !(obj.family in disabled_families);
+                }
+                ignore_state_change = false;
+                queue_update();
+            }
             return GLib.Source.REMOVE;
         }
 
+        // Slight delay in saving selections to file in case
+        // multiple changes are taking place at the same time.
         void queue_item_state_update () {
             if (state_change_timeout != 0)
                 GLib.Source.remove(state_change_timeout);
@@ -679,14 +701,13 @@ namespace FontManager {
         }
 
         void on_item_state_changed (Object? item) {
+            if (ignore_state_change)
+                return;
             var family = ((Family) item);
             if (family.active)
                 disabled_families.remove(family.family);
             else
                 disabled_families.add(family.family);
-            // Slight delay in saving selections to file in case
-            // multiple changes are taking place at the same time.
-            queue_item_state_update();
             return;
         }
 

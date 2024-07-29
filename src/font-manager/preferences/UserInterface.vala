@@ -268,6 +268,7 @@ namespace FontManager {
             list.set_selection_mode(Gtk.SelectionMode.NONE);
         }
 
+#if HAVE_ADWAITA
         void on_restart_required () {
             var title = _("Selected setting requires restart to apply");
             var body = _("Changes will take effect next time the application is started");
@@ -278,6 +279,7 @@ namespace FontManager {
             get_default_application().send_notification ("restart-required", notification);
             return;
         }
+#endif
 
         void generate_options_list () {
             if (initialized)
