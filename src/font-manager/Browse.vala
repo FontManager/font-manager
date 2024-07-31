@@ -512,9 +512,9 @@ namespace FontManager {
         }
 
         void on_map () {
-            queue_update();
             if (listview != null)
                 listview.model = null;
+            queue_update();
             if (settings == null || initialized)
                 return;
             pane_position = settings.get_double("browse-pane-position");
@@ -538,6 +538,7 @@ namespace FontManager {
 
         public void queue_update () {
             gridview.update();
+            listview.queue_update();
             return;
         }
 

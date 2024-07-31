@@ -113,7 +113,7 @@ namespace FontManager {
             });
         }
 
-        void queue_update () {
+        public void queue_update () {
             update_required = true;
             if (font_model != null && this.is_visible())
                 update_model();
