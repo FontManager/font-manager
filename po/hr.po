@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-02 18:04-0400\n"
-"PO-Revision-Date: 2024-06-21 14:34+0000\n"
+"PO-Revision-Date: 2024-07-31 17:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -2387,13 +2387,11 @@ msgstr "Nijedna datoteka nije odabrana"
 #: src/font-viewer/MainWindow.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
-msgstr "Ili nepodržane vrste datoteka."
+msgstr "Ili nepodržana vrsta datoteka."
 
 #: src/font-viewer/MainWindow.vala:137
-#, fuzzy
-#| msgid "System"
 msgid "System Font"
-msgstr "Sustav"
+msgstr "Font sustava"
 
 #: src/font-viewer/MainWindow.vala:139
 msgid ""
@@ -2405,6 +2403,13 @@ msgid ""
 "the system administrator to remove it or use a font management application "
 "to disable it."
 msgstr ""
+"Odabrana datoteka fonta je instalirana u direktoriju sustava ili trenutačni "
+"korisnik ne može pisati u nju.\n"
+"\n"
+"Ako želiš ukloniti ovaj font iz popisa dostupnih fontova, koristi upravljač "
+"paketa sustava za uklanjanje paketa koji sadrži ovu datoteku fonta, zatraži "
+"administratora sustava da ga ukloni ili koristi aplikaciju za upravljanje "
+"fontovima za deaktiviranje."
 
 #: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
@@ -2499,6 +2504,9 @@ msgid ""
 "Disabling will prevent the selected family from being used by other "
 "applications."
 msgstr ""
+"Stanje odabrane obitelji.\n"
+"\n"
+"Deaktiviranje će spriječiti druge aplikacije da koriste odabrane obitelji."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
