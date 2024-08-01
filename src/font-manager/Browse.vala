@@ -192,8 +192,8 @@ namespace FontManager {
         public FontGridView (Gtk.ScrolledWindow parent) {
             container = parent;
             model = new FontModel();
-            parent.map.connect(() => { if (list == null) create_gridview(); });
-            notify["size"].connect(() => { create_gridview(); });
+            parent.map.connect(() => { if (list == null) queue_update(); });
+            notify["size"].connect(() => { queue_update(); });
             notify["preview-text"].connect_after(() => { queue_update(); });
             bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
         }
