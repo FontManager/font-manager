@@ -375,6 +375,7 @@ namespace FontManager {
         construct {
             widget_set_name(list, "FontManagerFontListView");
             widget_set_margin(list, 6);
+            add_css_class(STYLE_CLASS_VIEW);
             ((Gtk.ListView) list).set_enable_rubberband(true);
             selected_items = new GenericArray <Object> ();
             Gtk.Gesture right_click = new Gtk.GestureClick() {
