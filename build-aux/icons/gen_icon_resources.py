@@ -30,7 +30,10 @@ icon_categories = {
     ],
 
     'actions' : [
+        'action-unavailable-symbolic.svg',
         'document-edit-symbolic.svg',
+        'edit-clear-symbolic.svg',
+        'edit-clear-symbolic-rtl.svg',
         'edit-find-symbolic.svg',
         'edit-select-all-symbolic.svg',
         'edit-undo-symbolic-rtl.svg',
@@ -39,6 +42,7 @@ icon_categories = {
         'format-justify-fill-symbolic.svg',
         'format-justify-left-symbolic.svg',
         'format-justify-right-symbolic.svg',
+        'go-home-symbolic.svg',
         'go-previous-symbolic.svg',
         'list-add-symbolic.svg',
         'list-drag-handle-symbolic.svg',
@@ -51,6 +55,8 @@ icon_categories = {
         'view-list-symbolic.svg',
         'view-more-symbolic.svg',
         'view-sort-descending-symbolic.svg',
+        'view-pin-symbolic.svg',
+        'window-close-symbolic.svg',
         'zoom-in-symbolic.svg',
         'zoom-out-symbolic.svg'
     ],
@@ -59,14 +65,22 @@ icon_categories = {
         'computer-symbolic.svg'
     ],
 
+    'emblems' : [
+        'emblem-documents-symbolic.svg',
+        'emblem-synchronizing-symbolic.svg'
+    ],
+
     'places' : [
         'folder-symbolic.svg'
     ],
 
     'status' : [
         'avatar-default-symbolic.svg',
+        'computer-fail-symbolic.svg',
         'dialog-question-symbolic.svg',
-        'folder-open-symbolic.svg'
+        'folder-open-symbolic.svg',
+        'network-error-symbolic.svg',
+        'network-offline-symbolic.svg'
     ]
 
 }
