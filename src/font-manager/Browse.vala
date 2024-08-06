@@ -454,13 +454,14 @@ namespace FontManager {
             gridview_container.set_child(gridview);
             preview = new BrowsePreview();
             preview.margin_bottom = 0;
+            preview.margin_end = 6;
             panel_revealer = new Gtk.Revealer() {
                 reveal_child = false,
                 visible = false,
-                transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT,
-                margin_end = 6
+                transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT
             };
             panel_revealer.set_child(preview);
+            panel_revealer.add_css_class(STYLE_CLASS_VIEW);
             pane.set_start_child(gridview_container);
             pane.set_end_child(panel_revealer);
             set_fontscale_margins();
