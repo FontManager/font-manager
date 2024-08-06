@@ -85,7 +85,6 @@ namespace FontManager {
             widget_set_expand(this, true);
             widget_set_margin(this, 12);
             set_enable_tree_lines(true);
-
             var cell_renderer = new CellRendererHeader();
             insert_column_with_data_func(0, "", cell_renderer, cell_data_func);
             get_column(0).set_expand(true);

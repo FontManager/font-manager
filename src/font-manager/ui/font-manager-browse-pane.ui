@@ -35,6 +35,9 @@
                       <object class="GtkScrolledWindow" id="list_container">
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
+                        <style>
+                            <class name="view"/>
+                        </style>
                         <child>
                           <object class="FontManagerBrowseListView" id="listview">
                             <property name="hexpand">True</property>
