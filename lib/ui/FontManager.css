@@ -95,9 +95,10 @@ decoration, window, window.background, dialog.message {
                 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
-.aboutdialog:first-child {
+.aboutdialog:first-child,
+.shortcuts:first-child {
     margin: 0px;
-    background-color: @theme_bg_color;
+    background-color: lighter(@theme_bg_color);
 }
 
 .pill-button {
