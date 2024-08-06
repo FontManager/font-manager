@@ -44,7 +44,6 @@ font_manager_set_application_style (void)
     g_autofree gchar *icons = g_build_path(G_DIR_SEPARATOR_S,
                                            FONT_MANAGER_BUS_PATH,
                                            "icons",
-                                           G_DIR_SEPARATOR_S,
                                            NULL);
 
     GdkDisplay *default_display = gdk_display_get_default();

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/FontManager/FontManager/icons">
+    <file>scalable/apps/preferences-desktop-locale-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/com/github/FontManager/FontManager/icons">
+    <file>scalable/actions/document-edit-symbolic.svg</file>
+    <file>scalable/actions/edit-find-symbolic.svg</file>
+    <file>scalable/actions/edit-select-all-symbolic.svg</file>
+    <file>scalable/actions/edit-undo-symbolic-rtl.svg</file>
+    <file>scalable/actions/edit-undo-symbolic.svg</file>
+    <file>scalable/actions/format-justify-center-symbolic.svg</file>
+    <file>scalable/actions/format-justify-fill-symbolic.svg</file>
+    <file>scalable/actions/format-justify-left-symbolic.svg</file>
+    <file>scalable/actions/format-justify-right-symbolic.svg</file>
+    <file>scalable/actions/go-previous-symbolic.svg</file>
+    <file>scalable/actions/list-add-symbolic.svg</file>
+    <file>scalable/actions/list-drag-handle-symbolic.svg</file>
+    <file>scalable/actions/list-remove-symbolic.svg</file>
+    <file>scalable/actions/open-menu-symbolic.svg</file>
+    <file>scalable/actions/panel-right-symbolic.svg</file>
+    <file>scalable/actions/panel-right-symbolic-rtl.svg</file>
+    <file>scalable/actions/system-run-symbolic.svg</file>
+    <file>scalable/actions/view-grid-symbolic.svg</file>
+    <file>scalable/actions/view-list-symbolic.svg</file>
+    <file>scalable/actions/view-more-symbolic.svg</file>
+    <file>scalable/actions/view-sort-descending-symbolic.svg</file>
+    <file>scalable/actions/zoom-in-symbolic.svg</file>
+    <file>scalable/actions/zoom-out-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/com/github/FontManager/FontManager/icons">
+    <file>scalable/devices/computer-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/com/github/FontManager/FontManager/icons">
+    <file>scalable/places/folder-symbolic.svg</file>
+  </gresource>
+  <gresource prefix="/com/github/FontManager/FontManager/icons">
+    <file>scalable/status/avatar-default-symbolic.svg</file>
+    <file>scalable/status/dialog-question-symbolic.svg</file>
+    <file>scalable/status/folder-open-symbolic.svg</file>
+  </gresource>
+</gresources>
