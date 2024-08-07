@@ -36,6 +36,9 @@ If you would like to help this application reach more users in their native lang
 
 ## Installation
 
+### Flatpak
+
+Please see [Known Issues](https://github.com/FontManager/font-manager/issues/272) before installing.
 
 ### Distribution packages
 
@@ -152,17 +155,6 @@ To change an option after the build directory has been configured:
 ```bash
 meson configure -Dsome_option=true
 ```
-
-### Flatpak
-
-Please see [Known Issues](https://github.com/FontManager/font-manager/issues/272) before installing.
-
-<a href='https://flathub.org/apps/details/org.gnome.FontManager'><img width='220' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/></a>
-
-- Access to xdg-config/fontconfig is necessary for other Flatpak applications to recognize changes made by Font Manager. You can use an application such as [Flatseal](https://flathub.org/apps/details/com.github.tchx84.Flatseal) or add --filesystem=xdg-config/fontconfig to the command used to launch the application. This needs to be done for every installed Flatpak application.
-
-- Archive support does not work in Flatpak builds
-
 
 ## License
 

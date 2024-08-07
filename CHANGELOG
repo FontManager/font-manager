@@ -1,3 +1,19 @@
+0.9.0 -> 0.9.1
+- FontList : Increase margin to improve TreeExpander consistency - Issue #373
+- Waterfall Preview : Allow access to waterfall settings from right click menu - Issue #373
+- Collections : More accurate state tracking
+- Unsorted Category : Fix matching
+- Unsorted Category : Prevent possible crash due to access of null object
+- Browse Mode : Save preview tile size - Issue #373
+- Browse Mode : Set Gtk.GridView:max-columns to 36, defaults to 7 - Issue #373
+- Browse Mode : Add tooltip text to controls - Issue #373
+- Browse Mode : Fix preview size not updating with tile size
+- Browse Mode : Restore list option and allow for custom text - Issue #378
+- Google Fonts : link waterfall settings for consistency
+- Google Fonts : Move file management into Font object for improved state tracking
+- Google Fonts : Set margins to match Manage fontlist
+- Dark Theme : Fix light backgrounds in various areas and dialogs
+
 0.8.9 -> 0.9.0
 - Port to GTK 4
 - Change application identifier to com.github.FontManager.FontManager - Issue #319

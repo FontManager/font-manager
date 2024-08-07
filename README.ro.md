@@ -139,15 +139,6 @@ Penru a schimba o opţiune după ce directorul de construcţie a fost configurat
 meson configure -Dsome_option=true
 ```
 
-### Flatpak
-
-<a href='https://flathub.org/apps/details/org.gnome.FontManager'><img width='220' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/></a>
-
-- Accesul la xdg-config/fontconfig este necesar pentru ca alte aplicaţii Flatpak să recunoască schimbările făcute  Font Manager. Puteţi folosi o aplicaţie ca [Flatseal](https://flathub.org/apps/details/com.github.tchx84.Flatseal) sau să adăugaţi --filesystem=xdg-config/fontconfig la comanda utilizată pentru a deschide aplicaţia. Acest lucru trebuie făcut pentru fiecare program Flatpak instalat.
-
-- Suportul pentru arhive nu funcţionează în aplicaţia Flatpak.
-
-
 ## Licenţă
 
 Acest proiect este licenţiat sub GNU General Public License Version 3.0 - vedeţi
