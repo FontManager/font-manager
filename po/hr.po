@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-02 18:04-0400\n"
+"POT-Creation-Date: 2024-07-30 22:50-0400\n"
 "PO-Revision-Date: 2024-07-31 17:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -111,7 +111,7 @@ msgstr "Program za pregled fontova s raznim funkcijama"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:477
+#: src/font-manager/FontList.vala:483
 msgid "Install"
 msgstr "Instaliraj"
 
@@ -141,7 +141,7 @@ msgid "Unknown Vendor"
 msgstr "Nepoznat prodavač"
 
 #: lib/fontconfig/font-manager-fontconfig.c:567
-#: src/font-manager/web/google/WebFont.vala:139
+#: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Tanki"
 
@@ -151,7 +151,7 @@ msgstr "Ultra-svijetli"
 
 #: lib/fontconfig/font-manager-fontconfig.c:571
 #: lib/fontconfig/font-manager-fontconfig.c:924
-#: src/font-manager/web/google/WebFont.vala:143
+#: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "Svijetli"
 
@@ -166,7 +166,7 @@ msgstr "Knjižni"
 #: lib/fontconfig/font-manager-fontconfig.c:577
 #: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
-#: src/font-manager/web/google/WebFont.vala:147
+#: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Srednji"
 
@@ -175,7 +175,7 @@ msgid "Semi-Bold"
 msgstr "Polu-debeli"
 
 #: lib/fontconfig/font-manager-fontconfig.c:581
-#: src/font-manager/web/google/WebFont.vala:151
+#: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Debeli"
 
@@ -192,7 +192,7 @@ msgid "Ultra-Heavy"
 msgstr "Ultra-masni"
 
 #: lib/fontconfig/font-manager-fontconfig.c:662
-#: src/font-manager/web/google/WebFont.vala:189
+#: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "Kurziv"
 
@@ -371,6 +371,7 @@ msgid "Right Aligned"
 msgstr "Poravnato desno"
 
 #: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:165
 msgid "Edit preview text"
 msgstr "Uredi tekst prikaza"
 
@@ -379,7 +380,7 @@ msgid "Undo changes"
 msgstr "Poništi promjene"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:200
+#: src/font-manager/ui/font-manager-browse-preview.ui:201
 msgid "Preview"
 msgstr "Pregled"
 
@@ -403,7 +404,7 @@ msgid "License"
 msgstr "Licenca"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
-#: src/font-manager/web/google/WebFont.vala:145
+#: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Regularni"
 
@@ -466,7 +467,7 @@ msgstr "Vrsta datoteke"
 msgid "Filesize"
 msgstr "Veličina datoteke"
 
-#: lib/gtk/unicode/unicode-character-map.c:786
+#: lib/gtk/unicode/unicode-character-map.c:787
 msgid "Copy"
 msgstr "Kopiraj"
 
@@ -741,24 +742,24 @@ msgstr "Slikovni"
 msgid "Enter Collection Name"
 msgstr "Upiši ime zbirke"
 
-#: src/font-manager/Collections.vala:309
+#: src/font-manager/Collections.vala:321
 msgid "Copy to…"
 msgstr "Kopiraj u …"
 
-#: src/font-manager/Collections.vala:310
+#: src/font-manager/Collections.vala:322
 msgid "Compress…"
 msgstr "Komprimiraj …"
 
-#: src/font-manager/Collections.vala:311
+#: src/font-manager/Collections.vala:323
 msgid "Rename…"
 msgstr "Preimenuj …"
 
-#: src/font-manager/Compare.vala:391
+#: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
 msgstr "Spremljena usporedba"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:427
+#: src/font-manager/Compare.vala:424
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -816,15 +817,23 @@ msgstr "Ime"
 msgid "Size"
 msgstr "Veličina"
 
-#: src/font-manager/Controls.vala:280
+#: src/font-manager/Controls.vala:238
+msgid "Grid View"
+msgstr "Pločasti prikaz"
+
+#: src/font-manager/Controls.vala:239
+msgid "List View"
+msgstr "Prikaz popisa"
+
+#: src/font-manager/Controls.vala:325
 msgid "Add Fonts"
 msgstr "Dodaj fontove"
 
-#: src/font-manager/Controls.vala:281
+#: src/font-manager/Controls.vala:326
 msgid "Remove Fonts"
 msgstr "Ukloni fontove"
 
-#: src/font-manager/Controls.vala:294
+#: src/font-manager/Controls.vala:342
 msgid "Back"
 msgstr "Natrag"
 
@@ -857,7 +866,7 @@ msgid "Font Collections"
 msgstr "Zbirke fontova"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:152
+#: src/font-manager/preferences/UserSources.vala:154
 msgid "Font Sources"
 msgstr "Izvori fontova"
 
@@ -907,7 +916,7 @@ msgstr ""
 "Započni pretragu koristeći %s za filtriranje na temelju znakova."
 
 #: src/font-manager/FontList.vala:70
-#: src/font-manager/web/google/FontList.vala:283
+#: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
@@ -915,38 +924,38 @@ msgstr[0] "%i varijanta "
 msgstr[1] "%i varijante "
 msgstr[2] "%i varijanta "
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Sklopi sve"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
-#: src/font-manager/ui/font-manager-font-list-controls.ui:19
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr "Rasklopi sve"
 
-#: src/font-manager/FontList.vala:478
+#: src/font-manager/FontList.vala:484
 msgid "Copy Location"
 msgstr "Mjesto kopije"
 
-#: src/font-manager/FontList.vala:479
+#: src/font-manager/FontList.vala:485
 msgid "Show in Folder"
 msgstr "Prikaži u mapi"
 
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:486
 msgid "Enable selected items"
 msgstr "Aktiviraj odabrane elemente"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:487
 msgid "Disable selected items"
 msgstr "Deaktiviraj odabrane elemente"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
+#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
@@ -954,8 +963,8 @@ msgstr[0] "%i odabrani element"
 msgstr[1] "%i odabrana elementa"
 msgstr[2] "%i odabranih elemenata"
 
-#: src/font-manager/FontList.vala:575
-#: src/font-manager/preferences/Preferences.vala:46
+#: src/font-manager/FontList.vala:581
+#: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Radnje"
 
@@ -1586,7 +1595,7 @@ msgid "Update in progress"
 msgstr "Aktualiziranje u tijeku"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:231
+#: src/font-manager/OrthographyList.vala:230
 msgid "No valid orthographies for selection"
 msgstr "Nema valjanih ortografija za odabir"
 
@@ -1595,7 +1604,7 @@ msgid "Add new collection"
 msgstr "Dodaj novu zbirku"
 
 #: src/font-manager/Sidebar.vala:61
-#: src/font-manager/ui/font-manager-font-list-controls.ui:30
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 msgid "Remove selected item"
 msgstr "Ukloni odabrani element"
@@ -1604,15 +1613,15 @@ msgstr "Ukloni odabrani element"
 msgid "Edit selected item"
 msgstr "Uredi odabrani element"
 
-#: src/font-manager/Utils.vala:293
+#: src/font-manager/Utils.vala:290
 msgid "Copying files…"
 msgstr "Kopiranje datoteka …"
 
-#: src/font-manager/filters/Collection.vala:58
+#: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
 msgstr "Nova zbirka"
 
-#: src/font-manager/filters/Collection.vala:59
+#: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
 msgstr "Stvoreno: %s"
@@ -1629,11 +1638,11 @@ msgstr "Deaktivirani fontovi"
 msgid "Filter based on supported orthographies"
 msgstr "Filtar na osnovi podržanih sustava znakova"
 
-#: src/font-manager/filters/Unsorted.vala:28
+#: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
 msgstr "Nerazvrstani"
 
-#: src/font-manager/filters/Unsorted.vala:29
+#: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
 msgstr "Fontovi koji nisu prisutni u nijednoj zbirci"
 
@@ -1744,32 +1753,32 @@ msgstr "Faktor skaliranja"
 msgid "LCD Filter"
 msgstr "LCD filtar"
 
-#: src/font-manager/preferences/Preferences.vala:42
+#: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
 msgstr "Sučelje"
 
-#: src/font-manager/preferences/Preferences.vala:43
+#: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
 msgstr "Radna površina"
 
-#: src/font-manager/preferences/Preferences.vala:49
+#: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
 msgstr "Izvori"
 
-#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
 msgstr "Zamjene"
 
-#: src/font-manager/preferences/Preferences.vala:51
+#: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
 msgstr "Prikaz"
 
-#: src/font-manager/preferences/Preferences.vala:52
+#: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
 msgstr "Iscrtavanje"
 
-#: src/font-manager/preferences/Preferences.vala:130
+#: src/font-manager/preferences/Preferences.vala:129
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1784,7 +1793,7 @@ msgstr ""
 "\n"
 "Napomena: Neka okruženja i programi ne poštuju ove postavke."
 
-#: src/font-manager/preferences/Preferences.vala:152
+#: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
 msgstr "Resetiraj sve vrijednosti na standarne vrijednosti"
 
@@ -1804,19 +1813,19 @@ msgstr "Način optimiranja prikaza"
 msgid "Use Embedded Bitmaps"
 msgstr "Koristi ugrađene bitmape"
 
-#: src/font-manager/preferences/Substitutions.vala:151
+#: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
 msgstr "Zamjene fontova"
 
-#: src/font-manager/preferences/Substitutions.vala:152
+#: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
 msgstr "Jednostavno zamijeni jednu obitelj fontova drugom obitelji."
 
-#: src/font-manager/preferences/Substitutions.vala:153
+#: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "Za dodavanje nove zamjene pritisni gumb za dodavanje u alatnoj traci."
 
-#: src/font-manager/preferences/UserActions.vala:234
+#: src/font-manager/preferences/UserActions.vala:229
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1834,11 +1843,11 @@ msgstr ""
 "Ako se na popisu argumenata pronađu FAMILY ili STYLE, oni će se također "
 "zamijenjeniti."
 
-#: src/font-manager/preferences/UserActions.vala:247
+#: src/font-manager/preferences/UserActions.vala:242
 msgid "User Actions"
 msgstr "Korisničke radnje"
 
-#: src/font-manager/preferences/UserActions.vala:249
+#: src/font-manager/preferences/UserActions.vala:244
 msgid "Custom context menu entries"
 msgstr "Prilagođeni elementi kontekstnog izbornika"
 
@@ -1874,71 +1883,77 @@ msgstr "Do 192 točke (omjer 1,4)"
 msgid "Custom Size Settings"
 msgstr "Postavke za prilagođenu veličinu"
 
-#: src/font-manager/preferences/UserInterface.vala:151
+#: src/font-manager/preferences/UserInterface.vala:195
 msgid "Waterfall Preview Size Settings"
 msgstr "Postavke veličina za kaskadni prikaz"
 
-#: src/font-manager/preferences/UserInterface.vala:155
+#: src/font-manager/preferences/UserInterface.vala:199
 msgid "Higher values may adversely affect performance"
 msgstr "Veće vrijednosti mogu negativno utjecati na izvođenje"
 
-#: src/font-manager/preferences/UserInterface.vala:158
+#: src/font-manager/preferences/UserInterface.vala:202
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Najmanja veličina fonta u kaskadnom prikazu"
 
-#: src/font-manager/preferences/UserInterface.vala:160
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Omjer veličina fonta u kaskadnom prikazu"
 
-#: src/font-manager/preferences/UserInterface.vala:162
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Najveća veličina fonta u kaskadnom prikazu"
 
-#: src/font-manager/preferences/UserInterface.vala:211
+#: src/font-manager/preferences/UserInterface.vala:234
+#, fuzzy
+#| msgid "Show in Folder"
+msgid "Show line size"
+msgstr "Prikaži u mapi"
+
+#: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
 msgstr "Odabrana postavka zahtijeva ponovno pokretanje"
 
-#: src/font-manager/preferences/UserInterface.vala:212
+#: src/font-manager/preferences/UserInterface.vala:274
 msgid "Changes will take effect next time the application is started"
 msgstr "Promjene će se primijeniti pri sljedećem pokretanju programa"
 
-#: src/font-manager/preferences/UserInterface.vala:224
+#: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
 msgstr "Široki format"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:290
 msgid "Only When Maximized"
 msgstr "Samo kad je prozor maksimalno rastvoren"
 
-#: src/font-manager/preferences/UserInterface.vala:229
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Enable Animations"
 msgstr "Aktiviraj animacije"
 
-#: src/font-manager/preferences/UserInterface.vala:230
+#: src/font-manager/preferences/UserInterface.vala:293
 msgid "Prefer Dark Theme"
 msgstr "Preferiraj tamnu temu"
 
-#: src/font-manager/preferences/UserInterface.vala:232
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Use Adwaita Stylesheet"
 msgstr "Koristi Adwaita stilove"
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
 msgstr "Nadignuto"
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Flat"
 msgstr "Plošno"
 
-#: src/font-manager/preferences/UserInterface.vala:237
+#: src/font-manager/preferences/UserInterface.vala:300
 msgid "Titlebar Button Style"
 msgstr "Stil gumbova u naslovnoj traci"
 
-#: src/font-manager/preferences/UserInterface.vala:238
+#: src/font-manager/preferences/UserInterface.vala:301
 msgid "Display line size in Waterfall Preview"
 msgstr "Prikaži veličine fonta u kaskadnom prikazu"
 
-#: src/font-manager/preferences/UserSources.vala:141
+#: src/font-manager/preferences/UserSources.vala:143
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -1949,11 +1964,11 @@ msgstr ""
 "\n"
 "Drugi programi ih neće vidjeti sve dok se izvor ne aktivira."
 
-#: src/font-manager/preferences/UserSources.vala:153
+#: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Dodaj ili pregledaj fontove bez instaliranja."
 
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -1961,36 +1976,36 @@ msgstr ""
 "Za dodavanje izvora jednostavno povuci mapu na ovo područje ili pritisni "
 "gumb za dodavanje u alatnoj traci."
 
-#: src/font-manager/web/google/GoogleFonts.vala:155
+#: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
 msgstr "Pristup mreži je deaktiviran"
 
-#: src/font-manager/web/google/GoogleFonts.vala:156
+#: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
 msgstr "Kontaktiraj administratora sustava za dobivanje pristupa."
 
-#: src/font-manager/web/google/GoogleFonts.vala:159
+#: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
 msgstr "Mreža isključena"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:161
+#: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 "Za pristup katalogu Google fontova potrebna je aktivna internetska veza"
 
-#: src/font-manager/web/google/GoogleFonts.vala:171
+#: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
 msgstr "Greška klijenta"
 
-#: src/font-manager/web/google/GoogleFonts.vala:172
+#: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 "Pokušaj ponovo pokrenuti program. Ako problem ne nestane, prijavi grešku."
 
-#: src/font-manager/web/google/GoogleFonts.vala:175
+#: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
 msgstr "Greška servera"
 
@@ -2355,7 +2370,7 @@ msgstr "Nema primjera za %s"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "Pošalji zahtjev za aktualiziranje dostupnih primjera."
 
-#: src/font-manager/web/google/PreviewPage.vala:317
+#: src/font-manager/web/google/PreviewPage.vala:352
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2363,19 +2378,19 @@ msgstr[0] "Dostupan je %i primjer za jezik "
 msgstr[1] "Dostupna su %i primjera za jezik "
 msgstr[2] "Dostupno je %i primjera za jezik "
 
-#: src/font-manager/web/google/WebFont.vala:141
+#: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
 msgstr "Ultra-svijetli"
 
-#: src/font-manager/web/google/WebFont.vala:149
+#: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
 msgstr "Polu-debeli"
 
-#: src/font-manager/web/google/WebFont.vala:153
+#: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
 msgstr "Ultra-debeli"
 
-#: src/font-manager/web/google/WebFont.vala:155
+#: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
 msgstr "Tamni"
 
@@ -2497,6 +2512,28 @@ msgstr "Prebaci na kaskadni prikaz"
 msgid "Switch to Body Text preview"
 msgstr "Prebaci na prikaz teksta"
 
+#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#, fuzzy
+#| msgid "Increase preview size"
+msgid "Increase tile size"
+msgstr "Povećaj veličinu prikaza"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#, fuzzy
+#| msgid "Decrease preview size"
+msgid "Decrease tile size"
+msgstr "Smanji veličinu prikaza"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:146
+#, fuzzy
+#| msgid "Focus search entry"
+msgid "Toggle search entry"
+msgstr "Fokusiraj unos pretrage"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:155
+msgid "Toggle preview panel"
+msgstr ""
+
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
 "Status of selected family.\n"
@@ -2533,9 +2570,9 @@ msgstr "Prikvačena usporedba"
 msgid "Cancel"
 msgstr "Odustani"
 
-#: src/font-manager/ui/font-manager-font-list-controls.ui:49
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:42
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "Pretraži obitelji …"
 
@@ -2775,12 +2812,6 @@ msgstr "Za pregled fonta, jednostavno ga povuci na ovo područje."
 
 #~ msgid "Installed"
 #~ msgstr "Instalirano"
-
-#~ msgid "List View"
-#~ msgstr "Prikaz popisa"
-
-#~ msgid "Grid View"
-#~ msgstr "Pločasti prikaz"
 
 #~ msgid "Enter Preview Text…"
 #~ msgstr "Upiši tekst za prikaz …"

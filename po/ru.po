@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-02 18:04-0400\n"
+"POT-Creation-Date: 2024-07-30 22:50-0400\n"
 "PO-Revision-Date: 2022-02-06 15:23+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Полнофункциональная программа просмот
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:477
+#: src/font-manager/FontList.vala:483
 msgid "Install"
 msgstr "Установить"
 
@@ -140,7 +140,7 @@ msgid "Unknown Vendor"
 msgstr "Неизвестный распространитель"
 
 #: lib/fontconfig/font-manager-fontconfig.c:567
-#: src/font-manager/web/google/WebFont.vala:139
+#: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Тонкий"
 
@@ -150,7 +150,7 @@ msgstr "Ультралёгкий"
 
 #: lib/fontconfig/font-manager-fontconfig.c:571
 #: lib/fontconfig/font-manager-fontconfig.c:924
-#: src/font-manager/web/google/WebFont.vala:143
+#: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "Лёгкий"
 
@@ -165,7 +165,7 @@ msgstr "Книжный"
 #: lib/fontconfig/font-manager-fontconfig.c:577
 #: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
-#: src/font-manager/web/google/WebFont.vala:147
+#: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Средний"
 
@@ -174,7 +174,7 @@ msgid "Semi-Bold"
 msgstr "Полужирный"
 
 #: lib/fontconfig/font-manager-fontconfig.c:581
-#: src/font-manager/web/google/WebFont.vala:151
+#: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Жирный"
 
@@ -191,7 +191,7 @@ msgid "Ultra-Heavy"
 msgstr "Ультратяжёлый"
 
 #: lib/fontconfig/font-manager-fontconfig.c:662
-#: src/font-manager/web/google/WebFont.vala:189
+#: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "Курсив"
 
@@ -377,6 +377,7 @@ msgid "Right Aligned"
 msgstr "Выравнивание по правому краю"
 
 #: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:165
 msgid "Edit preview text"
 msgstr "Редактировать текст предварительного просмотра"
 
@@ -385,7 +386,7 @@ msgid "Undo changes"
 msgstr "Отменить изменения"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:200
+#: src/font-manager/ui/font-manager-browse-preview.ui:201
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
@@ -409,7 +410,7 @@ msgid "License"
 msgstr "Лицензия"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
-#: src/font-manager/web/google/WebFont.vala:145
+#: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Обычный"
 
@@ -472,7 +473,7 @@ msgstr "Тип файла"
 msgid "Filesize"
 msgstr "Размер файла"
 
-#: lib/gtk/unicode/unicode-character-map.c:786
+#: lib/gtk/unicode/unicode-character-map.c:787
 msgid "Copy"
 msgstr "Копировать"
 
@@ -771,24 +772,24 @@ msgstr "Псевдографические"
 msgid "Enter Collection Name"
 msgstr "Введите название коллекции"
 
-#: src/font-manager/Collections.vala:309
+#: src/font-manager/Collections.vala:321
 msgid "Copy to…"
 msgstr "Копировать в …"
 
-#: src/font-manager/Collections.vala:310
+#: src/font-manager/Collections.vala:322
 msgid "Compress…"
 msgstr "Сжать…"
 
-#: src/font-manager/Collections.vala:311
+#: src/font-manager/Collections.vala:323
 msgid "Rename…"
 msgstr "Переименовать…"
 
-#: src/font-manager/Compare.vala:391
+#: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
 msgstr "Сохранённое сравнение"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:427
+#: src/font-manager/Compare.vala:424
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -848,15 +849,23 @@ msgstr "Название"
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:280
+#: src/font-manager/Controls.vala:238
+msgid "Grid View"
+msgstr "Таблицей"
+
+#: src/font-manager/Controls.vala:239
+msgid "List View"
+msgstr "Списком"
+
+#: src/font-manager/Controls.vala:325
 msgid "Add Fonts"
 msgstr "Добавить шрифты"
 
-#: src/font-manager/Controls.vala:281
+#: src/font-manager/Controls.vala:326
 msgid "Remove Fonts"
 msgstr "Удалить шрифты"
 
-#: src/font-manager/Controls.vala:294
+#: src/font-manager/Controls.vala:342
 msgid "Back"
 msgstr "Назад"
 
@@ -897,7 +906,7 @@ msgid "Font Collections"
 msgstr "Коллекции шрифтов"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:152
+#: src/font-manager/preferences/UserSources.vala:154
 msgid "Font Sources"
 msgstr "Источники шрифтов"
 
@@ -946,7 +955,7 @@ msgstr ""
 "Начните поиск с «%s», чтобы фильтровать по символам."
 
 #: src/font-manager/FontList.vala:70
-#: src/font-manager/web/google/FontList.vala:283
+#: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
@@ -954,38 +963,38 @@ msgstr[0] "%i вариант "
 msgstr[1] "%i варианта"
 msgstr[2] "%i вариантов"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Свернуть все"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
-#: src/font-manager/ui/font-manager-font-list-controls.ui:19
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr "Развернуть все"
 
-#: src/font-manager/FontList.vala:478
+#: src/font-manager/FontList.vala:484
 msgid "Copy Location"
 msgstr "Копировать расположение"
 
-#: src/font-manager/FontList.vala:479
+#: src/font-manager/FontList.vala:485
 msgid "Show in Folder"
 msgstr "Показать в папке"
 
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:486
 msgid "Enable selected items"
 msgstr "Активировать выбранные элементы"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:487
 msgid "Disable selected items"
 msgstr "Деактивировать выбранные элементы"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
+#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
@@ -993,8 +1002,8 @@ msgstr[0] "%i выбранный элемент"
 msgstr[1] "%i выбранных элемента"
 msgstr[2] "%i выбранных элементов"
 
-#: src/font-manager/FontList.vala:575
-#: src/font-manager/preferences/Preferences.vala:46
+#: src/font-manager/FontList.vala:581
+#: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Действия"
 
@@ -1630,7 +1639,7 @@ msgid "Update in progress"
 msgstr "Происходит обновление"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:231
+#: src/font-manager/OrthographyList.vala:230
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1639,7 +1648,7 @@ msgid "Add new collection"
 msgstr "Добавить новую коллекцию"
 
 #: src/font-manager/Sidebar.vala:61
-#: src/font-manager/ui/font-manager-font-list-controls.ui:30
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 #, fuzzy
 #| msgid "Remove selected alias"
@@ -1653,15 +1662,15 @@ msgstr "Удалить выбранную подстановку"
 msgid "Edit selected item"
 msgstr "%i выбранный элемент"
 
-#: src/font-manager/Utils.vala:293
+#: src/font-manager/Utils.vala:290
 msgid "Copying files…"
 msgstr "Копирование файлов…"
 
-#: src/font-manager/filters/Collection.vala:58
+#: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
 msgstr "Новая коллекция"
 
-#: src/font-manager/filters/Collection.vala:59
+#: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
 msgstr "Создана : %s"
@@ -1678,11 +1687,11 @@ msgstr "Отключенные шрифты"
 msgid "Filter based on supported orthographies"
 msgstr "Фильтр по поддерживаемой орфографии"
 
-#: src/font-manager/filters/Unsorted.vala:28
+#: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
 msgstr "Неотсортированные"
 
-#: src/font-manager/filters/Unsorted.vala:29
+#: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
 msgstr "Шрифты, не входящие ни в одну из коллекций"
 
@@ -1793,32 +1802,32 @@ msgstr "Коэффициент масштабирования"
 msgid "LCD Filter"
 msgstr "Фильтр LCD"
 
-#: src/font-manager/preferences/Preferences.vala:42
+#: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
 msgstr "Интерфейс"
 
-#: src/font-manager/preferences/Preferences.vala:43
+#: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
 msgstr "Рабочий стол"
 
-#: src/font-manager/preferences/Preferences.vala:49
+#: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
 msgstr "Источники"
 
-#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
 msgstr "Подстановки"
 
-#: src/font-manager/preferences/Preferences.vala:51
+#: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
 msgstr "Экран"
 
-#: src/font-manager/preferences/Preferences.vala:52
+#: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
 msgstr "Отображение"
 
-#: src/font-manager/preferences/Preferences.vala:130
+#: src/font-manager/preferences/Preferences.vala:129
 #, fuzzy
 #| msgid ""
 #| "Select save to generate a fontconfig configuration file from the above "
@@ -1843,7 +1852,7 @@ msgstr ""
 "\n"
 "Обратите внимание, что все среды/приложения будут следовать этим настройкам."
 
-#: src/font-manager/preferences/Preferences.vala:152
+#: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
 msgstr ""
 
@@ -1863,21 +1872,21 @@ msgstr "Стиль хинтинга"
 msgid "Use Embedded Bitmaps"
 msgstr "Использовать встроенные битовые карты"
 
-#: src/font-manager/preferences/Substitutions.vala:151
+#: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
 msgstr "Подстановки шрифтов"
 
-#: src/font-manager/preferences/Substitutions.vala:152
+#: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
 msgstr "Лёгкая подстановка одного семейства шрифтов другим."
 
-#: src/font-manager/preferences/Substitutions.vala:153
+#: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 "Для добавления подстановки необходимо нажать на кнопку «Добавить» на панели "
 "инструментов."
 
-#: src/font-manager/preferences/UserActions.vala:234
+#: src/font-manager/preferences/UserActions.vala:229
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1895,11 +1904,11 @@ msgstr ""
 "Если в списке аргументов будут найдены FAMILY или STYLE, они тоже будут "
 "подставлены."
 
-#: src/font-manager/preferences/UserActions.vala:247
+#: src/font-manager/preferences/UserActions.vala:242
 msgid "User Actions"
 msgstr "Пользовательские действия"
 
-#: src/font-manager/preferences/UserActions.vala:249
+#: src/font-manager/preferences/UserActions.vala:244
 msgid "Custom context menu entries"
 msgstr "Индивидуальные элементы контекстного меню"
 
@@ -1935,31 +1944,37 @@ msgstr "До 192 пунктов (знаменатель прогрессии: 1.
 msgid "Custom Size Settings"
 msgstr "Пользовательские настройки размера"
 
-#: src/font-manager/preferences/UserInterface.vala:151
+#: src/font-manager/preferences/UserInterface.vala:195
 msgid "Waterfall Preview Size Settings"
 msgstr "Настройки размера при предпросмотре в режиме Водопад"
 
-#: src/font-manager/preferences/UserInterface.vala:155
+#: src/font-manager/preferences/UserInterface.vala:199
 msgid "Higher values may adversely affect performance"
 msgstr "Бóльшие значения могут негативно повлиять на производительность"
 
-#: src/font-manager/preferences/UserInterface.vala:158
+#: src/font-manager/preferences/UserInterface.vala:202
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Минимальный размер при предпросмотре в режиме Водопад"
 
-#: src/font-manager/preferences/UserInterface.vala:160
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Знаменатель прогрессии размера при предпросмотре в режиме Водопад"
 
-#: src/font-manager/preferences/UserInterface.vala:162
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Максимальный размер при предпросмотре в режиме Водопад"
 
-#: src/font-manager/preferences/UserInterface.vala:211
+#: src/font-manager/preferences/UserInterface.vala:234
+#, fuzzy
+#| msgid "Show in Folder"
+msgid "Show line size"
+msgstr "Показать в папке"
+
+#: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:212
+#: src/font-manager/preferences/UserInterface.vala:274
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
@@ -1968,43 +1983,43 @@ msgstr ""
 "Отрисовка на стороне клиента включена. Изменения вступят в силу после "
 "перезапуска программы."
 
-#: src/font-manager/preferences/UserInterface.vala:224
+#: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
 msgstr "Широкоформатный режим"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:290
 msgid "Only When Maximized"
 msgstr "Только когда окно распахнуто на весь экран"
 
-#: src/font-manager/preferences/UserInterface.vala:229
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Enable Animations"
 msgstr "Включить анимации"
 
-#: src/font-manager/preferences/UserInterface.vala:230
+#: src/font-manager/preferences/UserInterface.vala:293
 msgid "Prefer Dark Theme"
 msgstr "Предпочитать тёмную тему"
 
-#: src/font-manager/preferences/UserInterface.vala:232
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Flat"
 msgstr "Плоский"
 
-#: src/font-manager/preferences/UserInterface.vala:237
+#: src/font-manager/preferences/UserInterface.vala:300
 msgid "Titlebar Button Style"
 msgstr "Стиль кнопок заголовка окна"
 
-#: src/font-manager/preferences/UserInterface.vala:238
+#: src/font-manager/preferences/UserInterface.vala:301
 msgid "Display line size in Waterfall Preview"
 msgstr "Отображать размер строки при предпросмотре в режиме Водопад"
 
-#: src/font-manager/preferences/UserSources.vala:141
+#: src/font-manager/preferences/UserSources.vala:143
 #, fuzzy
 #| msgid ""
 #| "Fonts in any folders listed here will be available within the "
@@ -2026,12 +2041,12 @@ msgstr ""
 "\n"
 "Обратите внимание, что все среды/приложения будут следовать этим настройкам."
 
-#: src/font-manager/preferences/UserSources.vala:153
+#: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 "Лёгкое добавление или предварительный просмотр шрифтов без их установки."
 
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2039,37 +2054,37 @@ msgstr ""
 "Для добавления нового источника просто перетащите папку в данную область или "
 "нажмите на кнопку «Добавить» на панели инструментов."
 
-#: src/font-manager/web/google/GoogleFonts.vala:155
+#: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:156
+#: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:159
+#: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
 msgstr "Нет подключения"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:161
+#: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 "Для доступа к каталогу Google Fonts необходимо активное сетевое подключение"
 
-#: src/font-manager/web/google/GoogleFonts.vala:171
+#: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
 msgstr "Ошибка клиента"
 
-#: src/font-manager/web/google/GoogleFonts.vala:172
+#: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 "Попробуйте перезапустить приложение. Если проблема не исчезнет, сообщите об "
 "ошибке."
 
-#: src/font-manager/web/google/GoogleFonts.vala:175
+#: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
 msgstr "Ошибка сервера"
 
@@ -2466,7 +2481,7 @@ msgstr "Нет образца для %s"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "Пожалуйста, подайте запрос на обновление доступных образцов."
 
-#: src/font-manager/web/google/PreviewPage.vala:317
+#: src/font-manager/web/google/PreviewPage.vala:352
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2474,19 +2489,19 @@ msgstr[0] "Доступен %i языковой образец "
 msgstr[1] "Доступно %i языковых образца"
 msgstr[2] "Доступно %i языковых образцов"
 
-#: src/font-manager/web/google/WebFont.vala:141
+#: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
 msgstr "Ультралёгкий"
 
-#: src/font-manager/web/google/WebFont.vala:149
+#: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
 msgstr "Полужирный"
 
-#: src/font-manager/web/google/WebFont.vala:153
+#: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
 msgstr "Ультражирный"
 
-#: src/font-manager/web/google/WebFont.vala:155
+#: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
 msgstr "Чёрный"
 
@@ -2605,6 +2620,26 @@ msgstr "Переключиться в режим водопада"
 msgid "Switch to Body Text preview"
 msgstr "Переключиться в режим предварительного просмотра обычного текста"
 
+#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#, fuzzy
+#| msgid "Increase preview size"
+msgid "Increase tile size"
+msgstr "Увеличить размер предпросмотра"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#, fuzzy
+#| msgid "Decrease preview size"
+msgid "Decrease tile size"
+msgstr "Уменьшить размер предпросмотра"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:146
+msgid "Toggle search entry"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:155
+msgid "Toggle preview panel"
+msgstr ""
+
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
 "Status of selected family.\n"
@@ -2640,9 +2675,9 @@ msgstr "Закреплённые сравнения"
 msgid "Cancel"
 msgstr "_Отменить"
 
-#: src/font-manager/ui/font-manager-font-list-controls.ui:49
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:42
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "Поиск в семействах…"
 
@@ -2884,12 +2919,6 @@ msgstr "Перетащите файл шрифта в эту область, ч�
 
 #~ msgid "Installed"
 #~ msgstr "Установленные"
-
-#~ msgid "List View"
-#~ msgstr "Списком"
-
-#~ msgid "Grid View"
-#~ msgstr "Таблицей"
 
 #~ msgid "Enter Preview Text…"
 #~ msgstr "Введите текст предварительного просмотра…"
