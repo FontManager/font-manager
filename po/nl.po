@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-02 18:04-0400\n"
+"POT-Creation-Date: 2024-07-30 22:50-0400\n"
 "PO-Revision-Date: 2024-07-28 12:09+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
+"manager/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,7 +95,7 @@ msgstr "Lettertypevoorvertoning boordevol functies"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:477
+#: src/font-manager/FontList.vala:483
 msgid "Install"
 msgstr "Installeren"
 
@@ -125,7 +125,7 @@ msgid "Unknown Vendor"
 msgstr "Onbekende maker"
 
 #: lib/fontconfig/font-manager-fontconfig.c:567
-#: src/font-manager/web/google/WebFont.vala:139
+#: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Dun"
 
@@ -135,7 +135,7 @@ msgstr "Erg licht"
 
 #: lib/fontconfig/font-manager-fontconfig.c:571
 #: lib/fontconfig/font-manager-fontconfig.c:924
-#: src/font-manager/web/google/WebFont.vala:143
+#: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "Licht"
 
@@ -150,7 +150,7 @@ msgstr "Boek"
 #: lib/fontconfig/font-manager-fontconfig.c:577
 #: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
-#: src/font-manager/web/google/WebFont.vala:147
+#: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Gemiddeld"
 
@@ -159,7 +159,7 @@ msgid "Semi-Bold"
 msgstr "Deels vetgedrukt"
 
 #: lib/fontconfig/font-manager-fontconfig.c:581
-#: src/font-manager/web/google/WebFont.vala:151
+#: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Vetgedrukt"
 
@@ -176,7 +176,7 @@ msgid "Ultra-Heavy"
 msgstr "Zeer, zeer vetgedrukt"
 
 #: lib/fontconfig/font-manager-fontconfig.c:662
-#: src/font-manager/web/google/WebFont.vala:189
+#: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "Cursief (italic)"
 
@@ -357,6 +357,7 @@ msgid "Right Aligned"
 msgstr "Rechts uitgelijnd"
 
 #: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:165
 msgid "Edit preview text"
 msgstr "Voorbeeldtekst bewerken"
 
@@ -365,7 +366,7 @@ msgid "Undo changes"
 msgstr "Ongedaan maken"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:200
+#: src/font-manager/ui/font-manager-browse-preview.ui:201
 msgid "Preview"
 msgstr "Voorvertoning"
 
@@ -389,7 +390,7 @@ msgid "License"
 msgstr "Licentie"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
-#: src/font-manager/web/google/WebFont.vala:145
+#: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Normaal"
 
@@ -452,7 +453,7 @@ msgstr "Bestandstype"
 msgid "Filesize"
 msgstr "Bestandsgrootte"
 
-#: lib/gtk/unicode/unicode-character-map.c:786
+#: lib/gtk/unicode/unicode-character-map.c:787
 msgid "Copy"
 msgstr "Kopiëren"
 
@@ -746,24 +747,24 @@ msgstr "Pictogram"
 msgid "Enter Collection Name"
 msgstr "Voer een naam in voor de verzameling"
 
-#: src/font-manager/Collections.vala:309
+#: src/font-manager/Collections.vala:321
 msgid "Copy to…"
 msgstr "Kopiëren naar…"
 
-#: src/font-manager/Collections.vala:310
+#: src/font-manager/Collections.vala:322
 msgid "Compress…"
 msgstr "Inpakken…"
 
-#: src/font-manager/Collections.vala:311
+#: src/font-manager/Collections.vala:323
 msgid "Rename…"
 msgstr "Naam wijzigen…"
 
-#: src/font-manager/Compare.vala:391
+#: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
 msgstr "Opgeslagen vergelijking"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:427
+#: src/font-manager/Compare.vala:424
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -823,15 +824,23 @@ msgstr "Naam"
 msgid "Size"
 msgstr "Grootte"
 
-#: src/font-manager/Controls.vala:280
+#: src/font-manager/Controls.vala:238
+msgid "Grid View"
+msgstr "Roosterweergave"
+
+#: src/font-manager/Controls.vala:239
+msgid "List View"
+msgstr "Lijstweergave"
+
+#: src/font-manager/Controls.vala:325
 msgid "Add Fonts"
 msgstr "Lettertypen toevoegen"
 
-#: src/font-manager/Controls.vala:281
+#: src/font-manager/Controls.vala:326
 msgid "Remove Fonts"
 msgstr "Lettertypen verwijderen"
 
-#: src/font-manager/Controls.vala:294
+#: src/font-manager/Controls.vala:342
 msgid "Back"
 msgstr "Terug"
 
@@ -872,7 +881,7 @@ msgid "Font Collections"
 msgstr "Lettertypeverzamelingen"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:152
+#: src/font-manager/preferences/UserSources.vala:154
 msgid "Font Sources"
 msgstr "Lettertypebronnen"
 
@@ -922,53 +931,53 @@ msgstr ""
 "Begin met zoeken met %s om te filteren op tekens."
 
 #: src/font-manager/FontList.vala:70
-#: src/font-manager/web/google/FontList.vala:283
+#: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i variatie "
 msgstr[1] "%i variaties"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Alles inklappen"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
-#: src/font-manager/ui/font-manager-font-list-controls.ui:19
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr "Alles uitklappen"
 
-#: src/font-manager/FontList.vala:478
+#: src/font-manager/FontList.vala:484
 msgid "Copy Location"
 msgstr "Locatie kopiëren"
 
-#: src/font-manager/FontList.vala:479
+#: src/font-manager/FontList.vala:485
 msgid "Show in Folder"
 msgstr "Bekijken in map"
 
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:486
 msgid "Enable selected items"
 msgstr "Geselecteerde items inschakelen"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:487
 msgid "Disable selected items"
 msgstr "Geselecteerde items uitschakelen"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
+#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i geselecteerde item"
 msgstr[1] "%i geselecteerde items"
 
-#: src/font-manager/FontList.vala:575
-#: src/font-manager/preferences/Preferences.vala:46
+#: src/font-manager/FontList.vala:581
+#: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Acties"
 
@@ -1601,7 +1610,7 @@ msgid "Update in progress"
 msgstr "Bezig met bijwerken"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:231
+#: src/font-manager/OrthographyList.vala:230
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1610,7 +1619,7 @@ msgid "Add new collection"
 msgstr "Verzameling toevoegen"
 
 #: src/font-manager/Sidebar.vala:61
-#: src/font-manager/ui/font-manager-font-list-controls.ui:30
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 #, fuzzy
 #| msgid "Remove selected alias"
@@ -1624,15 +1633,15 @@ msgstr "Geselecteerde alias verwijderen"
 msgid "Edit selected item"
 msgstr "%i geselecteerde item"
 
-#: src/font-manager/Utils.vala:293
+#: src/font-manager/Utils.vala:290
 msgid "Copying files…"
 msgstr "Bezig met kopiëren van bestanden…"
 
-#: src/font-manager/filters/Collection.vala:58
+#: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
 msgstr "Nieuwe verzameling"
 
-#: src/font-manager/filters/Collection.vala:59
+#: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
 msgstr "Gemaakt op %s"
@@ -1649,11 +1658,11 @@ msgstr "Uitgeschakelde lettertypen"
 msgid "Filter based on supported orthographies"
 msgstr "Filter op basis van ondersteunde orthografieën"
 
-#: src/font-manager/filters/Unsorted.vala:28
+#: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
 msgstr "Ongesorteerd"
 
-#: src/font-manager/filters/Unsorted.vala:29
+#: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
 msgstr "Lettertypen die geen onderdeel zijn van een verzameling"
 
@@ -1768,32 +1777,32 @@ msgstr "Schaalfactor"
 msgid "LCD Filter"
 msgstr "LCD-filter"
 
-#: src/font-manager/preferences/Preferences.vala:42
+#: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
 msgstr "Uiterlijk"
 
-#: src/font-manager/preferences/Preferences.vala:43
+#: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
 msgstr "Bureaublad"
 
-#: src/font-manager/preferences/Preferences.vala:49
+#: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
 msgstr "Bronnen"
 
-#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
 msgstr "Vervangingen"
 
-#: src/font-manager/preferences/Preferences.vala:51
+#: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
 msgstr "Weergave"
 
-#: src/font-manager/preferences/Preferences.vala:52
+#: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
 msgstr "Opmaak"
 
-#: src/font-manager/preferences/Preferences.vala:130
+#: src/font-manager/preferences/Preferences.vala:129
 #, fuzzy
 #| msgid ""
 #| "Select save to generate a fontconfig configuration file from the above "
@@ -1818,7 +1827,7 @@ msgstr ""
 "\n"
 "Let op: niet alle desktopomgevingen/apps honoreren deze instellingen."
 
-#: src/font-manager/preferences/Preferences.vala:152
+#: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
 msgstr ""
 
@@ -1838,19 +1847,19 @@ msgstr "Hintstijl"
 msgid "Use Embedded Bitmaps"
 msgstr "Ingesloten bitmaps gebruiken"
 
-#: src/font-manager/preferences/Substitutions.vala:151
+#: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
 msgstr "Vervangingen"
 
-#: src/font-manager/preferences/Substitutions.vala:152
+#: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
 msgstr "Vervang één familie door een andere."
 
-#: src/font-manager/preferences/Substitutions.vala:153
+#: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "Klik op de werkbalkknop 'Toevoegen' om een vervanging toe te voegen."
 
-#: src/font-manager/preferences/UserActions.vala:234
+#: src/font-manager/preferences/UserActions.vala:229
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1867,11 +1876,11 @@ msgstr ""
 "Gebruik FILEPATH als plaatshouder om een andere positie daarvoor te kiezen.\n"
 "Als FAMILY of STYLE zijn aangetroffen, worden zij eveneens vervangen."
 
-#: src/font-manager/preferences/UserActions.vala:247
+#: src/font-manager/preferences/UserActions.vala:242
 msgid "User Actions"
 msgstr "Eigen acties"
 
-#: src/font-manager/preferences/UserActions.vala:249
+#: src/font-manager/preferences/UserActions.vala:244
 msgid "Custom context menu entries"
 msgstr "Aangepaste rechtermuisknopmenu-items"
 
@@ -1907,74 +1916,80 @@ msgstr "T/m 192 punten (1.4)"
 msgid "Custom Size Settings"
 msgstr "Aangepaste groottes"
 
-#: src/font-manager/preferences/UserInterface.vala:151
+#: src/font-manager/preferences/UserInterface.vala:195
 msgid "Waterfall Preview Size Settings"
 msgstr "Watervalvoorvertoningsgrootte"
 
-#: src/font-manager/preferences/UserInterface.vala:155
+#: src/font-manager/preferences/UserInterface.vala:199
 msgid "Higher values may adversely affect performance"
 msgstr "Hogere waarden kunnen leiden tot slechtere prestaties"
 
-#: src/font-manager/preferences/UserInterface.vala:158
+#: src/font-manager/preferences/UserInterface.vala:202
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Minimale watervalvoorvertoningsgrootte"
 
-#: src/font-manager/preferences/UserInterface.vala:160
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Maximale watervalvoorvertoningsgrootte (verhouding)"
 
-#: src/font-manager/preferences/UserInterface.vala:162
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Maximale watervalvoorvertoningsgrootte"
 
-#: src/font-manager/preferences/UserInterface.vala:211
+#: src/font-manager/preferences/UserInterface.vala:234
+#, fuzzy
+#| msgid "Show in Folder"
+msgid "Show line size"
+msgstr "Bekijken in map"
+
+#: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:212
+#: src/font-manager/preferences/UserInterface.vala:274
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
 msgstr "CSD is ingeschakeld. Herstart om de wijziging toe te passen."
 
-#: src/font-manager/preferences/UserInterface.vala:224
+#: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
 msgstr "Brede indeling"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:290
 msgid "Only When Maximized"
 msgstr "Alleen indien gemaximaliseerd"
 
-#: src/font-manager/preferences/UserInterface.vala:229
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Enable Animations"
 msgstr "Animaties gebruiken"
 
-#: src/font-manager/preferences/UserInterface.vala:230
+#: src/font-manager/preferences/UserInterface.vala:293
 msgid "Prefer Dark Theme"
 msgstr "Voorkeur voor donker thema"
 
-#: src/font-manager/preferences/UserInterface.vala:232
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
 msgstr "Verhoogd"
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Flat"
 msgstr "Plat"
 
-#: src/font-manager/preferences/UserInterface.vala:237
+#: src/font-manager/preferences/UserInterface.vala:300
 msgid "Titlebar Button Style"
 msgstr "Titelbalkknopstijl"
 
-#: src/font-manager/preferences/UserInterface.vala:238
+#: src/font-manager/preferences/UserInterface.vala:301
 msgid "Display line size in Waterfall Preview"
 msgstr "Regelhoogte tonen in waterval-voorvertoning"
 
-#: src/font-manager/preferences/UserSources.vala:141
+#: src/font-manager/preferences/UserSources.vala:143
 #, fuzzy
 #| msgid ""
 #| "Fonts in any folders listed here will be available within the "
@@ -1997,11 +2012,11 @@ msgstr ""
 "\n"
 "Let op: niet alle desktopomgevingen/apps honoreren deze instellingen."
 
-#: src/font-manager/preferences/UserSources.vala:153
+#: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Lettertypen toevoegen en voorvertonen zonder ze te installeren."
 
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2009,36 +2024,36 @@ msgstr ""
 "Voeg een nieuwe bron toe door een map naar dit vak te verslepen of door op "
 "de werkbalkknop 'Toevoegen' te klikken."
 
-#: src/font-manager/web/google/GoogleFonts.vala:155
+#: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:156
+#: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:159
+#: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
 msgstr "Geen internetverbinding"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:161
+#: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 "Je moet verbonden zijn met het internet om de Google Fonts-catalogus te "
 "kunnen openen"
 
-#: src/font-manager/web/google/GoogleFonts.vala:171
+#: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
 msgstr "Clientfout"
 
-#: src/font-manager/web/google/GoogleFonts.vala:172
+#: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr "Herstart de app. Meld het probleem als deze zich blijft voordoen."
 
-#: src/font-manager/web/google/GoogleFonts.vala:175
+#: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
 msgstr "Serverfout"
 
@@ -2435,26 +2450,26 @@ msgstr "Geen voorbeeld van %s beschikbaar"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "Open een ‘issue’ en vraag om de beschikbare voorbeelden bij te werken."
 
-#: src/font-manager/web/google/PreviewPage.vala:317
+#: src/font-manager/web/google/PreviewPage.vala:352
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i taalvoorbeeld beschikbaar "
 msgstr[1] "%i taalvoorbeelden beschikbaar "
 
-#: src/font-manager/web/google/WebFont.vala:141
+#: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
 msgstr "Erg licht"
 
-#: src/font-manager/web/google/WebFont.vala:149
+#: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
 msgstr "Deels vetgedrukt"
 
-#: src/font-manager/web/google/WebFont.vala:153
+#: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
 msgstr "Erg vetgedrukt"
 
-#: src/font-manager/web/google/WebFont.vala:155
+#: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
 msgstr "Zwart"
 
@@ -2573,6 +2588,26 @@ msgstr "Overschakelen naar watervalvoorvertoning"
 msgid "Switch to Body Text preview"
 msgstr "Overschakelen naar inhoudstekstvoorvertoning"
 
+#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#, fuzzy
+#| msgid "Increase preview size"
+msgid "Increase tile size"
+msgstr "Grotere voorbeeldgrootte"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#, fuzzy
+#| msgid "Decrease preview size"
+msgid "Decrease tile size"
+msgstr "Kleinere voorbeeldgrootte"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:146
+msgid "Toggle search entry"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:155
+msgid "Toggle preview panel"
+msgstr ""
+
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
 "Status of selected family.\n"
@@ -2608,9 +2643,9 @@ msgstr "Opgeslagen vergelijkingen"
 msgid "Cancel"
 msgstr "_Annuleren"
 
-#: src/font-manager/ui/font-manager-font-list-controls.ui:49
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:42
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "Zoeken naar families…"
 
@@ -2850,12 +2885,6 @@ msgstr "Sleep een lettertype hierheen voor een vertoning."
 
 #~ msgid "Installed"
 #~ msgstr "Geïnstalleerd"
-
-#~ msgid "List View"
-#~ msgstr "Lijstweergave"
-
-#~ msgid "Grid View"
-#~ msgstr "Roosterweergave"
 
 #~ msgid "Enter Preview Text…"
 #~ msgstr "Voer een voorbeeldtekst in…"

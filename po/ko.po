@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-02 18:04-0400\n"
+"POT-Creation-Date: 2024-07-30 22:50-0400\n"
 "PO-Revision-Date: 2022-12-23 13:48+0000\n"
 "Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/font-"
@@ -95,7 +95,7 @@ msgstr "모든 기능을 갖춘 글꼴 파일 미리보기 응용 프로그램"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:477
+#: src/font-manager/FontList.vala:483
 msgid "Install"
 msgstr "설치하기"
 
@@ -127,7 +127,7 @@ msgid "Unknown Vendor"
 msgstr "알 수 없는 공급사"
 
 #: lib/fontconfig/font-manager-fontconfig.c:567
-#: src/font-manager/web/google/WebFont.vala:139
+#: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "가는"
 
@@ -137,7 +137,7 @@ msgstr "아주 얇은"
 
 #: lib/fontconfig/font-manager-fontconfig.c:571
 #: lib/fontconfig/font-manager-fontconfig.c:924
-#: src/font-manager/web/google/WebFont.vala:143
+#: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "얇은"
 
@@ -152,7 +152,7 @@ msgstr "책"
 #: lib/fontconfig/font-manager-fontconfig.c:577
 #: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
-#: src/font-manager/web/google/WebFont.vala:147
+#: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "중간"
 
@@ -161,7 +161,7 @@ msgid "Semi-Bold"
 msgstr "약간 굵은"
 
 #: lib/fontconfig/font-manager-fontconfig.c:581
-#: src/font-manager/web/google/WebFont.vala:151
+#: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "굵은"
 
@@ -178,7 +178,7 @@ msgid "Ultra-Heavy"
 msgstr "아주 두꺼운"
 
 #: lib/fontconfig/font-manager-fontconfig.c:662
-#: src/font-manager/web/google/WebFont.vala:189
+#: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "이탤릭체"
 
@@ -357,6 +357,7 @@ msgid "Right Aligned"
 msgstr "오른쪽 정렬됨"
 
 #: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:165
 msgid "Edit preview text"
 msgstr "미리보기 텍스트 편집하기"
 
@@ -365,7 +366,7 @@ msgid "Undo changes"
 msgstr "변경사항 실행취소"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:200
+#: src/font-manager/ui/font-manager-browse-preview.ui:201
 msgid "Preview"
 msgstr "미리보기"
 
@@ -389,7 +390,7 @@ msgid "License"
 msgstr "라이선스"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
-#: src/font-manager/web/google/WebFont.vala:145
+#: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr ""
 
@@ -452,7 +453,7 @@ msgstr "파일 유형"
 msgid "Filesize"
 msgstr "파일 크기"
 
-#: lib/gtk/unicode/unicode-character-map.c:786
+#: lib/gtk/unicode/unicode-character-map.c:787
 msgid "Copy"
 msgstr "복사하기"
 
@@ -745,24 +746,24 @@ msgstr ""
 msgid "Enter Collection Name"
 msgstr "컬렉션 이름을 입력"
 
-#: src/font-manager/Collections.vala:309
+#: src/font-manager/Collections.vala:321
 msgid "Copy to…"
 msgstr "복사하기…"
 
-#: src/font-manager/Collections.vala:310
+#: src/font-manager/Collections.vala:322
 msgid "Compress…"
 msgstr "압축하기…"
 
-#: src/font-manager/Collections.vala:311
+#: src/font-manager/Collections.vala:323
 msgid "Rename…"
 msgstr "이름 바꾸기…"
 
-#: src/font-manager/Compare.vala:391
+#: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
 msgstr "저장된 비교"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:427
+#: src/font-manager/Compare.vala:424
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -822,15 +823,23 @@ msgstr "이름"
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:280
+#: src/font-manager/Controls.vala:238
+msgid "Grid View"
+msgstr "그리드 보기"
+
+#: src/font-manager/Controls.vala:239
+msgid "List View"
+msgstr "목록 보기"
+
+#: src/font-manager/Controls.vala:325
 msgid "Add Fonts"
 msgstr "글꼴 추가"
 
-#: src/font-manager/Controls.vala:281
+#: src/font-manager/Controls.vala:326
 msgid "Remove Fonts"
 msgstr "글꼴 삭제"
 
-#: src/font-manager/Controls.vala:294
+#: src/font-manager/Controls.vala:342
 msgid "Back"
 msgstr "뒤로가기"
 
@@ -871,7 +880,7 @@ msgid "Font Collections"
 msgstr "글꼴 컬렉션"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:152
+#: src/font-manager/preferences/UserSources.vala:154
 msgid "Font Sources"
 msgstr "글꼴 소스"
 
@@ -920,52 +929,52 @@ msgstr ""
 "문자를 기준으로 필터링하려면 %s를 사용하여 검색을 시작합니다."
 
 #: src/font-manager/FontList.vala:70
-#: src/font-manager/web/google/FontList.vala:283
+#: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "모두 접기"
 
-#: src/font-manager/FontList.vala:258
-#: src/font-manager/web/google/FontList.vala:378
-#: src/font-manager/ui/font-manager-font-list-controls.ui:19
+#: src/font-manager/FontList.vala:255
+#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:26
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr "모두 펼치기"
 
-#: src/font-manager/FontList.vala:478
+#: src/font-manager/FontList.vala:484
 msgid "Copy Location"
 msgstr "복사 위치"
 
-#: src/font-manager/FontList.vala:479
+#: src/font-manager/FontList.vala:485
 msgid "Show in Folder"
 msgstr "폴더에 표시"
 
-#: src/font-manager/FontList.vala:480
+#: src/font-manager/FontList.vala:486
 msgid "Enable selected items"
 msgstr "선택한 항목 사용"
 
-#: src/font-manager/FontList.vala:481
+#: src/font-manager/FontList.vala:487
 msgid "Disable selected items"
 msgstr "선택한 항목 사용 안 함"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:548 src/font-manager/FontList.vala:557
+#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i 항목을 선택했습니다"
 
-#: src/font-manager/FontList.vala:575
-#: src/font-manager/preferences/Preferences.vala:46
+#: src/font-manager/FontList.vala:581
+#: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "작업"
 
@@ -1600,7 +1609,7 @@ msgid "Update in progress"
 msgstr "업데이트 진행중"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:231
+#: src/font-manager/OrthographyList.vala:230
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1609,7 +1618,7 @@ msgid "Add new collection"
 msgstr "새 컬렉션 추가"
 
 #: src/font-manager/Sidebar.vala:61
-#: src/font-manager/ui/font-manager-font-list-controls.ui:30
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 #, fuzzy
 #| msgid "Remove selected alias"
@@ -1623,15 +1632,15 @@ msgstr "선택한 앨리어스 제거"
 msgid "Edit selected item"
 msgstr "%i 항목을 선택했습니다"
 
-#: src/font-manager/Utils.vala:293
+#: src/font-manager/Utils.vala:290
 msgid "Copying files…"
 msgstr "파일 복사 중…"
 
-#: src/font-manager/filters/Collection.vala:58
+#: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
 msgstr "새 컬렉션"
 
-#: src/font-manager/filters/Collection.vala:59
+#: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
 msgstr "생성됨: %s"
@@ -1648,11 +1657,11 @@ msgstr "비활성화된 글꼴"
 msgid "Filter based on supported orthographies"
 msgstr "지원되는 맞춤법을 기준으로 필터링"
 
-#: src/font-manager/filters/Unsorted.vala:28
+#: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
 msgstr "정렬되지 않음"
 
-#: src/font-manager/filters/Unsorted.vala:29
+#: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
 msgstr "어떤 컬렉션에도 글꼴이 없습니다"
 
@@ -1762,32 +1771,32 @@ msgstr ""
 msgid "LCD Filter"
 msgstr "LCD 필터"
 
-#: src/font-manager/preferences/Preferences.vala:42
+#: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
 msgstr "인터페이스"
 
-#: src/font-manager/preferences/Preferences.vala:43
+#: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
 msgstr "데스크톱"
 
-#: src/font-manager/preferences/Preferences.vala:49
+#: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
 msgstr ""
 
-#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
 msgstr ""
 
-#: src/font-manager/preferences/Preferences.vala:51
+#: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
 msgstr "표시"
 
-#: src/font-manager/preferences/Preferences.vala:52
+#: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
 msgstr ""
 
-#: src/font-manager/preferences/Preferences.vala:130
+#: src/font-manager/preferences/Preferences.vala:129
 #, fuzzy
 #| msgid ""
 #| "Select save to generate a fontconfig configuration file from the above "
@@ -1810,7 +1819,7 @@ msgstr ""
 "\n"
 "모든 환경/애플리케이션이 이러한 설정을 준수하는 것은 아닙니다."
 
-#: src/font-manager/preferences/Preferences.vala:152
+#: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
 msgstr ""
 
@@ -1830,19 +1839,19 @@ msgstr "힌트 스타일"
 msgid "Use Embedded Bitmaps"
 msgstr "내장 비트맵 사용"
 
-#: src/font-manager/preferences/Substitutions.vala:151
+#: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
 msgstr "글꼴 대체"
 
-#: src/font-manager/preferences/Substitutions.vala:152
+#: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
 msgstr "한 글꼴 모음을 다른 글꼴 모음으로 쉽게 대체할 수 있습니다."
 
-#: src/font-manager/preferences/Substitutions.vala:153
+#: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "새 대체품을 추가하려면 도구 모음에서 추가 단추를 클릭합니다."
 
-#: src/font-manager/preferences/UserActions.vala:234
+#: src/font-manager/preferences/UserActions.vala:229
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1858,11 +1867,11 @@ msgstr ""
 "다. \n"
 "인수 목록에 [글꼴집합] 또는 [스타일]이 있는 경우, 해당 항목도 대체됩니다."
 
-#: src/font-manager/preferences/UserActions.vala:247
+#: src/font-manager/preferences/UserActions.vala:242
 msgid "User Actions"
 msgstr "사용자 작업"
 
-#: src/font-manager/preferences/UserActions.vala:249
+#: src/font-manager/preferences/UserActions.vala:244
 msgid "Custom context menu entries"
 msgstr ""
 
@@ -1898,31 +1907,37 @@ msgstr ""
 msgid "Custom Size Settings"
 msgstr "사용자 지정 크기 설정"
 
-#: src/font-manager/preferences/UserInterface.vala:151
+#: src/font-manager/preferences/UserInterface.vala:195
 msgid "Waterfall Preview Size Settings"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:155
+#: src/font-manager/preferences/UserInterface.vala:199
 msgid "Higher values may adversely affect performance"
 msgstr "값이 높을수록 성능에 악영향을 미칠 수 있음"
 
-#: src/font-manager/preferences/UserInterface.vala:158
+#: src/font-manager/preferences/UserInterface.vala:202
 msgid "Minimum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:160
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:162
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Maximum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:211
+#: src/font-manager/preferences/UserInterface.vala:234
+#, fuzzy
+#| msgid "Show in Folder"
+msgid "Show line size"
+msgstr "폴더에 표시"
+
+#: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:212
+#: src/font-manager/preferences/UserInterface.vala:274
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
@@ -1931,43 +1946,43 @@ msgstr ""
 "CSD가 활성화되었습니다. 다음에 응용프로그램을 시작할 때 변경사항이 적용됩니"
 "다."
 
-#: src/font-manager/preferences/UserInterface.vala:224
+#: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
 msgstr "넓은 레이아웃"
 
-#: src/font-manager/preferences/UserInterface.vala:227
+#: src/font-manager/preferences/UserInterface.vala:290
 msgid "Only When Maximized"
 msgstr "최대화된 경우에만"
 
-#: src/font-manager/preferences/UserInterface.vala:229
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Enable Animations"
 msgstr "애니메이션 사용"
 
-#: src/font-manager/preferences/UserInterface.vala:230
+#: src/font-manager/preferences/UserInterface.vala:293
 msgid "Prefer Dark Theme"
 msgstr "어두운 테마 선호"
 
-#: src/font-manager/preferences/UserInterface.vala:232
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Flat"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:237
+#: src/font-manager/preferences/UserInterface.vala:300
 msgid "Titlebar Button Style"
 msgstr "제목 표시줄 단추 스타일"
 
-#: src/font-manager/preferences/UserInterface.vala:238
+#: src/font-manager/preferences/UserInterface.vala:301
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
-#: src/font-manager/preferences/UserSources.vala:141
+#: src/font-manager/preferences/UserSources.vala:143
 #, fuzzy
 #| msgid ""
 #| "Fonts in any folders listed here will be available within the "
@@ -1989,12 +2004,12 @@ msgstr ""
 "\n"
 "모든 환경/애플리케이션이 이러한 설정을 준수하는 것은 아닙니다."
 
-#: src/font-manager/preferences/UserSources.vala:153
+#: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 "글꼴을 실제로 설치하지 않고도 글꼴을 쉽게 추가하거나 미리 볼 수 있습니다."
 
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2002,35 +2017,35 @@ msgstr ""
 "새 소스를 추가하려면 폴더를 이 영역으로 끌어다 놓거나 도구 모음에서 추가 단추"
 "를 클릭하십시오."
 
-#: src/font-manager/web/google/GoogleFonts.vala:155
+#: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:156
+#: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:159
+#: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
 msgstr "네트워크 오프라인"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:161
+#: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr "Google 글꼴 카탈로그에 액세스하려면 활성 인터넷 연결이 필요합니다"
 
-#: src/font-manager/web/google/GoogleFonts.vala:171
+#: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
 msgstr "클라이언트 오류"
 
-#: src/font-manager/web/google/GoogleFonts.vala:172
+#: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 "응용 프로그램을 다시 시작해 보십시오. 문제가 지속되면 버그를 제출하십시오."
 
-#: src/font-manager/web/google/GoogleFonts.vala:175
+#: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
 msgstr "서버 오류"
 
@@ -2423,25 +2438,25 @@ msgstr "%s에 대한 샘플이 없습니다"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "사용 가능한 샘플에 대한 업데이트를 요청하는 이슈를 제출하십시오."
 
-#: src/font-manager/web/google/PreviewPage.vala:317
+#: src/font-manager/web/google/PreviewPage.vala:352
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i 언어 샘플 사용 가능"
 
-#: src/font-manager/web/google/WebFont.vala:141
+#: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
 msgstr ""
 
-#: src/font-manager/web/google/WebFont.vala:149
+#: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
 msgstr ""
 
-#: src/font-manager/web/google/WebFont.vala:153
+#: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
 msgstr ""
 
-#: src/font-manager/web/google/WebFont.vala:155
+#: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
 msgstr ""
 
@@ -2560,6 +2575,26 @@ msgstr ""
 msgid "Switch to Body Text preview"
 msgstr "본문 텍스트 미리 보기로 전환"
 
+#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#, fuzzy
+#| msgid "Increase preview size"
+msgid "Increase tile size"
+msgstr "미리보기 크기 증가"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#, fuzzy
+#| msgid "Decrease preview size"
+msgid "Decrease tile size"
+msgstr "미리보기 크기 감소"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:146
+msgid "Toggle search entry"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:155
+msgid "Toggle preview panel"
+msgstr ""
+
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
 "Status of selected family.\n"
@@ -2593,9 +2628,9 @@ msgstr "고정 비교"
 msgid "Cancel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-font-list-controls.ui:49
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
-#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:42
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "글꼴 모음 검색…"
 
@@ -2823,12 +2858,6 @@ msgstr "글꼴을 미리 보려면 이 영역으로 드래그하면 됩니다."
 
 #~ msgid "Installed"
 #~ msgstr "설치됨"
-
-#~ msgid "List View"
-#~ msgstr "목록 보기"
-
-#~ msgid "Grid View"
-#~ msgstr "그리드 보기"
 
 #~ msgid "Enter Preview Text…"
 #~ msgstr "미리보기 텍스트 입력…"
