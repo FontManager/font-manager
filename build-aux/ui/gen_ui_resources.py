@@ -22,6 +22,8 @@ import os
 import shutil
 
 RESOURCE_PATH = '/com/github/FontManager/FontManager'
+RESOURCE_ID = 'com.github.FontManager.FontManager'
+SVG_OPTIONS = 'preprocess="xml-stripblanks" compressed="true"'
 
 icon_categories = {
 
@@ -85,25 +87,31 @@ icon_categories = {
 
 }
 
-os.makedirs('icons', exist_ok=True)
+os.makedirs('ui/icons', exist_ok=True)
 
-with open('icons/icon_gresources.xml', 'w') as resources:
+with open('ui/gresources.xml', 'w') as resources:
     resources.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     resources.write('<gresources>\n')
+    os.makedirs('ui/icons/symbolic/apps', exist_ok=True)
+    shutil.copy('com.github.FontManager.FontManager-symbolic.svg', 'ui/icons/symbolic/apps/')
+    resources.write('  <gresource prefix="{}">\n'.format(RESOURCE_PATH))
+    resources.write('    <file {}>icons/symbolic/apps/{}-symbolic.svg</file>\n'.format(SVG_OPTIONS, RESOURCE_ID))
     for category, icons in icon_categories.items():
-        os.makedirs('icons/scalable/{}'.format(category), exist_ok=True)
-        resources.write('  <gresource prefix="{}/icons">\n'.format(RESOURCE_PATH))
+        os.makedirs('ui/icons/scalable/{}'.format(category), exist_ok=True)
         for icon in icons:
-            shutil.copy(icon, 'icons/scalable/{}/'.format(category))
-            resources.write('    <file>scalable/{}/{}</file>\n'.format(category, icon))
-        resources.write('  </gresource>\n')
+            shutil.copy(icon, 'ui/icons/scalable/{}/'.format(category))
+            resources.write('    <file {}>icons/scalable/{}/{}</file>\n'.format(SVG_OPTIONS, category, icon))
+    resources.write('  </gresource>\n')
+    resources.write('  <gresource prefix="{}/ui">\n'.format(RESOURCE_PATH))
+    resources.write('    <file compressed="true">FontManager.css</file>\n')
+    resources.write('  </gresource>\n')
     resources.write('</gresources>\n')
 
-with open('icons/meson.build', 'w') as meson:
-    meson.write('\nicon_gresources_xml_file = files(\'icon_gresources.xml\')\n')
-    meson.write('\nicon_gresources = gnome.compile_resources(\'icon-gresources\', icon_gresources_xml_file)\n\n')
+with open('ui/meson.build', 'w') as meson:
+    meson.write('\ngresources_xml_file = files(\'gresources.xml\')\n')
+    meson.write('\ngresources = gnome.compile_resources(\'ui-resources\', gresources_xml_file)\n\n')
 
-with open('icons/CREDITS', 'w') as credits:
-    credits.write('\nIcons in this directory are sourced from the papirus-icon-theme\n')
+with open('ui/icons/CREDITS', 'w') as credits:
+    credits.write('\nIcons in the scalable directory are sourced from the papirus-icon-theme\n')
     credits.write('\nSee https://github.com/PapirusDevelopmentTeam/papirus-icon-theme for more info')
 
