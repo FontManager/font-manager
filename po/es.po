@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-07-23 16:09+0000\n"
+"PO-Revision-Date: 2024-08-08 11:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -1914,10 +1914,8 @@ msgid "Maximum Waterfall Preview Point Size"
 msgstr "El tamaño máximo de la fuente en la vista previa en cascada"
 
 #: src/font-manager/preferences/UserInterface.vala:234
-#, fuzzy
-#| msgid "Show in Folder"
 msgid "Show line size"
-msgstr "Mostrar en la carpeta"
+msgstr "Mostrar el tamaño de la línea"
 
 #: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
@@ -2529,26 +2527,20 @@ msgid "Switch to Body Text preview"
 msgstr "Cambiar a previsualización de cuerpo de texto"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:97
-#, fuzzy
-#| msgid "Increase preview size"
 msgid "Increase tile size"
-msgstr "Aumentar tamaño de previsualización"
+msgstr "Aumentar el tamaño del mosaico"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:106
-#, fuzzy
-#| msgid "Decrease preview size"
 msgid "Decrease tile size"
-msgstr "Disminuir tamaño de previsualización"
+msgstr "Disminuir tamaño del mosaico"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:146
-#, fuzzy
-#| msgid "Focus search entry"
 msgid "Toggle search entry"
-msgstr "Entrada de búsqueda focal"
+msgstr "Alternar la búsqueda"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:155
 msgid "Toggle preview panel"
-msgstr ""
+msgstr "Alternar panel de vista previa"
 
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
