@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-07-07 22:09+0000\n"
+"PO-Revision-Date: 2024-08-10 21:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -1894,10 +1894,8 @@ msgid "Maximum Waterfall Preview Point Size"
 msgstr "A vízesés előnézet maximális pont mérete"
 
 #: src/font-manager/preferences/UserInterface.vala:234
-#, fuzzy
-#| msgid "Show in Folder"
 msgid "Show line size"
-msgstr "Megjelenítés mappában"
+msgstr "Sorméret megjelenítése"
 
 #: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
@@ -2460,7 +2458,7 @@ msgstr "Az előnézeti méret visszaállítása"
 
 #: src/font-manager/gtk/help-overlay.ui:44
 msgid "Focus search entry"
-msgstr ""
+msgstr "Keresési bevitel fókusza"
 
 #: src/font-manager/gtk/help-overlay.ui:51
 msgid "Reload"
@@ -2508,24 +2506,20 @@ msgid "Switch to Body Text preview"
 msgstr "Szövegminta előnézetre vált"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:97
-#, fuzzy
-#| msgid "Increase preview size"
 msgid "Increase tile size"
-msgstr "Növelje az előnézet méretét"
+msgstr "Növelje a csempe méretét"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:106
-#, fuzzy
-#| msgid "Decrease preview size"
 msgid "Decrease tile size"
-msgstr "Csökkentse az előnézet méretét"
+msgstr "Csökkentse a csempe méretét"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:146
 msgid "Toggle search entry"
-msgstr ""
+msgstr "Keresési bevitel bekapcsolása"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:155
 msgid "Toggle preview panel"
-msgstr ""
+msgstr "Előnézeti panel bekapcsolása"
 
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
