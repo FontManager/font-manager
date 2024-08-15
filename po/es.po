@@ -5,12 +5,13 @@
 # Alberto Cañaveras <acmp@tuta.io>, 2021.
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Toni Estévez <toni.estevez@gmail.com>, 2023.
+# Josman Goncalves Bravo <josmangoncalvesbravo@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-08-08 11:09+0000\n"
+"PO-Revision-Date: 2024-08-10 21:09+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
