@@ -639,7 +639,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_autoptr(GtkTextTagTable) tag_table = font_manager_text_tag_table_new();
     self->pangram = font_manager_get_localized_pangram();
     self->default_pangram = font_manager_get_localized_pangram();
-    self->preview = g_strdup_printf(FONT_MANAGER_DEFAULT_PREVIEW_TEXT, self->pangram);
+    self->preview = font_manager_get_localized_preview_text();
     self->default_preview = g_strdup(self->preview);
     self->justification = GTK_JUSTIFY_CENTER;
     g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new(tag_table);
@@ -968,6 +968,13 @@ font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
     g_settings_bind(settings, "preview-font-size", self, "preview-size", flags);
     g_settings_bind(settings, "preview-mode", self, "preview-mode", flags);
     g_settings_bind(settings, "preview-text", self, "preview-text", flags);
+    // Our settings use the English version as a default...
+    PangoLanguage *lang = pango_language_from_string("xx");
+    const gchar *pangram = pango_language_get_sample_string(lang);
+    g_autofree gchar *xx = g_strdup_printf(FONT_MANAGER_DEFAULT_PREVIEW_TEXT, pangram);
+    // If the stored version matches the English default use the localized version
+    if (g_strcmp0(self->preview, xx) == 0)
+        font_manager_preview_page_set_preview_text(self, self->default_preview);
     g_settings_bind(settings, "waterfall-show-line-size", self, "show-line-size", flags);
     g_settings_bind(settings, "min-waterfall-size", self, "min-waterfall-size", flags);
     g_settings_bind(settings, "max-waterfall-size", self, "max-waterfall-size", flags);
