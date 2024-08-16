@@ -93,16 +93,12 @@ font_manager_application_window_on_close_request (GtkWindow *window)
         g_debug("State not saved, tiled window detected");
     } else if (priv->settings && !tiled) {
         gint width, height;
-        gboolean maximized;
         g_object_get(window,
                      "default-width", &width,
                      "default-height", &height,
-                     "maximized", &maximized,
                      NULL);
         g_debug("Saving state : Window size : %i x %i", width, height);
-        g_debug("Saving state : Window is maximized : %s", maximized ? "TRUE" : "FALSE");
         g_settings_set(priv->settings, "window-size", "(ii)", width, height);
-        g_settings_set(priv->settings, "is-maximized", "b", maximized);
         g_clear_object(&priv->settings);
     } else {
         g_debug("Settings instance unavailable, failed to save state");
@@ -238,14 +234,11 @@ font_manager_application_window_restore_state (FontManagerApplicationWindow *sel
     FontManagerApplicationWindowPrivate *priv;
     priv = font_manager_application_window_get_instance_private(self);
     gint width, height;
-    gboolean maximized;
     if (priv->settings) {
+        g_settings_bind (priv->settings, "is-maximized", self, "maximized", G_SETTINGS_BIND_DEFAULT);
         g_settings_get(priv->settings, "window-size", "(ii)", &width, &height);
-        g_settings_get(priv->settings, "is-maximized", "b", &maximized);
         g_debug("Restoring state : Window size : %i x %i", width, height);
-        g_debug("Restoring state : Window is maximized : %s", maximized ? "TRUE" : "FALSE");
         gtk_window_set_default_size(GTK_WINDOW(self), width, height);
-        g_object_set(self, "maximized", maximized, NULL);
     } else {
         g_debug("Settings instance unavailable, failed to restore state");
     }
