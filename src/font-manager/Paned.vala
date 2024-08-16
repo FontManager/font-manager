@@ -177,7 +177,6 @@ namespace FontManager {
             map.connect_after(on_map);
         }
 
-        [GtkCallback]
         public virtual void on_map () {
             if (settings == null)
                 return;
