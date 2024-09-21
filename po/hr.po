@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-07-31 17:09+0000\n"
+"PO-Revision-Date: 2024-08-20 15:09+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.7\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -1904,14 +1904,12 @@ msgid "Maximum Waterfall Preview Point Size"
 msgstr "Najveća veličina fonta u kaskadnom prikazu"
 
 #: src/font-manager/preferences/UserInterface.vala:234
-#, fuzzy
-#| msgid "Show in Folder"
 msgid "Show line size"
-msgstr "Prikaži u mapi"
+msgstr "Prikaži veličinu redaka"
 
 #: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
-msgstr "Odabrana postavka zahtijeva ponovno pokretanje"
+msgstr "Odabrana postavka će se primijeniti nakon ponovnog pokretanja"
 
 #: src/font-manager/preferences/UserInterface.vala:274
 msgid "Changes will take effect next time the application is started"
@@ -2513,26 +2511,20 @@ msgid "Switch to Body Text preview"
 msgstr "Prebaci na prikaz teksta"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:97
-#, fuzzy
-#| msgid "Increase preview size"
 msgid "Increase tile size"
-msgstr "Povećaj veličinu prikaza"
+msgstr "Povećaj veličinu pločica"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:106
-#, fuzzy
-#| msgid "Decrease preview size"
 msgid "Decrease tile size"
-msgstr "Smanji veličinu prikaza"
+msgstr "Smanji veličinu pločica"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:146
-#, fuzzy
-#| msgid "Focus search entry"
 msgid "Toggle search entry"
-msgstr "Fokusiraj unos pretrage"
+msgstr "Uključi/Isključi unos pretrage"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:155
 msgid "Toggle preview panel"
-msgstr ""
+msgstr "Uključi/Isključi ploču pregleda"
 
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
