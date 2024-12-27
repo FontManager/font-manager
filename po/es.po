@@ -6,13 +6,14 @@
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Toni Estévez <toni.estevez@gmail.com>, 2023.
 # Josman Goncalves Bravo <josmangoncalvesbravo@hotmail.com>, 2024.
+# Jose <ciordia@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-08-10 21:09+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-11-23 16:38+0000\n"
+"Last-Translator: Jose <ciordia@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
 "Language: es\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -302,7 +303,7 @@ msgstr "Gestión de tipos de letra para entornos de escritorio Gtk+"
 msgid "translator-credits"
 msgstr ""
 "Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Toni Estevez, toni.estevez@gmail.com"
+"Toni Estevez <toni.estevez@gmail.com>"
 
 #: lib/gtk/font-manager-fsType.c:74
 msgid "Restricted License Embedding"
@@ -1341,7 +1342,7 @@ msgstr "Manipurí"
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
 msgid "Mende Kikakui"
-msgstr "Silabario ki-ka-ku"
+msgstr "Silabario kikaku"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
