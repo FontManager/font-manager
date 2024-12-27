@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-08-10 21:09+0000\n"
+"PO-Revision-Date: 2024-11-19 12:01+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -52,8 +52,8 @@ msgstr ""
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
-"A „Betűkészlet-kezelő” NEM professzionális szintű betűkészletkezelési "
-"megoldás."
+"A Betűkészlet-kezelő NEM tud professzionális szintű betűkészlet-kezelési "
+"feladatokat megoldani."
 
 #: data/com.github.FontManager.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -773,7 +773,7 @@ msgstr "Gyorsbillentyűk"
 
 #: src/font-manager/Controls.vala:123 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
-msgstr "Segítség"
+msgstr "Súgó"
 
 #: src/font-manager/Controls.vala:124
 msgid "About Font Manager"
@@ -1746,7 +1746,7 @@ msgstr "Felület"
 
 #: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
-msgstr "Asztali"
+msgstr "Asztal"
 
 #: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
@@ -2711,7 +2711,7 @@ msgstr "Telepítésük előtt tekintse meg a betűtípusfájlok előnézetét."
 
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
-msgstr "A betűtípus előnézetéhez egyszerűen húzza át erre a területre."
+msgstr "A betűtípust az előnézetéhez egyszerűen húzza át erre a területre."
 
 #~ msgid "Font Manager project"
 #~ msgstr "Betűkészlet-kezelő"

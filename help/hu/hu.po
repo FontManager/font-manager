@@ -1,9 +1,9 @@
-# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2023-06-04 21:52+0000\n"
+"PO-Revision-Date: 2024-11-25 20:33+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hu/>\n"
@@ -12,12 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "SziaTomi <sziatomi01@gmail.com> 2022, 2023"
+msgstr "SziaTomi <sziatomi01@gmail.com> 2022 - 2024"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -75,8 +75,8 @@ msgstr "Családtípus"
 #: C/font-manager-categories.page:38
 msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
 msgstr ""
-"Családtípus szerint rendezve – Megköveteli a Panose információk meglétét a "
-"betűtípus metaadatokban."
+"Családtípus szerint rendezve – A Panose információnak szerepelnie kell a "
+"betűtípus metaadataiban."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -127,8 +127,8 @@ msgstr "Licenc"
 #: C/font-manager-categories.page:68
 msgid "Sorted by font license — Requires license information to be present in font metadata."
 msgstr ""
-"Betűtípus licenc szerint rendezve — A licenc információnak szerepelnie kell "
-"a betűtípus metaadatokban."
+"A betűtípus licence szerint rendezve — A licencinformációnak szerepelnie "
+"kell a betűtípus metaadataiban."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -139,8 +139,8 @@ msgstr "Forgalmazó"
 #: C/font-manager-categories.page:74
 msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
 msgstr ""
-"Betűtípus forgalmazó szerint rendezve — Megköveteli a forgalmazói "
-"információk meglétét a betűtípus metaadatokban."
+"A betűtípus forgalmazója szerint rendezve —A forgalmazói információnak "
+"szerepelnie kell a betűtípus metaadataiban."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -150,7 +150,7 @@ msgstr "Fájltípus"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr "Fájlformátum szerint rendezve."
+msgstr "A fájl formátuma szerint rendezve."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -186,8 +186,7 @@ msgstr "Karaktertérkép"
 #: C/font-manager-character-map.page:13
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
-"„Kezelés” módban az előnézeti ablak tartalmaz egy „Karakterek” feliratú "
-"fület."
+"Kezelés módban az előnézeti ablak tartalmaz egy karakterek feliratú fület."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -378,7 +377,7 @@ msgstr "Adjon meg egy új nevet"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr "Nyomja meg az <gui style=\"button\">Enter</gui>-t"
+msgstr "Nyomja meg az <gui style=\"button\">Enter</gui> billentyűt"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
@@ -428,7 +427,7 @@ msgstr ""
 #: C/font-manager-font-activation.page:51
 msgid "<link xref=\"organize#user-collections\">Collections</link> make it easy to enable or disable multiple families at once."
 msgstr ""
-"A <link xref=\"organize#user-collections\">Gyűjtemények</link> megkönnyíti "
+"A <link xref=\"organize#user-collections\">Gyűjtemények</link> megkönnyítik "
 "több család egyidejű engedélyezését, vagy letiltását."
 
 #. (itstool) path: note/p
@@ -481,8 +480,8 @@ msgstr ""
 #: C/font-manager-font-installation.page:40
 msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
 msgstr ""
-"A húzás és elengedés támogatott. A telepítéshez egyszerűen húzza a fájlokat "
-"a betűtípuslistára."
+"A húzás és elengedés támogatott. A telepítéshez egyszerűen húzza rá a "
+"fájlokat a betűtípuslistára."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
@@ -650,7 +649,7 @@ msgstr ""
 #: C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr "Válassza a \"Források\" lehetőséget az oldalsávon"
+msgstr "Válassza a források lehetőséget az oldalsávon"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -732,8 +731,8 @@ msgstr "Megjelenítési és renderelési beállítások"
 #: C/font-manager-fontconfig.page:12
 msgid "The \"Display\" and \"Rendering\" panes in the preferences dialog generate valid fontconfig configuration files for the exposed properties."
 msgstr ""
-"A beállítások párbeszédpanel \"Megjelenítés\" és \"Renderelés\" táblái "
-"érvényes fontconfig konfigurációs fájlokat generálnak a megjeleníthető "
+"A beállítások párbeszédpanel megjelenítés és renderelés paneljei érvényes "
+"fontconfig konfigurációs fájlokat hoznak létre a megjelenített "
 "tulajdonságokhoz."
 
 #. (itstool) path: page/p
@@ -747,7 +746,7 @@ msgstr ""
 #: C/font-manager-fontconfig.page:22
 msgid "Desktop environments and applications may rely on their own configuration mechanism."
 msgstr ""
-"Az asztali környezetek és alkalmazások a saját konfigurációs rendszerükre "
+"Az asztali környezetek és az alkalmazások a saját konfigurációs rendszerükre "
 "támaszkodhatnak."
 
 #. (itstool) path: info/desc
@@ -783,7 +782,7 @@ msgstr "Betűtípusok saját használatra történő telepítése, vagy eltávol
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr "Betűtípusok \"Gyűjtemények\"-be csoportosítása"
+msgstr "A betűtípusok gyűjteményekbe csoportosítása"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
@@ -849,7 +848,7 @@ msgstr "Licencek"
 #: C/font-manager-license.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
-"„Kezelés” módban az előnézeti ablakban található egy „Licenc” feliratú fül."
+"Kezelés módban az előnézeti ablaktábla tartalmaz egy licenc feliratú lapot."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
@@ -861,7 +860,7 @@ msgstr ""
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
 msgid "<app>Font License tab</app>"
-msgstr "<app>Betűtípus licenc lap</app>"
+msgstr "<app>Betűtípuslicenc-lap</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -892,8 +891,8 @@ msgstr "Metaadat"
 #: C/font-manager-metadata.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
 msgstr ""
-"„Kezelés” módban az előnézeti ablakban található egy „Tulajdonságok” "
-"feliratú fül."
+"Kezelés módban az előnézeti ablaktábla tartalmaz egy tulajdonságok feliratú "
+"lapot."
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
