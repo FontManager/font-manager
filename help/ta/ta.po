@@ -1,25 +1,29 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2024.
+# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-12-27 17:00+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "தானாக உருவாக்கப்பட்ட வகைகள்"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
@@ -30,6 +34,8 @@ msgstr ""
 #: C/font-manager-categories.page:12
 msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
 msgstr ""
+"<pap> எழுத்துரு மேலாளர் </app> பல்வேறு பண்புகளின் அடிப்படையில் உங்கள் எழுத்துருக்களை "
+"தானாக வகைப்படுத்துகிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -39,7 +45,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "கிடைக்கக்கூடிய அனைத்து எழுத்துருக்களும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -49,7 +55,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "எல்லா பயனர்களுக்கும் எழுத்துருக்கள் கிடைக்கின்றன."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -59,7 +65,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "எழுத்துருக்கள் உங்களுக்கு மட்டுமே கிடைக்கும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
@@ -70,6 +76,8 @@ msgstr ""
 #: C/font-manager-categories.page:38
 msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
 msgstr ""
+"குடும்ப வகையான வரிசைப்படுத்தப்பட்ட - எழுத்துரு மெட்டாடேட்டாவில் பானோச் தகவல்கள் இருக்க "
+"வேண்டும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -79,7 +87,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "எழுத்துரு அகல சொத்து மூலம் வரிசைப்படுத்தப்பட்டது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -89,7 +97,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "எழுத்துரு எடை சொத்தால் வரிசைப்படுத்தப்படுகிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
@@ -99,7 +107,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "எழுத்துரு சாய்ந்த சொத்துக்களால் வரிசைப்படுத்தப்பட்டது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -109,7 +117,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "எழுத்துரு இடைவெளி சொத்து மூலம் வரிசைப்படுத்தப்படுகிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -120,6 +128,8 @@ msgstr ""
 #: C/font-manager-categories.page:68
 msgid "Sorted by font license — Requires license information to be present in font metadata."
 msgstr ""
+"எழுத்துரு உரிமத்தால் வரிசைப்படுத்தப்படுகிறது - எழுத்துரு மெட்டாடேட்டாவில் உரிமத் தகவல்கள் "
+"இருக்க வேண்டும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -130,6 +140,8 @@ msgstr ""
 #: C/font-manager-categories.page:74
 msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
 msgstr ""
+"எழுத்துரு விற்பனையாளரால் வரிசைப்படுத்தப்பட்டது - எழுத்துரு மெட்டாடேட்டாவில் விற்பனையாளர் "
+"தகவல்கள் இருக்க வேண்டும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -139,7 +151,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "கோப்பு வடிவத்தால் வரிசைப்படுத்தப்படுகிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -149,7 +161,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "உங்கள் எந்த சேகரிப்பிலும் எழுத்துருக்கள் இல்லை."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -159,32 +171,36 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "தற்போது முடக்கப்பட்ட எழுத்துரு குடும்பங்கள்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "தனிப்பட்ட எழுத்துக்களையும் அவற்றின் விவரங்களையும் காண்க"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "எழுத்து வரைபடம்"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
+"\"நிர்வகி\" பயன்முறையில் இருக்கும்போது, முன்னோட்டப் பலகத்தில் \"எழுத்துக்கள்\" என்று "
+"பெயரிடப்பட்ட தாவல் உள்ளது."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
 msgid "Selecting this tab allows viewing all glyphs contained in the currently selected font."
 msgstr ""
+"இந்த தாவலைத் தேர்ந்தெடுப்பது தற்போது தேர்ந்தெடுக்கப்பட்ட எழுத்துருவில் உள்ள அனைத்து "
+"கிளிஃப்களையும் பார்க்க அனுமதிக்கிறது."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<APP> எழுத்து வரைபட தாவல் </APP>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -195,16 +211,18 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"வெளிப்புற ref = 'media/repart-map.png' md5 = "
+"'a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "எழுத்துக்களை மற்ற பயன்பாடுகளில் பயன்படுத்தவும் அவற்றைப் பயன்படுத்தவும்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "உங்கள் எழுத்துருக்களை ஒழுங்கமைத்தல்"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
@@ -215,26 +233,31 @@ msgstr ""
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
 msgstr ""
+"<pp> எழுத்துரு மேலாளர் </app> உங்கள் சொந்த சேகரிப்புகளை வரையறுக்க உங்களை "
+"அனுமதிக்கிறது."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
 msgid "Collections allow you to organize your fonts in a way that makes sense to you and also make it easier to enable or disable many families at once."
 msgstr ""
+"உங்கள் எழுத்துருக்களை உங்களுக்குப் புரியும் வகையில் ஒழுங்கமைக்க சேகரிப்புகள் உங்களை "
+"அனுமதிக்கின்றன, மேலும் பல குடும்பங்களை ஒரே நேரத்தில் இயக்க அல்லது முடக்குவதை "
+"எளிதாக்குகின்றன."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "சேகரிப்புகள் உங்கள் கோப்புகளை எந்த வகையிலும் மாற்றாது."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "நீங்கள் விரும்பும் பலவற்றை உருவாக்க அல்லது நீக்க தயங்க."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "புதிய தொகுப்பை உருவாக்க:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -249,26 +272,32 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/list-add-symbolic.svg' md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"வெளிப்புற ref = 'மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg' md5 = "
+"'6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
 msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the bottom of the Collection view."
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/> </"
+"gui> சேகரிப்பு பார்வையின் அடிப்பகுதியில் சொடுக்கு செய்க."
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "உங்கள் புதிய சேகரிப்புக்கு ஒரு பெயரை உள்ளிடவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
 msgstr ""
+"எழுத்துரு பட்டியலிலிருந்து உங்கள் புதிய சேகரிப்புக்கு இழுப்பதன் மூலம் எழுத்துருக்களைச் "
+"சேர்க்கவும்."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "ஒரு தொகுப்பை நீக்க:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62
@@ -276,7 +305,7 @@ msgstr ""
 #: C/font-manager-collections.page:99
 #: C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "சேகரிப்பைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -291,16 +320,20 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/list-remove-symbolic.svg' md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"வெளிப்புற ref = 'மீடியா/பட்டியல்-அகற்றும்-symbolic.svg' MD5 = "
+"'19B0F1EA55AAA9AF1CC99E749FEF2A25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
 msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the bottom of the Collection view."
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-அகற்றும்-symbolic.svg\"/> </"
+"gui> சேகரிப்பு பார்வையின் அடிப்பகுதியில் என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "ஒரு தொகுப்பை இயக்க:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86
@@ -308,137 +341,170 @@ msgstr ""
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr ""
+"<gui சூல் தண்டு = \"தேர்வுப்பெட்டி\"> தேர்வுப்பெட்டி </gui> ஐக் சொடுக்கு செய்க"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "ஒரு தொகுப்பை முடக்க:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "ஒரு தொகுப்பிலிருந்து குடும்பங்களை அகற்ற:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
 msgstr ""
+"நீங்கள் அகற்ற விரும்பும் குடும்பம் அல்லது குடும்பங்களைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
 msgid "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the font list."
 msgstr ""
+"எழுத்துரு பட்டியலின் மேலே உள்ள <gui> <மீடியா வகை = \"படம்\" src = "
+"\"media/list-remove-symbolic.svg\"/> </gui> என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "ஒரு தொகுப்பை மறுபெயரிட:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "ஒரு தொகுப்பைத் தேர்ந்தெடுத்து, மீண்டும் சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "புதிய பெயரை உள்ளிடவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "<gui சூல் தண்டு = \"பொத்தான்\"> உள்ளிடவும் </gui> ஐ அழுத்தவும்"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "எழுத்துரு குடும்பங்களை செயல்படுத்துதல் மற்றும் செயல்படுத்துதல்"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "செயல்படுத்தல்"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
+"<pap> எழுத்துரு மேலாளர் </app> எழுத்துரு குடும்பங்களை செயல்படுத்தவும் செயல்படுத்தவும் "
+"உங்களை அனுமதிக்கிறது."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
 msgid "If you have a large number of fonts installed, font selection dialogs and lists in many applications can get very long and become uncomfortable to use, disabling fonts you do not use very often or do not need at the moment helps keep these at a reasonable size."
 msgstr ""
+"உங்களிடம் ஏராளமான எழுத்துருக்கள் நிறுவப்பட்டிருந்தால், பல பயன்பாடுகளில் எழுத்துரு தேர்வு "
+"உரையாடல்கள் மற்றும் பட்டியல்கள் மிக நீளமாகி பயன்படுத்த சங்கடமாக மாறும், நீங்கள் அடிக்கடி "
+"பயன்படுத்தாத அல்லது இந்த நேரத்தில் தேவையில்லாத எழுத்துருக்களை முடக்குவது நியாயமான அளவில்"
+" வைக்க உதவுகிறது ."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "எழுத்துரு குடும்பத்தை இயக்க அல்லது முடக்க:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
 msgstr ""
+"எழுத்துரு பட்டியலில் நீங்கள் இயக்க/முடக்க விரும்பும் குடும்பத்தைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
 msgid "You can also double-click, press <gui style=\"button\">Space</gui> or press <gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"நீங்கள் இருமுறை சொடுக்கு செய்யலாம், <gui சூல் தண்டு = \"பொத்தான்\"> ச்பேச் </gui> ஐ "
+"அழுத்தவும் அல்லது தேர்ந்தெடுக்கப்பட்ட எழுத்துருவை மாற்ற </gui> ஐ உள்ளிடவும் <gui சூல் தண்டு"
+" = \"பொத்தான்\"> அழுத்தவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
 msgid "<link xref=\"organize#user-collections\">Collections</link> make it easy to enable or disable multiple families at once."
 msgstr ""
+"<இணைப்பு XREF = \"#பயனர்-சேகரிப்புகளை ஒழுங்கமைக்கவும்\"> சேகரிப்புகள் </இணைப்பு> பல "
+"குடும்பங்களை ஒரே நேரத்தில் இயக்க அல்லது முடக்குவதை எளிதாக்குங்கள்."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
 msgid "While any changes made using <app>Font Manager</app> are applied immediately, open applications may need to be restarted in order to reflect those changes."
 msgstr ""
+"<app> எழுத்துரு மேலாளர் </app> ஐப் பயன்படுத்தி செய்யப்பட்ட எந்த மாற்றங்களும் உடனடியாக "
+"பயன்படுத்தப்பட்டாலும், அந்த மாற்றங்களை பிரதிபலிக்கும் வகையில் திறந்த பயன்பாடுகளை மறுதொடக்கம்"
+" செய்ய வேண்டியிருக்கும்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "உங்கள் பயன்பாட்டிற்கு எழுத்துருக்களைச் சேர்ப்பது"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "நிறுவல்"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
 msgid "<app>Font Manager</app> supports the most common <link xref=\"supported-formats\">font formats</link>."
 msgstr ""
+"<pap> எழுத்துரு மேலாளர் </app> மிகவும் பொதுவான <இணைப்பு XREF = \"ஆதரவு-வடிவங்கள்\""
+"> எழுத்துரு வடிவங்கள் </இணைப்பு> ஐ ஆதரிக்கிறது."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19
 #: C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
 msgstr ""
+"<gui சூல் தண்டு = \"பொத்தான்\"> நிர்வகி </gui> பயன்முறையில் இருக்கும்போது"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
 msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"<gui சூல் தண்டு = \"பொத்தான்\"> <மீடியா வகை = \"படம்\" SRC = "
+"\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
 msgid "Select the files you wish to install from the file selector dialog that is displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"காண்பிக்கப்படும் கோப்பு தேர்வாளர் உரையாடலில் இருந்து நீங்கள் நிறுவ விரும்பும் கோப்புகளைத் "
+"தேர்ந்தெடுத்து <Gui சூல் தண்டு = \"பொத்தான்\"> திறந்த </gui> ஐக் சொடுக்கு செய்க"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
 msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
 msgstr ""
+"இழுத்தல் மற்றும் துளி ஆகியவை ஆதரிக்கப்படுகின்றன. அவற்றை நிறுவ எழுத்துரு பட்டியலில் அவற்றை"
+" இழுக்கவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
 msgid "You can drag any supported filetype onto the font list. This includes font files, directories and archives."
 msgstr ""
+"நீங்கள் எந்த ஆதரவான பைல்டைப்பையும் எழுத்துரு பட்டியலில் இழுக்கலாம். இதில் எழுத்துரு கோப்புகள்"
+", கோப்பகங்கள் மற்றும் காப்பகங்கள் உள்ளன."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
 msgid "Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/FileRoller\">Archive Manager</link>. to enable support for compressed files."
 msgstr ""
+"நிறுவவும் <இணைப்பு செயல் = \"நிறுவு: கோப்பு-ரோலர்\" href = "
+"\"https://wiki.gnome.org/apps/fileroller\"> காப்பக மேலாளர் </இணைப்பு>. சுருக்கப்பட்"
+"ட கோப்புகளுக்கான ஆதரவை இயக்க."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59
@@ -446,66 +512,83 @@ msgstr ""
 #: C/font-manager-font-sources.page:138
 msgid "<app>Font Manager</app> will reload anytime changes require it. This may take a moment depending on number of changes."
 msgstr ""
+"<pap> எழுத்துரு மேலாளர் </app> எப்போது வேண்டுமானாலும் மாற்றங்கள் தேவைப்படும். மாற்றங்களின்"
+" எண்ணிக்கையைப் பொறுத்து இது சிறிது நேரம் ஆகலாம்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "தேவையற்ற எழுத்துருக்களை அகற்றுதல்"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "நீக்கும்"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
 msgid "The only fonts listed in the removal dialog will be those installed in your default font directory."
 msgstr ""
+"அகற்றுதல் உரையாடலில் பட்டியலிடப்பட்ட ஒரே எழுத்துருக்கள் உங்கள் இயல்புநிலை எழுத்துரு "
+"கோப்பகத்தில் நிறுவப்பட்டவை."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
 msgid "Font files installed system wide are typically installed as part of the operating system, as packages or by the system administrator. <app>Font Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"கணினி அகலமாக நிறுவப்பட்ட எழுத்துரு கோப்புகள் பொதுவாக இயக்க முறைமையின் ஒரு பகுதியாக, "
+"தொகுப்புகளாக அல்லது கணினி நிர்வாகியால் நிறுவப்படுகின்றன. <app> எழுத்துரு மேலாளர் </"
+"app> இந்த நேரத்தில் அத்தகைய கோப்புகளை அகற்றுவதற்கு வழங்காது."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "எழுத்துருக்களை அகற்ற உங்களுக்கு இனி தேவையில்லை:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
 msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"<gui சூல் தண்டு = \"பொத்தான்\"> <மீடியா வகை = \"படம்\" SRC = "
+"\"மீடியா/பட்டியல்-அகற்றப்பட்ட-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
 msgid "Select the families or individual styles you wish to remove from the list that is displayed"
 msgstr ""
+"காண்பிக்கப்படும் பட்டியலிலிருந்து நீங்கள் அகற்ற விரும்பும் குடும்பங்கள் அல்லது தனிப்பட்ட "
+"பாணிகளைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "<Gui சூல் தண்டு = \"பொத்தான்\"> நீக்கு </gui> என்பதைக் சொடுக்கு செய்க"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
 msgid "<app>Font Manager</app> organizes and stores installed fonts in the default user font directory."
 msgstr ""
+"<pap> எழுத்துரு மேலாளர் </app> இயல்புநிலை பயனர் எழுத்துரு கோப்பகத்தில் நிறுவப்பட்ட "
+"எழுத்துருக்களை ஒழுங்கமைத்து சேமிக்கிறது."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
 msgid "Current default user font directory is located at <code><file>~/.local/share/fonts</file></code>"
 msgstr ""
+"தற்போதைய இயல்புநிலை பயனர் எழுத்துரு அடைவு <code> <file> ~/.local/share/fonts </"
+"file> </code> இல் அமைந்துள்ளது"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
 msgid "Files are permanently deleted. Before removing any fonts ensure you have backups if there is a chance you may need them again."
 msgstr ""
+"கோப்புகள் நிரந்தரமாக நீக்கப்படுகின்றன. எந்த எழுத்துருக்களையும் அகற்றுவதற்கு முன், உங்களுக்கு "
+"மீண்டும் தேவைப்படும் வாய்ப்பு இருந்தால் உங்களிடம் காப்புப்பிரதிகள் இருப்பதை உறுதிசெய்க."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "எழுத்துரு கோப்பகங்களைச் சேர்ப்பது மற்றும் நீக்குதல்"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
@@ -516,21 +599,28 @@ msgstr ""
 #: C/font-manager-font-sources.page:12
 msgid "<app>Font Manager</app> allows you to add or remove directories to scan for font files. Added directories are scanned recursively."
 msgstr ""
+"<pp> எழுத்துரு மேலாளர் </app> எழுத்துரு கோப்புகளுக்கு ச்கேன் செய்ய கோப்பகங்களைச் சேர்க்க "
+"அல்லது அகற்ற உங்களை அனுமதிக்கிறது. சேர்க்கப்பட்ட கோப்பகங்கள் மீண்டும் மீண்டும் ச்கேன் "
+"செய்யப்படுகின்றன."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
 msgid "This allows keeping font files somewhere other than your home directory or temporarily \"installing\" a directory of fonts."
 msgstr ""
+"எழுத்துரு கோப்புகளை உங்கள் வீட்டு அடைவு தவிர வேறு எங்காவது வைத்திருக்க அல்லது "
+"எழுத்துருக்களின் கோப்பகத்தை தற்காலிகமாக \"நிறுவ\" இது அனுமதிக்கிறது."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
 msgstr ""
+"நீங்கள் விரும்பும் எப்படியும் உங்கள் எழுத்துரு கோப்புகளை ஒழுங்கமைக்க இது உங்களை "
+"அனுமதிக்கிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "ஒரு மூலத்தைச் சேர்க்க:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -546,6 +636,8 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/preferences-system-symbolic.svg' md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"வெளிப்புற ref = 'மீடியா/விருப்பத்தேர்வுகள்-சிச்டம்-சிம்போலிக்.ச்வி' எம்.டி 5 = "
+"'63ED081F78639FC6EC234A9351CF52E6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30
@@ -555,148 +647,172 @@ msgstr ""
 #: C/font-manager-substitutions.page:116
 msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
+"<pant> எழுத்துரு மேலாளர் </app> விருப்பத்தேர்வுகள் உரையாடலைத் திறக்கவும் <gui> <மீடியா "
+"வகை = \"படம்\" SRC = \"மீடியா/விருப்பத்தேர்வுகள்-சிச்டம்-சிம்போலிக்.ச்விசி\"/> </gui> ."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40
 #: C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "பக்கப்பட்டியில் இருந்து \"ஆதாரங்கள்\" என்பதைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
 msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/> </"
+"gui> என்பதைக் சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
+"காண்பிக்கப்படும் கோப்பு தேர்வாளரிடமிருந்து நீங்கள் சேர்க்க விரும்பும் கோப்பகத்தைத் "
+"தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "ஒரு மூலத்தை அகற்ற:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
 msgstr ""
+"காண்பிக்கப்படும் பட்டியலிலிருந்து நீங்கள் அகற்ற விரும்பும் கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
 msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui>"
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-அகற்றும்-symbolic.svg\"/> </"
+"gui> என்பதைக் சொடுக்கு செய்க"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "ஒரு மூலத்தை இயக்க அல்லது முடக்க:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
 msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
+"<பயன்பாடு> எழுத்துரு மேலாளர் </app> விருப்பத்தேர்வுகள் உரையாடலைத் திறக்கவும் <Gui சூல் "
+"தண்டு = \"பொத்தான்\"> <மீடியா வகை = \"படம்\" SRC = "
+"\"மீடியா/விருப்பத்தேர்வுகள்-சிச்டம்-சிம்போலிக்.ச்விசி\"/> </gui> இல் சாளரத்தின் மேல்."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
 msgstr ""
+"நீங்கள் இயக்க விரும்பும் அல்லது முடக்க விரும்பும் மூலத்தைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr ""
+msgstr "<gui> மாற்று சுவிட்ச் </gui> ஐக் சொடுக்கு செய்க"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
 msgid "While sources are always available within the application they are not available to other applications until they are enabled."
 msgstr ""
+"பயன்பாட்டிற்குள் ஆதாரங்கள் எப்போதும் கிடைக்கும்போது, அவை இயக்கப்படும் வரை அவை மற்ற "
+"பயன்பாடுகளுக்கு கிடைக்காது."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
 msgid "You can avoid having multiple copies of the same files by adding directories from other filesystems."
 msgstr ""
+"பிற கோப்பு முறைமைகளிலிருந்து கோப்பகங்களைச் சேர்ப்பதன் மூலம் ஒரே கோப்புகளின் பல நகல்களை "
+"வைத்திருப்பதை நீங்கள் தவிர்க்கலாம்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7
 msgid "Generate fontconfig configuration files"
-msgstr ""
+msgstr "FontConfig உள்ளமைவு கோப்புகளை உருவாக்கவும்"
 
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "காட்சி மற்றும் வழங்குதல் விருப்பங்களை"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
 msgid "The \"Display\" and \"Rendering\" panes in the preferences dialog generate valid fontconfig configuration files for the exposed properties."
 msgstr ""
+"விருப்பத்தேர்வுகள் உரையாடலில் உள்ள \"காட்சி\" மற்றும் \"வழங்குதல்\" பேன்கள் வெளிப்படும் "
+"பண்புகளுக்கு செல்லுபடியாகும் FontConfig கட்டமைப்பு கோப்புகளை உருவாக்குகின்றன."
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
 msgid "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-user.html\">fonts-conf</link> for more details."
 msgstr ""
+"மேலும் விவரங்களுக்கு <இணைப்பு href = "
+"\"https://www.freedesktop.org/software/fontconfig/fontconfig-user.html\" ஐப் "
+"பார்க்கவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-fontconfig.page:22
 msgid "Desktop environments and applications may rely on their own configuration mechanism."
 msgstr ""
+"டெச்க்டாப் சூழல்கள் மற்றும் பயன்பாடுகள் அவற்றின் சொந்த உள்ளமைவு பொறிமுறையை நம்பியிருக்கலாம்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr ""
+msgstr "<app> எழுத்துரு மேலாளர் </app> அறிமுகம்."
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr ""
+msgstr "<pp> எழுத்துரு மேலாளர் </app> உங்களை அனுமதிக்கிறது:"
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
 msgid "Introduction"
-msgstr ""
+msgstr "அறிமுகம்"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr ""
+msgstr "எழுத்துரு கோப்புகளை பல்வேறு வழிகளில் முன்னோட்டமிடுங்கள்"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "கிடைக்கக்கூடிய எழுத்துரு மெட்டாடேட்டாவைக் காண்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr ""
+msgstr "உங்கள் பயன்பாட்டிற்கான எழுத்துருக்களை நிறுவவும் அல்லது அகற்றவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr ""
+msgstr "குழு எழுத்துருக்கள் \"சேகரிப்புகள்\""
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
 msgstr ""
+"தனிப்பட்ட எழுத்துரு குடும்பங்கள் அல்லது முழு சேகரிப்புகளையும் இயக்கவும் அல்லது முடக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr ""
+msgstr "எழுத்துருக்களுக்கு பயன்படுத்த வெவ்வேறு கோப்பகங்களைக் குறிப்பிடவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "எழுத்துரு மாற்றீடு செய்யுங்கள்"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr ""
+msgstr "<pap> எழுத்துரு மேலாளர் </app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -707,41 +823,52 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
+"வெளிப்புற Ref = 'media/main-window.png' md5 = "
+"'f845a783f120d087c8a70a949d0caba0'"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
 msgid "For more information about <app>Font Manager</app>, please visit the <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
+"<APP> எழுத்துரு மேலாளர் </app> பற்றிய கூடுதல் தகவலுக்கு, தயவுசெய்து <இணைப்பு href = "
+"\"http://fontmanager.github.io/\"> முகப்புப்பக்க </link> ஐப் பார்வையிடவும்"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
 msgid "To report a bug or make a suggestion regarding the <app>Font Manager</app> application or this manual, please use the projects <link href=\"https://github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
+"ஒரு பிழையைப் புகாரளிக்க அல்லது <pact> எழுத்துரு மேலாளர் </app> பயன்பாடு அல்லது இந்த "
+"கையேடு குறித்து ஒரு ஆலோசனையை வழங்க, தயவுசெய்து <இணைப்பு href = "
+"\"https://github.com/fontmanager/master/issues\"> வெளியீடு டிராக்கர் </இணைப்பு>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr ""
+msgstr "எழுத்துரு கோப்புகளில் உள்ள உரிமத் தகவல்களைக் காண்க"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr ""
+msgstr "உரிமம்"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
+"\"நிர்வகி\" பயன்முறையில் இருக்கும்போது, முன்னோட்டப் பலகத்தில் \"உரிமம்\" என்று பெயரிடப்பட்"
+"ட தாவல் உள்ளது."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
 msgid "Selecting this tab allows viewing any licensing information contained in the currently selected font."
 msgstr ""
+"இந்த தாவலைத் தேர்ந்தெடுப்பது தற்போது தேர்ந்தெடுக்கப்பட்ட எழுத்துருவில் உள்ள எந்தவொரு உரிமத் "
+"தகவலையும் பார்க்க அனுமதிக்கிறது."
 
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
 msgid "<app>Font License tab</app>"
-msgstr ""
+msgstr "<pap> எழுத்துரு உரிம தாவல் </app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -752,36 +879,41 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 msgstr ""
+"வெளிப்புற ref = 'media/limout.png' md5 = '8024ACB1A2FCC1A995D09400C6469A32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
 msgid "Not all font files contain licensing information."
-msgstr ""
+msgstr "எல்லா எழுத்துரு கோப்புகளிலும் உரிமத் தகவல்கள் இல்லை."
 
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "உங்கள் எழுத்துரு கோப்புகளில் பதிக்கப்பட்ட மெட்டாடேட்டாவைக் காண்க"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "மேனிலை தரவு"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
 msgstr ""
+"\"நிர்வகி\" பயன்முறையில் இருக்கும்போது, முன்னோட்டப் பலகத்தில் \"பண்புகள்\" என்று பெயரிடப்பட்"
+"ட தாவல் உள்ளது."
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
 msgid "Selecting this tab allows viewing metadata contained in the currently selected font."
 msgstr ""
+"இந்த தாவலைத் தேர்ந்தெடுப்பது தற்போது தேர்ந்தெடுக்கப்பட்ட எழுத்துருவில் உள்ள மெட்டாடேட்டாவைப் "
+"பார்க்க அனுமதிக்கிறது."
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
 msgid "<app>Font Properties tab</app>"
-msgstr ""
+msgstr "<pap> எழுத்துரு பண்புகள் தாவல் </app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -792,36 +924,43 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
+"வெளிப்புற Ref = 'media/metadata.png' md5 = '3de5a0e94b4f9ef74e1de91ef8b92027' "
+"'"
 
 #. (itstool) path: note/p
 #: C/font-manager-metadata.page:27
 msgid "Some properties are optional and may not be present in all font files."
 msgstr ""
+"சில பண்புகள் விருப்பமானவை மற்றும் அனைத்து எழுத்துரு கோப்புகளிலும் இருக்காது."
 
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "ஆதரிக்கப்படும் மொழிகளையும் அவற்றின் கவரேசையும் காண்க"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "மொழி உதவி"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
 msgid "While the character map is in use the sidebar will switch to displaying the orthographies supported by the currently selected font."
 msgstr ""
+"எழுத்து வரைபடம் பயன்பாட்டில் இருக்கும்போது, பக்கப்பட்டி தற்போது தேர்ந்தெடுக்கப்பட்ட "
+"எழுத்துருவால் ஆதரிக்கப்படும் ஆர்த்தோகிராஃபிகளைக் காண்பிக்கும்."
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
 msgid "Selecting an orthography from the list will filter the character map so that it only displays relevant characters"
 msgstr ""
+"பட்டியலிலிருந்து ஒரு ஆர்த்தோகிராஃபியைத் தேர்ந்தெடுப்பது எழுத்து வரைபடத்தை வடிகட்டும், "
+"இதனால் அது தொடர்புடைய எழுத்துக்களை மட்டுமே காண்பிக்கும்"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr ""
+msgstr "<PAP> ஆதரிக்கப்பட்ட ஆர்த்தோகிராஃபிகள் </app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -832,124 +971,148 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
+"வெளிப்புற Ref = 'media/oragragialies.png' md5 = "
+"'734D54FAC27862DBF32EDEF0FAE4C51C'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr ""
+msgstr "ஒரு எழுத்துரு குடும்பத்தை இன்னொருவருக்கு மாற்றவும்"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "மாற்றீடு"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
+"<pp> எழுத்துரு மேலாளர் </app> ஒரு எழுத்துரு குடும்பத்தை இன்னொருவருக்கு மாற்றுவதற்கு "
+"உங்களை அனுமதிக்கிறது."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "மாற்றீட்டைச் சேர்க்க:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31
 #: C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "பக்கப்பட்டியில் இருந்து \"மாற்றீடுகள்\" என்பதைத் தேர்ந்தெடுக்கவும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
 msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> in the substitutions pane."
 msgstr ""
+"மாற்று பலகத்தில் <gui> <மீடியா வகை = \"படம்\" SRC = "
+"\"Media/List-Add-symbolic.svg\"/> </gui> என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
 msgstr ""
+"நீங்கள் ஒரு மாற்றீட்டை அமைக்க விரும்பும் எழுத்துரு குடும்பத்தின் பெயரை உள்ளிடவும்."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
 msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> on the right."
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/> </"
+"gui> வலதுபுறத்தில் என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
 msgstr ""
+"மாற்று குடும்பத்தின் பெயரை உள்ளிட்டு முன்னுரிமை நிலையைத் தேர்ந்தெடுக்கவும்."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "தேவைக்கேற்ப 3 - 6 படிகளை மீண்டும் செய்யவும்."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67
 #: C/font-manager-substitutions.page:105
 msgid "Click <gui style=\"button\">Save</gui> to write the configuration file when done."
 msgstr ""
+"முடிந்ததும் உள்ளமைவு கோப்பை எழுத <gui சூல் தண்டு = \"பொத்தான்\"> சேமி </gui> என்பதைக் "
+"சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "மாற்றீட்டை அகற்ற:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
 msgstr ""
+"பட்டியலிலிருந்து நீங்கள் அகற்ற விரும்பும் உள்ளீட்டைத் தேர்ந்தெடுக்கவும்."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
 msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> in the substitutions pane."
 msgstr ""
+"<gui> <மீடியா வகை = \"படம்\" SRC = \"மீடியா/பட்டியல்-அகற்றும்-symbolic.svg\"/> </"
+"gui> மாற்று பலகத்தில் என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "அனைத்து மாற்றுகளையும் அகற்ற:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
 msgstr ""
+"மாற்று பலகத்தில் </gui> ஐ நிராகரிக்க <gui சூல் தண்டு = \"பொத்தான்\"> நிராகரிக்கவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
 msgid "Fonts matching the target family are edited to prepend the list of preferred families before the matching family, append the acceptable families after the matching family and append the default families to the end of the family list."
 msgstr ""
+"இலக்கு குடும்பத்துடன் பொருந்தக்கூடிய எழுத்துருக்கள் பொருந்தக்கூடிய குடும்பத்திற்கு முன் "
+"விருப்பமான குடும்பங்களின் பட்டியலைத் தயாரிக்கவும், பொருந்தக்கூடிய குடும்பத்திற்குப் பிறகு "
+"ஏற்றுக்கொள்ளக்கூடிய குடும்பங்களைச் சேர்க்கவும், இயல்புநிலை குடும்பங்களை குடும்ப பட்டியலின் "
+"முடிவில் சேர்க்கவும் திருத்தப்படுகின்றன."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
 msgid "While changes are applied immediately open applications may need to be restarted."
 msgstr ""
+"மாற்றங்கள் உடனடியாக பயன்படுத்தப்படும் போது திறந்த பயன்பாடுகளை மறுதொடக்கம் செய்ய "
+"வேண்டியிருக்கும்."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr ""
+msgstr "<app> எழுத்துரு மேலாளர் </app> ஆதரிக்கும் எழுத்துரு வடிவங்கள்."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "உதவி கோப்பு வடிவங்கள்"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
 msgstr ""
+"<இணைப்பு href = \"http://wikipedia.org/wiki/truetype\"> ட்ரூய்டைப் </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 msgstr ""
+"<இணைப்பு href = \"http://wikipedia.org/wiki/opentype\"> ஓபன்டைப் </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "எழுத்துரு மேலாளருடன் தொடங்குதல்."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -960,38 +1123,40 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/preferences-desktop-font-16.png' md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
+"வெளிப்புற ref = 'மீடியா/விருப்பத்தேர்வுகள்-டெச்க்டோப்-ஃபோன்ட் -16.png' md5 = "
+"'4903102AD113C096AA95EF8A5CCAF0C2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "எழுத்துரு மேலாளர்"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr ""
+msgstr "எழுத்துரு மேலாளர்"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr ""
+msgstr "செர்ரி காசியானோ"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
 msgid "2009–2020"
-msgstr ""
+msgstr "2009-2020"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "வலைபெயர்ப்பு"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "குனு பொது பொது உரிமம் பதிப்பு 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1001,24 +1166,27 @@ msgstr ""
 #: C/index.page:30
 msgctxt "_"
 msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
-msgstr ""
+msgstr "வெளிப்புற ref = 'மீடியா/விருப்பத்தேர்வுகள்-டெச்க்டோப்-ஃபோன்ட்."
 
 #. (itstool) path: page/title
 #: C/index.page:29
 msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
+"<மீடியா வகை = \"படம்\" MIME = \"படம்/png\" src = "
+"\"media/presences-desktop-font.png\"> எழுத்துரு மேலாளர் லோகோ </media> எழுத்துரு "
+"மேலாளர்"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "உங்கள் எழுத்துருக்களை நிர்வகித்தல்"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "உங்கள் எழுத்துருக்களை அறிந்து கொள்வது"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "மேம்பட்ட நற்பொருத்தங்கள்"
