@@ -24,21 +24,22 @@
 # Stephan Kurz <stephan.kurz@oeaw.ac.at>, 2023.
 # Marco <mstffn@gmail.com>, 2024.
 # Ettore Atalan <atalanttore@googlemail.com>, 2024.
+# "R. Grönmann" <stuk@gmx.net>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-07-28 12:09+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"PO-Revision-Date: 2024-10-16 08:16+0000\n"
+"Last-Translator: \"R. Grönmann\" <stuk@gmx.net>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-rc\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -687,7 +688,6 @@ msgstr ""
 "     dieses Programms befinden.\n"
 "\n"
 "     Wenn nicht, siehe <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"    "
 
 #: src/font-manager/Application.vala:130
 msgid "Installing Font Files…"
@@ -890,8 +890,6 @@ msgid "Select Files to Install"
 msgstr "Dateien zum Installieren auswählen"
 
 #: src/font-manager/Dialogs.vala:84
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
 msgstr "Quellverzeichnisse auswählen"
 
@@ -1816,15 +1814,6 @@ msgid "Rendering"
 msgstr "Wiedergabe"
 
 #: src/font-manager/preferences/Preferences.vala:129
-#, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1835,11 +1824,11 @@ msgstr ""
 "\"Speichern\" erzeugt eine fontconfig-Konfigurationsdatei mit den oben "
 "aufgeführten Einstellungen.\n"
 "\n"
-"\"Verwerfen\" entfernt die Konfigurationsdatei und stellt die "
-"Grundeinstellungen wieder her.\n"
+"Laufende Anwedungen benötigen ggf. einen Neustart um die Änderungen zu "
+"übernehmen.\n"
 "\n"
-"Hinweis: Nicht alle Umgebungen und Anwendungen berücksichtigen diese "
-"Einstellungen."
+"Hinweis: Nicht alle Umgebungen und Anwendungen werden diese Einstellungen "
+"berücksichtigen."
 
 #: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
@@ -1958,20 +1947,16 @@ msgstr "Maximale Größe der Vorschau beim Wasserfall"
 #, fuzzy
 #| msgid "Show in Folder"
 msgid "Show line size"
-msgstr "Im Ordner zeigen"
+msgstr "Zeilenhöhe zeigen"
 
 #: src/font-manager/preferences/UserInterface.vala:273
+#, fuzzy
 msgid "Selected setting requires restart to apply"
-msgstr ""
+msgstr "Vorgenomme Änderung bedarf eines Neustarts"
 
 #: src/font-manager/preferences/UserInterface.vala:274
-#, fuzzy
-#| msgid ""
-#| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
-msgstr ""
-"Optische Funktionen des Clients sind aktiviert. Änderungen werden erst nach "
-"Neustart des Programms sichtbar."
+msgstr "Änderungen werden erst nach Neustart des Programms übernommen."
 
 #: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
@@ -1990,8 +1975,9 @@ msgid "Prefer Dark Theme"
 msgstr "Dunkles Thema bevorzugen"
 
 #: src/font-manager/preferences/UserInterface.vala:295
+#, fuzzy
 msgid "Use Adwaita Stylesheet"
-msgstr ""
+msgstr "Verwende das Adwaita Stylesheet"
 
 #: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
@@ -2010,15 +1996,6 @@ msgid "Display line size in Waterfall Preview"
 msgstr "Zeige die Größe der Zeile in der Vorschau beim Wasserfall"
 
 #: src/font-manager/preferences/UserSources.vala:143
-#, fuzzy
-#| msgid ""
-#| "Fonts in any folders listed here will be available within the "
-#| "application.\n"
-#| "\n"
-#| "They will not be visible to other applications until the source is "
-#| "actually enabled.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -2029,9 +2006,7 @@ msgstr ""
 "Anwendung zur Verfügung gestellt.\n"
 "\n"
 "Sie sind in anderen Anwendungen nicht sichtbar, solange die Quelle nicht "
-"tatsächlich aktiviert wird. \n"
-"\n"
-"Hinweis: Alle Umgebungen und Anwendungen befolgen diese Einstellungen."
+"tatsächlich aktiviert wird."
 
 #: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
@@ -2048,11 +2023,12 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Netzwerk Zugang inaktiv"
 
 #: src/font-manager/web/google/GoogleFonts.vala:157
+#, fuzzy
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "Kontaktieren Sie ihren Netzwerk Administrator für die Netzwerk Freigabe"
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
