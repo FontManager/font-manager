@@ -242,53 +242,6 @@ namespace FontManager {
         return sorted_fonts;
     }
 
-    public class FontCache : Object {
-
-        public Json.Array? available_fonts { get; protected set; default = null; }
-        public Gtk.Window? parent { get; set; default = null; }
-
-        public FontCache (Gtk.Window? parent) {
-            Object(parent: parent);
-            // var ctx = parent.get_pango_context();
-            // available_fonts = get_sorted_font_list(ctx);
-            load_from_cache();
-            // update();
-        }
-
-        public void update () {
-            var ctx = parent.get_pango_context();
-            available_fonts = get_sorted_font_list(ctx);
-            save();
-            return;
-        }
-
-        public static string get_cache_file () {
-            string dirpath = get_package_cache_directory();
-            string filepath = Path.build_filename(dirpath, "fonts.cache");
-            DirUtils.create_with_parents(dirpath ,0755);
-            return filepath;
-        }
-
-        public void load_from_cache () {
-            Json.Node? root = load_json_file(get_cache_file());
-            if (root == null)
-                return;
-            Json.NodeType node_type = root.get_node_type();
-            if (node_type == Json.NodeType.ARRAY)
-                available_fonts = root.get_array();
-            else
-                assert_not_reached();
-            return;
-        }
-
-        public bool save () {
-            var node = new Json.Node(Json.NodeType.ARRAY);
-            node.set_array(available_fonts);
-            return write_json_file(node, get_cache_file(), false);
-        }
-
-    }
-
     public bool remove_directory_tree_if_empty (File dir) {
         try {
             var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,

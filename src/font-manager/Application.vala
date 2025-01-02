@@ -42,8 +42,6 @@ namespace FontManager {
         public Reject? disabled_families { get; private set; default = new Reject(); }
         [DBus (visible = false)]
         public StringSet? temp_files { get; private set; default = new StringSet(); }
-        [DBus (visible = false)]
-        public FontCache? cache { get; private set; default = null; }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -280,40 +278,23 @@ namespace FontManager {
         requires (main_window != null) {
             if (update_in_progress)
                 return;
-            // var ctx = main_window.get_pango_context();
-            // available_fonts = get_sorted_font_list(ctx);
-            // Idle.add_full(GLib.Priority.HIGH_IDLE, () => {
-                // main_window.present();
-            //     return GLib.Source.REMOVE;
-            // });
-            // message("updating cache");
-            // cache.update();
-            message("updating database");
+            var ctx = main_window.get_pango_context();
+            available_fonts = get_sorted_font_list(ctx);
+            main_window.present();
             db.update(available_fonts);
-            message("done");
             return;
         }
 
         protected override void activate () {
             if (main_window == null) {
-                message("Creating main window");
                 main_window = new MainWindow(settings);
-                message("complete");
                 add_window(main_window);
-                message("adding idle call to present");
-                Idle.add_full(GLib.Priority.HIGH_IDLE, () => {
-                    main_window.present();
-                    return GLib.Source.REMOVE;
-                });
-                message("instantiating cache");
-                cache = new FontCache(main_window);
-                message("complete");
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-                cache.bind_property("available-fonts", this, "available-fonts", flags);
                 bind_property("available-fonts", main_window, "available-fonts", flags);
                 bind_property("disabled-families", main_window, "disabled-families", flags);
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
+                main_window.present();
             }
             db.update_complete.connect(() => {
                 update_item_preview_text(available_fonts);
