@@ -1,6 +1,6 @@
 /* UserSources.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,9 @@ namespace FontManager {
             sources.load();
             var active = new Directories();
             active.load();
-            foreach (var path in sources) {
+            foreach (string path in sources) {
+                if (path == null)
+                    continue;
                 var item = new Source(File.new_for_path(path));
                 item.active = (item.path in active);
                 add_item(item);

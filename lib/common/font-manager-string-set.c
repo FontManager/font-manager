@@ -1,6 +1,6 @@
 /* font-manager-string-set.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -173,7 +173,8 @@ font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSe
 gboolean
 font_manager_string_set_contains (FontManagerStringSet *self, const gchar *str)
 {
-    g_return_val_if_fail(self != NULL && str != NULL, FALSE);
+    if (!self || !str || font_manager_string_set_size(self) < 1)
+        return FALSE;
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     return g_ptr_array_find_with_equal_func(priv->strings, str, (GEqualFunc) g_str_equal, NULL);
 }

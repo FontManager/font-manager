@@ -1,6 +1,6 @@
 /* font-manager-source.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -317,12 +317,12 @@ font_manager_source_update (FontManagerSource *self)
     g_return_if_fail(self != NULL);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
     g_free(priv->name);
+    g_free(priv->path);
     priv->name = g_strdup(_("Source Unavailable"));
+    priv->path = priv->file ? g_file_get_path(priv->file) : g_strdup(_("Source Unavailable"));
     priv->active = FALSE;
     if (priv->file == NULL || !g_file_query_exists(priv->file, NULL))
         return;
-    g_free(priv->path);
-    priv->path = g_file_get_path(priv->file);
     g_autoptr(GFileInfo) fileinfo = g_file_query_info(priv->file,
                                                         G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
                                                         G_FILE_QUERY_INFO_NONE,

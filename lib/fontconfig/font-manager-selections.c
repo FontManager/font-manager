@@ -1,6 +1,6 @@
 /* font-manager-selections.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -135,10 +135,10 @@ font_manager_selections_parse_selections (FontManagerSelections *self,
         if (iter->type != XML_ELEMENT_NODE)
             continue;
         xmlChar *content = xmlNodeGetContent(iter);
-        if (content == NULL)
+        if (!content)
             continue;
         content = (xmlChar *) g_strstrip((gchar *) content);
-        if (g_strcmp0((const char *) content, "") != 0)
+        if (content && g_strcmp0((const char *) content, "") != 0)
             font_manager_string_set_add(FONT_MANAGER_STRING_SET(self), (const gchar *) content);
         xmlFree(content);
     }

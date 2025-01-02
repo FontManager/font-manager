@@ -40,8 +40,6 @@ namespace FontManager {
         }
 
         protected override void reset () {
-            if (binding != null)
-                binding.unbind();
             if (binding is Binding)
                 binding.unref();
             binding = null;
@@ -667,7 +665,7 @@ namespace FontManager {
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();
-            if (_item is Family)
+            if (_item is Family && disabled_families != null)
                 row.item_state.active = !(((Family) _item).family in disabled_families);
             row.item_state_changed.connect(on_item_state_changed);
             return;
