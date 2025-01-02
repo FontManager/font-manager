@@ -1,27 +1,22 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata, 2021.
-# Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
-# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
-# nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
-# Alberto Cañaveras <acmp@tuta.io>, 2021.
-# gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
-# Toni Estévez <toni.estevez@gmail.com>, 2023.
-# Josman Goncalves Bravo <josmangoncalvesbravo@hotmail.com>, 2024.
-# Jose <ciordia@gmail.com>, 2024.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024.
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.9\n"
+"Project-Id-Version: font-manager 0.9.1\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2024-07-30 22:50-0400\n"
-"PO-Revision-Date: 2024-11-23 16:38+0000\n"
-"Last-Translator: Jose <ciordia@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/es/>\n"
-"Language: es\n"
+"PO-Revision-Date: 2024-12-27 17:00+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ta/>\n"
+"Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -30,13 +25,11 @@ msgstr ""
 #: lib/gtk/font-manager-application-window.c:288
 #: src/font-manager/Application.vala:2
 msgid "Font Manager"
-msgstr "Gestor de fuentes"
+msgstr "எழுத்துரு மேலாளர்"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
-"Una aplicación simple para la gestión de tipos de letra en entornos de "
-"escritorio Gtk+"
+msgstr "சி.டி.கே+ டெச்க்டாப் சூழல்களுக்கான எளிய எழுத்துரு மேலாண்மை பயன்பாடு"
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -44,34 +37,31 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"Gestor tipográfico se ha diseñado para proporcionar a los usuarios una "
-"manera de gestionar fácilmente los tipos de letra del escritorio, sin tener "
-"que recurrir a las herramientas de línea de órdenes o a editar los archivos "
-"de configuración manualmente."
+"கட்டளை வரி கருவிகளை நாடாமல் அல்லது கையால் உள்ளமைவு கோப்புகளைத் திருத்தாமல், சராசரி "
+"பயனர்களுக்கு டெச்க்டாப் எழுத்துருக்களை எளிதில் நிர்வகிக்க ஒரு வழியை வழங்கும் நோக்கம் "
+"கொண்டது."
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
-"Si bien se diseñó principalmente para el entorno de escritorio GNOME, "
-"debería funcionar bien con otros entornos de escritorio Gtk+."
+"முதன்மையாக க்னோம் டெச்க்டாப் சூழலை மனதில் கொண்டு வடிவமைக்கப்பட்டிருந்தாலும், இது மற்ற "
+"சி.டி.கே+ டெச்க்டாப் சூழல்களுடன் நன்றாக வேலை செய்ய வேண்டும்."
 
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
-"Gestor tipográfico NO es una solución para la gestión profesional de tipos "
-"de letra."
+msgstr "எழுத்துரு மேலாளர் ஒரு தொழில்முறை தர எழுத்துரு மேலாண்மை தீர்வு அல்ல."
 
 #: data/com.github.FontManager.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr "Previsualizar, comparar y gestionar tipos de letra"
+msgstr "எழுத்துருக்களை முன்னோட்டமிடுங்கள், ஒப்பிடுதல் மற்றும் நிர்வகிக்கவும்"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.FontManager.FontManager.desktop.in.in:16
 #: data/com.github.FontManager.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr "Gráficos;Visor;GNOME;GTK;Edición;"
+msgstr "கிராபிக்ச்; பார்வையாளர்; க்னோம்; சி.டி.கே; வெளியீடு;"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
@@ -80,11 +70,11 @@ msgstr "Gráficos;Visor;GNOME;GTK;Edición;"
 #: src/font-viewer/Application.vala:131
 #: src/font-viewer/font-viewer-main-window.ui:29
 msgid "Font Viewer"
-msgstr "Visor tipográfico"
+msgstr "எழுத்துரு பார்வையாளர்"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "Un visor de tipos de letra para entornos de escritorio Gtk+"
+msgstr "சி.டி.கே+ டெச்க்டாப் சூழல்களுக்கான எழுத்துரு பார்வையாளர் பயன்பாடு"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
@@ -92,175 +82,174 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
-"Visor tipográfico permite obtener una vista previa de los archivos de tipos "
-"de letra antes de su instalación. Ofrece varios modos de previsualización de "
-"los tipos de letra junto con un mapa de caracteres y muestra las propiedades "
-"de los tipos de letra y los detalles de la licencia."
+"எழுத்துரு பார்வையாளர் நிறுவலுக்கு முன் எழுத்துரு கோப்புகளை முன்னோட்டமிட அனுமதிக்கிறார். "
+"எழுத்துரு வரைபடத்துடன் எழுத்துரு கோப்புகளை முன்னோட்டமிட இது பல வழிகளைக் கொண்டுள்ளது "
+"மற்றும் எழுத்துரு பண்புகள் மற்றும் உரிம விவரங்களைக் காண்பிக்கும்."
 
 #: data/com.github.FontManager.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr "Completa aplicación para previsualizar archivos de tipos de letra"
+msgstr "முழு சிறப்பு எழுத்துரு கோப்பு முன்னோட்டம் பயன்பாடு"
 
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
 #: src/font-manager/FontList.vala:483
 msgid "Install"
-msgstr "Instalar"
+msgstr "நிறுவவும்"
 
 #: extensions/nautilus/font-manager-menu-provider.c:156
 #: extensions/nemo/font-manager-menu-provider.c:149
 #: extensions/thunar/font-manager-menu-provider.c:131
 msgid "Install the selected font file"
-msgstr "Instalar el archivo de tipo de letra seleccionado"
+msgstr "தேர்ந்தெடுக்கப்பட்ட எழுத்துரு கோப்பை நிறுவவும்"
 
 #: extensions/nautilus/font-manager-menu-provider.c:157
 #: extensions/nemo/font-manager-menu-provider.c:150
 #: extensions/thunar/font-manager-menu-provider.c:132
 msgid "Install the selected font files"
-msgstr "Instalar los archivos de tipo de letra seleccionados"
+msgstr "தேர்ந்தெடுக்கப்பட்ட எழுத்துரு கோப்புகளை நிறுவவும்"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr "Propiedades del tipo de letra"
+msgstr "எழுத்துரு பண்புகள்"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
 msgid "Updating Database…"
-msgstr "Actualizando base de datos…"
+msgstr "தரவுத்தளத்தைப் புதுப்பித்தல்…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:699
 msgid "Unknown Vendor"
-msgstr "Distribuidora desconocida"
+msgstr "தெரியாத விற்பனையாளர்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:567
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
-msgstr "Fina"
+msgstr "மெல்லிய"
 
 #: lib/fontconfig/font-manager-fontconfig.c:569
 msgid "Ultra-Light"
-msgstr "Ultraclara"
+msgstr "அல்ட்ரா-லைட்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:571
 #: lib/fontconfig/font-manager-fontconfig.c:924
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
-msgstr "Clara"
+msgstr "ஒளி"
 
 #: lib/fontconfig/font-manager-fontconfig.c:573
 msgid "Semi-Light"
-msgstr "Semiclara"
+msgstr "அரை ஒளி"
 
 #: lib/fontconfig/font-manager-fontconfig.c:575
 msgid "Book"
-msgstr "Libro"
+msgstr "நூல்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:577
 #: lib/fontconfig/font-manager-fontconfig.c:881
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
-msgstr "Medio"
+msgstr "சராசரி"
 
 #: lib/fontconfig/font-manager-fontconfig.c:579
 msgid "Semi-Bold"
-msgstr "Seminegrita"
+msgstr "அரை-பிணைப்பு"
 
 #: lib/fontconfig/font-manager-fontconfig.c:581
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
-msgstr "Negrita"
+msgstr "தடிமான"
 
 #: lib/fontconfig/font-manager-fontconfig.c:583
 msgid "Ultra-Bold"
-msgstr "Ultranegrita"
+msgstr "அல்ட்ரா-போல்ட்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:585
 msgid "Heavy"
-msgstr "Pesada"
+msgstr "கனமான"
 
 #: lib/fontconfig/font-manager-fontconfig.c:587
 msgid "Ultra-Heavy"
-msgstr "Ultrapesada"
+msgstr "அல்ட்ரா-எவி"
 
 #: lib/fontconfig/font-manager-fontconfig.c:662
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
-msgstr "Itálica"
+msgstr "சாய்வு"
 
 #: lib/fontconfig/font-manager-fontconfig.c:664
 msgid "Oblique"
-msgstr "Oblicua"
+msgstr "சாய்வான"
 
 #: lib/fontconfig/font-manager-fontconfig.c:702
 msgid "Ultra-Condensed"
-msgstr "Ultracondensada"
+msgstr "அல்ட்ரா-கான்டென்ச்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:704
 msgid "Extra-Condensed"
-msgstr "Extracondensada"
+msgstr "கூடுதல் மறுக்கப்பட்ட"
 
 #: lib/fontconfig/font-manager-fontconfig.c:706
 msgid "Condensed"
-msgstr "Condensada"
+msgstr "ஒடுக்கப்பட்ட"
 
 #: lib/fontconfig/font-manager-fontconfig.c:708
 msgid "Semi-Condensed"
-msgstr "Semicondensada"
+msgstr "அரை நியமனம்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:710
 msgid "Semi-Expanded"
-msgstr "Semiexpandida"
+msgstr "அரை விரிவாக்கப்பட்டது"
 
 #: lib/fontconfig/font-manager-fontconfig.c:712
 msgid "Expanded"
-msgstr "Expandida"
+msgstr "விரிவாக்கப்பட்டது"
 
 #: lib/fontconfig/font-manager-fontconfig.c:714
 msgid "Extra-Expanded"
-msgstr "Extraexpandida"
+msgstr "கூடுதல் விரிவாக்கப்பட்டது"
 
 #: lib/fontconfig/font-manager-fontconfig.c:716
 msgid "Ultra-Expanded"
-msgstr "Ultraexpandida"
+msgstr "அல்ட்ரா விரிவாக்கப்பட்டது"
 
 #: lib/fontconfig/font-manager-fontconfig.c:785
 msgid "Proportional"
-msgstr "Proporcional"
+msgstr "விகிதாசார"
 
 #: lib/fontconfig/font-manager-fontconfig.c:787
 msgid "Dual Width"
-msgstr "Anchura doble"
+msgstr "இரட்டை அகலம்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:789
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
-msgstr "Monoespaciada"
+msgstr "மினிவேன்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:791
 msgid "Charcell"
-msgstr "Celdas de caracteres"
+msgstr "சார்செல்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:830
 msgid "Unknown"
-msgstr "Desconocido"
+msgstr "தெரியவில்லை"
 
 #: lib/fontconfig/font-manager-fontconfig.c:832
 msgid "RGB"
-msgstr "RGB"
+msgstr "ஆர்சிபி"
 
 #: lib/fontconfig/font-manager-fontconfig.c:834
 msgid "BGR"
-msgstr "BGR"
+msgstr "பி.சி.ஆர்"
 
 #: lib/fontconfig/font-manager-fontconfig.c:836
 msgid "VRGB"
-msgstr "VRGB"
+msgstr "Vrgb"
 
 #: lib/fontconfig/font-manager-fontconfig.c:838
 msgid "VBGR"
-msgstr "VBGR"
+msgstr "Vbgr"
 
 #: lib/fontconfig/font-manager-fontconfig.c:840
 #: lib/fontconfig/font-manager-fontconfig.c:885
@@ -269,356 +258,350 @@ msgstr "VBGR"
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
-msgstr "Ninguno"
+msgstr "எதுவுமில்லை"
 
 #: lib/fontconfig/font-manager-fontconfig.c:879
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
-msgstr "Ligero"
+msgstr "லேசான"
 
 #: lib/fontconfig/font-manager-fontconfig.c:883
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
-msgstr "Completo"
+msgstr "முழு"
 
 #: lib/fontconfig/font-manager-fontconfig.c:922
 msgid "Default"
-msgstr "Predeterminado"
+msgstr "இயல்புநிலை"
 
 #: lib/fontconfig/font-manager-fontconfig.c:926
 msgid "Legacy"
-msgstr "Heredado"
+msgstr "மரபு"
 
 #: lib/fontconfig/font-manager-source.c:305
 #: lib/fontconfig/font-manager-source.c:320
 msgid "Source Unavailable"
-msgstr "Origen no disponible"
+msgstr "சான்று கிடைக்கவில்லை"
 
 #: lib/gtk/font-manager-application-window.c:292
 #: src/font-manager/Application.vala:3
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "Gestión de tipos de letra para entornos de escritorio Gtk+"
+msgstr "சி.டி.கே+ டெச்க்டாப் சூழல்களுக்கான எளிய எழுத்துரு மேலாண்மை"
 
 #: lib/gtk/font-manager-application-window.c:297
 msgid "translator-credits"
-msgstr ""
-"Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Toni Estevez <toni.estevez@gmail.com>"
+msgstr "மொழிபெயர்ப்பாளர்-வரவு"
 
 #: lib/gtk/font-manager-fsType.c:74
 msgid "Restricted License Embedding"
-msgstr "Incrustación: licencia restringida"
+msgstr "தடைசெய்யப்பட்ட உரிம உட்பொதித்தல்"
 
 #: lib/gtk/font-manager-fsType.c:76
 msgid "Preview & Print Embedding"
-msgstr "Incrustación: previsualizar e imprimir"
+msgstr "முன்னோட்டம் மற்றும் அச்சு உட்பொதித்தல்"
 
 #: lib/gtk/font-manager-fsType.c:78
 msgid "Editable Embedding"
-msgstr "Incrustación: editable"
+msgstr "திருத்தக்கூடிய உட்பொதித்தல்"
 
 #: lib/gtk/font-manager-fsType.c:80
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr "Incrustación: previsualizar e imprimir | sin creación de subconjuntos"
+msgstr "முன்னோட்டம் மற்றும் அச்சு உட்பொதித்தல் | துணைக்குழு இல்லை"
 
 #: lib/gtk/font-manager-fsType.c:82
 msgid "Editable Embedding | No Subsetting"
-msgstr "Incrustación: editable | sin creación de subconjuntos"
+msgstr "திருத்தக்கூடிய உட்பொதித்தல் | துணைக்குழு இல்லை"
 
 #: lib/gtk/font-manager-fsType.c:84
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
-"Incrustación: previsualizar e imprimir | incrustación de mapas de bits "
-"solamente"
+msgstr "முன்னோட்டம் மற்றும் அச்சு உட்பொதித்தல் | பிட்மேப் உட்பொதித்தல் மட்டுமே"
 
 #: lib/gtk/font-manager-fsType.c:86
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr "Incrustación: editable | incrustación de mapas de bits solamente"
+msgstr "திருத்தக்கூடிய உட்பொதித்தல் | பிட்மேப் உட்பொதித்தல் மட்டுமே"
 
 #: lib/gtk/font-manager-fsType.c:88
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
-"Incrustación: previsualizar e imprimir | sin creación de subconjuntos | "
-"incrustación de mapas de bits solamente"
+"முன்னோட்டம் மற்றும் அச்சு உட்பொதித்தல் | துணைக்குழு இல்லை | பிட்மேப் உட்பொதித்தல் மட்டுமே"
 
 #: lib/gtk/font-manager-fsType.c:90
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
-"Incrustación: editable | sin creación de subconjuntos | incrustación de "
-"mapas de bits solamente"
+"திருத்தக்கூடிய உட்பொதித்தல் | துணைக்குழு இல்லை | பிட்மேப் உட்பொதித்தல் மட்டுமே"
 
 #: lib/gtk/font-manager-fsType.c:92
 msgid "Installable Embedding"
-msgstr "Incrustación: instalable"
+msgstr "நிறுவக்கூடிய உட்பொதித்தல்"
 
 #: lib/gtk/font-manager-license-page.c:179
 msgid "File does not contain license information."
-msgstr "El archivo no contiene información sobre la licencia."
+msgstr "கோப்பில் உரிமத் செய்தி இல்லை."
 
 #: lib/gtk/font-manager-preview-controls.c:77
 msgid "Left Aligned"
-msgstr "Alineado a la izquierda"
+msgstr "இடது சீரமைக்கப்பட்டுள்ளது"
 
 #: lib/gtk/font-manager-preview-controls.c:83
 msgid "Centered"
-msgstr "Centrado"
+msgstr "மையப்படுத்தப்பட்ட"
 
 #: lib/gtk/font-manager-preview-controls.c:89
 msgid "Fill"
-msgstr "Justificado"
+msgstr "நிரப்பவும்"
 
 #: lib/gtk/font-manager-preview-controls.c:95
 msgid "Right Aligned"
-msgstr "Alineado a la derecha"
+msgstr "சரியான சீரமைக்கப்பட்ட"
 
 #: lib/gtk/font-manager-preview-controls.c:349
 #: src/font-manager/ui/font-manager-browse-pane.ui:165
 msgid "Edit preview text"
-msgstr "Editar texto de previsualización"
+msgstr "முன்னோட்ட உரையைத் திருத்து"
 
 #: lib/gtk/font-manager-preview-controls.c:350
 msgid "Undo changes"
-msgstr "Deshacer cambios"
+msgstr "மாற்றங்களை செயல்தவிர்க்கவும்"
 
 #: lib/gtk/font-manager-preview-page.c:87
 #: src/font-manager/ui/font-manager-browse-preview.ui:201
 msgid "Preview"
-msgstr "Previsualización"
+msgstr "முன்னோட்டம்"
 
 #: lib/gtk/font-manager-preview-page.c:89
 msgid "Waterfall"
-msgstr "Cascada"
+msgstr "நீர்வீழ்ச்சி"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:555
 msgid "Characters"
-msgstr "Caracteres"
+msgstr "எழுத்துக்கள்"
 
 #: lib/gtk/font-manager-preview-pane.c:49
 #: lib/gtk/font-manager-preview-pane.c:556
 msgid "Properties"
-msgstr "Propiedades"
+msgstr "பண்புகள்"
 
 #: lib/gtk/font-manager-preview-pane.c:51
 #: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
 msgid "License"
-msgstr "Licencia"
+msgstr "உரிமம்"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
-msgstr "Regular"
+msgstr "வழக்கமான"
 
 #: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
 msgid "Normal"
-msgstr "Normal"
+msgstr "சாதாரண"
 
 #: lib/gtk/font-manager-preview-pane.c:479
 msgid "Search available characters"
-msgstr "Buscar en los caracteres disponibles"
+msgstr "கிடைக்கக்கூடிய எழுத்துக்களைத் தேடுங்கள்"
 
 #: lib/gtk/font-manager-properties-page.c:55
 msgid "PostScript Name"
-msgstr "Nombre en PostScript"
+msgstr "போச்ட்ச்கிரிப்ட் பெயர்"
 
 #: lib/gtk/font-manager-properties-page.c:56
 msgid "Family"
-msgstr "Familia"
+msgstr "குடும்பம்"
 
 #: lib/gtk/font-manager-properties-page.c:57
 msgid "Style"
-msgstr "Estilo"
+msgstr "சூல் தண்டு"
 
 #: lib/gtk/font-manager-properties-page.c:58
 #: src/font-manager/Categories.vala:259
 msgid "Width"
-msgstr "Anchura"
+msgstr "அகலம்"
 
 #: lib/gtk/font-manager-properties-page.c:59
 #: src/font-manager/Categories.vala:261
 msgid "Slant"
-msgstr "Inclinación"
+msgstr "சாய்ந்த"
 
 #: lib/gtk/font-manager-properties-page.c:60
 #: src/font-manager/Categories.vala:260
 msgid "Weight"
-msgstr "Peso"
+msgstr "எடை"
 
 #: lib/gtk/font-manager-properties-page.c:61
 #: src/font-manager/Categories.vala:262
 msgid "Spacing"
-msgstr "Espaciado"
+msgstr "இடைவெளி"
 
 #: lib/gtk/font-manager-properties-page.c:62
 msgid "Version"
-msgstr "Versión"
+msgstr "பதிப்பு"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/gtk/font-manager-properties-page.c:64
 #: src/font-manager/Categories.vala:268
 msgid "Vendor"
-msgstr "Distribuidora"
+msgstr "விற்பனையாளர்"
 
 #: lib/gtk/font-manager-properties-page.c:65
 msgid "FileType"
-msgstr "Tipo de archivo"
+msgstr "பைல்டைப்"
 
 #. Keep this entry last
 #: lib/gtk/font-manager-properties-page.c:67
 msgid "Filesize"
-msgstr "Tamaño de archivo"
+msgstr "கோப்பு"
 
 #: lib/gtk/unicode/unicode-character-map.c:787
 msgid "Copy"
-msgstr "Copiar"
+msgstr "நகலெடு"
 
 #: lib/gtk/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr "<Suplente superior no de uso privado>"
+msgstr "<தனியார் அல்லாத பயன்பாடு உயர் வாகை>"
 
 #: lib/gtk/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr "<Suplente superior de uso privado>"
+msgstr "<தனியார் பயன்பாடு உயர் வாகை>"
 
 #: lib/gtk/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
-msgstr "<Suplente inferior>"
+msgstr "<குறைந்த வாகை>"
 
 #: lib/gtk/unicode/unicode-info.c:197
 msgid "<Private Use>"
-msgstr "<Uso privado>"
+msgstr "<தனியார் பயன்பாடு>"
 
 #: lib/gtk/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr "<Uso privado, plano 15>"
+msgstr "<விமானம் 15 தனியார் பயன்பாடு>"
 
 #: lib/gtk/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr "<Uso privado, plano 16>"
+msgstr "<விமானம் 16 தனியார் பயன்பாடு>"
 
 #: lib/gtk/unicode/unicode-info.c:205
 msgid "<not assigned>"
-msgstr "<no asignado>"
+msgstr "<ஒதுக்கப்படவில்லை>"
 
 #: lib/gtk/unicode/unicode-info.c:222
 msgid "Other, Control"
-msgstr "Otro, control"
+msgstr "மற்றவை, கட்டுப்பாடு"
 
 #: lib/gtk/unicode/unicode-info.c:224
 msgid "Other, Format"
-msgstr "Otro, formato"
+msgstr "மற்ற, வடிவம்"
 
 #: lib/gtk/unicode/unicode-info.c:226
 msgid "Other, Not Assigned"
-msgstr "Otro, no asignado"
+msgstr "மற்றவை, ஒதுக்கப்படவில்லை"
 
 #: lib/gtk/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr "Otro, uso privado"
+msgstr "மற்ற, தனியார் பயன்பாடு"
 
 #: lib/gtk/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
-msgstr "Otro, suplente"
+msgstr "மற்ற, வாகை"
 
 #: lib/gtk/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
-msgstr "Letra, minúscula"
+msgstr "கடிதம், சிறிய எழுத்துக்கள்"
 
 #: lib/gtk/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
-msgstr "Letra, modificadora"
+msgstr "கடிதம், மாற்றியமைப்பாளர்"
 
 #: lib/gtk/unicode/unicode-info.c:236
 msgid "Letter, Other"
-msgstr "Letra, otra"
+msgstr "கடிதம், மற்றவை"
 
 #: lib/gtk/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
-msgstr "Letra, tipo título"
+msgstr "கடிதம், டிட்ட்லெகேச்"
 
 #: lib/gtk/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
-msgstr "Letra, mayúscula"
+msgstr "கடிதம், பெரிய எழுத்து"
 
 #: lib/gtk/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr "Marca, con espaciado, combinable"
+msgstr "குறி, இடைவெளி இணைத்தல்"
 
 #: lib/gtk/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
-msgstr "Marca, envolvente"
+msgstr "குறி, இணைத்தல்"
 
 #: lib/gtk/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr "Marca, sin espaciado"
+msgstr "குறி, இடைவெளி அல்ல"
 
 #: lib/gtk/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
-msgstr "Número, dígito decimal"
+msgstr "எண், தசம இலக்க"
 
 #: lib/gtk/unicode/unicode-info.c:250
 msgid "Number, Letter"
-msgstr "Número, letra"
+msgstr "எண், கடிதம்"
 
 #: lib/gtk/unicode/unicode-info.c:252
 msgid "Number, Other"
-msgstr "Número, otro"
+msgstr "எண், மற்றவை"
 
 #: lib/gtk/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
-msgstr "Puntuación, conector"
+msgstr "நிறுத்தற்குறி, இணைப்பு"
 
 #: lib/gtk/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
-msgstr "Puntuación, raya"
+msgstr "நிறுத்தற்குறி, கோடு"
 
 #: lib/gtk/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
-msgstr "Puntuación, de cierre"
+msgstr "நிறுத்தற்குறி, மூடு"
 
 #: lib/gtk/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
-msgstr "Puntuación, comilla final"
+msgstr "நிறுத்தற்குறி, இறுதி மேற்கோள்"
 
 #: lib/gtk/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
-msgstr "Puntuación, comilla inicial"
+msgstr "நிறுத்தற்குறி, ஆரம்ப மேற்கோள்"
 
 #: lib/gtk/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
-msgstr "Puntuación, otra"
+msgstr "நிறுத்தற்குறி, மற்றவை"
 
 #: lib/gtk/unicode/unicode-info.c:266
 msgid "Punctuation, Open"
-msgstr "Puntuación, de apertura"
+msgstr "நிறுத்தற்குறி, திறந்த"
 
 #: lib/gtk/unicode/unicode-info.c:268
 msgid "Symbol, Currency"
-msgstr "Símbolo, monetario"
+msgstr "அடையாளம், நாணயம்"
 
 #: lib/gtk/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
-msgstr "Símbolo, modificador"
+msgstr "அடையாளம், மாற்றியமைப்பாளர்"
 
 #: lib/gtk/unicode/unicode-info.c:272
 msgid "Symbol, Math"
-msgstr "Símbolo, matemático"
+msgstr "அடையாளம், கணிதம்"
 
 #: lib/gtk/unicode/unicode-info.c:274
 msgid "Symbol, Other"
-msgstr "Símbolo, otro"
+msgstr "அடையாளம், மற்றவை"
 
 #: lib/gtk/unicode/unicode-info.c:276
 msgid "Separator, Line"
-msgstr "Separador, renglón"
+msgstr "பிரிப்பான், வரி"
 
 #: lib/gtk/unicode/unicode-info.c:278
 msgid "Separator, Paragraph"
-msgstr "Separador, párrafo"
+msgstr "பிரிப்பான், பத்தி"
 
 #: lib/gtk/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr "Separador, espacio"
+msgstr "பிரிப்பான், இடம்"
 
 #: src/font-manager/Application.vala:5
 msgid ""
@@ -639,127 +622,125 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 msgstr ""
 "\n"
-"    Este programa es software libre: puede redistribuirlo y/o modificarlo\n"
-"    bajo los términos de la Licencia Pública General de GNU publicada\n"
-"    por la Free Sotware Foundation, ya sea la versión 3 de la\n"
-"    licencia como (a su elección) cualquier versión posterior.\n"
+"    இந்த நிரல் இலவச மென்பொருள்: நீங்கள் அதை மறுபகிர்வு செய்யலாம் மற்றும்/அல்லது மாற்றலாம்\n"
+" இது வெளியிடப்பட்ட குனு பொது பொது உரிமத்தின் விதிமுறைகளின் கீழ்\n"
+" இலவச மென்பொருள் அறக்கட்டளை, உரிமத்தின் பதிப்பு 3, அல்லது\n"
+" (உங்கள் விருப்பத்தில்) பின்னர் எந்த பதிப்பும்.\n"
 "\n"
-"    Este programa se distribuye con la esperanza de que sea útil, pero\n"
-"    SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de\n"
-"    COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR.\n"
-"    Consulte la Licencia Pública General GNU para más detalles.\n"
+" இந்த நிரல் இது பயனுள்ளதாக இருக்கும் என்ற நம்பிக்கையில் விநியோகிக்கப்படுகிறது,\n"
+" ஆனால் எந்த உத்தரவாதமும் இல்லாமல்; மறைமுகமான பொறுப்பு கூட இல்லாமல்\n"
+" ஒரு குறிப்பிட்ட நோக்கத்திற்காக வணிகத்தன்மை அல்லது உடற்பயிற்சி. பார்க்க\n"
+" மேலும் விவரங்களுக்கு குனு பொது பொது உரிமம்.\n"
 "\n"
-"    Deberías haber recibido una copia de la Licencia Pública General de\n"
-"    GNU con este programa.\n"
+" குனு பொது பொது உரிமத்தின் நகலை நீங்கள் பெற்றிருக்க வேண்டும்\n"
+" இந்த திட்டத்துடன்.\n"
 "\n"
-"    Si no es así, consulta <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+" இல்லையென்றால், <http://www.gnu.org/licenses/gpl-3.0.txt> ஐப் பார்க்கவும்.\n"
 
 #: src/font-manager/Application.vala:130
 msgid "Installing Font Files…"
-msgstr "Instalando el tipo de letra…"
+msgstr "எழுத்துரு கோப்புகளை நிறுவுதல்…"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
-msgstr "Agrupados por anchura de letra"
+msgstr "எழுத்துரு அகலத்தால் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:260
 msgid "Grouped by font weight"
-msgstr "Agrupados por peso de letra"
+msgstr "எழுத்துரு எடையால் தொகுக்கப்பட்டுள்ளது"
 
 #: src/font-manager/Categories.vala:261
 msgid "Grouped by font angle"
-msgstr "Agrupados por inclinación de letra"
+msgstr "எழுத்துரு கோணத்தால் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:262
 msgid "Grouped by font spacing"
-msgstr "Agrupados por espaciado de letra"
+msgstr "எழுத்துரு இடைவெளியால் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:266
 msgid "Grouped by license type"
-msgstr "Agrupados por tipo de licencia"
+msgstr "உரிம வகை மூலம் தொகுக்கப்பட்டுள்ளது"
 
 #: src/font-manager/Categories.vala:268
 msgid "Grouped by vendor"
-msgstr "Agrupados por distribuidora"
+msgstr "விற்பனையாளரால் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:269
 msgid "Filetype"
-msgstr "Tipo de archivo"
+msgstr "பைல்டைப்"
 
 #: src/font-manager/Categories.vala:269
 msgid "Grouped by filetype"
-msgstr "Agrupados por tipo de archivo"
+msgstr "பைல்டைப் மூலம் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:274
 msgid "All"
-msgstr "Todos"
+msgstr "அனைத்தும்"
 
 #: src/font-manager/Categories.vala:274
 msgid "All Fonts"
-msgstr "Todos los tipos de letra"
+msgstr "அனைத்து எழுத்துருக்களும்"
 
 #: src/font-manager/Categories.vala:275
 msgid "System"
-msgstr "Sistema"
+msgstr "மண்டலம்"
 
 #: src/font-manager/Categories.vala:275
 msgid "Fonts available to all users"
-msgstr "Tipos de letra disponibles para todos los usuarios"
+msgstr "எல்லா பயனர்களுக்கும் எழுத்துருக்கள் கிடைக்கின்றன"
 
 #: src/font-manager/Categories.vala:298
 msgid "Family Kind"
-msgstr "Tipo de familia"
+msgstr "குடும்ப வகை"
 
 #: src/font-manager/Categories.vala:298
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr ""
-"Solo aquellos tipos de letra que incluyan información PANOSE se agruparán "
-"aquí."
+msgstr "பானோச் தகவல்களை உள்ளடக்கிய எழுத்துருக்கள் மட்டுமே இங்கே தொகுக்கப்படும்."
 
 #: src/font-manager/Categories.vala:299
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
 msgid "Any"
-msgstr "Todas"
+msgstr "ஏதேனும்"
 
 #: src/font-manager/Categories.vala:299
 msgid "No Fit"
-msgstr "No encaja"
+msgstr "பொருத்தம் இல்லை"
 
 #: src/font-manager/Categories.vala:299
 msgid "Text and Display"
-msgstr "Para texto y títulos"
+msgstr "உரை மற்றும் காட்சி"
 
 #: src/font-manager/Categories.vala:299
 msgid "Script"
-msgstr "Caligráficas"
+msgstr "ச்கிரிப்ட்"
 
 #: src/font-manager/Categories.vala:299
 msgid "Decorative"
-msgstr "Decorativas"
+msgstr "அலங்கார"
 
 #: src/font-manager/Categories.vala:299
 msgid "Pictorial"
-msgstr "Pictóricas"
+msgstr "சித்திர"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr "Escriba el nombre de la colección"
+msgstr "சேகரிப்பு பெயரை உள்ளிடவும்"
 
 #: src/font-manager/Collections.vala:321
 msgid "Copy to…"
-msgstr "Copiar en…"
+msgstr "நகலெடு…"
 
 #: src/font-manager/Collections.vala:322
 msgid "Compress…"
-msgstr "Comprimir…"
+msgstr "சுருக்க…"
 
 #: src/font-manager/Collections.vala:323
 msgid "Rename…"
-msgstr "Renombrar…"
+msgstr "மறுபெயரிடுங்கள்…"
 
 #: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
-msgstr "Comparación guardada"
+msgstr "ஒப்பீடு சேமிக்கப்பட்டது"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
 #: src/font-manager/Compare.vala:424
@@ -767,123 +748,123 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
-"Guarde la comparación actual\n"
-"pulsando en el botón «+»"
+"தற்போதைய ஒப்பீட்டைச் சேமிக்கவும்\n"
+" + பொத்தானைக் சொடுக்கு செய்வதன் மூலம்"
 
 #: src/font-manager/Controls.vala:100
 #: src/font-manager/ui/font-manager-preview-colors.ui:8
 msgid "Select background color"
-msgstr "Seleccione el color de fondo"
+msgstr "பின்னணி நிறத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Controls.vala:103
 #: src/font-manager/ui/font-manager-preview-colors.ui:16
 msgid "Select text color"
-msgstr "Seleccione el color de texto"
+msgstr "உரை வண்ணத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Controls.vala:122
 msgid "Keyboard Shortcuts"
-msgstr "Atajos de teclado"
+msgstr "விசைப்பலகை குறுக்குவழிகள்"
 
 #: src/font-manager/Controls.vala:123 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
-msgstr "Ayuda"
+msgstr "உதவி"
 
 #: src/font-manager/Controls.vala:124
 msgid "About Font Manager"
-msgstr "Acerca de Font Manager"
+msgstr "எழுத்துரு மேலாளர் பற்றி"
 
 #: src/font-manager/Controls.vala:130
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "விருப்பத்தேர்வுகள்"
 
 #: src/font-manager/Controls.vala:134
 msgid "Import"
-msgstr "Importar"
+msgstr "இறக்குமதி"
 
 #: src/font-manager/Controls.vala:135
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
-msgstr "Exportar"
+msgstr "ஏற்றுமதி"
 
 #: src/font-manager/Controls.vala:138
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
-msgstr "Datos de usuario"
+msgstr "பயனர் தரவு"
 
 #: src/font-manager/Controls.vala:171
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
-msgstr "Nombre"
+msgstr "பெயர்"
 
 #: src/font-manager/Controls.vala:173
 msgid "Size"
-msgstr "Tamaño"
+msgstr "அளவு"
 
 #: src/font-manager/Controls.vala:238
 msgid "Grid View"
-msgstr "Vista de cuadrícula"
+msgstr "கட்டம் பார்வை"
 
 #: src/font-manager/Controls.vala:239
 msgid "List View"
-msgstr "Vista de lista"
+msgstr "பட்டியல் பார்வை"
 
 #: src/font-manager/Controls.vala:325
 msgid "Add Fonts"
-msgstr "Instalar tipos de letra"
+msgstr "எழுத்துருக்களைச் சேர்க்கவும்"
 
 #: src/font-manager/Controls.vala:326
 msgid "Remove Fonts"
-msgstr "Desinstalar tipos de letra"
+msgstr "எழுத்துருக்களை அகற்று"
 
 #: src/font-manager/Controls.vala:342
 msgid "Back"
-msgstr "Atrás"
+msgstr "பின்"
 
 #: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
 msgid "_Select"
-msgstr "_Seleccionar"
+msgstr "_ தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:49
 msgid "Select Executable"
-msgstr "Seleccionar ejecutable"
+msgstr "இயங்கக்கூடியதைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select a Directory"
-msgstr "Seleccione una ruta"
+msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Files to Install"
-msgstr "Seleccionar los archivos para instalar"
+msgstr "நிறுவ கோப்புகளைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:84
 msgid "Select Source Directories"
-msgstr "Seleccionar directorios de origen"
+msgstr "மூல கோப்பகங்களைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:118
 msgid "Font Configuration"
-msgstr "Configuración de tipos de letra"
+msgstr "எழுத்துரு உள்ளமைவு"
 
 #: src/font-manager/Dialogs.vala:119
 msgid "Font Collections"
-msgstr "Colecciones tipográficas"
+msgstr "எழுத்துரு சேகரிப்புகள்"
 
 #: src/font-manager/Dialogs.vala:120
 #: src/font-manager/preferences/UserSources.vala:154
 msgid "Font Sources"
-msgstr "Ubicaciones de los tipos de letra"
+msgstr "எழுத்துரு ஆதாரங்கள்"
 
 #: src/font-manager/Dialogs.vala:121
 msgid "Installed Fonts"
-msgstr "Tipos de letra instalados"
+msgstr "நிறுவப்பட்ட எழுத்துருக்கள்"
 
 #: src/font-manager/Dialogs.vala:122
 msgid "Custom Actions"
-msgstr "Acciones personalizadas"
+msgstr "தனிப்பயன் செயல்கள்"
 
 #: src/font-manager/Dialogs.vala:374
 msgid "Fonts installed in your home directory will appear here."
-msgstr "Los tipos de letra instalados en su carpeta personal figurarán aquí."
+msgstr "உங்கள் வீட்டு கோப்பகத்தில் நிறுவப்பட்ட எழுத்துருக்கள் இங்கே தோன்றும்."
 
 #. FontList.vala
 #. *
@@ -912,23 +893,23 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
-"Búsqueda de familias sin distinguir mayusculación.\n"
+"குடும்பப் பெயர்களின் உணர்வற்ற தேடல்.\n"
 "\n"
-"Comience la búsqueda utilizando %s para filtrar por ruta de archivo.\n"
-"Comience la búsqueda utilizando %s para filtrar por caracteres."
+" FilePath இன் அடிப்படையில் வடிகட்ட %s ஐப் பயன்படுத்தி தேடலைத் தொடங்குங்கள்.\n"
+" எழுத்துக்களின் அடிப்படையில் வடிகட்ட %s ஐப் பயன்படுத்தி தேடலைத் தொடங்கவும்."
 
 #: src/font-manager/FontList.vala:70
 #: src/font-manager/web/google/FontList.vala:200
-#, c-format
+#, c-format, fuzzy
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i Variación "
-msgstr[1] "%i Variaciones"
+msgstr[0] "%நான் மாறுபாடு "
+msgstr[1] "%நான் மாறுபாடுகள்"
 
 #: src/font-manager/FontList.vala:255
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
-msgstr "Contraer todo"
+msgstr "அனைத்தையும் சரக்கு"
 
 #: src/font-manager/FontList.vala:255
 #: src/font-manager/web/google/FontList.vala:273
@@ -936,433 +917,433 @@ msgstr "Contraer todo"
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
-msgstr "Expandir todo"
+msgstr "அனைத்தையும் விரிவாக்குங்கள்"
 
 #: src/font-manager/FontList.vala:484
 msgid "Copy Location"
-msgstr "Copiar la ubicación"
+msgstr "இருப்பிடத்தை நகலெடுக்கவும்"
 
 #: src/font-manager/FontList.vala:485
 msgid "Show in Folder"
-msgstr "Mostrar en la carpeta"
+msgstr "கோப்புறையில் காட்டு"
 
 #: src/font-manager/FontList.vala:486
 msgid "Enable selected items"
-msgstr "Habilitar elementos seleccionados"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பொருட்களை இயக்கவும்"
 
 #: src/font-manager/FontList.vala:487
 msgid "Disable selected items"
-msgstr "Desactivar elementos seleccionados"
+msgstr "தேர்ந்தெடுக்கப்பட்ட பொருட்களை முடக்கு"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
-#, c-format
+#, c-format, fuzzy
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "%i elemento seleccionado"
-msgstr[1] "%i elementos seleccionados"
+msgstr[0] "%நான் உருப்படியைத் தேர்ந்தெடுத்தேன்"
+msgstr[1] "%நான் உருப்படிகளைத் தேர்ந்தெடுத்தேன்"
 
 #: src/font-manager/FontList.vala:581
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
-msgstr "Acciones"
+msgstr "செயல்கள்"
 
 #: src/font-manager/MainWindow.vala:69
 msgid "Browse"
-msgstr "Examinar"
+msgstr "உலாவு"
 
 #: src/font-manager/MainWindow.vala:71
 msgid "Compare"
-msgstr "Comparar"
+msgstr "ஒப்பிடுக"
 
 #: src/font-manager/MainWindow.vala:74
 msgid "Google Fonts"
-msgstr "Google Fonts"
+msgstr "கூகிள் எழுத்துருக்கள்"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
-msgstr "Gestionar"
+msgstr "நிர்வகிக்கவும்"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr "Afrikáans"
+msgstr "ஆப்பிரிக்கா"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr "Ahom"
+msgstr "அஓம்"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr "Aleutiano, cirílico"
+msgstr "அலியுட் சிரிலிக்"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr "Aleutiano, latino"
+msgstr "அலியுட் லத்தீன்"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/LanguageData.vala:35
 msgid "Arabic"
-msgstr "Árabe"
+msgstr "அரபு"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr "Letras griegas arcaicas"
+msgstr "தொல்பொருள் கிரேக்க எழுத்துக்கள்"
 
 #: src/font-manager/Orthographies.vala:37
 #: src/font-manager/web/google/LanguageData.vala:36
 msgid "Armenian"
-msgstr "Armenio"
+msgstr "ஆர்மீனியன்"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr "Astronomía"
+msgstr "வானியல்"
 
 #: src/font-manager/Orthographies.vala:39
 #: src/font-manager/web/google/LanguageData.vala:38
 msgid "Balinese"
-msgstr "Balinés"
+msgstr "பாலினீச்"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr "Báltico"
+msgstr "பால்டிக்"
 
 #: src/font-manager/Orthographies.vala:41
 #: src/font-manager/web/google/LanguageData.vala:39
 msgid "Bamum"
-msgstr "Bamún"
+msgstr "பாமம்"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr "Cirílico básico"
+msgstr "அடிப்படை சிரிலிக்"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr "Griego básico"
+msgstr "அடிப்படை கிரேக்கம்"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr "Latino básico"
+msgstr "அடிப்படை லத்தீன்"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr "Surat Batak"
+msgstr "படக் கடிதம்"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/LanguageData.vala:42
 msgid "Bengali"
-msgstr "Bengalí"
+msgstr "பெங்காலி"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr "Brahmi"
+msgstr "பிராமி"
 
 #: src/font-manager/Orthographies.vala:48
 #: src/font-manager/web/google/LanguageData.vala:46
 msgid "Buginese"
-msgstr "Buguinés"
+msgstr "புகினீச்"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr "Sílabas aborígenes canadienses unificadas"
+msgstr "ஒருங்கிணைந்த கனேடிய பழங்குடி பாடத்திட்டங்கள்"
 
 #: src/font-manager/Orthographies.vala:50
 #: src/font-manager/web/google/LanguageData.vala:50
 msgid "Carian"
-msgstr "Cario"
+msgstr "கரியன்"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr "Catalán"
+msgstr "கற்றலான்"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr "Centroeuropeo"
+msgstr "மத்திய ஐரோப்பிய"
 
 #: src/font-manager/Orthographies.vala:53
 #: src/font-manager/web/google/LanguageData.vala:51
 msgid "Chakma"
-msgstr "Chakma"
+msgstr "சக்மா"
 
 #: src/font-manager/Orthographies.vala:54
 #: src/font-manager/web/google/LanguageData.vala:52
 msgid "Cham"
-msgstr "Cham"
+msgstr "சாம்"
 
 #: src/font-manager/Orthographies.vala:55
 #: src/font-manager/web/google/LanguageData.vala:53
 msgid "Cherokee"
-msgstr "Cheroqui"
+msgstr "செரோகி"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr "Símbolos del ajedrez"
+msgstr "நாற்கரங்கம் சின்னங்கள்"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr "CJK Unificado"
+msgstr "சி.சே.கே யுனிஃபைட்"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr "CJK Unificado Extensión A"
+msgstr "சி.சே.கே ஒருங்கிணைந்த நீட்டிப்பு a"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr "CJK Unificado Extensión B"
+msgstr "சி.சே.கே ஒருங்கிணைந்த நீட்டிப்பு ஆ"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr "CJK Unificado Extensión C"
+msgstr "சி.சே.கே ஒருங்கிணைந்த நீட்டிப்பு சி"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr "CJK Unificado Extensión D"
+msgstr "சி.சே.கே ஒருங்கிணைந்த நீட்டிப்பு டி"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr "CJK Unificado Extensión E"
+msgstr "சி.சே.கே ஒருங்கிணைந்த நீட்டிப்பு இ"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr "Ideogramas compatibles con CJK"
+msgstr "சிசேகே பொருந்தக்கூடிய ஐடியோவரைபடம்கள்"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr "Suplemento de ideogramas de compatibilidad con CJK"
+msgstr "சிசேகே பொருந்தக்கூடிய ஐடியோவரைபடம்கள் துணை"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr "Letras claudianas"
+msgstr "கிளாடியன் கடிதங்கள்"
 
 #: src/font-manager/Orthographies.vala:70
 #: src/font-manager/web/google/LanguageData.vala:58
 msgid "Coptic"
-msgstr "Copto"
+msgstr "வசம்"
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
-msgstr "Monedas"
+msgstr "நாணயங்கள்"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr "Silabario chipriota"
+msgstr "சைப்ரியாட் பாடத்திட்டம்"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/LanguageData.vala:65
 msgid "Devanagari"
-msgstr "Devanagari"
+msgstr "தேவநாகரி"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr "Neerlandés"
+msgstr "டச்சு"
 
 #: src/font-manager/Orthographies.vala:75
 #: src/font-manager/web/google/LanguageData.vala:67
 msgid "Egyptian Hieroglyphs"
-msgstr "Jeroglíficos egipcios"
+msgstr "எகிப்திய ஐரோகிளிஃப்ச்"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr "Emoticonos"
+msgstr "எமோடிகான்கள்"
 
 #: src/font-manager/Orthographies.vala:77
 #: src/font-manager/web/google/LanguageData.vala:70
 msgid "Ethiopic"
-msgstr "Etíope"
+msgstr "எத்தியோபிக்"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr "Persa"
+msgstr "ஃபார்சி"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr "Alimentos y bebidas"
+msgstr "உணவு மற்றும் பானம்"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr "Cirílico completo"
+msgstr "முழு சிரிலிக்"
 
 #: src/font-manager/Orthographies.vala:85
 #: src/font-manager/web/google/LanguageData.vala:71
 msgid "Georgian"
-msgstr "Georgiano"
+msgstr "சார்சியன்"
 
 #: src/font-manager/Orthographies.vala:86
 #: src/font-manager/web/google/LanguageData.vala:72
 msgid "Glagolitic"
-msgstr "Glagolítico"
+msgstr "கிளாகோலிடிக்"
 
 #: src/font-manager/Orthographies.vala:87
 #: src/font-manager/web/google/LanguageData.vala:73
 msgid "Gothic"
-msgstr "Gótico"
+msgstr "கோதிக்"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/LanguageData.vala:77
 msgid "Gujarati"
-msgstr "Guyaratí"
+msgstr "குசராத்தி"
 
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/LanguageData.vala:79
 msgid "Gurmukhi"
-msgstr "Gurmují"
+msgstr "குர்முகி"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr "Hangul coreano"
+msgstr "கொரிய அங்குல்"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr "Hanunuo"
+msgstr "அனூனோ"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/LanguageData.vala:83
 msgid "Hebrew"
-msgstr "Hebreo"
+msgstr "எபிரேய"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr "AFI"
+msgstr "ஐபிஏ"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr "Igbo (alfabeto Onwu)"
+msgstr "மரணத்திற்கு குடிக்கவும்"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
-msgstr "Jamo coreanos"
+msgstr "கொரிய குகை"
 
 #: src/font-manager/Orthographies.vala:97
 #: src/font-manager/web/google/LanguageData.vala:89
 msgid "Javanese"
-msgstr "Javanés"
+msgstr "சாவானீச்"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr "Jinmeiyo japonés"
+msgstr "சப்பானின் மரியாதை"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr "Joyo japonés (Jōyō kanji)"
+msgstr "சப்பானிய சாயோ"
 
 #: src/font-manager/Orthographies.vala:100
 #: src/font-manager/web/google/LanguageData.vala:90
 msgid "Kaithi"
-msgstr "Kayathi"
+msgstr "கைதி"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr "Kana japonés"
+msgstr "சப்பானிய அல்லது"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/LanguageData.vala:91
 msgid "Kannada"
-msgstr "Canarés"
+msgstr "கன்னடா"
 
 #: src/font-manager/Orthographies.vala:103
 #: src/font-manager/web/google/LanguageData.vala:94
 msgid "Kayah Li"
-msgstr "Kayah Li"
+msgstr "கயா லி"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr "Kazajo"
+msgstr "கசாக்"
 
 #: src/font-manager/Orthographies.vala:105
 #: src/font-manager/web/google/LanguageData.vala:92
 msgid "Kharoshthi"
-msgstr "Karosti"
+msgstr "கரோச்டி"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/LanguageData.vala:95
 msgid "Khmer"
-msgstr "Camboyano"
+msgstr "கெமர்"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr "Japonés (Los caracteres kokuji)"
+msgstr "சப்பானிய தூக்க அறிவிப்பு"
 
 #: src/font-manager/Orthographies.vala:108
 #: src/font-manager/web/google/LanguageData.vala:99
 msgid "Lao"
-msgstr "Lao"
+msgstr "லாவோ"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr "Ligaduras latinas"
+msgstr "லத்தீன் தசைநார்"
 
 #: src/font-manager/Orthographies.vala:110
 #: src/font-manager/web/google/LanguageData.vala:100
 msgid "Lepcha"
-msgstr "Lepcha (róng)"
+msgstr "லெப்சா"
 
 #: src/font-manager/Orthographies.vala:111
 #: src/font-manager/web/google/LanguageData.vala:103
 msgid "Limbu"
-msgstr "Limbu"
+msgstr "லிம்பு"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr "Ideogramas del lineal B"
+msgstr "நேரியல் பி ஐடியோகிராம்"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr "Silabario lineal B"
+msgstr "நேரியல் பி சிலாபரி"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/LanguageData.vala:110
 msgid "Malayalam"
-msgstr "Malabar"
+msgstr "மலையாளம்"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr "Griego matemático"
+msgstr "கணித கிரேக்கம்"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr "Latino matemático"
+msgstr "கணித லத்தீன்"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr "Cifras matemáticas"
+msgstr "கணித எண்கள்"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr "Operadores matemáticos"
+msgstr "கணித இயக்கிகள்"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr "Manipurí"
+msgstr "இறைச்சி மாயாக்"
 
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
 msgid "Mende Kikakui"
-msgstr "Silabario kikaku"
+msgstr "மெண்டே கிகாகுய்"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr "Cursiva meroítica"
+msgstr "Meroictecursive"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr "Jeroglíficos meroíticos"
+msgstr "மெரோயிடிக் ஐரோகிளிஃப்ச்"
 
 #. { N_(""), "meroitic-cursive", "" },
 #. { N_(""), "meroitic-heiroglyphs", "" },
 #: src/font-manager/Orthographies.vala:123
 #: src/font-manager/web/google/LanguageData.vala:123
 msgid "Miao"
-msgstr "Hmong"
+msgstr "மியாவோ"
 
 #: src/font-manager/Orthographies.vala:124
 #: src/font-manager/web/google/LanguageData.vala:125
 msgid "Mongolian"
-msgstr "Mongol"
+msgstr "மங்கோலியன்"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. Contains lots of duplicates, doubt many would find it useful
@@ -1370,342 +1351,339 @@ msgstr "Mongol"
 #: src/font-manager/Orthographies.vala:130
 #: src/font-manager/web/google/LanguageData.vala:129
 msgid "Myanmar"
-msgstr "Birmano"
+msgstr "மியான்மர்"
 
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/LanguageData.vala:133
 msgid "New Tai Lue"
-msgstr "Nuevo Tai Lü"
+msgstr "புதிய தை லூ"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "N’Ko"
-msgstr "N’Ko (lengua mandenká o mandingá)"
+msgstr "என்‘கோ"
 
 #: src/font-manager/Orthographies.vala:133
 #: src/font-manager/web/google/LanguageData.vala:137
 msgid "Ogham"
-msgstr "Ogámico"
+msgstr "ஓகாம்"
 
 #: src/font-manager/Orthographies.vala:134
 #: src/font-manager/web/google/LanguageData.vala:138
 msgid "Ol Chiki"
-msgstr "Ol Chemetʼ"
+msgstr "ஓல் சிகி"
 
 #: src/font-manager/Orthographies.vala:135
 #: src/font-manager/web/google/LanguageData.vala:140
 msgid "Old Italic"
-msgstr "Itálico prerromano"
+msgstr "பழைய சாய்வு"
 
 #: src/font-manager/Orthographies.vala:136
 #: src/font-manager/web/google/LanguageData.vala:145
 msgid "Old South Arabian"
-msgstr "Alfabeto árabe meridional (Musnad)"
+msgstr "பழைய தென் அரேபிய"
 
 #: src/font-manager/Orthographies.vala:137
 #: src/font-manager/web/google/LanguageData.vala:149
 msgid "Oriya"
-msgstr "Odia"
+msgstr "ஓரியா"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/LanguageData.vala:148
 msgid "Osmanya"
-msgstr "Soomaali (escritura de Somalia)"
+msgstr "ஒச்மண்யா"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Pan African Latin"
-msgstr "Latino panafricano"
+msgstr "பான் ஆப்பிரிக்க லத்தீன்"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pashto"
-msgstr "Pastún"
+msgstr "பச்தோ"
 
 #: src/font-manager/Orthographies.vala:141
 #: src/font-manager/web/google/LanguageData.vala:153
 msgid "Phags Pa"
-msgstr "Alfabeto de 'Phags-pa"
+msgstr "ஃபாக்ச் பா"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Pinyin"
-msgstr "Hànyǔ Pīnyīn"
+msgstr "பின்யின்"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Polynesian"
-msgstr "Polinesio"
+msgstr "பாலினீசியன்"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polytonic Greek"
-msgstr "Griego politónico"
+msgstr "பாலிடோனிக் கிரேக்கம்"
 
 #: src/font-manager/Orthographies.vala:145
 #: src/font-manager/web/google/LanguageData.vala:156
 msgid "Rejang"
-msgstr "Redjang"
+msgstr "ரிசாங்"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Romanian"
-msgstr "Rumano"
+msgstr "ருமேனிய"
 
 #: src/font-manager/Orthographies.vala:147
 #: src/font-manager/web/google/LanguageData.vala:157
 msgid "Runic"
-msgstr "Rúnico"
+msgstr "ரூனிக்"
 
 #: src/font-manager/Orthographies.vala:148
 #: src/font-manager/web/google/LanguageData.vala:159
 msgid "Saurashtra"
-msgstr "Saurashtra"
+msgstr "சௌராச்டிரா"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Simplified Chinese"
-msgstr "Chino simplificado"
+msgstr "எளிமைப்படுத்தப்பட்ட சீன"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Sindhi"
-msgstr "Sindi"
+msgstr "சிந்தி"
 
 #: src/font-manager/Orthographies.vala:151
 #: src/font-manager/web/google/LanguageData.vala:164
 msgid "Sinhala"
-msgstr "Cingalés"
+msgstr "சிங்களம்"
 
 #: src/font-manager/Orthographies.vala:152
 msgid "South Korean Hanja"
-msgstr "Caracteres sinocoreanos"
+msgstr "தென் கொரிய அஞ்சா"
 
 #: src/font-manager/Orthographies.vala:153
 #: src/font-manager/web/google/LanguageData.vala:168
 msgid "Sundanese"
-msgstr "Sondanés"
+msgstr "சுந்தானியர்கள்"
 
 #: src/font-manager/Orthographies.vala:154
 #: src/font-manager/web/google/LanguageData.vala:169
 msgid "Syloti Nagri"
-msgstr "Sylhet Nagri"
+msgstr "சைலோடி நகரி"
 
 #. { N_("Symbols"), "symbols", "" },
 #: src/font-manager/Orthographies.vala:155
 #: src/font-manager/web/google/LanguageData.vala:171
 msgid "Syriac"
-msgstr "Siríaco"
+msgstr "சிரியாக்"
 
 #: src/font-manager/Orthographies.vala:156
 #: src/font-manager/web/google/LanguageData.vala:174
 msgid "Tai Le"
-msgstr "Tai Nüa"
+msgstr "தை லே"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Tham (Lanna)"
-msgstr "Idioma tai septentrional"
+msgstr "தை தாம் (லன்னா)"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Viet"
-msgstr "Tai Viet (bloque Unicode)"
+msgstr "தை வியட்"
 
 #: src/font-manager/Orthographies.vala:159
 #: src/font-manager/web/google/LanguageData.vala:175
 msgid "Tamil"
-msgstr "Tamil"
+msgstr "தமிழ்"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/LanguageData.vala:176
 msgid "Telugu"
-msgstr "Telugu"
+msgstr "தெலுங்கு"
 
 #: src/font-manager/Orthographies.vala:161
 msgid "Thaana"
-msgstr "Tāna"
+msgstr "தானா"
 
 #: src/font-manager/Orthographies.vala:162
 #: src/font-manager/web/google/LanguageData.vala:177
 msgid "Thai"
-msgstr "Tai"
+msgstr "தாய்"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/LanguageData.vala:178
 msgid "Tibetan"
-msgstr "Tibetano"
+msgstr "திபெத்திய"
 
 #: src/font-manager/Orthographies.vala:164
 msgid "Tifinagh"
-msgstr "Tifinag"
+msgstr "டிஃபினாக்"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Traditional Chinese"
-msgstr "Chino tradicional"
+msgstr "பாரம்பரிய சீன"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Turkish"
-msgstr "Turco"
+msgstr "துருக்கிய"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Uighur"
-msgstr "Uigur"
+msgstr "உகுர்"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Urdu"
-msgstr "Urdu"
+msgstr "உருது"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Vai"
-msgstr "Lengua Vai"
+msgstr "வாய்"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vedic Extensions"
-msgstr "Ampliaciones védicas"
+msgstr "வேத நீட்டிப்புகள்"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Venda"
-msgstr "Tshivenda"
+msgstr "வென்டா"
 
 #: src/font-manager/Orthographies.vala:172
 #: src/font-manager/web/google/LanguageData.vala:179
 msgid "Vietnamese"
-msgstr "Vietnamita"
+msgstr "வியட்நாமிய"
 
 #: src/font-manager/Orthographies.vala:173
 msgid "Western European"
-msgstr "Europeo Occidental"
+msgstr "மேற்கு ஐரோப்பிய"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Yi"
-msgstr "Idioma Nuosu"
+msgstr "யி"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Chinese Zhuyin Fuhao"
-msgstr "Caracteres fonéticos chinos"
+msgstr "சீன சட் டைகர் டெயில் NFU நல்லது"
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/OrthographyList.vala:105
 msgid "Coverage"
-msgstr "Cobertura"
+msgstr "பாதுகாப்பு"
 
 #: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
-msgstr "Ortografías admitidas"
+msgstr "ஆதரிக்கப்பட்ட ஆர்த்தோகிராஃபிகள்"
 
 #: src/font-manager/OrthographyList.vala:200
 msgid "No items selected"
-msgstr "Sin elementos seleccionados"
+msgstr "உருப்படிகள் எதுவும் தேர்ந்தெடுக்கப்படவில்லை"
 
 #: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
-msgstr "Actualización en curso"
+msgstr "புதுப்பிப்பு செயலில் உள்ளது"
 
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:230
 msgid "No valid orthographies for selection"
-msgstr "No hay ortografía válida para elegir"
+msgstr "தேர்வுக்கு சரியான ஆர்த்தோகிராஃபிகள் இல்லை"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
-msgstr "Añadir colección nueva"
+msgstr "புதிய சேகரிப்பைச் சேர்க்கவும்"
 
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 msgid "Remove selected item"
-msgstr "Eliminar el elemento seleccionado"
+msgstr "தேர்ந்தெடுக்கப்பட்ட உருப்படியை அகற்று"
 
 #: src/font-manager/Sidebar.vala:67
 msgid "Edit selected item"
-msgstr "Editar elemento seleccionado"
+msgstr "தேர்ந்தெடுக்கப்பட்ட உருப்படியைத் திருத்தவும்"
 
 #: src/font-manager/Utils.vala:290
 msgid "Copying files…"
-msgstr "Copiando archivos…"
+msgstr "கோப்புகளை நகலெடுக்கும்…"
 
 #: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
-msgstr "Colección nueva"
+msgstr "புதிய சேகரிப்பு"
 
 #: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
-msgstr "Fecha de creación: %s"
+msgstr "உருவாக்கப்பட்டது: %s"
 
 #: src/font-manager/filters/Disabled.vala:28
 msgid "Disabled"
-msgstr "Desactivados"
+msgstr "முடக்கப்பட்டது"
 
 #: src/font-manager/filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
-msgstr "Tipos de letra que se han desactivado"
+msgstr "முடக்கப்பட்ட எழுத்துருக்கள்"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
-msgstr "Filtro basado en ortografías admitidas"
+msgstr "ஆதரிக்கப்பட்ட ஆர்த்தோகிராஃபிகளின் அடிப்படையில் வடிகட்டி"
 
 #: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
-msgstr "Sin clasificar"
+msgstr "வரிசைப்படுத்தப்படாதது"
 
 #: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
-msgstr "Tipos de letra no clasificados en ninguna colección"
+msgstr "எந்தவொரு சேகரிப்பிலும் எழுத்துருக்கள் இல்லை"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "De usuario"
+msgstr "பயனர்"
 
 #: src/font-manager/filters/UserFonts.vala:28
 msgid "Fonts available only to you"
-msgstr "Tipos de letra disponibles solo para el usuario actual"
+msgstr "எழுத்துருக்கள் உங்களுக்கு மட்டுமே கிடைக்கும்"
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
-msgstr "Tipo de letra para la interfaz"
+msgstr "இடைமுக எழுத்துரு"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr "Tipo de letra usado en toda la interfaz."
+msgstr "எழுத்துரு இடைமுகம் முழுவதும் பயன்படுத்தப்படுகிறது."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
-msgstr "Tipo de letra para los documentos"
+msgstr "ஆவண எழுத்துரு"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
-msgstr "Tipo de letra usado para leer los documentos."
+msgstr "ஆவணங்களைப் படிக்க பயன்படுத்தப்படுகிறது."
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
-msgstr "Tipo de letra monoespaciado"
+msgstr "மினிவேன்"
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
-"Tipo de letra monoespaciado (de anchura fija) para usar en aplicaciones como "
-"el terminal."
+"முனையங்கள் போன்ற இடங்களில் பயன்படுத்த மோனோச்பேச் (நிலையான அகல) எழுத்துரு."
 
 #: src/font-manager/preferences/Desktop.vala:54
 msgid "Text Scaling Factor"
-msgstr "Factor de escalado del texto"
+msgstr "உரை அளவிடுதல் காரணி"
 
 #: src/font-manager/preferences/Desktop.vala:55
 msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
 msgstr ""
-"Factor utilizado para ampliar o reducir la visualización del texto, sin "
-"cambiar el tamaño de la letra"
+"எழுத்துரு அளவை மாற்றாமல், உரை காட்சியை பெரிதாக்க அல்லது குறைக்க பயன்படுத்தப்படும் காரணி"
 
 #: src/font-manager/preferences/Desktop.vala:60
 #: src/font-manager/preferences/Desktop.vala:84
 msgid "Antialiasing"
-msgstr "Antidentado"
+msgstr "ஆன்டிலிசிங்"
 
 #: src/font-manager/preferences/Desktop.vala:61
 #: src/font-manager/preferences/Desktop.vala:85
 msgid "The type of antialiasing to use when rendering fonts."
-msgstr ""
-"El tipo de antidentado que se utiliza para representar los tipos de letra."
+msgstr "எழுத்துருக்களை வழங்கும்போது பயன்படுத்த வேண்டிய ஆன்டிலியாசிங் வகை."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
 msgid "RGBA order"
-msgstr "Orden RGBA"
+msgstr "RGBA ஆணை"
 
 #: src/font-manager/preferences/Desktop.vala:67
 #: src/font-manager/preferences/Desktop.vala:91
@@ -1713,75 +1691,73 @@ msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
-"El orden de los subpíxeles en una pantalla LCD. Solo se utiliza cuando el "
-"antidentado se configura como RGBA."
+"எல்சிடி திரையில் சப் படப்புள்ளி கூறுகளின் வரிசை; ஆன்டிலியாசிங் RGBA க்கு "
+"அமைக்கப்படும்போது மட்டுமே பயன்படுத்தப்படுகிறது."
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:78
 #: src/font-manager/preferences/Rendering.vala:78
 msgid "Hinting"
-msgstr "Optimización de formas"
+msgstr "குறிப்பு"
 
 #: src/font-manager/preferences/Desktop.vala:73
 #: src/font-manager/preferences/Desktop.vala:79
 msgid "The type of hinting to use when rendering fonts."
-msgstr ""
-"El tipo de optimización de formas que se utiliza para representar los tipos "
-"de letra."
+msgstr "எழுத்துருக்களை வழங்கும்போது பயன்படுத்த வேண்டிய குறிப்பின் வகை."
 
 #: src/font-manager/preferences/Desktop.vala:115
 msgid "GNOME desktop settings schema not found"
-msgstr "No se ha encontrado el esquema de configuración de escritorio de GNOME"
+msgstr "க்னோம் டெச்க்டாப் அமைப்புகள் ச்கீமா காணப்படவில்லை"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
-msgstr "Escala de grises"
+msgstr "கிரேச்கேல்"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
-msgstr "RGBA"
+msgstr "ஆர்.சி.பி.ஏ."
 
 #: src/font-manager/preferences/Desktop.vala:222
 #: src/font-manager/preferences/Display.vala:91
 msgid "Subpixel Geometry"
-msgstr "Geometría de subpíxeles"
+msgstr "சப் படப்புள்ளி வடிவியல்"
 
 #: src/font-manager/preferences/Display.vala:75
 msgid "Target DPI"
-msgstr "Puntos por pulgada objetivo"
+msgstr "இலக்கு டிபிஐ"
 
 #: src/font-manager/preferences/Display.vala:77
 msgid "Scale Factor"
-msgstr "Factor de escala"
+msgstr "அளவிலான காரணி"
 
 #: src/font-manager/preferences/Display.vala:83
 msgid "LCD Filter"
-msgstr "Filtro LCD"
+msgstr "எல்சிடி வடிகட்டி"
 
 #: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
-msgstr "Interfaz"
+msgstr "இடைமுகம்"
 
 #: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
-msgstr "Escritorio"
+msgstr "டெச்க்டாப்"
 
 #: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
-msgstr "Orígenes"
+msgstr "மூலங்கள்"
 
 #: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
-msgstr "Sustituciones"
+msgstr "மாற்றீடுகள்"
 
 #: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
-msgstr "Visualización"
+msgstr "காட்சி"
 
 #: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
-msgstr "Representación"
+msgstr "வழங்குதல்"
 
 #: src/font-manager/preferences/Preferences.vala:129
 msgid ""
@@ -1791,48 +1767,44 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Se generará un archivo de configuración Fontconfig a partir de estas "
-"configuraciones.\n"
+"இந்த அமைப்புகளிலிருந்து ஒரு FONTCONFIG உள்ளமைவு கோப்பு உருவாக்கப்படும்.\n"
 "\n"
-"Es posible que sea necesario reiniciar las aplicaciones en ejecución para "
-"reflejar cualquier cambio.\n"
+" எந்தவொரு மாற்றத்தையும் பிரதிபலிக்க பயன்பாடுகளை இயக்குவதற்கு மறுதொடக்கம் தேவைப்படலாம்.\n"
 "\n"
-"Ten en cuenta que no todos los entornos/aplicaciones respetarán estas "
-"configuraciones."
+" எல்லா சூழல்களும்/பயன்பாடுகளும் இந்த அமைப்புகளை மதிக்காது என்பதை நினைவில் கொள்க."
 
 #: src/font-manager/preferences/Preferences.vala:151
 msgid "Reset all values to default"
-msgstr "Restablecer la configuración a los valores predeterminados"
+msgstr "எல்லா மதிப்புகளையும் இயல்புநிலைக்கு மீட்டமைக்கவும்"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
-msgstr "Antidentado"
+msgstr "ஆன்டிஆசா"
 
 #: src/font-manager/preferences/Rendering.vala:81
 msgid "Enable Autohinter"
-msgstr "Activar optimizador de formas automático"
+msgstr "ஆட்டோஇண்டரை இயக்கு"
 
 #: src/font-manager/preferences/Rendering.vala:88
 msgid "Hinting Style"
-msgstr "Estilo de optimización de formas"
+msgstr "குறிப்பு பாணி"
 
 #: src/font-manager/preferences/Rendering.vala:90
 msgid "Use Embedded Bitmaps"
-msgstr "Utilizar mapas de bits incrustados"
+msgstr "உட்பொதிக்கப்பட்ட பிட்மாப்களைப் பயன்படுத்தவும்"
 
 #: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
-msgstr "Sustituciones de tipos de letra"
+msgstr "எழுத்துரு மாற்றீடுகள்"
 
 #: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
-msgstr "Sustituya fácilmente una familia tipográfica por otra."
+msgstr "ஒரு எழுத்துரு குடும்பத்தை இன்னொருவருக்கு எளிதாக மாற்றவும்."
 
 #: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
-"Para añadir una sustitución nueva, pulse en el botón Añadir de la barra de "
-"herramientas."
+"புதிய மாற்றீட்டைச் சேர்க்க கருவிப்பட்டியில் சேர் பொத்தானைக் சொடுக்கு செய்க."
 
 #: src/font-manager/preferences/UserActions.vala:229
 msgid ""
@@ -1843,125 +1815,121 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
-"Las acciones definidas aquí se añadirán al menú contextual de la lista de "
-"fuentes.\n"
+"இங்கே வரையறுக்கப்பட்ட செயல்கள் எழுத்துரு பட்டியல் சூழல் பட்டியலில் சேர்க்கப்படும்.\n"
 "\n"
-"Por defecto, la ruta de archivo de la fuente seleccionada se añadirá al "
-"final de la lista de argumentos.\n"
-"Para controlar dónde se inserta la ruta de archivo, utilice FILEPATH como "
-"marcador de posición.\n"
-"Si FAMILY o STYLE se encuentran en la lista de argumentos, también se "
-"sustituirán."
+" முன்னிருப்பாக தேர்ந்தெடுக்கப்பட்ட எழுத்துருவுக்கான கோப்பு பேத் வாத பட்டியலின் முடிவில் "
+"சேர்க்கப்படும்.\n"
+" ஃபைல்பாத் செருகப்படும் இடத்தை கட்டுப்படுத்த ஒரு ஒதுக்கிடமாக ஃபைலெபாத்தைப் பயன்படுத்துங்கள்."
+"\n"
+" வாத பட்டியலில் குடும்பம் அல்லது பாணி காணப்பட்டால் அவை மாற்றப்படும்."
 
 #: src/font-manager/preferences/UserActions.vala:242
 msgid "User Actions"
-msgstr "Acciones de usuario"
+msgstr "பயனர் செயல்கள்"
 
 #: src/font-manager/preferences/UserActions.vala:244
 msgid "Custom context menu entries"
-msgstr "Entradas personalizadas del menú contextual"
+msgstr "தனிப்பயன் சூழல் பட்டியல் உள்ளீடுகள்"
 
 #: src/font-manager/preferences/UserInterface.vala:37
 msgid "Up to 48 points (Linear Scaling)"
-msgstr "Hasta 48 puntos (Escalado lineal)"
+msgstr "48 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
 
 #: src/font-manager/preferences/UserInterface.vala:39
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr "Hasta 72 puntos (ratio común 1,1)"
+msgstr "72 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
 
 #: src/font-manager/preferences/UserInterface.vala:41
 msgid "Up to 96 points (Linear Scaling)"
-msgstr "Hasta 96 puntos (Escala Lineal)"
+msgstr "96 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
 
 #: src/font-manager/preferences/UserInterface.vala:43
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr "Hasta 96 puntos (ratio común 1,1)"
+msgstr "96 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
 
 #: src/font-manager/preferences/UserInterface.vala:45
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr "Hasta 120 puntos (1,2 ratio común)"
+msgstr "120 புள்ளிகள் வரை (1.2 பொதுவான விகிதம்)"
 
 #: src/font-manager/preferences/UserInterface.vala:47
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr "Hasta 144 puntos (1,3 ratio común)"
+msgstr "144 புள்ளிகள் வரை (1.3 பொதுவான விகிதம்)"
 
 #: src/font-manager/preferences/UserInterface.vala:49
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr "Hasta 192 puntos (1,4 ratio común)"
+msgstr "192 புள்ளிகள் வரை (1.4 பொதுவான விகிதம்)"
 
 #: src/font-manager/preferences/UserInterface.vala:51
 msgid "Custom Size Settings"
-msgstr "Ajustes personalizados del tamaño"
+msgstr "தனிப்பயன் அளவு அமைப்புகள்"
 
 #: src/font-manager/preferences/UserInterface.vala:195
 msgid "Waterfall Preview Size Settings"
-msgstr "Configuración del tamaño de la vista previa en cascada"
+msgstr "நீர்வீழ்ச்சி முன்னோட்ட அளவு அமைப்புகள்"
 
 #: src/font-manager/preferences/UserInterface.vala:199
 msgid "Higher values may adversely affect performance"
-msgstr "Los valores más altos pueden afectar negativamente al rendimiento"
+msgstr "அதிக மதிப்புகள் செயல்திறனை மோசமாக பாதிக்கலாம்"
 
 #: src/font-manager/preferences/UserInterface.vala:202
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "El tamaño de la fuente mínimo en la vista previa en cascada"
+msgstr "குறைந்தபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
 
 #: src/font-manager/preferences/UserInterface.vala:204
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr ""
-"Obtenga una vista previa de la proporción común del tamaño de fuente en "
-"cascada"
+msgstr "நீர்வீழ்ச்சி முன்னோட்டம் புள்ளி அளவு பொதுவான விகிதம்"
 
 #: src/font-manager/preferences/UserInterface.vala:206
 msgid "Maximum Waterfall Preview Point Size"
-msgstr "El tamaño máximo de la fuente en la vista previa en cascada"
+msgstr "அதிகபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
 
 #: src/font-manager/preferences/UserInterface.vala:234
 msgid "Show line size"
-msgstr "Mostrar el tamaño de la línea"
+msgstr "வரி அளவைக் காட்டு"
 
 #: src/font-manager/preferences/UserInterface.vala:273
 msgid "Selected setting requires restart to apply"
-msgstr "Es necesario reiniciar para aplicar la configuración seleccionada"
+msgstr "தேர்ந்தெடுக்கப்பட்ட அமைப்பிற்கு விண்ணப்பிக்க மறுதொடக்கம் தேவை"
 
 #: src/font-manager/preferences/UserInterface.vala:274
 msgid "Changes will take effect next time the application is started"
-msgstr "Los cambios se aplicarán la próxima vez que inicies la aplicación"
+msgstr "அடுத்த முறை விண்ணப்பம் தொடங்கும்போது மாற்றங்கள் நடைமுறைக்கு வரும்"
 
 #: src/font-manager/preferences/UserInterface.vala:287
 msgid "Wide Layout"
-msgstr "Disposición amplia"
+msgstr "பரந்த தளவமைப்பு"
 
 #: src/font-manager/preferences/UserInterface.vala:290
 msgid "Only When Maximized"
-msgstr "Solo con la ventana maximizada"
+msgstr "அதிகரிக்கும்போது மட்டுமே"
 
 #: src/font-manager/preferences/UserInterface.vala:292
 msgid "Enable Animations"
-msgstr "Activar animaciones"
+msgstr "அனிமேசன்களை இயக்கவும்"
 
 #: src/font-manager/preferences/UserInterface.vala:293
 msgid "Prefer Dark Theme"
-msgstr "Preferir tema oscuro"
+msgstr "இருண்ட கருப்பொருளை விரும்புங்கள்"
 
 #: src/font-manager/preferences/UserInterface.vala:295
 msgid "Use Adwaita Stylesheet"
-msgstr "Utilizar la hoja estilo Adwaita"
+msgstr "அட்வைட்டா ச்டைல்சீட் பயன்படுத்தவும்"
 
 #: src/font-manager/preferences/UserInterface.vala:297
 msgid "Raised"
-msgstr "Elevado"
+msgstr "உயர்த்தப்பட்டது"
 
 #: src/font-manager/preferences/UserInterface.vala:297
 msgid "Flat"
-msgstr "Plano"
+msgstr "கிடைவளைவு"
 
 #: src/font-manager/preferences/UserInterface.vala:300
 msgid "Titlebar Button Style"
-msgstr "Estilo de botones de barra de título"
+msgstr "Titlebar பொத்தான் பாணி"
 
 #: src/font-manager/preferences/UserInterface.vala:301
 msgid "Display line size in Waterfall Preview"
-msgstr "Mostrar el tamaño de fuente de la línea en la vista previa en cascada"
+msgstr "நீர்வீழ்ச்சி முன்னோட்டத்தில் வரி அளவைக் காண்பி"
 
 #: src/font-manager/preferences/UserSources.vala:143
 msgid ""
@@ -1970,458 +1938,454 @@ msgid ""
 "They will not be visible to other applications until the source is actually "
 "enabled."
 msgstr ""
-"Las fuentes en cualquier carpeta enumerada aquí estarán disponibles dentro "
-"de la aplicación.\n"
+"இங்கே பட்டியலிடப்பட்டுள்ள எந்த கோப்புறைகளிலும் எழுத்துருக்கள் பயன்பாட்டிற்குள் கிடைக்கும்.\n"
 "\n"
-"No serán visibles para otras aplicaciones hasta que la fuente esté realmente "
-"habilitada."
+" மூலமானது உண்மையில் இயக்கப்படும் வரை அவை மற்ற பயன்பாடுகளுக்கு தெரியாது."
 
 #: src/font-manager/preferences/UserSources.vala:155
 msgid "Easily add or preview fonts without actually installing them."
-msgstr "Añada tipos de letra fácilmente o previsualícelos sin instalarlos."
+msgstr ""
+"எழுத்துருக்களை உண்மையில் நிறுவாமல் எளிதில் சேர்க்கவும் அல்லது முன்னோட்டமிடவும்."
 
 #: src/font-manager/preferences/UserSources.vala:156
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"Para añadir una ubicación nueva, arrastre una carpeta aquí o pulse en el "
-"botón de añadir de la barra de herramientas."
+"புதிய மூலத்தைச் சேர்க்க, ஒரு கோப்புறையை இந்த பகுதியில் இழுக்கவும் அல்லது கருவிப்பட்டியில் "
+"உள்ள சேர் பொத்தானைக் சொடுக்கு செய்யவும்."
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
-msgstr "Acceso a la red desactivado"
+msgstr "பிணைய அணுகல் முடக்கப்பட்டுள்ளது"
 
 #: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
-msgstr "Contacte con el administrador del sistema para solicitar acceso."
+msgstr "அணுகலைக் கோர உங்கள் கணினி நிர்வாகியைத் தொடர்பு கொள்ளுங்கள்."
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
-msgstr "Red desconectada"
+msgstr "பிணையம் ஆஃப்லைனில்"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
-msgstr ""
-"Hace falta una conexión a internet activa para acceder al catálogo de Google "
-"Fonts"
+msgstr "Google எழுத்துருக்கள் பட்டியலை அணுக செயலில் உள்ள இணைய இணைப்பு தேவை"
 
 #: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
-msgstr "Error en el cliente"
+msgstr "கிளையன்ட் பிழை"
 
 #: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
-"Pruebe a reiniciar la aplicación. Si el problema persiste, informe del "
-"problema."
+"பயன்பாட்டை மறுதொடக்கம் செய்ய முயற்சிக்கவும். சிக்கல் தொடர்ந்தால், தயவுசெய்து ஒரு பிழையைத் "
+"தாக்கல் செய்யுங்கள்."
 
 #: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
-msgstr "Error en el servidor"
+msgstr "சேவையக பிழை"
 
 #. Sample strings used here should be sourced from https://fonts.google.com/
 #: src/font-manager/web/google/LanguageData.vala:33
 msgid "Adlam"
-msgstr "Adlam"
+msgstr "அட்லாம்"
 
 #: src/font-manager/web/google/LanguageData.vala:34
 msgid "Anatolian Hieroglyphs"
-msgstr "Anatolian Hieroglyphs"
+msgstr "அனடோலியன் ஐரோகிளிஃப்ச்"
 
 #: src/font-manager/web/google/LanguageData.vala:37
 msgid "Avestan"
-msgstr "Avestan"
+msgstr "அவெச்டன்"
 
 #: src/font-manager/web/google/LanguageData.vala:40
 msgid "Bassa Vah"
-msgstr "Bassa Vah"
+msgstr "பாச்சா வா"
 
 #: src/font-manager/web/google/LanguageData.vala:41
 msgid "Batak"
-msgstr "Batak"
+msgstr "படக்"
 
 #: src/font-manager/web/google/LanguageData.vala:43
 msgid "Bhaiksuki"
-msgstr "Bhaiksuki"
+msgstr "பெய்குகி"
 
 #: src/font-manager/web/google/LanguageData.vala:44
 msgid "Brahmi"
-msgstr "Brahmi"
+msgstr "பிராமி"
 
 #: src/font-manager/web/google/LanguageData.vala:45
 msgid "Braille"
-msgstr "Braille"
+msgstr "பிரெய்ல்"
 
 #. { N_("Buhid"), "buhid", "" },
 #: src/font-manager/web/google/LanguageData.vala:48
 msgid "Caucasian Albanian"
-msgstr "Albania caucásica"
+msgstr "காகசியன் அல்பேனிய"
 
 #: src/font-manager/web/google/LanguageData.vala:49
 msgid "Canadian Aboriginal"
-msgstr "Aborigen canadiense"
+msgstr "கனேடிய பழங்குடி"
 
 #: src/font-manager/web/google/LanguageData.vala:54
 msgid "Chinese (Hong Kong)"
-msgstr "Chino (Hong Kong)"
+msgstr "சீன (ஆங்காங்)"
 
 #: src/font-manager/web/google/LanguageData.vala:55
 msgid "Chinese (Simplified)"
-msgstr "Chino (simplificado)"
+msgstr "சீன (எளிமைப்படுத்தப்பட்ட)"
 
 #: src/font-manager/web/google/LanguageData.vala:56
 msgid "Chinese (Traditional)"
-msgstr "Chino (tradicional)"
+msgstr "சீன (பாரம்பரிய)"
 
 #: src/font-manager/web/google/LanguageData.vala:57
 msgid "Chorasmian"
-msgstr "Chorasmian"
+msgstr "கோராச்மியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:59
 msgid "Cuneiform"
-msgstr "Cuneiforme sumerio-acadio"
+msgstr "கியூனிஃபார்ம்"
 
 #: src/font-manager/web/google/LanguageData.vala:60
 msgid "Cypriot"
-msgstr "Chipre"
+msgstr "சைப்ரியாட்"
 
 #: src/font-manager/web/google/LanguageData.vala:61
 msgid "Cypro Minoan"
-msgstr "Chipriota-minoico"
+msgstr "சை புரோ மினோவான்"
 
 #: src/font-manager/web/google/LanguageData.vala:62
 msgid "Cyrillic"
-msgstr "Cirílico"
+msgstr "சிரிலிக்"
 
 #: src/font-manager/web/google/LanguageData.vala:63
 msgid "Cyrillic Extended"
-msgstr "Extensión cirílica"
+msgstr "சிரிலிக் நீட்டிக்கப்பட்டது"
 
 #: src/font-manager/web/google/LanguageData.vala:64
 msgid "Deseret"
-msgstr "Deseret"
+msgstr "டெசரேட்"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr "Estenografía duployeana"
+msgstr "டூவ்லிப்லேன்"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr "Elbasan (albanés del siglo XVIII)"
+msgstr "எல்பாசன்"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
-msgstr "Elimaico"
+msgstr "எல்மாயிக்"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
-msgstr "Grantha"
+msgstr "கிரந்தா"
 
 #: src/font-manager/web/google/LanguageData.vala:75
 msgid "Greek"
-msgstr "Griego"
+msgstr "கிரேக்கம்"
 
 #: src/font-manager/web/google/LanguageData.vala:76
 msgid "Greek Extended"
-msgstr "Griego extendido"
+msgstr "கிரேக்கம் நீட்டிக்கப்பட்டது"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
-msgstr "Gunjala Gondi"
+msgstr "குஞ்சலா கோண்டி"
 
 #: src/font-manager/web/google/LanguageData.vala:80
 msgid "Hanifi Rohingya"
-msgstr "Hanifi Rohingya"
+msgstr "அனிஃபி ரோஇங்கியா"
 
 #: src/font-manager/web/google/LanguageData.vala:81
 msgid "Hanunoo"
-msgstr "Hanunó'o (Mangyan)"
+msgstr "அனூனூ"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
-msgstr "Arameo hatreo"
+msgstr "அத்ரான்"
 
 #: src/font-manager/web/google/LanguageData.vala:84
 msgid "Imperial Aramaic"
-msgstr "Arameo imperial"
+msgstr "இம்பீரியல் அராமைக்"
 
 #: src/font-manager/web/google/LanguageData.vala:85
 msgid "Indic Siyaq Numbers"
-msgstr "Caracteres Unicode/Números índicos siyaq"
+msgstr "சியா எண்கள்"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr "Escritura pelvi"
+msgstr "கல்வெட்டல் பாலவி"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr "Partio inscripcional"
+msgstr "கல்வெட்டல் பார்த்தியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
-msgstr "Japonés"
+msgstr "சப்பானியர்கள்"
 
 #: src/font-manager/web/google/LanguageData.vala:93
 msgid "Kawi"
-msgstr "Kawi"
+msgstr "காவி"
 
 #: src/font-manager/web/google/LanguageData.vala:96
 msgid "Khojki"
-msgstr "Alfabeto khojki"
+msgstr "கோச்கி"
 
 #: src/font-manager/web/google/LanguageData.vala:97
 msgid "Khudawadi"
-msgstr "Alfabeto khudabadi"
+msgstr "குடாவாடி"
 
 #: src/font-manager/web/google/LanguageData.vala:98
 msgid "Korean"
-msgstr "Coreano"
+msgstr "கொரிய"
 
 #: src/font-manager/web/google/LanguageData.vala:101
 msgid "Latin"
-msgstr "Latino"
+msgstr "லத்தீன்"
 
 #: src/font-manager/web/google/LanguageData.vala:102
 msgid "Latin Extended"
-msgstr "Latín extendido"
+msgstr "லத்தீன் நீட்டிக்கப்பட்டது"
 
 #: src/font-manager/web/google/LanguageData.vala:104
 msgid "Linear A"
-msgstr "Lineal A (escritura minoica de Creta)"
+msgstr "நேரியல் எ"
 
 #: src/font-manager/web/google/LanguageData.vala:105
 msgid "Linear B"
-msgstr "Lineal B"
+msgstr "நேரியல் ஆ"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
-msgstr "Lisu"
+msgstr "லிசு"
 
 #: src/font-manager/web/google/LanguageData.vala:107
 msgid "Lycian"
-msgstr "Alfabeto licio"
+msgstr "லைசியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"
-msgstr "Modo lidio"
+msgstr "லிடியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:109
 msgid "Mahajani"
-msgstr "Idioma marwari (Mahajani)"
+msgstr "மஆசனி"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
-msgstr "Idioma mandeo"
+msgstr "மாண்டாயிக்"
 
 #: src/font-manager/web/google/LanguageData.vala:112
 msgid "Manichaean"
-msgstr "Maniqueísmo"
+msgstr "மனிச்சேயன்"
 
 #: src/font-manager/web/google/LanguageData.vala:113
 msgid "Math"
-msgstr "Matemático"
+msgstr "கணிதம்"
 
 #: src/font-manager/web/google/LanguageData.vala:114
 msgid "Marchen"
-msgstr "Marchen (escritura tibetana Zhangzung)"
+msgstr "மார்ச்சன்"
 
 #: src/font-manager/web/google/LanguageData.vala:115
 msgid "Masaram Gondi"
-msgstr "Masaram Gondi (escritura india Gondi)"
+msgstr "மசராம் கோண்டி"
 
 #: src/font-manager/web/google/LanguageData.vala:116
 msgid "Mayan Numerals"
-msgstr "Numeración Maya"
+msgstr "மாயன் எண்கள்"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
-msgstr "Medefaidrin"
+msgstr "மெடெஃபைட்ரின்"
 
 #: src/font-manager/web/google/LanguageData.vala:118
 msgid "Meetei Mayek"
-msgstr "Meitei"
+msgstr "மீட்டி மேக்"
 
 #: src/font-manager/web/google/LanguageData.vala:120
 msgid "Meroitic"
-msgstr "Meroítico"
+msgstr "மெரோய்டிக்"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
-msgstr "Modi (escritura india de Maharashtra)"
+msgstr "மோடி"
 
 #: src/font-manager/web/google/LanguageData.vala:126
 msgid "Mro"
-msgstr "Mro (escritura del idioma birmano, mro-khimi de Myanmar)"
+msgstr "ம்ரோ"
 
 #: src/font-manager/web/google/LanguageData.vala:127
 msgid "Multani"
-msgstr "Multani (escritura histórica de Saraiki)"
+msgstr "முல்தானி"
 
 #: src/font-manager/web/google/LanguageData.vala:128
 msgid "Music"
-msgstr "Música"
+msgstr "இசை"
 
 #: src/font-manager/web/google/LanguageData.vala:130
 msgid "Nabataean"
-msgstr "Nabateo"
+msgstr "நபாட்டேயன்"
 
 #: src/font-manager/web/google/LanguageData.vala:131
 msgid "Nag Mundari"
-msgstr "Nag Mundari (escritura Mundari)"
+msgstr "நாக் முண்டாரி"
 
 #: src/font-manager/web/google/LanguageData.vala:132
 msgid "Nandinagari"
-msgstr "Nandinagari"
+msgstr "நந்திநகரி"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
-msgstr "Newa"
+msgstr "நியூவா"
 
 #. { N_(""), "nko", "" },
 #: src/font-manager/web/google/LanguageData.vala:136
 msgid "Nüshu"
-msgstr "Nüshu"
+msgstr "nüshu"
 
 #: src/font-manager/web/google/LanguageData.vala:139
 msgid "Old Hungarian"
-msgstr "Alfabeto húngaro antiguo"
+msgstr "பழைய அங்கேரியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:141
 msgid "Old North Arabian"
-msgstr "Árabe antiguo septentrional"
+msgstr "பழைய வட அரேபிய"
 
 #: src/font-manager/web/google/LanguageData.vala:142
 msgid "Old Permic"
-msgstr "Pérmico antiguo"
+msgstr "பழைய பெர்மிக்"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
-msgstr "Persa antiguo"
+msgstr "பழைய பாரசீக"
 
 #: src/font-manager/web/google/LanguageData.vala:144
 msgid "Old Sogdian"
-msgstr "Alfabeto sogdiano"
+msgstr "பழைய சோக்டியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 msgid "Old Turkic"
-msgstr "Antiguo alfabeto turco"
+msgstr "பழைய துருக்கிய"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
-msgstr "Osage"
+msgstr "ஓசேச்"
 
 #: src/font-manager/web/google/LanguageData.vala:150
 msgid "Pahawh Hmong"
-msgstr "Pahawh Hmong"
+msgstr "பஆவ் அமாங்"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
-msgstr "Palmyrene"
+msgstr "பால்மிரீன்"
 
 #: src/font-manager/web/google/LanguageData.vala:152
 msgid "Pau Cin Hau"
-msgstr "Pau Cin Hau"
+msgstr "பாவ் சின் ஆவ்"
 
 #: src/font-manager/web/google/LanguageData.vala:154
 msgid "Phoenician"
-msgstr "Fenicio"
+msgstr "ஃபீனீசியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:155
 msgid "Psalter Pahlavi"
-msgstr "Salmo Pahlavi (escrito en papel persa medio)"
+msgstr "சால்டர் பாலவி"
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
-msgstr "Samaritano"
+msgstr "சமாரியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:160
 msgid "Sharada"
-msgstr "Alfabeto sharada"
+msgstr "சராதா"
 
 #: src/font-manager/web/google/LanguageData.vala:161
 msgid "Shavian"
-msgstr "Shaviano"
+msgstr "சாவியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:162
 msgid "Siddham"
-msgstr "Siddham"
+msgstr "சித்தம்"
 
 #: src/font-manager/web/google/LanguageData.vala:163
 msgid "SignWriting"
-msgstr "SignWriting"
+msgstr "கையொப்பமிடுதல்"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
-msgstr "Sogdiano"
+msgstr "சோக்டியன்"
 
 #: src/font-manager/web/google/LanguageData.vala:166
 msgid "Sora Sompeng"
-msgstr "Sora Sompeng"
+msgstr "சோரா சோம்பெங்"
 
 #: src/font-manager/web/google/LanguageData.vala:167
 msgid "Soyombo"
-msgstr "Símbolo Soyombo"
+msgstr "சோயோம்போ"
 
 #: src/font-manager/web/google/LanguageData.vala:172
 msgid "Tagalog"
-msgstr "Tagalo"
+msgstr "டாக்லாக்"
 
 #: src/font-manager/web/google/LanguageData.vala:173
 msgid "Tagbanwa"
-msgstr "Tagbanwa"
+msgstr "தாக்பன்வா"
 
 #. TRANSLATORS : The replacement character here refers to a language name.
 #: src/font-manager/web/google/LanguageData.vala:190
 #, c-format
 msgid "No sample for %s available"
-msgstr "No hay ningún ejemplo disponible para %s"
+msgstr "%s கிடைக்கவில்லை"
 
 #: src/font-manager/web/google/LanguageData.vala:192
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
-"Por favor, presente una incidencia solicitando una actualización de los "
-"ejemplos disponibles."
+"கிடைக்கக்கூடிய மாதிரிகளுக்கு புதுப்பிப்பைக் கோரும் சிக்கலை தாக்கல் செய்யுங்கள்."
 
 #: src/font-manager/web/google/PreviewPage.vala:352
-#, c-format
+#, c-format, fuzzy
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i Muestra de Idioma Disponible "
-msgstr[1] "%i Muestras de Idiomas Disponibles"
+msgstr[0] "%நான் மொழி மாதிரி கிடைக்கிறது "
+msgstr[1] "%நான் மொழி மாதிரிகள் கிடைக்கின்றன"
 
 #: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
-msgstr "Extraclara"
+msgstr "கூடுதல்"
 
 #: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
-msgstr "Seminegrita"
+msgstr "அரைகுறை"
 
 #: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
-msgstr "Extranegrita"
+msgstr "Exterold"
 
 #: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
-msgstr "Negra"
+msgstr "கருப்பு"
 
 #: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
-msgstr "No se seleccionó ningún archivo"
+msgstr "எந்த கோப்பும் தேர்ந்தெடுக்கப்படவில்லை"
 
 #: src/font-viewer/MainWindow.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
-msgstr "O el tipo de archivo no es compatible."
+msgstr "அல்லது ஆதரிக்கப்படாத பைல்டைப்."
 
 #: src/font-viewer/MainWindow.vala:137
 msgid "System Font"
-msgstr "Fuente del sistema"
+msgstr "கணினி எழுத்துரு"
 
 #: src/font-viewer/MainWindow.vala:139
 msgid ""
@@ -2433,116 +2397,115 @@ msgid ""
 "the system administrator to remove it or use a font management application "
 "to disable it."
 msgstr ""
-"El archivo de fuentes seleccionado está instalado en un directorio del "
-"sistema o el usuario actual no puede escribir en él.\n"
+"தேர்ந்தெடுக்கப்பட்ட எழுத்துரு கோப்பு ஒரு கணினி கோப்பகத்தில் நிறுவப்பட்டுள்ளது அல்லது தற்போதை"
+"ய பயனரால் எழுதப்படவில்லை.\n"
 "\n"
-"Si deseas eliminar esta fuente de la lista de fuentes disponibles, utiliza "
-"el administrador de paquetes del sistema para eliminar el paquete que "
-"contiene este archivo de fuentes, solicita al administrador del sistema que "
-"lo elimine o utilice una aplicación de administración de fuentes para "
-"deshabilitarlo."
+" கிடைக்கக்கூடிய எழுத்துருக்களின் பட்டியலிலிருந்து இந்த எழுத்துருவை அகற்ற விரும்பினால், இந்"
+"த எழுத்துரு கோப்பைக் கொண்ட தொகுப்பை அகற்ற கணினி தொகுப்பு மேலாளரைப் பயன்படுத்தவும், கணினி"
+" நிர்வாகியிடம் அதை அகற்றும்படி கேளுங்கள் அல்லது அதை முடக்க எழுத்துரு மேலாண்மை பயன்பாட்டைப்"
+" பயன்படுத்தவும்."
 
 #: src/font-viewer/MainWindow.vala:142
 msgid "Newer version already installed"
-msgstr "Ya se ha instalado una versión más reciente"
+msgstr "புதிய பதிப்பு ஏற்கனவே நிறுவப்பட்டுள்ளது"
 
 #: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
 msgid "Click to overwrite"
-msgstr "Haz clic para sobrescribir"
+msgstr "மேலெழுத சொடுக்கு"
 
 #: src/font-viewer/MainWindow.vala:147
 msgid "Update Font"
-msgstr "Actualizar tipo de letra"
+msgstr "எழுத்துருவைப் புதுப்பிக்கவும்"
 
 #: src/font-viewer/MainWindow.vala:152
 msgid "Remove Font"
-msgstr "Desinstalar tipo de letra"
+msgstr "எழுத்துருவை அகற்று"
 
 #: src/font-viewer/MainWindow.vala:156
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
-msgstr "Instalar tipo de letra"
+msgstr "எழுத்துருவை நிறுவவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:11
 msgid "General"
-msgstr "General"
+msgstr "பொது"
 
 #: src/font-manager/gtk/help-overlay.ui:23
 msgid "Increase preview size"
-msgstr "Aumentar tamaño de previsualización"
+msgstr "முன்னோட்ட அளவை அதிகரிக்கவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:30
 msgid "Decrease preview size"
-msgstr "Disminuir tamaño de previsualización"
+msgstr "முன்னோட்ட அளவைக் குறைக்கவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:37
 msgid "Reset preview size"
-msgstr "Restablecer tamaño de previsualización"
+msgstr "முன்னோட்ட அளவை மீட்டமைக்கவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:44
 msgid "Focus search entry"
-msgstr "Entrada de búsqueda focal"
+msgstr "தேடல் நுழைவு கவனம் செலுத்துங்கள்"
 
 #: src/font-manager/gtk/help-overlay.ui:51
 msgid "Reload"
-msgstr "Recargar"
+msgstr "ஏற்றவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:58
 #: src/font-manager/gtk/help-overlay.ui:65
 msgid "Quit the application"
-msgstr "Salir de la aplicación"
+msgstr "விண்ணப்பத்தை விட்டு வெளியேறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:73
 msgid "Mode"
-msgstr "Modo"
+msgstr "பயன்முறை"
 
 #: src/font-manager/gtk/help-overlay.ui:78
 msgid "Switch to Manage mode"
-msgstr "Cambiar al modo de gestión"
+msgstr "நிர்வகி பயன்முறைக்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:85
 msgid "Switch to Browse mode"
-msgstr "Cambiar al modo de exploración"
+msgstr "உலாவு பயன்முறைக்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:92
 msgid "Switch to Compare mode"
-msgstr "Cambiar al modo de comparación"
+msgstr "ஒப்பீட்டு பயன்முறைக்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:99
 msgid "Switch to Google Fonts mode"
-msgstr "Cambiar al modo Google Fonts"
+msgstr "Google எழுத்துருக்கள் பயன்முறைக்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
-msgstr "Modo de vista previa"
+msgstr "முன்னோட்டம் பயன்முறை"
 
 #: src/font-manager/gtk/help-overlay.ui:112
 msgid "Switch to Standard preview"
-msgstr "Cambiar a previsualización estándar"
+msgstr "நிலையான முன்னோட்டத்திற்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:119
 msgid "Switch to Waterfall preview"
-msgstr "Cambiar a previsualización en cascada"
+msgstr "நீர்வீழ்ச்சி முன்னோட்டத்திற்கு மாறவும்"
 
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
-msgstr "Cambiar a previsualización de cuerpo de texto"
+msgstr "உடல் உரை முன்னோட்டத்திற்கு மாறவும்"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:97
 msgid "Increase tile size"
-msgstr "Aumentar el tamaño del mosaico"
+msgstr "ஓடு அளவை அதிகரிக்கவும்"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:106
 msgid "Decrease tile size"
-msgstr "Disminuir tamaño del mosaico"
+msgstr "ஓடு அளவைக் குறைக்கவும்"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:146
 msgid "Toggle search entry"
-msgstr "Alternar la búsqueda"
+msgstr "தேடல் உள்ளீட்டை மாற்றவும்"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:155
 msgid "Toggle preview panel"
-msgstr "Alternar panel de vista previa"
+msgstr "முன்னோட்டக் குழுவை நிலைநிறுத்துங்கள்"
 
 #: src/font-manager/ui/font-manager-browse-preview.ui:29
 msgid ""
@@ -2551,166 +2514,165 @@ msgid ""
 "Disabling will prevent the selected family from being used by other "
 "applications."
 msgstr ""
-"Estado de la familia seleccionada.\n"
+"தேர்ந்தெடுக்கப்பட்ட குடும்பத்தின் நிலை.\n"
 "\n"
-"Al deshabilitarlo se evitará que la familia seleccionada sea utilizada por "
-"otras aplicaciones."
+" முடக்குவது தேர்ந்தெடுக்கப்பட்ட குடும்பத்தை மற்ற பயன்பாடுகளால் பயன்படுத்துவதைத் தடுக்கும்."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
-msgstr "Nombre de la colección"
+msgstr "சேகரிப்பு பெயர்"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:45
 msgid "_Rename"
-msgstr "_Renombrar"
+msgstr "_ரினேம்"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:22
 msgid "Add selected font to comparison"
-msgstr "Añadir tipo de letra seleccionado a la comparación"
+msgstr "ஒப்பிடுவதற்கு தேர்ந்தெடுக்கப்பட்ட எழுத்துருவைச் சேர்க்கவும்"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:35
 msgid "Remove selected font from comparison"
-msgstr "Quitar tipo de letra seleccionado de la comparación"
+msgstr "ஒப்பீட்டிலிருந்து தேர்ந்தெடுக்கப்பட்ட எழுத்துருவை அகற்று"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:47
 msgid "Pinned Comparisons"
-msgstr "Comparaciones ancladas"
+msgstr "பின் ஒப்பீடுகள்"
 
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "ரத்துசெய்"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
-msgstr "Buscar familias…"
+msgstr "குடும்பங்களைத் தேடுங்கள்…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:29
 msgid "Search Orthographies…"
-msgstr "Buscar ortografías…"
+msgstr "ஆர்த்தோகிராஃபிகளைத் தேடுங்கள்…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:72
 msgid "Minimum Coverage"
-msgstr "Cobertura mínima"
+msgstr "குறைந்தபட்ச பாதுகாப்பு"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:101
 msgid "Deselect All"
-msgstr "No seleccionar nada"
+msgstr "அனைத்தையும் தேர்வு செய்யுங்கள்"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:53
 msgid "Clear selected filter"
-msgstr "Borrar el filtro seleccionado"
+msgstr "தேர்ந்தெடுக்கப்பட்ட வடிப்பானை அழிக்கவும்"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
 msgid "Created :"
-msgstr "Creado :"
+msgstr "உருவாக்கப்பட்டது:"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
-msgstr "Guardar comparación actual"
+msgstr "தற்போதைய ஒப்பீட்டைச் சேமிக்கவும்"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:45
 msgid "Remove selected comparison"
-msgstr "Quitar comparación seleccionada"
+msgstr "தேர்ந்தெடுக்கப்பட்ட ஒப்பீட்டை அகற்று"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:73
 msgid "Restore selected comparison"
-msgstr "Restaurar comparación seleccionada"
+msgstr "தேர்ந்தெடுக்கப்பட்ட ஒப்பீட்டை மீட்டெடுங்கள்"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:13
 msgid "Select fonts to remove"
-msgstr "Seleccionar los tipos para eliminar"
+msgstr "அகற்ற எழுத்துருக்களைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
 msgid "Delete"
-msgstr "Borrar"
+msgstr "நீக்கு"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
-msgstr "Categorías"
+msgstr "வகைகள்"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 msgid "Smart Collections"
-msgstr "Colecciones inteligentes"
+msgstr "அறிவுள்ள சேகரிப்புகள்"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
 msgid "Sort Order"
-msgstr "Orden de clasificación"
+msgstr "வரிசைப்படுத்தும் முறை"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
-msgstr "Colecciones"
+msgstr "சேகரிப்புகள்"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:22
 msgid "Enter target family"
-msgstr "Familia objetivo"
+msgstr "இலக்கு குடும்பத்தை உள்ளிடவும்"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
-msgstr "Añadir una sustitución"
+msgstr "மாற்று சேர்க்கவும்"
 
 #: src/font-manager/ui/font-manager-substitute.ui:34
 msgid "Remove substitute"
-msgstr "Eliminar sustituciones"
+msgstr "மாற்றீட்டை அகற்று"
 
 #: src/font-manager/ui/font-manager-substitute.ui:35
 msgid "Enter substitute family"
-msgstr "Familia sustituta"
+msgstr "மாற்று குடும்பத்தை உள்ளிடவும்"
 
 #: src/font-manager/ui/font-manager-substitute.ui:51
 msgid "prefer"
-msgstr "preferir"
+msgstr "விரும்புங்கள்"
 
 #: src/font-manager/ui/font-manager-substitute.ui:52
 msgid "accept"
-msgstr "aceptar"
+msgstr "ஏற்றுக்கொள்"
 
 #: src/font-manager/ui/font-manager-substitute.ui:53
 msgid "default"
-msgstr "predeterminado"
+msgstr "இயல்புநிலை"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:27
 msgid "Comment"
-msgstr "Comentario"
+msgstr "கருத்து"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:42
 msgid "Executable"
-msgstr "Ejecutable"
+msgstr "இயங்கக்கூடிய"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:57
 msgid "Arguments"
-msgstr "Argumentos"
+msgstr "வாதங்கள்"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:39
 msgid "Newest"
-msgstr "Más recientes"
+msgstr "புதியது"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:40
 msgid "Most Popular"
-msgstr "Más populares"
+msgstr "மிகவும் பிரபலமானது"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
-msgstr "En tendencia"
+msgstr "டிரெண்டிங்"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
-msgstr "Con gracias"
+msgstr "செரிஃப்"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
 msgid "Sans Serif"
-msgstr "De palo seco"
+msgstr "செரிஃப் இல்லாமல்"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
 msgid "Handwriting"
-msgstr "Manuscritura"
+msgstr "கையெழுத்து"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
 msgid "Category"
-msgstr "Categoría"
+msgstr "வகை"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
 msgid "4+"
@@ -2726,195 +2688,12 @@ msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
 msgid "Variations"
-msgstr "Variaciones"
+msgstr "மாறுபாடுகள்"
 
 #: src/font-viewer/font-viewer-main-window.ui:30
 msgid "Preview font files before installing them."
-msgstr "Previsualice los archivos de tipos de letra antes de instalarlos."
+msgstr "எழுத்துரு கோப்புகளை நிறுவுவதற்கு முன் முன்னோட்டமிடுங்கள்."
 
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
-msgstr "Para previsualizar un tipo de letra, arrástrelo aquí."
-
-#, fuzzy
-#~ msgid "Font Manager project"
-#~ msgstr "Gestor de fuentes"
-
-#~ msgid "Select Destination"
-#~ msgstr "Seleccionar el destino"
-
-#~ msgid "_Open"
-#~ msgstr "_Abrir"
-
-#~ msgid "Remove selected font from collection"
-#~ msgstr "Quitar tipos de letra seleccionados de la colección"
-
-#~ msgid "Updating Database — Metadata"
-#~ msgstr "Actualizando la base de datos… metadatos"
-
-#~ msgid "Updating Database — Orthography"
-#~ msgstr "Actualizando la base de datos… ortografía"
-
-#~ msgid "About"
-#~ msgstr "Acerca de"
-
-#~ msgid "Select Exported Data"
-#~ msgstr "Seleccionar datos exportados"
-
-#~ msgid "Settings saved to file."
-#~ msgstr "Se ha guardado la configuración en un archivo."
-
-#~ msgid "Removed configuration file."
-#~ msgstr "Se ha eliminado el archivo de configuración."
-
-#~ msgid " Size Restrictions "
-#~ msgstr " Restricciones de tamaño "
-
-#~ msgid " Apply settings to point sizes "
-#~ msgstr " Aplicar la configuración a los tamaños de punto "
-
-#~ msgid "Smaller than"
-#~ msgstr "Menor que"
-
-#~ msgid "Larger than"
-#~ msgstr "Mayor que"
-
-#~ msgid "Add alias"
-#~ msgstr "Añadir alias"
-
-#~ msgid "Client Side Decorations"
-#~ msgstr "Decoraciones del lado del cliente"
-
-#~ msgid ""
-#~ "CSD disabled. Change will take effect next time the application is "
-#~ "started."
-#~ msgstr ""
-#~ "Decoraciones desactivadas: el cambio tendrá efecto la próxima vez que se "
-#~ "inicie la aplicación."
-
-#~ msgid "Case insensitive search of family names."
-#~ msgstr ""
-#~ "Búsqueda en los nombres de las familias sin distinguir mayusculación."
-
-#~ msgid "Error procesing data"
-#~ msgstr "Error al procesar los datos"
-
-#~ msgid "Network Error"
-#~ msgstr "Error de red"
-
-#~ msgid "Please check your network settings"
-#~ msgstr "Compruebe su configuración de red"
-
-#~ msgid "Update Family"
-#~ msgstr "Actualizar familia"
-
-#~ msgid "Remove Family"
-#~ msgstr "Desinstalar familia"
-
-#~ msgid "Download Family"
-#~ msgstr "Descargar familia"
-
-#~ msgid "Download Font"
-#~ msgstr "Descargar tipo de letra"
-
-#~ msgid "Installed"
-#~ msgstr "Instalado"
-
-#~ msgid "Enter Preview Text…"
-#~ msgstr "Escriba el texto de previsualización…"
-
-#~ msgid "Previous page"
-#~ msgstr "Página anterior"
-
-#~ msgid "Next page"
-#~ msgstr "Página siguiente"
-
-#~ msgid "Discard"
-#~ msgstr "Descartar"
-
-#~ msgid "Running applications may require a restart to reflect any changes."
-#~ msgstr ""
-#~ "Las aplicaciones en ejecución pueden requerir un reinicio para reflejar "
-#~ "los cambios."
-
-#~ msgid "Save"
-#~ msgstr "Guardar"
-
-#~ msgid "Edit selected category"
-#~ msgstr "Editar categoría seleccionada"
-
-#~ msgid "Remove selected collection"
-#~ msgstr "Quitar colección seleccionada"
-
-#~ msgid "8.0"
-#~ msgstr "8"
-
-#~ msgid "48.0"
-#~ msgstr "48"
-
-#~ msgid "1.0"
-#~ msgstr "1"
-
-#~ msgid "Unknown character, unable to identify."
-#~ msgstr "Carácter desconocido, no se puede identificar."
-
-#~ msgid "Not found."
-#~ msgstr "No se ha encontrado."
-
-#~ msgid "Character found."
-#~ msgstr "Carácter encontrado."
-
-#~ msgid "Common"
-#~ msgstr "Común"
-
-#~ msgid "_Continue"
-#~ msgstr "_Continuar"
-
-#~ msgid "Update Required"
-#~ msgstr "Se requiere una actualización"
-
-#~ msgid ""
-#~ "\n"
-#~ "Font Manager has detected files from a previous installation. Some files "
-#~ "from previous versions are incompatible with this release. Others have "
-#~ "been deprecated or moved.\n"
-#~ "\n"
-#~ "Font Manager will now attempt to migrate your fonts and collections. "
-#~ "Files and settings which are no longer necessary or valid will be "
-#~ "deleted. Any configuration files that could cause a conflict will also be "
-#~ "deleted.\n"
-#~ "\n"
-#~ "It is strongly recommended that you back up any important files before "
-#~ "proceeding.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "Gestor tipográfico ha detectado archivos de una instalación anterior. "
-#~ "Algunos archivos de versiones anteriores no son compatibles con esta "
-#~ "versión. Otros han caído en desuso o han cambiado de ubicación.\n"
-#~ "\n"
-#~ "Gestor tipográfico intentará ahora migrar los tipos y las colecciones "
-#~ "existentes. Los archivos y los ajustes que ya no son necesarios o válidos "
-#~ "se eliminarán. También se eliminarán los archivos de configuración que "
-#~ "puedan provocar un conflicto.\n"
-#~ "\n"
-#~ "Se recomienda encarecidamente que realice una copia de seguridad de los "
-#~ "archivos importantes antes de continuar.\n"
-
-#~ msgid "90"
-#~ msgstr "90"
-
-#~ msgid "Filter based on language support"
-#~ msgstr "Filtro basado en la compatibilidad de idioma"
-
-#~ msgid "Language"
-#~ msgstr "Idioma"
-
-#~ msgid "Search Languages…"
-#~ msgstr "Buscar idiomas…"
-
-#, fuzzy
-#~ msgid "Language Support"
-#~ msgstr "Idioma"
-
-#~ msgid "%i Variations"
-#~ msgstr "%i variaciones"
+msgstr "ஒரு எழுத்துருவை முன்னோட்டமிட அதை இந்த பகுதியில் இழுக்கவும்."
