@@ -1,6 +1,6 @@
 /* font-manager-preview-page.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,6 +116,7 @@ struct _FontManagerPreviewPage
     GtkWidget   *textview;
     GtkWidget   *menu_button;
 
+    gint                line_spacing;
     gdouble             waterfall_size_ratio;
     gdouble             min_waterfall_size;
     gdouble             max_waterfall_size;
@@ -141,6 +142,7 @@ enum
     PROP_WATERFALL_MAX,
     PROP_WATERFALL_RATIO,
     PROP_SHOW_LINE_SIZE,
+    PROP_LINE_SPACING,
     N_PROPERTIES
 };
 
@@ -199,6 +201,9 @@ font_manager_preview_page_get_property (GObject    *gobject,
         case PROP_WATERFALL_RATIO:
             g_value_set_double(value, self->waterfall_size_ratio);
             break;
+        case PROP_LINE_SPACING:
+            g_value_set_int(value, self->line_spacing);
+            break;
         case PROP_SHOW_LINE_SIZE:
             g_value_set_boolean(value, self->show_line_size);
             break;
@@ -240,6 +245,11 @@ font_manager_preview_page_set_property (GObject      *gobject,
             break;
         case PROP_WATERFALL_RATIO:
             font_manager_preview_page_set_waterfall_size(self, -1.0, -1.0, g_value_get_double(value));
+            break;
+        case PROP_LINE_SPACING:
+            self->line_spacing = g_value_get_int(value);
+            gtk_text_view_set_pixels_above_lines(GTK_TEXT_VIEW(self->textview), self->line_spacing);
+            gtk_text_view_set_pixels_below_lines(GTK_TEXT_VIEW(self->textview), self->line_spacing);
             break;
         case PROP_SHOW_LINE_SIZE:
             self->show_line_size = g_value_get_boolean(value);
@@ -385,6 +395,19 @@ font_manager_preview_page_class_init (FontManagerPreviewPageClass *klass)
                                                                 TRUE,
                                                                 G_PARAM_STATIC_STRINGS |
                                                                 G_PARAM_READWRITE);
+
+    /**
+     * FontManagerPreviewPage:line-spacing:
+     *
+     * Pixels between lines in Waterfall preview.
+     */
+    obj_properties[PROP_LINE_SPACING] = g_param_spec_int("line-spacing",
+                                                         NULL,
+                                                         "Waterfall preview line spacing",
+                                                         0,
+                                                         G_MAXINT,
+                                                         0,
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -957,6 +980,7 @@ font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self,
  *  - min-waterfall-size
  *  - max-waterfall-size
  *  - waterfall-size-ratio
+ *  - waterfall-line-spacing
  */
 void
 font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
@@ -976,6 +1000,7 @@ font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
     if (g_strcmp0(self->preview, xx) == 0)
         font_manager_preview_page_set_preview_text(self, self->default_preview);
     g_settings_bind(settings, "waterfall-show-line-size", self, "show-line-size", flags);
+    g_settings_bind(settings, "waterfall-line-spacing", self, "line-spacing", flags);
     g_settings_bind(settings, "min-waterfall-size", self, "min-waterfall-size", flags);
     g_settings_bind(settings, "max-waterfall-size", self, "max-waterfall-size", flags);
     g_settings_bind(settings, "waterfall-size-ratio", self, "waterfall-size-ratio", flags);

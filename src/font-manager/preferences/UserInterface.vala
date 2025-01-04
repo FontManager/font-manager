@@ -1,6 +1,6 @@
 /* UserInterface.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -137,6 +137,7 @@ namespace FontManager {
         public double maximum { get; set; }
         public double ratio { get; set; }
         public bool show_line_size { get; set; default = true; }
+        public int line_spacing { get; set; default = 0; }
 
         public Gtk.PopoverMenu context_menu {
             get {
@@ -176,6 +177,7 @@ namespace FontManager {
             settings.bind("min-waterfall-size", this, "minimum", flags);
             settings.bind("max-waterfall-size", this, "maximum", flags);
             settings.bind("waterfall-size-ratio", this, "ratio", flags);
+            settings.bind("waterfall-line-spacing", this, "line-spacing", flags);
             settings.bind_with_mapping("predefined-waterfall-size",
                                        this,
                                        "predefined-size",
@@ -284,7 +286,7 @@ namespace FontManager {
         void generate_options_list () {
             if (initialized)
                 return;
-            wide_layout = add_preference_switch(_("Wide Layout"));
+            wide_layout = add_preference_switch(_("Wide Layout"), _("Use three column layout"));
             var widget = wide_layout.get_ancestor(typeof(PreferenceRow)) as PreferenceRow;
             on_maximize = new Gtk.CheckButton();
             var child = new PreferenceRow(_("Only When Maximized"), null, null, on_maximize);
@@ -301,6 +303,15 @@ namespace FontManager {
             show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
             if (waterfall_settings == null)
                 waterfall_settings = new WaterfallSettings(settings);
+            var adjustment = new Gtk.Adjustment(0.0, 0.0, double.MAX, 1.0, 1.0, 1.0);
+            var spacing = new Gtk.SpinButton(adjustment, 1.0, 0);
+            var spacing_row = new PreferenceRow(_("Waterfall Line Spacing"), null, null, spacing);
+            append_row(spacing_row);
+            spacing_row.set_tooltip_text(_("Padding in pixels to insert above and below rows"));
+            spacing.set_value((double) waterfall_settings.line_spacing);
+            spacing.value_changed.connect(() => {
+                waterfall_settings.line_spacing = (int) spacing.value;
+            });
             append_row(waterfall_settings.preference_row);
             BindingFlags bind_flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             waterfall_settings.bind_property("show-line-size", show_line_size, "active", bind_flags);

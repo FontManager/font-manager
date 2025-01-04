@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-/* Copyright (C) 2009-2024 Jerry Casiano
+/* Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -190,6 +190,12 @@
         <key name="preview-page" type="i">
             <summary>Selected preview page</summary>
             <description>Last selected preview page</description>
+            <default>0</default>
+        </key>
+
+        <key name="waterfall-line-spacing" type="i">
+            <summary>Waterfall preview line spacing</summary>
+            <description>Waterfall preview line spacing</description>
             <default>0</default>
         </key>
 

@@ -1,6 +1,6 @@
 /* Preferences.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -110,9 +110,11 @@ namespace FontManager {
             return;
         }
 
-        protected Gtk.Switch add_preference_switch (string name) {
+        protected Gtk.Switch add_preference_switch (string name, string? tooltip = null) {
             var control = new Gtk.Switch();
-            append_row(new PreferenceRow(name, null, null, control));
+            var row = new PreferenceRow(name, null, null, control);
+            row.set_tooltip_text(tooltip);
+            append_row(row);
             return control;
         }
 

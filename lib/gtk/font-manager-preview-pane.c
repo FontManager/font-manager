@@ -1,6 +1,6 @@
 /* font-manager-preview-pane.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,6 +81,7 @@ struct _FontManagerPreviewPane
     GtkWidget parent;
 
     gint                    page;
+    gint                    line_spacing;
     gboolean                update_required;
     gboolean                show_line_size;
     gdouble                 preview_size;
@@ -119,6 +120,7 @@ enum
     PROP_FONT,
     PROP_ORTHOGRAPHY,
     PROP_SHOW_LINE_SIZE,
+    PROP_LINE_SPACING,
     PROP_PAGE,
     N_PROPERTIES
 };
@@ -169,6 +171,9 @@ font_manager_preview_pane_get_property (GObject    *gobject,
         case PROP_SHOW_LINE_SIZE:
             g_value_set_boolean(value, self->show_line_size);
             break;
+        case PROP_LINE_SPACING:
+            g_value_set_int(value, self->line_spacing);
+            break;
         case PROP_PAGE:
             g_value_set_int(value, self->page);
             break;
@@ -209,6 +214,9 @@ font_manager_preview_pane_set_property (GObject      *gobject,
             break;
         case PROP_SHOW_LINE_SIZE:
             self->show_line_size = g_value_get_boolean(value);
+            break;
+        case PROP_LINE_SPACING:
+            self->line_spacing = g_value_get_int(value);
             break;
         case PROP_PAGE:
             self->page = g_value_get_int(value);
@@ -346,6 +354,19 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
                                                                 TRUE,
                                                                 G_PARAM_STATIC_STRINGS |
                                                                 G_PARAM_READWRITE);
+
+    /**
+     * FontManagerPreviewPane:line-spacing:
+     *
+     * Pixels between lines in Waterfall preview.
+     */
+    obj_properties[PROP_LINE_SPACING] = g_param_spec_int("line-spacing",
+                                                          NULL,
+                                                          "Waterfall preview line spacing",
+                                                          0,
+                                                          G_MAXINT,
+                                                          0,
+                                                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerPreviewPane:page:
@@ -568,6 +589,7 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     g_object_bind_property(self->preview, "preview-text", self, "preview-text", flags);
     g_object_bind_property(self->preview, "preview-mode", self, "preview-mode", flags);
     g_object_bind_property(self->preview, "show-line-size", self, "show-line-size", flags);
+    g_object_bind_property(self->preview, "line-spacing", self, "line-spacing", flags);
     g_object_bind_property(self->character_map, "font", self, "font", flags);
     g_object_bind_property(self->character_map, "preview-size", self, "character-map-preview-size", flags);
     g_signal_connect_swapped(self->notebook, "switch-page", G_CALLBACK(on_page_switch), self);
@@ -681,7 +703,15 @@ font_manager_preview_pane_set_orthography (FontManagerPreviewPane *self,
  *  - preview-page
  *  - preview-font-size
  *  - charmap-font-size
- *
+ *  - preview-font-size
+ *  - preview-mode
+ *  - preview-text
+ *  - show-line-size
+ *  - min-waterfall-size
+ *  - max-waterfall-size
+ *  - waterfall-size-ratio
+ *  - charmap-font-size
+ *  - waterfall-line-spacing
  */
 void
 font_manager_preview_pane_restore_state (FontManagerPreviewPane *self,
