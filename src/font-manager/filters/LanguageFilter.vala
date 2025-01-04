@@ -120,7 +120,7 @@ namespace FontManager {
 
         public class LanguageListRow (BaseOrthographyData data) {
             orthography = data.name;
-            local_name = dgettext(null, data.name);
+            local_name = Markup.escape_text(dgettext(null, data.name));
             native_name = data.native;
             item_state.visible = true;
             item_label.set_label(native_name);
@@ -129,8 +129,7 @@ namespace FontManager {
             item_count.add_css_class("dim-label");
             item_count.visible = true;
             item_count.sensitive = true;
-            string markup = "<span size=\"x-small\" font=\"mono\">%s</span>";
-            item_count.set_markup(markup.printf(local_name));
+            item_count.set_markup(@"<span size=\"x-small\" font=\"mono\">$local_name</span>");
             item_count.ellipsize = Pango.EllipsizeMode.MIDDLE;
             set_tooltip_text(local_name);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;

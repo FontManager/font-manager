@@ -1,6 +1,6 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,12 +76,11 @@ namespace FontManager.FontViewer {
         public void update () {
             if (preview_pane.font != null) {
                 current_file = File.new_for_path(preview_pane.font.filepath);
-                string family = preview_pane.font.family;
-                string style = preview_pane.font.style;
+                string family = Markup.escape_text(preview_pane.font.family);
+                string style = Markup.escape_text(preview_pane.font.style);
                 title_label.set_label(family);
                 subtitle_label.set_label(style);
-                const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
-                headerbar.set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
+                headerbar.set_tooltip_markup(@"<big><b>$family</b> </big><b>$style</b>");
             } else {
                 current_file = null;
                 title_label.set_label(_("No file selected"));

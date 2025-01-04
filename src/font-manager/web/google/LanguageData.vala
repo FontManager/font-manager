@@ -1,6 +1,6 @@
 /* LanguageData.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -239,7 +239,8 @@ namespace FontManager.GoogleFonts {
             var row = new SampleRow();
             var sample = (Sample) item;
             row.label.set_label(dgettext(null, sample.label));
-            row.sample.set_markup("<small>%s</small>".printf(sample.sample));
+            string sample_markup = Markup.escape_text(sample.sample);
+            row.sample.set_markup(@"<small>$sample_markup</small>");
             return row;
         }
 

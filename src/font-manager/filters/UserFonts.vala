@@ -1,6 +1,6 @@
 /* UserFonts.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@ namespace FontManager {
     public class UserFonts : Category {
 
         public UserFonts () {
-            string sql = "%s WHERE filepath LIKE \"%s%\";";
+            string user_font_dir = get_user_font_directory();
             base(_("User"),
                  _("Fonts available only to you"),
                  "avatar-default-symbolic",
-                 sql.printf(SELECT_FROM_FONTS, get_user_font_directory()),
+                 @"$SELECT_FROM_FONTS WHERE filepath LIKE '$user_font_dir%';",
                  CategoryIndex.USER);
         }
 

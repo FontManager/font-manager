@@ -1,6 +1,6 @@
 /* WebFont.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -246,7 +246,7 @@ namespace FontManager.GoogleFonts {
 
         public string to_font_face_rule () {
             string description = to_description();
-            string local = "%s %s".printf(family, description);
+            string local = @"$family $description";
             string _local = "%s-%s".printf(family.replace(" ", ""), description.replace(" ", ""));
             string style = italic ? "italic" : "normal";
             return FONT_FACE.printf(family, style, weight, local, _local, url);

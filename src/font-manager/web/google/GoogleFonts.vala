@@ -1,6 +1,6 @@
 /* GoogleFonts.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_sort_changed (string order) {
-            string filename = "gfc-%s.json".printf(order);
+            string filename = @"gfc-$order.json";
             string cache_dir = get_package_cache_directory();
             string cache = Path.build_filename(cache_dir, filename);
             var parser = new Json.Parser();
@@ -204,7 +204,7 @@ namespace FontManager.GoogleFonts {
             var session = new Soup.Session();
             var GFC_API_KEY = (string) Base64.decode(API_KEY);
             foreach (var entry in CACHE_FILES) {
-                string filename = "gfc-%s.json".printf(entry);
+                string filename = @"gfc-$entry.json";
                 if (have_valid_cache(filename))
                     continue;
                 var message = new Soup.Message(GET, GOOGLE_FONTS_API.printf(GFC_API_KEY, entry));

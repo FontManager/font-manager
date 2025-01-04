@@ -1,6 +1,6 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -347,8 +347,8 @@ namespace FontManager {
         }
 
         void on_mode_changed (ParamSpec pspec) {
-            string markup = "<b>%s</b>".printf(mode.to_translatable_string());
-            header_widgets.main_menu_label.set_markup(markup);
+            string mode_label = Markup.escape_text(mode.to_translatable_string());
+            header_widgets.main_menu_label.set_markup(@"<b>$mode_label</b>");
             header_widgets.reveal_controls(mode);
             // Special case as Compare "mode" is part of the default pane
             string visible_child = (mode == Mode.COMPARE) ? "Default" : mode.to_string();

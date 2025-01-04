@@ -160,7 +160,7 @@ They will not be visible to other applications until the source is actually enab
             list.set_placeholder(place_holder);
             // ??? : Possible issue for translators?
             // We're appending one translated string to another here.
-            controls.append(inline_help_widget("%s\n\n%s".printf(help_text, FONTCONFIG_DISCLAIMER)));
+            controls.append(inline_help_widget(@"$help_text\n\n$FONTCONFIG_DISCLAIMER"));
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);

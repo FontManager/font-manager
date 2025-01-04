@@ -668,7 +668,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new(tag_table);
     GtkWidget *scroll = gtk_scrolled_window_new();
     self->textview = gtk_text_view_new_with_buffer(buffer);
-    gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self->textview), FALSE);
+    /* gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self->textview), FALSE); */
     GtkWidget *controls = font_manager_preview_controls_new();
     self->controls = gtk_revealer_new();
     GtkWidget *fontscale = font_manager_font_scale_new();
