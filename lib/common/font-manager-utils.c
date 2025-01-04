@@ -1,6 +1,6 @@
 /* font-manager-utils.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,10 +39,11 @@ get_possible_schema_dirs (void)
 {
     GSList *slist = NULL;
     gchar *user_schema_dir = g_build_filename(g_get_user_data_dir(), "glib-2.0", "schemas", NULL);
-    for (gint i = 0; i < (gint) G_N_ELEMENTS(POSSIBLE_SCHEMA_DIRS); i++)
+    for (gint i = 0; i < (gint) G_N_ELEMENTS(POSSIBLE_SCHEMA_DIRS); i++) {
         slist = g_slist_append(slist, g_strdup(POSSIBLE_SCHEMA_DIRS[i]));
-    slist = g_slist_prepend(slist, user_schema_dir);
-    slist = g_slist_append(slist, g_get_current_dir());
+        if (i == 0)
+          slist = g_slist_append(slist, user_schema_dir);
+    }
     return slist;
 }
 
@@ -421,37 +422,33 @@ font_manager_get_gsettings (const gchar *schema_id)
     g_return_val_if_fail(schema_source != NULL, NULL);
     g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup(schema_source, schema_id, TRUE);
     if (schema != NULL) {
-        g_debug("Using schema with id %s from default source", schema_id);
-    } else {
-        g_debug("No schema with id %s in default source", schema_id);
-        g_debug("Checking fallback directories");
-        GSList *slist = get_possible_schema_dirs();
-        GSList *iter;
-        for (iter = slist; iter != NULL; iter = iter->next) {
-            const gchar *dir = iter->data;
-            if (!g_file_test(dir, G_FILE_TEST_IS_DIR)) {
-                g_debug("Skipping invalid or non-existent directory path %s", dir);
-                continue;
-            }
-            g_autoptr(GSettingsSchemaSource) source = NULL;
-            source = g_settings_schema_source_new_from_directory(dir, schema_source, FALSE, NULL);
-            if (source == NULL) {
-                g_debug("Failed to create schema source for %s", dir);
-                continue;
-            }
-            g_debug("Checking for schema with id %s in %s", schema_id, dir);
-            schema = g_settings_schema_source_lookup(source, schema_id, TRUE);
-            if (schema != NULL) {
-                g_debug("Using schema with id %s from %s", schema_id, dir);
-                break;
-            }
+        g_debug("Found schema with id %s in default source", schema_id);
+    }
+    g_debug("Checking for schema overrides");
+    GSList *slist = get_possible_schema_dirs();
+    GSList *iter;
+    for (iter = slist; iter != NULL; iter = iter->next) {
+        const gchar *dir = iter->data;
+        if (!g_file_test(dir, G_FILE_TEST_IS_DIR)) {
+            g_debug("Skipping invalid or non-existent directory path %s", dir);
+            continue;
         }
-        g_slist_free_full(slist, g_free);
-        if (schema == NULL) {
-            g_debug("Failed to locate schema for id %s", schema_id);
-            g_debug("Settings will not persist");
-            return NULL;
+        g_autoptr(GSettingsSchemaSource) source = NULL;
+        source = g_settings_schema_source_new_from_directory(dir, schema_source, FALSE, NULL);
+        if (source == NULL) {
+            g_debug("Failed to create schema source for %s", dir);
+            continue;
         }
+        g_debug("Checking for schema with id %s in %s", schema_id, dir);
+        schema = g_settings_schema_source_lookup(source, schema_id, TRUE);
+        if (schema != NULL)
+            g_debug("Using schema with id %s from %s", schema_id, dir);
+    }
+    g_slist_free_full(slist, g_free);
+    if (schema == NULL) {
+        g_debug("Failed to locate schema for id %s", schema_id);
+        g_debug("Settings will not persist");
+        return NULL;
     }
     return g_settings_new_full(schema, NULL, NULL);
 }
