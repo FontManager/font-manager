@@ -1,6 +1,6 @@
 /* Disabled.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ namespace FontManager {
             base(_("Disabled"),
                  _("Fonts which have been disabled"),
                  "list-remove-symbolic",
-                 "%s WHERE family=\"%s\";",
+                 null,
                  CategoryIndex.DISABLED);
             disabled_families.load();
         }
@@ -39,8 +39,9 @@ namespace FontManager {
             try {
                 Database db = DatabaseProxy.get_default_db();
                 foreach (var family in disabled_families) {
-                    var query = sql.printf(SELECT_FROM_FONTS, family);
-                    get_matching_families_and_fonts(db, families, variations, query);
+                    family = family.replace("'", "''");
+                    string sql = @"$SELECT_FROM_FONTS WHERE family='$family';";
+                    get_matching_families_and_fonts(db, families, variations, sql);
                 }
             } catch (Error e) {
                 warning(e.message);

@@ -1,6 +1,6 @@
 /* font-manager-reject.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,6 +83,7 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
             if (font_manager_exists(path))
                 font_manager_string_set_add(rejected_files, path);
         }
+        font_manager_database_end_query(db);
     }
     font_manager_database_end_query(db);
     return g_steal_pointer(&rejected_files);

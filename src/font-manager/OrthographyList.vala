@@ -1,6 +1,6 @@
 /* OrthographyList.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,13 +21,13 @@
 internal string GET_ORTH_FOR (string f, int i) {
 return """SELECT json_extract(Orthography.support, '$')
 FROM Orthography WHERE json_valid(Orthography.support)
-AND Orthography.filepath = "%s" AND Orthography.findex = "%i"; """.printf(f, i);
+AND Orthography.filepath = '%s' AND Orthography.findex = '%i'; """.printf(f, i);
 }
 
 internal string GET_BASE_ORTH_FOR (string f) {
 return """SELECT json_extract(Orthography.support, '$')
 FROM Orthography WHERE json_valid(Orthography.support)
-AND Orthography.filepath = "%s"; """.printf(f);
+AND Orthography.filepath = '%s'; """.printf(f);
 }
 
 internal unowned string GET_NAME (Json.Object o) { return o.get_string_member("name"); }
@@ -214,13 +214,14 @@ namespace FontManager {
             }
             try {
                 Database db = DatabaseProxy.get_default_db();
-                string query = GET_ORTH_FOR(font.filepath, (int) font.findex);
+                string path = font.filepath.replace("'", "''");
+                string query = GET_ORTH_FOR(path, (int) font.findex);
                 db.execute_query(query);
                 if (db.get_cursor().step() == Sqlite.ROW) {
                     model.orthography = parse_json_result(db.get_cursor().column_text(0));
                 } else {
                     db.end_query();
-                    query = GET_BASE_ORTH_FOR(font.filepath);
+                    query = GET_BASE_ORTH_FOR(path);
                     db.execute_query(query);
                     if (db.get_cursor().step() == Sqlite.ROW)
                         model.orthography = parse_json_result(db.get_cursor().column_text(0));
@@ -250,6 +251,8 @@ namespace FontManager {
     }
 
 }
+
+
 
 
 

@@ -1,6 +1,6 @@
 /* SearchProvider.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ namespace FontManager {
             STYLE;
         }
 
-        const string QUERY = "SELECT filepath, findex, family, style from Fonts WHERE family LIKE \"%s%\" ORDER BY weight;";
+        const string QUERY = "SELECT filepath, findex, family, style from Fonts WHERE family LIKE '%%s%' ORDER BY weight;";
 
         string get_search_term (string [] terms) {
             var search_term = new StringBuilder();
@@ -65,7 +65,8 @@ namespace FontManager {
             var search_term = get_search_term(terms);
             try {
                 Database db = DatabaseProxy.get_default_db();
-                db.execute_query(QUERY.printf(search_term));
+                string term = search_term.replace("'", "''");
+                db.execute_query(QUERY.printf(term));
                 foreach (unowned Sqlite.Statement row in db)
                     result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
                                                           row.column_int(ID.INDEX),

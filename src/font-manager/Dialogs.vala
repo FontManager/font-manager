@@ -1,6 +1,6 @@
 /* Dialogs.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -410,7 +410,8 @@ namespace FontManager {
                 string [] tables = { "Fonts", "Metadata", "Orthography", "Panose" };
                 foreach (string table in tables) {
                     foreach (var path in removed) {
-                        db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                        path = path.replace("'", "''");
+                        db.execute_query(@"DELETE FROM $table WHERE filepath LIKE '%$path%'");
                         db.get_cursor().step();
                         db.end_query();
                     }

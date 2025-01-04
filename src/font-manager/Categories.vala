@@ -1,6 +1,6 @@
 /* Categories.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -271,8 +271,8 @@ namespace FontManager {
 
     GenericArray <Category> get_base_categories () {
         var filters = new GenericArray <Category> ();
-        filters.add(new Category(_("All"), _("All Fonts"), "edit-select-all-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
-        filters.add(new Category(_("System"), _("Fonts available to all users"), "computer-symbolic", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
+        filters.add(new Category(_("All"), _("All Fonts"), "edit-select-all-symbolic", @"$SELECT_FROM_FONTS", CategoryIndex.ALL));
+        filters.add(new Category(_("System"), _("Fonts available to all users"), "computer-symbolic", @"$SELECT_FROM_METADATA_WHERE owner!=0 AND filepath LIKE '/usr%';", CategoryIndex.SYSTEM));
         filters.add(new UserFonts());
         return filters;
     }
@@ -298,7 +298,7 @@ namespace FontManager {
         var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder-symbolic", null, CategoryIndex.PANOSE);
         string [] kind = { _("Any"), _("No Fit"), _("Text and Display"), _("Script"), _("Decorative"), _("Pictorial") };
         for (int i = 0; i < kind.length; i++)
-            panose.children.add(new Category(kind[i], kind[i], "emblem-documents-symbolic", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
+            panose.children.add(new Category(kind[i], kind[i], "emblem-documents-symbolic", @"$SELECT_FROM_PANOSE_WHERE P0 = '$i';", i));
         panose.children.foreach((child) => { child.depth = 1; });
         return panose;
     }
@@ -309,7 +309,7 @@ namespace FontManager {
         var filter = new Category(name, comment, "folder-symbolic", null, data.index);
         try {
             var keyword = data.column;
-            db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
+            db.execute_query(@"SELECT DISTINCT $keyword FROM Fonts ORDER BY $keyword;");
             foreach (unowned Sqlite.Statement row in db) {
                 int val = row.column_int(0);
                 string? type = null;
@@ -329,7 +329,7 @@ namespace FontManager {
                         continue;
                     else
                         type = _("Regular");
-                filter.children.add(new Category(type, type, "emblem-documents-symbolic", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
+                filter.children.add(new Category(type, type, "emblem-documents-symbolic", @"$SELECT_FROM_FONTS WHERE $keyword='$val';", data.index));
             }
             db.end_query();
         } catch (DatabaseError e) {
@@ -345,11 +345,11 @@ namespace FontManager {
         var comment = dgettext(null, data.comment);
         var filter = new Category(name, comment, "folder-symbolic", null, data.index);
         try {
-            db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
+            db.execute_query(@"SELECT DISTINCT [$keyword] FROM Metadata ORDER BY [$keyword];");
             foreach (unowned Sqlite.Statement row in db) {
                 string _type = row.column_text(0);
                 string type = dgettext(null, _type);
-                filter.children.add(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, _type), data.index));
+                filter.children.add(new Category(type, type, "emblem-documents", @"$SELECT_FROM_METADATA_WHERE [$keyword]='$_type';", data.index));
             }
             db.end_query();
         } catch (DatabaseError e) {

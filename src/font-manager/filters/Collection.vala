@@ -1,6 +1,6 @@
 /* Collection.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -202,8 +202,8 @@ namespace FontManager {
                 Database db = DatabaseProxy.get_default_db();
                 var contents = get_full_contents();
                 foreach (var family in contents) {
-                    string sql = "SELECT filepath FROM Fonts WHERE family = \"%s\"";
-                    db.execute_query(sql.printf(family));
+                    family = family.replace("'", "''");
+                    db.execute_query(@"SELECT filepath FROM Fonts WHERE family = '$family'");
                     foreach (unowned Sqlite.Statement row in db)
                         results.add(row.column_text(0));
                     db.end_query();

@@ -119,12 +119,12 @@ namespace FontManager {
                                             Object unused_source,
                                             void* data,
                                             Cancellable? cancellable = null) {
-            string path = (string) data;
+            string path = ((string) data).replace("'", "''");
             try {
                 Database db = DatabaseProxy.get_default_db();
                 string [] tables = { "Fonts", "Metadata", "Orthography", "Panose" };
                 foreach (string table in tables) {
-                    db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                    db.execute_query(@"DELETE FROM $table WHERE filepath LIKE '%$path%'");
                     db.get_cursor().step();
                     db.end_query();
                 }

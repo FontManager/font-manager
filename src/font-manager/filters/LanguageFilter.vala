@@ -1,6 +1,6 @@
 /* LanguageFilter.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,7 +94,7 @@ namespace FontManager {
                 foreach (string language in selections) {
                     var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
                     Intl.setlocale(LocaleCategory.ALL, "C");
-                    string _sql_ = sql.printf(language, coverage);
+                    string _sql_ = sql.printf(language.replace("'", "''"), coverage);
                     Intl.setlocale(LocaleCategory.ALL, pref_loc);
                     get_matching_families_and_fonts(db, families, variations, _sql_);
                 }
