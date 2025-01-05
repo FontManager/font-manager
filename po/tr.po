@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-30 22:50-0400\n"
+"POT-Creation-Date: 2025-01-05 01:41-0500\n"
 "PO-Revision-Date: 2024-07-06 15:09+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -26,7 +26,7 @@ msgstr ""
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
-#: lib/gtk/font-manager-application-window.c:288
+#: lib/gtk/font-manager-application-window.c:281
 #: src/font-manager/Application.vala:2
 msgid "Font Manager"
 msgstr "Yazı Tipi Yönetici"
@@ -100,7 +100,7 @@ msgstr "Tam özellikli yazı tipi dosyası önizleme uygulaması"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:482
 msgid "Install"
 msgstr "Yükle"
 
@@ -286,16 +286,17 @@ msgid "Legacy"
 msgstr "Eski"
 
 #: lib/fontconfig/font-manager-source.c:305
-#: lib/fontconfig/font-manager-source.c:320
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
 msgid "Source Unavailable"
 msgstr "Kaynak Kullanılamıyor"
 
-#: lib/gtk/font-manager-application-window.c:292
+#: lib/gtk/font-manager-application-window.c:285
 #: src/font-manager/Application.vala:3
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "GTK+ masaüstü ortamları için basit yazı tipi yönetimi"
 
-#: lib/gtk/font-manager-application-window.c:297
+#: lib/gtk/font-manager-application-window.c:290
 msgid "translator-credits"
 msgstr ""
 "Musa ORUÇ\n"
@@ -365,7 +366,7 @@ msgid "Right Aligned"
 msgstr "Sağa Hizalı"
 
 #: lib/gtk/font-manager-preview-controls.c:349
-#: src/font-manager/ui/font-manager-browse-pane.ui:165
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
 msgid "Edit preview text"
 msgstr "Önizleme yazısını düzenle"
 
@@ -383,30 +384,30 @@ msgid "Waterfall"
 msgstr "Şelale"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:555
+#: lib/gtk/font-manager-preview-pane.c:576
 msgid "Characters"
 msgstr "Karakterler"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:556
+#: lib/gtk/font-manager-preview-pane.c:577
 msgid "Properties"
 msgstr "Özellikler"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Lisans"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Düz"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:479
+#: lib/gtk/font-manager-preview-pane.c:500
 msgid "Search available characters"
 msgstr "Mevcut karakterleri ara"
 
@@ -880,7 +881,7 @@ msgid "Font Collections"
 msgstr "Yazı Tipi Koleksiyonları"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr "Yazı Tipi Kaynakları"
 
@@ -928,7 +929,7 @@ msgstr ""
 "Dosya yoluna göre filtrelemek için %s kullanarak aramayı başlatın.\n"
 "Karakterlere göre filtrelemek için %s kullanarak aramayı başlatın."
 
-#: src/font-manager/FontList.vala:70
+#: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
@@ -936,12 +937,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Değişimi "
 msgstr[1] "%i Değişimleri "
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Tümünü daralt"
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -949,32 +950,32 @@ msgstr "Tümünü daralt"
 msgid "Expand all"
 msgstr "Tümünü Genişlet"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:483
 msgid "Copy Location"
 msgstr "Konumu Kopyala"
 
-#: src/font-manager/FontList.vala:485
+#: src/font-manager/FontList.vala:484
 msgid "Show in Folder"
 msgstr "Klasörde Göster"
 
-#: src/font-manager/FontList.vala:486
+#: src/font-manager/FontList.vala:485
 msgid "Enable selected items"
 msgstr "Seçili ögeleri etkinleştir"
 
-#: src/font-manager/FontList.vala:487
+#: src/font-manager/FontList.vala:486
 msgid "Disable selected items"
 msgstr "Seçili ögeleri devre dışı bırak"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
+#: src/font-manager/FontList.vala:553 src/font-manager/FontList.vala:562
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i seçili öge"
 msgstr[1] "%i seçili öge"
 
-#: src/font-manager/FontList.vala:581
+#: src/font-manager/FontList.vala:580
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Eylemler"
@@ -1608,7 +1609,7 @@ msgid "Update in progress"
 msgstr "Güncelleme sürüyor"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:230
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1798,7 +1799,7 @@ msgstr "Görünüm"
 msgid "Rendering"
 msgstr "Görselleştirme"
 
-#: src/font-manager/preferences/Preferences.vala:129
+#: src/font-manager/preferences/Preferences.vala:131
 #, fuzzy
 #| msgid ""
 #| "Select save to generate a fontconfig configuration file from the above "
@@ -1823,7 +1824,7 @@ msgstr ""
 "\n"
 "Tüm ortamların/uygulamaların bu ayarlara uymayacağını unutmayın."
 
-#: src/font-manager/preferences/Preferences.vala:151
+#: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
 msgstr ""
 
@@ -1872,11 +1873,11 @@ msgstr ""
 "FILEPATH'ı kullanın.\n"
 "Argüman listesinde FAMILY veya STYLE bulunursa, bunlar da değiştirilir."
 
-#: src/font-manager/preferences/UserActions.vala:242
+#: src/font-manager/preferences/UserActions.vala:243
 msgid "User Actions"
 msgstr "Kullanıcı Eylemleri"
 
-#: src/font-manager/preferences/UserActions.vala:244
+#: src/font-manager/preferences/UserActions.vala:245
 msgid "Custom context menu entries"
 msgstr "Özel bağlam menüsü girdileri"
 
@@ -1912,37 +1913,37 @@ msgstr "192 noktaya kadar (1.4 Ortak Oran)"
 msgid "Custom Size Settings"
 msgstr "Özel Boyut Ayarları"
 
-#: src/font-manager/preferences/UserInterface.vala:195
+#: src/font-manager/preferences/UserInterface.vala:197
 msgid "Waterfall Preview Size Settings"
 msgstr "Şelale Ön İzlemesi Boyutu Ayarları"
 
-#: src/font-manager/preferences/UserInterface.vala:199
+#: src/font-manager/preferences/UserInterface.vala:201
 msgid "Higher values may adversely affect performance"
 msgstr "Daha yüksek değerler performansı olumsuz etkileyebilir"
 
-#: src/font-manager/preferences/UserInterface.vala:202
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Asgari Şelale Ön İzlemesi Nokta Boyutu"
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Şelale Ön İzlemesi Nokta Boyutu Ortak Oranı"
 
-#: src/font-manager/preferences/UserInterface.vala:206
+#: src/font-manager/preferences/UserInterface.vala:208
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:236
 #, fuzzy
 #| msgid "Show in Folder"
 msgid "Show line size"
 msgstr "Klasörde Göster"
 
-#: src/font-manager/preferences/UserInterface.vala:273
+#: src/font-manager/preferences/UserInterface.vala:275
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:274
+#: src/font-manager/preferences/UserInterface.vala:276
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
@@ -1951,43 +1952,57 @@ msgstr ""
 "CSD etkin. Değişiklik, uygulamanın bir sonraki başlatılışında geçerli "
 "olacaktır."
 
-#: src/font-manager/preferences/UserInterface.vala:287
+#: src/font-manager/preferences/UserInterface.vala:289
 msgid "Wide Layout"
 msgstr "Geniş Düzen"
 
-#: src/font-manager/preferences/UserInterface.vala:290
+#: src/font-manager/preferences/UserInterface.vala:289
+msgid "Use three column layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Only When Maximized"
 msgstr "Yalnızca Ekranı Kapladığında"
 
-#: src/font-manager/preferences/UserInterface.vala:292
+#: src/font-manager/preferences/UserInterface.vala:294
 msgid "Enable Animations"
 msgstr "Animasyonları Etkinleştir"
 
-#: src/font-manager/preferences/UserInterface.vala:293
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Prefer Dark Theme"
 msgstr "Koyu Temayı Tercih Et"
 
-#: src/font-manager/preferences/UserInterface.vala:295
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Flat"
 msgstr "Düz"
 
-#: src/font-manager/preferences/UserInterface.vala:300
+#: src/font-manager/preferences/UserInterface.vala:302
 msgid "Titlebar Button Style"
 msgstr "Başlık Çubuğu Düğme Tarzı"
 
-#: src/font-manager/preferences/UserInterface.vala:301
+#: src/font-manager/preferences/UserInterface.vala:303
 msgid "Display line size in Waterfall Preview"
 msgstr "Şelale ön izlemesinde satır boyutunu görüntüle"
 
-#: src/font-manager/preferences/UserSources.vala:143
+#: src/font-manager/preferences/UserInterface.vala:308
+#, fuzzy
+#| msgid "Waterfall Preview Size Settings"
+msgid "Waterfall Line Spacing"
+msgstr "Şelale Ön İzlemesi Boyutu Ayarları"
+
+#: src/font-manager/preferences/UserInterface.vala:310
+msgid "Padding in pixels to insert above and below rows"
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:145
 #, fuzzy
 #| msgid ""
 #| "Fonts in any folders listed here will be available within the "
@@ -2011,11 +2026,11 @@ msgstr ""
 "\n"
 "Tüm ortamların/uygulamaların bu ayarlara uymayacağını unutmayın."
 
-#: src/font-manager/preferences/UserSources.vala:155
+#: src/font-manager/preferences/UserSources.vala:157
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Yazı tiplerini yüklemeden kolayca ekleyin veya önizleyin."
 
-#: src/font-manager/preferences/UserSources.vala:156
+#: src/font-manager/preferences/UserSources.vala:158
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2474,23 +2489,23 @@ msgstr "Fazla Kalın"
 msgid "Black"
 msgstr "Çok Kalın"
 
-#: src/font-viewer/MainWindow.vala:87
+#: src/font-viewer/MainWindow.vala:86
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Seçili dosya yok"
 
-#: src/font-viewer/MainWindow.vala:88
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Veya desteklenmeyen dosya türü."
 
-#: src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:136
 #, fuzzy
 #| msgid "System"
 msgid "System Font"
 msgstr "Sistem"
 
-#: src/font-viewer/MainWindow.vala:139
+#: src/font-viewer/MainWindow.vala:138
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2501,23 +2516,23 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:142
+#: src/font-viewer/MainWindow.vala:141
 msgid "Newer version already installed"
 msgstr "Daha yeni sürüm zaten yüklü"
 
-#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:148
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:147
+#: src/font-viewer/MainWindow.vala:146
 msgid "Update Font"
 msgstr "Yazı Tipini Güncelle"
 
-#: src/font-viewer/MainWindow.vala:152
+#: src/font-viewer/MainWindow.vala:151
 msgid "Remove Font"
 msgstr "Yazı Tipini Kaldır"
 
-#: src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:155
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Yazı Tipini Yükle"
@@ -2589,23 +2604,23 @@ msgstr "Şelale ön izlemesine geç"
 msgid "Switch to Body Text preview"
 msgstr "Gövde Metni önizlemesine geç"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
 #, fuzzy
 #| msgid "Increase preview size"
 msgid "Increase tile size"
 msgstr "Önizleme boyutunu büyüt"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
 #, fuzzy
 #| msgid "Decrease preview size"
 msgid "Decrease tile size"
 msgstr "Önizleme boyutunu küçült"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:146
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
 msgid "Toggle search entry"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:155
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
 msgid "Toggle preview panel"
 msgstr ""
 

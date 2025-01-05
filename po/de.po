@@ -29,11 +29,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-30 22:50-0400\n"
+"POT-Creation-Date: 2025-01-05 01:41-0500\n"
 "PO-Revision-Date: 2024-10-16 08:16+0000\n"
 "Last-Translator: \"R. Grönmann\" <stuk@gmx.net>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
+"manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,7 @@ msgstr ""
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
-#: lib/gtk/font-manager-application-window.c:288
+#: lib/gtk/font-manager-application-window.c:281
 #: src/font-manager/Application.vala:2
 msgid "Font Manager"
 msgstr "Font Manager"
@@ -120,7 +120,7 @@ msgstr "Voll funktionsfähige Anwendung zur Vorschau von Schriftdateien"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:482
 msgid "Install"
 msgstr "Installieren"
 
@@ -306,16 +306,17 @@ msgid "Legacy"
 msgstr "Veraltet"
 
 #: lib/fontconfig/font-manager-source.c:305
-#: lib/fontconfig/font-manager-source.c:320
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
 msgid "Source Unavailable"
 msgstr "Quelle nicht verfügbar"
 
-#: lib/gtk/font-manager-application-window.c:292
+#: lib/gtk/font-manager-application-window.c:285
 #: src/font-manager/Application.vala:3
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Einfache Schriftenverwaltung für GTK+ Arbeitsumgebungen"
 
-#: lib/gtk/font-manager-application-window.c:297
+#: lib/gtk/font-manager-application-window.c:290
 msgid "translator-credits"
 msgstr ""
 "PF4Public\n"
@@ -384,7 +385,7 @@ msgid "Right Aligned"
 msgstr "Rechts ausgerichtet"
 
 #: lib/gtk/font-manager-preview-controls.c:349
-#: src/font-manager/ui/font-manager-browse-pane.ui:165
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
 msgid "Edit preview text"
 msgstr "Vorschautext bearbeiten"
 
@@ -402,30 +403,30 @@ msgid "Waterfall"
 msgstr "Wasserfall"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:555
+#: lib/gtk/font-manager-preview-pane.c:576
 msgid "Characters"
 msgstr "Zeichentabelle"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:556
+#: lib/gtk/font-manager-preview-pane.c:577
 msgid "Properties"
 msgstr "Eigenschaften"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Lizenz"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Standard"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:479
+#: lib/gtk/font-manager-preview-pane.c:500
 msgid "Search available characters"
 msgstr "Verfügbare Schriftzeichen durchsuchen"
 
@@ -902,7 +903,7 @@ msgid "Font Collections"
 msgstr "Schriften-Sammlungen"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr "Schrift-Quellen"
 
@@ -951,7 +952,7 @@ msgstr ""
 "Mit %s beginnen, um basierend auf dem Dateipfad zu suchen.\n"
 "Mit %s beginnen, um basierend auf den Buchstaben zu suchen."
 
-#: src/font-manager/FontList.vala:70
+#: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
@@ -959,12 +960,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Variante "
 msgstr[1] "%i Varianten"
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -972,32 +973,32 @@ msgstr "Alle einklappen"
 msgid "Expand all"
 msgstr "Alle ausklappen"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:483
 msgid "Copy Location"
 msgstr "Dateipfad kopieren"
 
-#: src/font-manager/FontList.vala:485
+#: src/font-manager/FontList.vala:484
 msgid "Show in Folder"
 msgstr "Im Ordner zeigen"
 
-#: src/font-manager/FontList.vala:486
+#: src/font-manager/FontList.vala:485
 msgid "Enable selected items"
 msgstr "Ausgewählte Elemente aktivieren"
 
-#: src/font-manager/FontList.vala:487
+#: src/font-manager/FontList.vala:486
 msgid "Disable selected items"
 msgstr "Ausgewählte Elemente deaktivieren"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
+#: src/font-manager/FontList.vala:553 src/font-manager/FontList.vala:562
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i ausgewähltes Element"
 msgstr[1] "%i ausgewählte Elemente"
 
-#: src/font-manager/FontList.vala:581
+#: src/font-manager/FontList.vala:580
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Befehle"
@@ -1630,7 +1631,7 @@ msgid "Update in progress"
 msgstr "Aktualisierung läuft"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:230
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr "Keine gültige Rechtschreibung zur Auswahl"
 
@@ -1813,7 +1814,7 @@ msgstr "Anzeige"
 msgid "Rendering"
 msgstr "Wiedergabe"
 
-#: src/font-manager/preferences/Preferences.vala:129
+#: src/font-manager/preferences/Preferences.vala:131
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1830,7 +1831,7 @@ msgstr ""
 "Hinweis: Nicht alle Umgebungen und Anwendungen werden diese Einstellungen "
 "berücksichtigen."
 
-#: src/font-manager/preferences/Preferences.vala:151
+#: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
 msgstr "Einstellungen auf Standardwerte zurücksetzen"
 
@@ -1883,11 +1884,11 @@ msgstr ""
 "Die Variablen FAMILY und STYLE in der Parameterliste werden ebenfalls "
 "ausgetauscht."
 
-#: src/font-manager/preferences/UserActions.vala:242
+#: src/font-manager/preferences/UserActions.vala:243
 msgid "User Actions"
 msgstr "Benutzerbefehle"
 
-#: src/font-manager/preferences/UserActions.vala:244
+#: src/font-manager/preferences/UserActions.vala:245
 msgid "Custom context menu entries"
 msgstr "Eigene Kontextmenüeinträge"
 
@@ -1923,79 +1924,93 @@ msgstr "Bis 192 Punkt (1.4 Quotient)"
 msgid "Custom Size Settings"
 msgstr "Benutzerdefinierte Größeneinstellungen"
 
-#: src/font-manager/preferences/UserInterface.vala:195
+#: src/font-manager/preferences/UserInterface.vala:197
 msgid "Waterfall Preview Size Settings"
 msgstr "Einstellungen der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserInterface.vala:199
+#: src/font-manager/preferences/UserInterface.vala:201
 msgid "Higher values may adversely affect performance"
 msgstr "Höhere Werte können die Leistung negativ beeinflussen"
 
-#: src/font-manager/preferences/UserInterface.vala:202
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Minimale Punktgröße der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Quotient der Punktgröße der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserInterface.vala:206
+#: src/font-manager/preferences/UserInterface.vala:208
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Maximale Größe der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:236
 #, fuzzy
 #| msgid "Show in Folder"
 msgid "Show line size"
 msgstr "Zeilenhöhe zeigen"
 
-#: src/font-manager/preferences/UserInterface.vala:273
+#: src/font-manager/preferences/UserInterface.vala:275
 #, fuzzy
 msgid "Selected setting requires restart to apply"
 msgstr "Vorgenomme Änderung bedarf eines Neustarts"
 
-#: src/font-manager/preferences/UserInterface.vala:274
+#: src/font-manager/preferences/UserInterface.vala:276
 msgid "Changes will take effect next time the application is started"
 msgstr "Änderungen werden erst nach Neustart des Programms übernommen."
 
-#: src/font-manager/preferences/UserInterface.vala:287
+#: src/font-manager/preferences/UserInterface.vala:289
 msgid "Wide Layout"
 msgstr "Breites Layout"
 
-#: src/font-manager/preferences/UserInterface.vala:290
+#: src/font-manager/preferences/UserInterface.vala:289
+msgid "Use three column layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Only When Maximized"
 msgstr "Nur wenn maximiert"
 
-#: src/font-manager/preferences/UserInterface.vala:292
+#: src/font-manager/preferences/UserInterface.vala:294
 msgid "Enable Animations"
 msgstr "Aktiviere Animationen"
 
-#: src/font-manager/preferences/UserInterface.vala:293
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Prefer Dark Theme"
 msgstr "Dunkles Thema bevorzugen"
 
-#: src/font-manager/preferences/UserInterface.vala:295
+#: src/font-manager/preferences/UserInterface.vala:297
 #, fuzzy
 msgid "Use Adwaita Stylesheet"
 msgstr "Verwende das Adwaita Stylesheet"
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Flat"
 msgstr "Flach"
 
-#: src/font-manager/preferences/UserInterface.vala:300
+#: src/font-manager/preferences/UserInterface.vala:302
 msgid "Titlebar Button Style"
 msgstr "Stil des Titelknopfs"
 
-#: src/font-manager/preferences/UserInterface.vala:301
+#: src/font-manager/preferences/UserInterface.vala:303
 msgid "Display line size in Waterfall Preview"
 msgstr "Zeige die Größe der Zeile in der Vorschau beim Wasserfall"
 
-#: src/font-manager/preferences/UserSources.vala:143
+#: src/font-manager/preferences/UserInterface.vala:308
+#, fuzzy
+#| msgid "Waterfall Preview Size Settings"
+msgid "Waterfall Line Spacing"
+msgstr "Einstellungen der Vorschau beim Wasserfall"
+
+#: src/font-manager/preferences/UserInterface.vala:310
+msgid "Padding in pixels to insert above and below rows"
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:145
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -2008,12 +2023,12 @@ msgstr ""
 "Sie sind in anderen Anwendungen nicht sichtbar, solange die Quelle nicht "
 "tatsächlich aktiviert wird."
 
-#: src/font-manager/preferences/UserSources.vala:155
+#: src/font-manager/preferences/UserSources.vala:157
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 "Füge Schriften hinzu, oder siehe Dir Schriften an, ohne sie zu installieren."
 
-#: src/font-manager/preferences/UserSources.vala:156
+#: src/font-manager/preferences/UserSources.vala:158
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2028,7 +2043,8 @@ msgstr "Netzwerk Zugang inaktiv"
 #: src/font-manager/web/google/GoogleFonts.vala:157
 #, fuzzy
 msgid "Contact your system administrator to request access."
-msgstr "Kontaktieren Sie ihren Netzwerk Administrator für die Netzwerk Freigabe"
+msgstr ""
+"Kontaktieren Sie ihren Netzwerk Administrator für die Netzwerk Freigabe"
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
@@ -2447,21 +2463,21 @@ msgstr "Ultrafett"
 msgid "Black"
 msgstr "Black"
 
-#: src/font-viewer/MainWindow.vala:87
+#: src/font-viewer/MainWindow.vala:86
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Keine ausgewählte Datei"
 
-#: src/font-viewer/MainWindow.vala:88
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Oder nicht unterstützende Dateiarten."
 
-#: src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:136
 msgid "System Font"
 msgstr "Systemschrift"
 
-#: src/font-viewer/MainWindow.vala:139
+#: src/font-viewer/MainWindow.vala:138
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2472,23 +2488,23 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:142
+#: src/font-viewer/MainWindow.vala:141
 msgid "Newer version already installed"
 msgstr "Eine neuere Version ist bereits installiert"
 
-#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:148
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:147
+#: src/font-viewer/MainWindow.vala:146
 msgid "Update Font"
 msgstr "Schrift aktualisieren"
 
-#: src/font-viewer/MainWindow.vala:152
+#: src/font-viewer/MainWindow.vala:151
 msgid "Remove Font"
 msgstr "Schrift entfernen"
 
-#: src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:155
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Schriften installieren"
@@ -2558,23 +2574,23 @@ msgstr "Gehe auf Wasserfall-Vorschau"
 msgid "Switch to Body Text preview"
 msgstr "Gehe auf Textbeispiel-Vorschau"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
 #, fuzzy
 #| msgid "Increase preview size"
 msgid "Increase tile size"
 msgstr "Vorschaugröße vergrößern"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
 #, fuzzy
 #| msgid "Decrease preview size"
 msgid "Decrease tile size"
 msgstr "Vorschaugröße verkleinern"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:146
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
 msgid "Toggle search entry"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:155
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
 msgid "Toggle preview panel"
 msgstr ""
 

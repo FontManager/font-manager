@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2024-07-30 22:50-0400\n"
+"POT-Creation-Date: 2025-01-05 01:41-0500\n"
 "PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
@@ -23,7 +23,7 @@ msgstr ""
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
 #: data/com.github.FontManager.FontManager.desktop.in.in:6
-#: lib/gtk/font-manager-application-window.c:288
+#: lib/gtk/font-manager-application-window.c:281
 #: src/font-manager/Application.vala:2
 msgid "Font Manager"
 msgstr "Manager de fonturi"
@@ -97,7 +97,7 @@ msgstr "Aplicație completă de previzualizare a fișierului de fonturi"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:482
 msgid "Install"
 msgstr "Instalare"
 
@@ -285,16 +285,17 @@ msgid "Legacy"
 msgstr "Învechit"
 
 #: lib/fontconfig/font-manager-source.c:305
-#: lib/fontconfig/font-manager-source.c:320
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
 msgid "Source Unavailable"
 msgstr "Sursa nu este disponibilă"
 
-#: lib/gtk/font-manager-application-window.c:292
+#: lib/gtk/font-manager-application-window.c:285
 #: src/font-manager/Application.vala:3
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Gestionare simplă a fonturilor pentru mediile desktop GTK+"
 
-#: lib/gtk/font-manager-application-window.c:297
+#: lib/gtk/font-manager-application-window.c:290
 msgid "translator-credits"
 msgstr ""
 "acreditare-traducători /n Aurelian Ciocîltan <aurelianciociltan@gmail.com>"
@@ -362,7 +363,7 @@ msgid "Right Aligned"
 msgstr "Aliniat la dreapta"
 
 #: lib/gtk/font-manager-preview-controls.c:349
-#: src/font-manager/ui/font-manager-browse-pane.ui:165
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
 msgid "Edit preview text"
 msgstr "Editați textul de previzualizare"
 
@@ -380,30 +381,30 @@ msgid "Waterfall"
 msgstr "Cascadă"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:555
+#: lib/gtk/font-manager-preview-pane.c:576
 msgid "Characters"
 msgstr "Caractere"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:556
+#: lib/gtk/font-manager-preview-pane.c:577
 msgid "Properties"
 msgstr "Proprietăţi"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:557 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licență"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Regular"
 
-#: lib/gtk/font-manager-preview-pane.c:425 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:479
+#: lib/gtk/font-manager-preview-pane.c:500
 msgid "Search available characters"
 msgstr "Căutați caractere disponibile"
 
@@ -889,7 +890,7 @@ msgid "Font Collections"
 msgstr "Colecții de fonturi"
 
 #: src/font-manager/Dialogs.vala:120
-#: src/font-manager/preferences/UserSources.vala:154
+#: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr "Surse de fonturi"
 
@@ -937,7 +938,7 @@ msgstr ""
 "Începeți căutarea utilizând %s pentru a filtra pe baza filepath.\n"
 "Începeți căutarea utilizând %s pentru a filtra pe baza caracterelor."
 
-#: src/font-manager/FontList.vala:70
+#: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:200
 #, c-format
 msgid "%i Variation "
@@ -946,12 +947,12 @@ msgstr[0] "%i Variaţie "
 msgstr[1] "%i Variaţii "
 msgstr[2] "%i Variaţii "
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Restrânge tot"
 
-#: src/font-manager/FontList.vala:255
+#: src/font-manager/FontList.vala:253
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -959,21 +960,21 @@ msgstr "Restrânge tot"
 msgid "Expand all"
 msgstr "Extinde toate"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:483
 msgid "Copy Location"
 msgstr "Copiați locația"
 
-#: src/font-manager/FontList.vala:485
+#: src/font-manager/FontList.vala:484
 msgid "Show in Folder"
 msgstr "Arată în dosar"
 
-#: src/font-manager/FontList.vala:486
+#: src/font-manager/FontList.vala:485
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Ștergeți filtrul selectat"
 
-#: src/font-manager/FontList.vala:487
+#: src/font-manager/FontList.vala:486
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"
@@ -981,7 +982,7 @@ msgstr "Ștergeți filtrul selectat"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:554 src/font-manager/FontList.vala:563
+#: src/font-manager/FontList.vala:553 src/font-manager/FontList.vala:562
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
 msgid "%i selected item"
@@ -990,7 +991,7 @@ msgstr[0] "Ștergeți filtrul selectat"
 msgstr[1] "Ștergeți filtrul selectat"
 msgstr[2] "Ștergeți filtrul selectat"
 
-#: src/font-manager/FontList.vala:581
+#: src/font-manager/FontList.vala:580
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Acţiuni"
@@ -1626,7 +1627,7 @@ msgid "Update in progress"
 msgstr "Actualizare în curs"
 
 #. No error and no results means this font file is likely broken or empty
-#: src/font-manager/OrthographyList.vala:230
+#: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
 msgstr ""
 
@@ -1815,7 +1816,7 @@ msgstr "Afişare"
 msgid "Rendering"
 msgstr "Redare"
 
-#: src/font-manager/preferences/Preferences.vala:129
+#: src/font-manager/preferences/Preferences.vala:131
 #, fuzzy
 #| msgid ""
 #| "Select save to generate a fontconfig configuration file from the above "
@@ -1840,7 +1841,7 @@ msgstr ""
 "\n"
 "Rețineți că nu toate mediile / aplicațiile vor onora aceste setări."
 
-#: src/font-manager/preferences/Preferences.vala:151
+#: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
 msgstr ""
 
@@ -1893,11 +1894,11 @@ msgstr ""
 "Dacă FAMILY sau STYLE se găsesc în lista de argumente, vor fi, de asemenea, "
 "înlocuite."
 
-#: src/font-manager/preferences/UserActions.vala:242
+#: src/font-manager/preferences/UserActions.vala:243
 msgid "User Actions"
 msgstr "Acțiuni ale utilizatorului"
 
-#: src/font-manager/preferences/UserActions.vala:244
+#: src/font-manager/preferences/UserActions.vala:245
 msgid "Custom context menu entries"
 msgstr "Intrări personalizate din meniul contextual"
 
@@ -1935,37 +1936,37 @@ msgstr ""
 msgid "Custom Size Settings"
 msgstr "Acțiuni personalizate"
 
-#: src/font-manager/preferences/UserInterface.vala:195
+#: src/font-manager/preferences/UserInterface.vala:197
 msgid "Waterfall Preview Size Settings"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:199
+#: src/font-manager/preferences/UserInterface.vala:201
 msgid "Higher values may adversely affect performance"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:202
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Minimum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:206
+#: src/font-manager/preferences/UserInterface.vala:208
 msgid "Maximum Waterfall Preview Point Size"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:234
+#: src/font-manager/preferences/UserInterface.vala:236
 #, fuzzy
 #| msgid "Show in Folder"
 msgid "Show line size"
 msgstr "Arată în dosar"
 
-#: src/font-manager/preferences/UserInterface.vala:273
+#: src/font-manager/preferences/UserInterface.vala:275
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:274
+#: src/font-manager/preferences/UserInterface.vala:276
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
@@ -1974,43 +1975,55 @@ msgstr ""
 "CSD activat. Modificarea va intra în vigoare la următoarea pornire a "
 "aplicației."
 
-#: src/font-manager/preferences/UserInterface.vala:287
+#: src/font-manager/preferences/UserInterface.vala:289
 msgid "Wide Layout"
 msgstr "Aspect lat"
 
-#: src/font-manager/preferences/UserInterface.vala:290
+#: src/font-manager/preferences/UserInterface.vala:289
+msgid "Use three column layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:292
 msgid "Only When Maximized"
 msgstr "Numai când este maximizat"
 
-#: src/font-manager/preferences/UserInterface.vala:292
+#: src/font-manager/preferences/UserInterface.vala:294
 msgid "Enable Animations"
 msgstr "Activare animații"
 
-#: src/font-manager/preferences/UserInterface.vala:293
+#: src/font-manager/preferences/UserInterface.vala:295
 msgid "Prefer Dark Theme"
 msgstr "Preferă Tema Întunecată"
 
-#: src/font-manager/preferences/UserInterface.vala:295
+#: src/font-manager/preferences/UserInterface.vala:297
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Raised"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:299
 msgid "Flat"
 msgstr "Plat"
 
-#: src/font-manager/preferences/UserInterface.vala:300
+#: src/font-manager/preferences/UserInterface.vala:302
 msgid "Titlebar Button Style"
 msgstr "Stil butoane bară titlu"
 
-#: src/font-manager/preferences/UserInterface.vala:301
+#: src/font-manager/preferences/UserInterface.vala:303
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
-#: src/font-manager/preferences/UserSources.vala:143
+#: src/font-manager/preferences/UserInterface.vala:308
+msgid "Waterfall Line Spacing"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:310
+msgid "Padding in pixels to insert above and below rows"
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:145
 #, fuzzy
 #| msgid ""
 #| "Fonts in any folders listed here will be available within the "
@@ -2034,11 +2047,11 @@ msgstr ""
 "\n"
 "Rețineți că nu toate mediile / aplicații le va onora aceste setări."
 
-#: src/font-manager/preferences/UserSources.vala:155
+#: src/font-manager/preferences/UserSources.vala:157
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Adăugați sau examinați cu ușurință fonturi fără a le instala efectiv."
 
-#: src/font-manager/preferences/UserSources.vala:156
+#: src/font-manager/preferences/UserSources.vala:158
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -2498,23 +2511,23 @@ msgstr "ExtraBold"
 msgid "Black"
 msgstr "Negru"
 
-#: src/font-viewer/MainWindow.vala:87
+#: src/font-viewer/MainWindow.vala:86
 #: src/font-viewer/font-viewer-main-window.ui:47
 msgid "No file selected"
 msgstr "Nici un fișier selectat"
 
-#: src/font-viewer/MainWindow.vala:88
+#: src/font-viewer/MainWindow.vala:87
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Or unsupported filetype."
 msgstr "Sau tip de fișier neacceptat."
 
-#: src/font-viewer/MainWindow.vala:137
+#: src/font-viewer/MainWindow.vala:136
 #, fuzzy
 #| msgid "System"
 msgid "System Font"
 msgstr "Sistem"
 
-#: src/font-viewer/MainWindow.vala:139
+#: src/font-viewer/MainWindow.vala:138
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2525,23 +2538,23 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:142
+#: src/font-viewer/MainWindow.vala:141
 msgid "Newer version already installed"
 msgstr "Versiune mai nouă deja instalată"
 
-#: src/font-viewer/MainWindow.vala:144 src/font-viewer/MainWindow.vala:149
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:148
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:147
+#: src/font-viewer/MainWindow.vala:146
 msgid "Update Font"
 msgstr "Actualizare font"
 
-#: src/font-viewer/MainWindow.vala:152
+#: src/font-viewer/MainWindow.vala:151
 msgid "Remove Font"
 msgstr "Eliminați fontul"
 
-#: src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:155
 #: src/font-viewer/font-viewer-main-window.ui:74
 msgid "Install Font"
 msgstr "Instalați Font"
@@ -2613,23 +2626,23 @@ msgstr "Treceți la previzualizarea Waterfall"
 msgid "Switch to Body Text preview"
 msgstr "Treceți la previzualizarea textului corpului"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:97
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
 #, fuzzy
 #| msgid "Increase preview size"
 msgid "Increase tile size"
 msgstr "Măriți dimensiunea previzualizării"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:106
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
 #, fuzzy
 #| msgid "Decrease preview size"
 msgid "Decrease tile size"
 msgstr "Reduceți dimensiunea previzualizării"
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:146
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
 msgid "Toggle search entry"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-pane.ui:155
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
 msgid "Toggle preview panel"
 msgstr ""
 
