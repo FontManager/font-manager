@@ -28,7 +28,7 @@ namespace FontManager {
             base(_("Disabled"),
                  _("Fonts which have been disabled"),
                  "list-remove-symbolic",
-                 null,
+                 "",
                  CategoryIndex.DISABLED);
             disabled_families.load();
         }
@@ -53,4 +53,5 @@ namespace FontManager {
     }
 
 }
+
 

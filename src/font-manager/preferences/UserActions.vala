@@ -1,6 +1,6 @@
 /* UserActions.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -239,6 +239,7 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
             controls.visible = true;
             notify["model"].connect(() => { list.bind_model(model, UserActionRow.from_item); });
             model = new UserActionModel();
+            model.load();
             var place_holder = new PlaceHolder(_("User Actions"),
                                                null,
                                                _("Custom context menu entries"),
