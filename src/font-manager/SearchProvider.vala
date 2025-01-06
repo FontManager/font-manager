@@ -33,8 +33,6 @@ namespace FontManager {
             STYLE;
         }
 
-        const string QUERY = "SELECT filepath, findex, family, style from Fonts WHERE family LIKE '%%s%' ORDER BY weight;";
-
         string get_search_term (string [] terms) {
             var search_term = new StringBuilder();
             foreach (string term in terms) {
@@ -65,8 +63,10 @@ namespace FontManager {
             var search_term = get_search_term(terms);
             try {
                 Database db = DatabaseProxy.get_default_db();
-                string term = search_term.replace("'", "''");
-                db.execute_query(QUERY.printf(term));
+                search_term = search_term.replace("'", "''");
+                string QUERY = "SELECT filepath, findex, family, style from Fonts " +
+                               @"WHERE family LIKE '%$search_term%' ORDER BY weight;";
+                db.execute_query(QUERY);
                 foreach (unowned Sqlite.Statement row in db)
                     result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
                                                           row.column_int(ID.INDEX),
