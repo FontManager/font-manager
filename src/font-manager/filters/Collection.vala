@@ -109,8 +109,8 @@ namespace FontManager {
             return;
         }
 
-        public void remove (string family) {
-            families.remove(family);
+        public void remove (StringSet old_families) {
+            families.remove_all(old_families);
             return;
         }
 

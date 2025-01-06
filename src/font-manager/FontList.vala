@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -420,7 +420,7 @@ namespace FontManager {
             var collection = (Collection) filter;
             var selected_families = new StringSet();
             selected_items.foreach((i) => { selected_families.add(((Family) i).family); });
-            collection.families.remove_all(selected_families);
+            collection.remove(selected_families);
             uint i = current_selection;
             while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
             Idle.add(() => {
