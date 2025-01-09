@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2025-01-09 02:36+0000\n"
+"PO-Revision-Date: 2025-01-09 02:46+0000\n"
 "Last-Translator: Jerry Casiano <JerryCasiano@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ta/>\n"
@@ -252,24 +252,15 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
-#, fuzzy
 msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
-"<மீடியா வகை = \"படம்\" src=\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/><மீடியா வகை = "
-"\"படம்\" src=\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/><மீடியா வகை = \"படம்\" src = "
-"\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/>உங்கள் எழுத்துருக்களை உங்களுக்குப் புரியும் "
-"வகையில் ஒழுங்கமைக்க சேகரிப்புகள் உங்களை அனுமதிக்கின்றன, மேலும் பல குடும்பங்களை ஒரே "
-"நேரத்தில் இயக்க அல்லது முடக்குவதை எளிதாக்குகின்றன."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
-#, fuzzy
 msgid "Collections do not modify your files in any way."
 msgstr ""
-"<மீடியா வகை = \"படம்\" src=\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/>சேகரிப்புகள் "
-"உங்கள் கோப்புகளை எந்த வகையிலும் மாற்றாது."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
@@ -299,12 +290,11 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
-#, fuzzy
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
-"<gui> <media-type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> "
+"<gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> "
 "சேகரிப்பு பார்வையின் அடிப்பகுதியில் சொடுக்கு செய்க."
 
 #. (itstool) path: item/p
@@ -348,12 +338,11 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
-#, fuzzy
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
-"<gui> <media-type=\"image\" src=\"மீடியா/பட்டியல்-அகற்றும்-symbolic.svg\"/> </"
+"<gui> <media type=\"image\" src=\"மீடியா/பட்டியல்-அகற்றும்-symbolic.svg\"/> </"
 "gui> சேகரிப்பு பார்வையின் அடிப்பகுதியில் என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
@@ -366,8 +355,6 @@ msgstr "ஒரு தொகுப்பை இயக்க:"
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr ""
-"<மீடியா வகை = \"படம்\" src=\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/><gui சூல் தண்டு "
-"= \"தேர்வுப்பெட்டி\"> தேர்வுப்பெட்டி </gui> ஐக் சொடுக்கு செய்க"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
@@ -386,12 +373,11 @@ msgstr "நீங்கள் அகற்ற விரும்பும் க
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
-#, fuzzy
 msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
-"எழுத்துரு பட்டியலின் மேலே உள்ள <gui> <media-type=\"image\" src = "
+"எழுத்துரு பட்டியலின் மேலே உள்ள <gui> <media type=\"image\" src = "
 "\"media/list-remove-symbolic.svg\"/> </gui> என்பதைக் சொடுக்கு செய்க."
 
 #. (itstool) path: item/title
@@ -412,7 +398,7 @@ msgstr "புதிய பெயரை உள்ளிடவும்"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr "<gui சூல் தண்டு = \"பொத்தான்\"> உள்ளிடவும் </gui> ஐ அழுத்தவும்"
+msgstr "<gui style=\"button\"> உள்ளிடவும் </gui> ஐ அழுத்தவும்"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
@@ -461,9 +447,6 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
-"நீங்கள் இருமுறை சொடுக்கு செய்யலாம், <gui சூல் தண்டு = \"பொத்தான்\"> ச்பேச் </gui> ஐ "
-"அழுத்தவும் அல்லது தேர்ந்தெடுக்கப்பட்ட எழுத்துருவை மாற்ற </gui> ஐ உள்ளிடவும் <gui சூல் "
-"தண்டு = \"பொத்தான்\"> அழுத்தவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -507,7 +490,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr "<gui சூல் தண்டு = \"பொத்தான்\"> நிர்வகி </gui> பயன்முறையில் இருக்கும்போது"
+msgstr "<gui style=\"button\"> நிர்வகி </gui> பயன்முறையில் இருக்கும்போது"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -515,8 +498,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
-"<gui சூல் தண்டு = \"பொத்தான்\"> <மீடியா வகை = \"படம்\" src="
-"\"மீடியா/பட்டியல்-சேர்க்கை-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
+"<gui style=\"button\"> <media type=\"image\" src="
+"\"media/list-add-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -525,7 +508,7 @@ msgid ""
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
 "காண்பிக்கப்படும் கோப்பு தேர்வாளர் உரையாடலில் இருந்து நீங்கள் நிறுவ விரும்பும் கோப்புகளைத் "
-"தேர்ந்தெடுத்து <gui சூல் தண்டு = \"பொத்தான்\"> திறந்த </gui> ஐக் சொடுக்கு செய்க"
+"தேர்ந்தெடுத்து <gui style=\"button\"> திறந்த </gui> ஐக் சொடுக்கு செய்க"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
@@ -607,8 +590,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
-"<gui சூல் தண்டு = \"பொத்தான்\"> <மீடியா வகை = \"படம்\" src="
-"\"மீடியா/பட்டியல்-அகற்றப்பட்ட-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
+"<gui style=\"button\"> <media type=\"image\" src="
+"\"media/list-remove-symbolic.svg\"/> </gui> சாளரத்தின் மேலே சொடுக்கு செய்க"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -622,7 +605,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr "<gui சூல் தண்டு = \"பொத்தான்\"> நீக்கு </gui> என்பதைக் சொடுக்கு செய்க"
+msgstr "<gui style=\"button\"> நீக்கு </gui> என்பதைக் சொடுக்கு செய்க"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
@@ -774,9 +757,9 @@ msgid ""
 "style=\"button\"> <media type=\"image\" src=\"media/preferences-system-"
 "symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
-"<app> எழுத்துரு மேலாளர் </app> விருப்பத்தேர்வுகள் உரையாடலைத் திறக்கவும் <gui சூல் தண்டு "
-"= \"பொத்தான்\"> <மீடியா வகை = \"படம்\" src="
-"\"மீடியா/விருப்பத்தேர்வுகள்-சிச்டம்-சிம்போலிக்.ச்விசி\"/> </gui> இல் சாளரத்தின் மேல்."
+"<app> எழுத்துரு மேலாளர் </app> விருப்பத்தேர்வுகள் உரையாடலைத் திறக்கவும் <gui style="
+"\"button\"> <media type=\"image\" src="
+"\"media/preferences-system-symbolic.svg\"/> </gui>இல் சாளரத்தின் மேல்."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
