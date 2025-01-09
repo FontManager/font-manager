@@ -1,6 +1,6 @@
 /* PreviewPage.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -366,8 +366,7 @@ namespace FontManager.GoogleFonts {
         string get_current_header ()
         requires (font != null) {
             string justify = "justify";
-            Pango.Context ctx = entry.get_pango_context();
-            Pango.Direction dir = ctx.get_base_dir();
+            Pango.Direction dir = Pango.find_base_dir(entry.text, -1);
             if (preview_mode == PreviewPageMode.PREVIEW) {
                 switch (justification) {
                     case Gtk.Justification.LEFT:
