@@ -1,6 +1,6 @@
 /* font-manager-freetype.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -722,11 +722,12 @@ correct_filetype (JsonObject *json_obj)
     if (g_strcmp0(filetype, "CFF") == 0) {
         const gchar *filepath = json_object_get_string_member(json_obj, "filepath");
         g_autofree gchar *ext = font_manager_get_file_extension(filepath);
-        if (g_ascii_strcasecmp(ext, "otf") == 0
-            || g_ascii_strcasecmp(ext, "ttf") == 0
-            || g_ascii_strcasecmp(ext, "ttc") == 0) {
-            json_object_set_string_member(json_obj, "filetype", "OpenType");
-        }
+        if (g_ascii_strcasecmp(ext, "otf") == 0)
+          json_object_set_string_member(json_obj, "filetype", "OpenType");
+        else if (g_ascii_strcasecmp(ext, "ttf") == 0)
+          json_object_set_string_member(json_obj, "filetype", "TrueType");
+        else if (g_ascii_strcasecmp(ext, "ttc") == 0)
+            json_object_set_string_member(json_obj, "filetype", "TrueType Collection");
     }
     return;
 }

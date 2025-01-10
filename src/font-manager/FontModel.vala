@@ -1,6 +1,6 @@
 /* FontModel.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -133,6 +133,8 @@ namespace FontManager {
             return filter.matches(object);
         }
 
+        // TODO : Figure out how to do this async, without horrible side effects...
+        //        Like breaking scrolling in browse mode and pane positioning in other modes.
         public void update_items () {
             uint n_items = get_n_items();
             items = null;

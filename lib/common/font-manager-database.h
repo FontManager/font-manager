@@ -1,6 +1,6 @@
 /* font-manager-database.h
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@
 #include "font-manager-string-set.h"
 #include "font-manager-utils.h"
 
-#define FONT_MANAGER_CURRENT_DATABASE_VERSION 1
+#define FONT_MANAGER_CURRENT_DATABASE_VERSION 2
 
 #define FONT_MANAGER_TYPE_DATABASE font_manager_database_get_type()
 G_DECLARE_FINAL_TYPE(FontManagerDatabase, font_manager_database, FONT_MANAGER, DATABASE, GObject)
