@@ -1,5 +1,4 @@
 /* Do not edit directly. See build-aux directory */
-
 #pragma once
 
 #include <glib.h>

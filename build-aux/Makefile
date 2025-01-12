@@ -8,7 +8,7 @@ UNICODE_DATA_DIR = $(ABS_SRCDIR)/unicode/
 PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
 UNICODE_URL = http://www.unicode.org/Public
-UNICODE_VERSION = 14.0.0
+UNICODE_VERSION = 16.0.0
 WGET = $(shell which wget)
 WGETFLAGS = -np -nd -rc -P $(UNICODE_DATA_DIR)
 UNZIP = $(shell which unzip)

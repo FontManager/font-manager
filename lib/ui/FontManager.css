@@ -1,6 +1,6 @@
 /* FontManager.css
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,7 +49,6 @@
       1px 0 rgba(0,0,0,0.1),
       0 1px rgba(0,0,0,0.3),
       -1px 0 rgba(0,0,0,0.1);
-
 }
 
 /* Some popovers feature squished text and checks for some reason */
