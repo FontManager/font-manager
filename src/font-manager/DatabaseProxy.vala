@@ -1,6 +1,6 @@
 /* DatabaseProxy.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,20 +28,19 @@ namespace FontManager {
         GLib.Cancellable? cancellable = null;
         ProgressCallback? progress = null;
 
-        // static Database? db = null;
+        static Database? db = null;
 
-        // ~ DatabaseProxy () {
-        //     while (db is Database)
-        //         db.unref();
-        //     db = null;
-        // }
+        ~ DatabaseProxy () {
+            while (db is Database)
+                db.unref();
+            db = null;
+        }
 
         public static Database get_default_db () {
-            // if (db == null)
-            //     db = new Database();
-            // db.ref();
-            // return db;
-            return new Database();
+            if (db == null)
+                db = new Database();
+            db.ref();
+            return db;
         }
 
         public void set_cancellable (Cancellable? cancellable) {
@@ -56,9 +55,8 @@ namespace FontManager {
 
         public void update (Json.Array available_fonts) {
             update_started();
-            Database database = new Database();
             update_database.begin(
-                database,
+                get_default_db(),
                 available_fonts,
                 progress,
                 cancellable,
@@ -66,8 +64,6 @@ namespace FontManager {
                     try {
                         update_database.end(res);
                         update_complete();
-                        // if (db != null)
-                        //     db = new Database();
                     } catch (Error e) {
                         critical(e.message);
                     }
@@ -79,5 +75,4 @@ namespace FontManager {
     }
 
 }
-
 

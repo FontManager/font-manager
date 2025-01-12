@@ -53,6 +53,7 @@ font_manager_reject_init (FontManagerReject *self)
 /**
  * font_manager_reject_get_rejected_files:
  * @self:       #FontManagerReject
+ * @db:         #FontManagerDatabase
  * @error:      #GError or %NULL to ignore errors
  *
  * Returns: (transfer full) (nullable):
@@ -60,12 +61,13 @@ font_manager_reject_init (FontManagerReject *self)
  * Free the returned object using #g_object_unref().
  */
 FontManagerStringSet *
-font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
+font_manager_reject_get_rejected_files (FontManagerReject *self,
+                                        FontManagerDatabase *db,
+                                        GError **error)
 {
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
     g_autoptr(FontManagerStringSet) rejected_files = font_manager_string_set_new();
-    g_autoptr(FontManagerDatabase) db = font_manager_database_new();
     g_return_val_if_fail(error == NULL || *error == NULL, NULL);
     guint len_rejected = font_manager_string_set_size(FONT_MANAGER_STRING_SET(self));
     const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = %s";
@@ -85,7 +87,6 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
         }
         font_manager_database_end_query(db);
     }
-    font_manager_database_end_query(db);
     return g_steal_pointer(&rejected_files);
 }
 

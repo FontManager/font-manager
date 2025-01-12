@@ -1,6 +1,6 @@
 /* font-manager-reject.h
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,5 +35,5 @@ struct _FontManagerRejectClass
 };
 
 FontManagerReject * font_manager_reject_new (void);
-FontManagerStringSet * font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error);
+FontManagerStringSet * font_manager_reject_get_rejected_files (FontManagerReject *self, FontManagerDatabase *db, GError **error);
 

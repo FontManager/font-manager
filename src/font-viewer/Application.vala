@@ -1,6 +1,6 @@
 /* Application.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,6 +86,7 @@ namespace FontManager {
                 if (options.contains("debug")) {
                     Environment.set_variable("G_MESSAGES_DEBUG", "[font-manager]", true);
                     stdout.printf("\n%s %s\n\n", _("Font Viewer"), Config.PACKAGE_VERSION);
+                    print_os_info();
                     print_library_versions();
                 }
                 StringSet? filelist = get_command_line_files(cl);
@@ -130,10 +131,10 @@ namespace FontManager {
                 setup_i18n();
                 Environment.set_application_name(_("Font Viewer"));
 #if HAVE_ADWAITA
-            var settings = get_gsettings(FontManager.BUS_ID);
-            if (settings != null)
-                if (settings.get_boolean("use-adwaita-stylesheet"))
-                    Adw.init();
+                var settings = get_gsettings(FontManager.BUS_ID);
+                if (settings != null)
+                    if (settings.get_boolean("use-adwaita-stylesheet"))
+                        Adw.init();
 #endif
                 ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_COMMAND_LINE |
                                           ApplicationFlags.HANDLES_OPEN);

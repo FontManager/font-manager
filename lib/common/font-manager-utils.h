@@ -1,6 +1,6 @@
 /* font-manager-utils.h
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,6 +62,7 @@ typedef struct _ObjectProperty
 FontManagerObjectProperty;
 
 void font_manager_setup_i18n (void);
+void font_manager_print_os_info (void);
 void font_manager_print_library_versions (void);
 gint font_manager_get_file_owner (const gchar *filepath);
 gint font_manager_natural_sort (const gchar *str1, const gchar *str2) G_GNUC_PURE;

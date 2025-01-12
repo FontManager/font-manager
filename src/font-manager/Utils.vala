@@ -1,6 +1,6 @@
 /* Utils.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -217,7 +217,8 @@ namespace FontManager {
         reject.load();
         StringSet? files = null;
         try {
-            files = reject.get_rejected_files();
+            Database db = DatabaseProxy.get_default_db();
+            files = reject.get_rejected_files(db);
         } catch (Error e) {
             warning(e.message);
         }

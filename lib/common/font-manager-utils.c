@@ -63,6 +63,26 @@ font_manager_setup_i18n ()
 }
 
 /**
+ * font_manager_print_os_info:
+ *
+ * Print OS name and version.
+ */
+void
+font_manager_print_os_info ()
+{
+    g_autofree gchar *pretty_name = g_get_os_info(G_OS_INFO_KEY_PRETTY_NAME);
+    if (pretty_name)
+        g_debug(pretty_name);
+    else {
+        g_autofree gchar *name = g_get_os_info(G_OS_INFO_KEY_NAME);
+        g_autofree gchar *version = g_get_os_info(G_OS_INFO_KEY_VERSION);
+        g_debug("%s %s", name, version ? version : "");
+    }
+    g_debug(setlocale(LC_ALL, NULL));
+    return;
+}
+
+/**
  * font_manager_print_library_versions:
  *
  * Logs the versions of libraries in use for debugging purposes.
@@ -408,6 +428,9 @@ font_manager_get_command_line_files (GApplicationCommandLine *cmdline)
     return files;
 }
 
+/* TODO: Not that it matters but free this before exiting */
+static GHashTable *gsettings = NULL;
+
 /**
  * font_manager_get_gsettings:
  * @schema_id:      the id of the schema
@@ -418,6 +441,15 @@ font_manager_get_command_line_files (GApplicationCommandLine *cmdline)
 GSettings *
 font_manager_get_gsettings (const gchar *schema_id)
 {
+    if (!gsettings)
+        gsettings = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_object_unref);
+    else {
+        gpointer stored = g_hash_table_lookup(gsettings, schema_id);
+        if (stored) {
+            g_debug("Using existing settings instance for %s", schema_id);
+            return (GSettings *) g_object_ref(stored);
+        }
+    }
     GSettingsSchemaSource *schema_source = g_settings_schema_source_get_default();
     g_return_val_if_fail(schema_source != NULL, NULL);
     g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup(schema_source, schema_id, TRUE);
@@ -450,5 +482,7 @@ font_manager_get_gsettings (const gchar *schema_id)
         g_debug("Settings will not persist");
         return NULL;
     }
-    return g_settings_new_full(schema, NULL, NULL);
+    GSettings *result = g_settings_new_full(schema, NULL, NULL);
+    g_hash_table_insert(gsettings, g_strdup(schema_id), g_object_ref(result));
+    return result;
 }

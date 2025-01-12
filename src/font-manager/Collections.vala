@@ -374,6 +374,8 @@ namespace FontManager {
             string temp_dir;
             try {
                 temp_dir = DirUtils.make_tmp(TMP_TMPL);
+                if (get_default_application().temp_files == null)
+                    get_default_application().temp_files = new StringSet();
                 get_default_application().temp_files.add(temp_dir);
             } catch (Error e) {
                 critical(e.message);

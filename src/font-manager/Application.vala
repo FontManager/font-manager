@@ -1,7 +1,7 @@
 /* Application.vala */
 public const string DISPLAY_NAME = _("Font Manager");
 public const string COMMENT = _("Simple font management for GTK+ desktop environments");
-public const string COPYRIGHT = "Copyright © 2009-2024 Jerry Casiano";
+public const string COPYRIGHT = "Copyright © 2009-2025 Jerry Casiano";
 public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ namespace FontManager {
         [DBus (visible = false)]
         public Reject? disabled_families { get; private set; default = new Reject(); }
         [DBus (visible = false)]
-        public StringSet? temp_files { get; private set; default = new StringSet(); }
+        public StringSet? temp_files { get; set; default = null; }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -288,13 +288,13 @@ namespace FontManager {
         protected override void activate () {
             if (main_window == null) {
                 main_window = new MainWindow(settings);
+                main_window.present();
                 add_window(main_window);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
                 bind_property("disabled-families", main_window, "disabled-families", flags);
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
-                main_window.present();
             }
             db.update_complete.connect(() => {
                 update_item_preview_text(available_fonts);
@@ -316,8 +316,9 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public new void quit () {
-            foreach (string path in temp_files)
-                remove_directory(File.new_for_path(path));
+            if (temp_files != null)
+                foreach (string path in temp_files)
+                    remove_directory(File.new_for_path(path));
             base.quit();
             return;
         }
@@ -347,6 +348,7 @@ namespace FontManager {
                     continue;
                 Environment.set_variable("G_MESSAGES_DEBUG", "[font-manager]", true);
                 stdout.printf("\n%s %s\n\n", DISPLAY_NAME, Config.PACKAGE_VERSION);
+                print_os_info();
                 print_library_versions();
                 break;
             }
@@ -354,8 +356,8 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
-            set_debug_level(args);
             setup_i18n();
+            set_debug_level(args);
             Environment.set_application_name(DISPLAY_NAME);
 #if HAVE_ADWAITA
             var settings = get_gsettings(BUS_ID);
