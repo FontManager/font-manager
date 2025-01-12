@@ -1,4 +1,12 @@
 0.9.0 -> 0.9.1
+- Address segfault caused by missing sources - Closes #405
+- Update Unicode data files to version 16.0
+- Fix GLib Schema loading to ensure newest file gets loaded
+- Fix base dir detection for Google Fonts waterfall preview
+- Add preference to control spacing between lines in waterfall - Issue #399
+- Check for default preview and load localized version instead - Issue #389
+- Set cursor to visible in active preview - Issue #403
+- Ship fallback icons to avoid missing image icons - Issue #373
 - FontList : Increase margin to improve TreeExpander consistency - Issue #373
 - Waterfall Preview : Allow access to waterfall settings from right click menu - Issue #373
 - Collections : More accurate state tracking
