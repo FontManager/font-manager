@@ -72,13 +72,13 @@ font_manager_print_os_info ()
 {
     g_autofree gchar *pretty_name = g_get_os_info(G_OS_INFO_KEY_PRETTY_NAME);
     if (pretty_name)
-        g_debug(pretty_name);
+        g_debug("%s", pretty_name);
     else {
         g_autofree gchar *name = g_get_os_info(G_OS_INFO_KEY_NAME);
         g_autofree gchar *version = g_get_os_info(G_OS_INFO_KEY_VERSION);
         g_debug("%s %s", name, version ? version : "");
     }
-    g_debug(setlocale(LC_ALL, NULL));
+    g_debug("%s", setlocale(LC_ALL, NULL));
     return;
 }
 
