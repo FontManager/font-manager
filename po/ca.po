@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-05 01:41-0500\n"
+"POT-Creation-Date: 2025-01-12 13:07-0500\n"
 "PO-Revision-Date: 2024-03-14 02:22+0000\n"
 "Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/font-manager/"
@@ -62,8 +62,8 @@ msgstr ""
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
-#: src/font-viewer/Application.vala:131
+#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
+#: src/font-viewer/Application.vala:132
 #: src/font-viewer/font-viewer-main-window.ui:29
 msgid "Font Viewer"
 msgstr "Visualitzador de lletres"
@@ -861,7 +861,7 @@ msgstr ""
 
 #. FontList.vala
 #. *
-#. * Copyright (C) 2020-2024 Jerry Casiano
+#. * Copyright (C) 2020-2025 Jerry Casiano
 #. *
 #. * This program is free software: you can redistribute it and/or modify
 #. * it under the terms of the GNU General Public License as published by
@@ -1598,7 +1598,7 @@ msgstr "Neteja el filtre seleccionat"
 msgid "Edit selected item"
 msgstr "Neteja el filtre seleccionat"
 
-#: src/font-manager/Utils.vala:290
+#: src/font-manager/Utils.vala:291
 msgid "Copying files…"
 msgstr "S'estan copiant els fitxers…"
 
