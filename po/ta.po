@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.9.1\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-05 01:41-0500\n"
+"POT-Creation-Date: 2025-01-12 13:07-0500\n"
 "PO-Revision-Date: 2024-12-27 17:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/font-"
@@ -66,8 +66,8 @@ msgstr "கிராபிக்ச்; பார்வையாளர்; க�
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:107
-#: src/font-viewer/Application.vala:131
+#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
+#: src/font-viewer/Application.vala:132
 #: src/font-viewer/font-viewer-main-window.ui:29
 msgid "Font Viewer"
 msgstr "எழுத்துரு பார்வையாளர்"
@@ -868,7 +868,7 @@ msgstr "உங்கள் வீட்டு கோப்பகத்தில�
 
 #. FontList.vala
 #. *
-#. * Copyright (C) 2020-2024 Jerry Casiano
+#. * Copyright (C) 2020-2025 Jerry Casiano
 #. *
 #. * This program is free software: you can redistribute it and/or modify
 #. * it under the terms of the GNU General Public License as published by
@@ -1594,7 +1594,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட உருப�
 msgid "Edit selected item"
 msgstr "தேர்ந்தெடுக்கப்பட்ட உருப்படியைத் திருத்தவும்"
 
-#: src/font-manager/Utils.vala:290
+#: src/font-manager/Utils.vala:291
 msgid "Copying files…"
 msgstr "கோப்புகளை நகலெடுக்கும்…"
 
