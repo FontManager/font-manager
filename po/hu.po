@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-01-05 01:41-0500\n"
-"PO-Revision-Date: 2024-11-19 12:01+0000\n"
+"PO-Revision-Date: 2025-01-12 12:25+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -1912,7 +1912,7 @@ msgstr "Széles elrendezés"
 
 #: src/font-manager/preferences/UserInterface.vala:289
 msgid "Use three column layout"
-msgstr ""
+msgstr "Háromoszlopos elrendezés használata"
 
 #: src/font-manager/preferences/UserInterface.vala:292
 msgid "Only When Maximized"
@@ -1947,14 +1947,12 @@ msgid "Display line size in Waterfall Preview"
 msgstr "Sorméret megjelenítése a vízesés előnézetben"
 
 #: src/font-manager/preferences/UserInterface.vala:308
-#, fuzzy
-#| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
-msgstr "Vízesés előnézet méret beállításai"
+msgstr "Vízesés előnézet sorainak térköze"
 
 #: src/font-manager/preferences/UserInterface.vala:310
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "A sorok fölötti és alatti térköz pixelben megadva"
 
 #: src/font-manager/preferences/UserSources.vala:145
 msgid ""
