@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright (C) 2017-2022 Jerry Casiano
+ * Copyright (C) 2017-2025 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt
@@ -59,7 +59,11 @@
  * @FONT_MANAGER_UNICODE_VERSION_12_1:           Version 12.1
  * @FONT_MANAGER_UNICODE_VERSION_13_0:           Version 13.0
  * @FONT_MANAGER_UNICODE_VERSION_14_0:           Version 14.0
- * @FONT_MANAGER_UNICODE_VERSION_LATEST:         Version 14.0
+ * @FONT_MANAGER_UNICODE_VERSION_15_0:           Version 15.0
+ * @FONT_MANAGER_UNICODE_VERSION_15_1:           Version 15.1
+ * @FONT_MANAGER_UNICODE_VERSION_16_0:           Version 16.0
+ *
+ * @FONT_MANAGER_UNICODE_VERSION_LATEST:         Version 16.0
  */
 typedef enum {
     FONT_MANAGER_UNICODE_VERSION_UNASSIGNED,
@@ -87,8 +91,11 @@ typedef enum {
     FONT_MANAGER_UNICODE_VERSION_12_1,
     FONT_MANAGER_UNICODE_VERSION_13_0,
     FONT_MANAGER_UNICODE_VERSION_14_0,
+    FONT_MANAGER_UNICODE_VERSION_15_0,
+    FONT_MANAGER_UNICODE_VERSION_15_1,
+    FONT_MANAGER_UNICODE_VERSION_16_0,
     /* private, will move forward with each revision */
-    FONT_MANAGER_UNICODE_VERSION_LATEST = FONT_MANAGER_UNICODE_VERSION_14_0
+    FONT_MANAGER_UNICODE_VERSION_LATEST = FONT_MANAGER_UNICODE_VERSION_16_0
 } FontManagerUnicodeStandard;
 
 /* return values are read-only */
