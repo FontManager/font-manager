@@ -404,7 +404,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     g_autoptr(JsonObject) res = NULL;
     if (!self->db)
         self->db = font_manager_database_new();
-    g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
+    g_object_get(G_OBJECT(self->font), "filepath", filepath, "findex", &index, NULL);
     if (error == NULL) {
         const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";
         char *path = sqlite3_mprintf("%Q", filepath);
