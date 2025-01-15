@@ -62,7 +62,6 @@
  * @FONT_MANAGER_UNICODE_VERSION_15_0:           Version 15.0
  * @FONT_MANAGER_UNICODE_VERSION_15_1:           Version 15.1
  * @FONT_MANAGER_UNICODE_VERSION_16_0:           Version 16.0
- *
  * @FONT_MANAGER_UNICODE_VERSION_LATEST:         Version 16.0
  */
 typedef enum {
