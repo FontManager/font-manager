@@ -392,19 +392,22 @@ static gboolean
 font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
 {
     g_return_val_if_fail(self != NULL, G_SOURCE_REMOVE);
-    if (!self->font)
+    if (!FONT_MANAGER_IS_FONT(self->font))
         return G_SOURCE_CONTINUE;
     if (!self->update_required)
         return G_SOURCE_REMOVE;
-    gint index = 0;
     GError *error = NULL;
-    // XXX: ???
-    // g_autofree gchar *filepath = NULL;
-    gchar *filepath = NULL;
     g_autoptr(JsonObject) res = NULL;
     if (!self->db)
         self->db = font_manager_database_new();
-    g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
+    JsonObject *source = NULL;
+    g_object_get(G_OBJECT(self->font), "source-object", &source, NULL);
+    if (!source) {
+        g_critical("Failed to get source object! Unable to update metadata.");
+        return G_SOURCE_REMOVE;
+    }
+    int index = json_object_get_int_member_with_default(source, "index", 0);
+    const char *filepath = json_object_get_string_member(source, "filepath");
     if (error == NULL) {
         const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";
         char *path = sqlite3_mprintf("%Q", filepath);
@@ -422,12 +425,14 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
             g_clear_error(&error);
         }
     }
-    g_free(filepath);
     if (res) {
         for (gint i = 0; i < NUM_STYLE_DETAILS; i++) {
-            gint value;
             const gchar *str = NULL;
-            g_object_get(G_OBJECT(self->font), style_detail[i], &value, NULL);
+            if (!json_object_has_member(source, style_detail[i])) {
+                g_debug("Missing %s in source object", style_detail[i]);
+                continue;
+            }
+            int value = json_object_get_int_member(source, style_detail[i]);
             switch (i) {
                 case WIDTH:
                     str = font_manager_width_to_string((FontManagerWidth) value);
@@ -458,13 +463,16 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     font_manager_font_properties_page_update(FONT_MANAGER_PROPERTIES_PAGE(self->properties), res);
     //g_debug("PreviewPane.update_metadata : %s", font_manager_print_json_object(res, true));
     self->update_required = FALSE;
+    json_object_unref(source);
     return G_SOURCE_REMOVE;
 }
+
+
 
 static gboolean
 font_manager_preview_pane_update (FontManagerPreviewPane *self)
 {
-    g_return_val_if_fail(self != NULL, G_SOURCE_REMOVE);
+    g_return_val_if_fail(FONT_MANAGER_IS_PREVIEW_PANE(self), G_SOURCE_REMOVE);
     /* XXX : How is this a thing that happens intermittently ?! */
     if (!GTK_IS_NOTEBOOK(self->notebook))
         return G_SOURCE_REMOVE;
