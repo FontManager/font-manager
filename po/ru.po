@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-12 13:07-0500\n"
+"POT-Creation-Date: 2025-01-18 15:08-0500\n"
 "PO-Revision-Date: 2022-02-06 15:23+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -396,30 +396,30 @@ msgid "Waterfall"
 msgstr "Водопад"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:576
+#: lib/gtk/font-manager-preview-pane.c:584
 msgid "Characters"
 msgstr "Символы"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:577
+#: lib/gtk/font-manager-preview-pane.c:585
 msgid "Properties"
 msgstr "Свойства"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Лицензия"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Обычный"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Нормальный"
 
-#: lib/gtk/font-manager-preview-pane.c:500
+#: lib/gtk/font-manager-preview-pane.c:508
 msgid "Search available characters"
 msgstr "Искать доступные символы"
 

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-12 13:07-0500\n"
+"POT-Creation-Date: 2025-01-18 15:08-0500\n"
 "PO-Revision-Date: 2024-07-06 15:09+0000\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -384,30 +384,30 @@ msgid "Waterfall"
 msgstr "Şelale"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:576
+#: lib/gtk/font-manager-preview-pane.c:584
 msgid "Characters"
 msgstr "Karakterler"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:577
+#: lib/gtk/font-manager-preview-pane.c:585
 msgid "Properties"
 msgstr "Özellikler"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Lisans"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Düz"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
-#: lib/gtk/font-manager-preview-pane.c:500
+#: lib/gtk/font-manager-preview-pane.c:508
 msgid "Search available characters"
 msgstr "Mevcut karakterleri ara"
 
