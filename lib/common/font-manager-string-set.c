@@ -325,19 +325,27 @@ font_manager_string_set_clear (FontManagerStringSet *self)
     return;
 }
 
+gint
+compare_func (gconstpointer a, gconstpointer b)
+{
+    g_return_val_if_fail((a != NULL && b != NULL), 0);
+    g_autofree gchar *s1 = g_utf8_collate_key_for_filename((gchar *) a, -1);
+    g_autofree gchar *s2 = g_utf8_collate_key_for_filename((gchar *) b, -1);
+    return g_strcmp0(s1, s2);
+}
+
 /**
  * font_manager_string_set_sort:
  * @self:                       #FontManagerStringSet
- * @compare_func: (scope call): #GCompareFunc
  *
  * Sorts the set, using @compare_func
  */
 void
-font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func)
+font_manager_string_set_sort(FontManagerStringSet *self)
 {
     g_return_if_fail(self != NULL);
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
-    g_ptr_array_sort(priv->strings, compare_func);
+    g_ptr_array_sort_values(priv->strings, compare_func);
     return;
 }
 

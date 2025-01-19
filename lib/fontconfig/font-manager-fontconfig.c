@@ -1,6 +1,6 @@
 /* font-manager-fontconfig.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -196,6 +196,7 @@ font_manager_list_available_font_families (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
+    font_manager_string_set_sort(result);
     return result;
 }
 

@@ -1,6 +1,6 @@
 /* font-manager-string-set.h
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ void font_manager_string_set_remove_all (FontManagerStringSet *self, FontManager
 void font_manager_string_set_retain_all (FontManagerStringSet *self, FontManagerStringSet *retain);
 GList * font_manager_string_set_list (FontManagerStringSet *self);
 void font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer user_data);
-void font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func);
+void font_manager_string_set_sort(FontManagerStringSet *self);
 void font_manager_string_set_clear (FontManagerStringSet *self);
 GStrv font_manager_string_set_to_strv (FontManagerStringSet *self);
 

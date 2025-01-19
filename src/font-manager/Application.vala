@@ -48,8 +48,9 @@ namespace FontManager {
             { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
             { "debug", 0, 0, OptionArg.NONE, null, "Enable debug messages", null },
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
-            { "enable", 'e', 0, OptionArg.NONE, null, "Space separated list of font families to enable", null },
+            { "enable", 'e', 0, OptionArg.NONE, null, "Space separated list of font families to enable. Empty list to enable all.", null },
             { "disable", 'd', 0, OptionArg.NONE, null, "Space separated list of font families to disable", null },
+            { "keep", 0, 0, OptionArg.NONE, null, "Space separated list of font families keep enabled, disables all others.", null },
             { "list", 'l', 0, OptionArg.NONE, null, "List available font families.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
             { "update", 'u', 0, OptionArg.NONE, null, "Update application database", null },
@@ -159,10 +160,9 @@ namespace FontManager {
             update_font_configuration();
             load_user_font_resources();
             var families = list_available_font_families();
-            assert(families.size > 0);
             StringBuilder builder = new StringBuilder();
             foreach (string family in families)
-                builder.append("%s\n".printf(family));
+                builder.append(@"$family\n");
             return builder.str;
         }
 
@@ -175,6 +175,7 @@ namespace FontManager {
         }
 
         public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
+            disabled_families.load();
             foreach (var family in families)
                 if (family in disabled_families)
                     disabled_families.remove(family);
@@ -221,25 +222,58 @@ namespace FontManager {
 
             if (options.contains("enable")) {
                 var accept = get_command_line_input(options);
-                return_val_if_fail(accept != null, -1);
-                try {
-                    enable(accept.to_strv());
+                if (accept == null || accept.size < 1) {
+                    disabled_families.clear();
+                    disabled_families.save();
                     exit_status = 0;
-                } catch (Error e) {
-                    critical(e.message);
-                    exit_status = 1;
+                } else {
+                    try {
+                        enable(accept.to_strv());
+                        exit_status = 0;
+                    } catch (Error e) {
+                        critical(e.message);
+                        exit_status = 1;
+                    }
                 }
             }
 
             if (options.contains("disable")) {
                 var rejects = get_command_line_input(options);
-                return_val_if_fail(rejects != null, -1);
-                try {
-                    disable(rejects.to_strv());
-                    exit_status = 0;
-                } catch (Error e) {
-                    critical(e.message);
+                if (rejects == null || rejects.size < 1) {
+                    stdout.printf("\nGot empty list. Exiting...\n\n");
                     exit_status = 1;
+                } else {
+                    try {
+                        disable(rejects.to_strv());
+                        exit_status = 0;
+                    } catch (Error e) {
+                        critical(e.message);
+                        exit_status = 1;
+                    }
+                }
+                exit_status = 0;
+            }
+
+            if (options.contains("keep")) {
+                var keep = get_command_line_input(options);
+                if (keep == null || keep.size < 1) {
+                    stdout.printf("\nGot empty list. Disabling all installed fonts is not a good idea...\n\n");
+                    exit_status = 1;
+                } else {
+                    update_font_configuration();
+                    load_user_font_resources();
+                    var families = list_available_font_families();
+                    int valid = 0;
+                    foreach (var family in keep)
+                        if (family in families)
+                            valid++;
+                    if (valid < 1) {
+                        stdout.printf("\nNo valid families specified. Disabling all installed fonts is not a good idea...\n\n");
+                        exit_status = 1;
+                    } else {
+                        families.remove_all(keep);
+                        disable(families.to_strv());
+                    }
                 }
                 exit_status = 0;
             }
@@ -373,6 +407,7 @@ namespace FontManager {
     }
 
 }
+
 
 
 
