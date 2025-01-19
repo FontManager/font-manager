@@ -22,7 +22,6 @@ set -e
 case "$1" in
     purge|remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
         glib-compile-schemas /usr/share/glib-2.0/schemas
-        apparmor_parser -r /etc/apparmor.d/font-manager
     ;;
     *)
         echo "postrm called with unknown argument \`$1'" >&2
