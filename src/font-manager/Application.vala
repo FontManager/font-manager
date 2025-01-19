@@ -263,15 +263,19 @@ namespace FontManager {
                     update_font_configuration();
                     load_user_font_resources();
                     var families = list_available_font_families();
-                    int valid = 0;
-                    foreach (var family in keep)
-                        if (family in families)
-                            valid++;
-                    if (valid < 1) {
+                    var matches = new StringSet();
+                    foreach (string family in keep)
+                        foreach (string entry in families) {
+                            string a = entry.down();
+                            string b = family.down();
+                            if (a == b || a.contains(b))
+                                matches.add(entry);
+                        }
+                    if (matches.size < 1) {
                         stdout.printf("\nNo valid families specified. Disabling all installed fonts is not a good idea...\n\n");
                         exit_status = 1;
                     } else {
-                        families.remove_all(keep);
+                        families.remove_all(matches);
                         disable(families.to_strv());
                     }
                 }
