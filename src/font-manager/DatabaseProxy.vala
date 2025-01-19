@@ -30,8 +30,6 @@ namespace FontManager {
 
         static Database? db = null;
 
-        ~ DatabaseProxy () { db.unref(); }
-
         public static Database get_default_db () {
             if (db == null)
                 db = new Database();
