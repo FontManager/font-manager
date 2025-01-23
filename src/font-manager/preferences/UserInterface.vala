@@ -20,6 +20,39 @@
 
 namespace FontManager {
 
+    public enum ButtonStyle {
+
+        NORMAL,
+        FLAT;
+
+        public const string [] display_strings = { N_("Raised"), N_("Flat") };
+
+        // GSettingsBind*Mapping functions
+
+        public static Variant to_setting (Value val, VariantType type) {
+
+            switch (((ButtonStyle) val.get_uint())) {
+                case ButtonStyle.FLAT:
+                    return new Variant.string("Flat");
+                default:
+                    return new Variant.string("Normal");
+            }
+        }
+
+        public static bool from_setting (Value val, Variant variant) {
+            switch (variant.get_string()) {
+                case "Flat":
+                    val.set_uint((uint) ButtonStyle.FLAT);
+                    break;
+                default:
+                    val.set_uint((uint) ButtonStyle.NORMAL);
+                    break;
+            }
+            return true;
+        }
+
+    }
+
     public enum PredefinedWaterfallSize {
 
         LINEAR_48,
@@ -182,8 +215,8 @@ namespace FontManager {
                                        this,
                                        "predefined-size",
                                        flags,
-                                       PredefinedWaterfallSize.from_setting,
-                                       PredefinedWaterfallSize.to_setting,
+                                       (GLib.SettingsBindGetMappingShared) PredefinedWaterfallSize.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PredefinedWaterfallSize.to_setting,
                                        null, null);
             return;
         }
@@ -296,8 +329,7 @@ namespace FontManager {
 #if HAVE_ADWAITA
             use_adwaita_stylesheet = add_preference_switch(_("Use Adwaita Stylesheet"));
 #endif
-            string [] button_styles = { _("Raised"), _("Flat") };
-            var style_list = new Gtk.StringList(button_styles);
+            var style_list = new Gtk.StringList(ButtonStyle.display_strings);
             button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
             show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
@@ -366,14 +398,8 @@ namespace FontManager {
                                        button_style,
                                        "selected",
                                        flags,
-                                       (val, v) => {
-                                           val.set_uint(((string) v) == "Normal" ? 0 : 1);
-                                           return true;
-                                       },
-                                       (v, t) => {
-                                           string val = v.get_uint() == 0 ? "Normal" : "Flat";
-                                           return new Variant.string(val);
-                                       },
+                                       (GLib.SettingsBindGetMappingShared) ButtonStyle.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) ButtonStyle.to_setting,
                                        null, null);
             return;
         }

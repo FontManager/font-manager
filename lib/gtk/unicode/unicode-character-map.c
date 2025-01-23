@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright (C) 2017-2024 Jerry Casiano
+ * Copyright (C) 2017-2025 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt
@@ -253,8 +253,8 @@ resize_context_widget (FontManagerUnicodeCharacterMap *self)
     gint border = FONT_MANAGER_DEFAULT_MARGIN * 4, glyph_pad = border, width = -1, height = -1;
     pango_layout_get_pixel_size(self->zoom_layout, &width, &height);
     pango_layout_get_pixel_extents(self->zoom_layout, NULL, &char_rect);
-    if (width < 0) width = char_rect.width;
-    if (height < 0) height = char_rect.height;
+    width = width > 0 ? width :char_rect.width;
+    height = height > 0 ? height : char_rect.height;
     gint min_width = width + glyph_pad;
     gint min_height = height + glyph_pad;
     GtkWidget *parent = gtk_widget_get_parent(self->zoom_center_box);
@@ -269,22 +269,24 @@ font_manager_unicode_character_map_resize (GtkDrawingArea *widget, int width, in
     FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(widget);
     gint old_rows = self->rows;
     gint old_cols = self->columns;
-    GtkAllocation allocation;
-    gtk_widget_get_allocation(GTK_WIDGET(widget), &allocation);
     gint min_width = CELL_PADDING * self->preview_size;
     gint min_height = CELL_PADDING * self->preview_size;
-    self->rows = allocation.height / min_height;
-    self->columns = allocation.width / min_width;
+    graphene_rect_t allocation = GRAPHENE_RECT_INIT_ZERO;
+    if (!gtk_widget_compute_bounds(GTK_WIDGET(widget), GTK_WIDGET(widget), &allocation)) {
+        g_critical("Failed to get bounds for GtkDrawingArea containing FontManagerCharacterMap");
+    }
+    self->rows = allocation.size.height / min_height;
+    self->columns = allocation.size.width / min_width;
     /* Avoid a horrible floating point exception crash */
-    if (self->rows < 1) self->rows = 1;
-    if (self->columns < 1) self->columns = 1;
+    self->rows = self->rows > 0 ? self->rows : 1;
+    self->columns = self->columns > 0 ? self->columns : 1;
     self->page_size = self->rows * self->columns;
-    gint extra = allocation.width - (self->columns * min_width + 1);
+    gint extra = allocation.size.width - (self->columns * min_width + 1);
     self->min_cell_width = min_width + extra / self->columns;
-    self->n_padded_columns = allocation.width - (self->min_cell_width * self->columns + 1);
-    extra = allocation.height - (self->rows * min_height + 1);
+    self->n_padded_columns = allocation.size.width - (self->min_cell_width * self->columns + 1);
+    extra = allocation.size.height - (self->rows * min_height + 1);
     self->min_cell_height = min_height + extra / self->rows;
-    self->n_padded_rows = allocation.height - (self->min_cell_height * self->rows + 1);
+    self->n_padded_rows = allocation.size.height - (self->min_cell_height * self->rows + 1);
     if (self->rows != old_rows || self->columns != old_cols) {
         /* Need to recalculate the first cell, see bug #517188 */
         gint new_first_cell = FIRST_CELL_IN_SAME_ROW(self->active_cell);
@@ -392,6 +394,67 @@ get_y_offset (FontManagerUnicodeCharacterMap *self, gint row)
 /* FIXME ! */
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
+/*
+ * NOTE : GTK is working on removing the ability to get theme colors.
+ * Need to find a workaround for this before replacing the deprecated
+ * functions used for this widget.
+ */
+
+/*
+
+void
+render_line (cairo_t *cr, double x0, double y0, double x1, double y1)
+{
+    cairo_move_to(cr, x0, y0);
+    cairo_line_to(cr, x1, y1);
+    cairo_stroke(cr);
+    return;
+}
+
+static void
+draw_character_with_metrics (GtkDrawingArea *widget,
+                             cairo_t *cr,
+                             gint unused_width,
+                             gint unused_height,
+                             gpointer user_data)
+{
+    g_return_if_fail(user_data != NULL);
+    FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(user_data);
+    ensure_pango_layout(self);
+    g_autofree gchar *cell_text = get_text_for_cell(self, self->active_cell);
+    pango_layout_set_text(self->zoom_layout, cell_text, -1);
+    PangoRectangle char_rect;
+    graphene_rect_t allocation = GRAPHENE_RECT_INIT_ZERO;
+    if (!gtk_widget_compute_bounds(GTK_WIDGET(widget), GTK_WIDGET(widget), &allocation)) {
+        g_critical("Failed to get bounds for GtkDrawingArea containing FontManagerCharacterMap");
+    }
+    gint glyph_pad = 48, width = -1, height = -1;
+    pango_layout_get_pixel_size(self->zoom_layout, &width, &height);
+    pango_layout_get_pixel_extents(self->zoom_layout, NULL, &char_rect);
+    width = (width < 0) ? char_rect.width : width;
+    height = (height < 0) ? char_rect.height : height;
+    gtk_widget_set_size_request(GTK_WIDGET(widget), width + glyph_pad, height + glyph_pad);
+    gint xpad = ((allocation.size.width - char_rect.width) / 2);
+    gint ypad = ((allocation.size.height - char_rect.height) / 2);
+    gint baseline = pango_layout_get_baseline(self->zoom_layout) / PANGO_SCALE;
+    GdkRGBA color;
+    gtk_widget_get_color(GTK_WIDGET(widget), &color);
+    cairo_set_line_width(cr, 0.5);
+    cairo_set_source_rgba(cr, color.red, color.green, color.blue, 0.25);
+    render_line(cr, 1, baseline + xpad, allocation.size.width - 1, baseline + xpad);
+    render_line(cr, 1, PANGO_ASCENT(char_rect) + xpad, allocation.size.width - 1, PANGO_ASCENT(char_rect) + xpad);
+    render_line(cr, 1, PANGO_DESCENT(char_rect) + xpad, allocation.size.width - 1, PANGO_DESCENT(char_rect) + xpad);
+    render_line(cr, PANGO_LBEARING(char_rect) + ypad, 1, PANGO_LBEARING(char_rect) + ypad, allocation.size.height - 1);
+    render_line(cr, PANGO_RBEARING(char_rect) + ypad, 1, PANGO_RBEARING(char_rect) + ypad, allocation.size.height - 1);
+    cairo_set_source_rgba(cr, color.red, color.green, color.blue, color.alpha);
+    cairo_move_to(cr, char_rect.x + xpad, char_rect.y + ypad);
+    pango_cairo_show_layout(cr, self->zoom_layout);
+    gtk_popover_present(GTK_POPOVER(get_context_widget(self)));
+    return;
+}
+
+*/
+
 static void
 draw_character_with_metrics (GtkDrawingArea *widget,
                              cairo_t *cr,
@@ -410,8 +473,8 @@ draw_character_with_metrics (GtkDrawingArea *widget,
     gint glyph_pad = 48, width = -1, height = -1;
     pango_layout_get_pixel_size(self->zoom_layout, &width, &height);
     pango_layout_get_pixel_extents(self->zoom_layout, NULL, &char_rect);
-    if (width < 0) width = char_rect.width;
-    if (height < 0) height = char_rect.height;
+    width = width > 0 ? width : char_rect.width;
+    height = height > 0 ? height : char_rect.height;
     GtkWidget *parent = gtk_widget_get_parent(GTK_WIDGET(widget));
     int parent_size = MAX(width + glyph_pad, height + glyph_pad);
     gtk_widget_set_size_request(parent, parent_size, parent_size);

@@ -12,6 +12,7 @@
 .OP -d family
 .OP -i filepath
 .OP -u
+.OP --keep family
 .YS
 .SH DESCRIPTION
 .PP
@@ -35,17 +36,29 @@ List available font families
 .BR \-\-list\-full
 Full listing including face information (JSON)
 .TP
-.BR \-e ", " \-\-enable " " \fIfamily\fP
+.BR \-e ", " \-\-enable " " \fIfamily " " ...\fP
 Space separated list of font families to enable
 .TP
-.BR \-d ", " \-\-disable " " \fIfamily\fP
+.BR \-d ", " \-\-disable " " \fIfamily " " ...\fP
 Space separated list of font families to disable
 .TP
-.BR \-i ", " \-\-install " " \fIfilepath\fP
+.BR \-i ", " \-\-install " " \fIfilepath " " ...\fP
 Space separated list of files to install
 .TP
 .BR \-u ", " \-\-update
 Update application database
+.TP
+.BR \-\-keep " " \fIfamily " " ...\fP
+Space separated list of font families to keep while disabling all others. \
+This option is case insensitive and allows for partial matches.
+.IP
+.B Caution:
+.IP
+While the --keep option will require at least one font family to remain enabled \
+it makes no attempt to ensure that it is a suitable replacement for required \
+system fonts.
+.IP
+The --enable option with no arguments should enable all available fonts.
 .SH FILES
 .de FN
 \fI\|\\$1\|\fP

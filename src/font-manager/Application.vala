@@ -50,7 +50,7 @@ namespace FontManager {
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
             { "enable", 'e', 0, OptionArg.NONE, null, "Space separated list of font families to enable. Empty list to enable all.", null },
             { "disable", 'd', 0, OptionArg.NONE, null, "Space separated list of font families to disable", null },
-            { "keep", 0, 0, OptionArg.NONE, null, "Space separated list of font families keep enabled, disables all others.", null },
+            { "keep", 0, 0, OptionArg.NONE, null, "Space separated list of font families to keep enabled, disables all others.", null },
             { "list", 'l', 0, OptionArg.NONE, null, "List available font families.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
             { "update", 'u', 0, OptionArg.NONE, null, "Update application database", null },
