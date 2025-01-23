@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-12 13:07-0500\n"
+"POT-Creation-Date: 2025-01-18 15:08-0500\n"
 "PO-Revision-Date: 2023-05-06 22:52+0000\n"
 "Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/font-manager/font-"
@@ -374,30 +374,30 @@ msgid "Waterfall"
 msgstr "Kaskáda"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:576
+#: lib/gtk/font-manager-preview-pane.c:584
 msgid "Characters"
 msgstr "Znaky"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:577
+#: lib/gtk/font-manager-preview-pane.c:585
 msgid "Properties"
 msgstr "Vlastnosti"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licencia"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Bežný"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normálny"
 
-#: lib/gtk/font-manager-preview-pane.c:500
+#: lib/gtk/font-manager-preview-pane.c:508
 msgid "Search available characters"
 msgstr "Vyhľadať dostupné znaky"
 

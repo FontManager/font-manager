@@ -28,7 +28,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-12 13:07-0500\n"
+"POT-Creation-Date: 2025-01-18 15:08-0500\n"
 "PO-Revision-Date: 2024-07-23 16:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -394,30 +394,30 @@ msgid "Waterfall"
 msgstr "瀑布"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:576
+#: lib/gtk/font-manager-preview-pane.c:584
 msgid "Characters"
 msgstr "字元對應"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:577
+#: lib/gtk/font-manager-preview-pane.c:585
 msgid "Properties"
 msgstr "屬性"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:578 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "授權"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "常規(Regular)"
 
-#: lib/gtk/font-manager-preview-pane.c:446 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "正常(Normal)"
 
-#: lib/gtk/font-manager-preview-pane.c:500
+#: lib/gtk/font-manager-preview-pane.c:508
 msgid "Search available characters"
 msgstr "搜尋可用字元"
 
