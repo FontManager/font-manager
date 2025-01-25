@@ -276,7 +276,13 @@ namespace FontManager {
                         exit_status = 1;
                     } else {
                         families.remove_all(matches);
-                        disable(families.to_strv());
+                        try {
+                            disable(families.to_strv());
+                            exit_status = 0;
+                        } catch (Error e) {
+                            critical(e.message);
+                            exit_status = 1;
+                        }
                     }
                 }
                 exit_status = 0;

@@ -70,7 +70,7 @@ namespace FontManager {
         [GtkChild] public unowned Gtk.Image item_icon { get; }
         [GtkChild] public unowned Gtk.CheckButton item_state { get; }
         [GtkChild] public unowned Gtk.Inscription item_preview { get; }
-        // [GtkChild] public unowned Gtk.EditableLabel edit_label { get; }
+        [GtkChild] public unowned Gtk.EditableLabel edit_label { get; }
         [GtkChild] public unowned Gtk.Box drag_area { get; }
         [GtkChild] public unowned Gtk.Image drag_handle { get; }
 

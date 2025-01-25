@@ -35,18 +35,17 @@
                 <property name="visible">False</property>
               </object>
             </child>
-            <!-- XXX : Causes issues with drag and drop... -->
-            <!-- <child> -->
-            <!--   <object class="GtkEditableLabel" id="edit_label"> -->
-            <!--     <property name="hexpand">True</property> -->
-            <!--     <property name="halign">fill</property> -->
-            <!--     <property name="margin-end">9</property> -->
-            <!--     <property name="margin-start">9</property> -->
-            <!--     <property name="vexpand">True</property> -->
-            <!--     <property name="valign">center</property> -->
-            <!--     <property name="visible">False</property> -->
-            <!--   </object> -->
-            <!-- </child> -->
+            <child>
+              <object class="GtkEditableLabel" id="edit_label">
+                <property name="hexpand">True</property>
+                <property name="halign">start</property>
+                <property name="margin-end">9</property>
+                <property name="margin-start">9</property>
+                <property name="vexpand">True</property>
+                <property name="valign">center</property>
+                <property name="visible">False</property>
+              </object>
+            </child>
             <child>
               <object class="GtkLabel" id="item_label">
                 <property name="halign">start</property>
