@@ -966,12 +966,12 @@ on_drag_begin (GtkDragSource *source, GdkDrag *drag, gpointer user_data)
                                rect->origin.y + (rect->size.height - char_height) / 2,
                                layout);
     gtk_style_context_restore(ctx);
-    graphene_rect_free(rect);
     pango_attr_list_unref(attrs);
     gtk_drag_source_set_icon(source, gtk_snapshot_to_paintable(snapshot, NULL), 0, 0);
     gdk_drag_set_hotspot(drag,
                          rect->origin.x - ((rect->size.width / 2)),
                          rect->origin.y - ((rect->size.height / 2)) - 12);
+    graphene_rect_free(rect);
     return;
 }
 
