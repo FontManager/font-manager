@@ -26,15 +26,41 @@
             <signal name="clicked" handler="on_delete_clicked"/>
           </object>
         </child>
+        <child type="end">
+          <object class="GtkToggleButton" id="search_toggle">
+            <property name="icon-name">edit-find-symbolic</property>
+          </object>
+        </child>
       </object>
     </property>
     <child>
-      <object class="GtkStack" id="stack">
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkStackPage" id="remove">
-            <property name="child">
-              <object class="FontManagerRemoveListView" id="remove_list"/>
-            </property>
+          <object class="GtkSearchBar" id="search_bar">
+            <child>
+              <object class="GtkSearchEntry" id="entry">
+                <property name="placeholder-text" translatable="yes">Search Families…</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkStack" id="stack">
+            <style>
+                <class name="view"/>
+            </style>
+            <child>
+              <object class="GtkStackPage" id="remove">
+                <property name="child">
+                    <object class="FontManagerRemoveListView" id="remove_list">
+                        <property name="margin-top">12</property>
+                        <property name="hexpand">False</property>
+                        <property name="vexpand">True</property>
+                    </object>
+                </property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

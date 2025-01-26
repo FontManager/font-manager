@@ -105,6 +105,8 @@ namespace FontManager {
                 return;
             uint position = row.get_position();
             if (selection.is_selected(position)) {
+                if (edit_label.visible)
+                    edit_label.editable = true;
                 Gdk.Event event = click.get_current_event();
                 if (event == null)
                     return;
@@ -115,6 +117,8 @@ namespace FontManager {
                 bool expanded = row.expanded;
                 if (row.expandable)
                     row.expanded = !expanded;
+            } else {
+                edit_label.editable = false;
             }
             return;
         }

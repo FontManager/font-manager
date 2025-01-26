@@ -78,6 +78,8 @@ Generated fontconfig configuration files.
 .TP
 .FN $XDG_CONFIG_HOME/dconf/user
 User interface preferences.
+.TP
+https://specifications.freedesktop.org/basedir-spec/latest/#variables
 .SH LIMITATIONS
 .B @PACKAGE_NAME@
 is a user level application, it will not allow installation

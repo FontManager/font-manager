@@ -65,9 +65,16 @@ namespace FontManager {
         public Gtk.FileDialog get_selections () {
             var filter = new Gtk.FileFilter();
             var file_roller = new ArchiveManager();
-            if (file_roller.available)
+            var filter_name = new StringBuilder();
+            filter_name.append(_("TrueType"));
+            filter_name.append(", ");
+            filter_name.append(_("OpenType"));
+            if (file_roller.available) {
+                filter_name.append(", ");
+                filter_name.append(_("Archive Files"));
                 foreach (string mimetype in file_roller.get_supported_types())
                     filter.add_mime_type(mimetype);
+            }
             foreach (var mimetype in FONT_MIMETYPES)
                 filter.add_mime_type(mimetype);
             var dialog = new Gtk.FileDialog() {
@@ -75,6 +82,7 @@ namespace FontManager {
                 title = _("Select Files to Install"),
             };
             dialog.set_default_filter(filter);
+            filter.name = filter_name.str;
             return dialog;
         }
 
@@ -339,13 +347,16 @@ namespace FontManager {
 
         [GtkChild] public unowned Gtk.Button cancel_button { get; }
         [GtkChild] public unowned Gtk.Button delete_button { get; }
+        [GtkChild] public unowned Gtk.ToggleButton search_toggle { get; }
         [GtkChild] public unowned RemoveListView remove_list { get; }
+        [GtkChild] public unowned Gtk.SearchBar search_bar { get; }
+        [GtkChild] public unowned Gtk.SearchEntry entry { get; }
 
         [GtkChild] unowned Gtk.Stack stack;
 
         public RemoveDialog (Gtk.Window? parent) {
             set_transient_for(parent);
-            set_default_dialog_size(parent, this, 70, 70);
+            set_default_dialog_size(parent, this, 60, 70);
             var fonts = get_available_fonts(null);
             var sorted_fonts = sort_json_font_listing(fonts);
             sorted_fonts.foreach_element((a, i, n) => {
@@ -357,6 +368,7 @@ namespace FontManager {
                 });
             });
             update_item_preview_text(sorted_fonts);
+            remove_list.set_search_entry(entry);
             remove_list.available_fonts = sorted_fonts;
             delete_button.set_sensitive(false);
             remove_list.changed.connect(() => {
@@ -376,6 +388,11 @@ namespace FontManager {
                 stack.add_named(empty, "empty");
                 stack.set_visible_child_name("empty");
             }
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
+            search_bar.connect_entry(entry);
+            search_bar.set_key_capture_widget(remove_list);
+            remove_list.grab_focus();
         }
 
         [GtkCallback]

@@ -133,20 +133,16 @@ namespace FontManager {
 
     public class CollectionListRow : TreeListItemRow {
 
-        Binding? name_binding = null;
-        Binding? state_binding = null;
-        Binding? _state_binding = null;
+        GenericArray <Binding>? bindings = new GenericArray <Binding> ();
 
         ulong signal_id = 0;
         uint state_change_timeout = 0;
 
         construct {
             margin_start = 0;
-            item_state.visible = true;
-            item_count.visible = true;
             item_label.visible = false;
-            edit_label.visible = true;
-            drag_handle.visible = true;
+            item_state.visible = item_count.visible = true;
+            edit_label.visible = drag_handle.visible = true;
             edit_label.changed.connect_after(() => {
                 return_if_fail(item is Collection);
                 string new_name = edit_label.text;
@@ -158,23 +154,18 @@ namespace FontManager {
         }
 
         public override void reset () {
-            if (name_binding != null)
-                name_binding.unbind();
-            if (state_binding != null)
-                state_binding.unbind();
-            if (_state_binding != null)
-                _state_binding.unbind();
+            bindings.foreach((binding) => { binding.unbind(); });
+            bindings = new GenericArray <Binding> ();
             if (signal_id != 0)
                 SignalHandler.disconnect(item_state, signal_id);
-            name_binding = null;
-            state_binding = null;
-            _state_binding = null;
             signal_id = 0;
             return;
         }
 
         bool update_item_state () {
             ((Collection) item).name = edit_label.text;
+            // Cursor position gets reset to zero, likely due to bound property.
+            edit_label.set_position(edit_label.text.length);
             item_state_changed(item);
             state_change_timeout = 0;
             return GLib.Source.REMOVE;
@@ -183,7 +174,7 @@ namespace FontManager {
         void queue_item_state_update () {
             if (state_change_timeout != 0)
                 GLib.Source.remove(state_change_timeout);
-            state_change_timeout = Timeout.add(1500, update_item_state);
+            state_change_timeout = Timeout.add(500, update_item_state);
             return;
         }
 
@@ -197,9 +188,9 @@ namespace FontManager {
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-            name_binding = collection.bind_property("name", edit_label, "text", flags);
-            state_binding = collection.bind_property("active", item_state, "active", flags);
-            _state_binding = collection.bind_property("inconsistent", item_state, "inconsistent", flags);
+            bindings.add(collection.bind_property("name", edit_label, "text", flags));
+            bindings.add(collection.bind_property("active", item_state, "active", flags));
+            bindings.add(collection.bind_property("inconsistent", item_state, "inconsistent", flags));
             signal_id = item_state.toggled.connect(collection.on_state_toggled);
             return;
         }

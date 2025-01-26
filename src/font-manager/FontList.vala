@@ -41,7 +41,7 @@ namespace FontManager {
 
         protected override void reset () {
             if (binding is Binding)
-                binding.unref();
+                binding.unbind();
             binding = null;
             item_state.set("active", true, "visible", false, "sensitive", true, null);
             item_label.set("label", "", "attributes", null, null);
@@ -142,6 +142,7 @@ namespace FontManager {
                 search_entry.search_changed.connect_after(queue_update);
                 string hint = search_tip.printf(Path.DIR_SEPARATOR_S, Path.SEARCHPATH_SEPARATOR_S);
                 search_entry.set_tooltip_text(hint);
+                search_entry.set_key_capture_widget(this);
             });
             notify["disabled-families"].connect_after(() => {
                 if (disabled_families != null && model != null)
@@ -276,7 +277,6 @@ namespace FontManager {
             append(scroll);
             prepend(controls);
             search_entry = controls.search;
-            search_entry.set_key_capture_widget(this);
             controls.expander_activated.connect(on_expander_activated);
             ((Gtk.ListView) list).activate.connect(on_activate);
         }
@@ -734,15 +734,17 @@ namespace FontManager {
 
         construct {
             widget_set_name(list, "FontManagerRemoveListView");
-            controls.remove_button.visible = false;
-            controls.expander.visible = false;
-            controls.search.halign = Gtk.Align.CENTER;
+            controls.visible = false;
             treemodel.set_autoexpand(true);
             selected_files = new StringSet();
             selection = new Gtk.NoSelection(treemodel);
             filter = new UserFonts();
             filter.update.begin();
-            controls.set_visible(filter.size > 20);
+        }
+
+        public void set_search_entry (Gtk.SearchEntry entry) {
+            search_entry = entry;
+            return;
         }
 
         protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
