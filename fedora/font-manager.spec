@@ -7,6 +7,7 @@
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
 %bcond adwaita 1
+%bcond libarchive 1
 %bcond nautilus 1
 %bcond nemo 1
 %bcond thunar 1
@@ -14,7 +15,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    5
+Release:    6
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -38,6 +39,10 @@ BuildRequires: desktop-file-utils
 
 %if %{with adwaita}
 BuildRequires: libadwaita-devel
+%endif
+
+%if %{with libarchive}
+BuildRequires: libarchive-devel >= 3.7
 %endif
 
 %if %{with webkit}
@@ -67,6 +72,10 @@ Requires: yelp
 
 %if %{with adwaita}
 Requires: libadwaita
+%endif
+
+%if %{with libarchive}
+Requires: libarchive >= 3.7
 %endif
 
 %if %{with webkit}
@@ -129,6 +138,7 @@ This package provides integration with the Thunar file manager.
 %build
 %meson --buildtype=release \
     -Dadwaita=%{?with_adwaita:true}%{!?with_adwaita:false} \
+    -Dlibarchive=%{?with_libarchive:true}%{!?with_libarchive:false} \
     -Dnautilus=%{?with_nautilus:true}%{!?with_nautilus:false} \
     -Dnemo=%{?with_nemo:true}%{!?with_nemo:false} \
     -Dthunar=%{?with_thunar:true}%{!?with_thunar:false} \
@@ -188,5 +198,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.metain
 %endif
 
 %changelog
-* Sun Jan 25 2025 JerryCasiano <JerryCasiano@gmail.com> 0.9.2-5
+* Sun Jan 25 2025 JerryCasiano <JerryCasiano@gmail.com> 0.9.2-6
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
