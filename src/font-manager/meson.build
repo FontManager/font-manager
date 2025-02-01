@@ -13,6 +13,10 @@ if get_option('adwaita')
     dependencies += adwaita
 endif
 
+if get_option('libarchive')
+    dependencies += libarchive
+endif
+
 if get_option('webkit')
     dependencies += soup
     dependencies += webkit
@@ -34,7 +38,9 @@ executable('font-manager',
                         '-Wno-unused-but-set-variable',
                         '-Wno-discarded-qualifiers',
                         '-Wno-incompatible-pointer-types',
-                        '-Wno-duplicate-decl-specifier'
+                        '-Wno-duplicate-decl-specifier',
+                        # These are duplicates anyway
+                        '-Wno-deprecated-declarations'
             ])
 
 includes += include_directories('.')

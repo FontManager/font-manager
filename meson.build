@@ -10,9 +10,6 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.56.3')
     error('Vala compiler version is @0@ but project requires >= 0.56.3'.format(valac.version()))
 endif
-if valac.version().version_compare('>= 0.56.17')
-    add_global_arguments('-D', 'VALA_0_56_17', language: 'vala')
-endif
 
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)
@@ -36,8 +33,8 @@ gnome = import('gnome')
 
 # This dependency cannot be used for vala targets
 base_deps = declare_dependency(
-    dependencies: [ fontconfig, freetype, glib, gmodule, gtk, harfbuzz,
-                    json, m_dep, pangoft2, sqlite, xml ]
+    dependencies: [ fontconfig, freetype, glib, gmodule, gtk,
+                    harfbuzz, json, m_dep, pangoft2, sqlite, xml ]
 )
 
 vala_deps = declare_dependency(
@@ -53,6 +50,11 @@ if get_option('webkit')
     soup = dependency('libsoup-3.0', version: '>= 3.2')
     webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
     add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
+endif
+
+if get_option('libarchive')
+    libarchive = dependency('libarchive', version: '>= 3.7')
+    add_global_arguments('-D', 'HAVE_LIBARCHIVE', language: 'vala')
 endif
 
 includes = [ include_directories('.') ]
@@ -119,6 +121,7 @@ summary(
         ' GNOME search provider ': get_option('search-provider'),
         ' Use Adwaita stylesheet ': get_option('adwaita'),
         ' Google Fonts Integration ': get_option('webkit'),
+        ' Compressed files support ': get_option('libarchive'),
         ' Nautilus extension ': get_option('nautilus'),
         ' Nemo extension ': get_option('nemo'),
         ' Thunar extension ': get_option('thunar'),

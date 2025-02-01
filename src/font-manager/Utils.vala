@@ -355,6 +355,20 @@ namespace FontManager {
         return result;
     }
 
+    public int64 get_filelist_file_size (StringSet filelist) {
+        int64 total = 0;
+        foreach (string path in filelist) {
+            try {
+                File file = File.new_for_path(path);
+                FileInfo info = file.query_info(FileAttribute.STANDARD_SIZE, FileQueryInfoFlags.NONE);
+                total += info.get_size();
+            } catch (Error e) {
+                critical(e.message);
+            }
+        }
+        return total;
+    }
+
     public StringSet? get_command_line_input (VariantDict options) {
         Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
         if (argv == null)

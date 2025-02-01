@@ -1,6 +1,6 @@
 /* Library.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,9 @@ namespace FontManager {
                 var sorter = new Sorter();
                 sorter.sort(filelist);
                 process_files(sorter.fonts);
+#if HAVE_LIBARCHIVE
                 process_archives(sorter.archives);
+#endif
                 if (tmp_file != null)
                     remove_directory(tmp_file);
                 tmp_file = null;
@@ -58,7 +60,9 @@ namespace FontManager {
                 var sorter = new Sorter();
                 sorter.sort(filelist);
                 self.process_files(sorter.fonts);
+#if HAVE_LIBARCHIVE
                 self.process_archives(sorter.archives);
+#endif
                 if (self.tmp_file != null)
                     remove_directory(self.tmp_file);
                 self.tmp_file = null;
@@ -99,9 +103,11 @@ namespace FontManager {
                 return;
             }
 
-            void process_archives (StringSet filelist) {
+#if HAVE_LIBARCHIVE
 
-                if (filelist.size == 0)
+            void process_archives (StringSet? filelist) {
+
+                if (filelist == null || filelist.size == 0)
                     return;
 
                 if (tmp_file == null) {
@@ -114,30 +120,22 @@ namespace FontManager {
                     }
                 }
 
-                var file_roller = new ArchiveManager();
-                return_if_fail(file_roller.available);
+                var libarchive = new ArchiveManager();
 
                 foreach (var path in filelist) {
 
-                    var file = File.new_for_path(path);
-                    string uri = file.get_uri();
-
+                    File file = File.new_for_path(path);
                     string tmp_path = Path.build_filename(tmp_file.get_path(), "archive_XXXXXX");
                     File tmp = File.new_for_path(DirUtils.mkdtemp(tmp_path));
-                    assert(tmp.query_exists());
-                    string tmp_uri = tmp.get_uri();
 
-                    if (!file_roller.extract(uri, tmp_uri, false)) {
-                        critical("Failed to extract archive : %s", path);
+                    if (!tmp.query_exists()) {
+                        critical("Failed to create temporary directory : %s for %s", tmp.get_path(), path);
                         continue;
                     }
 
-                    if (uri.contains(tmp_file.get_uri())) {
-                        try {
-                            file.delete();
-                        } catch (Error e) {
-                            critical(e.message);
-                        }
+                    if (!libarchive.extract(file, tmp)) {
+                        critical("Failed to extract archive : %s", path);
+                        continue;
                     }
 
                     var sorter = new Sorter();
@@ -152,6 +150,8 @@ namespace FontManager {
                 return;
             }
 
+#endif
+
         }
 
         class Sorter : Object {
@@ -159,24 +159,17 @@ namespace FontManager {
             public StringSet? fonts { get; private set; default = null; }
             public StringSet? archives { get; private set; default = null; }
 
-            StringSet? supported_archives = null;
-
             public uint total {
                 get {
                     return fonts.size + archives.size;
                 }
             }
 
-            construct {
-                supported_archives = new StringSet();
-                var file_roller = new ArchiveManager();
-                if (file_roller.available)
-                    supported_archives = file_roller.get_supported_types();
-            }
-
             public void sort (StringSet filelist) {
-                fonts = new StringSet ();
-                archives  = new StringSet ();
+                fonts = new StringSet();
+#if HAVE_LIBARCHIVE
+                archives  = new StringSet();
+#endif
                 process_files(filelist);
                 return;
             }
@@ -217,8 +210,10 @@ namespace FontManager {
                             process_directory(file);
                         else if (content_type.contains("font") && !is_metrics_file(name))
                             fonts.add(filepath);
-                        else if (content_type in supported_archives)
+#if HAVE_LIBARCHIVE
+                        else if (content_type in LIBARCHIVE_MIME_TYPES)
                             archives.add(filepath);
+#endif
                         else
                             message("Ignoring unsupported filetype : %s", name);
                     } catch (Error e) {
@@ -233,3 +228,4 @@ namespace FontManager {
     }
 
 }
+

@@ -64,17 +64,16 @@ namespace FontManager {
 
         public Gtk.FileDialog get_selections () {
             var filter = new Gtk.FileFilter();
-            var file_roller = new ArchiveManager();
             var filter_name = new StringBuilder();
             filter_name.append(_("TrueType"));
             filter_name.append(", ");
             filter_name.append(_("OpenType"));
-            if (file_roller.available) {
-                filter_name.append(", ");
-                filter_name.append(_("Archive Files"));
-                foreach (string mimetype in file_roller.get_supported_types())
-                    filter.add_mime_type(mimetype);
-            }
+#if HAVE_LIBARCHIVE
+            filter_name.append(", ");
+            filter_name.append(_("Archive Files"));
+            foreach (string mimetype in LIBARCHIVE_MIME_TYPES)
+                filter.add_mime_type(mimetype);
+#endif
             foreach (var mimetype in FONT_MIMETYPES)
                 filter.add_mime_type(mimetype);
             var dialog = new Gtk.FileDialog() {

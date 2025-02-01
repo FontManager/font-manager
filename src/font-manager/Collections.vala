@@ -233,9 +233,9 @@ namespace FontManager {
         CollectionRenamePopover? rename_popover = null;
 
         static construct {
-            var file_roller = new ArchiveManager();
-            if (file_roller.available)
-                install_action("compress", null, (Gtk.WidgetActionActivateFunc) compress);
+#if HAVE_LIBARCHIVE
+            install_action("compress", null, (Gtk.WidgetActionActivateFunc) compress);
+#endif
             install_action("copy_to", null, (Gtk.WidgetActionActivateFunc) copy_to);
             install_action("rename", null, (Gtk.WidgetActionActivateFunc) rename_selected_collection);
             add_binding_action(Gdk.Key.F2, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "rename", null);
@@ -392,30 +392,58 @@ namespace FontManager {
             return;
         }
 
+        void on_compress_complete (Object? source, GLib.Task task) {
+            bool result = false;
+            try {
+                result = task.propagate_boolean();
+            } catch (Error e) {
+                warning(e.message);
+            }
+            string title = _("Collection export complete");
+            string body = _("The resulting file can be found in your home directory.");
+            if (!result) {
+                title = _("Error exporting collection");
+                body = _("Start the application from a terminal and try again for more information");
+            }
+            var icon = new GLib.ThemedIcon(BUS_ID);
+            var notification = new GLib.Notification(title);
+            notification.set_body(body);
+            notification.set_icon(icon);
+            get_default_application().send_notification("compress-complete", notification);
+            return;
+        }
+
+        static void compress_selected_collection (Task task, Object source, void* data, Cancellable? cancellable = null) {
+#if HAVE_LIBARCHIVE
+            return_if_fail(source is CollectionListView);
+            unowned string home = Environment.get_home_dir();
+            var collections = ((CollectionListView) source);
+            var outpath = Path.build_filename(home, collections.selected_item.name);
+            var output = File.new_for_path(outpath);
+            var libarchive = new ArchiveManager();
+            var filelist = ((Collection) collections.selected_item).get_filelist();
+            int64 filesize = get_filelist_file_size(filelist);
+            if (filesize > 125000000) {
+                string title = _("Creating archive from selected collection");
+                string body = _("This may take some time for large collections…");
+                var icon = new GLib.ThemedIcon(BUS_ID);
+                var notification = new GLib.Notification(title);
+                notification.set_body(body);
+                notification.set_icon(icon);
+                get_default_application().send_notification("compress-started", notification);
+            }
+            bool result = libarchive.compress(filelist, output);
+            task.return_boolean(result);
+#else
+            task.return_boolean(false);
+#endif
+            return;
+        }
+
         void compress (Gtk.Widget widget, string? action, Variant? parameter)
         requires (selected_item != null) {
-            var file_roller = new ArchiveManager();
-            return_if_fail(file_roller.available);
-            string temp_dir;
-            try {
-                temp_dir = DirUtils.make_tmp(TMP_TMPL);
-                if (get_default_application().temp_files == null)
-                    get_default_application().temp_files = new StringSet();
-                get_default_application().temp_files.add(temp_dir);
-            } catch (Error e) {
-                critical(e.message);
-                return_if_reached();
-            }
-            string tmp_path = Path.build_filename(temp_dir, selected_item.name);
-            assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
-            File tmp = File.new_for_path(tmp_path);
-            copy_files.begin(((Collection) selected_item).get_filelist(), tmp, false, (obj, res) => {
-                copy_files.end(res);
-                string? [] filelist = { tmp.get_uri(), null };
-                unowned string home = Environment.get_home_dir();
-                string destination = File.new_for_path(home).get_uri();
-                file_roller.compress(filelist, destination);
-            });
+            GLib.Task task = new GLib.Task(this, null, on_compress_complete);
+            task.run_in_thread(compress_selected_collection);
             return;
         }
 

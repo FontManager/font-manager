@@ -40,8 +40,6 @@ namespace FontManager {
         public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
         [DBus (visible = false)]
         public Reject? disabled_families { get; private set; default = new Reject(); }
-        [DBus (visible = false)]
-        public StringSet? temp_files { get; set; default = null; }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -337,8 +335,6 @@ namespace FontManager {
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
                 bind_property("disabled-families", main_window, "disabled-families", flags);
-                // Why is this needed?
-                shutdown.connect(() => { quit(); });
             }
             db.update_complete.connect(() => {
                 update_item_preview_text(available_fonts);
@@ -355,15 +351,6 @@ namespace FontManager {
                 return get_default_application().main_window.progress_update(data);
             });
             reload();
-            return;
-        }
-
-        [DBus (visible = false)]
-        public new void quit () {
-            if (temp_files != null)
-                foreach (string path in temp_files)
-                    remove_directory(File.new_for_path(path));
-            base.quit();
             return;
         }
 

@@ -3,6 +3,7 @@ option('viewer', type: 'boolean', value: true, description: 'Install font-viewer
 option('search-provider', type: 'boolean', value: true, description: 'Install GNOME shell search provider')
 option('adwaita', type: 'boolean', value: false, description: 'Use Adwaita stylesheet')
 option('webkit', type: 'boolean', value: true, description: 'Google Fonts Integration')
+option('libarchive', type: 'boolean', value: true, description: 'Enable support for archive files')
 option('yelp-doc', type: 'boolean', value: true, description: 'Install help documents')
 option('enable-nls', type: 'boolean', value: true, description: 'Install translations')
 option('unihan', type: 'boolean', value: true, description: 'Include Han unification data (+/- 3.5 MB)')

@@ -1,6 +1,6 @@
 /* ArchiveManager.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,152 +18,203 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-[DBus (name = "org.gnome.ArchiveManager1")]
-interface FileRollerDBusService : Object {
-
-    public signal void progress (double percent, string message);
-#if VALA_0_56_17
-    public abstract void add_to_archive (string archive, string [] uris, bool use_progress_dialog) throws DBusError, IOError;
-    public abstract void compress (string [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
-#else
-    public abstract void add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog) throws DBusError, IOError;
-    public abstract void compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
-#endif
-    public abstract void extract (string archive, string destination, bool use_progress_dialog) throws DBusError, IOError;
-    public abstract void extract_here (string archive, bool use_progress_dialog) throws DBusError, IOError;
-    /* Valid actions -> "create", "create_single_file", "extract" */
-    public abstract HashTable <string, string> [] get_supported_types (string action) throws DBusError, IOError;
-
-}
+#if HAVE_LIBARCHIVE
 
 namespace FontManager {
 
-    /* Mimetypes that are likely to cause an error, unlikely to contain usable fonts.
-     * i.e.
-     * Windows .FON files are classified as "application/x-ms-dos-executable"
-     * but file-roller is unlikely to extract one successfully.
-     */
-    const string [] MIMETYPE_IGNORE_LIST = {
-        "application/x-ms-dos-executable"
+    public const string LIBARCHIVE_MIME_TYPES [] = {
+        "application/epub+zip",
+        "application/vnd.debian.binary-package",
+        "application/vnd.ms-cab-compressed",
+        "application/vnd.rar",
+        "application/x-7z-compressed",
+        "application/x-ar",
+        "application/x-bzip-compressed-tar",
+        "application/x-cbr",
+        "application/x-cbz",
+        "application/x-cd-image",
+        "application/x-compressed-tar",
+        "application/x-cpio",
+        "application/x-deb",
+        "application/x-lha",
+        "application/x-lrzip-compressed-tar",
+        "application/x-lzip-compressed-tar",
+        "application/x-lzma-compressed-tar",
+        "application/x-rar",
+        "application/x-rpm",
+        "application/x-tar",
+        "application/x-tarz",
+        "application/x-tzo",
+        "application/x-xar",
+        "application/x-xz-compressed-tar",
+        "application/x-zstd-compressed-tar",
+        "application/zip"
     };
 
     public class ArchiveManager : Object {
 
-        int SERVICE_UNKNOWN_ERROR = 2;
-        int SERVICE_TIMED_OUT = 24;
-        static bool SERVICE_UNKNOWN = false;
-
-        public signal void progress (double percent, string message);
-
-        FileRollerDBusService? service = null;
-
-        void post_error_message (Error e) {
-            if (e.code == SERVICE_UNKNOWN_ERROR) {
-                SERVICE_UNKNOWN = true;
-                message("Install file-roller to enable archive support");
-            } else if (e.code != SERVICE_TIMED_OUT) {
-                critical("%i : %s", e.code, e.message);
-            }
-            return;
+        Archive.Entry add_entry (Archive.Write archive, File file, FileInfo file_info, string path) {
+            Archive.Entry entry = new Archive.Entry();
+            entry.set_pathname(path);
+            entry.set_size((Archive.int64_t) file_info.get_size());
+            bool IFREG = (file_info.get_file_type() == FileType.REGULAR);
+            entry.set_filetype(IFREG ? Archive.FileType.IFREG : Archive.FileType.IFDIR);
+            entry.unset_birthtime();
+            entry.set_atime((time_t) file_info.get_attribute_uint64(FileAttribute.TIME_ACCESS),
+                            file_info.get_attribute_uint32(FileAttribute.TIME_ACCESS_USEC) * 1000);
+            entry.set_ctime((time_t) file_info.get_attribute_uint64(FileAttribute.TIME_CREATED),
+                            file_info.get_attribute_uint32(FileAttribute.TIME_CREATED_USEC) * 1000);
+            entry.set_mtime((time_t) file_info.get_attribute_uint64(FileAttribute.TIME_MODIFIED),
+                            file_info.get_attribute_uint32(FileAttribute.TIME_MODIFIED_USEC) * 1000);
+            entry.set_uid(file_info.get_attribute_uint32(FileAttribute.UNIX_UID));
+            entry.set_gid(file_info.get_attribute_uint32(FileAttribute.UNIX_GID));
+            entry.set_mode(file_info.get_attribute_uint32(FileAttribute.UNIX_MODE));
+            if (archive.write_header(entry) != Archive.Result.OK)
+                critical("Error adding entry for '%s': %s (%d)", file.get_path(), archive.error_string(), archive.errno());
+            return entry;
         }
 
-         void init () {
+        int64 add_data (Archive.Write archive, File file, FileInfo file_info, string path) {
+            int64 size = 0;
+            add_entry(archive, file, file_info, Path.build_filename(path, file.get_basename()));
             try {
-                if (SERVICE_UNKNOWN)
-                    return;
-                service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
-                if (service.get_supported_types("extract").length > 0)
-                    service.progress.connect((p, m) => { progress(p, m); });
-            } catch (Error e) {
-                service = null;
-                post_error_message(e);
-            }
-            return;
-        }
-
-        FileRollerDBusService? file_roller {
-            get {
-                init();
-                return service;
-            }
-        }
-
-        public bool available {
-            get {
-                return file_roller != null;
-            }
-        }
-
-#if VALA_0_56_17
-        public bool add_to_archive (string archive, string? [] uris, bool use_progress_dialog = true)
-#else
-        public bool add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog = true)
-#endif
-        requires (file_roller != null) {
-            try {
-                file_roller.add_to_archive(archive, uris, use_progress_dialog);
-                return true;
-            } catch (Error e) {
-                post_error_message(e);
-            }
-            return false;
-        }
-
-#if VALA_0_56_17
-        public bool compress (string? [] uris, string destination, bool use_progress_dialog = true)
-#else
-        public bool compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog = true)
-#endif
-        requires (file_roller != null) {
-            try {
-                file_roller.compress(uris, destination, use_progress_dialog);
-                return true;
-            } catch (Error e) {
-                post_error_message(e);
-            }
-            return false;
-        }
-
-        public bool extract (string archive, string destination, bool use_progress_dialog = true)
-        requires (file_roller != null) {
-            try {
-                file_roller.extract(archive, destination, use_progress_dialog);
-                return true;
-            } catch (Error e) {
-                post_error_message(e);
-            }
-            return false;
-        }
-
-        public bool extract_here (string archive, bool use_progress_dialog = true)
-        requires (file_roller != null) {
-            try {
-                file_roller.extract_here(archive, use_progress_dialog);
-                return true;
-            } catch (Error e) {
-                post_error_message(e);
-            }
-            return false;
-        }
-
-        public StringSet get_supported_types (string action = "extract")
-        requires (file_roller != null) {
-            var supported_types = new StringSet();
-            try {
-                HashTable <string, string> [] array = file_roller.get_supported_types(action);
-                foreach (var hashtable in array) {
-                    if (hashtable.get("mime-type") in MIMETYPE_IGNORE_LIST)
-                        continue;
-                    supported_types.add(hashtable.get("mime-type"));
+                FileInputStream input_stream = file.read();
+                DataInputStream data_input_stream = new DataInputStream(input_stream);
+                size_t bytes_read;
+                uint8 [] buffer = new uint8[1024];
+                while (data_input_stream.read_all(buffer, out bytes_read)) {
+                    if (bytes_read <= 0)
+                        break;
+                    archive.write_data(buffer);
+                    size += (int64) bytes_read;
                 }
             } catch (Error e) {
-                supported_types = null;
-                post_error_message(e);
+                error("Error adding data for '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
+                critical(e.message);
             }
-            return supported_types;
+            return size;
+        }
+
+        void add_directory (Archive.Write archive, File file, FileInfo file_info, string path) {
+            string root = Path.build_filename(path, file.get_basename());
+            add_entry(archive, file, file_info, root);
+            try {
+                var enumerator = file.enumerate_children("*", FileQueryInfoFlags.NONE);
+                FileInfo child_info = enumerator.next_file();
+                while (child_info != null) {
+                    var child_type = child_info.get_file_type();
+                    File child = file.get_child(child_info.get_name());
+                    if (child_type == GLib.FileType.DIRECTORY)
+                        add_directory(archive, child, child_info, root);
+                    else if (child_type == GLib.FileType.REGULAR)
+                        add_data(archive, child, child_info, root);
+                    child_info = enumerator.next_file();
+                }
+            } catch (Error e) {
+                error("Error adding directory '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
+                critical(e.message);
+            }
+            return;
+        }
+
+        public bool compress (StringSet filelist, File output_file) {
+
+            return_val_if_fail(filelist.size > 0, false);
+            File output_dir = File.new_for_path(output_file.get_parent().get_path());
+            return_val_if_fail(output_dir.query_exists(), false);
+
+            Archive.Write archive = new Archive.Write();
+            archive.set_format_zip();
+
+            string root = output_file.get_basename();
+            if (root.contains("."))
+                root = root.split(".")[0];
+
+            string filename = Path.build_filename(output_dir.get_path(), @"$root.zip");
+
+            if (archive.open_filename(filename) != Archive.Result.OK) {
+                critical("Error opening '%s' : %s (%d)", output_file.get_path(), archive.error_string(), archive.errno());
+                return false;
+            }
+
+            foreach (var filepath in filelist) {
+                GLib.File file = GLib.File.new_for_path(filepath);
+                try {
+                    GLib.FileInfo file_info = file.query_info("*", GLib.FileQueryInfoFlags.NONE);
+                    GLib.FileType file_type = file_info.get_file_type();
+                    if (file_type == GLib.FileType.REGULAR)
+                        add_data(archive, file, file_info, root);
+                    else if (file_type == GLib.FileType.DIRECTORY)
+                        add_directory(archive, file, file_info, root);
+                } catch (Error e) {
+                    critical(e.message);
+                    return false;
+                }
+            }
+
+            if (archive.close() != Archive.Result.OK) {
+                error("Error closing '%s' : %s (%d)", filename, archive.error_string(), archive.errno());
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool extract (File file, File dest_dir) {
+
+            return_val_if_fail(file.query_exists(), false);
+            return_val_if_fail(dest_dir.query_exists(), false);
+
+            Archive.ExtractFlags EXTRACT_FLAGS;
+            EXTRACT_FLAGS = Archive.ExtractFlags.TIME;
+            EXTRACT_FLAGS |= Archive.ExtractFlags.PERM;
+            EXTRACT_FLAGS |= Archive.ExtractFlags.ACL;
+            EXTRACT_FLAGS |= Archive.ExtractFlags.FFLAGS;
+
+            Archive.Read archive = new Archive.Read();
+            Archive.WriteDisk extractor = new Archive.WriteDisk ();
+            archive.support_format_all();
+            archive.support_filter_all();
+            extractor.set_options(EXTRACT_FLAGS);
+            extractor.set_standard_lookup();
+
+            Environment.set_current_dir(dest_dir.get_path());
+            string filepath = file.get_path();
+
+            if (archive.open_filename(filepath, 10240) != Archive.Result.OK) {
+                critical("Error opening '%s' : %s (%d)", filepath, archive.error_string(), archive.errno());
+                return false;
+            }
+
+            unowned Archive.Entry entry;
+            Archive.Result last_result;
+            while ((last_result = archive.next_header(out entry)) == Archive.Result.OK) {
+
+                if (extractor.write_header(entry) != Archive.Result.OK) {
+                    unowned string archived_path = entry.pathname();
+                    critical(@"Failed to write header entry for $archived_path");
+                    continue;
+                }
+
+                Posix.off_t offset;
+                uint8 [] buffer = null;
+                while (archive.read_data_block(out buffer, out offset) == Archive.Result.OK)
+                    if (extractor.write_data_block(buffer, offset) < Archive.Result.OK)
+                        break;
+
+            }
+
+            if (last_result != Archive.Result.EOF) {
+                critical("Error extracting '%s' : %s (%d)", filepath, archive.error_string(), archive.errno());
+                return false;
+            }
+
+            return true;
         }
 
     }
 
 }
+
+#endif
 
