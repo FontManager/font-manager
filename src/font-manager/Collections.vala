@@ -399,7 +399,7 @@ namespace FontManager {
             } catch (Error e) {
                 warning(e.message);
             }
-            string title = _("Collection export complete");
+            string title = _("Archive created successfully.");
             string body = _("The resulting file can be found in your home directory.");
             if (!result) {
                 title = _("Error exporting collection");
@@ -424,7 +424,7 @@ namespace FontManager {
             var filelist = ((Collection) collections.selected_item).get_filelist();
             int64 filesize = get_filelist_file_size(filelist);
             if (filesize > 125000000) {
-                string title = _("Creating archive from selected collection");
+                string title = _("Creating archive from selected collection.");
                 string body = _("This may take some time for large collections…");
                 var icon = new GLib.ThemedIcon(BUS_ID);
                 var notification = new GLib.Notification(title);
