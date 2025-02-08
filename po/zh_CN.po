@@ -27,21 +27,22 @@
 # Jason Clermont <lunme1008@gmail.com>, 2022.
 # 复予 <clonewith@qq.com>, 2024.
 # Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
+# ZHAO20060708 <zxybbb7892020@outlook.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-01 17:09-0500\n"
-"PO-Revision-Date: 2024-07-23 16:09+0000\n"
-"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"font-manager/font-manager/zh_Hans/>\n"
+"PO-Revision-Date: 2025-02-05 14:02+0000\n"
+"Last-Translator: ZHAO20060708 <zxybbb7892020@outlook.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -139,10 +140,8 @@ msgid "Font Properties"
 msgstr "字体属性"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "更新数据库 — 字体"
+msgstr "更新数据库中……"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:699
@@ -633,6 +632,7 @@ msgid "Separator, Space"
 msgstr "间隔符，非零宽空格字符"
 
 #: src/font-manager/Application.vala:5
+#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -650,12 +650,25 @@ msgid ""
 "\n"
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 msgstr ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 
 #: src/font-manager/Application.vala:129
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "安装字体"
+msgstr "安装字体中……"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -758,20 +771,20 @@ msgstr "重命名…"
 
 #: src/font-manager/Collections.vala:402
 msgid "Archive created successfully."
-msgstr ""
+msgstr "存档创建成功。"
 
 #: src/font-manager/Collections.vala:403
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "生成的文件可在您的主目录中找到。"
 
 #: src/font-manager/Collections.vala:405
 msgid "Error exporting collection"
-msgstr ""
+msgstr "导出集合时出错"
 
 #: src/font-manager/Collections.vala:406
 msgid ""
 "Start the application from a terminal and try again for more information"
-msgstr ""
+msgstr "从终端启动该应用程序，然后再次尝试，以获取更多信息"
 
 #: src/font-manager/Collections.vala:427
 #, fuzzy
