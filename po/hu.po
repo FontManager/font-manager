@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-01 17:09-0500\n"
-"PO-Revision-Date: 2025-01-12 12:25+0000\n"
+"PO-Revision-Date: 2025-02-04 01:01+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -719,7 +719,7 @@ msgstr "Szöveg és címsor"
 
 #: src/font-manager/Categories.vala:299
 msgid "Script"
-msgstr "Leírás"
+msgstr "Kézírás ihlette"
 
 #: src/font-manager/Categories.vala:299
 msgid "Decorative"
@@ -747,30 +747,30 @@ msgstr "Átnevezés…"
 
 #: src/font-manager/Collections.vala:402
 msgid "Archive created successfully."
-msgstr ""
+msgstr "Az archívum sikeresen létrehozva."
 
 #: src/font-manager/Collections.vala:403
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "A létrejött fájl megtalálható a home könyvtárban."
 
 #: src/font-manager/Collections.vala:405
 msgid "Error exporting collection"
-msgstr ""
+msgstr "Hiba történt a gyűjtemény exportálásánál"
 
 #: src/font-manager/Collections.vala:406
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
+"Indítsa el az alkalmazást egy terminálból, és próbálja meg újra a további "
+"információkért"
 
 #: src/font-manager/Collections.vala:427
-#, fuzzy
-#| msgid "Remove selected collection"
 msgid "Creating archive from selected collection."
-msgstr "A kiválasztott gyűjtemény eltávolítása"
+msgstr "Archívum létrehozása a kiválasztott gyűjteményből."
 
 #: src/font-manager/Collections.vala:428
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "A nagy gyűjtemények esetében ez eltarthat egy ideig…"
 
 #: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
@@ -868,20 +868,16 @@ msgid "Select a Directory"
 msgstr "Könyvtár kiválasztása"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
-msgstr "Fájltípus"
+msgstr "TrueType"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
-msgstr "Fájltípus"
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "Archívum fájlok"
 
 #: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
