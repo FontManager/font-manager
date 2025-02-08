@@ -19,13 +19,13 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Translator:
-# Milo Ivir <mail@milotype.de>, 2019., 2020, 2021, 2022, 2024.
+# Milo Ivir <mail@milotype.de>, 2019., 2020, 2021, 2022, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-01 17:09-0500\n"
-"PO-Revision-Date: 2024-08-20 15:09+0000\n"
+"PO-Revision-Date: 2025-02-08 23:02+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -757,30 +757,28 @@ msgstr "Preimenuj …"
 
 #: src/font-manager/Collections.vala:402
 msgid "Archive created successfully."
-msgstr ""
+msgstr "Arhiva je uspješno stvorena."
 
 #: src/font-manager/Collections.vala:403
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "Rezultirajuću datoteku možeš pronaći u tvom osobnom direktoriju."
 
 #: src/font-manager/Collections.vala:405
 msgid "Error exporting collection"
-msgstr ""
+msgstr "Greška pri izvozu zbirke"
 
 #: src/font-manager/Collections.vala:406
 msgid ""
 "Start the application from a terminal and try again for more information"
-msgstr ""
+msgstr "Pokreni aplikaciju putem terminala i pokušaj ponovo za više informacija"
 
 #: src/font-manager/Collections.vala:427
-#, fuzzy
-#| msgid "Remove selected collection"
 msgid "Creating archive from selected collection."
-msgstr "Ukloni odabranu zbirku"
+msgstr "Stvaranje arhive iz odabrane zbirke."
 
 #: src/font-manager/Collections.vala:428
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "Ovo može ponešto potrajati za velike zbirke …"
 
 #: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
@@ -878,20 +876,16 @@ msgid "Select a Directory"
 msgstr "Odaberi mapu"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
-msgstr "Vrsta datoteke"
+msgstr "TrueType"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
-msgstr "Vrsta datoteke"
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "Arhivske datoteke"
 
 #: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
@@ -1973,7 +1967,7 @@ msgstr "Široki format"
 
 #: src/font-manager/preferences/UserInterface.vala:322
 msgid "Use three column layout"
-msgstr ""
+msgstr "Koristi trostupčani raspored"
 
 #: src/font-manager/preferences/UserInterface.vala:325
 msgid "Only When Maximized"
@@ -1997,17 +1991,15 @@ msgstr "Stil gumbova u naslovnoj traci"
 
 #: src/font-manager/preferences/UserInterface.vala:335
 msgid "Display line size in Waterfall Preview"
-msgstr "Prikaži veličine fonta u kaskadnom prikazu"
+msgstr "Prikaži veličinu retka u kaskadnom prikazu"
 
 #: src/font-manager/preferences/UserInterface.vala:340
-#, fuzzy
-#| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
-msgstr "Postavke veličina za kaskadni prikaz"
+msgstr "Prored za kaskadni prikaz"
 
 #: src/font-manager/preferences/UserInterface.vala:342
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "Dodatni odmak u pikselima iznad i ispod redaka"
 
 #: src/font-manager/preferences/UserSources.vala:145
 msgid ""
