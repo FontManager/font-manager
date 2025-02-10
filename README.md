@@ -36,11 +36,11 @@ If you would like to help this application reach more users in their native lang
 
 ## Installation
 
-### Flatpak
-
-Please see [Known Issues](https://github.com/FontManager/font-manager/issues/272) before installing.
-
 ### Distribution packages
+
+Many distributions already contain a version of Font Manager, although it might be behind on updates.
+
+Check out [pkgs.org](https://pkgs.org/download/font-manager) to see what version is included with your distribution.
 
 #### Arch User Repository
 
