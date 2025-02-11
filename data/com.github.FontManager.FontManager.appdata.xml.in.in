@@ -76,7 +76,7 @@
         </screenshot>
     </screenshots>
     <releases>
-        <release version="@PACKAGE_VERSION@" date="2025-00-00">
+        <release version="@PACKAGE_VERSION@" date="@CURRENT_DATE@">
             <description translate="no">
                 <ul>
                     <li>https://github.com/FontManager/font-manager/releases/tag/@PACKAGE_VERSION@</li>

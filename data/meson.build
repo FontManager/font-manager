@@ -1,6 +1,6 @@
 
 service = ['com.github.FontManager.FontManager',
-	   'com.github.FontManager.FontViewer']
+	        'com.github.FontManager.FontViewer']
 
 appdata_dir = join_paths(datadir, 'metainfo')
 dbus_service_dir = join_paths(datadir, 'dbus-1', 'services')

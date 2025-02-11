@@ -45,10 +45,10 @@ namespace FontManager {
                         action_icon = "system-run-symbolic";
                     }
                     app_info = null;
+                    // ??? : Without this we leak this array?
+                    foreach (var arr in desktop_files)
+                        GLib.strfreev(arr);
                 }
-                // ??? : Without this we leak this array?
-                foreach (var arr in desktop_files)
-                    GLib.strfreev(arr);
                 desktop_files = null;
             });
             notify.connect(() => { changed(); });

@@ -71,6 +71,7 @@ Disabling will prevent the selected family from being used by other applications
                     <property name="label">&lt;Family Name&gt;</property>
                     <property name="opacity">0.75</property>
                     <property name="vexpand">True</property>
+                    <property name="margin-start">12</property>
                     <style>
                       <class name="title-2"/>
                     </style>

@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -181,12 +181,16 @@ namespace FontManager.GoogleFonts {
             if (signal_id != 0)
                 SignalHandler.disconnect(item_state, signal_id);
             signal_id = 0;
-            if (active != null)
+            if (active is Binding) {
                 active.unbind();
-            active = null;
-            if (inconsistent != null)
+                active.unref();
+                active = null;
+            }
+            if (inconsistent is Binding) {
                 inconsistent.unbind();
-            inconsistent = null;
+                inconsistent.unref();
+                inconsistent = null;
+            }
         }
 
         protected override void on_item_set () {

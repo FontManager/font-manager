@@ -89,7 +89,7 @@ namespace FontManager {
                     size += (int64) bytes_read;
                 }
             } catch (Error e) {
-                error("Error adding data for '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
+                critical("Error adding data for '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
                 critical(e.message);
             }
             return size;
@@ -111,7 +111,7 @@ namespace FontManager {
                     child_info = enumerator.next_file();
                 }
             } catch (Error e) {
-                error("Error adding directory '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
+                critical("Error adding directory '%s' : %s (%d)", file.get_path(), archive.error_string(), archive.errno());
                 critical(e.message);
             }
             return;
@@ -153,7 +153,7 @@ namespace FontManager {
             }
 
             if (archive.close() != Archive.Result.OK) {
-                error("Error closing '%s' : %s (%d)", filename, archive.error_string(), archive.errno());
+                critical("Error closing '%s' : %s (%d)", filename, archive.error_string(), archive.errno());
                 return false;
             }
 

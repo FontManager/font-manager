@@ -210,9 +210,12 @@ namespace FontManager {
                             process_directory(file);
                         else if (content_type.contains("font") && !is_metrics_file(name))
                             fonts.add(filepath);
-#if HAVE_LIBARCHIVE
                         else if (content_type in LIBARCHIVE_MIME_TYPES)
+#if HAVE_LIBARCHIVE
                             archives.add(filepath);
+#else
+                            message("Application compiled without libarchive option enabled");
+                            message(@"Ignoring compressed file : $name");
 #endif
                         else
                             message("Ignoring unsupported filetype : %s", name);
@@ -228,4 +231,5 @@ namespace FontManager {
     }
 
 }
+
 

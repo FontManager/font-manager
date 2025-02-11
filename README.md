@@ -36,10 +36,6 @@ If you would like to help this application reach more users in their native lang
 
 ## Installation
 
-### Flatpak
-
-Please see [Known Issues](https://github.com/FontManager/font-manager/issues/272) before installing.
-
 ### Distribution packages
 
 #### Arch User Repository
@@ -99,6 +95,10 @@ You'll need to ensure the following dependencies are installed:
 - `yelp-tools (optional)`
 - `gettext (optional)`
 
+Support for compressed files, which is enabled by default, requires:
+
+- `libarchive >= 3.7`
+
 Google Fonts integration, which is enabled by default, requires the following libraries:
 
 - `webkitgtk-6.0 >= 2.4`
@@ -121,7 +121,7 @@ Adwaita support is limited to styling, no other components are used at this time
 To build the application:
 
 ```bash
-meson --prefix=/usr --buildtype=release build
+meson setup --prefix=/usr --buildtype=release build
 cd build
 ninja
 ```

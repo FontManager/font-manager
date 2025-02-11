@@ -428,7 +428,6 @@ font_manager_get_command_line_files (GApplicationCommandLine *cmdline)
     return files;
 }
 
-/* TODO: Not that it matters but free this before exiting */
 static GHashTable *gsettings = NULL;
 
 /**
@@ -472,9 +471,12 @@ font_manager_get_gsettings (const gchar *schema_id)
             continue;
         }
         g_debug("Checking for schema with id %s in %s", schema_id, dir);
-        schema = g_settings_schema_source_lookup(source, schema_id, TRUE);
-        if (schema != NULL)
+        GSettingsSchema *override = g_settings_schema_source_lookup(source, schema_id, TRUE);
+        if (override) {
+            g_settings_schema_unref(g_steal_pointer(&schema));
+            schema = override;
             g_debug("Using schema with id %s from %s", schema_id, dir);
+        }
     }
     g_slist_free_full(slist, g_free);
     if (schema == NULL) {
@@ -486,3 +488,18 @@ font_manager_get_gsettings (const gchar *schema_id)
     g_hash_table_insert(gsettings, g_strdup(schema_id), g_object_ref(result));
     return result;
 }
+
+/**
+ * font_manager_free_gsettings:
+ *
+ * Free stored gsettings
+ */
+void
+font_manager_free_gsettings () {
+    if (gsettings) {
+        g_hash_table_remove_all(gsettings);
+        g_hash_table_unref(gsettings);
+    }
+    return;
+}
+

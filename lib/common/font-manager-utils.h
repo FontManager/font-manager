@@ -79,5 +79,6 @@ gchar * font_manager_get_user_fontconfig_directory (void);
 gchar * font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement) G_GNUC_PURE;
 gchar * font_manager_to_filename (const gchar *str) G_GNUC_PURE;
 GSettings * font_manager_get_gsettings (const gchar *schema_id);
+void font_manager_free_gsettings ();
 FontManagerStringSet * font_manager_get_command_line_files (GApplicationCommandLine *cmdline);
 

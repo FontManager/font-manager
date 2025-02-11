@@ -38,9 +38,3 @@ for f in glob("README.*.md"):
     except FileNotFoundError:
         pass
 
-# Only useful in Git repository
-try:
-    remove("org.gnome.FontManager.yaml")
-except FileNotFoundError:
-    pass
-

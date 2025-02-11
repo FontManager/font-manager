@@ -434,10 +434,12 @@ namespace FontManager {
             }
             bool result = libarchive.compress(filelist, output);
             task.return_boolean(result);
+            return;
 #else
             task.return_boolean(false);
+            critical("Application compiled without libarchive option enabled");
+            return_if_reached();
 #endif
-            return;
         }
 
         void compress (Gtk.Widget widget, string? action, Variant? parameter)

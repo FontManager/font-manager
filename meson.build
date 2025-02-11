@@ -65,9 +65,17 @@ datadir = get_option('datadir')
 pkglib_dir = join_paths(prefix, get_option('libdir'), meson.project_name())
 pkglibexec_dir = join_paths(prefix, get_option('libexecdir'), meson.project_name())
 
+datetime = '''
+from datetime import date
+print(date.today())
+'''
+
+today = run_command(python, '-c', datetime, check: true).stdout().strip()
+
 config = configuration_data()
 config.set('PACKAGE_NAME', meson.project_name())
 config.set('PACKAGE_VERSION', meson.project_version())
+config.set('CURRENT_DATE', today)
 config.set('PACKAGE_URL', 'http://fontmanager.github.io/')
 config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())

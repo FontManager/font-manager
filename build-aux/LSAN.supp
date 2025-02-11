@@ -1,0 +1,16 @@
+
+# WebKit : Likely one time allocation since it's less than 100 bytes
+leak:font_manager_google_fonts_create_webview
+
+# Pango/Fontconfig
+leak:fc_thread_func
+leak:pango_parse_markup
+leak:pango_itemize_with_font
+leak:pango_fc_font_map_cache_clear
+leak:pango_cairo_fc_font_map_fontset_key_substitute
+
+# GTK/GSK
+leak:draw_text
+#leak:gsk_color_node_new2
+leak:gsk_container_node_new
+leak:gtk_widget_allocate

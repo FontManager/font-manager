@@ -59,6 +59,10 @@ namespace FontManager {
         uint dbus_id = 0;
         SearchProvider? gs_search_provider = null;
 
+        ~ Application () {
+            free_gsettings();
+        }
+
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
@@ -404,7 +408,4 @@ namespace FontManager {
     }
 
 }
-
-
-
 

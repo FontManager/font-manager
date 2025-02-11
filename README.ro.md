@@ -32,7 +32,6 @@ Dacă aţi dori să ajutaţi această aplicaţie să ajungă la mai mulţi utili
 
 ## Instalare
 
-
 ### Pachetele distribuţiilor
 
 #### Arch User Repository
@@ -90,6 +89,10 @@ Va trebui să vă asiguraţi că următoarele depentenţe sunt instalate:
 - `yelp-tools` (opţional)
 - `gettext` (opţional)
 
+Support for compressed files, which is enabled by default, requires:
+
+- `libarchive >= 3.7`
+
 Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată implicit, următoarele biblioteci sunt necesare:
 
 - `webkitgtk-6.0 >= 2.4`
@@ -104,7 +107,7 @@ Dacă doriţi să construiţi şi extensiile pentru managerul de fişiere, veţi
 Pentru a construi aplicaţia:
 
 ```bash
-meson --prefix=/usr --buildtype=release build
+meson setup --prefix=/usr --buildtype=release build
 cd build
 ninja
 ```

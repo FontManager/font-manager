@@ -1,6 +1,6 @@
 /* Browse.vala
  *
- * Copyright (C) 2020-2024 Jerry Casiano
+ * Copyright (C) 2020-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -116,6 +116,11 @@ namespace FontManager {
 
         Gtk.Label item_count;
         Gtk.Overlay overlay;
+
+        ~ FontPreviewTile () {
+            if (attrs != null)
+                attrs.unref();
+        }
 
         public FontPreviewTile () {
             widget_set_name(this, "FontManagerFontPreviewTile");

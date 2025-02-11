@@ -1,6 +1,6 @@
 /* font-manager-properties-page.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -244,7 +244,7 @@ update (FontManagerPropertiesPage *self)
     // Addresses issue #292
     // Unfortunately also makes pane adjustments pointless.
     GtkPaned *paned = (GtkPaned *) gtk_widget_get_first_child(GTK_WIDGET(self));
-    GtkRequisition *req = gtk_requisition_new();
+    g_autoptr(GtkRequisition) req = gtk_requisition_new();
     gtk_widget_get_preferred_size(GTK_WIDGET(self->grid), NULL, req);
     gtk_paned_set_position(paned, req->width);
 

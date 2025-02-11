@@ -1,0 +1,4 @@
+G_DEBUG=gc-friendly,resident-modules \
+G_SLICE=always-malloc Malloc=1 \
+LSAN_OPTIONS="log_path=lsan_log:suppressions=LSAN.supp" \
+$@
