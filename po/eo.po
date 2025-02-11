@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.7\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-18 15:08-0500\n"
+"POT-Creation-Date: 2025-02-01 17:09-0500\n"
 "PO-Revision-Date: 2024-09-08 12:21+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/font-manager/"
@@ -115,7 +115,7 @@ msgstr "Instali elektitajn tipardosierojn"
 msgid "Font Properties"
 msgstr "Atributoj de tiparo"
 
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
 msgid "Updating Database…"
 msgstr "Ĝisdatigante datenbankon…"
 
@@ -124,159 +124,159 @@ msgstr "Ĝisdatigante datenbankon…"
 msgid "Unknown Vendor"
 msgstr "Nekonata vendinto"
 
-#: lib/fontconfig/font-manager-fontconfig.c:567
+#: lib/fontconfig/font-manager-fontconfig.c:568
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Maldikegega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:569
+#: lib/fontconfig/font-manager-fontconfig.c:570
 msgid "Ultra-Light"
 msgstr "Maldikega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:571
-#: lib/fontconfig/font-manager-fontconfig.c:924
+#: lib/fontconfig/font-manager-fontconfig.c:572
+#: lib/fontconfig/font-manager-fontconfig.c:925
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "Maldika"
 
-#: lib/fontconfig/font-manager-fontconfig.c:573
+#: lib/fontconfig/font-manager-fontconfig.c:574
 msgid "Semi-Light"
 msgstr "Maldiketa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:575
+#: lib/fontconfig/font-manager-fontconfig.c:576
 msgid "Book"
 msgstr "Libra"
 
-#: lib/fontconfig/font-manager-fontconfig.c:577
-#: lib/fontconfig/font-manager-fontconfig.c:881
+#: lib/fontconfig/font-manager-fontconfig.c:578
+#: lib/fontconfig/font-manager-fontconfig.c:882
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Mezdika"
 
-#: lib/fontconfig/font-manager-fontconfig.c:579
+#: lib/fontconfig/font-manager-fontconfig.c:580
 msgid "Semi-Bold"
 msgstr "Diketa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:581
+#: lib/fontconfig/font-manager-fontconfig.c:582
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Dika"
 
-#: lib/fontconfig/font-manager-fontconfig.c:583
+#: lib/fontconfig/font-manager-fontconfig.c:584
 msgid "Ultra-Bold"
 msgstr "Dikega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:585
+#: lib/fontconfig/font-manager-fontconfig.c:586
 msgid "Heavy"
 msgstr "Dikegega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:587
+#: lib/fontconfig/font-manager-fontconfig.c:588
 msgid "Ultra-Heavy"
 msgstr "Dikegegega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:662
+#: lib/fontconfig/font-manager-fontconfig.c:663
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "Kursiva"
 
-#: lib/fontconfig/font-manager-fontconfig.c:664
+#: lib/fontconfig/font-manager-fontconfig.c:665
 msgid "Oblique"
 msgstr "Oblikva"
 
-#: lib/fontconfig/font-manager-fontconfig.c:702
+#: lib/fontconfig/font-manager-fontconfig.c:703
 msgid "Ultra-Condensed"
 msgstr "Mallarĝegega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:704
+#: lib/fontconfig/font-manager-fontconfig.c:705
 msgid "Extra-Condensed"
 msgstr "Mallarĝega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:706
+#: lib/fontconfig/font-manager-fontconfig.c:707
 msgid "Condensed"
 msgstr "Mallarĝa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:708
+#: lib/fontconfig/font-manager-fontconfig.c:709
 msgid "Semi-Condensed"
 msgstr "Mallarĝeta"
 
-#: lib/fontconfig/font-manager-fontconfig.c:710
+#: lib/fontconfig/font-manager-fontconfig.c:711
 msgid "Semi-Expanded"
 msgstr "Larĝeta"
 
-#: lib/fontconfig/font-manager-fontconfig.c:712
+#: lib/fontconfig/font-manager-fontconfig.c:713
 msgid "Expanded"
 msgstr "Larĝa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:714
+#: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Extra-Expanded"
 msgstr "Larĝega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:716
+#: lib/fontconfig/font-manager-fontconfig.c:717
 msgid "Ultra-Expanded"
 msgstr "Larĝegega"
 
-#: lib/fontconfig/font-manager-fontconfig.c:785
+#: lib/fontconfig/font-manager-fontconfig.c:786
 msgid "Proportional"
 msgstr "Proporcia"
 
-#: lib/fontconfig/font-manager-fontconfig.c:787
+#: lib/fontconfig/font-manager-fontconfig.c:788
 msgid "Dual Width"
 msgstr "Duobla larĝo"
 
-#: lib/fontconfig/font-manager-fontconfig.c:789
+#: lib/fontconfig/font-manager-fontconfig.c:790
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "Egallarĝa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:791
+#: lib/fontconfig/font-manager-fontconfig.c:792
 msgid "Charcell"
 msgstr "Signoĉelo"
 
-#: lib/fontconfig/font-manager-fontconfig.c:830
+#: lib/fontconfig/font-manager-fontconfig.c:831
 msgid "Unknown"
 msgstr "Nekonata"
 
-#: lib/fontconfig/font-manager-fontconfig.c:832
+#: lib/fontconfig/font-manager-fontconfig.c:833
 msgid "RGB"
 msgstr "Ruĝa-verda-blua"
 
-#: lib/fontconfig/font-manager-fontconfig.c:834
+#: lib/fontconfig/font-manager-fontconfig.c:835
 msgid "BGR"
 msgstr "Blua-verda-ruĝa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:836
+#: lib/fontconfig/font-manager-fontconfig.c:837
 msgid "VRGB"
 msgstr "Vertikala ruĝa-verda-blua"
 
-#: lib/fontconfig/font-manager-fontconfig.c:838
+#: lib/fontconfig/font-manager-fontconfig.c:839
 msgid "VBGR"
 msgstr "Vertikala blua-verda-ruĝa"
 
-#: lib/fontconfig/font-manager-fontconfig.c:840
-#: lib/fontconfig/font-manager-fontconfig.c:885
-#: lib/fontconfig/font-manager-fontconfig.c:928
+#: lib/fontconfig/font-manager-fontconfig.c:841
+#: lib/fontconfig/font-manager-fontconfig.c:886
+#: lib/fontconfig/font-manager-fontconfig.c:929
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
 msgstr "Nenio"
 
-#: lib/fontconfig/font-manager-fontconfig.c:879
+#: lib/fontconfig/font-manager-fontconfig.c:880
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
 msgstr "Eta"
 
-#: lib/fontconfig/font-manager-fontconfig.c:883
+#: lib/fontconfig/font-manager-fontconfig.c:884
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
 msgstr "Plena"
 
-#: lib/fontconfig/font-manager-fontconfig.c:922
+#: lib/fontconfig/font-manager-fontconfig.c:923
 msgid "Default"
 msgstr "Implicita"
 
-#: lib/fontconfig/font-manager-fontconfig.c:926
+#: lib/fontconfig/font-manager-fontconfig.c:927
 msgid "Legacy"
 msgstr "Kongruiga"
 
@@ -455,7 +455,7 @@ msgstr "Dosiertipo"
 msgid "Filesize"
 msgstr "Dosiergrando"
 
-#: lib/gtk/unicode/unicode-character-map.c:787
+#: lib/gtk/unicode/unicode-character-map.c:850
 msgid "Copy"
 msgstr "Kopii"
 
@@ -642,7 +642,7 @@ msgstr ""
 "\n"
 "    Se ne, vidu <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 
-#: src/font-manager/Application.vala:130
+#: src/font-manager/Application.vala:129
 msgid "Installing Font Files…"
 msgstr "Instalante tiparojn…"
 
@@ -733,17 +733,44 @@ msgstr "Bilda"
 msgid "Enter Collection Name"
 msgstr "Tajpu nomon de kolekto"
 
-#: src/font-manager/Collections.vala:321
+#: src/font-manager/Collections.vala:346
 msgid "Copy to…"
 msgstr "Kopii al…"
 
-#: src/font-manager/Collections.vala:322
+#: src/font-manager/Collections.vala:347
 msgid "Compress…"
 msgstr "Densigi…"
 
-#: src/font-manager/Collections.vala:323
+#: src/font-manager/Collections.vala:348
 msgid "Rename…"
 msgstr "Ŝanĝi nomon…"
+
+#: src/font-manager/Collections.vala:402
+msgid "Archive created successfully."
+msgstr ""
+
+#: src/font-manager/Collections.vala:403
+msgid "The resulting file can be found in your home directory."
+msgstr ""
+
+#: src/font-manager/Collections.vala:405
+msgid "Error exporting collection"
+msgstr ""
+
+#: src/font-manager/Collections.vala:406
+msgid ""
+"Start the application from a terminal and try again for more information"
+msgstr ""
+
+#: src/font-manager/Collections.vala:427
+#, fuzzy
+#| msgid "Remove selected collection"
+msgid "Creating archive from selected collection."
+msgstr "Forigi elektitan kolekton"
+
+#: src/font-manager/Collections.vala:428
+msgid "This may take some time for large collections…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
@@ -840,36 +867,52 @@ msgstr "Elektu programon"
 msgid "Select a Directory"
 msgstr "Elektu dosierujon"
 
-#: src/font-manager/Dialogs.vala:75
+#: src/font-manager/Dialogs.vala:68
+#, fuzzy
+#| msgid "FileType"
+msgid "TrueType"
+msgstr "Dosiertipo"
+
+#: src/font-manager/Dialogs.vala:70
+#, fuzzy
+#| msgid "FileType"
+msgid "OpenType"
+msgstr "Dosiertipo"
+
+#: src/font-manager/Dialogs.vala:73
+msgid "Archive Files"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
 msgstr "Elektu instalotajn dosierojn"
 
-#: src/font-manager/Dialogs.vala:84
+#: src/font-manager/Dialogs.vala:91
 msgid "Select Source Directories"
 msgstr "Elektu fontajn dosierujojn"
 
-#: src/font-manager/Dialogs.vala:118
+#: src/font-manager/Dialogs.vala:125
 msgid "Font Configuration"
 msgstr "Agordado de tiparoj"
 
-#: src/font-manager/Dialogs.vala:119
+#: src/font-manager/Dialogs.vala:126
 msgid "Font Collections"
 msgstr "Tiparaj kolektoj"
 
-#: src/font-manager/Dialogs.vala:120
+#: src/font-manager/Dialogs.vala:127
 #: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr "Tiparaj fontoj"
 
-#: src/font-manager/Dialogs.vala:121
+#: src/font-manager/Dialogs.vala:128
 msgid "Installed Fonts"
 msgstr "Instalitaj tiparoj"
 
-#: src/font-manager/Dialogs.vala:122
+#: src/font-manager/Dialogs.vala:129
 msgid "Custom Actions"
 msgstr "Propraj agoj"
 
-#: src/font-manager/Dialogs.vala:374
+#: src/font-manager/Dialogs.vala:385
 msgid "Fonts installed in your home directory will appear here."
 msgstr "Tiparoj instalitaj en via hejmdosierujo aperus ĉi tie."
 
@@ -913,12 +956,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i variaĵo "
 msgstr[1] "%i variaĵoj"
 
-#: src/font-manager/FontList.vala:253
+#: src/font-manager/FontList.vala:254
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "Maletendi ĉion"
 
-#: src/font-manager/FontList.vala:253
+#: src/font-manager/FontList.vala:254
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -1603,7 +1646,7 @@ msgstr "Forigi elektitan kromnomon"
 msgid "Edit selected item"
 msgstr "Modifi elektitan eron"
 
-#: src/font-manager/Utils.vala:291
+#: src/font-manager/Utils.vala:295
 msgid "Copying files…"
 msgstr "Kopiante dosierojn…"
 
@@ -1853,120 +1896,120 @@ msgstr "Agoj de uzanto"
 msgid "Custom context menu entries"
 msgstr "Propraj menueroj en kunteksta menuo"
 
-#: src/font-manager/preferences/UserInterface.vala:37
+#: src/font-manager/preferences/UserInterface.vala:28
+msgid "Raised"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:28
+msgid "Flat"
+msgstr "Plata"
+
+#: src/font-manager/preferences/UserInterface.vala:70
 msgid "Up to 48 points (Linear Scaling)"
 msgstr "Ĝis 48 punktoj (lineara skalo)"
 
-#: src/font-manager/preferences/UserInterface.vala:39
+#: src/font-manager/preferences/UserInterface.vala:72
 msgid "Up to 72 points (1.1 Common Ratio)"
 msgstr "Ĝis 72 punktoj (komuna rilatumo 1,1)"
 
-#: src/font-manager/preferences/UserInterface.vala:41
+#: src/font-manager/preferences/UserInterface.vala:74
 msgid "Up to 96 points (Linear Scaling)"
 msgstr "Ĝis 96 punktoj (lineara skalo)"
 
-#: src/font-manager/preferences/UserInterface.vala:43
+#: src/font-manager/preferences/UserInterface.vala:76
 msgid "Up to 96 points (1.1 Common Ratio)"
 msgstr "Ĝis 96 punktoj (komuna rilatumo 1,1)"
 
-#: src/font-manager/preferences/UserInterface.vala:45
+#: src/font-manager/preferences/UserInterface.vala:78
 msgid "Up to 120 points (1.2 Common Ratio)"
 msgstr "Ĝis 120 punktoj (komuna rilatumo 1,2)"
 
-#: src/font-manager/preferences/UserInterface.vala:47
+#: src/font-manager/preferences/UserInterface.vala:80
 msgid "Up to 144 points (1.3 Common Ratio)"
 msgstr "Ĝis 144 punktoj (komuna rilatumo 1,3)"
 
-#: src/font-manager/preferences/UserInterface.vala:49
+#: src/font-manager/preferences/UserInterface.vala:82
 msgid "Up to 192 points (1.4 Common Ratio)"
 msgstr "Ĝis 192 punktoj (komuna rilatumo 1,4)"
 
-#: src/font-manager/preferences/UserInterface.vala:51
+#: src/font-manager/preferences/UserInterface.vala:84
 msgid "Custom Size Settings"
 msgstr "Propraj agordoj pri grando"
 
-#: src/font-manager/preferences/UserInterface.vala:197
+#: src/font-manager/preferences/UserInterface.vala:230
 msgid "Waterfall Preview Size Settings"
 msgstr "Agordoj pri grando de akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:201
+#: src/font-manager/preferences/UserInterface.vala:234
 msgid "Higher values may adversely affect performance"
 msgstr "Grandaj valoroj eble malbonigos rendimenton"
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:237
 msgid "Minimum Waterfall Preview Point Size"
 msgstr "Minimuma tipargrando (en punktoj) en akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:206
+#: src/font-manager/preferences/UserInterface.vala:239
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr "Komuna rilatumo de tipargrando (en punktoj) en akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:208
+#: src/font-manager/preferences/UserInterface.vala:241
 msgid "Maximum Waterfall Preview Point Size"
 msgstr "Maksimuma tipargrando (en punktoj) en akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:236
+#: src/font-manager/preferences/UserInterface.vala:269
 msgid "Show line size"
 msgstr "Montri grandon de linio"
 
-#: src/font-manager/preferences/UserInterface.vala:275
+#: src/font-manager/preferences/UserInterface.vala:308
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:276
+#: src/font-manager/preferences/UserInterface.vala:309
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
 msgstr "Klientflankaj ornamoj estas ŝaltitaj. Ŝanĝoj efektivos post relanĉo."
 
-#: src/font-manager/preferences/UserInterface.vala:289
+#: src/font-manager/preferences/UserInterface.vala:322
 msgid "Wide Layout"
 msgstr "Larĝa fasado"
 
-#: src/font-manager/preferences/UserInterface.vala:289
+#: src/font-manager/preferences/UserInterface.vala:322
 msgid "Use three column layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:292
+#: src/font-manager/preferences/UserInterface.vala:325
 msgid "Only When Maximized"
 msgstr "Nur en maksimumigita fenestro"
 
-#: src/font-manager/preferences/UserInterface.vala:294
+#: src/font-manager/preferences/UserInterface.vala:327
 msgid "Enable Animations"
 msgstr "Ŝalti movbildojn"
 
-#: src/font-manager/preferences/UserInterface.vala:295
+#: src/font-manager/preferences/UserInterface.vala:328
 msgid "Prefer Dark Theme"
 msgstr "Preferi malhelan etoson"
 
-#: src/font-manager/preferences/UserInterface.vala:297
+#: src/font-manager/preferences/UserInterface.vala:330
 msgid "Use Adwaita Stylesheet"
 msgstr "Uzi stilojn Adwaita"
 
-#: src/font-manager/preferences/UserInterface.vala:299
-msgid "Raised"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:299
-msgid "Flat"
-msgstr "Plata"
-
-#: src/font-manager/preferences/UserInterface.vala:302
+#: src/font-manager/preferences/UserInterface.vala:334
 msgid "Titlebar Button Style"
 msgstr "Titolbreta butona stilo"
 
-#: src/font-manager/preferences/UserInterface.vala:303
+#: src/font-manager/preferences/UserInterface.vala:335
 msgid "Display line size in Waterfall Preview"
 msgstr "Montri tipargrandon de linio en akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:308
+#: src/font-manager/preferences/UserInterface.vala:340
 #, fuzzy
 #| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
 msgstr "Agordoj pri grando de akvofala antaŭrigardo"
 
-#: src/font-manager/preferences/UserInterface.vala:310
+#: src/font-manager/preferences/UserInterface.vala:342
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -2601,6 +2644,7 @@ msgstr "Nuligi"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
+#: src/font-manager/ui/font-manager-remove-dialog.ui:43
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "Serĉi familiojn…"
@@ -2857,9 +2901,6 @@ msgstr "Por antaŭrigardi tiparon, simple ŝovu ĝin ĉi tien."
 
 #~ msgid "Edit selected category"
 #~ msgstr "Redakti elektitan kategorion"
-
-#~ msgid "Remove selected collection"
-#~ msgstr "Forigi elektitan kolekton"
 
 #~ msgid "8.0"
 #~ msgstr "8,0"

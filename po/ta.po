@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.9.1\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-01-18 15:08-0500\n"
+"POT-Creation-Date: 2025-02-01 17:09-0500\n"
 "PO-Revision-Date: 2024-12-27 17:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/font-"
@@ -113,7 +113,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட எழுத�
 msgid "Font Properties"
 msgstr "எழுத்துரு பண்புகள்"
 
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:144
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
 msgid "Updating Database…"
 msgstr "தரவுத்தளத்தைப் புதுப்பித்தல்…"
 
@@ -122,159 +122,159 @@ msgstr "தரவுத்தளத்தைப் புதுப்பித�
 msgid "Unknown Vendor"
 msgstr "தெரியாத விற்பனையாளர்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:567
+#: lib/fontconfig/font-manager-fontconfig.c:568
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "மெல்லிய"
 
-#: lib/fontconfig/font-manager-fontconfig.c:569
+#: lib/fontconfig/font-manager-fontconfig.c:570
 msgid "Ultra-Light"
 msgstr "அல்ட்ரா-லைட்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:571
-#: lib/fontconfig/font-manager-fontconfig.c:924
+#: lib/fontconfig/font-manager-fontconfig.c:572
+#: lib/fontconfig/font-manager-fontconfig.c:925
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "ஒளி"
 
-#: lib/fontconfig/font-manager-fontconfig.c:573
+#: lib/fontconfig/font-manager-fontconfig.c:574
 msgid "Semi-Light"
 msgstr "அரை ஒளி"
 
-#: lib/fontconfig/font-manager-fontconfig.c:575
+#: lib/fontconfig/font-manager-fontconfig.c:576
 msgid "Book"
 msgstr "நூல்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:577
-#: lib/fontconfig/font-manager-fontconfig.c:881
+#: lib/fontconfig/font-manager-fontconfig.c:578
+#: lib/fontconfig/font-manager-fontconfig.c:882
 #: src/font-manager/preferences/Desktop.vala:216
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "சராசரி"
 
-#: lib/fontconfig/font-manager-fontconfig.c:579
+#: lib/fontconfig/font-manager-fontconfig.c:580
 msgid "Semi-Bold"
 msgstr "அரை-பிணைப்பு"
 
-#: lib/fontconfig/font-manager-fontconfig.c:581
+#: lib/fontconfig/font-manager-fontconfig.c:582
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "தடிமான"
 
-#: lib/fontconfig/font-manager-fontconfig.c:583
+#: lib/fontconfig/font-manager-fontconfig.c:584
 msgid "Ultra-Bold"
 msgstr "அல்ட்ரா-போல்ட்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:585
+#: lib/fontconfig/font-manager-fontconfig.c:586
 msgid "Heavy"
 msgstr "கனமான"
 
-#: lib/fontconfig/font-manager-fontconfig.c:587
+#: lib/fontconfig/font-manager-fontconfig.c:588
 msgid "Ultra-Heavy"
 msgstr "அல்ட்ரா-எவி"
 
-#: lib/fontconfig/font-manager-fontconfig.c:662
+#: lib/fontconfig/font-manager-fontconfig.c:663
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "சாய்வு"
 
-#: lib/fontconfig/font-manager-fontconfig.c:664
+#: lib/fontconfig/font-manager-fontconfig.c:665
 msgid "Oblique"
 msgstr "சாய்வான"
 
-#: lib/fontconfig/font-manager-fontconfig.c:702
+#: lib/fontconfig/font-manager-fontconfig.c:703
 msgid "Ultra-Condensed"
 msgstr "அல்ட்ரா-கான்டென்ச்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:704
+#: lib/fontconfig/font-manager-fontconfig.c:705
 msgid "Extra-Condensed"
 msgstr "கூடுதல் மறுக்கப்பட்ட"
 
-#: lib/fontconfig/font-manager-fontconfig.c:706
+#: lib/fontconfig/font-manager-fontconfig.c:707
 msgid "Condensed"
 msgstr "ஒடுக்கப்பட்ட"
 
-#: lib/fontconfig/font-manager-fontconfig.c:708
+#: lib/fontconfig/font-manager-fontconfig.c:709
 msgid "Semi-Condensed"
 msgstr "அரை நியமனம்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:710
+#: lib/fontconfig/font-manager-fontconfig.c:711
 msgid "Semi-Expanded"
 msgstr "அரை விரிவாக்கப்பட்டது"
 
-#: lib/fontconfig/font-manager-fontconfig.c:712
+#: lib/fontconfig/font-manager-fontconfig.c:713
 msgid "Expanded"
 msgstr "விரிவாக்கப்பட்டது"
 
-#: lib/fontconfig/font-manager-fontconfig.c:714
+#: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Extra-Expanded"
 msgstr "கூடுதல் விரிவாக்கப்பட்டது"
 
-#: lib/fontconfig/font-manager-fontconfig.c:716
+#: lib/fontconfig/font-manager-fontconfig.c:717
 msgid "Ultra-Expanded"
 msgstr "அல்ட்ரா விரிவாக்கப்பட்டது"
 
-#: lib/fontconfig/font-manager-fontconfig.c:785
+#: lib/fontconfig/font-manager-fontconfig.c:786
 msgid "Proportional"
 msgstr "விகிதாசார"
 
-#: lib/fontconfig/font-manager-fontconfig.c:787
+#: lib/fontconfig/font-manager-fontconfig.c:788
 msgid "Dual Width"
 msgstr "இரட்டை அகலம்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:789
+#: lib/fontconfig/font-manager-fontconfig.c:790
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "மினிவேன்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:791
+#: lib/fontconfig/font-manager-fontconfig.c:792
 msgid "Charcell"
 msgstr "சார்செல்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:830
+#: lib/fontconfig/font-manager-fontconfig.c:831
 msgid "Unknown"
 msgstr "தெரியவில்லை"
 
-#: lib/fontconfig/font-manager-fontconfig.c:832
+#: lib/fontconfig/font-manager-fontconfig.c:833
 msgid "RGB"
 msgstr "ஆர்சிபி"
 
-#: lib/fontconfig/font-manager-fontconfig.c:834
+#: lib/fontconfig/font-manager-fontconfig.c:835
 msgid "BGR"
 msgstr "பி.சி.ஆர்"
 
-#: lib/fontconfig/font-manager-fontconfig.c:836
+#: lib/fontconfig/font-manager-fontconfig.c:837
 msgid "VRGB"
 msgstr "Vrgb"
 
-#: lib/fontconfig/font-manager-fontconfig.c:838
+#: lib/fontconfig/font-manager-fontconfig.c:839
 msgid "VBGR"
 msgstr "Vbgr"
 
-#: lib/fontconfig/font-manager-fontconfig.c:840
-#: lib/fontconfig/font-manager-fontconfig.c:885
-#: lib/fontconfig/font-manager-fontconfig.c:928
+#: lib/fontconfig/font-manager-fontconfig.c:841
+#: lib/fontconfig/font-manager-fontconfig.c:886
+#: lib/fontconfig/font-manager-fontconfig.c:929
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "None"
 msgstr "எதுவுமில்லை"
 
-#: lib/fontconfig/font-manager-fontconfig.c:879
+#: lib/fontconfig/font-manager-fontconfig.c:880
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Slight"
 msgstr "லேசான"
 
-#: lib/fontconfig/font-manager-fontconfig.c:883
+#: lib/fontconfig/font-manager-fontconfig.c:884
 #: src/font-manager/preferences/Desktop.vala:216
 msgid "Full"
 msgstr "முழு"
 
-#: lib/fontconfig/font-manager-fontconfig.c:922
+#: lib/fontconfig/font-manager-fontconfig.c:923
 msgid "Default"
 msgstr "இயல்புநிலை"
 
-#: lib/fontconfig/font-manager-fontconfig.c:926
+#: lib/fontconfig/font-manager-fontconfig.c:927
 msgid "Legacy"
 msgstr "மரபு"
 
@@ -451,7 +451,7 @@ msgstr "பைல்டைப்"
 msgid "Filesize"
 msgstr "கோப்பு"
 
-#: lib/gtk/unicode/unicode-character-map.c:787
+#: lib/gtk/unicode/unicode-character-map.c:850
 msgid "Copy"
 msgstr "நகலெடு"
 
@@ -637,7 +637,7 @@ msgstr ""
 "\n"
 " இல்லையென்றால், <http://www.gnu.org/licenses/gpl-3.0.txt> ஐப் பார்க்கவும்.\n"
 
-#: src/font-manager/Application.vala:130
+#: src/font-manager/Application.vala:129
 msgid "Installing Font Files…"
 msgstr "எழுத்துரு கோப்புகளை நிறுவுதல்…"
 
@@ -726,17 +726,42 @@ msgstr "சித்திர"
 msgid "Enter Collection Name"
 msgstr "சேகரிப்பு பெயரை உள்ளிடவும்"
 
-#: src/font-manager/Collections.vala:321
+#: src/font-manager/Collections.vala:346
 msgid "Copy to…"
 msgstr "நகலெடு…"
 
-#: src/font-manager/Collections.vala:322
+#: src/font-manager/Collections.vala:347
 msgid "Compress…"
 msgstr "சுருக்க…"
 
-#: src/font-manager/Collections.vala:323
+#: src/font-manager/Collections.vala:348
 msgid "Rename…"
 msgstr "மறுபெயரிடுங்கள்…"
+
+#: src/font-manager/Collections.vala:402
+msgid "Archive created successfully."
+msgstr ""
+
+#: src/font-manager/Collections.vala:403
+msgid "The resulting file can be found in your home directory."
+msgstr ""
+
+#: src/font-manager/Collections.vala:405
+msgid "Error exporting collection"
+msgstr ""
+
+#: src/font-manager/Collections.vala:406
+msgid ""
+"Start the application from a terminal and try again for more information"
+msgstr ""
+
+#: src/font-manager/Collections.vala:427
+msgid "Creating archive from selected collection."
+msgstr ""
+
+#: src/font-manager/Collections.vala:428
+msgid "This may take some time for large collections…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:388
 msgid "Saved Comparison"
@@ -833,36 +858,52 @@ msgstr "இயங்கக்கூடியதைத் தேர்ந்த�
 msgid "Select a Directory"
 msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: src/font-manager/Dialogs.vala:75
+#: src/font-manager/Dialogs.vala:68
+#, fuzzy
+#| msgid "FileType"
+msgid "TrueType"
+msgstr "பைல்டைப்"
+
+#: src/font-manager/Dialogs.vala:70
+#, fuzzy
+#| msgid "FileType"
+msgid "OpenType"
+msgstr "பைல்டைப்"
+
+#: src/font-manager/Dialogs.vala:73
+msgid "Archive Files"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
 msgstr "நிறுவ கோப்புகளைத் தேர்ந்தெடுக்கவும்"
 
-#: src/font-manager/Dialogs.vala:84
+#: src/font-manager/Dialogs.vala:91
 msgid "Select Source Directories"
 msgstr "மூல கோப்பகங்களைத் தேர்ந்தெடுக்கவும்"
 
-#: src/font-manager/Dialogs.vala:118
+#: src/font-manager/Dialogs.vala:125
 msgid "Font Configuration"
 msgstr "எழுத்துரு உள்ளமைவு"
 
-#: src/font-manager/Dialogs.vala:119
+#: src/font-manager/Dialogs.vala:126
 msgid "Font Collections"
 msgstr "எழுத்துரு சேகரிப்புகள்"
 
-#: src/font-manager/Dialogs.vala:120
+#: src/font-manager/Dialogs.vala:127
 #: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr "எழுத்துரு ஆதாரங்கள்"
 
-#: src/font-manager/Dialogs.vala:121
+#: src/font-manager/Dialogs.vala:128
 msgid "Installed Fonts"
 msgstr "நிறுவப்பட்ட எழுத்துருக்கள்"
 
-#: src/font-manager/Dialogs.vala:122
+#: src/font-manager/Dialogs.vala:129
 msgid "Custom Actions"
 msgstr "தனிப்பயன் செயல்கள்"
 
-#: src/font-manager/Dialogs.vala:374
+#: src/font-manager/Dialogs.vala:385
 msgid "Fonts installed in your home directory will appear here."
 msgstr "உங்கள் வீட்டு கோப்பகத்தில் நிறுவப்பட்ட எழுத்துருக்கள் இங்கே தோன்றும்."
 
@@ -906,12 +947,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%நான் மாறுபாடு "
 msgstr[1] "%நான் மாறுபாடுகள்"
 
-#: src/font-manager/FontList.vala:253
+#: src/font-manager/FontList.vala:254
 #: src/font-manager/web/google/FontList.vala:273
 msgid "Collapse all"
 msgstr "அனைத்தையும் சரக்கு"
 
-#: src/font-manager/FontList.vala:253
+#: src/font-manager/FontList.vala:254
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -1594,7 +1635,7 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட உருப�
 msgid "Edit selected item"
 msgstr "தேர்ந்தெடுக்கப்பட்ட உருப்படியைத் திருத்தவும்"
 
-#: src/font-manager/Utils.vala:291
+#: src/font-manager/Utils.vala:295
 msgid "Copying files…"
 msgstr "கோப்புகளை நகலெடுக்கும்…"
 
@@ -1829,117 +1870,117 @@ msgstr "பயனர் செயல்கள்"
 msgid "Custom context menu entries"
 msgstr "தனிப்பயன் சூழல் பட்டியல் உள்ளீடுகள்"
 
-#: src/font-manager/preferences/UserInterface.vala:37
-msgid "Up to 48 points (Linear Scaling)"
-msgstr "48 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
-
-#: src/font-manager/preferences/UserInterface.vala:39
-msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr "72 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
-
-#: src/font-manager/preferences/UserInterface.vala:41
-msgid "Up to 96 points (Linear Scaling)"
-msgstr "96 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
-
-#: src/font-manager/preferences/UserInterface.vala:43
-msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr "96 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
-
-#: src/font-manager/preferences/UserInterface.vala:45
-msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr "120 புள்ளிகள் வரை (1.2 பொதுவான விகிதம்)"
-
-#: src/font-manager/preferences/UserInterface.vala:47
-msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr "144 புள்ளிகள் வரை (1.3 பொதுவான விகிதம்)"
-
-#: src/font-manager/preferences/UserInterface.vala:49
-msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr "192 புள்ளிகள் வரை (1.4 பொதுவான விகிதம்)"
-
-#: src/font-manager/preferences/UserInterface.vala:51
-msgid "Custom Size Settings"
-msgstr "தனிப்பயன் அளவு அமைப்புகள்"
-
-#: src/font-manager/preferences/UserInterface.vala:197
-msgid "Waterfall Preview Size Settings"
-msgstr "நீர்வீழ்ச்சி முன்னோட்ட அளவு அமைப்புகள்"
-
-#: src/font-manager/preferences/UserInterface.vala:201
-msgid "Higher values may adversely affect performance"
-msgstr "அதிக மதிப்புகள் செயல்திறனை மோசமாக பாதிக்கலாம்"
-
-#: src/font-manager/preferences/UserInterface.vala:204
-msgid "Minimum Waterfall Preview Point Size"
-msgstr "குறைந்தபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
-
-#: src/font-manager/preferences/UserInterface.vala:206
-msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "நீர்வீழ்ச்சி முன்னோட்டம் புள்ளி அளவு பொதுவான விகிதம்"
-
-#: src/font-manager/preferences/UserInterface.vala:208
-msgid "Maximum Waterfall Preview Point Size"
-msgstr "அதிகபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
-
-#: src/font-manager/preferences/UserInterface.vala:236
-msgid "Show line size"
-msgstr "வரி அளவைக் காட்டு"
-
-#: src/font-manager/preferences/UserInterface.vala:275
-msgid "Selected setting requires restart to apply"
-msgstr "தேர்ந்தெடுக்கப்பட்ட அமைப்பிற்கு விண்ணப்பிக்க மறுதொடக்கம் தேவை"
-
-#: src/font-manager/preferences/UserInterface.vala:276
-msgid "Changes will take effect next time the application is started"
-msgstr "அடுத்த முறை விண்ணப்பம் தொடங்கும்போது மாற்றங்கள் நடைமுறைக்கு வரும்"
-
-#: src/font-manager/preferences/UserInterface.vala:289
-msgid "Wide Layout"
-msgstr "பரந்த தளவமைப்பு"
-
-#: src/font-manager/preferences/UserInterface.vala:289
-msgid "Use three column layout"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:292
-msgid "Only When Maximized"
-msgstr "அதிகரிக்கும்போது மட்டுமே"
-
-#: src/font-manager/preferences/UserInterface.vala:294
-msgid "Enable Animations"
-msgstr "அனிமேசன்களை இயக்கவும்"
-
-#: src/font-manager/preferences/UserInterface.vala:295
-msgid "Prefer Dark Theme"
-msgstr "இருண்ட கருப்பொருளை விரும்புங்கள்"
-
-#: src/font-manager/preferences/UserInterface.vala:297
-msgid "Use Adwaita Stylesheet"
-msgstr "அட்வைட்டா ச்டைல்சீட் பயன்படுத்தவும்"
-
-#: src/font-manager/preferences/UserInterface.vala:299
+#: src/font-manager/preferences/UserInterface.vala:28
 msgid "Raised"
 msgstr "உயர்த்தப்பட்டது"
 
-#: src/font-manager/preferences/UserInterface.vala:299
+#: src/font-manager/preferences/UserInterface.vala:28
 msgid "Flat"
 msgstr "கிடைவளைவு"
 
-#: src/font-manager/preferences/UserInterface.vala:302
+#: src/font-manager/preferences/UserInterface.vala:70
+msgid "Up to 48 points (Linear Scaling)"
+msgstr "48 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
+
+#: src/font-manager/preferences/UserInterface.vala:72
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr "72 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
+
+#: src/font-manager/preferences/UserInterface.vala:74
+msgid "Up to 96 points (Linear Scaling)"
+msgstr "96 புள்ளிகள் வரை (நேரியல் அளவிடுதல்)"
+
+#: src/font-manager/preferences/UserInterface.vala:76
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr "96 புள்ளிகள் வரை (1.1 பொதுவான விகிதம்)"
+
+#: src/font-manager/preferences/UserInterface.vala:78
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr "120 புள்ளிகள் வரை (1.2 பொதுவான விகிதம்)"
+
+#: src/font-manager/preferences/UserInterface.vala:80
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr "144 புள்ளிகள் வரை (1.3 பொதுவான விகிதம்)"
+
+#: src/font-manager/preferences/UserInterface.vala:82
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr "192 புள்ளிகள் வரை (1.4 பொதுவான விகிதம்)"
+
+#: src/font-manager/preferences/UserInterface.vala:84
+msgid "Custom Size Settings"
+msgstr "தனிப்பயன் அளவு அமைப்புகள்"
+
+#: src/font-manager/preferences/UserInterface.vala:230
+msgid "Waterfall Preview Size Settings"
+msgstr "நீர்வீழ்ச்சி முன்னோட்ட அளவு அமைப்புகள்"
+
+#: src/font-manager/preferences/UserInterface.vala:234
+msgid "Higher values may adversely affect performance"
+msgstr "அதிக மதிப்புகள் செயல்திறனை மோசமாக பாதிக்கலாம்"
+
+#: src/font-manager/preferences/UserInterface.vala:237
+msgid "Minimum Waterfall Preview Point Size"
+msgstr "குறைந்தபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
+
+#: src/font-manager/preferences/UserInterface.vala:239
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr "நீர்வீழ்ச்சி முன்னோட்டம் புள்ளி அளவு பொதுவான விகிதம்"
+
+#: src/font-manager/preferences/UserInterface.vala:241
+msgid "Maximum Waterfall Preview Point Size"
+msgstr "அதிகபட்ச நீர்வீழ்ச்சி முன்னோட்ட புள்ளி அளவு"
+
+#: src/font-manager/preferences/UserInterface.vala:269
+msgid "Show line size"
+msgstr "வரி அளவைக் காட்டு"
+
+#: src/font-manager/preferences/UserInterface.vala:308
+msgid "Selected setting requires restart to apply"
+msgstr "தேர்ந்தெடுக்கப்பட்ட அமைப்பிற்கு விண்ணப்பிக்க மறுதொடக்கம் தேவை"
+
+#: src/font-manager/preferences/UserInterface.vala:309
+msgid "Changes will take effect next time the application is started"
+msgstr "அடுத்த முறை விண்ணப்பம் தொடங்கும்போது மாற்றங்கள் நடைமுறைக்கு வரும்"
+
+#: src/font-manager/preferences/UserInterface.vala:322
+msgid "Wide Layout"
+msgstr "பரந்த தளவமைப்பு"
+
+#: src/font-manager/preferences/UserInterface.vala:322
+msgid "Use three column layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:325
+msgid "Only When Maximized"
+msgstr "அதிகரிக்கும்போது மட்டுமே"
+
+#: src/font-manager/preferences/UserInterface.vala:327
+msgid "Enable Animations"
+msgstr "அனிமேசன்களை இயக்கவும்"
+
+#: src/font-manager/preferences/UserInterface.vala:328
+msgid "Prefer Dark Theme"
+msgstr "இருண்ட கருப்பொருளை விரும்புங்கள்"
+
+#: src/font-manager/preferences/UserInterface.vala:330
+msgid "Use Adwaita Stylesheet"
+msgstr "அட்வைட்டா ச்டைல்சீட் பயன்படுத்தவும்"
+
+#: src/font-manager/preferences/UserInterface.vala:334
 msgid "Titlebar Button Style"
 msgstr "Titlebar பொத்தான் பாணி"
 
-#: src/font-manager/preferences/UserInterface.vala:303
+#: src/font-manager/preferences/UserInterface.vala:335
 msgid "Display line size in Waterfall Preview"
 msgstr "நீர்வீழ்ச்சி முன்னோட்டத்தில் வரி அளவைக் காண்பி"
 
-#: src/font-manager/preferences/UserInterface.vala:308
+#: src/font-manager/preferences/UserInterface.vala:340
 #, fuzzy
 #| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
 msgstr "நீர்வீழ்ச்சி முன்னோட்ட அளவு அமைப்புகள்"
 
-#: src/font-manager/preferences/UserInterface.vala:310
+#: src/font-manager/preferences/UserInterface.vala:342
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -2555,6 +2596,7 @@ msgstr "ரத்துசெய்"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
+#: src/font-manager/ui/font-manager-remove-dialog.ui:43
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
 msgstr "குடும்பங்களைத் தேடுங்கள்…"
