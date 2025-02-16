@@ -1,6 +1,6 @@
 /* Compare.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,6 @@ namespace FontManager {
         public Gdk.RGBA background_color { get; set; }
         public GenericArray <Object>? selected_items { get; set; default = null; }
         public GenericArray <Object>? selected_children { get; set; default = null; }
-        public GLib.Settings? settings { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
         public CompareModel model { get; set; }
         public PinnedComparisons pinned { get; private set; }
@@ -179,12 +178,11 @@ namespace FontManager {
         [GtkChild] unowned Gtk.MenuButton pinned_button;
         [GtkChild] unowned Gtk.ListBox list;
 
-        bool initialized = false;
+        bool use_adwaita = false;
         string? _preview_text = null;
         string? default_preview_text = null;
 
-        public ComparePane (GLib.Settings? settings) {
-            Object(settings: settings);
+        public ComparePane () {
             widget_set_name(this, "FontManagerCompare");
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
@@ -193,9 +191,6 @@ namespace FontManager {
             pinned_button.set_popover(pinned);
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
-#if HAVE_ADWAITA
-            if (settings == null || !settings.get_boolean("use-adwaita-stylesheet"))
-#endif
             add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             preview_colors.bind_property("foreground-color", this, "foreground-color", flags);
@@ -210,55 +205,42 @@ namespace FontManager {
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
-#if HAVE_ADWAITA
-            if (settings == null || !settings.get_boolean("use-adwaita-stylesheet")) {
-#endif
-            if (model.get_n_items() > 0)
-                add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
-            else
-                add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
-#if HAVE_ADWAITA
+            if (!use_adwaita) {
+                if (model.get_n_items() > 0)
+                    add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+                else
+                    add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             }
-#endif
             bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             set_control_sensitivity(pinned_button, have_items);
             return;
         }
 
-        [GtkCallback]
-        public void on_map () {
-            if (initialized)
-                return;
+        public void restore_state (GLib.Settings? settings) {
             if (settings == null)
                 return;
+            use_adwaita = settings.get_boolean("use-adwaita-stylesheet");
+            if (use_adwaita)
+                add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             preview_size = settings.get_double("compare-font-size");
             entry.text = settings.get_string("compare-preview-text");
-            var foreground = Gdk.RGBA();
-            var background = Gdk.RGBA();
-            bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
-            bool background_set = background.parse(settings.get_string("compare-background-color"));
-            if (foreground_set) {
-                if (foreground.alpha == 0.0f)
-                    foreground.alpha = 1.0f;
-                preview_colors.foreground_color = foreground;
-            }
-            if (background_set) {
-                if (background.alpha == 0.0f)
-                    background.alpha = 1.0f;
-                preview_colors.background_color = background;
-            }
-            settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
-            settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
-            initialized = true;
-            return;
-        }
-
-        [GtkCallback]
-        public void on_unmap () {
-            if (settings == null)
-                return;
-            settings.set_string("compare-foreground-color", foreground_color.to_string());
-            settings.set_string("compare-background-color", background_color.to_string());
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("compare-preview-text", entry, "text", flags);
+            settings.bind("compare-font-size", this, "preview-size", flags);
+            settings.bind_with_mapping("compare-foreground-color",
+                                       preview_colors,
+                                       "foreground-color",
+                                       flags,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       null, null);
+            settings.bind_with_mapping("compare-background-color",
+                                       preview_colors,
+                                       "background-color",
+                                       flags,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       null, null);
             return;
         }
 

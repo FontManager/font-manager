@@ -71,7 +71,7 @@ namespace FontManager {
                     settings = get_gsettings(BUS_ID);
                     main_window = new MainWindow(settings);
                     add_window(main_window);
-                    main_window.restore_state();
+                    ((Gtk.Widget) main_window).realize.connect_after(() => { main_window.restore_state(); });
                     // Why is this needed?
                     shutdown.connect(() => { quit(); });
                 }

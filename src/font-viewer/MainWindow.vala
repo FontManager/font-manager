@@ -51,7 +51,7 @@ namespace FontManager.FontViewer {
             stack.set_visible_child_name("PlaceHolder");
             preview_pane.set_action_widget(action_button, Gtk.PackType.END);
             preview_pane.changed.connect(this.update);
-            preview_pane.realize.connect(() => {
+            preview_pane.realize.connect_after(() => {
                 preview_pane.restore_state(get_gsettings(FontManager.BUS_ID));
             });
             update_action_button();

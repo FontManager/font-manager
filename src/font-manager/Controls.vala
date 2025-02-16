@@ -1,6 +1,6 @@
 /* Controls.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,6 +114,20 @@ namespace FontManager {
             fg_color_button.notify["rgba"].connect(() => { color_set(); });
             base.constructed();
             return;
+        }
+
+        // GSettingsBind*Mapping functions
+
+        public static Variant to_setting (Value val, VariantType type) {
+            return new Variant.string(((Gdk.RGBA) val).to_string());
+        }
+
+        public static bool from_setting (Value val, Variant variant) {
+            Gdk.RGBA rgba = Gdk.RGBA();
+            string rgba_string = variant.get_string();
+            bool result = rgba.parse(rgba_string);
+            val.set_boxed(&rgba);
+            return result;
         }
 
     }

@@ -91,23 +91,17 @@ internal const string BODY_TEXT = """
 internal const string ACTIVE_PREVIEW = """
       <div class="aligned">
         <div class="padded">
-          <p class="previewText">%s</p>
+          <p class="previewText" style="white-space: pre-line;">%s</p>
         </div>
       </div>
 """;
 
-internal const string EDITABLE_PREVIEW = """
-      <div class="aligned">
-      <textarea class="previewText" id="textArea" oninput="onInput()">%s</textarea>
-      </div>
-""";
-
 internal const string DEFAULT_ACTIVE_TEXT = """
-            The quick brown fox jumps over the lazy dog.<br/>
-            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br/>
-            abcdefghijklmnopqrstuvwxyz<br/>
-            1234567890.:,;(*!?')
-        """;
+The quick brown fox jumps over the lazy dog.
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890.:,;(*!?')
+""";
 
 internal const string FOOTER = """
     </div>
@@ -161,12 +155,23 @@ namespace FontManager.GoogleFonts {
             }
             set {
                 _preview_text = value;
+                notify_property("preview-text");
+            }
+        }
+
+        public string active_preview_text {
+            get {
+                return _active_preview_text != null ? _active_preview_text : DEFAULT_ACTIVE_TEXT;
+            }
+            set {
+                _active_preview_text = value;
+                notify_property("active-preview-text");
             }
         }
 
         string? _preview_text = null;
         string? waterfall_body = null;
-        string? active_preview_text = null;
+        string? _active_preview_text = null;
         string default_pangram = "The quick brown fox jumps over the lazy dog.";
 
         [GtkChild] unowned Gtk.CenterBox controls;
@@ -183,6 +188,8 @@ namespace FontManager.GoogleFonts {
         WebKit.WebView? webview;
         Gtk.Revealer controls_revealer;
         Gtk.Revealer fontscale_revealer;
+        Gtk.Stack preview_stack;
+        Gtk.TextView textview;
 
         string [] requires_reload = { "preview-text",
                                       "preview-size",
@@ -201,11 +208,16 @@ namespace FontManager.GoogleFonts {
 
         public PreviewPage () {
             webview = create_webview();
+            textview = new Gtk.TextView() { monospace = true };
+            widget_set_margin(textview, 64);
             preview_controls = new PreviewControls();
             controls_revealer = new Gtk.Revealer();
             controls_revealer.set_child(preview_controls);
             append(controls_revealer);
-            append(webview);
+            preview_stack = new Gtk.Stack();
+            preview_stack.add_named(webview, "WebView");
+            preview_stack.add_named(textview, "TextView");
+            append(preview_stack);
             entry = new PreviewEntry();
             controls.set_center_widget(entry);
             fontscale = new FontScale();
@@ -220,6 +232,8 @@ namespace FontManager.GoogleFonts {
             bind_property("preview-size", fontscale, "value", flags);
             bind_property("preview-text", entry, "placeholder-text", flags);
             bind_property("justification", preview_controls, "justification", flags);
+            bind_property("justification", textview, "justification", flags);
+            bind_property("active-preview-text", textview.buffer, "text", flags);
             notify["selected-item"].connect_after(on_item_selected);
             samples.row_selected.connect(on_sample_selected);
             preview_controls.undo_clicked.connect(on_undo_clicked);
@@ -258,6 +272,13 @@ namespace FontManager.GoogleFonts {
             };
             ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
             webview.add_controller(right_click);
+            textview.map.connect_after(() => { textview.grab_focus(); });
+        }
+
+        void update_menu_button () {
+            Variant args = preview_mode.to_string();
+            activate_action_variant("preview.mode", args);
+            return;
         }
 
         public void restore_state (GLib.Settings? settings) {
@@ -266,14 +287,33 @@ namespace FontManager.GoogleFonts {
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("preview-font-size", this, "preview-size", flags);
             settings.bind("preview-mode", this, "preview-mode", flags);
+            update_menu_button();
+            settings.changed.connect_after((key) => {
+                if (key == "preview-mode")
+                    update_menu_button();
+            });
             settings.bind("google-fonts-preview-text", this, "preview-text", flags);
+            settings.bind_with_mapping("google-fonts-foreground-color",
+                                       preview_colors,
+                                       "foreground-color",
+                                       flags,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       null, null);
+            settings.bind_with_mapping("google-fonts-background-color",
+                                       preview_colors,
+                                       "background-color",
+                                       flags,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       null, null);
             return;
         }
 
         void on_sample_selected (string sample) {
             entry.set_text(sample);
             if (preview_mode == PreviewPageMode.PREVIEW) {
-                active_preview_text = sample;
+                preview_text = sample;
                 reload_preview();
             }
             return;
@@ -286,11 +326,9 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_edit_toggled (bool active) {
-            webview.set_editable(active);
+            preview_stack.set_visible_child_name(active ? "TextView" : "WebView");
             if (!active)
-                if (webview.title != null && webview.title.strip().length > 0)
-                    active_preview_text = webview.title;
-            reload_preview();
+                reload_preview();
             return;
         }
 
@@ -304,6 +342,7 @@ namespace FontManager.GoogleFonts {
                 mode = PreviewPageMode.PREVIEW;
             preview_mode = mode;
             action.set_state(parameter);
+            sample_button.set_visible(mode == PreviewPageMode.WATERFALL);
             return;
         }
 
@@ -412,15 +451,7 @@ namespace FontManager.GoogleFonts {
         requires (font != null) {
             StringBuilder builder = new StringBuilder();
             builder.append(get_current_header());
-            string html = webview.is_editable() ?
-                          EDITABLE_PREVIEW :
-                          ACTIVE_PREVIEW;
-            string text = active_preview_text != null ?
-                          active_preview_text :
-                          webview.is_editable() ?
-                          "" :
-                          DEFAULT_ACTIVE_TEXT;
-            builder.append(html.printf(text));
+            builder.append(ACTIVE_PREVIEW.printf(active_preview_text));
             builder.append(FOOTER);
             return builder.str;
         }

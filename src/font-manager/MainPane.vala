@@ -1,6 +1,6 @@
 /* MainPane.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ namespace FontManager {
             sidebar = new SidebarStack(settings);
             fontlist = new FontListView();
             preview = new PreviewPane();
-            compare = new ComparePane(settings);
+            compare = new ComparePane();
             content = new Gtk.Stack() {
                 transition_type = Gtk.StackTransitionType.CROSSFADE,
                 transition_duration = 420
@@ -107,7 +107,8 @@ namespace FontManager {
                                            waterfall_settings.maximum,
                                            waterfall_settings.ratio);
             });
-            preview.restore_state(settings);
+            preview.realize.connect_after(() => { preview.restore_state(settings); });
+            compare.realize.connect_after(() => { compare.restore_state(settings); });
         }
 
         public void search (string needle) {
