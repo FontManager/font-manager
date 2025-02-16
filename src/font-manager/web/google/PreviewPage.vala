@@ -275,6 +275,7 @@ namespace FontManager.GoogleFonts {
             textview.map.connect_after(() => { textview.grab_focus(); });
         }
 
+        // XXX : Shouldn't need this.
         void update_menu_button () {
             Variant args = preview_mode.to_string();
             activate_action_variant("preview.mode", args);
