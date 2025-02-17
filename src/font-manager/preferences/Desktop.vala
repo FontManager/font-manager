@@ -1,6 +1,6 @@
 /* Desktop.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,9 +56,15 @@ namespace FontManager {
             "double",
         },
         {
+            "font-rendering",
+            N_("GTK 4 Font Rendering"),
+            N_("Automatic option allows GTK 4 to disregard hinting settings."),
+            "bool",
+        },
+        {
             "antialiasing",
             N_("Antialiasing"),
-            N_("The type of antialiasing to use when rendering fonts."),
+            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Does not apply to GTK 4 or later."),
             "int",
         },
         {
@@ -82,7 +88,7 @@ namespace FontManager {
         {
             "font-antialiasing",
             N_("Antialiasing"),
-            N_("The type of antialiasing to use when rendering fonts."),
+            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Does not apply to GTK 4 or later."),
             "int",
         },
         {
@@ -132,6 +138,8 @@ namespace FontManager {
                 return { "none", "slight" ,"medium", "full" };
             else if (k.contains("rgba"))
                 return { "rgba", "rgb", "bgr", "vrgb", "vbgr" };
+            else if (k.contains("font-rendering"))
+                return { "automatic", "manual" };
             else
                 return_val_if_reached(null);
         }
@@ -202,6 +210,18 @@ namespace FontManager {
                                                           from_font_setting,
                                                           to_font_setting,
                                                           setting.key, null);
+                } else if (setting.type == "bool") {
+                    if (setting.key.contains("font-rendering")) {
+                        string [] options = { _("Automatic"), _("Manual") };
+                        var option_list = new Gtk.StringList(options);
+                        var combo = new Gtk.DropDown(option_list, null);
+                        widget = new PreferenceRow(dgettext(null, setting.name), null, null, combo);
+                        _settings.bind_with_mapping(setting.key, combo, "selected",
+                                                    SettingsBindFlags.DEFAULT,
+                                                    from_enum_setting,
+                                                    to_enum_setting,
+                                                    setting.key, null);
+                    }
                 } else if (setting.type == "double") {
                     var control = new Gtk.SpinButton.with_range(0.5, 3.0, 0.1);
                     widget = new PreferenceRow(dgettext(null, setting.name), null, null, control);

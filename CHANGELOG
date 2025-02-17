@@ -7,6 +7,7 @@
 - Use standard TextView for editing in Google Fonts preview - Issue #424
 - Propagate waterfall settings to Browse mode - Issue #424
 - Add keyboard shortcuts to modify Lorem Ipsum and Character Map preview size - Issue #424
+- Add preference option for gtk-font-rendering - Issue #429
 
 0.9.1 -> 0.9.2
 - Address segfault reported on FreeBSD - Closes #395
