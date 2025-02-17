@@ -108,6 +108,7 @@ namespace FontManager {
         public GenericArray <Object>? selected_children { get; protected set; default = null; }
 
         uint search_timeout = 0;
+        string? previously_selected_family = null;
 
         construct {
             orientation = Gtk.Orientation.VERTICAL;
@@ -164,7 +165,19 @@ namespace FontManager {
             if (search_entry != null)
                 model.search_term = search_entry.text.strip();
             model.update_items();
-            select_item(position);
+            if (previously_selected_family == null || position != 0)
+                select_item(position);
+            else {
+                uint n_items = model.n_items;
+                for (uint i = 0; i < n_items; i++) {
+                    Family family = (Family) model.get_item(i);
+                    if (family.family == previously_selected_family) {
+                        select_item(i);
+                        return;
+                    }
+                }
+            }
+            select_item(0);
             return;
         }
 
@@ -179,6 +192,8 @@ namespace FontManager {
             if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
             search_timeout = Timeout.add_full(GLib.Priority.HIGH_IDLE, 333, _queue_update);
+            if (selected_items != null && selected_items.length > 0)
+                previously_selected_family = ((Family) selected_items[0]).family;
             return;
         }
 

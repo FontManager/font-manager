@@ -197,7 +197,11 @@ namespace FontManager {
         public FontGridView (Gtk.ScrolledWindow parent) {
             container = parent;
             model = new FontModel();
-            parent.map.connect(() => { if (list == null) queue_update(); });
+            parent.map.connect(() => {
+                if (list == null)
+                    create_gridview();
+                queue_update();
+            });
             notify["size"].connect(() => { queue_update(); });
             notify["preview-text"].connect_after(() => { queue_update(); });
             bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
@@ -209,32 +213,15 @@ namespace FontManager {
         }
 
         public void create_gridview () {
-            uint previous_selection = current_selection;
-            list = null;
-            container.set_child(null);
-            if (container.visible)
-                container.set_visible(false);
             list = new Gtk.GridView(null, null) {
                 hexpand = true,
                 vexpand = true,
                 min_columns = 2,
                 max_columns = 36
             };
-            selection = new Gtk.SingleSelection(model) { autoselect = false };
+            selection = new Gtk.SingleSelection(model);
             container.set_child(list);
             container.set_visible(true);
-            if (model.get_n_items() > 0) {
-                uint select = previous_selection < model.get_n_items() ?
-                              previous_selection : 0;
-                select_item(select);
-            }
-            return;
-        }
-
-        public override void update (uint position = 0) {
-            if (list == null)
-                create_gridview();
-            base.update(position);
             return;
         }
 
@@ -259,8 +246,10 @@ namespace FontManager {
         protected override void on_selection_changed (uint position, uint n_items) {
             base.on_selection_changed(position, n_items);
             selected_item = null;
+            selected_items = new GenericArray <Object> ();
             Object? item = model.get_item(current_selection);
             selected_item = item;
+            selected_items.add(item);
             selection_changed(item);
             return;
         }
@@ -614,7 +603,7 @@ namespace FontManager {
         }
 
         public void queue_update () {
-            gridview.update();
+            gridview.queue_update();
             listview.queue_update();
             return;
         }
