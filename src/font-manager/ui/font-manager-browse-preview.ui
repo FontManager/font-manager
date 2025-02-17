@@ -13,6 +13,7 @@
             <property name="margin-end">12</property>
             <property name="margin-start">12</property>
             <property name="orientation">vertical</property>
+            <property name="valign">end</property>
             <child>
               <object class="GtkSeparator">
                 <property name="margin-bottom">6</property>
@@ -25,7 +26,7 @@
                 <property name="margin-bottom">6</property>
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
-                <property name="margin-top">6</property>
+                <property name="margin-top">3</property>
                 <property name="tooltip-text" translatable="yes">Status of selected family.
 
 Disabling will prevent the selected family from being used by other applications.</property>
@@ -69,9 +70,9 @@ Disabling will prevent the selected family from being used by other applications
                   <object class="GtkLabel" id="family_label">
                     <property name="hexpand">False</property>
                     <property name="label">&lt;Family Name&gt;</property>
+                    <property name="margin-start">12</property>
                     <property name="opacity">0.75</property>
                     <property name="vexpand">True</property>
-                    <property name="margin-start">12</property>
                     <style>
                       <class name="title-2"/>
                     </style>
@@ -91,143 +92,65 @@ Disabling will prevent the selected family from being used by other applications
           </object>
         </child>
         <child type="center">
-          <object class="GtkScrolledWindow">
-            <property name="hscrollbar-policy">never</property>
-            <property name="child">
-              <object class="GtkViewport">
-                <property name="child">
-                  <object class="GtkListBox">
-                    <property name="activate-on-single-click">0</property>
-                    <property name="hexpand">1</property>
-                    <property name="selection-mode">none</property>
-                    <property name="vexpand">1</property>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="activatable">0</property>
-                        <property name="height-request">80</property>
-                        <property name="margin-end">6</property>
-                        <property name="margin-start">6</property>
-                        <property name="selectable">0</property>
-                        <property name="valign">start</property>
-                        <property name="width-request">100</property>
-                        <child>
-                          <object class="GtkExpander" id="glyph_expander">
-                            <property name="hexpand">True</property>
-                            <property name="label-widget">
-                              <object class="GtkCenterBox">
-                                <property name="hexpand">True</property>
-                                <property name="valign">center</property>
-                                <child type="end">
-                                  <object class="GtkLabel" id="n_glyphs">
-                                    <property name="halign">center</property>
-                                    <property name="margin-bottom">6</property>
-                                    <property name="margin-end">6</property>
-                                    <property name="margin-start">6</property>
-                                    <property name="margin-top">6</property>
-                                    <property name="opacity">0.65</property>
-                                    <property name="valign">center</property>
-                                  </object>
-                                </child>
-                                <child type="start">
-                                  <object class="GtkLabel">
-                                    <property name="halign">center</property>
-                                    <property name="label">Characters</property>
-                                    <property name="margin-bottom">6</property>
-                                    <property name="margin-end">12</property>
-                                    <property name="margin-start">12</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="opacity">0.74901960784313726</property>
-                                    <attributes>
-                                      <attribute name="weight" value="medium"/>
-                                      <attribute name="scale" value="1.1000000000000001"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                              </object>
-                            </property>
-                            <property name="margin-bottom">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-top">6</property>
-                            <property name="vexpand">True</property>
-                            <child>
-                              <object class="GtkScrolledWindow" id="character_map_scroll">
-                                <property name="hexpand">True</property>
-                                <property name="hscrollbar-policy">never</property>
-                                <property name="vexpand">True</property>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="activatable">0</property>
-                        <property name="child">
-                          <object class="GtkSeparator">
-                            <property name="margin-bottom">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-start">6</property>
-                            <property name="opacity">0.333</property>
-                          </object>
-                        </property>
-                        <property name="margin-end">6</property>
-                        <property name="margin-start">6</property>
-                        <property name="selectable">0</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkListBoxRow">
-                        <property name="activatable">0</property>
-                        <property name="height-request">80</property>
-                        <property name="margin-end">6</property>
-                        <property name="margin-start">6</property>
-                        <property name="selectable">0</property>
-                        <property name="width-request">100</property>
-                        <child>
-                          <object class="GtkExpander" id="preview_expander">
-                            <property name="expanded">True</property>
-                            <property name="hexpand">True</property>
-                            <property name="label-widget">
-                              <object class="GtkCenterBox">
-                                <property name="hexpand">True</property>
-                                <property name="valign">center</property>
-                                <child type="end">
-                                  <object class="GtkMenuButton" id="preview_menu"/>
-                                </child>
-                                <child type="start">
-                                  <object class="GtkLabel">
-                                    <property name="halign">center</property>
-                                    <property name="label" translatable="yes">Preview</property>
-                                    <property name="margin-bottom">6</property>
-                                    <property name="margin-end">12</property>
-                                    <property name="margin-start">12</property>
-                                    <property name="margin-top">8</property>
-                                    <property name="opacity">0.74901960784313726</property>
-                                    <attributes>
-                                      <attribute name="weight" value="medium"/>
-                                      <attribute name="scale" value="1.1000000000000001"/>
-                                    </attributes>
-                                  </object>
-                                </child>
-                              </object>
-                            </property>
-                            <property name="margin-bottom">6</property>
-                            <property name="margin-end">6</property>
-                            <property name="margin-start">6</property>
-                            <property name="margin-top">6</property>
-                            <property name="vexpand">True</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkCenterBox">
+                <property name="css-classes">flat
+view
+</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-top">6</property>
+                <child type="center">
+                  <object class="GtkStackSwitcher" id="preview_switcher">
+                    <property name="halign">center</property>
+                    <property name="hexpand-set">True</property>
+                    <property name="stack">preview_stack</property>
+                    <property name="valign">center</property>
+                    <property name="vexpand-set">True</property>
                   </object>
-                </property>
+                </child>
+                <child type="end">
+                  <object class="GtkLabel" id="n_glyphs">
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child type="start">
+                  <object class="GtkMenuButton" id="preview_menu">
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <style/>
+                  </object>
+                </child>
               </object>
-            </property>
-            <property name="focusable">1</property>
-            <property name="width-request">275</property>
+            </child>
+            <child>
+              <object class="GtkStack" id="preview_stack">
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkScrolledWindow" id="preview_scroll">
+                        <property name="hscrollbar-policy">never</property>
+                      </object>
+                    </property>
+                    <property name="title" translatable="yes">Preview</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkScrolledWindow" id="character_map_scroll">
+                        <property name="hscrollbar-policy">never</property>
+                      </object>
+                    </property>
+                    <property name="title" translatable="yes">Characters</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
         <style>

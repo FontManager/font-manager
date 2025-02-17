@@ -267,24 +267,43 @@ namespace FontManager {
 
     }
 
+    public enum BrowsePreviewMode {
+        WATERFALL,
+        LOREM_IPSUM,
+        CHARACTER_MAP;
+    }
+
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-browse-preview.ui")]
     public class BrowsePreview : Gtk.Box {
 
         public Reject? disabled_families { get; set; default = null; }
         public Object? selected_item { get; protected set; default = null; }
         public BaseFontModel? model { get; protected set; default = null; }
+        public PreviewPage preview_page { get; protected set; default = null; }
+        public UnicodeCharacterMap character_map { get; protected set; default = null; }
+
+        public WaterfallSettings waterfall_settings { get; set; }
+        public int predefined_size { get; set; }
+
+        public BrowsePreviewMode mode {
+            get {
+                var visible_child = preview_stack.visible_child;
+                if (visible_child == character_map_scroll)
+                    return BrowsePreviewMode.CHARACTER_MAP;
+                if (preview_page.preview_mode == PreviewPageMode.WATERFALL)
+                    return BrowsePreviewMode.WATERFALL;
+                return BrowsePreviewMode.LOREM_IPSUM;
+            }
+        }
 
         [GtkChild] unowned Gtk.Label family_label;
         [GtkChild] unowned Gtk.Label n_glyphs;
         [GtkChild] unowned Gtk.DropDown style_drop_down;
         [GtkChild] unowned Gtk.ScrolledWindow character_map_scroll;
-        [GtkChild] unowned Gtk.Expander glyph_expander;
-        [GtkChild] unowned Gtk.Expander preview_expander;
+        [GtkChild] unowned Gtk.ScrolledWindow preview_scroll;
+        [GtkChild] unowned Gtk.Stack preview_stack;
         [GtkChild] unowned Gtk.MenuButton preview_menu;
         [GtkChild] unowned Gtk.Switch font_state;
-
-        PreviewPage preview_page;
-        UnicodeCharacterMap character_map;
 
         bool ignore_activation = false;
 
@@ -294,27 +313,26 @@ namespace FontManager {
             var button = style_drop_down.get_first_child();
             if (button is Gtk.ToggleButton)
                 button.has_frame = false;
+            n_glyphs.set_opacity(0.5);
             character_map = new UnicodeCharacterMap() { hexpand = true, vexpand = true };
             character_map.add_css_class("BrowsePaneCharacterMap");
             widget_set_name(n_glyphs, "CharacterMapCount");
             character_map_scroll.set_child(character_map);
-            character_map_scroll.set_size_request(-1, 360);
+            preview_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             preview_page = new PreviewPage() { hexpand = true, vexpand = true, show_line_size = false };
-            preview_page.set_size_request(-1, 360);
             preview_page.set_waterfall_size(-1, 36, -1);
             preview_page.get_last_child().set_visible(false);
-            preview_expander.set_child(preview_page);
+            preview_page.preview_size = DEFAULT_PREVIEW_SIZE + 2.0;
+            preview_scroll.set_child(preview_page);
             set_preview_page_mode_menu_and_actions(this, preview_menu, (GLib.Callback) on_preview_mode_activated);
             ((GLib.Menu) preview_menu.menu_model).remove(0);
+            Gtk.Widget toggle = preview_menu.get_first_child();
+            toggle.remove_css_class("toggle");
+            toggle.add_css_class("flat");
+            toggle.add_css_class("view");
             var scroll = preview_page.get_first_child().get_next_sibling();
             if (scroll is Gtk.ScrolledWindow)
                 ((Gtk.ScrolledWindow) scroll).set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER);
-            glyph_expander.notify["expanded"].connect(() => {
-                preview_expander.expanded = !glyph_expander.expanded;
-            });
-            preview_expander.notify["expanded"].connect(() => {
-                glyph_expander.expanded = !preview_expander.expanded;
-            });
             font_state.notify["active"].connect(() => { on_item_state_changed(); });
             notify["selected-item"].connect(() => { on_item_selected(); });
             style_drop_down.notify["selected"].connect(() => {  on_variant_selected(); });
@@ -326,16 +344,29 @@ namespace FontManager {
                 if (disabled_families != null)
                     disabled_families.changed.connect(() => { on_item_selected(); });
             });
+            preview_stack.notify["visible-child"].connect(() => {
+                var visible_child = preview_stack.visible_child;
+                visible_child.grab_focus();
+                preview_menu.set_sensitive(visible_child == preview_scroll);
+                n_glyphs.set_opacity(visible_child == character_map_scroll ? 1.0 : 0.333);
+            });
+            notify["waterfall-settings"].connect(() => {
+                BindingFlags _flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+                waterfall_settings.bind_property("predefined-size", this, "predefined-size", _flags);
+            });
+            notify["predefined-size"].connect_after(() => {
+                waterfall_settings.on_selection_changed();
+                preview_page.set_waterfall_size(waterfall_settings.minimum,
+                                                waterfall_settings.maximum,
+                                                waterfall_settings.ratio);
+            });
         }
 
         [CCode (instance_pos = -1)]
         void on_preview_mode_activated (SimpleAction action, Variant parameter) {
-            PreviewPageMode mode = PreviewPageMode.LOREM_IPSUM;
-            string param = (string) parameter;
-            if (param == "Waterfall")
-                mode = PreviewPageMode.WATERFALL;
-            if (param == "Preview")
-                mode = PreviewPageMode.PREVIEW;
+            PreviewPageMode mode = PreviewPageMode.WATERFALL;
+            if (((string) parameter) != "Waterfall")
+                mode = PreviewPageMode.LOREM_IPSUM;
             preview_page.preview_mode = mode;
             action.set_state(parameter);
             return;
@@ -415,12 +446,12 @@ namespace FontManager {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-browse-pane.ui")]
     public class BrowsePane : Gtk.Box {
 
-        public GLib.Settings? settings { get; protected set; default = null; }
         public double pane_position { get; set; default = 55.0f; }
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
         public BrowseMode mode { get; set; default = BrowseMode.GRID; }
+        public WaterfallSettings waterfall_settings { get; set; }
 
         [GtkChild] public unowned Gtk.Stack stack { get; }
 
@@ -442,16 +473,22 @@ namespace FontManager {
         BrowsePreview preview;
         FontGridView gridview;
 
-        bool initialized = false;
-
         static construct {
             install_action("toggle-panel", null, (Gtk.WidgetActionActivateFunc) toggle_panel);
             Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
             add_binding_action(Gdk.Key.F9, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "toggle-panel", null);
+            add_binding_action(Gdk.Key.@0, mode_mask, "reset-size", "s", "0");
+            add_binding_action(Gdk.Key.plus, mode_mask, "increase-size", "s", "+");
+            add_binding_action(Gdk.Key.equal, mode_mask, "increase-size", "s", "+");
+            add_binding_action(Gdk.Key.ZoomIn, mode_mask, "increase-size", "s", "+");
+            add_binding_action(Gdk.Key.minus, mode_mask, "decrease-size", "s", "-");
+            add_binding_action(Gdk.Key.ZoomOut, mode_mask, "decrease-size", "s", "-");
+            install_action("reset-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
+            install_action("increase-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
+            install_action("decrease-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
         }
 
-        public BrowsePane (GLib.Settings? settings) {
-            Object(settings: settings);
+        public BrowsePane () {
             widget_set_name(this, "FontManagerBrowsePane");
             gridview_container = new Gtk.ScrolledWindow();
             gridview = new FontGridView(gridview_container);
@@ -494,6 +531,38 @@ namespace FontManager {
             });
             map.connect_after(on_map);
             notify["mode"].connect(on_mode_changed);
+            notify["waterfall-settings"].connect_after(() => {
+                preview.waterfall_settings = waterfall_settings;
+            });
+        }
+
+        public void on_zoom (string? action, Variant? parameter) {
+            return_if_fail(parameter != null);
+            var mode = preview.mode;
+            if (mode == BrowsePreviewMode.WATERFALL)
+                return;
+            string param = (string) parameter;
+            switch (param) {
+                case "+":
+                    if (mode == BrowsePreviewMode.LOREM_IPSUM)
+                        preview.preview_page.preview_size++;
+                    else
+                        preview.character_map.preview_size++;
+                    break;
+                case "-":
+                    if (mode == BrowsePreviewMode.LOREM_IPSUM)
+                        preview.preview_page.preview_size--;
+                    else
+                        preview.character_map.preview_size--;
+                    break;
+                default:
+                    if (mode == BrowsePreviewMode.LOREM_IPSUM)
+                        preview.preview_page.preview_size = DEFAULT_PREVIEW_SIZE + 2.0;
+                    else
+                        preview.character_map.preview_size = LARGE_PREVIEW_SIZE;
+                    break;
+            }
+            return;
         }
 
         void set_fontscale_margins () {
@@ -521,8 +590,10 @@ namespace FontManager {
             if (listview != null)
                 listview.model = null;
             queue_update();
-            if (settings == null || initialized)
-                return;
+            return;
+        }
+
+        public void restore_state (GLib.Settings settings) {
             pane_position = settings.get_double("browse-pane-position");
             panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
             panel_revealer.set_reveal_child(panel_toggle.active);

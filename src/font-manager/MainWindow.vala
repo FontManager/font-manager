@@ -169,10 +169,11 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane(settings);
-            browse_pane = new BrowsePane(settings);
+            browse_pane = new BrowsePane();
             prefs_pane = new PreferencePane(settings);
             var waterfall_settings = new WaterfallSettings(settings);
             main_pane.waterfall_settings = waterfall_settings;
+            browse_pane.waterfall_settings = waterfall_settings;
             prefs_pane.interface_preferences.waterfall_settings = waterfall_settings;
             string symbolic_icon = "com.github.FontManager.FontManager-symbolic";
             var blank = new PlaceHolder(null, null, null, symbolic_icon) { hexpand = true, vexpand = true };
@@ -221,6 +222,7 @@ namespace FontManager {
                 else
                     mode = Mode.BROWSE;
             });
+            browse_pane.realize.connect_after(() => { browse_pane.restore_state(settings); });
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             overlay.add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
