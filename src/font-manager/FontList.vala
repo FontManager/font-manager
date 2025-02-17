@@ -155,6 +155,8 @@ namespace FontManager {
         }
 
         public void select_item (uint position) {
+            if (list == null)
+                return;
             list.activate_action("list.select-item", "(ubb)", position, false, false);
             list.activate_action("list.scroll-to-item", "u", position);
             return;
