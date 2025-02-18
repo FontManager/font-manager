@@ -219,9 +219,14 @@ namespace FontManager {
                 min_columns = 2,
                 max_columns = 36
             };
-            selection = new Gtk.SingleSelection(model);
+            selection = new Gtk.SingleSelection(model) { autoselect = false };
             container.set_child(list);
             container.set_visible(true);
+            if (model.n_items > 0)
+                Idle.add(() => {
+                    select_item(0);
+                    return GLib.Source.REMOVE;
+                });
             return;
         }
 

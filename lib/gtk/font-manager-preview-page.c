@@ -548,7 +548,9 @@ on_edit_toggled (FontManagerPreviewPage *self, gboolean active)
     g_return_if_fail(self != NULL);
     self->allow_edit = active;
     gtk_text_view_set_editable(GTK_TEXT_VIEW(self->textview), active);
+    gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self->textview), active);
     gtk_widget_set_can_target(self->textview, active);
+    gtk_widget_grab_focus(self->textview);
     return;
 }
 
