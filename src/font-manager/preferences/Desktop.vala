@@ -64,7 +64,7 @@ namespace FontManager {
         {
             "antialiasing",
             N_("Antialiasing"),
-            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Does not apply to GTK 4 or later."),
+            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Starting with GTK 4 RGBA is no longer used, only None and Grayscale are valid values. "),
             "int",
         },
         {
@@ -88,7 +88,7 @@ namespace FontManager {
         {
             "font-antialiasing",
             N_("Antialiasing"),
-            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Does not apply to GTK 4 or later."),
+            N_("The type of antialiasing to use when rendering fonts.\n\nNote : Starting with GTK 4 RGBA is no longer used, only None and Grayscale are valid values."),
             "int",
         },
         {
