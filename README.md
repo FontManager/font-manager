@@ -82,7 +82,7 @@ The Thunar extension also has very basic bulk renamer support.
 
 You'll need to ensure the following dependencies are installed:
 
-- `meson >= 0.59`
+- `meson >= 1.1.0`
 - `ninja`
 - `glib >= 2.62`
 - `vala >= 0.56`

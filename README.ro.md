@@ -76,7 +76,7 @@ Extensia Thunar are, de asemenea, suport de bază pentru redenumire bulk.
 
 Va trebui să vă asiguraţi că următoarele depentenţe sunt instalate:
 
-- `meson >= 0.59`
+- `meson >= 1.1.0`
 - `ninja`
 - `glib >= 2.62`
 - `vala >= 0.56`
