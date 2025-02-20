@@ -788,7 +788,6 @@ msgstr "从终端启动该应用程序，然后再次尝试，以获取更多信
 
 #: src/font-manager/Collections.vala:427
 #, fuzzy
-#| msgid "Remove selected collection"
 msgid "Creating archive from selected collection."
 msgstr "删除选中的字体集"
 
@@ -830,7 +829,6 @@ msgstr "帮助"
 # Not translate very good, just for use.
 #: src/font-manager/Controls.vala:124
 #, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
 msgstr "字体管理器"
 
@@ -888,25 +886,21 @@ msgstr "选择(_S)"
 
 #: src/font-manager/Dialogs.vala:49
 #, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "选择可执行文件"
 
 #: src/font-manager/Dialogs.vala:60
 #, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
 msgstr "选择文本颜色"
 
 #: src/font-manager/Dialogs.vala:68
 #, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
 msgstr "文件类型"
 
 #: src/font-manager/Dialogs.vala:70
 #, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
 msgstr "文件类型"
 
@@ -916,13 +910,11 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:81
 #, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
 msgstr "选择文件安装"
 
 #: src/font-manager/Dialogs.vala:91
 #, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
 msgstr "选择字体源文件夹"
 
@@ -1653,7 +1645,6 @@ msgstr "支持的拼写体系"
 
 #: src/font-manager/OrthographyList.vala:200
 #, fuzzy
-#| msgid "No file selected"
 msgid "No items selected"
 msgstr "未选择文件"
 
@@ -1674,14 +1665,11 @@ msgstr "添加新的字体集"
 #: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 #, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
 msgstr "删除所选别名"
 
 #: src/font-manager/Sidebar.vala:67
 #, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
 msgstr "%i 个选中的项目"
 
@@ -1848,14 +1836,6 @@ msgstr "渲染"
 
 #: src/font-manager/preferences/Preferences.vala:131
 #, fuzzy
-#| msgid ""
-#| "Select save to generate a fontconfig configuration file from the above "
-#| "settings.\n"
-#| "\n"
-#| "Select discard to remove the configuration file and revert to the default "
-#| "settings.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "A Fontconfig configuration file will be generated from these settings.\n"
 "\n"
@@ -1986,7 +1966,6 @@ msgstr "预览瀑布的最大字号"
 
 #: src/font-manager/preferences/UserInterface.vala:269
 #, fuzzy
-#| msgid "Show in Folder"
 msgid "Show line size"
 msgstr "在文件夹中显示"
 
@@ -1996,8 +1975,6 @@ msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:309
 #, fuzzy
-#| msgid ""
-#| "CSD enabled. Change will take effect next time the application is started."
 msgid "Changes will take effect next time the application is started"
 msgstr "CSD 已启用。更改将在下次启动应用程序时生效。"
 
@@ -2035,7 +2012,6 @@ msgstr "在预览瀑布里显示字号"
 
 #: src/font-manager/preferences/UserInterface.vala:340
 #, fuzzy
-#| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
 msgstr "预览瀑布字号的设置"
 
@@ -2045,14 +2021,6 @@ msgstr ""
 
 #: src/font-manager/preferences/UserSources.vala:145
 #, fuzzy
-#| msgid ""
-#| "Fonts in any folders listed here will be available within the "
-#| "application.\n"
-#| "\n"
-#| "They will not be visible to other applications until the source is "
-#| "actually enabled.\n"
-#| "\n"
-#| "Note that not all environments/applications will honor these settings."
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -2113,7 +2081,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:34
 #, fuzzy
-#| msgid "Egyptian Hieroglyphs"
 msgid "Anatolian Hieroglyphs"
 msgstr "埃及象形文字"
 
@@ -2188,7 +2155,6 @@ msgstr "西里尔（扩展）"
 
 #: src/font-manager/web/google/LanguageData.vala:64
 #, fuzzy
-#| msgid "Deselect All"
 msgid "Deseret"
 msgstr "全部不选"
 
@@ -2226,7 +2192,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:81
 #, fuzzy
-#| msgid "Hanunó'o"
 msgid "Hanunoo"
 msgstr "哈努诺文 (Hanunó'o)"
 
@@ -2364,7 +2329,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:132
 #, fuzzy
-#| msgid "Devanagari"
 msgid "Nandinagari"
 msgstr "天成文字符"
 
@@ -2387,7 +2351,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:142
 #, fuzzy
-#| msgid "Old Italic"
 msgid "Old Permic"
 msgstr "古意大利字母"
 
@@ -2401,7 +2364,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:146
 #, fuzzy
-#| msgid "Old Italic"
 msgid "Old Turkic"
 msgstr "古意大利字母"
 
@@ -2447,7 +2409,6 @@ msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:163
 #, fuzzy
-#| msgid "Hinting"
 msgid "SignWriting"
 msgstr "字体微调"
 
@@ -2515,7 +2476,6 @@ msgstr "或不支持该文件类型。"
 
 #: src/font-viewer/MainWindow.vala:136
 #, fuzzy
-#| msgid "System"
 msgid "System Font"
 msgstr "系统"
 
@@ -2598,7 +2558,6 @@ msgstr "切换到比较模式"
 
 #: src/font-manager/gtk/help-overlay.ui:99
 #, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
 msgstr "切换到管理模式"
 
@@ -2620,13 +2579,11 @@ msgstr "切换到正文文本预览"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:100
 #, fuzzy
-#| msgid "Increase preview size"
 msgid "Increase tile size"
 msgstr "增加预览大小"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:109
 #, fuzzy
-#| msgid "Decrease preview size"
 msgid "Decrease tile size"
 msgstr "减小预览大小"
 
@@ -2669,7 +2626,6 @@ msgstr "固定比较"
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
 #, fuzzy
-#| msgid "_Cancel"
 msgid "Cancel"
 msgstr "取消(_C)"
 
@@ -2718,7 +2674,6 @@ msgstr "选择字体删除"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
 #, fuzzy
-#| msgid "_Delete"
 msgid "Delete"
 msgstr "删除(_D)"
 
@@ -2729,7 +2684,6 @@ msgstr "分类"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 #, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
 msgstr "字体集合"
 
@@ -2837,7 +2791,6 @@ msgstr "要预览字体，只需将其拖动到此区域。"
 
 # Not translate very good, just for use.
 #, fuzzy
-#~| msgid "Font Manager"
 #~ msgid "Font Manager project"
 #~ msgstr "字体管理器"
 
@@ -2963,3 +2916,6 @@ msgstr "要预览字体，只需将其拖动到此区域。"
 
 #~ msgid "Update Required"
 #~ msgstr "需要更新"
+
+#~ msgid "Remove selected collection"
+#~ msgstr "删除选中的字体集"

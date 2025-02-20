@@ -2880,3 +2880,6 @@ msgstr "A betűtípust az előnézetéhez egyszerűen húzza át erre a terület
 
 #~ msgid "1.0"
 #~ msgstr "1.0"
+
+#~ msgid "Remove selected collection"
+#~ msgstr "A kiválasztott gyűjtemény eltávolítása"

@@ -770,7 +770,8 @@ msgstr "Greška pri izvozu zbirke"
 #: src/font-manager/Collections.vala:406
 msgid ""
 "Start the application from a terminal and try again for more information"
-msgstr "Pokreni aplikaciju putem terminala i pokušaj ponovo za više informacija"
+msgstr ""
+"Pokreni aplikaciju putem terminala i pokušaj ponovo za više informacija"
 
 #: src/font-manager/Collections.vala:427
 msgid "Creating archive from selected collection."
@@ -2952,3 +2953,6 @@ msgstr "Za pregled fonta, jednostavno ga povuci na ovo područje."
 
 #~ msgid "Some date and time"
 #~ msgstr "Neki datum i vrijeme"
+
+#~ msgid "Remove selected collection"
+#~ msgstr "Ukloni odabranu zbirku"
