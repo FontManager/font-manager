@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-19 19:04-0500\n"
-"PO-Revision-Date: 2025-02-04 01:01+0000\n"
+"PO-Revision-Date: 2025-02-21 00:29+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -1718,10 +1718,8 @@ msgstr ""
 "megváltoztatása nélkül"
 
 #: src/font-manager/preferences/Desktop.vala:60
-#, fuzzy
-#| msgid "Rendering"
 msgid "GTK 4 Font Rendering"
-msgstr "Renderelés"
+msgstr "GTK 4 Font renderelés"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
@@ -1779,11 +1777,11 @@ msgstr "A GNOME asztali beállítási séma nem található"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "Automatikus"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "Kézi"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
