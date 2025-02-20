@@ -1,8 +1,15 @@
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.9.2')
+project(
+    'font-manager',
+    ['c', 'vala'],
+    version: '0.9.3',
+    license: 'GPL-3.0-or-later',
+    license_files: ['COPYING'],
+    meson_version: '>= 1.1.0'
+)
 
-if meson.version().version_compare('< 0.59')
-    error('Meson version is @0@ but project requires >= 0.59'.format(meson.version()))
+if meson.version().version_compare('< 1.1.0')
+    error('Meson version is @0@ but project requires >= 1.1.0'.format(meson.version()))
 endif
 
 # There has to be a better way to require a specific vala version, right?

@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 9
-%global PatchVersion 2
+%global PatchVersion 3
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName com.github.FontManager.FontManager
 %global DBusName2 com.github.FontManager.FontViewer
@@ -15,7 +15,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    9
+Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -198,5 +198,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.metain
 %endif
 
 %changelog
-* Wed Feb 19 2025 JerryCasiano <JerryCasiano@gmail.com> 0.9.2-9
+* Wed Feb 19 2025 JerryCasiano <JerryCasiano@gmail.com> 0.9.3-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

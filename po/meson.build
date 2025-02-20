@@ -17,7 +17,7 @@ endif
 
 #                                                         #
 
-PODIR = join_paths(meson.source_root(), 'po')
+PODIR = join_paths(meson.project_source_root(), 'po')
 
 POTFILES = '''
 from glob import glob
@@ -49,7 +49,7 @@ with open('@1@/POTFILES', 'w') as POTFILES:
             if not f.endswith(ext) and not f.endswith('.in'):
                 continue
             POTFILES.write('{}\n'.format(f))
-'''.format(meson.source_root(), PODIR, meson.source_root())
+'''.format(meson.project_source_root(), PODIR, meson.project_source_root())
 
 configure_file(
     command: [python, '-c', POTFILES],
