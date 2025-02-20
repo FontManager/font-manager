@@ -1023,7 +1023,7 @@ msgstr "Comparar"
 
 #: src/font-manager/MainWindow.vala:74
 msgid "Google Fonts"
-msgstr "Fuentes de Google"
+msgstr "Google Fonts"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
