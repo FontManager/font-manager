@@ -32,7 +32,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-01 17:09-0500\n"
+"POT-Creation-Date: 2025-02-19 19:04-0500\n"
 "PO-Revision-Date: 2025-02-05 14:02+0000\n"
 "Last-Translator: ZHAO20060708 <zxybbb7892020@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -119,7 +119,7 @@ msgstr "全功能字体文件预览应用程序"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:499
 msgid "Install"
 msgstr "安装"
 
@@ -139,7 +139,7 @@ msgstr "安装所选字体文件"
 msgid "Font Properties"
 msgstr "字体属性"
 
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
 msgid "Updating Database…"
 msgstr "更新数据库中……"
 
@@ -173,7 +173,7 @@ msgstr "预设(Book)"
 
 #: lib/fontconfig/font-manager-fontconfig.c:578
 #: lib/fontconfig/font-manager-fontconfig.c:882
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "中等(Medium)"
@@ -280,19 +280,19 @@ msgstr "VBGR"
 #: lib/fontconfig/font-manager-fontconfig.c:841
 #: lib/fontconfig/font-manager-fontconfig.c:886
 #: lib/fontconfig/font-manager-fontconfig.c:929
-#: src/font-manager/Controls.vala:175
-#: src/font-manager/preferences/Desktop.vala:214
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/Controls.vala:189
+#: src/font-manager/preferences/Desktop.vala:234
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
 msgstr "无"
 
 #: lib/fontconfig/font-manager-fontconfig.c:880
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "Slight"
 msgstr "少量(Slight)"
 
 #: lib/fontconfig/font-manager-fontconfig.c:884
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "Full"
 msgstr "全部"
 
@@ -392,7 +392,7 @@ msgid "Undo changes"
 msgstr "撤销更改"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:201
+#: src/font-manager/ui/font-manager-browse-preview.ui:139
 msgid "Preview"
 msgstr "预览"
 
@@ -402,6 +402,7 @@ msgstr "字号瀑布"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
+#: src/font-manager/ui/font-manager-browse-preview.ui:149
 msgid "Characters"
 msgstr "字符"
 
@@ -666,7 +667,7 @@ msgstr ""
 "\n"
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 
-#: src/font-manager/Application.vala:129
+#: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
 msgstr "安装字体中……"
 
@@ -795,12 +796,12 @@ msgstr "删除选中的字体集"
 msgid "This may take some time for large collections…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:388
+#: src/font-manager/Compare.vala:370
 msgid "Saved Comparison"
 msgstr "保存比较"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:424
+#: src/font-manager/Compare.vala:406
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -818,65 +819,65 @@ msgstr "选择背景颜色"
 msgid "Select text color"
 msgstr "选择文本颜色"
 
-#: src/font-manager/Controls.vala:122
+#: src/font-manager/Controls.vala:136
 msgid "Keyboard Shortcuts"
 msgstr "键盘快捷键"
 
-#: src/font-manager/Controls.vala:123 src/font-manager/gtk/help-overlay.ui:16
+#: src/font-manager/Controls.vala:137 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
 msgstr "帮助"
 
 # Not translate very good, just for use.
-#: src/font-manager/Controls.vala:124
+#: src/font-manager/Controls.vala:138
 #, fuzzy
 msgid "About Font Manager"
 msgstr "字体管理器"
 
-#: src/font-manager/Controls.vala:130
+#: src/font-manager/Controls.vala:144
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/font-manager/Controls.vala:134
+#: src/font-manager/Controls.vala:148
 msgid "Import"
 msgstr "导入"
 
-#: src/font-manager/Controls.vala:135
+#: src/font-manager/Controls.vala:149
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
 msgstr "导出"
 
-#: src/font-manager/Controls.vala:138
+#: src/font-manager/Controls.vala:152
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
 msgstr "用户数据"
 
-#: src/font-manager/Controls.vala:171
+#: src/font-manager/Controls.vala:185
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
 msgstr "名称"
 
-#: src/font-manager/Controls.vala:173
+#: src/font-manager/Controls.vala:187
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:238
+#: src/font-manager/Controls.vala:252
 msgid "Grid View"
 msgstr "网格视图"
 
-#: src/font-manager/Controls.vala:239
+#: src/font-manager/Controls.vala:253
 msgid "List View"
 msgstr "列表视图"
 
-#: src/font-manager/Controls.vala:325
+#: src/font-manager/Controls.vala:339
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: src/font-manager/Controls.vala:326
+#: src/font-manager/Controls.vala:340
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: src/font-manager/Controls.vala:342
+#: src/font-manager/Controls.vala:356
 msgid "Back"
 msgstr "回退"
 
@@ -976,50 +977,50 @@ msgstr ""
 "以 %s 开头来基于字符过滤。"
 
 #: src/font-manager/FontList.vala:68
-#: src/font-manager/web/google/FontList.vala:200
+#: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i 种变体"
 
-#: src/font-manager/FontList.vala:254
-#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/FontList.vala:271
+#: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr "全部折叠"
 
-#: src/font-manager/FontList.vala:254
-#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/FontList.vala:271
+#: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr "全部展开"
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:500
 msgid "Copy Location"
 msgstr "复制位置"
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:501
 msgid "Show in Folder"
 msgstr "在文件夹中显示"
 
-#: src/font-manager/FontList.vala:485
+#: src/font-manager/FontList.vala:502
 msgid "Enable selected items"
 msgstr "启用所选项目"
 
-#: src/font-manager/FontList.vala:486
+#: src/font-manager/FontList.vala:503
 msgid "Disable selected items"
 msgstr "禁用所选项目"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:553 src/font-manager/FontList.vala:562
+#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i 个选中的项目"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:597
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "动作"
@@ -1748,51 +1749,80 @@ msgid ""
 msgstr "在不更改字体大小的情况下用于放大或缩小文本显示的倍率"
 
 #: src/font-manager/preferences/Desktop.vala:60
-#: src/font-manager/preferences/Desktop.vala:84
-msgid "Antialiasing"
-msgstr "抗锯齿"
+#, fuzzy
+#| msgid "Rendering"
+msgid "GTK 4 Font Rendering"
+msgstr "渲染"
 
 #: src/font-manager/preferences/Desktop.vala:61
-#: src/font-manager/preferences/Desktop.vala:85
-msgid "The type of antialiasing to use when rendering fonts."
-msgstr "渲染字体时使用的抗锯齿类型。"
+msgid "Automatic option allows GTK 4 to disregard hinting settings."
+msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
+msgid "Antialiasing"
+msgstr "抗锯齿"
+
+#: src/font-manager/preferences/Desktop.vala:67
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values. "
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:96
 msgid "RGBA order"
 msgstr "RGBA 次序"
 
-#: src/font-manager/preferences/Desktop.vala:67
-#: src/font-manager/preferences/Desktop.vala:91
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:97
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:78
+#: src/font-manager/preferences/Desktop.vala:84
 #: src/font-manager/preferences/Rendering.vala:78
 msgid "Hinting"
 msgstr "字体微调"
 
-#: src/font-manager/preferences/Desktop.vala:73
 #: src/font-manager/preferences/Desktop.vala:79
+#: src/font-manager/preferences/Desktop.vala:85
 msgid "The type of hinting to use when rendering fonts."
 msgstr "渲染字体时使用的微调类型。"
 
-#: src/font-manager/preferences/Desktop.vala:115
+#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:214
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Automatic"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Manual"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:214
+#: src/font-manager/preferences/Desktop.vala:234
 msgid "RGBA"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:222
+#: src/font-manager/preferences/Desktop.vala:242
 #: src/font-manager/preferences/Display.vala:91
 msgid "Subpixel Geometry"
 msgstr "次像素排列方式"
@@ -2442,7 +2472,7 @@ msgstr "没有可用的%s示例"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "请创建问题以请求更新可用示例。"
 
-#: src/font-manager/web/google/PreviewPage.vala:352
+#: src/font-manager/web/google/PreviewPage.vala:392
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2595,7 +2625,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:29
+#: src/font-manager/ui/font-manager-browse-preview.ui:30
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2611,15 +2641,15 @@ msgstr "集锦名称"
 msgid "_Rename"
 msgstr "重命名(_R)"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:22
+#: src/font-manager/ui/font-manager-compare-view.ui:20
 msgid "Add selected font to comparison"
 msgstr "添加选中的字体进行比较"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:35
+#: src/font-manager/ui/font-manager-compare-view.ui:33
 msgid "Remove selected font from comparison"
 msgstr "删除比较组中选中的字体"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:47
+#: src/font-manager/ui/font-manager-compare-view.ui:45
 msgid "Pinned Comparisons"
 msgstr "固定比较"
 
@@ -2788,6 +2818,9 @@ msgstr "安装前预览字体文件。"
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "To preview a font simply drag it onto this area."
 msgstr "要预览字体，只需将其拖动到此区域。"
+
+#~ msgid "The type of antialiasing to use when rendering fonts."
+#~ msgstr "渲染字体时使用的抗锯齿类型。"
 
 # Not translate very good, just for use.
 #, fuzzy

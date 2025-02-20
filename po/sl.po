@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-01 17:09-0500\n"
+"POT-Creation-Date: 2025-02-19 19:04-0500\n"
 "PO-Revision-Date: 2022-01-04 03:53+0000\n"
 "Last-Translator: Igor Kriznar <ikriznar@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/font-manager/"
@@ -95,7 +95,7 @@ msgstr "Polno predstavljena aplikacija za predogled datotek pisav"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:482
+#: src/font-manager/FontList.vala:499
 msgid "Install"
 msgstr "Namesti"
 
@@ -115,7 +115,7 @@ msgstr "Namesti izbrane datoteke pisav"
 msgid "Font Properties"
 msgstr "Lastnosti pisave"
 
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
 msgid "Updating Database…"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr "Knjiga"
 
 #: lib/fontconfig/font-manager-fontconfig.c:578
 #: lib/fontconfig/font-manager-fontconfig.c:882
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Srednje"
@@ -256,19 +256,19 @@ msgstr "VBGR"
 #: lib/fontconfig/font-manager-fontconfig.c:841
 #: lib/fontconfig/font-manager-fontconfig.c:886
 #: lib/fontconfig/font-manager-fontconfig.c:929
-#: src/font-manager/Controls.vala:175
-#: src/font-manager/preferences/Desktop.vala:214
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/Controls.vala:189
+#: src/font-manager/preferences/Desktop.vala:234
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
 msgstr "Brez"
 
 #: lib/fontconfig/font-manager-fontconfig.c:880
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "Slight"
 msgstr "Rahlo"
 
 #: lib/fontconfig/font-manager-fontconfig.c:884
-#: src/font-manager/preferences/Desktop.vala:216
+#: src/font-manager/preferences/Desktop.vala:236
 msgid "Full"
 msgstr "Poln"
 
@@ -369,7 +369,7 @@ msgid "Undo changes"
 msgstr "Preklic sprememb"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:201
+#: src/font-manager/ui/font-manager-browse-preview.ui:139
 msgid "Preview"
 msgstr "Predogled"
 
@@ -379,6 +379,7 @@ msgstr "Slap"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
+#: src/font-manager/ui/font-manager-browse-preview.ui:149
 msgid "Characters"
 msgstr "Znaki"
 
@@ -627,7 +628,7 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 msgstr ""
 
-#: src/font-manager/Application.vala:129
+#: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
 msgstr ""
 
@@ -753,12 +754,12 @@ msgstr ""
 msgid "This may take some time for large collections…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:388
+#: src/font-manager/Compare.vala:370
 msgid "Saved Comparison"
 msgstr ""
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:424
+#: src/font-manager/Compare.vala:406
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -774,67 +775,67 @@ msgstr ""
 msgid "Select text color"
 msgstr ""
 
-#: src/font-manager/Controls.vala:122
+#: src/font-manager/Controls.vala:136
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/font-manager/Controls.vala:123 src/font-manager/gtk/help-overlay.ui:16
+#: src/font-manager/Controls.vala:137 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
 msgstr ""
 
-#: src/font-manager/Controls.vala:124
+#: src/font-manager/Controls.vala:138
 #, fuzzy
 #| msgid "Font Manager"
 msgid "About Font Manager"
 msgstr "Upravitelj pisav"
 
-#: src/font-manager/Controls.vala:130
+#: src/font-manager/Controls.vala:144
 msgid "Preferences"
 msgstr ""
 
-#: src/font-manager/Controls.vala:134
+#: src/font-manager/Controls.vala:148
 msgid "Import"
 msgstr ""
 
-#: src/font-manager/Controls.vala:135
+#: src/font-manager/Controls.vala:149
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
 msgstr ""
 
-#: src/font-manager/Controls.vala:138
+#: src/font-manager/Controls.vala:152
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
 msgstr ""
 
-#: src/font-manager/Controls.vala:171
+#: src/font-manager/Controls.vala:185
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
 msgstr ""
 
-#: src/font-manager/Controls.vala:173
+#: src/font-manager/Controls.vala:187
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:238
+#: src/font-manager/Controls.vala:252
 msgid "Grid View"
 msgstr ""
 
-#: src/font-manager/Controls.vala:239
+#: src/font-manager/Controls.vala:253
 #, fuzzy
 #| msgid "Font Viewer"
 msgid "List View"
 msgstr "Pregledovalnik pisav"
 
-#: src/font-manager/Controls.vala:325
+#: src/font-manager/Controls.vala:339
 msgid "Add Fonts"
 msgstr ""
 
-#: src/font-manager/Controls.vala:326
+#: src/font-manager/Controls.vala:340
 msgid "Remove Fonts"
 msgstr ""
 
-#: src/font-manager/Controls.vala:342
+#: src/font-manager/Controls.vala:356
 msgid "Back"
 msgstr ""
 
@@ -928,7 +929,7 @@ msgid ""
 msgstr ""
 
 #: src/font-manager/FontList.vala:68
-#: src/font-manager/web/google/FontList.vala:200
+#: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
@@ -937,34 +938,34 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: src/font-manager/FontList.vala:254
-#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/FontList.vala:271
+#: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:254
-#: src/font-manager/web/google/FontList.vala:273
+#: src/font-manager/FontList.vala:271
+#: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:483
+#: src/font-manager/FontList.vala:500
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:484
+#: src/font-manager/FontList.vala:501
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/FontList.vala:485
+#: src/font-manager/FontList.vala:502
 #, fuzzy
 #| msgid "Install the selected font files"
 msgid "Enable selected items"
 msgstr "Namesti izbrane datoteke pisav"
 
-#: src/font-manager/FontList.vala:486
+#: src/font-manager/FontList.vala:503
 #, fuzzy
 #| msgid "Install the selected font files"
 msgid "Disable selected items"
@@ -972,7 +973,7 @@ msgstr "Namesti izbrane datoteke pisav"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:553 src/font-manager/FontList.vala:562
+#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
 #, fuzzy, c-format
 #| msgid "Install the selected font files"
 msgid "%i selected item"
@@ -982,7 +983,7 @@ msgstr[1] "Namesti izbrane datoteke pisav"
 msgstr[2] "Namesti izbrane datoteke pisav"
 msgstr[3] "Namesti izbrane datoteke pisav"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:597
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr ""
@@ -1713,51 +1714,78 @@ msgid ""
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:60
-#: src/font-manager/preferences/Desktop.vala:84
-msgid "Antialiasing"
+msgid "GTK 4 Font Rendering"
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:61
-#: src/font-manager/preferences/Desktop.vala:85
-msgid "The type of antialiasing to use when rendering fonts."
+msgid "Automatic option allows GTK 4 to disregard hinting settings."
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
-msgid "RGBA order"
+msgid "Antialiasing"
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:67
-#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values. "
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:96
+msgid "RGBA order"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:97
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:78
+#: src/font-manager/preferences/Desktop.vala:84
 #: src/font-manager/preferences/Rendering.vala:78
 msgid "Hinting"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:73
 #: src/font-manager/preferences/Desktop.vala:79
+#: src/font-manager/preferences/Desktop.vala:85
 msgid "The type of hinting to use when rendering fonts."
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:115
+#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:214
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Automatic"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Manual"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:214
+#: src/font-manager/preferences/Desktop.vala:234
 msgid "RGBA"
 msgstr ""
 
-#: src/font-manager/preferences/Desktop.vala:222
+#: src/font-manager/preferences/Desktop.vala:242
 #: src/font-manager/preferences/Display.vala:91
 msgid "Subpixel Geometry"
 msgstr ""
@@ -2380,7 +2408,7 @@ msgstr ""
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPage.vala:352
+#: src/font-manager/web/google/PreviewPage.vala:392
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2532,7 +2560,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:29
+#: src/font-manager/ui/font-manager-browse-preview.ui:30
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2548,15 +2576,15 @@ msgstr ""
 msgid "_Rename"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-compare-view.ui:22
+#: src/font-manager/ui/font-manager-compare-view.ui:20
 msgid "Add selected font to comparison"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-compare-view.ui:35
+#: src/font-manager/ui/font-manager-compare-view.ui:33
 msgid "Remove selected font from comparison"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-compare-view.ui:47
+#: src/font-manager/ui/font-manager-compare-view.ui:45
 msgid "Pinned Comparisons"
 msgstr ""
 
