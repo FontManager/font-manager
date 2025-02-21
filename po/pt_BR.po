@@ -120,12 +120,8 @@ msgstr "Instalar os arquivos de fontes selecionados"
 msgid "Font Properties"
 msgstr "Propriedades da fonte"
 
-<<<<<<< HEAD
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
-=======
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:143
 #: src/font-manager/Application.vala:144
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
 msgid "Updating Database…"
 msgstr "Atualizando banco de dados…"
 
@@ -295,41 +291,22 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:841
-#: lib/fontconfig/font-manager-fontconfig.c:886
-#: lib/fontconfig/font-manager-fontconfig.c:929
-<<<<<<< HEAD
-#: src/font-manager/Controls.vala:189
-#: src/font-manager/preferences/Desktop.vala:234
-#: src/font-manager/preferences/Desktop.vala:236
-=======
 #: src/font-manager/Controls.vala:175
 #: src/font-manager/preferences/Desktop.vala:214
 #: src/font-manager/preferences/Desktop.vala:216
 #: lib/fontconfig/font-manager-fontconfig.c:840
 #: lib/fontconfig/font-manager-fontconfig.c:885
 #: lib/fontconfig/font-manager-fontconfig.c:928
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
 msgid "None"
 msgstr "Nenhum"
 
-#: lib/fontconfig/font-manager-fontconfig.c:880
-<<<<<<< HEAD
-#: src/font-manager/preferences/Desktop.vala:236
-=======
 #: src/font-manager/preferences/Desktop.vala:216
 #: lib/fontconfig/font-manager-fontconfig.c:879
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
 msgid "Slight"
 msgstr "Ligeiro"
 
-#: lib/fontconfig/font-manager-fontconfig.c:884
-<<<<<<< HEAD
-#: src/font-manager/preferences/Desktop.vala:236
-=======
 #: src/font-manager/preferences/Desktop.vala:216
 #: lib/fontconfig/font-manager-fontconfig.c:883
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
 msgid "Full"
 msgstr "Cheio"
 
@@ -711,11 +688,8 @@ msgstr ""
 "    Caso contrário, veja <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 
-<<<<<<< HEAD
-#: src/font-manager/Application.vala:133
-=======
-#: src/font-manager/Application.vala:129 src/font-manager/Application.vala:130
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
+#: src/font-manager/Application.vala:129 
+#: src/font-manager/Application.vala:130
 #, fuzzy
 msgid "Installing Font Files…"
 msgstr "Instalar fonte"
@@ -1031,14 +1005,9 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Variação"
 msgstr[1] "%i Variações"
 
-<<<<<<< HEAD
-#: src/font-manager/FontList.vala:271
-#: src/font-manager/web/google/FontList.vala:277
-=======
 #: src/font-manager/FontList.vala:254
 #: src/font-manager/web/google/FontList.vala:273
 #: src/font-manager/FontList.vala:253
->>>>>>> e583b31a (Translated using Weblate (Portuguese (Brazil)))
 msgid "Collapse all"
 msgstr "Recolher todos"
 
