@@ -672,20 +672,8 @@ msgstr ""
 msgid "Installing Font Files…"
 msgstr "安装字体中……"
 
-# msgstr "手写体(Script)"
-#: src/font-manager/Browse.vala:381
-#: src/font-manager/ui/font-manager-browse-preview.ui:171
-msgid "Active"
-msgstr "活动"
-
-#: src/font-manager/Browse.vala:385
-msgid "Inactive"
-msgstr "非活动"
-
-#: src/font-manager/Browse.vala:426
-msgid "Designed by"
-msgstr ""
-
+==== BASE ====
+==== BASE ====
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
 msgstr "按字宽分组"
