@@ -27,7 +27,8 @@ namespace FontManager {
 
     public class FontListRow : ListItemRow {
 
-        Binding? binding = null;
+        ulong signal_id = 0;
+        Binding? state_binding = null;
 
         Pango.AttrList? attrs = null;
 
@@ -40,9 +41,12 @@ namespace FontManager {
         }
 
         protected override void reset () {
-            if (binding is Binding)
-                binding.unbind();
-            binding = null;
+            if (state_binding is Binding)
+                state_binding.unbind();
+            state_binding = null;
+            if (signal_id != 0)
+                SignalHandler.disconnect(item_state, signal_id);
+            signal_id = 0;
             item_state.set("active", true, "visible", false, "sensitive", true, null);
             item_label.set("label", "", "attributes", null, null);
             item_preview.set("text", "", "visible", false, null);
@@ -57,7 +61,7 @@ namespace FontManager {
                 return;
             bool root = item is Family;
             BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
-            binding = item.bind_property("active", item_state, "active", flags, null, null);
+            state_binding = item.bind_property("active", item_state, "active", flags, null, null);
             item_state.set("sensitive", root, "visible", root, null);
             item_count.visible = drag_area.sensitive = drag_handle.visible = root;
             string f; string d; string? p = null;
@@ -74,6 +78,12 @@ namespace FontManager {
                 item_preview.set_text(label);
                 item_preview.set_visible(true);
             }
+            signal_id = item_state.toggled.connect_after(() => {
+                if (item_state.active)
+                    item_label.remove_css_class(STYLE_CLASS_DIM_LABEL);
+                else
+                    item_label.add_css_class(STYLE_CLASS_DIM_LABEL);
+            });
             return;
         }
 

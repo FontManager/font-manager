@@ -291,6 +291,8 @@ namespace FontManager {
         }
 
         [GtkChild] unowned Gtk.Label family_label;
+        [GtkChild] unowned Gtk.Label state_label;
+        [GtkChild] unowned Gtk.Label designer_label;
         [GtkChild] unowned Gtk.Label n_glyphs;
         [GtkChild] unowned Gtk.DropDown style_drop_down;
         [GtkChild] unowned Gtk.ScrolledWindow character_map_scroll;
@@ -309,11 +311,13 @@ namespace FontManager {
                 button.has_frame = false;
             n_glyphs.set_opacity(0.5);
             character_map = new UnicodeCharacterMap() { hexpand = true, vexpand = true };
+            widget_set_margin(character_map, 0);
             character_map.add_css_class("BrowsePaneCharacterMap");
             widget_set_name(n_glyphs, "CharacterMapCount");
             character_map_scroll.set_child(character_map);
             preview_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             preview_page = new PreviewPage() { hexpand = true, vexpand = true, show_line_size = false };
+            widget_set_margin(preview_page, 0);
             preview_page.set_waterfall_size(-1, 36, -1);
             preview_page.get_last_child().set_visible(false);
             preview_page.preview_size = DEFAULT_PREVIEW_SIZE + 2.0;
@@ -371,11 +375,62 @@ namespace FontManager {
                 return;
             Family family = ((Family) selected_item);
             family.active = font_state.active;
-            if (family.active)
+            if (family.active) {
                 disabled_families.remove(family.family);
-            else
+                state_label.sensitive = true;
+                state_label.label = _("Active");
+            } else {
                 disabled_families.add(family.family);
+                state_label.sensitive = false;
+                state_label.label = _("Inactive");
+            }
             disabled_families.save();
+            return;
+        }
+
+        void append_metadata (StringBuilder builder, string? metadata) {
+            if (metadata == null)
+                return;
+            var data = metadata.strip();
+            if (builder.len > 0)
+                builder.append("\n\n");
+            builder.append(data);
+            return;
+        }
+
+        public void update_metadata () {
+            string? copyright = null;
+            string? designer = null;
+            string? description = null;
+            try {
+                string family = ((Family) selected_item).family;
+                Database db = DatabaseProxy.get_default_db();
+                db.execute_query(@"SELECT copyright, designer, description FROM Metadata WHERE family = '$family'");
+                foreach (unowned Sqlite.Statement row in db) {
+                    if (copyright == null)
+                        copyright = row.column_text(0);
+                    if (designer == null)
+                        designer = row.column_text(1);
+                    if (description == null)
+                        description = row.column_text(2);
+                    // Design description is likely to be NULL
+                    if (copyright != null && designer != null)
+                        break;
+                }
+                db.end_query();
+            } catch (Error e) {
+                warning(e.message);
+            }
+            designer_label.label = designer;
+            designer_label.set_visible(designer != null);
+            string designed_by = _("Designed by");
+            var builder = new StringBuilder(null);
+            if (designer != null)
+                append_metadata(builder, @"$designed_by $designer");
+            append_metadata(builder, copyright);
+            append_metadata(builder, description);
+            family_label.set_tooltip_text(builder.str);
+            designer_label.set_tooltip_text(builder.str);
             return;
         }
 
@@ -396,6 +451,7 @@ namespace FontManager {
             ignore_activation = true;
             font_state.set_active(family.active);
             ignore_activation = false;
+            update_metadata();
             return;
         }
 

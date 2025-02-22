@@ -3,11 +3,140 @@
   <requires lib="gtk" version="4.12"/>
   <template class="FontManagerBrowsePreview" parent="GtkBox">
     <child>
-      <object class="GtkCenterBox">
+      <object class="GtkBox">
         <property name="hexpand">True</property>
         <property name="orientation">vertical</property>
         <property name="vexpand">True</property>
-        <child type="end">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox">
+                <property name="margin-bottom">12</property>
+                <property name="margin-end">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-top">12</property>
+                <child>
+                  <object class="GtkLabel" id="family_label">
+                    <property name="halign">fill</property>
+                    <property name="hexpand">True</property>
+                    <property name="label">&lt;Family Name&gt;</property>
+                    <property name="margin-start">12</property>
+                    <property name="opacity">0.75</property>
+                    <property name="xalign">0.0</property>
+                    <style>
+                      <class name="title-2"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkDropDown" id="style_drop_down">
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+                <object class="GtkLabel" id="designer_label">
+                    <property name="halign">fill</property>
+                    <property name="valign">center</property>
+                    <property name="sensitive">False</property>
+                    <property name="margin-start">24</property>
+                    <property name="margin-end">24</property>
+                    <property name="margin-top">3</property>
+                    <property name="margin-bottom">12</property>
+                    <property name="ellipsize">end</property>
+                    <property name="single-line-mode">True</property>
+                    <property name="xalign">0.0</property>
+                </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="can-focus">False</property>
+                <property name="can-target">False</property>
+                <property name="margin-end">12</property>
+                <property name="margin-start">12</property>
+                <property name="opacity">0.333</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkCenterBox">
+                <property name="css-classes">flat
+view
+</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-end">12</property>
+                <property name="margin-start">12</property>
+                <property name="margin-top">6</property>
+                <child type="start">
+                  <object class="GtkMenuButton" id="preview_menu">
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <style/>
+                  </object>
+                </child>
+                <child type="center">
+                  <object class="GtkStackSwitcher" id="preview_switcher">
+                    <property name="halign">center</property>
+                    <property name="hexpand-set">True</property>
+                    <property name="stack">preview_stack</property>
+                    <property name="valign">center</property>
+                    <property name="vexpand-set">True</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkLabel" id="n_glyphs">
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSeparator">
+                <property name="can-focus">False</property>
+                <property name="can-target">False</property>
+                <property name="margin-end">12</property>
+                <property name="margin-start">12</property>
+                <property name="opacity">0.333</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkStack" id="preview_stack">
+                <property name="margin-bottom">1</property>
+                <property name="margin-top">1</property>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkScrolledWindow" id="preview_scroll">
+                        <property name="hscrollbar-policy">never</property>
+                      </object>
+                    </property>
+                    <property name="title" translatable="yes">Preview</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkStackPage">
+                    <property name="child">
+                      <object class="GtkScrolledWindow" id="character_map_scroll">
+                        <property name="hscrollbar-policy">never</property>
+                      </object>
+                    </property>
+                    <property name="title" translatable="yes">Characters</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
           <object class="GtkBox">
             <property name="margin-bottom">6</property>
             <property name="margin-end">12</property>
@@ -17,6 +146,7 @@
             <child>
               <object class="GtkSeparator">
                 <property name="margin-bottom">6</property>
+                <property name="margin-top">0</property>
                 <property name="opacity">0.333</property>
               </object>
             </child>
@@ -37,116 +167,13 @@ Disabling will prevent the selected family from being used by other applications
                   </object>
                 </child>
                 <child type="start">
-                  <object class="GtkLabel">
-                    <property name="label">Active</property>
+                  <object class="GtkLabel" id="state_label">
+                    <property name="label" translatable="yes">Active</property>
                     <property name="margin-start">6</property>
                     <property name="opacity">0.75</property>
                     <style>
                       <class name="heading"/>
                     </style>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="start">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkCenterBox">
-                <property name="margin-bottom">12</property>
-                <property name="margin-end">12</property>
-                <property name="margin-start">12</property>
-                <property name="margin-top">12</property>
-                <child type="end">
-                  <object class="GtkDropDown" id="style_drop_down">
-                    <style>
-                      <class name="flat"/>
-                    </style>
-                  </object>
-                </child>
-                <child type="start">
-                  <object class="GtkLabel" id="family_label">
-                    <property name="hexpand">False</property>
-                    <property name="label">&lt;Family Name&gt;</property>
-                    <property name="margin-start">12</property>
-                    <property name="opacity">0.75</property>
-                    <property name="vexpand">True</property>
-                    <style>
-                      <class name="title-2"/>
-                    </style>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkSeparator">
-                <property name="can-focus">False</property>
-                <property name="can-target">False</property>
-                <property name="margin-end">12</property>
-                <property name="margin-start">12</property>
-                <property name="opacity">0.333</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="center">
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkCenterBox">
-                <property name="css-classes">flat
-view
-</property>
-                <property name="margin-bottom">6</property>
-                <property name="margin-end">12</property>
-                <property name="margin-start">12</property>
-                <property name="margin-top">6</property>
-                <child type="center">
-                  <object class="GtkStackSwitcher" id="preview_switcher">
-                    <property name="halign">center</property>
-                    <property name="hexpand-set">True</property>
-                    <property name="stack">preview_stack</property>
-                    <property name="valign">center</property>
-                    <property name="vexpand-set">True</property>
-                  </object>
-                </child>
-                <child type="end">
-                  <object class="GtkLabel" id="n_glyphs">
-                    <property name="halign">end</property>
-                    <property name="valign">center</property>
-                  </object>
-                </child>
-                <child type="start">
-                  <object class="GtkMenuButton" id="preview_menu">
-                    <property name="halign">start</property>
-                    <property name="valign">center</property>
-                    <style/>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkStack" id="preview_stack">
-                <child>
-                  <object class="GtkStackPage">
-                    <property name="child">
-                      <object class="GtkScrolledWindow" id="preview_scroll">
-                        <property name="hscrollbar-policy">never</property>
-                      </object>
-                    </property>
-                    <property name="title" translatable="yes">Preview</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkStackPage">
-                    <property name="child">
-                      <object class="GtkScrolledWindow" id="character_map_scroll">
-                        <property name="hscrollbar-policy">never</property>
-                      </object>
-                    </property>
-                    <property name="title" translatable="yes">Characters</property>
                   </object>
                 </child>
               </object>
