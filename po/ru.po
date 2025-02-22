@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-19 19:04-0500\n"
+"POT-Creation-Date: 2025-02-21 19:53-0500\n"
 "PO-Revision-Date: 2022-02-06 15:23+0300\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgstr "Полнофункциональная программа просмот
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:499
+#: src/font-manager/FontList.vala:509
 msgid "Install"
 msgstr "Установить"
 
@@ -387,7 +387,7 @@ msgid "Undo changes"
 msgstr "Отменить изменения"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:139
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
@@ -397,7 +397,7 @@ msgstr "Водопад"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:149
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "Символы"
 
@@ -688,6 +688,21 @@ msgstr ""
 #| msgid "Install Font"
 msgid "Installing Font Files…"
 msgstr "Установить шрифт"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#, fuzzy
+#| msgid "Decorative"
+msgid "Active"
+msgstr "Декоративные"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -999,7 +1014,7 @@ msgstr ""
 "Начните поиск с «%s», чтобы фильтровать по месторасположению.\n"
 "Начните поиск с «%s», чтобы фильтровать по символам."
 
-#: src/font-manager/FontList.vala:68
+#: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
@@ -1008,12 +1023,12 @@ msgstr[0] "%i вариант "
 msgstr[1] "%i варианта"
 msgstr[2] "%i вариантов"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr "Свернуть все"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -1021,25 +1036,25 @@ msgstr "Свернуть все"
 msgid "Expand all"
 msgstr "Развернуть все"
 
-#: src/font-manager/FontList.vala:500
+#: src/font-manager/FontList.vala:510
 msgid "Copy Location"
 msgstr "Копировать расположение"
 
-#: src/font-manager/FontList.vala:501
+#: src/font-manager/FontList.vala:511
 msgid "Show in Folder"
 msgstr "Показать в папке"
 
-#: src/font-manager/FontList.vala:502
+#: src/font-manager/FontList.vala:512
 msgid "Enable selected items"
 msgstr "Активировать выбранные элементы"
 
-#: src/font-manager/FontList.vala:503
+#: src/font-manager/FontList.vala:513
 msgid "Disable selected items"
 msgstr "Деактивировать выбранные элементы"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
@@ -1047,7 +1062,7 @@ msgstr[0] "%i выбранный элемент"
 msgstr[1] "%i выбранных элемента"
 msgstr[2] "%i выбранных элементов"
 
-#: src/font-manager/FontList.vala:597
+#: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Действия"
@@ -2728,7 +2743,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:30
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"

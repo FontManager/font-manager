@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-19 19:04-0500\n"
+"POT-Creation-Date: 2025-02-21 19:53-0500\n"
 "PO-Revision-Date: 2024-11-23 16:38+0000\n"
 "Last-Translator: Jose <ciordia@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
@@ -104,7 +104,7 @@ msgstr "Completa aplicación para previsualizar archivos de tipos de letra"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:499
+#: src/font-manager/FontList.vala:509
 msgid "Install"
 msgstr "Instalar"
 
@@ -382,7 +382,7 @@ msgid "Undo changes"
 msgstr "Deshacer cambios"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:139
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "Previsualización"
 
@@ -392,7 +392,7 @@ msgstr "Cascada"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:149
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "Caracteres"
 
@@ -659,6 +659,21 @@ msgstr ""
 #: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
 msgstr "Instalando el tipo de letra…"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#, fuzzy
+#| msgid "Decorative"
+msgid "Active"
+msgstr "Decorativas"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -962,7 +977,7 @@ msgstr ""
 "Comience la búsqueda utilizando %s para filtrar por ruta de archivo.\n"
 "Comience la búsqueda utilizando %s para filtrar por caracteres."
 
-#: src/font-manager/FontList.vala:68
+#: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
@@ -970,12 +985,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i Variación "
 msgstr[1] "%i Variaciones"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr "Contraer todo"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -983,32 +998,32 @@ msgstr "Contraer todo"
 msgid "Expand all"
 msgstr "Expandir todo"
 
-#: src/font-manager/FontList.vala:500
+#: src/font-manager/FontList.vala:510
 msgid "Copy Location"
 msgstr "Copiar la ubicación"
 
-#: src/font-manager/FontList.vala:501
+#: src/font-manager/FontList.vala:511
 msgid "Show in Folder"
 msgstr "Mostrar en la carpeta"
 
-#: src/font-manager/FontList.vala:502
+#: src/font-manager/FontList.vala:512
 msgid "Enable selected items"
 msgstr "Habilitar elementos seleccionados"
 
-#: src/font-manager/FontList.vala:503
+#: src/font-manager/FontList.vala:513
 msgid "Disable selected items"
 msgstr "Desactivar elementos seleccionados"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i elemento seleccionado"
 msgstr[1] "%i elementos seleccionados"
 
-#: src/font-manager/FontList.vala:597
+#: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Acciones"
@@ -2631,7 +2646,7 @@ msgstr "Alternar la búsqueda"
 msgid "Toggle preview panel"
 msgstr "Alternar panel de vista previa"
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:30
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"
