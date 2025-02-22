@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.9.1\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-19 19:04-0500\n"
+"POT-Creation-Date: 2025-02-21 19:53-0500\n"
 "PO-Revision-Date: 2024-12-27 17:00+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/font-"
@@ -93,7 +93,7 @@ msgstr "முழு சிறப்பு எழுத்துரு கோப
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:499
+#: src/font-manager/FontList.vala:509
 msgid "Install"
 msgstr "நிறுவவும்"
 
@@ -364,7 +364,7 @@ msgid "Undo changes"
 msgstr "மாற்றங்களை செயல்தவிர்க்கவும்"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:139
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "முன்னோட்டம்"
 
@@ -374,7 +374,7 @@ msgstr "நீர்வீழ்ச்சி"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:149
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "எழுத்துக்கள்"
 
@@ -641,6 +641,21 @@ msgstr ""
 #: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
 msgstr "எழுத்துரு கோப்புகளை நிறுவுதல்…"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#, fuzzy
+#| msgid "Decorative"
+msgid "Active"
+msgstr "அலங்கார"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -940,7 +955,7 @@ msgstr ""
 " FilePath இன் அடிப்படையில் வடிகட்ட %s ஐப் பயன்படுத்தி தேடலைத் தொடங்குங்கள்.\n"
 " எழுத்துக்களின் அடிப்படையில் வடிகட்ட %s ஐப் பயன்படுத்தி தேடலைத் தொடங்கவும்."
 
-#: src/font-manager/FontList.vala:68
+#: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
 #, fuzzy, c-format
 msgid "%i Variation "
@@ -948,12 +963,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%நான் மாறுபாடு "
 msgstr[1] "%நான் மாறுபாடுகள்"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr "அனைத்தையும் சரக்கு"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -961,32 +976,32 @@ msgstr "அனைத்தையும் சரக்கு"
 msgid "Expand all"
 msgstr "அனைத்தையும் விரிவாக்குங்கள்"
 
-#: src/font-manager/FontList.vala:500
+#: src/font-manager/FontList.vala:510
 msgid "Copy Location"
 msgstr "இருப்பிடத்தை நகலெடுக்கவும்"
 
-#: src/font-manager/FontList.vala:501
+#: src/font-manager/FontList.vala:511
 msgid "Show in Folder"
 msgstr "கோப்புறையில் காட்டு"
 
-#: src/font-manager/FontList.vala:502
+#: src/font-manager/FontList.vala:512
 msgid "Enable selected items"
 msgstr "தேர்ந்தெடுக்கப்பட்ட பொருட்களை இயக்கவும்"
 
-#: src/font-manager/FontList.vala:503
+#: src/font-manager/FontList.vala:513
 msgid "Disable selected items"
 msgstr "தேர்ந்தெடுக்கப்பட்ட பொருட்களை முடக்கு"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
 #, fuzzy, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%நான் உருப்படியைத் தேர்ந்தெடுத்தேன்"
 msgstr[1] "%நான் உருப்படிகளைத் தேர்ந்தெடுத்தேன்"
 
-#: src/font-manager/FontList.vala:597
+#: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "செயல்கள்"
@@ -2588,7 +2603,7 @@ msgstr "தேடல் உள்ளீட்டை மாற்றவும்"
 msgid "Toggle preview panel"
 msgstr "முன்னோட்டக் குழுவை நிலைநிறுத்துங்கள்"
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:30
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"

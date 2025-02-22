@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-19 19:04-0500\n"
+"POT-Creation-Date: 2025-02-21 19:53-0500\n"
 "PO-Revision-Date: 2024-03-14 02:22+0000\n"
 "Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/font-"
@@ -110,7 +110,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:499
+#: src/font-manager/FontList.vala:509
 msgid "Install"
 msgstr "Installer"
 
@@ -387,7 +387,7 @@ msgid "Undo changes"
 msgstr "Annuler les changements"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:139
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "Aperçu"
 
@@ -397,7 +397,7 @@ msgstr "Cascade"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:149
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "Caractères"
 
@@ -651,6 +651,21 @@ msgstr ""
 #| msgid "Install Font"
 msgid "Installing Font Files…"
 msgstr "Installer la police"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#, fuzzy
+#| msgid "Decorative"
+msgid "Active"
+msgstr "Décorative"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -965,7 +980,7 @@ msgstr ""
 "Commencer la recherche par %s pour filtrer selon le chemin du fichier.\n"
 "Commencer la recherche par %s pour filtrer selon les caractères."
 
-#: src/font-manager/FontList.vala:68
+#: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
@@ -973,12 +988,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i variante"
 msgstr[1] "%i variantes"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 msgid "Collapse all"
 msgstr "Tout réduire"
 
-#: src/font-manager/FontList.vala:271
+#: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:277
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
@@ -986,32 +1001,32 @@ msgstr "Tout réduire"
 msgid "Expand all"
 msgstr "Tout développer"
 
-#: src/font-manager/FontList.vala:500
+#: src/font-manager/FontList.vala:510
 msgid "Copy Location"
 msgstr "Copier l’emplacement"
 
-#: src/font-manager/FontList.vala:501
+#: src/font-manager/FontList.vala:511
 msgid "Show in Folder"
 msgstr "Afficher dans le dossier"
 
-#: src/font-manager/FontList.vala:502
+#: src/font-manager/FontList.vala:512
 msgid "Enable selected items"
 msgstr "Activer les éléments sélectionnés"
 
-#: src/font-manager/FontList.vala:503
+#: src/font-manager/FontList.vala:513
 msgid "Disable selected items"
 msgstr "Désactiver les éléments sélectionnés"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
-#: src/font-manager/FontList.vala:570 src/font-manager/FontList.vala:579
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i élément sélectionné"
 msgstr[1] "%i éléments sélectionnés"
 
-#: src/font-manager/FontList.vala:597
+#: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
 msgstr "Actions"
@@ -2682,7 +2697,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:30
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"
