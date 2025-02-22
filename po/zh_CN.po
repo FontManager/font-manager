@@ -672,8 +672,22 @@ msgstr ""
 msgid "Installing Font Files…"
 msgstr "安装字体中……"
 
-==== BASE ====
-==== BASE ====
+# msgstr "手写体(Script)"
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#, fuzzy
+#| msgid "Decorative"
+msgid "Active"
+msgstr "修饰(Decorative)"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
+
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
 msgstr "按字宽分组"
