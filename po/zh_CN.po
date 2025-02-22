@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-21 19:53-0500\n"
-"PO-Revision-Date: 2025-02-22 01:00+0000\n"
+"PO-Revision-Date: 2025-02-22 15:42+0000\n"
 "Last-Translator: Cassian <prismarine@epicraft.top>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hans/>\n"
@@ -675,14 +675,12 @@ msgstr "安装字体中……"
 # msgstr "手写体(Script)"
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
-#, fuzzy
-#| msgid "Decorative"
 msgid "Active"
-msgstr "修饰(Decorative)"
+msgstr "活动"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "非活动"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
@@ -810,7 +808,7 @@ msgstr "从选中的字体集创建归档"
 
 #: src/font-manager/Collections.vala:428
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "对大的字体集而言可能需要一段时间…"
 
 #: src/font-manager/Compare.vala:370
 msgid "Saved Comparison"
@@ -845,9 +843,8 @@ msgstr "帮助"
 
 # Not translate very good, just for use.
 #: src/font-manager/Controls.vala:138
-#, fuzzy
 msgid "About Font Manager"
-msgstr "字体管理器"
+msgstr "关于字体管理器"
 
 #: src/font-manager/Controls.vala:144
 msgid "Preferences"
@@ -875,7 +872,7 @@ msgstr "名称"
 
 #: src/font-manager/Controls.vala:187
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: src/font-manager/Controls.vala:252
 msgid "Grid View"
@@ -902,36 +899,30 @@ msgid "_Select"
 msgstr "选择(_S)"
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
 msgid "Select Executable"
 msgstr "选择可执行文件"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
 msgid "Select a Directory"
-msgstr "选择文本颜色"
+msgstr "选择一个目录"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
 msgid "TrueType"
-msgstr "文件类型"
+msgstr "TrueType"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
 msgid "OpenType"
-msgstr "文件类型"
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "归档文件"
 
 #: src/font-manager/Dialogs.vala:81
-#, fuzzy
 msgid "Select Files to Install"
-msgstr "选择文件安装"
+msgstr "选择文件来安装"
 
 #: src/font-manager/Dialogs.vala:91
-#, fuzzy
 msgid "Select Source Directories"
 msgstr "选择字体源文件夹"
 
@@ -1050,9 +1041,8 @@ msgid "Compare"
 msgstr "比较"
 
 #: src/font-manager/MainWindow.vala:74
-#, fuzzy
 msgid "Google Fonts"
-msgstr "删除字体"
+msgstr "Google Fonts"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
@@ -1661,7 +1651,6 @@ msgid "Supported Orthographies"
 msgstr "支持的拼写体系"
 
 #: src/font-manager/OrthographyList.vala:200
-#, fuzzy
 msgid "No items selected"
 msgstr "未选择文件"
 
@@ -1681,14 +1670,12 @@ msgstr "添加新的字体集"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
 msgid "Remove selected item"
-msgstr "删除所选别名"
+msgstr "删除选中的项目"
 
 #: src/font-manager/Sidebar.vala:67
-#, fuzzy
 msgid "Edit selected item"
-msgstr "%i 个选中的项目"
+msgstr "编辑选中的项目"
 
 #: src/font-manager/Utils.vala:295
 msgid "Copying files…"
@@ -1765,10 +1752,8 @@ msgid ""
 msgstr "在不更改字体大小的情况下用于放大或缩小文本显示的倍率"
 
 #: src/font-manager/preferences/Desktop.vala:60
-#, fuzzy
-#| msgid "Rendering"
 msgid "GTK 4 Font Rendering"
-msgstr "渲染"
+msgstr "GTK4 字体渲染"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
@@ -1824,11 +1809,11 @@ msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "自动"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "手动"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
@@ -1897,7 +1882,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
-msgstr ""
+msgstr "将所有值重设为默认"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
@@ -2011,18 +1996,16 @@ msgid "Maximum Waterfall Preview Point Size"
 msgstr "预览瀑布的最大字号"
 
 #: src/font-manager/preferences/UserInterface.vala:269
-#, fuzzy
 msgid "Show line size"
-msgstr "在文件夹中显示"
+msgstr "显示行大小"
 
 #: src/font-manager/preferences/UserInterface.vala:308
 msgid "Selected setting requires restart to apply"
-msgstr ""
+msgstr "选中的设置需要重新启动来应用"
 
 #: src/font-manager/preferences/UserInterface.vala:309
-#, fuzzy
 msgid "Changes will take effect next time the application is started"
-msgstr "CSD 已启用。更改将在下次启动应用程序时生效。"
+msgstr "更改将在下次启动应用程序时生效"
 
 #: src/font-manager/preferences/UserInterface.vala:322
 msgid "Wide Layout"
@@ -2030,7 +2013,7 @@ msgstr "宽幅布局"
 
 #: src/font-manager/preferences/UserInterface.vala:322
 msgid "Use three column layout"
-msgstr ""
+msgstr "使用三栏布局"
 
 #: src/font-manager/preferences/UserInterface.vala:325
 msgid "Only When Maximized"
@@ -2091,11 +2074,11 @@ msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "网络访问已禁用"
 
 #: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "联系你的系统管理员来请求访问权限"
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
@@ -2200,9 +2183,8 @@ msgid "Cyrillic Extended"
 msgstr "西里尔（扩展）"
 
 #: src/font-manager/web/google/LanguageData.vala:64
-#, fuzzy
 msgid "Deseret"
-msgstr "全部不选"
+msgstr ""
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
@@ -2521,9 +2503,8 @@ msgid "Or unsupported filetype."
 msgstr "或不支持该文件类型。"
 
 #: src/font-viewer/MainWindow.vala:136
-#, fuzzy
 msgid "System Font"
-msgstr "系统"
+msgstr "系统字体"
 
 #: src/font-viewer/MainWindow.vala:138
 msgid ""
@@ -2603,9 +2584,8 @@ msgid "Switch to Compare mode"
 msgstr "切换到比较模式"
 
 #: src/font-manager/gtk/help-overlay.ui:99
-#, fuzzy
 msgid "Switch to Google Fonts mode"
-msgstr "切换到管理模式"
+msgstr "切换到 Google Fonts 模式"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
@@ -2731,7 +2711,7 @@ msgstr "分类"
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 #, fuzzy
 msgid "Smart Collections"
-msgstr "字体集合"
+msgstr "智能集合"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
