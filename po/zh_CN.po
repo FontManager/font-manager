@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-21 19:53-0500\n"
-"PO-Revision-Date: 2025-02-22 01:00+0000\n"
+"PO-Revision-Date: 2025-02-22 15:42+0000\n"
 "Last-Translator: Cassian <prismarine@epicraft.top>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hans/>\n"
@@ -675,14 +675,12 @@ msgstr "安装字体中……"
 # msgstr "手写体(Script)"
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
-#, fuzzy
-#| msgid "Decorative"
 msgid "Active"
-msgstr "修饰(Decorative)"
+msgstr "活动"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "非活动"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
