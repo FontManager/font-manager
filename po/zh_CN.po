@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-19 19:04-0500\n"
+"POT-Creation-Date: 2025-02-21 19:53-0500\n"
 "PO-Revision-Date: 2025-02-22 01:00+0000\n"
 "Last-Translator: Cassian <prismarine@epicraft.top>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -120,7 +120,7 @@ msgstr "全功能字体文件预览应用程序"
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
 #: extensions/thunar/font-manager-menu-provider.c:129
-#: src/font-manager/FontList.vala:499
+#: src/font-manager/FontList.vala:509
 msgid "Install"
 msgstr "安装"
 
@@ -393,7 +393,7 @@ msgid "Undo changes"
 msgstr "撤销更改"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:139
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "预览"
 
@@ -403,7 +403,7 @@ msgstr "字号瀑布"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:149
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "字符"
 
