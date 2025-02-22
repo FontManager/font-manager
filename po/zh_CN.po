@@ -28,13 +28,14 @@
 # 复予 <clonewith@qq.com>, 2024.
 # Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 # ZHAO20060708 <zxybbb7892020@outlook.com>, 2025.
+# Cassian <prismarine@epicraft.top>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-19 19:04-0500\n"
-"PO-Revision-Date: 2025-02-05 14:02+0000\n"
-"Last-Translator: ZHAO20060708 <zxybbb7892020@outlook.com>\n"
+"PO-Revision-Date: 2025-02-22 01:00+0000\n"
+"Last-Translator: Cassian <prismarine@epicraft.top>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -42,7 +43,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -788,9 +789,8 @@ msgid ""
 msgstr "从终端启动该应用程序，然后再次尝试，以获取更多信息"
 
 #: src/font-manager/Collections.vala:427
-#, fuzzy
 msgid "Creating archive from selected collection."
-msgstr "删除选中的字体集"
+msgstr "从选中的字体集创建归档"
 
 #: src/font-manager/Collections.vala:428
 msgid "This may take some time for large collections…"
