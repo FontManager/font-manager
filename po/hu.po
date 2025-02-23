@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-21 19:53-0500\n"
-"PO-Revision-Date: 2025-02-21 00:29+0000\n"
+"PO-Revision-Date: 2025-02-24 02:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -649,18 +649,16 @@ msgstr "Betűtípusfájlok telepítése…"
 
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
-#, fuzzy
-#| msgid "Decorative"
 msgid "Active"
-msgstr "Dekoratív"
+msgstr "Aktív"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktív"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "Tervezte"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -1734,11 +1732,13 @@ msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:60
 msgid "GTK 4 Font Rendering"
-msgstr "GTK 4 Font renderelés"
+msgstr "GTK 4 Font megjelenítés"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
 msgstr ""
+"Az automatikus beállítás lehetővé teszi, hogy a GTK 4 figyelmen kívül hagyja "
+"az útmutatás beállításait."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1752,6 +1752,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values. "
 msgstr ""
+"A betűtípusok megjelenítésekor használandó élsimítás típusa.\n"
+"\n"
+"Megjegyzés : A GTK 4-től kezdve az RGBA már nem használatos, csak az „Egyik "
+"sem” és a „Szürkeárnyalat” érvényes értékek. "
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:96
@@ -1776,7 +1780,7 @@ msgstr "Útmutatás"
 #: src/font-manager/preferences/Desktop.vala:79
 #: src/font-manager/preferences/Desktop.vala:85
 msgid "The type of hinting to use when rendering fonts."
-msgstr "A betűtípusok megjelenítésére vonatkozó utalás típusa."
+msgstr "A betűtípusok megjelenítésére vonatkozó útmutatás típusa."
 
 #: src/font-manager/preferences/Desktop.vala:91
 msgid ""
@@ -1785,6 +1789,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values."
 msgstr ""
+"A betűtípusok megjelenítésekor használandó élsimítás típusa.\n"
+"\n"
+"Megjegyzés : A GTK 4-től kezdve az RGBA már nem használatos, csak az „Egyik "
+"sem” és a „Szürkeárnyalat” érvényes értékek."
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
@@ -1846,7 +1854,7 @@ msgstr "Kijelző"
 
 #: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
-msgstr "Renderelés"
+msgstr "Megjelenítés"
 
 #: src/font-manager/preferences/Preferences.vala:131
 msgid ""
