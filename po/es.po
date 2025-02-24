@@ -6,13 +6,13 @@
 # gallegonovato <fran-carro@hotmail.es>, 2023, 2024.
 # Toni Estévez <toni.estevez@gmail.com>, 2023.
 # Josman Goncalves Bravo <josmangoncalvesbravo@hotmail.com>, 2024.
-# Jose <ciordia@gmail.com>, 2024.
+# Jose <ciordia@gmail.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-21 19:53-0500\n"
-"PO-Revision-Date: 2024-11-23 16:38+0000\n"
+"PO-Revision-Date: 2025-02-25 21:03+0000\n"
 "Last-Translator: Jose <ciordia@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -669,11 +669,11 @@ msgstr "Decorativas"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "Inactivo"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "Diseñada por"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -776,30 +776,30 @@ msgstr "Renombrar…"
 
 #: src/font-manager/Collections.vala:402
 msgid "Archive created successfully."
-msgstr ""
+msgstr "Archivo creado correctamente."
 
 #: src/font-manager/Collections.vala:403
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "El archivo resultante se encuentra en tu directorio home."
 
 #: src/font-manager/Collections.vala:405
 msgid "Error exporting collection"
-msgstr ""
+msgstr "Error exportando la colección"
 
 #: src/font-manager/Collections.vala:406
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
+"Inicia la aplicación desde un terminal e inténtalo de nuevo para obtener más "
+"información"
 
 #: src/font-manager/Collections.vala:427
-#, fuzzy
-#| msgid "Remove selected collection"
 msgid "Creating archive from selected collection."
-msgstr "Quitar colección seleccionada"
+msgstr "Creando archivo a partir de la colección seleccionada."
 
 #: src/font-manager/Collections.vala:428
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "Puede llevar algún tiempo si se trata de colecciones grandes…"
 
 #: src/font-manager/Compare.vala:370
 msgid "Saved Comparison"
@@ -811,18 +811,18 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
-"Guarde la comparación actual\n"
+"Guardar la comparación actual\n"
 "pulsando en el botón «+»"
 
 #: src/font-manager/Controls.vala:100
 #: src/font-manager/ui/font-manager-preview-colors.ui:8
 msgid "Select background color"
-msgstr "Seleccione el color de fondo"
+msgstr "Seleccionar el color de fondo"
 
 #: src/font-manager/Controls.vala:103
 #: src/font-manager/ui/font-manager-preview-colors.ui:16
 msgid "Select text color"
-msgstr "Seleccione el color de texto"
+msgstr "Seleccionar el color de texto"
 
 #: src/font-manager/Controls.vala:136
 msgid "Keyboard Shortcuts"
@@ -874,7 +874,7 @@ msgstr "Vista de lista"
 
 #: src/font-manager/Controls.vala:339
 msgid "Add Fonts"
-msgstr "Instalar tipos de letra"
+msgstr "Añadir tipos de letra"
 
 #: src/font-manager/Controls.vala:340
 msgid "Remove Fonts"
@@ -894,23 +894,19 @@ msgstr "Seleccionar ejecutable"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select a Directory"
-msgstr "Seleccione una ruta"
+msgstr "Seleccionar una ruta"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
-msgstr "Tipo de archivo"
+msgstr "TryeType"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
-msgstr "Tipo de archivo"
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "Archivar archivos"
 
 #: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
@@ -1760,6 +1756,8 @@ msgstr "Representación"
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
 msgstr ""
+"La opción automática permite a GTK 4 ignorar la configuración de las "
+"sugerencias."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1773,6 +1771,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values. "
 msgstr ""
+"El tipo de antialiasing a usar cuando se renderizan fuentes.\n"
+"\n"
+"Nota : A partir de GTK 4 ya no se usa RGBA, sólo None y Grayscale son "
+"valores válidos. "
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:96
@@ -1808,6 +1810,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values."
 msgstr ""
+"El tipo de antialiasing a usar cuando se renderizan fuentes.\n"
+"\n"
+"Nota : A partir de GTK 4 ya no se usa RGBA, sólo None y Grayscale son "
+"valores válidos."
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
@@ -1815,11 +1821,11 @@ msgstr "No se ha encontrado el esquema de configuración de escritorio de GNOME"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
@@ -2029,7 +2035,7 @@ msgstr "Disposición amplia"
 
 #: src/font-manager/preferences/UserInterface.vala:322
 msgid "Use three column layout"
-msgstr ""
+msgstr "Usar un diseño de tres columnas"
 
 #: src/font-manager/preferences/UserInterface.vala:325
 msgid "Only When Maximized"
@@ -2063,7 +2069,7 @@ msgstr "Configuración del tamaño de la vista previa en cascada"
 
 #: src/font-manager/preferences/UserInterface.vala:342
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "Relleno en píxeles para insertar por encima y por debajo de las filas"
 
 #: src/font-manager/preferences/UserSources.vala:145
 msgid ""
