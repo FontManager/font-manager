@@ -32,8 +32,15 @@ namespace FontManager.FontViewer {
         [GtkChild] unowned Gtk.Label subtitle_label;
         [GtkChild] unowned Gtk.Stack stack;
         [GtkChild] unowned Gtk.Button action_button;
+        [GtkChild] unowned Gtk.ToggleButton preference_toggle;
+        [GtkChild] unowned Gtk.ListBox preference_list;
         [GtkChild] unowned Gtk.HeaderBar headerbar;
         [GtkChild] unowned PreviewPane preview_pane;
+
+        Gtk.Switch prefer_dark_theme;
+        Gtk.Switch use_adwaita_stylesheet;
+        PreviewColors preview_colors;
+        WaterfallSettings waterfall_settings;
 
         enum FileStatus {
             NOT_INSTALLED,
@@ -44,17 +51,24 @@ namespace FontManager.FontViewer {
         }
 
         public class MainWindow (GLib.Settings? settings) {
+            // Settings instance used in base class
             Object(settings: settings);
             var target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             target.drop.connect(on_drop);
             stack.add_controller(target);
             stack.set_visible_child_name("PlaceHolder");
-            preview_pane.set_action_widget(action_button, Gtk.PackType.END);
+            preview_pane.add_action_widget(action_button, Gtk.PackType.END);
             preview_pane.changed.connect(this.update);
             preview_pane.realize.connect_after(() => {
-                preview_pane.restore_state(get_gsettings(FontManager.BUS_ID));
+                preview_pane.restore_state(get_gsettings(BUS_ID));
             });
             update_action_button();
+            populate_preference_list();
+#if HAVE_ADWAITA
+            map.connect_after(() => {
+                use_adwaita_stylesheet.notify["active"].connect(() => { on_restart_required(); });
+            });
+#endif
         }
 
         public bool show_uri (string uri, int index = 0) {
@@ -159,6 +173,87 @@ namespace FontManager.FontViewer {
             return;
         }
 
+        void bind_settings () {
+            return_if_fail(settings != null);
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
+            const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
+            if (gtk_settings != null) {
+#if HAVE_ADWAITA
+                if (settings.get_boolean("use-adwaita-stylesheet")) {
+                    prefer_dark_theme.notify["active"].connect(() => {
+                        Adw.StyleManager style_manager = Adw.StyleManager.get_default();
+                        Adw.ColorScheme color_scheme = prefer_dark_theme.active ?
+                                                       Adw.ColorScheme.PREFER_DARK :
+                                                       Adw.ColorScheme.PREFER_LIGHT;
+                        style_manager.set_color_scheme(color_scheme);
+                    });
+                } else
+                    settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#else
+                settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#endif
+            }
+            warn_if_fail(gtk_settings != null);
+
+            settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
+#if HAVE_ADWAITA
+            settings.bind("use-adwaita-stylesheet", use_adwaita_stylesheet, "active", flags);
+#endif
+            return;
+        }
+
+#if HAVE_ADWAITA
+        void on_restart_required () {
+            var title = _("Selected setting requires restart to apply");
+            var body = _("Changes will take effect next time the application is started");
+            var icon = new GLib.ThemedIcon(BUS_ID);
+            var notification = new GLib.Notification(title);
+            notification.set_body(body);
+            notification.set_icon(icon);
+            GLib.Application.get_default().send_notification("restart-required", notification);
+            return;
+        }
+#endif
+
+        void populate_preference_list () {
+            preference_list.set_selection_mode(Gtk.SelectionMode.NONE);
+            prefer_dark_theme = new Gtk.Switch();
+            // The added margins here are due to PreviewColors widget alignment issues
+            var row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row.set_child(new PreferenceRow(_("Prefer Dark Theme"), null, null, prefer_dark_theme));
+            preference_list.insert(row, -1);
+#if HAVE_ADWAITA
+            use_adwaita_stylesheet = new Gtk.Switch();
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row.set_child(new PreferenceRow(_("Use Adwaita Stylesheet"), null, null, use_adwaita_stylesheet));
+            preference_list.insert(row, -1);
+#endif
+            preview_colors = new PreviewColors();
+            preview_colors.restore_state(settings);
+            widget_set_margin(preview_colors, 0);
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false };
+            row.set_child(new PreferenceRow(_("Preview Area Colors"), null, null, preview_colors));
+            preference_list.insert(row, -1);
+            waterfall_settings = new WaterfallSettings(settings);
+            var adjustment = new Gtk.Adjustment(0.0, 0.0, double.MAX, 1.0, 1.0, 1.0);
+            var spacing = new Gtk.SpinButton(adjustment, 1.0, 0);
+            spacing.set_value((double) waterfall_settings.line_spacing);
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row.set_child(new PreferenceRow(_("Waterfall Line Spacing"), null, null, spacing));
+            row.set_tooltip_text(_("Padding in pixels to insert above and below rows"));
+            preference_list.insert(row, -1);
+            spacing.value_changed.connect(() => {
+                waterfall_settings.line_spacing = (int) spacing.value;
+            });
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row.set_child(waterfall_settings.preference_row);
+            waterfall_settings.preference_row.margin_end = 12;
+            preference_list.insert(row, -1);
+            bind_settings();
+            return;
+        }
+
         bool remove_directory_tree_if_empty (File dir) {
             try {
                 var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,
@@ -174,6 +269,15 @@ namespace FontManager.FontViewer {
                 warning(e.message);
             }
             return false;
+        }
+
+        [GtkCallback]
+        public void on_preferences_toggled () {
+            if (preference_toggle.active)
+                stack.set_visible_child_name("Preferences");
+            else
+                stack.set_visible_child_name(preview_pane.font != null ? "Preview" : "PlaceHolder");
+            return;
         }
 
         [GtkCallback]

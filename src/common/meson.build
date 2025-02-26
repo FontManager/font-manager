@@ -1,0 +1,17 @@
+
+vala_common_gresource_xml_file = files('vala-common-gresources.xml')
+
+vala_common_gresources = gnome.compile_resources('vala-common-gresources',
+                                                  vala_common_gresource_xml_file)
+
+result = run_command(python, '-c', list_vala_sources, check: true)
+vala_common_sources = result.stdout().strip().split('\n')
+
+vala_common_library = static_library('vala-common',
+                                     [vala_common_sources, vala_common_gresources],
+                                     dependencies: [vala_deps, vapi],
+                                     include_directories: includes,
+                                     link_with: libfontmanager)
+
+includes += include_directories('.')
+

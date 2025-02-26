@@ -16,7 +16,6 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-colors.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preference-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-export-dialog.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-settings-dialog.ui</file>

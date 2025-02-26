@@ -63,6 +63,7 @@ namespace FontManager {
             sidebar = new SidebarStack(settings);
             fontlist = new FontListView();
             preview = new PreviewPane();
+            var preview_colors = new PreviewColors();
             compare = new ComparePane();
             content = new Gtk.Stack() {
                 transition_type = Gtk.StackTransitionType.CROSSFADE,
@@ -107,7 +108,15 @@ namespace FontManager {
                                            waterfall_settings.maximum,
                                            waterfall_settings.ratio);
             });
-            preview.realize.connect_after(() => { preview.restore_state(settings); });
+            preview.notify["page"].connect(() => {
+                preview_colors.set_visible(preview.page == FontManager.PreviewPanePage.PREVIEW);
+            });
+            preview.realize.connect_after(() => {
+                preview.restore_state(settings);
+                preview.add_action_widget(preview_colors, Gtk.PackType.END);
+                preview_colors.set_visible(preview.page == FontManager.PreviewPanePage.PREVIEW);
+                preview_colors.restore_state(settings);
+            });
             compare.realize.connect_after(() => { compare.restore_state(settings); });
         }
 

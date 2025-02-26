@@ -4,20 +4,31 @@
   <template class="FontManagerPreviewColors" parent="GtkBox">
     <child>
       <object class="GtkColorDialogButton" id="bg_color_button">
+        <property name="dialog">
+          <object class="GtkColorDialog">
+            <property name="title" translatable="yes">Select background color</property>
+          </object>
+        </property>
         <property name="focusable">1</property>
-        <property name="tooltip_text" translatable="1">Select background color</property>
         <property name="halign">center</property>
+        <property name="rgba">rgb(255,255,255)</property>
+        <property name="tooltip-text" translatable="yes">Select background color</property>
         <property name="valign">center</property>
       </object>
     </child>
     <child>
       <object class="GtkColorDialogButton" id="fg_color_button">
+        <property name="dialog">
+          <object class="GtkColorDialog">
+            <property name="title" translatable="yes">Select text color</property>
+          </object>
+        </property>
         <property name="focusable">1</property>
-        <property name="tooltip_text" translatable="1">Select text color</property>
         <property name="halign">center</property>
+        <property name="rgba">rgb(0,0,0)</property>
+        <property name="tooltip-text" translatable="yes">Select text color</property>
         <property name="valign">center</property>
       </object>
     </child>
   </template>
 </interface>
-    

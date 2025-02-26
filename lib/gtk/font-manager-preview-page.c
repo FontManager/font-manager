@@ -659,6 +659,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     self->max_waterfall_size = DEFAULT_WATERFALL_MAX_SIZE;
     self->waterfall_size_ratio = 1.1;
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
+    gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerFontPreviewArea");
     font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewPage");
     gtk_orientable_set_orientation(GTK_ORIENTABLE(self), GTK_ORIENTATION_VERTICAL);
     g_autoptr(GtkTextTagTable) tag_table = font_manager_text_tag_table_new();
@@ -670,6 +671,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new(tag_table);
     GtkWidget *scroll = gtk_scrolled_window_new();
     self->textview = gtk_text_view_new_with_buffer(buffer);
+    gtk_widget_add_css_class(GTK_WIDGET(self->textview), "FontManagerFontPreviewArea");
     /* gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self->textview), FALSE); */
     GtkWidget *controls = font_manager_preview_controls_new();
     self->controls = gtk_revealer_new();
@@ -1063,4 +1065,5 @@ font_manager_set_preview_page_mode_menu_and_actions (GtkWidget *parent,
     g_object_unref(mode_menu);
     return;
 }
+
 

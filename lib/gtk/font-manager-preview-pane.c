@@ -93,6 +93,7 @@ struct _FontManagerPreviewPane
     GtkWidget               *properties;
     GtkWidget               *license;
     GtkWidget               *search;
+    GtkWidget               *action_area;
     GtkNotebook             *notebook;
 
     FontManagerFont             *font;
@@ -479,8 +480,7 @@ font_manager_preview_pane_update (FontManagerPreviewPane *self)
     gint page = gtk_notebook_get_current_page(self->notebook);
     GtkWidget *action_widget_box = gtk_notebook_get_action_widget(self->notebook, GTK_PACK_START);
     GtkWidget *menu = gtk_widget_get_first_child(action_widget_box);
-    GtkWidget *search = gtk_notebook_get_action_widget(self->notebook, GTK_PACK_END);
-    gtk_widget_set_visible(search, page == FONT_MANAGER_PREVIEW_PANE_PAGE_CHARACTER_MAP);
+    gtk_widget_set_visible(self->search, page == FONT_MANAGER_PREVIEW_PANE_PAGE_CHARACTER_MAP);
     gboolean menu_sensitive = (page == FONT_MANAGER_PREVIEW_PANE_PAGE_PREVIEW);
     gtk_widget_add_css_class(menu, menu_sensitive ? "image-button" : FONT_MANAGER_STYLE_CLASS_FLAT);
     gtk_widget_remove_css_class(menu, menu_sensitive ? FONT_MANAGER_STYLE_CLASS_FLAT : "image-button");
@@ -587,8 +587,10 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     self->page = gtk_notebook_get_current_page(self->notebook);
     GtkWidget *menu_button = font_manager_preview_page_get_action_widget(FONT_MANAGER_PREVIEW_PAGE(self->preview));
     gtk_notebook_set_action_widget(self->notebook, menu_button, GTK_PACK_START);
+    self->action_area = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     self->search = create_search_button(self);
-    gtk_notebook_set_action_widget(self->notebook, self->search, GTK_PACK_END);
+    gtk_box_append(GTK_BOX(self->action_area), self->search);
+    gtk_notebook_set_action_widget(self->notebook, self->action_area, GTK_PACK_END);
     font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
     GBindingFlags flags = (G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
     g_object_bind_property(self->notebook, "page", self, "page", flags);
@@ -756,17 +758,19 @@ font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self,
 }
 
 /**
- * font_manager_preview_pane_set_action_widget:
+ * font_manager_preview_pane_add_action_widget:
  * @self:           #FontManagerFontPreview
- * @widget:         #GtkWidget to set as action widget
+ * @widget:         #GtkWidget to add as an action widget
  * @pack_type:      #GtkPackType
  */
 void
-font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self,
+font_manager_preview_pane_add_action_widget (FontManagerPreviewPane *self,
                                              GtkWidget              *widget,
                                              GtkPackType             pack_type)
 {
-    gtk_notebook_set_action_widget(GTK_NOTEBOOK(self->notebook), widget, pack_type);
+    /* gtk_notebook_set_action_widget(GTK_NOTEBOOK(self->notebook), widget, pack_type); */
+    /* XXX : pack_type is ignored... we need a front box. Keep line #482 in mind though. */
+    gtk_box_append(GTK_BOX(self->action_area), widget);
     return;
 }
 

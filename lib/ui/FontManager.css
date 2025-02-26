@@ -205,12 +205,15 @@ row:selected .count {
 }
 
 .FontManagerCompare list row,
-.FontManagerComparePreview,
 .FontManagerSubstituteList list row,
 .FontManagerUserActionList list row,
 .FontManagerUserSourceList list row {
     border-radius: 0.333em;
     margin: 4px;
+}
+
+.FontManagerComparePreview {
+    border-radius: 0.333em;
 }
 
 .FontManagerCompare list row:selected,

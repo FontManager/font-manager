@@ -84,10 +84,12 @@
       <object class="GtkScrolledWindow">
         <property name="vexpand">1</property>
         <property name="focusable">1</property>
+        <property name="css-classes">FontManagerFontPreviewArea</property>
         <property name="child">
           <object class="GtkViewport">
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
+            <property name="css-classes">FontManagerFontPreviewArea</property>
             <property name="child">
               <object class="GtkListBox" id="list">
                 <property name="margin-start">6</property>
@@ -96,6 +98,7 @@
                 <property name="margin-bottom">6</property>
                 <property name="hexpand">1</property>
                 <property name="vexpand">1</property>
+                <property name="css-classes">FontManagerFontPreviewArea</property>
                 <signal name="row-selected" handler="on_list_row_selected" swapped="no" />
               </object>
             </property>

@@ -131,14 +131,14 @@ namespace FontManager {
                 setup_i18n();
                 Environment.set_application_name(_("Font Viewer"));
 #if HAVE_ADWAITA
-                var settings = get_gsettings(FontManager.BUS_ID);
+                var settings = get_gsettings(BUS_ID);
                 if (settings != null)
                     if (settings.get_boolean("use-adwaita-stylesheet"))
                         Adw.init();
 #endif
                 ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_COMMAND_LINE |
                                           ApplicationFlags.HANDLES_OPEN);
-                return new Application(FontViewer.BUS_ID, FLAGS).run(args);
+                return new Application(BUS_ID, FLAGS).run(args);
             }
 
         }

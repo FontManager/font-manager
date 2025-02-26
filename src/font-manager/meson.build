@@ -27,6 +27,7 @@ executable('font-manager',
             dependencies: dependencies,
             include_directories: includes,
             link_with: libfontmanager,
+            link_whole: vala_common_library,
             install: true,
             install_rpath: pkglib_dir,
             # Try to silence warnings we can do nothing about.

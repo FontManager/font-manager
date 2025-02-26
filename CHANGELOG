@@ -9,6 +9,11 @@
 - Add keyboard shortcuts to modify Lorem Ipsum and Character Map preview size - Issue #424
 - Add preference option for gtk-font-rendering - Issue #429
 - Remember selected items in font lists where possible - Issue #424
+- Set sensitivity of labels to match activation status
+- Add designer information to Browse mode preview pane
+- Add tooltip with copyright and design description to Browse mode preview pane
+- Switch to using CSS for preview area colors
+- Add preferences pane to Font Viewer - Issue #428
 
 0.9.1 -> 0.9.2
 - Address segfault reported on FreeBSD - Closes #395

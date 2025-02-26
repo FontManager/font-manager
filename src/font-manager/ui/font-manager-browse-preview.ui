@@ -19,7 +19,9 @@
                 <child>
                   <object class="GtkLabel" id="family_label">
                     <property name="halign">fill</property>
+                    <property name="valign">center</property>
                     <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                     <property name="label">&lt;Family Name&gt;</property>
                     <property name="margin-start">12</property>
                     <property name="opacity">0.75</property>
@@ -42,6 +44,8 @@
                 <object class="GtkLabel" id="designer_label">
                     <property name="halign">fill</property>
                     <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                     <property name="sensitive">False</property>
                     <property name="margin-start">24</property>
                     <property name="margin-end">24</property>

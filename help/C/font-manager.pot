@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-02-21 19:53-0500\n"
+"POT-Creation-Date: 2025-02-26 00:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -961,7 +961,7 @@ msgstr ""
 
 #. (itstool) path: credit/years
 #: ../help/C/index.page:16
-msgid "2009–2020"
+msgid "2009–2025"
 msgstr ""
 
 #. (itstool) path: credit/name

@@ -18,6 +18,7 @@ executable('font-viewer',
             dependencies: dependencies,
             include_directories: includes,
             link_with: libfontmanager,
+            link_whole: vala_common_library,
             install: true,
             install_dir: pkglibexec_dir,
             install_rpath: pkglib_dir)

@@ -76,62 +76,6 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-colors.ui")]
-    public class PreviewColors : Gtk.Box {
-
-        public signal void color_set ();
-
-        public Gdk.RGBA foreground_color { get; set; }
-        public Gdk.RGBA background_color { get; set; }
-
-        [GtkChild] unowned Gtk.ColorDialogButton bg_color_button;
-        [GtkChild] unowned Gtk.ColorDialogButton fg_color_button;
-
-        void flatten_color_button (Gtk.ColorDialogButton button) {
-            button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
-            button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
-            return;
-        }
-
-        public override void constructed () {
-            flatten_color_button(bg_color_button);
-            flatten_color_button(fg_color_button);
-            bg_color_button.set_dialog(new Gtk.ColorDialog() {
-                title = _("Select background color")
-            });
-            fg_color_button.set_dialog(new Gtk.ColorDialog() {
-                title = _("Select text color")
-            });
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL;
-            bind_property("background-color", bg_color_button, "rgba", flags);
-            bind_property("foreground-color", fg_color_button, "rgba", flags);
-            Gdk.RGBA rgba = Gdk.RGBA();
-            if (rgba.parse("rgb(255,255,255)"))
-                bg_color_button.set_rgba(rgba);
-            if (rgba.parse("rgb(0,0,0)"))
-                fg_color_button.set_rgba(rgba);
-            bg_color_button.notify["rgba"].connect(() => { color_set(); });
-            fg_color_button.notify["rgba"].connect(() => { color_set(); });
-            base.constructed();
-            return;
-        }
-
-        // GSettingsBind*Mapping functions
-
-        public static Variant to_setting (Value val, VariantType type) {
-            return new Variant.string(((Gdk.RGBA) val).to_string());
-        }
-
-        public static bool from_setting (Value val, Variant variant) {
-            Gdk.RGBA rgba = Gdk.RGBA();
-            string rgba_string = variant.get_string();
-            bool result = rgba.parse(rgba_string);
-            val.set_boxed(&rgba);
-            return result;
-        }
-
-    }
-
     const MenuEntry [] app_menu_entries = {
         { "win.show-help-overlay", N_("Keyboard Shortcuts") },
         { "help", N_("Help") },
