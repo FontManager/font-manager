@@ -23,6 +23,10 @@ namespace FontManager.FontViewer {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-viewer-main-window.ui")]
     public class MainWindow : FontManager.ApplicationWindow {
 
+        public int predefined_size { get; set; }
+        public bool show_line_size { get; set; default = true; }
+        WaterfallSettings waterfall_settings;
+
         File? current_file;
         File? current_target;
         FileStatus file_status;
@@ -40,7 +44,8 @@ namespace FontManager.FontViewer {
         Gtk.Switch prefer_dark_theme;
         Gtk.Switch use_adwaita_stylesheet;
         PreviewColors preview_colors;
-        WaterfallSettings waterfall_settings;
+
+        Gdk.Rectangle clicked_area;
 
         enum FileStatus {
             NOT_INSTALLED,
@@ -48,6 +53,11 @@ namespace FontManager.FontViewer {
             SYSTEM_FONT,
             WOULD_DOWNGRADE,
             WOULD_UPGRADE;
+        }
+
+        static construct {
+            install_property_action("predefined-size", "predefined-size");
+            install_property_action("show-line-size", "show-line-size");
         }
 
         public class MainWindow (GLib.Settings? settings) {
@@ -62,7 +72,24 @@ namespace FontManager.FontViewer {
             preview_pane.realize.connect_after(() => {
                 preview_pane.restore_state(get_gsettings(BUS_ID));
             });
+            clicked_area = Gdk.Rectangle();
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            preview_pane.add_controller(right_click);
             update_action_button();
+            waterfall_settings = new WaterfallSettings(settings);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            waterfall_settings.bind_property("predefined-size", this, "predefined-size", flags);
+            waterfall_settings.bind_property("show-line-size", this, "show-line-size", flags);
+            bind_property("show-line-size", preview_pane, "show-line-size", flags);
+            waterfall_settings.notify["predefined-size"].connect_after(() => {
+                waterfall_settings.on_selection_changed();
+                preview_pane.set_waterfall_size(waterfall_settings.minimum,
+                                                waterfall_settings.maximum,
+                                                waterfall_settings.ratio);
+            });
             populate_preference_list();
 #if HAVE_ADWAITA
             map.connect_after(() => {
@@ -220,37 +247,59 @@ namespace FontManager.FontViewer {
             preference_list.set_selection_mode(Gtk.SelectionMode.NONE);
             prefer_dark_theme = new Gtk.Switch();
             // The added margins here are due to PreviewColors widget alignment issues
-            var row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            var row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
             row.set_child(new PreferenceRow(_("Prefer Dark Theme"), null, null, prefer_dark_theme));
             preference_list.insert(row, -1);
 #if HAVE_ADWAITA
             use_adwaita_stylesheet = new Gtk.Switch();
-            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
             row.set_child(new PreferenceRow(_("Use Adwaita Stylesheet"), null, null, use_adwaita_stylesheet));
             preference_list.insert(row, -1);
 #endif
             preview_colors = new PreviewColors();
             preview_colors.restore_state(settings);
             widget_set_margin(preview_colors, 0);
-            row = new Gtk.ListBoxRow() { activatable = false, selectable = false };
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6 };
             row.set_child(new PreferenceRow(_("Preview Area Colors"), null, null, preview_colors));
             preference_list.insert(row, -1);
-            waterfall_settings = new WaterfallSettings(settings);
             var adjustment = new Gtk.Adjustment(0.0, 0.0, double.MAX, 1.0, 1.0, 1.0);
             var spacing = new Gtk.SpinButton(adjustment, 1.0, 0);
             spacing.set_value((double) waterfall_settings.line_spacing);
-            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
             row.set_child(new PreferenceRow(_("Waterfall Line Spacing"), null, null, spacing));
             row.set_tooltip_text(_("Padding in pixels to insert above and below rows"));
+            preference_list.insert(row, -1);
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
+            var show_line_size = new Gtk.Switch();
+            row.set_child(new PreferenceRow(_("Display line size in Waterfall Preview"), null, null, show_line_size));
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("show-line-size", show_line_size, "active", flags);
             preference_list.insert(row, -1);
             spacing.value_changed.connect(() => {
                 waterfall_settings.line_spacing = (int) spacing.value;
             });
-            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_end = 6 };
+            row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
             row.set_child(waterfall_settings.preference_row);
             waterfall_settings.preference_row.margin_end = 12;
             preference_list.insert(row, -1);
             bind_settings();
+            return;
+        }
+
+        void on_show_context_menu (int n_press, double x, double y) {
+            if (waterfall_settings == null)
+                return;
+            if (preview_pane.page != PreviewPanePage.PREVIEW || preview_pane.preview_mode != PreviewPageMode.WATERFALL)
+                return;
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            if (waterfall_settings.context_menu.get_parent() != null)
+                waterfall_settings.context_menu.unparent();
+            waterfall_settings.context_menu.set_parent(preview_pane);
+            waterfall_settings.context_menu.set_pointing_to(clicked_area);
+            waterfall_settings.context_menu.popup();
             return;
         }
 
