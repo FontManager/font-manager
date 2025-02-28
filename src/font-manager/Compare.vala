@@ -172,6 +172,17 @@ namespace FontManager {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
             });
+            list.map.connect_after(force_css_update);
+        }
+
+        // TODO : Figure out why this is needed.
+        // This ensures our PreviewColors CSS is applied to list widget.
+        // Otherwise the CSS fails to apply until the user interacts with it
+        // if it's not visible from start up.
+        void force_css_update () {
+            list.grab_focus();
+            list.queue_draw();
+            return;
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {

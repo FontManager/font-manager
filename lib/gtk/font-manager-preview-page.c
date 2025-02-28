@@ -647,6 +647,19 @@ on_swipe_event (FontManagerPreviewPage *self,
     return;
 }
 
+// TODO : Figure out why this is needed.
+// This ensures our PreviewColors CSS is applied to preview widget.
+// Otherwise the CSS fails to apply until the user interacts with it
+// if it's not visible at start up.
+static void
+force_css_update (GtkWidget *preview)
+{
+    g_return_if_fail(preview != NULL);
+    gtk_widget_grab_focus(preview);
+    gtk_widget_queue_draw(preview);
+    return;
+}
+
 static void
 font_manager_preview_page_init (FontManagerPreviewPage *self)
 {
@@ -713,6 +726,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     font_manager_preview_page_set_waterfall_size(self, self->min_waterfall_size, DEFAULT_WATERFALL_MAX_SIZE, 1.0);
     self->menu_button = g_object_ref_sink(gtk_menu_button_new());
     font_manager_set_preview_page_mode_menu_and_actions(GTK_WIDGET(self), self->menu_button, G_CALLBACK(on_mode_action_activated));
+    g_signal_connect_after(self->textview, "map", G_CALLBACK(force_css_update), NULL);
     return;
 }
 

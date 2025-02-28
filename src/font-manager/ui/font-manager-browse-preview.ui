@@ -58,8 +58,6 @@
             </child>
             <child>
               <object class="GtkSeparator">
-                <property name="can-focus">False</property>
-                <property name="can-target">False</property>
                 <property name="margin-end">12</property>
                 <property name="margin-start">12</property>
                 <property name="opacity">0.333</property>
@@ -105,8 +103,6 @@ view
             </child>
             <child>
               <object class="GtkSeparator">
-                <property name="can-focus">False</property>
-                <property name="can-target">False</property>
                 <property name="margin-end">12</property>
                 <property name="margin-start">12</property>
                 <property name="opacity">0.333</property>
