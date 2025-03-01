@@ -92,7 +92,11 @@
         </child>
         <child type="end">
           <object class="GtkToggleButton" id="preference_toggle">
-            <property name="icon-name">applications-system-symbolic</property>
+            <property name="icon-name">application-preferences-symbolic</property>
+            <property name="tooltip-text" translatable="yes">Preferences</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="css-classes">flat</property>
             <signal name="toggled" handler="on_preferences_toggled"/>
           </object>
         </child>

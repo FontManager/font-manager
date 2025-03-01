@@ -181,7 +181,7 @@ They will not be visible to other applications until the source is actually enab
                 if (e.code == Gtk.DialogError.FAILED)
                     warning(e.message);
                 else
-                    debug("UserSources.on_file_selections_ready : %s", e.message);
+                    debug("%s.on_file_selections_ready : %s", name, e.message);
             }
             return;
         }

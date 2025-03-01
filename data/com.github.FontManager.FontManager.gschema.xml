@@ -295,8 +295,9 @@
             <default>"48 Points Linear"</default>
         </key>
 
+        <!-- Default to false since enabling this causes RTL languages to be detected as LTR -->
         <key name="waterfall-show-line-size" type="b">
-            <default>true</default>
+            <default>false</default>
             <summary>Whether to display line size in Waterfall preview</summary>
             <description>true to show line sizes in Waterfall preview</description>
         </key>

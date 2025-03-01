@@ -387,7 +387,10 @@ namespace FontManager {
                                     copy_files.end(res);
                                  });
             } catch (Error e) {
-                warning(e.message);
+                if (e.code == Gtk.DialogError.FAILED)
+                    warning(e.message);
+                else
+                    debug("%s.on_file_selections_ready : %s", name, e.message);
             }
             return;
         }
