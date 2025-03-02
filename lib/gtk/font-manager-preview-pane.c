@@ -393,9 +393,7 @@ static gboolean
 font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
 {
     g_return_val_if_fail(self != NULL, G_SOURCE_REMOVE);
-    if (!FONT_MANAGER_IS_FONT(self->font))
-        return G_SOURCE_CONTINUE;
-    if (!self->update_required)
+    if (!self->update_required || !FONT_MANAGER_IS_FONT(self->font))
         return G_SOURCE_REMOVE;
     GError *error = NULL;
     g_autoptr(JsonObject) res = NULL;
@@ -557,7 +555,7 @@ on_drop (GtkDropTarget          *target,
         if (g_slist_length(files) > 0) {
             GFile *file = g_slist_nth_data(files, 0);
             g_autofree gchar *uri = g_file_get_uri(file);
-            font_manager_preview_pane_show_uri(self, uri, 0);
+            font_manager_preview_pane_show_uri(self, uri);
         }
     }
     return TRUE;
@@ -610,18 +608,16 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     return;
 }
 
-/**
+/*
  * font_manager_preview_pane_show_uri:
  * @self:       #FontManagerPreviewPane
  * @uri:        filepath to display
- * @index:      index of face within file
  *
  * Returns:     %TRUE on success
  */
 gboolean
 font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
-                                    const gchar            *uri,
-                                    int                     index)
+                                    const gchar            *uri)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     if (self->current_uri && g_strcmp0(self->current_uri, uri) == 0)
@@ -648,16 +644,19 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
     font_manager_clear_pango_cache(gtk_widget_get_pango_context((GtkWidget *) self));
-    g_autoptr(FontManagerFont) font = font_manager_font_new();
-    g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, index, &error);
+    g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, &error);
     if (error != NULL) {
         g_critical("%s : %s", error->message, path);
         g_clear_error(&error);
         return FALSE;
     }
-    g_autofree gchar *sample = font_manager_get_sample_string(source);
-    json_object_set_string_member(source, "preview-text", sample);
-    g_object_set(font, "source-object", source, NULL);
+    g_autoptr(FontManagerFont) font = font_manager_font_new();
+    g_autoptr(FontManagerFamily) family = font_manager_family_new();
+    g_object_set(family, "source-object", source, NULL);
+    JsonObject *default_variant = font_manager_family_get_default_variant(family);
+    g_autofree gchar *sample = font_manager_get_sample_string(default_variant);
+    json_object_set_string_member(default_variant, "preview-text", sample);
+    g_object_set(font, "source-object", default_variant, NULL);
     font_manager_preview_pane_set_font(self, font);
     self->current_uri = g_strdup(uri);
     return TRUE;

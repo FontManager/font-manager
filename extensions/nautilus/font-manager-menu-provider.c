@@ -1,6 +1,6 @@
 /* font-manager-menu-provider.c
  *
- * Copyright (C) 2018-2024 Jerry Casiano
+ * Copyright (C) 2018-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -132,7 +132,7 @@ font_manager_menu_provider_get_file_items (NautilusMenuProvider *provider,
                                    FONT_VIEWER_BUS_PATH,
                                    FONT_VIEWER_BUS_ID,
                                    "ShowUri",
-                                   g_variant_new("(si)", uri, 0),
+                                   g_variant_new("(s)", uri),
                                    NULL,
                                    G_DBUS_CALL_FLAGS_NONE,
                                    -1,

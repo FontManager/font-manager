@@ -26,7 +26,7 @@
               <object class="FontManagerPlaceHolder" id="welcome">
                 <property name="can-focus">True</property>
                 <property name="visible">True</property>
-		<property name="can_focus">True</property>
+                <property name="can_focus">True</property>
                 <property name="title" translatable="1">Font Viewer</property>
                 <property name="subtitle" translatable="1">Preview font files before installing them.</property>
                 <property name="message" translatable="1">To preview a font simply drag it onto this area.</property>
@@ -62,23 +62,23 @@
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="title-widget">
-          <object class="GtkBox" id="title_box">
-            <property name="margin-top">6</property>
-            <property name="orientation">vertical</property>
+          <object class="GtkBox">
             <child>
-              <object class="GtkLabel" id="title_label">
-                <property name="label" translatable="yes">No file selected</property>
-                <style>
-                  <class name="title"/>
-                </style>
+              <object class="GtkDropDown" id="title_widget">
+                <property name="css-classes">title</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Font Viewer</item>
+                    </items>
+                  </object>
+                </property>
               </object>
             </child>
             <child>
-              <object class="GtkLabel" id="subtitle_label">
-                <property name="label" translatable="yes">Or unsupported filetype.</property>
-                <style>
-                  <class name="subtitle"/>
-                </style>
+              <object class="GtkLabel" id="title_label">
+                <property name="css-classes">title</property>
+                <property name="label" translatable="yes">Font Viewer</property>
               </object>
             </child>
           </object>

@@ -49,19 +49,18 @@ namespace FontManager {
                 return main_window != null && main_window.is_visible();
             }
 
-            public void show_uri (string uri, int index)
+            public void show_uri (string uri)
             throws DBusError, IOError {
                 if (main_window == null || !main_window.is_visible())
                     activate();
-                main_window.show_uri(uri, index);
+                main_window.show_uri(uri);
                 return;
             }
 
             public override void open (File [] files, string hint) {
                 if (main_window == null || !main_window.is_visible())
                     activate();
-                int index = hint != "" ? int.parse(hint) : 0;
-                main_window.open(files[0], index);
+                main_window.open(files[0]);
                 return;
             }
 
@@ -92,7 +91,7 @@ namespace FontManager {
                 StringSet? filelist = get_command_line_files(cl);
                 if (filelist != null) {
                     File [] files = { File.new_for_path(filelist[0]) };
-                    open(files, "0");
+                    open(files, "null");
                 } else {
                     activate();
                 }

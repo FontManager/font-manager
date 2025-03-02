@@ -1,6 +1,6 @@
 /* font-manager-fontconfig.h
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ gboolean font_manager_update_font_configuration (void);
 GList * font_manager_list_available_font_files (void);
 FontManagerStringSet * font_manager_list_available_font_families (void);
 GList * font_manager_get_langs_from_fontconfig_pattern (FcPattern *pattern);
-JsonObject * font_manager_get_attributes_from_filepath (const gchar *filepath, int index, GError **error);
+JsonObject * font_manager_get_attributes_from_filepath (const gchar *filepath, GError **error);
 JsonObject * font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern);
 JsonObject * font_manager_get_available_fonts (const gchar *family_name);
 JsonObject * font_manager_get_available_fonts_for_chars (const gchar *chars);
