@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.12" />
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerListItemRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="hexpand">True</property>
@@ -68,7 +68,7 @@
             <property name="margin-start">6</property>
             <property name="valign">center</property>
             <style>
-              <class name="count" />
+              <class name="count"/>
             </style>
           </object>
         </child>
@@ -91,4 +91,3 @@
     </child>
   </template>
 </interface>
-

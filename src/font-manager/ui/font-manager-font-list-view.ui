@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
   <template class="FontManagerBaseFontListView" parent="GtkBox">
@@ -57,12 +57,12 @@
           </object>
         </child>
         <child>
-            <object class="GtkSeparator">
-                <property name="orientation">horizontal</property>
-                <property name="opacity">0.25</property>
-                <property name="margin-start">6</property>
-                <property name="margin-end">6</property>
-            </object>
+          <object class="GtkSeparator">
+            <property name="orientation">horizontal</property>
+            <property name="opacity">0.25</property>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+          </object>
         </child>
         <child>
           <object class="GtkScrolledWindow">
@@ -83,4 +83,3 @@
     </child>
   </template>
 </interface>
-

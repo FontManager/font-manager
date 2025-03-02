@@ -21,7 +21,7 @@
         <property name="vexpand">1</property>
         <property name="label" translatable="1">Created :</property>
         <attributes>
-          <attribute name="weight" value="light" />
+          <attribute name="weight" value="light"/>
         </attributes>
         <layout>
           <property name="column">0</property>
@@ -57,7 +57,7 @@
         <property name="hexpand">1</property>
         <property name="vexpand">1</property>
         <attributes>
-          <attribute name="weight" value="light" />
+          <attribute name="weight" value="light"/>
         </attributes>
         <layout>
           <property name="column">1</property>
@@ -67,4 +67,3 @@
     </child>
   </template>
 </interface>
-

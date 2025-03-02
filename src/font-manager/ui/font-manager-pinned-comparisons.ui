@@ -2,7 +2,7 @@
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
   <template class="FontManagerPinnedComparisons" parent="GtkPopover">
-    <signal name="closed" handler="on_closed" swapped="no" />
+    <signal name="closed" handler="on_closed" swapped="no"/>
     <property name="autohide">True</property>
     <property name="child">
       <object class="GtkBox">
@@ -28,7 +28,7 @@
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
                 <property name="has-frame">False</property>
-                <signal name="clicked" handler="on_save_clicked" swapped="no" />
+                <signal name="clicked" handler="on_save_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">list-add-symbolic</property>
@@ -50,7 +50,7 @@
                 <property name="margin-top">2</property>
                 <property name="margin-bottom">2</property>
                 <property name="has-frame">False</property>
-                <signal name="clicked" handler="on_remove_clicked" swapped="no" />
+                <signal name="clicked" handler="on_remove_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">list-remove-symbolic</property>
@@ -72,7 +72,7 @@
                 <property name="margin-bottom">2</property>
                 <property name="tooltip-text" translatable="1">Restore selected comparison</property>
                 <property name="has-frame">False</property>
-                <signal name="clicked" handler="on_restore_button_clicked" swapped="no" />
+                <signal name="clicked" handler="on_restore_button_clicked" swapped="no"/>
                 <child>
                   <object class="GtkImage">
                     <property name="icon-name">view-restore-symbolic</property>
@@ -103,8 +103,8 @@
                     <property name="hexpand">1</property>
                     <property name="vexpand">1</property>
                     <property name="activate-on-single-click">0</property>
-                    <signal name="row-activated" handler="on_list_row_activated" swapped="no" />
-                    <signal name="row-selected" handler="on_list_row_selected" swapped="no" />
+                    <signal name="row-activated" handler="on_list_row_activated" swapped="no"/>
+                    <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
                   </object>
                 </property>
               </object>
@@ -115,4 +115,3 @@
     </property>
   </template>
 </interface>
-

@@ -33,7 +33,7 @@
               <object class="GtkListBox" id="list">
                 <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
                 <style>
-                    <class name="rich-list"/>
+                  <class name="rich-list"/>
                 </style>
               </object>
             </property>
@@ -46,4 +46,3 @@
     </style>
   </template>
 </interface>
-

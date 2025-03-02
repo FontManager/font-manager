@@ -14,4 +14,3 @@
     <signal name="icon-press" handler="on_icon_press_event" swapped="no"/>
   </template>
 </interface>
-

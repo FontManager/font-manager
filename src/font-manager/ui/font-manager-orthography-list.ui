@@ -13,14 +13,14 @@
         <property name="margin_top">9</property>
         <property name="margin_bottom">9</property>
         <attributes>
-          <attribute name="weight" value="bold"></attribute>
-          <attribute name="scale" value="1.1"></attribute>
+          <attribute name="weight" value="bold"/>
+          <attribute name="scale" value="1.1"/>
         </attributes>
       </object>
     </child>
     <child>
       <object class="GtkSeparator">
-          <property name="opacity">0.5</property>
+        <property name="opacity">0.5</property>
       </object>
     </child>
     <child>
@@ -40,7 +40,7 @@
     </child>
     <child>
       <object class="GtkSeparator">
-          <property name="opacity">0.75</property>
+        <property name="opacity">0.75</property>
       </object>
     </child>
     <child>
@@ -67,9 +67,7 @@
       <class name="view"/>
     </style>
     <style>
-        <class name="rich-list"/>
+      <class name="rich-list"/>
     </style>
   </template>
 </interface>
-
-
