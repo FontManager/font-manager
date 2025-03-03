@@ -94,6 +94,9 @@ namespace FontManager.FontViewer {
             });
             populate_preference_list();
             title_widget.notify["selected"].connect(on_variation_selected);
+            var popup = (Gtk.Popover) title_widget.get_last_child();
+            popup.set_halign(Gtk.Align.CENTER);
+            popup.set_has_arrow(true);
 #if HAVE_ADWAITA
             map.connect_after(() => {
                 use_adwaita_stylesheet.notify["active"].connect(() => { on_restart_required(); });
