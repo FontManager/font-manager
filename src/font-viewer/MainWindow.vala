@@ -32,7 +32,6 @@ namespace FontManager.FontViewer {
         [GtkChild] unowned Gtk.Button action_button;
         [GtkChild] unowned Gtk.ToggleButton preference_toggle;
         [GtkChild] unowned Gtk.ListBox preference_list;
-        [GtkChild] unowned Gtk.HeaderBar headerbar;
         [GtkChild] unowned PreviewPane preview_pane;
 
         FileStatus file_status;
@@ -114,9 +113,12 @@ namespace FontManager.FontViewer {
             }
             installed_files = list_available_font_files();
             File file = File.new_for_commandline_arg(uri);
+            string path = file.get_path();
+            add_application_font(path);
+            clear_pango_cache(get_pango_context());
             Json.Object? source = null;
             try {
-                source = get_attributes_from_filepath(file.get_path());
+                source = get_attributes_from_filepath(path);
             } catch (Error e) {
                 critical(e.message);
                 return;
@@ -148,12 +150,8 @@ namespace FontManager.FontViewer {
         public void update () {
             if (preview_pane.font != null) {
                 current_file = File.new_for_path(preview_pane.font.filepath);
-                string fam = Markup.escape_text(preview_pane.font.family);
-                string style = Markup.escape_text(preview_pane.font.style);
-                headerbar.set_tooltip_markup(@"<big><b>$fam</b> </big><b>$style</b>");
             } else {
                 current_file = null;
-                headerbar.set_tooltip_markup(null);
                 var model = new Gtk.StringList(null);
                 model.append(_("Font Viewer"));
                 title_widget.set_model(model);

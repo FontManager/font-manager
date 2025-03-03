@@ -66,6 +66,7 @@
             <child>
               <object class="GtkDropDown" id="title_widget">
                 <property name="css-classes">title</property>
+                <property name="opacity">0.75</property>
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
