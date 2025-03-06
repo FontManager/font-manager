@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-21 19:53-0500\n"
+"POT-Creation-Date: 2025-02-26 00:40-0500\n"
 "PO-Revision-Date: 2025-02-22 15:42+0000\n"
 "Last-Translator: Cassian <prismarine@epicraft.top>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -96,7 +96,7 @@ msgstr "Graphics;Viewer;GNOME;GTK;Publishing;图形;查看;出版;"
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
 #: src/font-viewer/Application.vala:132
-#: src/font-viewer/font-viewer-main-window.ui:29
+#: src/font-viewer/font-viewer-main-window.ui:30
 msgid "Font Viewer"
 msgstr "字体查看器"
 
@@ -281,7 +281,7 @@ msgstr "VBGR"
 #: lib/fontconfig/font-manager-fontconfig.c:841
 #: lib/fontconfig/font-manager-fontconfig.c:886
 #: lib/fontconfig/font-manager-fontconfig.c:929
-#: src/font-manager/Controls.vala:189
+#: src/font-manager/Controls.vala:133
 #: src/font-manager/preferences/Desktop.vala:234
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
@@ -393,7 +393,7 @@ msgid "Undo changes"
 msgstr "撤销更改"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:122
+#: src/font-manager/ui/font-manager-browse-preview.ui:126
 msgid "Preview"
 msgstr "预览"
 
@@ -403,7 +403,7 @@ msgstr "字号瀑布"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:132
+#: src/font-manager/ui/font-manager-browse-preview.ui:136
 msgid "Characters"
 msgstr "字符"
 
@@ -417,12 +417,12 @@ msgstr "属性"
 msgid "License"
 msgstr "许可协议"
 
-#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "常规"
 
-#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "正常"
 
@@ -633,6 +633,62 @@ msgstr "间隔符，段分隔"
 msgid "Separator, Space"
 msgstr "间隔符，非零宽空格字符"
 
+#: src/common/WaterfallSettings.vala:37
+msgid "Up to 48 points (Linear Scaling)"
+msgstr "线性增大至 48 点"
+
+#: src/common/WaterfallSettings.vala:39
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr "以 1.1 为公比，等比增大至 72 点"
+
+#: src/common/WaterfallSettings.vala:41
+msgid "Up to 96 points (Linear Scaling)"
+msgstr "线性增大至 96 点"
+
+#: src/common/WaterfallSettings.vala:43
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr "以 1.1 为公比，等比增大至 96 点"
+
+#: src/common/WaterfallSettings.vala:45
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr "以 1.2 为公比，等比增大至 120 点"
+
+#: src/common/WaterfallSettings.vala:47
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr "以 1.3 为公比，等比增大至 144 点"
+
+#: src/common/WaterfallSettings.vala:49
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr "以 1.4 为公比，等比增大至 192 点"
+
+#: src/common/WaterfallSettings.vala:51
+msgid "Custom Size Settings"
+msgstr "自定义尺寸设置"
+
+#: src/common/WaterfallSettings.vala:197
+msgid "Waterfall Preview Size Settings"
+msgstr "预览瀑布字号的设置"
+
+#: src/common/WaterfallSettings.vala:201
+msgid "Higher values may adversely affect performance"
+msgstr "调高可能使性能变差"
+
+#: src/common/WaterfallSettings.vala:204
+msgid "Minimum Waterfall Preview Point Size"
+msgstr "预览瀑布的最小字号"
+
+#: src/common/WaterfallSettings.vala:206
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr "预览瀑布字号的公比"
+
+#: src/common/WaterfallSettings.vala:208
+msgid "Maximum Waterfall Preview Point Size"
+msgstr "预览瀑布的最大字号"
+
+#: src/common/WaterfallSettings.vala:236
+msgid "Show line size"
+msgstr "显示行大小"
+
 #: src/font-manager/Application.vala:5
 #, fuzzy
 msgid ""
@@ -674,7 +730,7 @@ msgstr "安装字体中……"
 
 # msgstr "手写体(Script)"
 #: src/font-manager/Browse.vala:381
-#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#: src/font-manager/ui/font-manager-browse-preview.ui:175
 msgid "Active"
 msgstr "活动"
 
@@ -810,12 +866,12 @@ msgstr "从选中的字体集创建归档"
 msgid "This may take some time for large collections…"
 msgstr "对大的字体集而言可能需要一段时间…"
 
-#: src/font-manager/Compare.vala:370
+#: src/font-manager/Compare.vala:325
 msgid "Saved Comparison"
 msgstr "保存比较"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:406
+#: src/font-manager/Compare.vala:361
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -823,74 +879,64 @@ msgstr ""
 "通过单击 + 按钮\n"
 "保存当前比较"
 
-#: src/font-manager/Controls.vala:100
-#: src/font-manager/ui/font-manager-preview-colors.ui:8
-msgid "Select background color"
-msgstr "选择背景颜色"
-
-#: src/font-manager/Controls.vala:103
-#: src/font-manager/ui/font-manager-preview-colors.ui:16
-msgid "Select text color"
-msgstr "选择文本颜色"
-
-#: src/font-manager/Controls.vala:136
+#: src/font-manager/Controls.vala:80
 msgid "Keyboard Shortcuts"
 msgstr "键盘快捷键"
 
-#: src/font-manager/Controls.vala:137 src/font-manager/gtk/help-overlay.ui:16
+#: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
 msgstr "帮助"
 
 # Not translate very good, just for use.
-#: src/font-manager/Controls.vala:138
+#: src/font-manager/Controls.vala:82
 msgid "About Font Manager"
 msgstr "关于字体管理器"
 
-#: src/font-manager/Controls.vala:144
+#: src/font-manager/Controls.vala:88
 msgid "Preferences"
 msgstr "首选项"
 
-#: src/font-manager/Controls.vala:148
+#: src/font-manager/Controls.vala:92
 msgid "Import"
 msgstr "导入"
 
-#: src/font-manager/Controls.vala:149
+#: src/font-manager/Controls.vala:93
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
 msgstr "导出"
 
-#: src/font-manager/Controls.vala:152
+#: src/font-manager/Controls.vala:96
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
 msgstr "用户数据"
 
-#: src/font-manager/Controls.vala:185
+#: src/font-manager/Controls.vala:129
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
 msgstr "名称"
 
-#: src/font-manager/Controls.vala:187
+#: src/font-manager/Controls.vala:131
 msgid "Size"
 msgstr "大小"
 
-#: src/font-manager/Controls.vala:252
+#: src/font-manager/Controls.vala:196
 msgid "Grid View"
 msgstr "网格视图"
 
-#: src/font-manager/Controls.vala:253
+#: src/font-manager/Controls.vala:197
 msgid "List View"
 msgstr "列表视图"
 
-#: src/font-manager/Controls.vala:339
+#: src/font-manager/Controls.vala:283
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: src/font-manager/Controls.vala:340
+#: src/font-manager/Controls.vala:284
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: src/font-manager/Controls.vala:356
+#: src/font-manager/Controls.vala:300
 msgid "Back"
 msgstr "回退"
 
@@ -991,12 +1037,12 @@ msgid_plural "%i Variations"
 msgstr[0] "%i 种变体"
 
 #: src/font-manager/FontList.vala:281
-#: src/font-manager/web/google/FontList.vala:277
+#: src/font-manager/web/google/FontList.vala:279
 msgid "Collapse all"
 msgstr "全部折叠"
 
 #: src/font-manager/FontList.vala:281
-#: src/font-manager/web/google/FontList.vala:277
+#: src/font-manager/web/google/FontList.vala:279
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
@@ -1943,108 +1989,59 @@ msgstr ""
 msgid "Flat"
 msgstr "扁平"
 
-#: src/font-manager/preferences/UserInterface.vala:70
-msgid "Up to 48 points (Linear Scaling)"
-msgstr "线性增大至 48 点"
-
-#: src/font-manager/preferences/UserInterface.vala:72
-msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr "以 1.1 为公比，等比增大至 72 点"
-
-#: src/font-manager/preferences/UserInterface.vala:74
-msgid "Up to 96 points (Linear Scaling)"
-msgstr "线性增大至 96 点"
-
-#: src/font-manager/preferences/UserInterface.vala:76
-msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr "以 1.1 为公比，等比增大至 96 点"
-
-#: src/font-manager/preferences/UserInterface.vala:78
-msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr "以 1.2 为公比，等比增大至 120 点"
-
 #: src/font-manager/preferences/UserInterface.vala:80
-msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr "以 1.3 为公比，等比增大至 144 点"
-
-#: src/font-manager/preferences/UserInterface.vala:82
-msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr "以 1.4 为公比，等比增大至 192 点"
-
-#: src/font-manager/preferences/UserInterface.vala:84
-msgid "Custom Size Settings"
-msgstr "自定义尺寸设置"
-
-#: src/font-manager/preferences/UserInterface.vala:230
-msgid "Waterfall Preview Size Settings"
-msgstr "预览瀑布字号的设置"
-
-#: src/font-manager/preferences/UserInterface.vala:234
-msgid "Higher values may adversely affect performance"
-msgstr "调高可能使性能变差"
-
-#: src/font-manager/preferences/UserInterface.vala:237
-msgid "Minimum Waterfall Preview Point Size"
-msgstr "预览瀑布的最小字号"
-
-#: src/font-manager/preferences/UserInterface.vala:239
-msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "预览瀑布字号的公比"
-
-#: src/font-manager/preferences/UserInterface.vala:241
-msgid "Maximum Waterfall Preview Point Size"
-msgstr "预览瀑布的最大字号"
-
-#: src/font-manager/preferences/UserInterface.vala:269
-msgid "Show line size"
-msgstr "显示行大小"
-
-#: src/font-manager/preferences/UserInterface.vala:308
+#: src/font-viewer/MainWindow.vala:208
 msgid "Selected setting requires restart to apply"
 msgstr "选中的设置需要重新启动来应用"
 
-#: src/font-manager/preferences/UserInterface.vala:309
+#: src/font-manager/preferences/UserInterface.vala:81
+#: src/font-viewer/MainWindow.vala:209
 msgid "Changes will take effect next time the application is started"
 msgstr "更改将在下次启动应用程序时生效"
 
-#: src/font-manager/preferences/UserInterface.vala:322
+#: src/font-manager/preferences/UserInterface.vala:94
 msgid "Wide Layout"
 msgstr "宽幅布局"
 
-#: src/font-manager/preferences/UserInterface.vala:322
+#: src/font-manager/preferences/UserInterface.vala:94
 msgid "Use three column layout"
 msgstr "使用三栏布局"
 
-#: src/font-manager/preferences/UserInterface.vala:325
+#: src/font-manager/preferences/UserInterface.vala:97
 msgid "Only When Maximized"
 msgstr "只有在最大化时"
 
-#: src/font-manager/preferences/UserInterface.vala:327
+#: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
 msgstr "启用动画"
 
-#: src/font-manager/preferences/UserInterface.vala:328
+#. The added margins here are due to PreviewColors widget alignment issues
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:224
 msgid "Prefer Dark Theme"
 msgstr "偏爱黑暗主题"
 
-#: src/font-manager/preferences/UserInterface.vala:330
+#: src/font-manager/preferences/UserInterface.vala:102
+#: src/font-viewer/MainWindow.vala:229
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:334
+#: src/font-manager/preferences/UserInterface.vala:106
 msgid "Titlebar Button Style"
 msgstr "标题栏按钮样式"
 
-#: src/font-manager/preferences/UserInterface.vala:335
+#: src/font-manager/preferences/UserInterface.vala:107
 msgid "Display line size in Waterfall Preview"
 msgstr "在预览瀑布里显示字号"
 
-#: src/font-manager/preferences/UserInterface.vala:340
+#: src/font-manager/preferences/UserInterface.vala:112
+#: src/font-viewer/MainWindow.vala:243
 #, fuzzy
 msgid "Waterfall Line Spacing"
 msgstr "预览瀑布字号的设置"
 
-#: src/font-manager/preferences/UserInterface.vala:342
+#: src/font-manager/preferences/UserInterface.vala:114
+#: src/font-viewer/MainWindow.vala:244
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -2470,7 +2467,7 @@ msgstr "没有可用的%s示例"
 msgid "Please file an issue requesting an update to available samples."
 msgstr "请创建问题以请求更新可用示例。"
 
-#: src/font-manager/web/google/PreviewPage.vala:392
+#: src/font-manager/web/google/PreviewPage.vala:383
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2492,21 +2489,21 @@ msgstr "特粗(ExtraBold)"
 msgid "Black"
 msgstr "黑"
 
-#: src/font-viewer/MainWindow.vala:86
-#: src/font-viewer/font-viewer-main-window.ui:47
+#: src/font-viewer/MainWindow.vala:100
+#: src/font-viewer/font-viewer-main-window.ui:70
 msgid "No file selected"
 msgstr "未选择文件"
 
-#: src/font-viewer/MainWindow.vala:87
-#: src/font-viewer/font-viewer-main-window.ui:55
+#: src/font-viewer/MainWindow.vala:101
+#: src/font-viewer/font-viewer-main-window.ui:78
 msgid "Or unsupported filetype."
 msgstr "或不支持该文件类型。"
 
-#: src/font-viewer/MainWindow.vala:136
+#: src/font-viewer/MainWindow.vala:150
 msgid "System Font"
 msgstr "系统字体"
 
-#: src/font-viewer/MainWindow.vala:138
+#: src/font-viewer/MainWindow.vala:152
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2517,26 +2514,40 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:141
+#: src/font-viewer/MainWindow.vala:155
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:148
+#: src/font-viewer/MainWindow.vala:157 src/font-viewer/MainWindow.vala:162
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:146
+#: src/font-viewer/MainWindow.vala:160
 msgid "Update Font"
 msgstr "更新字体"
 
-#: src/font-viewer/MainWindow.vala:151
+#: src/font-viewer/MainWindow.vala:165
 msgid "Remove Font"
 msgstr "删除字体"
 
-#: src/font-viewer/MainWindow.vala:155
-#: src/font-viewer/font-viewer-main-window.ui:74
+#: src/font-viewer/MainWindow.vala:169
+#: src/font-viewer/font-viewer-main-window.ui:104
 msgid "Install Font"
 msgstr "安装字体"
+
+#: src/font-viewer/MainWindow.vala:236
+msgid "Preview Area Colors"
+msgstr ""
+
+#: src/common/ui/font-manager-preview-colors.ui:9
+#: src/common/ui/font-manager-preview-colors.ui:15
+msgid "Select background color"
+msgstr "选择背景颜色"
+
+#: src/common/ui/font-manager-preview-colors.ui:23
+#: src/common/ui/font-manager-preview-colors.ui:29
+msgid "Select text color"
+msgstr "选择文本颜色"
 
 #: src/font-manager/gtk/help-overlay.ui:11
 msgid "General"
@@ -2621,7 +2632,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:160
+#: src/font-manager/ui/font-manager-browse-preview.ui:164
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2807,11 +2818,11 @@ msgstr ""
 msgid "Variations"
 msgstr "变体"
 
-#: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:31
 msgid "Preview font files before installing them."
 msgstr "安装前预览字体文件。"
 
-#: src/font-viewer/font-viewer-main-window.ui:31
+#: src/font-viewer/font-viewer-main-window.ui:32
 msgid "To preview a font simply drag it onto this area."
 msgstr "要预览字体，只需将其拖动到此区域。"
 

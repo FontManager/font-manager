@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-21 19:53-0500\n"
+"POT-Creation-Date: 2025-02-26 00:40-0500\n"
 "PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
@@ -71,7 +71,7 @@ msgstr "Grafică; Vizualizator; GNOME; GTK; Editare;"
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
 #: src/font-viewer/Application.vala:132
-#: src/font-viewer/font-viewer-main-window.ui:29
+#: src/font-viewer/font-viewer-main-window.ui:30
 msgid "Font Viewer"
 msgstr "Vizualizator fonturi"
 
@@ -260,7 +260,7 @@ msgstr "VBGR"
 #: lib/fontconfig/font-manager-fontconfig.c:841
 #: lib/fontconfig/font-manager-fontconfig.c:886
 #: lib/fontconfig/font-manager-fontconfig.c:929
-#: src/font-manager/Controls.vala:189
+#: src/font-manager/Controls.vala:133
 #: src/font-manager/preferences/Desktop.vala:234
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
@@ -372,7 +372,7 @@ msgid "Undo changes"
 msgstr "Anulează modificările"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:122
+#: src/font-manager/ui/font-manager-browse-preview.ui:126
 msgid "Preview"
 msgstr "Previzualizare"
 
@@ -382,7 +382,7 @@ msgstr "Cascadă"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:132
+#: src/font-manager/ui/font-manager-browse-preview.ui:136
 msgid "Characters"
 msgstr "Caractere"
 
@@ -396,12 +396,12 @@ msgstr "Proprietăţi"
 msgid "License"
 msgstr "Licență"
 
-#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Regular"
 
-#: lib/gtk/font-manager-preview-pane.c:451 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normal"
 
@@ -612,6 +612,66 @@ msgstr "Separator, Paragraf"
 msgid "Separator, Space"
 msgstr "Separator, Spațiu"
 
+#: src/common/WaterfallSettings.vala:37
+msgid "Up to 48 points (Linear Scaling)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:39
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:41
+msgid "Up to 96 points (Linear Scaling)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:43
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:45
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:47
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:49
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:51
+#, fuzzy
+#| msgid "Custom Actions"
+msgid "Custom Size Settings"
+msgstr "Acțiuni personalizate"
+
+#: src/common/WaterfallSettings.vala:197
+msgid "Waterfall Preview Size Settings"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:201
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:204
+msgid "Minimum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:206
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:208
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:236
+#, fuzzy
+#| msgid "Show in Folder"
+msgid "Show line size"
+msgstr "Arată în dosar"
+
 #: src/font-manager/Application.vala:5
 #, fuzzy
 #| msgid ""
@@ -673,7 +733,7 @@ msgid "Installing Font Files…"
 msgstr "Instalați Font"
 
 #: src/font-manager/Browse.vala:381
-#: src/font-manager/ui/font-manager-browse-preview.ui:171
+#: src/font-manager/ui/font-manager-browse-preview.ui:175
 #, fuzzy
 #| msgid "Decorative"
 msgid "Active"
@@ -811,12 +871,12 @@ msgstr "Eliminare colecția selectată"
 msgid "This may take some time for large collections…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:370
+#: src/font-manager/Compare.vala:325
 msgid "Saved Comparison"
 msgstr "Comparație salvată"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:406
+#: src/font-manager/Compare.vala:361
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -824,75 +884,65 @@ msgstr ""
 "Salvați comparația actuală\n"
 "făcând clic pe butonul +"
 
-#: src/font-manager/Controls.vala:100
-#: src/font-manager/ui/font-manager-preview-colors.ui:8
-msgid "Select background color"
-msgstr "Selectați culoarea de fundal"
-
-#: src/font-manager/Controls.vala:103
-#: src/font-manager/ui/font-manager-preview-colors.ui:16
-msgid "Select text color"
-msgstr "Selectați culoarea textului"
-
-#: src/font-manager/Controls.vala:136
+#: src/font-manager/Controls.vala:80
 msgid "Keyboard Shortcuts"
 msgstr "Comenzi rapide de la tastatură"
 
-#: src/font-manager/Controls.vala:137 src/font-manager/gtk/help-overlay.ui:16
+#: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
 msgstr "Ajutor"
 
-#: src/font-manager/Controls.vala:138
+#: src/font-manager/Controls.vala:82
 #, fuzzy
 #| msgid "Font Manager"
 msgid "About Font Manager"
 msgstr "Manager de fonturi"
 
-#: src/font-manager/Controls.vala:144
+#: src/font-manager/Controls.vala:88
 msgid "Preferences"
 msgstr "Preferințe"
 
-#: src/font-manager/Controls.vala:148
+#: src/font-manager/Controls.vala:92
 msgid "Import"
 msgstr "Importați"
 
-#: src/font-manager/Controls.vala:149
+#: src/font-manager/Controls.vala:93
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
 msgstr "Exportează"
 
-#: src/font-manager/Controls.vala:152
+#: src/font-manager/Controls.vala:96
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
 msgstr "Datele utilizatorului"
 
-#: src/font-manager/Controls.vala:185
+#: src/font-manager/Controls.vala:129
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
 msgstr "Denumire"
 
-#: src/font-manager/Controls.vala:187
+#: src/font-manager/Controls.vala:131
 msgid "Size"
 msgstr ""
 
-#: src/font-manager/Controls.vala:252
+#: src/font-manager/Controls.vala:196
 msgid "Grid View"
 msgstr "Vizualizare grilă"
 
-#: src/font-manager/Controls.vala:253
+#: src/font-manager/Controls.vala:197
 msgid "List View"
 msgstr "Vizualizare listă"
 
-#: src/font-manager/Controls.vala:339
+#: src/font-manager/Controls.vala:283
 msgid "Add Fonts"
 msgstr "Adăugare fonturi"
 
-#: src/font-manager/Controls.vala:340
+#: src/font-manager/Controls.vala:284
 msgid "Remove Fonts"
 msgstr "Eliminare fonturi"
 
-#: src/font-manager/Controls.vala:356
+#: src/font-manager/Controls.vala:300
 msgid "Back"
 msgstr "Înapoi"
 
@@ -1007,12 +1057,12 @@ msgstr[1] "%i Variaţii "
 msgstr[2] "%i Variaţii "
 
 #: src/font-manager/FontList.vala:281
-#: src/font-manager/web/google/FontList.vala:277
+#: src/font-manager/web/google/FontList.vala:279
 msgid "Collapse all"
 msgstr "Restrânge tot"
 
 #: src/font-manager/FontList.vala:281
-#: src/font-manager/web/google/FontList.vala:277
+#: src/font-manager/web/google/FontList.vala:279
 #: src/font-manager/ui/font-manager-font-list-controls.ui:21
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
@@ -1998,71 +2048,13 @@ msgstr ""
 msgid "Flat"
 msgstr "Plat"
 
-#: src/font-manager/preferences/UserInterface.vala:70
-msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:72
-msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:74
-msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:76
-msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:78
-msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
-
 #: src/font-manager/preferences/UserInterface.vala:80
-msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:82
-msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:84
-#, fuzzy
-#| msgid "Custom Actions"
-msgid "Custom Size Settings"
-msgstr "Acțiuni personalizate"
-
-#: src/font-manager/preferences/UserInterface.vala:230
-msgid "Waterfall Preview Size Settings"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:234
-msgid "Higher values may adversely affect performance"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:237
-msgid "Minimum Waterfall Preview Point Size"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:239
-msgid "Waterfall Preview Point Size Common Ratio"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:241
-msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:269
-#, fuzzy
-#| msgid "Show in Folder"
-msgid "Show line size"
-msgstr "Arată în dosar"
-
-#: src/font-manager/preferences/UserInterface.vala:308
+#: src/font-viewer/MainWindow.vala:208
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:309
+#: src/font-manager/preferences/UserInterface.vala:81
+#: src/font-viewer/MainWindow.vala:209
 #, fuzzy
 #| msgid ""
 #| "CSD enabled. Change will take effect next time the application is started."
@@ -2071,43 +2063,48 @@ msgstr ""
 "CSD activat. Modificarea va intra în vigoare la următoarea pornire a "
 "aplicației."
 
-#: src/font-manager/preferences/UserInterface.vala:322
+#: src/font-manager/preferences/UserInterface.vala:94
 msgid "Wide Layout"
 msgstr "Aspect lat"
 
-#: src/font-manager/preferences/UserInterface.vala:322
+#: src/font-manager/preferences/UserInterface.vala:94
 msgid "Use three column layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:325
+#: src/font-manager/preferences/UserInterface.vala:97
 msgid "Only When Maximized"
 msgstr "Numai când este maximizat"
 
-#: src/font-manager/preferences/UserInterface.vala:327
+#: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
 msgstr "Activare animații"
 
-#: src/font-manager/preferences/UserInterface.vala:328
+#. The added margins here are due to PreviewColors widget alignment issues
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:224
 msgid "Prefer Dark Theme"
 msgstr "Preferă Tema Întunecată"
 
-#: src/font-manager/preferences/UserInterface.vala:330
+#: src/font-manager/preferences/UserInterface.vala:102
+#: src/font-viewer/MainWindow.vala:229
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:334
+#: src/font-manager/preferences/UserInterface.vala:106
 msgid "Titlebar Button Style"
 msgstr "Stil butoane bară titlu"
 
-#: src/font-manager/preferences/UserInterface.vala:335
+#: src/font-manager/preferences/UserInterface.vala:107
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:340
+#: src/font-manager/preferences/UserInterface.vala:112
+#: src/font-viewer/MainWindow.vala:243
 msgid "Waterfall Line Spacing"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:342
+#: src/font-manager/preferences/UserInterface.vala:114
+#: src/font-viewer/MainWindow.vala:244
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -2575,7 +2572,7 @@ msgstr ""
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPage.vala:392
+#: src/font-manager/web/google/PreviewPage.vala:383
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2599,23 +2596,23 @@ msgstr "ExtraBold"
 msgid "Black"
 msgstr "Negru"
 
-#: src/font-viewer/MainWindow.vala:86
-#: src/font-viewer/font-viewer-main-window.ui:47
+#: src/font-viewer/MainWindow.vala:100
+#: src/font-viewer/font-viewer-main-window.ui:70
 msgid "No file selected"
 msgstr "Nici un fișier selectat"
 
-#: src/font-viewer/MainWindow.vala:87
-#: src/font-viewer/font-viewer-main-window.ui:55
+#: src/font-viewer/MainWindow.vala:101
+#: src/font-viewer/font-viewer-main-window.ui:78
 msgid "Or unsupported filetype."
 msgstr "Sau tip de fișier neacceptat."
 
-#: src/font-viewer/MainWindow.vala:136
+#: src/font-viewer/MainWindow.vala:150
 #, fuzzy
 #| msgid "System"
 msgid "System Font"
 msgstr "Sistem"
 
-#: src/font-viewer/MainWindow.vala:138
+#: src/font-viewer/MainWindow.vala:152
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2626,26 +2623,40 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:141
+#: src/font-viewer/MainWindow.vala:155
 msgid "Newer version already installed"
 msgstr "Versiune mai nouă deja instalată"
 
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:148
+#: src/font-viewer/MainWindow.vala:157 src/font-viewer/MainWindow.vala:162
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:146
+#: src/font-viewer/MainWindow.vala:160
 msgid "Update Font"
 msgstr "Actualizare font"
 
-#: src/font-viewer/MainWindow.vala:151
+#: src/font-viewer/MainWindow.vala:165
 msgid "Remove Font"
 msgstr "Eliminați fontul"
 
-#: src/font-viewer/MainWindow.vala:155
-#: src/font-viewer/font-viewer-main-window.ui:74
+#: src/font-viewer/MainWindow.vala:169
+#: src/font-viewer/font-viewer-main-window.ui:104
 msgid "Install Font"
 msgstr "Instalați Font"
+
+#: src/font-viewer/MainWindow.vala:236
+msgid "Preview Area Colors"
+msgstr ""
+
+#: src/common/ui/font-manager-preview-colors.ui:9
+#: src/common/ui/font-manager-preview-colors.ui:15
+msgid "Select background color"
+msgstr "Selectați culoarea de fundal"
+
+#: src/common/ui/font-manager-preview-colors.ui:23
+#: src/common/ui/font-manager-preview-colors.ui:29
+msgid "Select text color"
+msgstr "Selectați culoarea textului"
 
 #: src/font-manager/gtk/help-overlay.ui:11
 msgid "General"
@@ -2734,7 +2745,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:160
+#: src/font-manager/ui/font-manager-browse-preview.ui:164
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2925,11 +2936,11 @@ msgstr ""
 msgid "Variations"
 msgstr "Variaţii"
 
-#: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:31
 msgid "Preview font files before installing them."
 msgstr "Previzualizați fișierele de fonturi înainte de a le instala."
 
-#: src/font-viewer/font-viewer-main-window.ui:31
+#: src/font-viewer/font-viewer-main-window.ui:32
 msgid "To preview a font simply drag it onto this area."
 msgstr "Pentru a previzualiza un font pur și simplu trageți-l în această zonă."
 
