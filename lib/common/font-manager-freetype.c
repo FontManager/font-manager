@@ -239,6 +239,50 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
     if (!json_object_has_member(json_obj, "style"))
         json_object_set_string_member(json_obj, "style", (gchar *) face->style_name);
 
+    gboolean variable = FT_HAS_MULTIPLE_MASTERS(face);
+    json_object_set_boolean_member(json_obj, "variable", variable);
+    g_autoptr(GString) str = g_string_new("");
+    if (variable) {
+        FT_MM_Var *mmvar = NULL;
+        ft_error = FT_Get_MM_Var(face, &mmvar);
+        if (G_UNLIKELY(ft_error)) {
+            if (mmvar)
+                FT_Done_MM_Var(library, mmvar);
+        } else {
+            gboolean weight = FALSE;
+            gboolean width = FALSE;
+            gboolean opsize = FALSE;
+            for (unsigned int i = 0; i < mmvar->num_axis; i++) {
+                switch (mmvar->axis[i].tag) {
+                    case FT_MAKE_TAG('w', 'g', 'h', 't'):
+                        weight = TRUE;
+                        break;
+                    case FT_MAKE_TAG('w', 'd', 't', 'h'):
+                        width = TRUE;
+                        break;
+                    case FT_MAKE_TAG('o', 'p', 's', 'z'):
+                        opsize = TRUE;
+                        break;
+                }
+            }
+            g_string_append(str, "[");
+            if (weight)
+                g_string_append(str, "wght");
+            if (width) {
+                if (weight)
+                    g_string_append(str, ",");
+                g_string_append(str, "wdth");
+            }
+            if (opsize) {
+                if (weight || width)
+                    g_string_append(str, ",");
+                g_string_append(str, "opsz");
+            }
+            g_string_append(str, "]");
+        }
+    }
+    json_object_set_string_member(json_obj, "vars", str->str);
+
     if (!json_object_has_member(json_obj, "version"))
         json_object_set_string_member(json_obj, "version", "1.0");
 
@@ -262,7 +306,14 @@ font_manager_get_suggested_filename (JsonObject *metadata)
 {
     const gchar *family = json_object_get_string_member(metadata, "family");
     const gchar *style = json_object_get_string_member(metadata, "style");
-    g_autofree gchar *name = g_strdup_printf("%s %s", family, style);
+    gboolean variable = json_object_get_boolean_member(metadata, "variable");
+    g_autofree gchar *name = NULL;
+    if (variable) {
+        const gchar *vars = json_object_get_string_member(metadata, "vars");
+        name = g_strdup_printf("%s %s VF %s", family, style, vars);
+    } else {
+        name = g_strdup_printf("%s %s", family, style);
+    }
     return font_manager_to_filename(name);
 }
 

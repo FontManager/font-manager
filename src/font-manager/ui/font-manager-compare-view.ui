@@ -9,7 +9,7 @@
       <object class="GtkBox" id="controls">
         <property name="spacing">2</property>
         <style>
-          <class name="background" />
+          <class name="background"/>
         </style>
         <child>
           <object class="GtkButton" id="add_button">
@@ -22,7 +22,7 @@
             <property name="valign">center</property>
             <property name="has-frame">False</property>
             <property name="icon_name">list-add-symbolic</property>
-            <signal name="clicked" handler="on_add_button_clicked" swapped="no" />
+            <signal name="clicked" handler="on_add_button_clicked" swapped="no"/>
           </object>
         </child>
         <child>
@@ -36,7 +36,7 @@
             <property name="has-frame">False</property>
             <property name="opacity">0.45</property>
             <property name="icon_name">list-remove-symbolic</property>
-            <signal name="clicked" handler="on_remove_button_clicked" swapped="no" />
+            <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
           </object>
         </child>
         <child>
@@ -64,7 +64,7 @@
             <property name="margin-top">2</property>
             <property name="margin-bottom">2</property>
             <property name="hexpand">1</property>
-            <signal name="changed" handler="on_entry_changed" swapped="no" />
+            <signal name="changed" handler="on_entry_changed" swapped="no"/>
           </object>
         </child>
         <child>
@@ -84,10 +84,12 @@
       <object class="GtkScrolledWindow">
         <property name="vexpand">1</property>
         <property name="focusable">1</property>
+        <property name="css-classes">FontManagerFontPreviewArea</property>
         <property name="child">
           <object class="GtkViewport">
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
+            <property name="css-classes">FontManagerFontPreviewArea</property>
             <property name="child">
               <object class="GtkListBox" id="list">
                 <property name="margin-start">6</property>
@@ -96,7 +98,8 @@
                 <property name="margin-bottom">6</property>
                 <property name="hexpand">1</property>
                 <property name="vexpand">1</property>
-                <signal name="row-selected" handler="on_list_row_selected" swapped="no" />
+                <property name="css-classes">FontManagerFontPreviewArea</property>
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
               </object>
             </property>
           </object>
@@ -110,8 +113,7 @@
       </object>
     </child>
     <style>
-      <class name="view" />
+      <class name="view"/>
     </style>
   </template>
 </interface>
-

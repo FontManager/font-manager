@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
   <template class="FontManagerUserDataExportDialog" parent="GtkWindow">
@@ -30,4 +30,3 @@
     </property>
   </template>
 </interface>
-

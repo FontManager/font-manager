@@ -208,13 +208,17 @@ namespace FontManager.GoogleFonts {
 
         public PreviewPage () {
             webview = create_webview();
+            webview.add_css_class("FontManagerFontPreviewArea");
+            webview.get_first_child().add_css_class("FontManagerFontPreviewArea");
             textview = new Gtk.TextView() { monospace = true };
+            textview.add_css_class("FontManagerFontPreviewArea");
             widget_set_margin(textview, 64);
             preview_controls = new PreviewControls();
             controls_revealer = new Gtk.Revealer();
             controls_revealer.set_child(preview_controls);
             append(controls_revealer);
             preview_stack = new Gtk.Stack();
+            preview_stack.add_css_class("FontManagerFontPreviewArea");
             preview_stack.add_named(webview, "WebView");
             preview_stack.add_named(textview, "TextView");
             append(preview_stack);
@@ -227,7 +231,7 @@ namespace FontManager.GoogleFonts {
             samples = new SampleList();
             sample_button.set_popover(samples);
             set_preview_page_mode_menu_and_actions(this, menu_button, (Callback) on_mode_action_activated);
-            preview_colors.color_set.connect(() => { reload_preview(); });
+            preview_colors.style_updated.connect(() => { reload_preview(); });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("preview-size", fontscale, "value", flags);
             bind_property("preview-text", entry, "placeholder-text", flags);
@@ -285,6 +289,7 @@ namespace FontManager.GoogleFonts {
         public void restore_state (GLib.Settings? settings) {
             if (settings == null)
                 return;
+            preview_colors.restore_state(settings);
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("preview-font-size", this, "preview-size", flags);
             settings.bind("preview-mode", this, "preview-mode", flags);
@@ -294,20 +299,6 @@ namespace FontManager.GoogleFonts {
                     update_menu_button();
             });
             settings.bind("google-fonts-preview-text", this, "preview-text", flags);
-            settings.bind_with_mapping("google-fonts-foreground-color",
-                                       preview_colors,
-                                       "foreground-color",
-                                       flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
-                                       null, null);
-            settings.bind_with_mapping("google-fonts-background-color",
-                                       preview_colors,
-                                       "background-color",
-                                       flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
-                                       null, null);
             return;
         }
 

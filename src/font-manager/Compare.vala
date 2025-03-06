@@ -20,14 +20,6 @@
 
 namespace FontManager {
 
-    internal Pango.Color gdk_rgba_to_pango_color (Gdk.RGBA rgba) {
-        var color = Pango.Color();
-        color.red = (uint16) (rgba.red * 65535);
-        color.green = (uint16) (rgba.green * 65535);
-        color.blue = (uint16) (rgba.blue * 65535);
-        return color;
-    }
-
     public class CompareEntry : Object {
 
         public Object item { get; set; default = null; }
@@ -69,24 +61,6 @@ namespace FontManager {
             attrs.insert(Pango.attr_fallback_new(false));
             attrs.insert(new Pango.AttrFontDesc(font_desc));
             font_desc.set_absolute_size(preview_size * Pango.SCALE);
-            attrs.insert(Pango.attr_foreground_new(0, 0, 0));
-            attrs.insert(Pango.attr_background_new(65535, 65535, 65535));
-            attrs.insert(Pango.attr_foreground_alpha_new(65535));
-            attrs.insert(Pango.attr_background_alpha_new(65535));
-            notify["foreground-color"].connect(() => {
-                var fg = gdk_rgba_to_pango_color(foreground_color);
-                attrs.change(Pango.attr_foreground_new(fg.red, fg.green, fg.blue));
-                var alpha = (uint16) (foreground_color.alpha * 65535);
-                attrs.change(Pango.attr_foreground_alpha_new(alpha));
-                notify_property("attrs");
-            });
-            notify["background-color"].connect(() => {
-                var bg = gdk_rgba_to_pango_color(background_color);
-                attrs.change(Pango.attr_background_new(bg.red, bg.green, bg.blue));
-                var alpha = (uint16) (background_color.alpha * 65535);
-                attrs.change(Pango.attr_background_alpha_new(alpha));
-                notify_property("attrs");
-            });
             notify["preview-size"].connect(() => {
                 font_desc.set_absolute_size(preview_size * Pango.SCALE);
                 attrs.change(new Pango.AttrFontDesc(font_desc));
@@ -152,8 +126,6 @@ namespace FontManager {
     public class ComparePane : Gtk.Box {
 
         public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
-        public Gdk.RGBA foreground_color { get; set; }
-        public Gdk.RGBA background_color { get; set; }
         public GenericArray <Object>? selected_items { get; set; default = null; }
         public GenericArray <Object>? selected_children { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
@@ -193,8 +165,6 @@ namespace FontManager {
             entry.set_placeholder_text(preview_text);
             add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            preview_colors.bind_property("foreground-color", this, "foreground-color", flags);
-            preview_colors.bind_property("background-color", this, "background-color", flags);
             bind_property("preview-size", fontscale, "value", flags);
             set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
             model.items_changed.connect(on_items_changed);
@@ -202,6 +172,17 @@ namespace FontManager {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
             });
+            list.map.connect_after(force_css_update);
+        }
+
+        // TODO : Figure out why this is needed.
+        // This ensures our PreviewColors CSS is applied to list widget.
+        // Otherwise the CSS fails to apply until the user interacts with it
+        // if it's not visible from start up.
+        void force_css_update () {
+            list.grab_focus();
+            list.queue_draw();
+            return;
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
@@ -219,6 +200,7 @@ namespace FontManager {
         public void restore_state (GLib.Settings? settings) {
             if (settings == null)
                 return;
+            preview_colors.restore_state(settings);
             use_adwaita = settings.get_boolean("use-adwaita-stylesheet");
             if (use_adwaita)
                 add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
@@ -227,20 +209,6 @@ namespace FontManager {
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("compare-preview-text", entry, "text", flags);
             settings.bind("compare-font-size", this, "preview-size", flags);
-            settings.bind_with_mapping("compare-foreground-color",
-                                       preview_colors,
-                                       "foreground-color",
-                                       flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
-                                       null, null);
-            settings.bind_with_mapping("compare-background-color",
-                                       preview_colors,
-                                       "background-color",
-                                       flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
-                                       null, null);
             return;
         }
 
@@ -253,8 +221,6 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("preview-size", entry, "preview-size", flags);
             bind_property("preview-text", entry, "preview-text", flags);
-            bind_property("foreground-color", entry, "foreground-color", flags);
-            bind_property("background-color", entry, "background-color", flags);
             model.add_item(entry);
             return;
         }

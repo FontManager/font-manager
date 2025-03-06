@@ -93,6 +93,7 @@ struct _FontManagerPreviewPane
     GtkWidget               *properties;
     GtkWidget               *license;
     GtkWidget               *search;
+    GtkWidget               *action_area;
     GtkNotebook             *notebook;
 
     FontManagerFont             *font;
@@ -392,9 +393,7 @@ static gboolean
 font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
 {
     g_return_val_if_fail(self != NULL, G_SOURCE_REMOVE);
-    if (!FONT_MANAGER_IS_FONT(self->font))
-        return G_SOURCE_CONTINUE;
-    if (!self->update_required)
+    if (!self->update_required || !FONT_MANAGER_IS_FONT(self->font))
         return G_SOURCE_REMOVE;
     GError *error = NULL;
     g_autoptr(JsonObject) res = NULL;
@@ -479,8 +478,7 @@ font_manager_preview_pane_update (FontManagerPreviewPane *self)
     gint page = gtk_notebook_get_current_page(self->notebook);
     GtkWidget *action_widget_box = gtk_notebook_get_action_widget(self->notebook, GTK_PACK_START);
     GtkWidget *menu = gtk_widget_get_first_child(action_widget_box);
-    GtkWidget *search = gtk_notebook_get_action_widget(self->notebook, GTK_PACK_END);
-    gtk_widget_set_visible(search, page == FONT_MANAGER_PREVIEW_PANE_PAGE_CHARACTER_MAP);
+    gtk_widget_set_visible(self->search, page == FONT_MANAGER_PREVIEW_PANE_PAGE_CHARACTER_MAP);
     gboolean menu_sensitive = (page == FONT_MANAGER_PREVIEW_PANE_PAGE_PREVIEW);
     gtk_widget_add_css_class(menu, menu_sensitive ? "image-button" : FONT_MANAGER_STYLE_CLASS_FLAT);
     gtk_widget_remove_css_class(menu, menu_sensitive ? FONT_MANAGER_STYLE_CLASS_FLAT : "image-button");
@@ -557,7 +555,7 @@ on_drop (GtkDropTarget          *target,
         if (g_slist_length(files) > 0) {
             GFile *file = g_slist_nth_data(files, 0);
             g_autofree gchar *uri = g_file_get_uri(file);
-            font_manager_preview_pane_show_uri(self, uri, 0);
+            font_manager_preview_pane_show_uri(self, uri);
         }
     }
     return TRUE;
@@ -587,8 +585,10 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     self->page = gtk_notebook_get_current_page(self->notebook);
     GtkWidget *menu_button = font_manager_preview_page_get_action_widget(FONT_MANAGER_PREVIEW_PAGE(self->preview));
     gtk_notebook_set_action_widget(self->notebook, menu_button, GTK_PACK_START);
+    self->action_area = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
     self->search = create_search_button(self);
-    gtk_notebook_set_action_widget(self->notebook, self->search, GTK_PACK_END);
+    gtk_box_append(GTK_BOX(self->action_area), self->search);
+    gtk_notebook_set_action_widget(self->notebook, self->action_area, GTK_PACK_END);
     font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
     GBindingFlags flags = (G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
     g_object_bind_property(self->notebook, "page", self, "page", flags);
@@ -608,18 +608,16 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     return;
 }
 
-/**
+/*
  * font_manager_preview_pane_show_uri:
  * @self:       #FontManagerPreviewPane
  * @uri:        filepath to display
- * @index:      index of face within file
  *
  * Returns:     %TRUE on success
  */
 gboolean
 font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
-                                    const gchar            *uri,
-                                    int                     index)
+                                    const gchar            *uri)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     if (self->current_uri && g_strcmp0(self->current_uri, uri) == 0)
@@ -646,16 +644,19 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
     font_manager_clear_pango_cache(gtk_widget_get_pango_context((GtkWidget *) self));
-    g_autoptr(FontManagerFont) font = font_manager_font_new();
-    g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, index, &error);
+    g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, &error);
     if (error != NULL) {
         g_critical("%s : %s", error->message, path);
         g_clear_error(&error);
         return FALSE;
     }
-    g_autofree gchar *sample = font_manager_get_sample_string(source);
-    json_object_set_string_member(source, "preview-text", sample);
-    g_object_set(font, "source-object", source, NULL);
+    g_autoptr(FontManagerFont) font = font_manager_font_new();
+    g_autoptr(FontManagerFamily) family = font_manager_family_new();
+    g_object_set(family, "source-object", source, NULL);
+    JsonObject *default_variant = font_manager_family_get_default_variant(family);
+    g_autofree gchar *sample = font_manager_get_sample_string(default_variant);
+    json_object_set_string_member(default_variant, "preview-text", sample);
+    g_object_set(font, "source-object", default_variant, NULL);
     font_manager_preview_pane_set_font(self, font);
     self->current_uri = g_strdup(uri);
     return TRUE;
@@ -756,17 +757,19 @@ font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self,
 }
 
 /**
- * font_manager_preview_pane_set_action_widget:
+ * font_manager_preview_pane_add_action_widget:
  * @self:           #FontManagerFontPreview
- * @widget:         #GtkWidget to set as action widget
+ * @widget:         #GtkWidget to add as an action widget
  * @pack_type:      #GtkPackType
  */
 void
-font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self,
+font_manager_preview_pane_add_action_widget (FontManagerPreviewPane *self,
                                              GtkWidget              *widget,
                                              GtkPackType             pack_type)
 {
-    gtk_notebook_set_action_widget(GTK_NOTEBOOK(self->notebook), widget, pack_type);
+    /* gtk_notebook_set_action_widget(GTK_NOTEBOOK(self->notebook), widget, pack_type); */
+    /* XXX : pack_type is ignored... we need a front box. Keep line #482 in mind though. */
+    gtk_box_append(GTK_BOX(self->action_area), widget);
     return;
 }
 

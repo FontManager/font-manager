@@ -437,36 +437,34 @@ font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern)
 /**
  * font_manager_get_attributes_from_filepath:
  * @filepath:   full path to font file to query
- * @index:      index of face within file to select
  * @error:      #GError or %NULL to ignore errors
  *
- * See #FontManagerFont for a description of the #JsonObject returned by this function.
+ * See #FontManagerFamily for a description of the #JsonObject returned by this function.
  *
  * Returns: (transfer full): A newly created #JsonObject which should be
  * freed using #json_object_unref() when no longer needed or %NULL if there was an error.
  */
 JsonObject *
-font_manager_get_attributes_from_filepath (const gchar *filepath, int index, GError **error)
+font_manager_get_attributes_from_filepath (const gchar *filepath, GError **error)
 {
     g_return_val_if_fail(filepath != NULL, NULL);
-    g_return_val_if_fail(index >= 0, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
 
-    int count;
-    FcBlanks *blanks = FcBlanksCreate();
-    FcPattern *pattern = FcFreeTypeQuery((const FcChar8 *) filepath, index, blanks, &count);
+    JsonObject *source = json_object_new();
+    FcFontSet *fontset = FcFontSetCreate();
 
-    JsonObject *json_obj = NULL;
+    if (FcFileScan(fontset, NULL, NULL, NULL, (FcChar8 *) filepath, FcTrue))
+        process_fontset(fontset, source);
+    else {
+        set_error("Failed to create FontConfig patterns for file", error);
+        FcFontSetDestroy(fontset);
+        return NULL;
+    }
 
-    if (pattern)
-        json_obj = font_manager_get_attributes_from_fontconfig_pattern(pattern);
-    else
-        set_error("Failed to create FontConfig pattern for file", error);
-
-    FcBlanksDestroy(blanks);
-    if (pattern)
-        FcPatternDestroy(pattern);
-    return json_obj;
+    g_autoptr(JsonArray) source_arr = font_manager_sort_json_font_listing(source);
+    JsonObject *result = json_array_get_object_element(source_arr, 0);
+    FcFontSetDestroy(fontset);
+    return json_object_ref(result);
 }
 
 /**
@@ -951,3 +949,4 @@ font_manager_lcd_filter_get_type (void)
 
   return g_define_type_id__volatile;
 }
+

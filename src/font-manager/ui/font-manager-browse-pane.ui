@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
   <template class="FontManagerBrowsePane" parent="GtkBox">
@@ -36,7 +36,7 @@
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <style>
-                            <class name="view"/>
+                          <class name="view"/>
                         </style>
                         <child>
                           <object class="FontManagerBrowseListView" id="listview">

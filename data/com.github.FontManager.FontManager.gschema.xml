@@ -193,12 +193,6 @@
             <default>0</default>
         </key>
 
-        <key name="waterfall-line-spacing" type="i">
-            <summary>Waterfall preview line spacing</summary>
-            <description>Waterfall preview line spacing</description>
-            <default>0</default>
-        </key>
-
         <key name="preview-text" type="s">
             <summary>Preview text</summary>
             <description>Last preview text used</description>
@@ -237,14 +231,14 @@
             <default>12.0</default>
         </key>
 
-        <key name="compare-foreground-color" type="s">
-            <summary>Compare mode foreground color</summary>
+        <key name="preview-foreground-color" type="s">
+            <summary>Font preview foreground color</summary>
             <description>Color to use for foreground (text color) in RGB format.</description>
             <default>"rgb(0,0,0)"</default>
         </key>
 
-        <key name="compare-background-color" type="s">
-            <summary>Compare mode background color</summary>
+        <key name="preview-background-color" type="s">
+            <summary>Font preview background color</summary>
             <description>Color to use for background in RGB format</description>
             <default>"rgb(255,255,255)"</default>
         </key>
@@ -266,6 +260,12 @@
             <summary>Character Map font size</summary>
             <description>Size point to use in Character Map Mode.</description>
             <default>16.0</default>
+        </key>
+
+        <key name="waterfall-line-spacing" type="i">
+            <summary>Waterfall preview line spacing</summary>
+            <description>Waterfall preview line spacing</description>
+            <default>0</default>
         </key>
 
         <key name="min-waterfall-size" type="d">
@@ -295,8 +295,9 @@
             <default>"48 Points Linear"</default>
         </key>
 
+        <!-- Default to false since enabling this causes RTL languages to be detected as LTR -->
         <key name="waterfall-show-line-size" type="b">
-            <default>true</default>
+            <default>false</default>
             <summary>Whether to display line size in Waterfall preview</summary>
             <description>true to show line sizes in Waterfall preview</description>
         </key>
@@ -318,18 +319,6 @@
             <default>false</default>
             <summary>Whether access to network is restricted by administrator</summary>
             <description>true to prevent the application from attempting to access the network</description>
-        </key>
-
-        <key name="google-fonts-foreground-color" type="s">
-            <summary>Google Fonts preview foreground color</summary>
-            <description>Color to use for foreground (text color) in RGB format.</description>
-            <default>"rgb(0,0,0)"</default>
-        </key>
-
-        <key name="google-fonts-background-color" type="s">
-            <summary>Google Fonts preview background color</summary>
-            <description>Color to use for background in RGB format</description>
-            <default>"rgb(255,255,255)"</default>
         </key>
 
         <key name="google-fonts-preview-text" type="s">

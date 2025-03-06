@@ -1,6 +1,6 @@
 /* font-manager-freetype.h
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
 #include FT_TRUETYPE_TABLES_H
 #include FT_TYPE1_TABLES_H
 #include FT_XFREE86_H
+#include FT_MULTIPLE_MASTERS_H
 
 #include "font-manager-license.h"
 #include "font-manager-utils.h"

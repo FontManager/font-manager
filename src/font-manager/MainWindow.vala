@@ -221,6 +221,16 @@ namespace FontManager {
                     mode = (Mode) settings.get_enum("mode");
                 else
                     mode = Mode.BROWSE;
+                // TODO : Figure out why this is needed.
+                // This ensures our PreviewColors CSS is applied to browse preview area.
+                // CSS fails to apply until mode changes.
+                Idle.add(() => {
+                    if (mode == Mode.BROWSE) {
+                        mode = Mode.MANAGE;
+                        mode = Mode.BROWSE;
+                    }
+                    return GLib.Source.REMOVE;
+                });
             });
             browse_pane.realize.connect_after(() => { browse_pane.restore_state(settings); });
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);

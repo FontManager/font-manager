@@ -19,7 +19,7 @@
             <property name="label" translatable="1">Collection Name</property>
             <property name="mnemonic-widget">name_entry</property>
             <attributes>
-              <attribute name="weight" value="bold"></attribute>
+              <attribute name="weight" value="bold"/>
             </attributes>
             <layout>
               <property name="column">0</property>
