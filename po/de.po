@@ -20,7 +20,7 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # migmedia <coding@migmedia.de>, 2020.
 # Milo Ivir <mail@milotype.de>, 2020, 2021.
-# Andreas Klostermaier <andreas.klostermaier@appendx.de>, 2021, 2022.
+# Andreas Klostermaier <andreas.klostermaier@appendx.de>, 2021, 2022, 2025.
 # Stephan Kurz <stephan.kurz@oeaw.ac.at>, 2023.
 # Marco <mstffn@gmail.com>, 2024.
 # Ettore Atalan <atalanttore@googlemail.com>, 2024, 2025.
@@ -31,16 +31,16 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-02-26 00:40-0500\n"
-"PO-Revision-Date: 2025-02-24 02:09+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"PO-Revision-Date: 2025-03-07 00:25+0000\n"
+"Last-Translator: Andreas Klostermaier <andreas.klostermaier@appendx.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -1814,6 +1814,7 @@ msgstr "GTK 4-Schriftarten-Rendering"
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
 msgstr ""
+"Automatische Option erlaubt GTK 4 die Hinting-Einstellungen zu ignorieren."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1827,6 +1828,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values. "
 msgstr ""
+"Antialiasing-Methode beim Schrift-Rendern.\n"
+"\n"
+"Hinweis: ab GTK 4 wird RGBA nicht mehr benutzt, nur \"Kein\" und "
+"\"Graustufen\" sind gültige Werte. "
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:96
@@ -1860,6 +1865,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values."
 msgstr ""
+"Antialiasing-Methode beim Schrift-Rendern.\n"
+"\n"
+"Hinweis: ab GTK 4 wird RGBA nicht mehr benutzt, nur \"Kein\" und "
+"\"Graustufen\" sind gültige Werte."
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
@@ -2566,7 +2575,7 @@ msgstr "Schriften installieren"
 
 #: src/font-viewer/MainWindow.vala:236
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "Farbflächen-Vorschau"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
