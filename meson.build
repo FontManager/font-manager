@@ -2,7 +2,7 @@
 project(
     'font-manager',
     ['c', 'vala'],
-    version: '0.9.3',
+    version: '0.9.4',
     license: 'GPL-3.0-or-later',
     license_files: ['COPYING'],
     meson_version: '>= 1.1.0'

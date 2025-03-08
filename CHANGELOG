@@ -1,3 +1,6 @@
+0.9.3 -> 0.9.4
+- Fix segfault reported in Issue #436
+
 0.9.2 -> 0.9.3
 - Restore editable labels for collection names
 - Switch to using libarchive rather than calling external application
