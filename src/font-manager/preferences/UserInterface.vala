@@ -25,8 +25,6 @@ namespace FontManager {
         NORMAL,
         FLAT;
 
-        public const string [] display_strings = { N_("Raised"), N_("Flat") };
-
         // GSettingsBind*Mapping functions
 
         public static Variant to_setting (Value val, VariantType type) {
@@ -101,7 +99,8 @@ namespace FontManager {
 #if HAVE_ADWAITA
             use_adwaita_stylesheet = add_preference_switch(_("Use Adwaita Stylesheet"));
 #endif
-            var style_list = new Gtk.StringList(ButtonStyle.display_strings);
+            var style_list = new Gtk.StringList(_("Raised"));
+            style_list.append(_("Flat"));
             button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
             show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
