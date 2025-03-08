@@ -99,7 +99,8 @@ namespace FontManager {
 #if HAVE_ADWAITA
             use_adwaita_stylesheet = add_preference_switch(_("Use Adwaita Stylesheet"));
 #endif
-            var style_list = new Gtk.StringList(_("Raised"));
+            var style_list = new Gtk.StringList(null);
+            style_list.append(_("Raised"));
             style_list.append(_("Flat"));
             button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
