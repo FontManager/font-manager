@@ -1,19 +1,20 @@
 # Veydzher <veydzherDGswift008@gmail.com>, 2023.
+# Максим Горпиніч <maksimgorpinic2005a@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2023-03-08 12:38+0000\n"
-"Last-Translator: Veydzher <veydzherDGswift008@gmail.com>\n"
+"PO-Revision-Date: 2025-03-09 16:58+0000\n"
+"Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -30,7 +31,7 @@ msgstr "Автоматично створені категорії"
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Категорії"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -38,41 +39,43 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"<app>Менеджер шрифтів</app> автоматично класифікує ваші шрифти на основі "
+"різних властивостей."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Всі"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Всі доступні шрифти."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Шрифти доступні всім користувачам."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Користувач"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Шрифти, доступні тільки вам."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Сімейний вид"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -80,51 +83,53 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Відсортовано за сімейним типом — потрібна інформація про Panose, яка "
+"міститься в метаданих шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Відсортовано за властивістю ширини шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Вага"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Відсортовано за властивістю товщини шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Коса"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Відсортовано за властивістю нахилу шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Інтервал"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Відсортовано за властивістю інтервалу між шрифтами."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Ліцензія"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -132,11 +137,13 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Відсортовано за ліцензією на шрифт — потрібна інформація про ліцензію в "
+"метаданих шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Продавець"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -144,46 +151,48 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Відсортовано за постачальником шрифту — потрібна інформація про "
+"постачальника в метаданих шрифту."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Тип файлу"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Відсортовано за форматом файлу."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Несортований"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Шрифти, яких немає в жодній із ваших колекцій."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Сімейства шрифтів наразі вимкнені."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Перегляньте окремих персонажів і їх деталі"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Карта символів"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
@@ -191,6 +200,7 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
 msgstr ""
+"У режимі «Керування» панель попереднього перегляду містить вкладку «Символи»."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -198,11 +208,13 @@ msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
 msgstr ""
+"Вибір цієї вкладки дозволяє переглядати всі гліфи, що містяться у поточному "
+"вибраному шрифті."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Вкладка «Карта символів»</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -214,26 +226,28 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"зовнішній ref='media/character-map.png' "
+"md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Перетягніть символи в інші програми, щоб використовувати їх."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "Організація ваших шрифтів"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Колекції"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>Менеджер шрифтів</app> дозволяє визначати власні колекції."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
@@ -241,21 +255,23 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"Колекції дозволяють упорядковувати шрифти так, як це зрозуміло для вас, а "
+"також спрощують увімкнення чи вимкнення багатьох сімейств одночасно."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "Колекції жодним чином не змінюють ваші файли."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "Ви можете створювати або видаляти скільки завгодно."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "Щоб створити нову колекцію:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -270,6 +286,8 @@ msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"зовнішній ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -277,27 +295,29 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Натисніть <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> "
+"</gui> у нижній частині перегляду колекції."
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "Введіть назву нової колекції"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr ""
+msgstr "Додайте шрифти, перетягнувши їх зі списку шрифтів у свою нову колекцію."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "Щоб видалити колекцію:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "Виберіть колекцію"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -312,6 +332,8 @@ msgid ""
 "external ref='media/list-remove-symbolic.svg' "
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"зовнішній ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -319,32 +341,34 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Натисніть <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> у нижній частині перегляду колекції."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "Щоб увімкнути колекцію:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "Натисніть <gui style=\"checkbox\"> прапорець </gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "Щоб вимкнути колекцію:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "Щоб видалити сім’ї з колекції:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "Виберіть сім’ю або сім’ї, які потрібно видалити"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -352,42 +376,46 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"Натисніть <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> у верхній частині списку шрифтів."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "Щоб перейменувати колекцію:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "Виберіть колекцію, натисніть її ще раз"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "Введіть нове ім'я"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "Натисніть <gui style=\"button\">Enter</gui>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "Активація та деактивація сімейства шрифтів"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "Активація"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
+"<app>Менеджер шрифтів</app> дозволяє активувати та деактивувати сімейства "
+"шрифтів."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -397,16 +425,20 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
+"Якщо у вас встановлено велику кількість шрифтів, діалогові вікна та списки "
+"вибору шрифтів у багатьох програмах можуть стати дуже довгими та незручними "
+"у використанні. Вимкнення шрифтів, які ви використовуєте рідко або "
+"непотрібних на даний момент, допоможе зберегти їх розумного розміру."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "Щоб увімкнути або вимкнути сімейство шрифтів:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "У списку шрифтів виберіть сімейство, яке потрібно ввімкнути/вимкнути"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -414,6 +446,8 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"Ви також можете двічі клацнути, натиснути <gui style=\"button\">Пробіл</gui> "
+"або <gui style=\"button\">Enter</gui>, щоб перемкнути вибраний шрифт."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -421,6 +455,8 @@ msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
 msgstr ""
+"<link xref=\"organize#user-collections\">Колекції</link> дозволяють легко "
+"ввімкнути або вимкнути декілька сімей одночасно."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -429,16 +465,19 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
+"Хоча будь-які зміни, внесені за допомогою <app>Font Manager</app>, "
+"застосовуються негайно, відкриті програми може знадобитися перезапустити, "
+"щоб відобразити ці зміни."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "Додавання шрифтів для вашого використання"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "Монтаж"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -446,11 +485,13 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
+"<app>Менеджер шрифтів</app> підтримує найпоширеніші <link xref=\"supported-"
+"formats\">формати шрифтів</link>."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "У режимі <gui style=\"button\">Керування</gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -458,6 +499,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Натисніть <gui style=\"button\"> <media type=\"image\" src="
+"\"media/list-add-symbolic.svg\"/> </gui> у верхній частині вікна"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -465,6 +508,8 @@ msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"Виберіть файли, які ви хочете встановити, у діалоговому вікні вибору файлів, "
+"яке відображається, і натисніть <gui style=\"button\">Відкрити</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
@@ -472,6 +517,8 @@ msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
 msgstr ""
+"Також підтримується перетягування. Просто перетягніть файли до списку "
+"шрифтів, щоб установити їх."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
@@ -479,6 +526,8 @@ msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
 msgstr ""
+"Ви можете перетягнути будь-який підтримуваний тип файлу до списку шрифтів. "
+"Це включає файли шрифтів, каталоги та архіви."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -487,6 +536,9 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"Установіть <link action=\"install:file-roller\" href="
+"\"https://wiki.gnome.org/Apps/FileRoller\">Менеджер архівів</link>. щоб "
+"увімкнути підтримку стиснутих файлів."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -495,16 +547,18 @@ msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
 msgstr ""
+"<app>Менеджер шрифтів</app> перезавантажуватиме щоразу, коли цього "
+"вимагатимуть зміни. Це може зайняти деякий час залежно від кількості змін."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "Позбавлення від непотрібних шрифтів"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "Видалення"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
@@ -512,6 +566,8 @@ msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
 msgstr ""
+"Єдиними шрифтами, переліченими в діалоговому вікні видалення, будуть ті, які "
+"встановлено у вашому каталозі шрифтів за замовчуванням."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -520,11 +576,14 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"Файли шрифтів, встановлені в системі, зазвичай встановлюються як частина "
+"операційної системи, як пакети або системним адміністратором. <app>Менеджер "
+"шрифтів</app> наразі не передбачає видалення таких файлів."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Щоб видалити шрифти, які вам більше не потрібні:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
