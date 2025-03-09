@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the font-manager package.
 # Tymofij Lytvynenko <till.svit@gmail.com>, 2021.
 # Veydzher <veydzherDGswift008@gmail.com>, 2023.
+# Максим Горпиніч <maksimgorpinic2005a@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-26 00:40-0500\n"
-"PO-Revision-Date: 2023-03-08 12:38+0000\n"
-"Last-Translator: Veydzher <veydzherDGswift008@gmail.com>\n"
+"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"PO-Revision-Date: 2025-03-09 16:58+0000\n"
+"Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.16.2-dev\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -57,26 +58,29 @@ msgstr "Розпорядник шрифтів НЕ є професійним р�
 
 #: data/com.github.FontManager.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Попередній перегляд, порівняння та керування шрифтами"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/com.github.FontManager.FontManager.desktop.in.in:16
 #: data/com.github.FontManager.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Графіка; Перегляд; GNOME; GTK; Публікація;"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
-#: src/font-viewer/Application.vala:132
+#: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:236
 #: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:73
+#: src/font-viewer/font-viewer-main-window.ui:82
 msgid "Font Viewer"
-msgstr ""
+msgstr "Переглядач шрифтів"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Програма перегляду шрифтів для Gtk+ Desktop Environments"
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
 msgid ""
@@ -84,10 +88,14 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Засіб перегляду шрифтів дозволяє попередньо переглядати файли шрифтів перед "
+"установкою. Він пропонує кілька способів попереднього перегляду файлів "
+"шрифтів разом із картою символів і відображає властивості шрифту та деталі "
+"ліцензії."
 
 #: data/com.github.FontManager.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Повнофункціональна програма попереднього перегляду файлів шрифтів"
 
 #: extensions/nautilus/font-manager-menu-provider.c:154
 #: extensions/nemo/font-manager-menu-provider.c:147
@@ -114,166 +122,166 @@ msgstr "Властивості шрифту"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
 msgid "Updating Database…"
-msgstr ""
+msgstr "Оновлення бази даних…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:699
+#: lib/common/font-manager-freetype.c:750
 msgid "Unknown Vendor"
-msgstr ""
+msgstr "Невідомий постачальник"
 
-#: lib/fontconfig/font-manager-fontconfig.c:568
+#: lib/fontconfig/font-manager-fontconfig.c:566
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Тонкий"
 
-#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:568
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Ультра-Світло"
 
-#: lib/fontconfig/font-manager-fontconfig.c:572
-#: lib/fontconfig/font-manager-fontconfig.c:925
+#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:923
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
-msgstr ""
+msgstr "Світло"
+
+#: lib/fontconfig/font-manager-fontconfig.c:572
+msgid "Semi-Light"
+msgstr "Напів-Світла"
 
 #: lib/fontconfig/font-manager-fontconfig.c:574
-msgid "Semi-Light"
-msgstr ""
-
-#: lib/fontconfig/font-manager-fontconfig.c:576
 msgid "Book"
 msgstr "Книга"
 
-#: lib/fontconfig/font-manager-fontconfig.c:578
-#: lib/fontconfig/font-manager-fontconfig.c:882
+#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:880
 #: src/font-manager/preferences/Desktop.vala:236
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
-msgstr ""
+msgstr "Середній"
+
+#: lib/fontconfig/font-manager-fontconfig.c:578
+msgid "Semi-Bold"
+msgstr "Напів-Жирний"
 
 #: lib/fontconfig/font-manager-fontconfig.c:580
-msgid "Semi-Bold"
-msgstr ""
-
-#: lib/fontconfig/font-manager-fontconfig.c:582
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Жирний"
 
-#: lib/fontconfig/font-manager-fontconfig.c:584
+#: lib/fontconfig/font-manager-fontconfig.c:582
 msgid "Ultra-Bold"
 msgstr "Ультражирний"
 
-#: lib/fontconfig/font-manager-fontconfig.c:586
+#: lib/fontconfig/font-manager-fontconfig.c:584
 msgid "Heavy"
-msgstr ""
+msgstr "Важка"
 
-#: lib/fontconfig/font-manager-fontconfig.c:588
+#: lib/fontconfig/font-manager-fontconfig.c:586
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "Ультра-Важка"
 
-#: lib/fontconfig/font-manager-fontconfig.c:663
+#: lib/fontconfig/font-manager-fontconfig.c:661
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
-msgstr ""
+msgstr "Курсив"
 
-#: lib/fontconfig/font-manager-fontconfig.c:665
+#: lib/fontconfig/font-manager-fontconfig.c:663
 msgid "Oblique"
-msgstr ""
+msgstr "Косий"
+
+#: lib/fontconfig/font-manager-fontconfig.c:701
+msgid "Ultra-Condensed"
+msgstr "Ультра-Ущільнений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:703
-msgid "Ultra-Condensed"
-msgstr ""
+msgid "Extra-Condensed"
+msgstr "Екстра-Ущільнений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:705
-msgid "Extra-Condensed"
-msgstr ""
+msgid "Condensed"
+msgstr "Ущільнений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:707
-msgid "Condensed"
-msgstr ""
+msgid "Semi-Condensed"
+msgstr "Напів-Ущільнений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:709
-msgid "Semi-Condensed"
-msgstr ""
+msgid "Semi-Expanded"
+msgstr "Напів-Розширений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:711
-msgid "Semi-Expanded"
-msgstr ""
+msgid "Expanded"
+msgstr "Розширений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:713
-msgid "Expanded"
-msgstr ""
-
-#: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Extra-Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:717
+#: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Ultra-Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:786
+#: lib/fontconfig/font-manager-fontconfig.c:784
 msgid "Proportional"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:788
+#: lib/fontconfig/font-manager-fontconfig.c:786
 msgid "Dual Width"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:790
+#: lib/fontconfig/font-manager-fontconfig.c:788
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:792
+#: lib/fontconfig/font-manager-fontconfig.c:790
 msgid "Charcell"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:831
+#: lib/fontconfig/font-manager-fontconfig.c:829
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: lib/fontconfig/font-manager-fontconfig.c:833
+#: lib/fontconfig/font-manager-fontconfig.c:831
 msgid "RGB"
 msgstr "RGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:835
+#: lib/fontconfig/font-manager-fontconfig.c:833
 msgid "BGR"
 msgstr "BGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:837
+#: lib/fontconfig/font-manager-fontconfig.c:835
 msgid "VRGB"
 msgstr "VRGB"
 
-#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:837
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/fontconfig/font-manager-fontconfig.c:841
-#: lib/fontconfig/font-manager-fontconfig.c:886
-#: lib/fontconfig/font-manager-fontconfig.c:929
+#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:927
 #: src/font-manager/Controls.vala:133
 #: src/font-manager/preferences/Desktop.vala:234
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
 msgstr "Немає"
 
-#: lib/fontconfig/font-manager-fontconfig.c:880
+#: lib/fontconfig/font-manager-fontconfig.c:878
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Slight"
 msgstr "Незначний"
 
-#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:882
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Full"
 msgstr "Повний"
 
-#: lib/fontconfig/font-manager-fontconfig.c:923
+#: lib/fontconfig/font-manager-fontconfig.c:921
 msgid "Default"
 msgstr "Стандартний"
 
-#: lib/fontconfig/font-manager-fontconfig.c:927
+#: lib/fontconfig/font-manager-fontconfig.c:925
 msgid "Legacy"
 msgstr ""
 
@@ -362,7 +370,7 @@ msgid "Undo changes"
 msgstr ""
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:126
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "Перегляд"
 
@@ -371,31 +379,31 @@ msgid "Waterfall"
 msgstr "Водоспад"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:136
+#: lib/gtk/font-manager-preview-pane.c:582
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr ""
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:585
+#: lib/gtk/font-manager-preview-pane.c:583
 msgid "Properties"
 msgstr ""
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
 msgid "License"
-msgstr ""
+msgstr "Ліцензія"
 
-#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr ""
 
-#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr ""
 
-#: lib/gtk/font-manager-preview-pane.c:508
+#: lib/gtk/font-manager-preview-pane.c:506
 msgid "Search available characters"
 msgstr ""
 
@@ -414,22 +422,22 @@ msgstr ""
 #: lib/gtk/font-manager-properties-page.c:58
 #: src/font-manager/Categories.vala:259
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 #: lib/gtk/font-manager-properties-page.c:59
 #: src/font-manager/Categories.vala:261
 msgid "Slant"
-msgstr ""
+msgstr "Коса"
 
 #: lib/gtk/font-manager-properties-page.c:60
 #: src/font-manager/Categories.vala:260
 msgid "Weight"
-msgstr ""
+msgstr "Вага"
 
 #: lib/gtk/font-manager-properties-page.c:61
 #: src/font-manager/Categories.vala:262
 msgid "Spacing"
-msgstr ""
+msgstr "Інтервал"
 
 #: lib/gtk/font-manager-properties-page.c:62
 msgid "Version"
@@ -439,7 +447,7 @@ msgstr ""
 #: lib/gtk/font-manager-properties-page.c:64
 #: src/font-manager/Categories.vala:268
 msgid "Vendor"
-msgstr ""
+msgstr "Продавець"
 
 #: lib/gtk/font-manager-properties-page.c:65
 msgid "FileType"
@@ -682,7 +690,7 @@ msgid "Installing Font Files…"
 msgstr ""
 
 #: src/font-manager/Browse.vala:381
-#: src/font-manager/ui/font-manager-browse-preview.ui:175
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
 msgid "Active"
 msgstr ""
 
@@ -720,7 +728,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:269
 msgid "Filetype"
-msgstr ""
+msgstr "Тип файлу"
 
 #: src/font-manager/Categories.vala:269
 msgid "Grouped by filetype"
@@ -728,7 +736,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:274
 msgid "All"
-msgstr ""
+msgstr "Всі"
 
 #: src/font-manager/Categories.vala:274
 msgid "All Fonts"
@@ -736,7 +744,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:275
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: src/font-manager/Categories.vala:275
 msgid "Fonts available to all users"
@@ -744,7 +752,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:298
 msgid "Family Kind"
-msgstr ""
+msgstr "Сімейний вид"
 
 #: src/font-manager/Categories.vala:298
 msgid "Only fonts which include Panose information will be grouped here."
@@ -791,37 +799,37 @@ msgstr ""
 msgid "Rename…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:402
+#: src/font-manager/Collections.vala:405
 msgid "Archive created successfully."
 msgstr ""
 
-#: src/font-manager/Collections.vala:403
+#: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
 msgstr ""
 
-#: src/font-manager/Collections.vala:405
+#: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
 msgstr ""
 
-#: src/font-manager/Collections.vala:406
+#: src/font-manager/Collections.vala:409
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
 
-#: src/font-manager/Collections.vala:427
+#: src/font-manager/Collections.vala:430
 msgid "Creating archive from selected collection."
 msgstr ""
 
-#: src/font-manager/Collections.vala:428
+#: src/font-manager/Collections.vala:431
 msgid "This may take some time for large collections…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:325
+#: src/font-manager/Compare.vala:336
 msgid "Saved Comparison"
 msgstr ""
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:361
+#: src/font-manager/Compare.vala:372
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -842,6 +850,7 @@ msgid "About Font Manager"
 msgstr "Розпорядник шрифтів"
 
 #: src/font-manager/Controls.vala:88
+#: src/font-viewer/font-viewer-main-window.ui:97
 msgid "Preferences"
 msgstr ""
 
@@ -1687,7 +1696,7 @@ msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:28
 msgid "Disabled"
-msgstr ""
+msgstr "Вимкнено"
 
 #: src/font-manager/filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
@@ -1699,7 +1708,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
-msgstr ""
+msgstr "Несортований"
 
 #: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
@@ -1707,7 +1716,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "Користувач"
 
 #: src/font-manager/filters/UserFonts.vala:28
 msgid "Fonts available only to you"
@@ -1901,7 +1910,7 @@ msgstr ""
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 
-#: src/font-manager/preferences/UserActions.vala:229
+#: src/font-manager/preferences/UserActions.vala:232
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1911,57 +1920,57 @@ msgid ""
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
 
-#: src/font-manager/preferences/UserActions.vala:243
+#: src/font-manager/preferences/UserActions.vala:246
 msgid "User Actions"
 msgstr ""
 
-#: src/font-manager/preferences/UserActions.vala:245
+#: src/font-manager/preferences/UserActions.vala:248
 msgid "Custom context menu entries"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:28
-msgid "Raised"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:28
-msgid "Flat"
-msgstr ""
-
-#: src/font-manager/preferences/UserInterface.vala:80
-#: src/font-viewer/MainWindow.vala:208
+#: src/font-manager/preferences/UserInterface.vala:78
+#: src/font-viewer/MainWindow.vala:337
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:81
-#: src/font-viewer/MainWindow.vala:209
+#: src/font-manager/preferences/UserInterface.vala:79
+#: src/font-viewer/MainWindow.vala:338
 msgid "Changes will take effect next time the application is started"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:94
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Wide Layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:94
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Use three column layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:97
+#: src/font-manager/preferences/UserInterface.vala:95
 msgid "Only When Maximized"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:99
+#: src/font-manager/preferences/UserInterface.vala:97
 msgid "Enable Animations"
 msgstr ""
 
 #. The added margins here are due to PreviewColors widget alignment issues
-#: src/font-manager/preferences/UserInterface.vala:100
-#: src/font-viewer/MainWindow.vala:224
+#: src/font-manager/preferences/UserInterface.vala:98
+#: src/font-viewer/MainWindow.vala:353
 msgid "Prefer Dark Theme"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:102
-#: src/font-viewer/MainWindow.vala:229
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:358
 msgid "Use Adwaita Stylesheet"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:103
+msgid "Raised"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:104
+msgid "Flat"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:106
@@ -1969,16 +1978,17 @@ msgid "Titlebar Button Style"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:107
+#: src/font-viewer/MainWindow.vala:376
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:112
-#: src/font-viewer/MainWindow.vala:243
+#: src/font-viewer/MainWindow.vala:371
 msgid "Waterfall Line Spacing"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:114
-#: src/font-viewer/MainWindow.vala:244
+#: src/font-viewer/MainWindow.vala:372
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -2416,21 +2426,11 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:100
-#: src/font-viewer/font-viewer-main-window.ui:70
-msgid "No file selected"
-msgstr ""
-
-#: src/font-viewer/MainWindow.vala:101
-#: src/font-viewer/font-viewer-main-window.ui:78
-msgid "Or unsupported filetype."
-msgstr ""
-
-#: src/font-viewer/MainWindow.vala:150
+#: src/font-viewer/MainWindow.vala:279
 msgid "System Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:152
+#: src/font-viewer/MainWindow.vala:281
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2441,28 +2441,28 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:155
+#: src/font-viewer/MainWindow.vala:284
 msgid "Newer version already installed"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:157 src/font-viewer/MainWindow.vala:162
+#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:160
+#: src/font-viewer/MainWindow.vala:289
 msgid "Update Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:165
+#: src/font-viewer/MainWindow.vala:294
 msgid "Remove Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:169
-#: src/font-viewer/font-viewer-main-window.ui:104
+#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/font-viewer-main-window.ui:109
 msgid "Install Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
 msgstr ""
 
@@ -2557,7 +2557,7 @@ msgstr ""
 msgid "Toggle preview panel"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:164
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2639,7 +2639,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
-msgstr ""
+msgstr "Категорії"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 msgid "Smart Collections"
@@ -2652,7 +2652,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
-msgstr ""
+msgstr "Колекції"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:22
 msgid "Enter target family"

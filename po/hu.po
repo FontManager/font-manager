@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-02-26 00:40-0500\n"
+"POT-Creation-Date: 2025-03-07 19:41-0500\n"
 "PO-Revision-Date: 2025-02-24 02:09+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
@@ -68,9 +68,12 @@ msgstr "Grafika;Néző;GNOME;GTK;Kiadás;"
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
 #: data/com.github.FontManager.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:88 src/font-viewer/Application.vala:108
-#: src/font-viewer/Application.vala:132
+#: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:236
 #: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:73
+#: src/font-viewer/font-viewer-main-window.ui:82
 msgid "Font Viewer"
 msgstr "Betűkészletnéző"
 
@@ -121,163 +124,163 @@ msgid "Updating Database…"
 msgstr "Adatbázis frissítése…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:699
+#: lib/common/font-manager-freetype.c:750
 msgid "Unknown Vendor"
 msgstr "Ismeretlen forgalmazó"
 
-#: lib/fontconfig/font-manager-fontconfig.c:568
+#: lib/fontconfig/font-manager-fontconfig.c:566
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr "Vékony"
 
-#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:568
 msgid "Ultra-Light"
 msgstr "Ultra-könnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:572
-#: lib/fontconfig/font-manager-fontconfig.c:925
+#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:923
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr "Könnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:574
+#: lib/fontconfig/font-manager-fontconfig.c:572
 msgid "Semi-Light"
 msgstr "Félkönnyű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:574
 msgid "Book"
 msgstr "Könyv"
 
-#: lib/fontconfig/font-manager-fontconfig.c:578
-#: lib/fontconfig/font-manager-fontconfig.c:882
+#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:880
 #: src/font-manager/preferences/Desktop.vala:236
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr "Közepes"
 
-#: lib/fontconfig/font-manager-fontconfig.c:580
+#: lib/fontconfig/font-manager-fontconfig.c:578
 msgid "Semi-Bold"
 msgstr "Enyhén kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:582
+#: lib/fontconfig/font-manager-fontconfig.c:580
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr "Kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:584
+#: lib/fontconfig/font-manager-fontconfig.c:582
 msgid "Ultra-Bold"
 msgstr "Ultra-kövér"
 
-#: lib/fontconfig/font-manager-fontconfig.c:586
+#: lib/fontconfig/font-manager-fontconfig.c:584
 msgid "Heavy"
 msgstr "Erős"
 
-#: lib/fontconfig/font-manager-fontconfig.c:588
+#: lib/fontconfig/font-manager-fontconfig.c:586
 msgid "Ultra-Heavy"
 msgstr "Ultra-erős"
 
-#: lib/fontconfig/font-manager-fontconfig.c:663
+#: lib/fontconfig/font-manager-fontconfig.c:661
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr "Dőlt"
 
-#: lib/fontconfig/font-manager-fontconfig.c:665
+#: lib/fontconfig/font-manager-fontconfig.c:663
 msgid "Oblique"
 msgstr "Ferde"
 
-#: lib/fontconfig/font-manager-fontconfig.c:703
+#: lib/fontconfig/font-manager-fontconfig.c:701
 msgid "Ultra-Condensed"
 msgstr "Ultra-keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:705
+#: lib/fontconfig/font-manager-fontconfig.c:703
 msgid "Extra-Condensed"
 msgstr "Extra-keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:707
+#: lib/fontconfig/font-manager-fontconfig.c:705
 msgid "Condensed"
 msgstr "Keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:709
+#: lib/fontconfig/font-manager-fontconfig.c:707
 msgid "Semi-Condensed"
 msgstr "Enyhén keskeny"
 
-#: lib/fontconfig/font-manager-fontconfig.c:711
+#: lib/fontconfig/font-manager-fontconfig.c:709
 msgid "Semi-Expanded"
 msgstr "Enyhén széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:713
+#: lib/fontconfig/font-manager-fontconfig.c:711
 msgid "Expanded"
 msgstr "Széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:715
+#: lib/fontconfig/font-manager-fontconfig.c:713
 msgid "Extra-Expanded"
 msgstr "Extra-széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:717
+#: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Ultra-Expanded"
 msgstr "Ultra-széles"
 
-#: lib/fontconfig/font-manager-fontconfig.c:786
+#: lib/fontconfig/font-manager-fontconfig.c:784
 msgid "Proportional"
 msgstr "Arányos"
 
-#: lib/fontconfig/font-manager-fontconfig.c:788
+#: lib/fontconfig/font-manager-fontconfig.c:786
 msgid "Dual Width"
 msgstr "Duplaszélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:790
+#: lib/fontconfig/font-manager-fontconfig.c:788
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
 msgstr "Rögzített szélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:792
+#: lib/fontconfig/font-manager-fontconfig.c:790
 msgid "Charcell"
 msgstr "Kényszer szélességű"
 
-#: lib/fontconfig/font-manager-fontconfig.c:831
+#: lib/fontconfig/font-manager-fontconfig.c:829
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: lib/fontconfig/font-manager-fontconfig.c:833
+#: lib/fontconfig/font-manager-fontconfig.c:831
 msgid "RGB"
 msgstr "RGB (Piros-Zöld-Kék szinkeverés)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:835
+#: lib/fontconfig/font-manager-fontconfig.c:833
 msgid "BGR"
 msgstr "BGR (Kék-Zöld-Piros szinkeverés)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:837
+#: lib/fontconfig/font-manager-fontconfig.c:835
 msgid "VRGB"
 msgstr "VRGB (Függőleges RGB)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:837
 msgid "VBGR"
 msgstr "VBGR (Függőleges BGR)"
 
-#: lib/fontconfig/font-manager-fontconfig.c:841
-#: lib/fontconfig/font-manager-fontconfig.c:886
-#: lib/fontconfig/font-manager-fontconfig.c:929
+#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:927
 #: src/font-manager/Controls.vala:133
 #: src/font-manager/preferences/Desktop.vala:234
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
 msgstr "Egyik sem"
 
-#: lib/fontconfig/font-manager-fontconfig.c:880
+#: lib/fontconfig/font-manager-fontconfig.c:878
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Slight"
 msgstr "Enyhe"
 
-#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:882
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Full"
 msgstr "Teljes"
 
-#: lib/fontconfig/font-manager-fontconfig.c:923
+#: lib/fontconfig/font-manager-fontconfig.c:921
 msgid "Default"
 msgstr "Alapértelmezett"
 
-#: lib/fontconfig/font-manager-fontconfig.c:927
+#: lib/fontconfig/font-manager-fontconfig.c:925
 msgid "Legacy"
 msgstr "Örökölt"
 
@@ -369,7 +372,7 @@ msgid "Undo changes"
 msgstr "Változtatások visszavonása"
 
 #: lib/gtk/font-manager-preview-page.c:87
-#: src/font-manager/ui/font-manager-browse-preview.ui:126
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
 msgid "Preview"
 msgstr "Előnézet"
 
@@ -378,31 +381,31 @@ msgid "Waterfall"
 msgstr "Vízesés"
 
 #: lib/gtk/font-manager-preview-pane.c:47
-#: lib/gtk/font-manager-preview-pane.c:584
-#: src/font-manager/ui/font-manager-browse-preview.ui:136
+#: lib/gtk/font-manager-preview-pane.c:582
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
 msgstr "Karakterek"
 
 #: lib/gtk/font-manager-preview-pane.c:49
-#: lib/gtk/font-manager-preview-pane.c:585
+#: lib/gtk/font-manager-preview-pane.c:583
 msgid "Properties"
 msgstr "Tulajdonságok"
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:586 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
 msgid "License"
 msgstr "Licenc"
 
-#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr "Szabályos"
 
-#: lib/gtk/font-manager-preview-pane.c:452 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
 msgid "Normal"
 msgstr "Normál"
 
-#: lib/gtk/font-manager-preview-pane.c:508
+#: lib/gtk/font-manager-preview-pane.c:506
 msgid "Search available characters"
 msgstr "Keressen az elérhető karakterek között"
 
@@ -704,7 +707,7 @@ msgid "Installing Font Files…"
 msgstr "Betűtípusfájlok telepítése…"
 
 #: src/font-manager/Browse.vala:381
-#: src/font-manager/ui/font-manager-browse-preview.ui:175
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
 msgid "Active"
 msgstr "Aktív"
 
@@ -815,39 +818,39 @@ msgstr "Tömörítés…"
 msgid "Rename…"
 msgstr "Átnevezés…"
 
-#: src/font-manager/Collections.vala:402
+#: src/font-manager/Collections.vala:405
 msgid "Archive created successfully."
 msgstr "Az archívum sikeresen létrehozva."
 
-#: src/font-manager/Collections.vala:403
+#: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
 msgstr "A létrejött fájl megtalálható a home könyvtárban."
 
-#: src/font-manager/Collections.vala:405
+#: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
 msgstr "Hiba történt a gyűjtemény exportálásánál"
 
-#: src/font-manager/Collections.vala:406
+#: src/font-manager/Collections.vala:409
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
 "Indítsa el az alkalmazást egy terminálból, és próbálja meg újra a további "
 "információkért"
 
-#: src/font-manager/Collections.vala:427
+#: src/font-manager/Collections.vala:430
 msgid "Creating archive from selected collection."
 msgstr "Archívum létrehozása a kiválasztott gyűjteményből."
 
-#: src/font-manager/Collections.vala:428
+#: src/font-manager/Collections.vala:431
 msgid "This may take some time for large collections…"
 msgstr "A nagy gyűjtemények esetében ez eltarthat egy ideig…"
 
-#: src/font-manager/Compare.vala:325
+#: src/font-manager/Compare.vala:336
 msgid "Saved Comparison"
 msgstr "Mentett összehasonlítás"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:361
+#: src/font-manager/Compare.vala:372
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -868,6 +871,7 @@ msgid "About Font Manager"
 msgstr "A betűkészlet-kezelőről"
 
 #: src/font-manager/Controls.vala:88
+#: src/font-viewer/font-viewer-main-window.ui:97
 msgid "Preferences"
 msgstr "Beállítások"
 
@@ -1951,7 +1955,7 @@ msgstr ""
 "Új helyettesítő betűtípus hozzáadásához kattintson a hozzáadás gombra az "
 "eszköztáron."
 
-#: src/font-manager/preferences/UserActions.vala:229
+#: src/font-manager/preferences/UserActions.vala:232
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1970,74 +1974,75 @@ msgstr ""
 "Ha a CSALÁD vagy a STÍLUS szerepel az argumentumlistában, ezek is "
 "lecserélődnek."
 
-#: src/font-manager/preferences/UserActions.vala:243
+#: src/font-manager/preferences/UserActions.vala:246
 msgid "User Actions"
 msgstr "Felhasználói műveletek"
 
-#: src/font-manager/preferences/UserActions.vala:245
+#: src/font-manager/preferences/UserActions.vala:248
 msgid "Custom context menu entries"
 msgstr "Saját helyi menü bejegyzések"
 
-#: src/font-manager/preferences/UserInterface.vala:28
-msgid "Raised"
-msgstr "Emelt"
-
-#: src/font-manager/preferences/UserInterface.vala:28
-msgid "Flat"
-msgstr "Lapos"
-
-#: src/font-manager/preferences/UserInterface.vala:80
-#: src/font-viewer/MainWindow.vala:208
+#: src/font-manager/preferences/UserInterface.vala:78
+#: src/font-viewer/MainWindow.vala:337
 msgid "Selected setting requires restart to apply"
 msgstr "A kiválasztott beállítás alkalmazásához újraindítás szükséges"
 
-#: src/font-manager/preferences/UserInterface.vala:81
-#: src/font-viewer/MainWindow.vala:209
+#: src/font-manager/preferences/UserInterface.vala:79
+#: src/font-viewer/MainWindow.vala:338
 msgid "Changes will take effect next time the application is started"
 msgstr "A változtatások az alkalmazás következő indításakor lépnek életbe"
 
-#: src/font-manager/preferences/UserInterface.vala:94
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Wide Layout"
 msgstr "Széles elrendezés"
 
-#: src/font-manager/preferences/UserInterface.vala:94
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Use three column layout"
 msgstr "Háromoszlopos elrendezés használata"
 
-#: src/font-manager/preferences/UserInterface.vala:97
+#: src/font-manager/preferences/UserInterface.vala:95
 msgid "Only When Maximized"
 msgstr "Csak akkor, ha maximalizálva van"
 
-#: src/font-manager/preferences/UserInterface.vala:99
+#: src/font-manager/preferences/UserInterface.vala:97
 msgid "Enable Animations"
 msgstr "Animációk engedélyezése"
 
 #. The added margins here are due to PreviewColors widget alignment issues
-#: src/font-manager/preferences/UserInterface.vala:100
-#: src/font-viewer/MainWindow.vala:224
+#: src/font-manager/preferences/UserInterface.vala:98
+#: src/font-viewer/MainWindow.vala:353
 msgid "Prefer Dark Theme"
 msgstr "Sötét téma előnyben részesítése"
 
-#: src/font-manager/preferences/UserInterface.vala:102
-#: src/font-viewer/MainWindow.vala:229
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:358
 msgid "Use Adwaita Stylesheet"
 msgstr "Adwaita stíluslap használata"
+
+#: src/font-manager/preferences/UserInterface.vala:103
+msgid "Raised"
+msgstr "Emelt"
+
+#: src/font-manager/preferences/UserInterface.vala:104
+msgid "Flat"
+msgstr "Lapos"
 
 #: src/font-manager/preferences/UserInterface.vala:106
 msgid "Titlebar Button Style"
 msgstr "Címsor gombstílus"
 
 #: src/font-manager/preferences/UserInterface.vala:107
+#: src/font-viewer/MainWindow.vala:376
 msgid "Display line size in Waterfall Preview"
 msgstr "Sorméret megjelenítése a vízesés előnézetben"
 
 #: src/font-manager/preferences/UserInterface.vala:112
-#: src/font-viewer/MainWindow.vala:243
+#: src/font-viewer/MainWindow.vala:371
 msgid "Waterfall Line Spacing"
 msgstr "Vízesés előnézet sorainak térköze"
 
 #: src/font-manager/preferences/UserInterface.vala:114
-#: src/font-viewer/MainWindow.vala:244
+#: src/font-viewer/MainWindow.vala:372
 msgid "Padding in pixels to insert above and below rows"
 msgstr "A sorok fölötti és alatti térköz pixelben megadva"
 
@@ -2487,21 +2492,11 @@ msgstr "Extrakövér"
 msgid "Black"
 msgstr "Vastagított"
 
-#: src/font-viewer/MainWindow.vala:100
-#: src/font-viewer/font-viewer-main-window.ui:70
-msgid "No file selected"
-msgstr "Nincs fájl kiválasztva"
-
-#: src/font-viewer/MainWindow.vala:101
-#: src/font-viewer/font-viewer-main-window.ui:78
-msgid "Or unsupported filetype."
-msgstr "Vagy nem támogatott fájltípus."
-
-#: src/font-viewer/MainWindow.vala:150
+#: src/font-viewer/MainWindow.vala:279
 msgid "System Font"
 msgstr "Rendszerbetűkészlet"
 
-#: src/font-viewer/MainWindow.vala:152
+#: src/font-viewer/MainWindow.vala:281
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2519,28 +2514,28 @@ msgstr ""
 "betűtípusfájlt tartalmazó csomagot, vagy kérje meg a rendszergazdát az "
 "eltávolítására vagy letiltására."
 
-#: src/font-viewer/MainWindow.vala:155
+#: src/font-viewer/MainWindow.vala:284
 msgid "Newer version already installed"
 msgstr "Az újabb verzió már telepítve van"
 
-#: src/font-viewer/MainWindow.vala:157 src/font-viewer/MainWindow.vala:162
+#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
 msgid "Click to overwrite"
 msgstr "Kattintson a felülíráshoz"
 
-#: src/font-viewer/MainWindow.vala:160
+#: src/font-viewer/MainWindow.vala:289
 msgid "Update Font"
 msgstr "Betűtípus frissítése"
 
-#: src/font-viewer/MainWindow.vala:165
+#: src/font-viewer/MainWindow.vala:294
 msgid "Remove Font"
 msgstr "Betűtípus eltávolítása"
 
-#: src/font-viewer/MainWindow.vala:169
-#: src/font-viewer/font-viewer-main-window.ui:104
+#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/font-viewer-main-window.ui:109
 msgid "Install Font"
 msgstr "Betűtípus telepítése"
 
-#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
 msgstr ""
 
@@ -2635,7 +2630,7 @@ msgstr "Keresési bevitel bekapcsolása"
 msgid "Toggle preview panel"
 msgstr "Előnézeti panel bekapcsolása"
 
-#: src/font-manager/ui/font-manager-browse-preview.ui:164
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
 "Status of selected family.\n"
 "\n"
@@ -2827,6 +2822,12 @@ msgstr "Telepítésük előtt tekintse meg a betűtípusfájlok előnézetét."
 #: src/font-viewer/font-viewer-main-window.ui:32
 msgid "To preview a font simply drag it onto this area."
 msgstr "A betűtípust az előnézetéhez egyszerűen húzza át erre a területre."
+
+#~ msgid "No file selected"
+#~ msgstr "Nincs fájl kiválasztva"
+
+#~ msgid "Or unsupported filetype."
+#~ msgstr "Vagy nem támogatott fájltípus."
 
 #~ msgid "The type of antialiasing to use when rendering fonts."
 #~ msgstr "A betűtípusok renderelésekor használandó élsimítás típusa."
