@@ -8,6 +8,8 @@ project(
     meson_version: '>= 1.1.0'
 )
 
+release_date = '2025-03-07'
+
 if meson.version().version_compare('< 1.1.0')
     error('Meson version is @0@ but project requires >= 1.1.0'.format(meson.version()))
 endif
@@ -72,17 +74,10 @@ datadir = get_option('datadir')
 pkglib_dir = join_paths(prefix, get_option('libdir'), meson.project_name())
 pkglibexec_dir = join_paths(prefix, get_option('libexecdir'), meson.project_name())
 
-datetime = '''
-from datetime import date
-print(date.today())
-'''
-
-today = run_command(python, '-c', datetime, check: true).stdout().strip()
-
 config = configuration_data()
 config.set('PACKAGE_NAME', meson.project_name())
 config.set('PACKAGE_VERSION', meson.project_version())
-config.set('CURRENT_DATE', today)
+config.set('RELEASE_DATE', release_date)
 config.set('PACKAGE_URL', 'http://fontmanager.github.io/')
 config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())
@@ -125,8 +120,7 @@ meson.add_dist_script('meson_dist.py')
 gnome.post_install(
     glib_compile_schemas: true,
     gtk_update_icon_cache: true,
-    update_desktop_database: true,
-    update_mime_database: true
+    update_desktop_database: true
 )
 
 summary(
