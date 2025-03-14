@@ -473,7 +473,7 @@ font_manager_get_gsettings (const gchar *schema_id)
         g_debug("Checking for schema with id %s in %s", schema_id, dir);
         GSettingsSchema *override = g_settings_schema_source_lookup(source, schema_id, TRUE);
         if (override) {
-            g_settings_schema_unref(g_steal_pointer(&schema));
+            if (schema) g_settings_schema_unref(g_steal_pointer(&schema));
             schema = override;
             g_debug("Using schema with id %s from %s", schema_id, dir);
         }
