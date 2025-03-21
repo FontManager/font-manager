@@ -1,11 +1,12 @@
 # Hautzii <am.03012002@gmail.com>, 2021.
 # Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
+# cwpute <collan+weblate@free.fr>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-03-17 11:55+0000\n"
-"Last-Translator: Alexandre ZANNI <alexandre.zanni@hotmail.fr>\n"
+"PO-Revision-Date: 2025-03-19 12:23+0000\n"
+"Last-Translator: cwpute <collan+weblate@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/fr/>\n"
 "Language: fr\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -574,6 +575,8 @@ msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
 msgstr ""
+"Les seules polices listées dans la fenêtre de suppression seront celles "
+"installées dans le dossier de polices par défaut."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -582,11 +585,15 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"Les fichiers de polices installés à l'échelle du système font généralement "
+"partie du système d'exploitation, en tant que paquets, ou par "
+"l'administrateur système. Le <app>Gestionnaire de polices</app> n'est pour "
+"le moment pas équipé pour supprimer les fichiers de ce type."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Pour retirer des polices dont vous n'avez plus besoin :"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -594,6 +601,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Cliquez sur <gui style=\"button\"> <media type=\"image\" src="
+"\"media/list-remove-symbolic.svg\"/> </gui> en haut de la fenêtre"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -601,11 +610,13 @@ msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
 msgstr ""
+"Sélectionnez les familles ou les styles individuels que vous souhaitez "
+"retirer de la liste affichée"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "Cliquez sur <gui style=\"button\">Supprimer</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
@@ -613,6 +624,8 @@ msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
 msgstr ""
+"Le <app>Gestionnaire de polices</app> organise et stocke les polices "
+"installées dans le dossier de polices par défaut de l'utilisateur."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
@@ -620,6 +633,8 @@ msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
 msgstr ""
+"Le dossier de polices par défaut est actuellement situé à l'adresse "
+"<code><file>~/.local/share/fonts</file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
@@ -627,11 +642,14 @@ msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
 msgstr ""
+"Les fichiers sont supprimés de manière définitive. Assurez-vous d'avoir fait "
+"des sauvegardes avant de retirer des polices, au cas où vous ayez encore "
+"besoin de ces polices plus tard."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "Ajouter et retirer des dossiers de polices"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
@@ -644,6 +662,9 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
+"Le <app>Gestionnaire de polices</app> permet d'ajouter et de retirer des "
+"dossiers à scanner pour y trouver des fichiers de police. Les dossiers "
+"ajoutés sont scannés de manière récursive."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
@@ -651,16 +672,21 @@ msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
 msgstr ""
+"Cela vous permet de garder vos fichiers de police autre part que dans votre "
+"dossier \"home\" ou de faire une \"installation\" temporaire d'un dossier de "
+"polices."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
 msgstr ""
+"Cela vous permet également d'organiser vos fichiers de police comme vous le "
+"souhaitez."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "Pour ajouter une source :"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -675,6 +701,8 @@ msgid ""
 "external ref='media/preferences-system-symbolic.svg' "
 "md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
@@ -685,12 +713,15 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
+"Ouvre l'onglet de préférences du <app>Gestionnaire de polices</app> en "
+"cliquant sur <gui> <media type=\"image\" src="
+"\"media/preferences-system-symbolic.svg\"/> </gui> en haut de la fenêtre."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "Sélectionner les \"Sources\" depuis la barre latérale"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -698,17 +729,21 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Cliquez sur <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/"
+"> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid ""
 "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
+"Sélectionnez le dossier que vous souhaitez ajouter depuis le sélecteur de "
+"fichiers qui s'affiche"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "Pour retirer une source :"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
