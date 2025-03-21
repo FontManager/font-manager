@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2025-02-24 02:09+0000\n"
+"PO-Revision-Date: 2025-03-21 13:32+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -2537,7 +2537,7 @@ msgstr "Betűtípus telepítése"
 
 #: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "Az előnézeti terület színei"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
@@ -2580,19 +2580,19 @@ msgstr "Kilépés az alkalmazásból"
 
 #: src/font-manager/gtk/help-overlay.ui:73
 msgid "Mode"
-msgstr "Munkamód"
+msgstr "Munkamódok"
 
 #: src/font-manager/gtk/help-overlay.ui:78
 msgid "Switch to Manage mode"
-msgstr "Kezelés módba vált"
+msgstr "Kezelési módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:85
 msgid "Switch to Browse mode"
-msgstr "Keresés módba vált"
+msgstr "Keresési módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:92
 msgid "Switch to Compare mode"
-msgstr "Összehasonlítás módba vált"
+msgstr "Összehasonlítási módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:99
 msgid "Switch to Google Fonts mode"
@@ -2600,7 +2600,7 @@ msgstr "Google betűkészletek módba vált"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
-msgstr "Előnézet mód"
+msgstr "Előnézeti mód"
 
 #: src/font-manager/gtk/help-overlay.ui:112
 msgid "Switch to Standard preview"
@@ -2639,7 +2639,7 @@ msgid ""
 msgstr ""
 "A kiválasztott család állapota.\n"
 "\n"
-"A letiltása megakadályozza, hogy a kiválasztott családot más alkalmazások "
+"A kiválasztott család letiltása megakadályozza, hogy azt más alkalmazások "
 "használják."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
