@@ -67,13 +67,15 @@ namespace FontManager {
         }
 
         string get_filepath_from_object (Json.Object item) {
-            Object obj = Object.new(item_type);
-            obj.set("source-object", item, null);
-            return (item_type == typeof(Font)) ?
-                   ((Font) obj).filepath :
-                   (item_type == typeof(Family)) ?
-                   ((Family) obj).get_default_variant().get_string_member("filepath") :
-                   "";
+            if (item.has_member("filepath"))
+                return item.get_string_member("filepath");
+            if (item.has_member("variations")) {
+                Family family = new Family() { source_object = item };
+                Json.Object? default_variant = family.get_default_variant();
+                if (default_variant != null)
+                    return default_variant.get_string_member("filepath");
+            }
+            return "";
         }
 
         bool array_matches (string [] needles, string style, string description) {
@@ -91,8 +93,14 @@ namespace FontManager {
                 return item_matches;
             var search = search_term.strip().casefold();
             if (search.has_prefix(Path.DIR_SEPARATOR_S)) {
+                long str_len = search.length;
+                if (str_len < 2)
+                    return false;
+                string needle = search[1:str_len];
+                if (needle == "")
+                    return false;
                 string filepath = get_filepath_from_object(item).casefold();
-                item_matches = filepath.contains(search);
+                item_matches = filepath.contains(needle);
             } else if (search.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
                 string needle = search.replace(Path.SEARCHPATH_SEPARATOR_S, "");
                 if (needle == "")
