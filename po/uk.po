@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2025-03-09 16:58+0000\n"
+"PO-Revision-Date: 2025-03-11 12:02+0000\n"
 "Last-Translator: Максим Горпиніч <maksimgorpinic2005a@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/uk/>\n"
@@ -215,28 +215,28 @@ msgstr "Розширений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:713
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "Екстра-розширений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:715
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "Ультрарозширений"
 
 #: lib/fontconfig/font-manager-fontconfig.c:784
 msgid "Proportional"
-msgstr ""
+msgstr "Пропорційний"
 
 #: lib/fontconfig/font-manager-fontconfig.c:786
 msgid "Dual Width"
-msgstr ""
+msgstr "Подвійна ширина"
 
 #: lib/fontconfig/font-manager-fontconfig.c:788
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
 msgid "Monospace"
-msgstr ""
+msgstr "Мінівен"
 
 #: lib/fontconfig/font-manager-fontconfig.c:790
 msgid "Charcell"
-msgstr ""
+msgstr "Шарсель"
 
 #: lib/fontconfig/font-manager-fontconfig.c:829
 msgid "Unknown"
@@ -283,22 +283,22 @@ msgstr "Стандартний"
 
 #: lib/fontconfig/font-manager-fontconfig.c:925
 msgid "Legacy"
-msgstr ""
+msgstr "Спадщина"
 
 #: lib/fontconfig/font-manager-source.c:305
 #: lib/fontconfig/font-manager-source.c:321
 #: lib/fontconfig/font-manager-source.c:322
 msgid "Source Unavailable"
-msgstr ""
+msgstr "Джерело недоступне"
 
 #: lib/gtk/font-manager-application-window.c:285
 #: src/font-manager/Application.vala:3
 msgid "Simple font management for GTK+ desktop environments"
-msgstr ""
+msgstr "Просте керування шрифтами для настільних середовищ GTK+"
 
 #: lib/gtk/font-manager-application-window.c:290
 msgid "translator-credits"
-msgstr ""
+msgstr "перекладач-кредити"
 
 #: lib/gtk/font-manager-fsType.c:74
 msgid "Restricted License Embedding"
@@ -306,68 +306,76 @@ msgstr "Вбудовування обмеженої ліцензії"
 
 #: lib/gtk/font-manager-fsType.c:76
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Попередній перегляд і вбудовування для друку"
 
 #: lib/gtk/font-manager-fsType.c:78
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Вбудовування з можливістю редагування"
 
 #: lib/gtk/font-manager-fsType.c:80
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Вставлення попереднього перегляду та друку | Без піднабору"
 
 #: lib/gtk/font-manager-fsType.c:82
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Вбудовування з можливістю редагування | Без піднабору"
 
 #: lib/gtk/font-manager-fsType.c:84
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
 msgstr ""
+"Вставлення попереднього перегляду та друку | Лише вбудовування растрового "
+"зображення"
 
 #: lib/gtk/font-manager-fsType.c:86
 msgid "Editable Embedding | Bitmap Embedding Only"
 msgstr ""
+"Вбудовування з можливістю редагування | Лише вбудовування растрового "
+"зображення"
 
 #: lib/gtk/font-manager-fsType.c:88
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Вставлення попереднього перегляду та друку | Без піднабору | Лише "
+"вбудовування растрового зображення"
 
 #: lib/gtk/font-manager-fsType.c:90
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Вбудовування з можливістю редагування | Без піднабору | Лише вбудовування "
+"растрового зображення"
 
 #: lib/gtk/font-manager-fsType.c:92
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Можливе вбудовування"
 
 #: lib/gtk/font-manager-license-page.c:179
 msgid "File does not contain license information."
-msgstr ""
+msgstr "Файл не містить інформації про ліцензію."
 
 #: lib/gtk/font-manager-preview-controls.c:77
 msgid "Left Aligned"
-msgstr ""
+msgstr "Вирівнювання по лівому краю"
 
 #: lib/gtk/font-manager-preview-controls.c:83
 msgid "Centered"
-msgstr ""
+msgstr "По центру"
 
 #: lib/gtk/font-manager-preview-controls.c:89
 msgid "Fill"
-msgstr ""
+msgstr "Заповнити"
 
 #: lib/gtk/font-manager-preview-controls.c:95
 msgid "Right Aligned"
-msgstr ""
+msgstr "Вирівняно по правому краю"
 
 #: lib/gtk/font-manager-preview-controls.c:349
 #: src/font-manager/ui/font-manager-browse-pane.ui:168
 msgid "Edit preview text"
-msgstr ""
+msgstr "Редагувати текст попереднього перегляду"
 
 #: lib/gtk/font-manager-preview-controls.c:350
 msgid "Undo changes"
-msgstr ""
+msgstr "Скасувати зміни"
 
 #: lib/gtk/font-manager-preview-page.c:87
 #: src/font-manager/ui/font-manager-browse-preview.ui:122
@@ -382,12 +390,12 @@ msgstr "Водоспад"
 #: lib/gtk/font-manager-preview-pane.c:582
 #: src/font-manager/ui/font-manager-browse-preview.ui:132
 msgid "Characters"
-msgstr ""
+msgstr "Персонажі"
 
 #: lib/gtk/font-manager-preview-pane.c:49
 #: lib/gtk/font-manager-preview-pane.c:583
 msgid "Properties"
-msgstr ""
+msgstr "Властивості"
 
 #: lib/gtk/font-manager-preview-pane.c:51
 #: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
@@ -397,27 +405,27 @@ msgstr "Ліцензія"
 #: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
-msgstr ""
+msgstr "Регулярний"
 
 #: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
 msgid "Normal"
-msgstr ""
+msgstr "Нормальний"
 
 #: lib/gtk/font-manager-preview-pane.c:506
 msgid "Search available characters"
-msgstr ""
+msgstr "Пошук доступних символів"
 
 #: lib/gtk/font-manager-properties-page.c:55
 msgid "PostScript Name"
-msgstr ""
+msgstr "Назва PostScript"
 
 #: lib/gtk/font-manager-properties-page.c:56
 msgid "Family"
-msgstr ""
+msgstr "Сім'я"
 
 #: lib/gtk/font-manager-properties-page.c:57
 msgid "Style"
-msgstr ""
+msgstr "Стиль"
 
 #: lib/gtk/font-manager-properties-page.c:58
 #: src/font-manager/Categories.vala:259
@@ -441,7 +449,7 @@ msgstr "Інтервал"
 
 #: lib/gtk/font-manager-properties-page.c:62
 msgid "Version"
-msgstr ""
+msgstr "Версія"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/gtk/font-manager-properties-page.c:64
@@ -451,220 +459,220 @@ msgstr "Продавець"
 
 #: lib/gtk/font-manager-properties-page.c:65
 msgid "FileType"
-msgstr ""
+msgstr "FileType"
 
 #. Keep this entry last
 #: lib/gtk/font-manager-properties-page.c:67
 msgid "Filesize"
-msgstr ""
+msgstr "Розмір файлу"
 
 #: lib/gtk/unicode/unicode-character-map.c:850
 msgid "Copy"
-msgstr ""
+msgstr "Копіювати"
 
 #: lib/gtk/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr ""
+msgstr "<Високий сурогат не для приватного використання>"
 
 #: lib/gtk/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr ""
+msgstr "<Високий сурогат приватного користування>"
 
 #: lib/gtk/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
-msgstr ""
+msgstr "<Низький Сурогат>"
 
 #: lib/gtk/unicode/unicode-info.c:197
 msgid "<Private Use>"
-msgstr ""
+msgstr "<Приватне використання>"
 
 #: lib/gtk/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr ""
+msgstr "<Літак 15 приватного користування>"
 
 #: lib/gtk/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr ""
+msgstr "<Літак 16 приватного користування>"
 
 #: lib/gtk/unicode/unicode-info.c:205
 msgid "<not assigned>"
-msgstr ""
+msgstr "<не призначено>"
 
 #: lib/gtk/unicode/unicode-info.c:222
 msgid "Other, Control"
-msgstr ""
+msgstr "Інше, Контроль"
 
 #: lib/gtk/unicode/unicode-info.c:224
 msgid "Other, Format"
-msgstr ""
+msgstr "Інше, Формат"
 
 #: lib/gtk/unicode/unicode-info.c:226
 msgid "Other, Not Assigned"
-msgstr ""
+msgstr "Інше, не призначено"
 
 #: lib/gtk/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr ""
+msgstr "Інше, приватне використання"
 
 #: lib/gtk/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
-msgstr ""
+msgstr "Інше, Сурогат"
 
 #: lib/gtk/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
-msgstr ""
+msgstr "Літера, мала буква"
 
 #: lib/gtk/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
-msgstr ""
+msgstr "Літера, модифікатор"
 
 #: lib/gtk/unicode/unicode-info.c:236
 msgid "Letter, Other"
-msgstr ""
+msgstr "Лист, інше"
 
 #: lib/gtk/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
-msgstr ""
+msgstr "Лист, регістр"
 
 #: lib/gtk/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
-msgstr ""
+msgstr "Літера, Велика"
 
 #: lib/gtk/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr ""
+msgstr "Позначка, поєднання інтервалів"
 
 #: lib/gtk/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
-msgstr ""
+msgstr "Марк, Вкладення"
 
 #: lib/gtk/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr ""
+msgstr "Марк, без пробілів"
 
 #: lib/gtk/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
-msgstr ""
+msgstr "Число, десяткова цифра"
 
 #: lib/gtk/unicode/unicode-info.c:250
 msgid "Number, Letter"
-msgstr ""
+msgstr "Число, буква"
 
 #: lib/gtk/unicode/unicode-info.c:252
 msgid "Number, Other"
-msgstr ""
+msgstr "Номер, інше"
 
 #: lib/gtk/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "Розділові знаки, сполучник"
 
 #: lib/gtk/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
-msgstr ""
+msgstr "Розділові знаки, тире"
 
 #: lib/gtk/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
-msgstr ""
+msgstr "Розділові знаки, Закрити"
 
 #: lib/gtk/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "Розділові знаки, кінцева цитата"
 
 #: lib/gtk/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "Розділові знаки, початкова цитата"
 
 #: lib/gtk/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
-msgstr ""
+msgstr "Пунктуація, інше"
 
 #: lib/gtk/unicode/unicode-info.c:266
 msgid "Punctuation, Open"
-msgstr ""
+msgstr "Розділові знаки, відкрити"
 
 #: lib/gtk/unicode/unicode-info.c:268
 msgid "Symbol, Currency"
-msgstr ""
+msgstr "Символ, валюта"
 
 #: lib/gtk/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
-msgstr ""
+msgstr "Символ, модифікатор"
 
 #: lib/gtk/unicode/unicode-info.c:272
 msgid "Symbol, Math"
-msgstr ""
+msgstr "Символ, мат"
 
 #: lib/gtk/unicode/unicode-info.c:274
 msgid "Symbol, Other"
-msgstr ""
+msgstr "Символ, інше"
 
 #: lib/gtk/unicode/unicode-info.c:276
 msgid "Separator, Line"
-msgstr ""
+msgstr "Роздільник, лінія"
 
 #: lib/gtk/unicode/unicode-info.c:278
 msgid "Separator, Paragraph"
-msgstr ""
+msgstr "Роздільник, абзац"
 
 #: lib/gtk/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr ""
+msgstr "Роздільник, пробіл"
 
 #: src/common/WaterfallSettings.vala:37
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "До 48 точок (лінійне масштабування)"
 
 #: src/common/WaterfallSettings.vala:39
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "До 72 балів (загальний коефіцієнт 1,1)"
 
 #: src/common/WaterfallSettings.vala:41
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "До 96 точок (лінійне масштабування)"
 
 #: src/common/WaterfallSettings.vala:43
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "До 96 балів (загальний коефіцієнт 1,1)"
 
 #: src/common/WaterfallSettings.vala:45
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "До 120 балів (загальний коефіцієнт 1,2)"
 
 #: src/common/WaterfallSettings.vala:47
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "До 144 балів (загальний коефіцієнт 1,3)"
 
 #: src/common/WaterfallSettings.vala:49
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "До 192 балів (загальний коефіцієнт 1,4)"
 
 #: src/common/WaterfallSettings.vala:51
 msgid "Custom Size Settings"
-msgstr ""
+msgstr "Налаштування спеціального розміру"
 
 #: src/common/WaterfallSettings.vala:197
 msgid "Waterfall Preview Size Settings"
-msgstr ""
+msgstr "Параметри розміру попереднього перегляду водоспаду"
 
 #: src/common/WaterfallSettings.vala:201
 msgid "Higher values may adversely affect performance"
-msgstr ""
+msgstr "Вищі значення можуть негативно вплинути на продуктивність"
 
 #: src/common/WaterfallSettings.vala:204
 msgid "Minimum Waterfall Preview Point Size"
-msgstr ""
+msgstr "Мінімальний розмір точки попереднього перегляду водоспаду"
 
 #: src/common/WaterfallSettings.vala:206
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr ""
+msgstr "Загальне співвідношення розміру точки попереднього перегляду водоспаду"
 
 #: src/common/WaterfallSettings.vala:208
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "Максимальний розмір точки попереднього перегляду водоспаду"
 
 #: src/common/WaterfallSettings.vala:236
 msgid "Show line size"
-msgstr ""
+msgstr "Показати розмір лінії"
 
 #: src/font-manager/Application.vala:5
 msgid ""
@@ -684,47 +692,63 @@ msgid ""
 "\n"
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 msgstr ""
+"\n"
+"    Ця програма є безкоштовним програмним забезпеченням: ви можете "
+"поширювати її та/або змінювати \n"
+"    згідно з умовами Загальної публічної ліцензії GNU, опублікованої \n"
+"    Free Software Foundation, або версія 3 Ліцензії, або \n"
+"    (на ваш вибір) будь-яка пізніша версія. \n"
+"\n"
+"    Ця програма розповсюджується в надії, що вона буде корисною, \n"
+"    але БЕЗ ЖОДНИХ ГАРАНТІЙ; навіть без неявної гарантії \n"
+"    КОМЕРЦІЙНА ПРИДАТНІСТЬ або ПРИДАТНІСТЬ ДЛЯ КОНКРЕТНОЇ МЕТИ.  Див \n"
+"    Загальна публічна ліцензія GNU для отримання додаткової інформації. \n"
+"\n"
+"    Ви повинні були отримати копію GNU General Public License \n"
+"    разом із цією програмою. \n"
+"\n"
+"    Якщо ні, перегляньте <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 
 #: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
-msgstr ""
+msgstr "Встановлення файлів шрифтів…"
 
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
 msgid "Active"
-msgstr ""
+msgstr "Активний"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "Неактивний"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "Розроблено"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
-msgstr ""
+msgstr "Згруповано за шириною шрифту"
 
 #: src/font-manager/Categories.vala:260
 msgid "Grouped by font weight"
-msgstr ""
+msgstr "Згруповано за щільністю шрифту"
 
 #: src/font-manager/Categories.vala:261
 msgid "Grouped by font angle"
-msgstr ""
+msgstr "Згруповано за кутом нахилу шрифту"
 
 #: src/font-manager/Categories.vala:262
 msgid "Grouped by font spacing"
-msgstr ""
+msgstr "Згруповано за міжшрифтовим інтервалом"
 
 #: src/font-manager/Categories.vala:266
 msgid "Grouped by license type"
-msgstr ""
+msgstr "Згруповано за типом ліцензії"
 
 #: src/font-manager/Categories.vala:268
 msgid "Grouped by vendor"
-msgstr ""
+msgstr "Згруповано за постачальником"
 
 #: src/font-manager/Categories.vala:269
 msgid "Filetype"
@@ -732,7 +756,7 @@ msgstr "Тип файлу"
 
 #: src/font-manager/Categories.vala:269
 msgid "Grouped by filetype"
-msgstr ""
+msgstr "Згруповано за типом файлу"
 
 #: src/font-manager/Categories.vala:274
 msgid "All"
@@ -740,7 +764,7 @@ msgstr "Всі"
 
 #: src/font-manager/Categories.vala:274
 msgid "All Fonts"
-msgstr ""
+msgstr "Всі шрифти"
 
 #: src/font-manager/Categories.vala:275
 msgid "System"
@@ -748,7 +772,7 @@ msgstr "Система"
 
 #: src/font-manager/Categories.vala:275
 msgid "Fonts available to all users"
-msgstr ""
+msgstr "Шрифти доступні всім користувачам"
 
 #: src/font-manager/Categories.vala:298
 msgid "Family Kind"
@@ -756,77 +780,79 @@ msgstr "Сімейний вид"
 
 #: src/font-manager/Categories.vala:298
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr ""
+msgstr "Тут буде згруповано лише шрифти, які містять інформацію Panose."
 
 #: src/font-manager/Categories.vala:299
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: src/font-manager/Categories.vala:299
 msgid "No Fit"
-msgstr ""
+msgstr "Не підходить"
 
 #: src/font-manager/Categories.vala:299
 msgid "Text and Display"
-msgstr ""
+msgstr "Текст і дисплей"
 
 #: src/font-manager/Categories.vala:299
 msgid "Script"
-msgstr ""
+msgstr "Сценарій"
 
 #: src/font-manager/Categories.vala:299
 msgid "Decorative"
-msgstr ""
+msgstr "Декоративний"
 
 #: src/font-manager/Categories.vala:299
 msgid "Pictorial"
-msgstr ""
+msgstr "Живописний"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr ""
+msgstr "Введіть назву колекції"
 
 #: src/font-manager/Collections.vala:346
 msgid "Copy to…"
-msgstr ""
+msgstr "Копіювати до…"
 
 #: src/font-manager/Collections.vala:347
 msgid "Compress…"
-msgstr ""
+msgstr "Компрес…"
 
 #: src/font-manager/Collections.vala:348
 msgid "Rename…"
-msgstr ""
+msgstr "Перейменувати…"
 
 #: src/font-manager/Collections.vala:405
 msgid "Archive created successfully."
-msgstr ""
+msgstr "Архів успішно створено."
 
 #: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "Отриманий файл можна знайти у вашому домашньому каталозі."
 
 #: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
-msgstr ""
+msgstr "Помилка експорту колекції"
 
 #: src/font-manager/Collections.vala:409
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
+"Запустіть програму з терміналу та повторіть спробу, щоб отримати додаткову "
+"інформацію"
 
 #: src/font-manager/Collections.vala:430
 msgid "Creating archive from selected collection."
-msgstr ""
+msgstr "Створення архіву з вибраної колекції."
 
 #: src/font-manager/Collections.vala:431
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "Це може зайняти деякий час для великих колекцій…"
 
 #: src/font-manager/Compare.vala:336
 msgid "Saved Comparison"
-msgstr ""
+msgstr "Збережене порівняння"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
 #: src/font-manager/Compare.vala:372
@@ -834,126 +860,126 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
+"Зберегти поточне порівняння\n"
+"натиснувши кнопку +"
 
 #: src/font-manager/Controls.vala:80
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Комбінації клавіш"
 
 #: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
 msgid "Help"
-msgstr ""
+msgstr "Довідка"
 
 #: src/font-manager/Controls.vala:82
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "Розпорядник шрифтів"
+msgstr "Про менеджер шрифтів"
 
 #: src/font-manager/Controls.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:97
 msgid "Preferences"
-msgstr ""
+msgstr "Уподобання"
 
 #: src/font-manager/Controls.vala:92
 msgid "Import"
-msgstr ""
+msgstr "Імпорт"
 
 #: src/font-manager/Controls.vala:93
 #: src/font-manager/ui/font-manager-export-dialog.ui:25
 msgid "Export"
-msgstr ""
+msgstr "Експорт"
 
 #: src/font-manager/Controls.vala:96
 #: src/font-manager/ui/font-manager-export-dialog.ui:13
 msgid "User Data"
-msgstr ""
+msgstr "Дані користувача"
 
 #: src/font-manager/Controls.vala:129
 #: src/font-manager/ui/font-manager-user-action-row.ui:13
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
 msgid "Name"
-msgstr ""
+msgstr "Ім'я"
 
 #: src/font-manager/Controls.vala:131
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: src/font-manager/Controls.vala:196
 msgid "Grid View"
-msgstr ""
+msgstr "Перегляд сітки"
 
 #: src/font-manager/Controls.vala:197
 msgid "List View"
-msgstr ""
+msgstr "Перегляд списку"
 
 #: src/font-manager/Controls.vala:283
 msgid "Add Fonts"
-msgstr ""
+msgstr "Додати шрифти"
 
 #: src/font-manager/Controls.vala:284
 msgid "Remove Fonts"
-msgstr ""
+msgstr "Видалити шрифти"
 
 #: src/font-manager/Controls.vala:300
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
 msgid "_Select"
-msgstr ""
+msgstr "_Вибрати"
 
 #: src/font-manager/Dialogs.vala:49
 msgid "Select Executable"
-msgstr ""
+msgstr "Виберіть Виконуваний файл"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select a Directory"
-msgstr ""
+msgstr "Виберіть каталог"
 
 #: src/font-manager/Dialogs.vala:68
 msgid "TrueType"
-msgstr ""
+msgstr "TrueType"
 
 #: src/font-manager/Dialogs.vala:70
 msgid "OpenType"
-msgstr ""
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "Архівні файли"
 
 #: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
-msgstr ""
+msgstr "Виберіть Файли для встановлення"
 
 #: src/font-manager/Dialogs.vala:91
 msgid "Select Source Directories"
-msgstr ""
+msgstr "Виберіть вихідні каталоги"
 
 #: src/font-manager/Dialogs.vala:125
 msgid "Font Configuration"
-msgstr ""
+msgstr "Конфігурація шрифту"
 
 #: src/font-manager/Dialogs.vala:126
 msgid "Font Collections"
-msgstr ""
+msgstr "Колекції шрифтів"
 
 #: src/font-manager/Dialogs.vala:127
 #: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
-msgstr ""
+msgstr "Джерела шрифтів"
 
 #: src/font-manager/Dialogs.vala:128
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Встановлені шрифти"
 
 #: src/font-manager/Dialogs.vala:129
 msgid "Custom Actions"
-msgstr ""
+msgstr "Спеціальні дії"
 
 #: src/font-manager/Dialogs.vala:385
 msgid "Fonts installed in your home directory will appear here."
-msgstr ""
+msgstr "Тут з’являться шрифти, встановлені у вашому домашньому каталозі."
 
 #. FontList.vala
 #. *
@@ -982,20 +1008,24 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"Пошук прізвищ без урахування регістру.\n"
+"\n"
+"Почніть пошук за допомогою %s для фільтрації на основі шляху до файлу.\n"
+"Почніть пошук за допомогою %s для фільтрації за символами."
 
 #: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i Варіація "
+msgstr[1] "%i Варіацій "
+msgstr[2] "%i Варіації "
 
 #: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:279
 msgid "Collapse all"
-msgstr ""
+msgstr "Згорнути все"
 
 #: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:279
@@ -1003,23 +1033,23 @@ msgstr ""
 #: src/font-manager/ui/font-manager-font-list-view.ui:24
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
 msgid "Expand all"
-msgstr ""
+msgstr "Розгорнути все"
 
 #: src/font-manager/FontList.vala:510
 msgid "Copy Location"
-msgstr ""
+msgstr "Копіювати місцезнаходження"
 
 #: src/font-manager/FontList.vala:511
 msgid "Show in Folder"
-msgstr ""
+msgstr "Показати в папці"
 
 #: src/font-manager/FontList.vala:512
 msgid "Enable selected items"
-msgstr ""
+msgstr "Увімкнути вибрані елементи"
 
 #: src/font-manager/FontList.vala:513
 msgid "Disable selected items"
-msgstr ""
+msgstr "Вимкнути вибрані елементи"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
@@ -1027,410 +1057,410 @@ msgstr ""
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i вибраний елемент"
+msgstr[1] "%i вибрані елементи"
+msgstr[2] "%i вибрані елементів"
 
 #: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
 msgid "Actions"
-msgstr ""
+msgstr "Дії"
 
 #: src/font-manager/MainWindow.vala:69
 msgid "Browse"
-msgstr ""
+msgstr "Переглядати"
 
 #: src/font-manager/MainWindow.vala:71
 msgid "Compare"
-msgstr ""
+msgstr "Порівняйте"
 
 #: src/font-manager/MainWindow.vala:74
 msgid "Google Fonts"
-msgstr ""
+msgstr "Шрифти Google"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
-msgstr ""
+msgstr "Керувати"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Африканський"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Ахом"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr ""
+msgstr "Алеутська кирилиця"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "Алеутська лат"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/LanguageData.vala:35
 msgid "Arabic"
-msgstr ""
+msgstr "Арабська"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Архаїчні грецькі літери"
 
 #: src/font-manager/Orthographies.vala:37
 #: src/font-manager/web/google/LanguageData.vala:36
 msgid "Armenian"
-msgstr ""
+msgstr "Вірменський"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Астрономія"
 
 #: src/font-manager/Orthographies.vala:39
 #: src/font-manager/web/google/LanguageData.vala:38
 msgid "Balinese"
-msgstr ""
+msgstr "Балійська"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Балтійський"
 
 #: src/font-manager/Orthographies.vala:41
 #: src/font-manager/web/google/LanguageData.vala:39
 msgid "Bamum"
-msgstr ""
+msgstr "Бамум"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "Основна кирилиця"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr ""
+msgstr "Основна грецька"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr ""
+msgstr "Основна лат"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Батакський лист"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/LanguageData.vala:42
 msgid "Bengali"
-msgstr ""
+msgstr "Бенгальська"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "Брахмі"
 
 #: src/font-manager/Orthographies.vala:48
 #: src/font-manager/web/google/LanguageData.vala:46
 msgid "Buginese"
-msgstr ""
+msgstr "Бугійський"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Уніфікована силабіка канадських аборигенів"
 
 #: src/font-manager/Orthographies.vala:50
 #: src/font-manager/web/google/LanguageData.vala:50
 msgid "Carian"
-msgstr ""
+msgstr "Пошук"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Каталонська"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Центральноєвропейський"
 
 #: src/font-manager/Orthographies.vala:53
 #: src/font-manager/web/google/LanguageData.vala:51
 msgid "Chakma"
-msgstr ""
+msgstr "Чакма"
 
 #: src/font-manager/Orthographies.vala:54
 #: src/font-manager/web/google/LanguageData.vala:52
 msgid "Cham"
-msgstr ""
+msgstr "Чам"
 
 #: src/font-manager/Orthographies.vala:55
 #: src/font-manager/web/google/LanguageData.vala:53
 msgid "Cherokee"
-msgstr ""
+msgstr "Черокі"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Шахові символи"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "CJK Уніфікований"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "Уніфіковане розширення CJK A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "Уніфіковане розширення CJK B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "Уніфіковане розширення CJK C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "Уніфіковане розширення CJK D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "Уніфіковане розширення CJK E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "Ідеографії сумісності CJK"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "Доповнення до ідеографів сумісності CJK"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "Листи Клавдія"
 
 #: src/font-manager/Orthographies.vala:70
 #: src/font-manager/web/google/LanguageData.vala:58
 msgid "Coptic"
-msgstr ""
+msgstr "Коптська"
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
-msgstr ""
+msgstr "Валюти"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Кіпрська складова буква"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/LanguageData.vala:65
 msgid "Devanagari"
-msgstr ""
+msgstr "Деванагарі"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Голландська"
 
 #: src/font-manager/Orthographies.vala:75
 #: src/font-manager/web/google/LanguageData.vala:67
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Єгипетські ієрогліфи"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Смайлики"
 
 #: src/font-manager/Orthographies.vala:77
 #: src/font-manager/web/google/LanguageData.vala:70
 msgid "Ethiopic"
-msgstr ""
+msgstr "Ефіопський"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Фарсі"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Їжа та напої"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "Повна кирилиця"
 
 #: src/font-manager/Orthographies.vala:85
 #: src/font-manager/web/google/LanguageData.vala:71
 msgid "Georgian"
-msgstr ""
+msgstr "Грузинський"
 
 #: src/font-manager/Orthographies.vala:86
 #: src/font-manager/web/google/LanguageData.vala:72
 msgid "Glagolitic"
-msgstr ""
+msgstr "Глаголиця"
 
 #: src/font-manager/Orthographies.vala:87
 #: src/font-manager/web/google/LanguageData.vala:73
 msgid "Gothic"
-msgstr ""
+msgstr "Готика"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/LanguageData.vala:77
 msgid "Gujarati"
-msgstr ""
+msgstr "Гуджараті"
 
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/LanguageData.vala:79
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Гурмухі"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr ""
+msgstr "Корейський хангиль"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Хануноо"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/LanguageData.vala:83
 msgid "Hebrew"
-msgstr ""
+msgstr "Іврит"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Ігбо Онву"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
-msgstr ""
+msgstr "Корейська Джамо"
 
 #: src/font-manager/Orthographies.vala:97
 #: src/font-manager/web/google/LanguageData.vala:89
 msgid "Javanese"
-msgstr ""
+msgstr "Яванський"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "Японський Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "Японська радість"
 
 #: src/font-manager/Orthographies.vala:100
 #: src/font-manager/web/google/LanguageData.vala:90
 msgid "Kaithi"
-msgstr ""
+msgstr "Каїті"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr ""
+msgstr "Японське Кано"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/LanguageData.vala:91
 msgid "Kannada"
-msgstr ""
+msgstr "Каннада"
 
 #: src/font-manager/Orthographies.vala:103
 #: src/font-manager/web/google/LanguageData.vala:94
 msgid "Kayah Li"
-msgstr ""
+msgstr "Кая Лі"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "Казахська"
 
 #: src/font-manager/Orthographies.vala:105
 #: src/font-manager/web/google/LanguageData.vala:92
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Харошті"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/LanguageData.vala:95
 msgid "Khmer"
-msgstr ""
+msgstr "Кхмерська"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "Японський Кокудзі"
 
 #: src/font-manager/Orthographies.vala:108
 #: src/font-manager/web/google/LanguageData.vala:99
 msgid "Lao"
-msgstr ""
+msgstr "Лао"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Латинські лігатури"
 
 #: src/font-manager/Orthographies.vala:110
 #: src/font-manager/web/google/LanguageData.vala:100
 msgid "Lepcha"
-msgstr ""
+msgstr "Лепча"
 
 #: src/font-manager/Orthographies.vala:111
 #: src/font-manager/web/google/LanguageData.vala:103
 msgid "Limbu"
-msgstr ""
+msgstr "Лімбу"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Лінійні B ідеограми"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Лінійний Б Складовий алфавіт"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/LanguageData.vala:110
 msgid "Malayalam"
-msgstr ""
+msgstr "Малаялам"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Математичний грец"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Математична лат"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Математичні цифри"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Математичні оператори"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Метей Маяк"
 
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Менде Кікаку"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Мероїтичний курсив"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Мероїтичні ієрогліфи"
 
 #. { N_(""), "meroitic-cursive", "" },
 #. { N_(""), "meroitic-heiroglyphs", "" },
 #: src/font-manager/Orthographies.vala:123
 #: src/font-manager/web/google/LanguageData.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "Мяо"
 
 #: src/font-manager/Orthographies.vala:124
 #: src/font-manager/web/google/LanguageData.vala:125
 msgid "Mongolian"
-msgstr ""
+msgstr "Монгольська"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. Contains lots of duplicates, doubt many would find it useful
@@ -1438,261 +1468,261 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:130
 #: src/font-manager/web/google/LanguageData.vala:129
 msgid "Myanmar"
-msgstr ""
+msgstr "М'янма"
 
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/LanguageData.vala:133
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Новий Тай Лу"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "N’Ko"
-msgstr ""
+msgstr "Нко"
 
 #: src/font-manager/Orthographies.vala:133
 #: src/font-manager/web/google/LanguageData.vala:137
 msgid "Ogham"
-msgstr ""
+msgstr "Огам"
 
 #: src/font-manager/Orthographies.vala:134
 #: src/font-manager/web/google/LanguageData.vala:138
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Оль Чикі"
 
 #: src/font-manager/Orthographies.vala:135
 #: src/font-manager/web/google/LanguageData.vala:140
 msgid "Old Italic"
-msgstr ""
+msgstr "Старий Italic"
 
 #: src/font-manager/Orthographies.vala:136
 #: src/font-manager/web/google/LanguageData.vala:145
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Давньоаравійський"
 
 #: src/font-manager/Orthographies.vala:137
 #: src/font-manager/web/google/LanguageData.vala:149
 msgid "Oriya"
-msgstr ""
+msgstr "Орія"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/LanguageData.vala:148
 msgid "Osmanya"
-msgstr ""
+msgstr "Османія"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Панафриканська латиниця"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pashto"
-msgstr ""
+msgstr "Пушту"
 
 #: src/font-manager/Orthographies.vala:141
 #: src/font-manager/web/google/LanguageData.vala:153
 msgid "Phags Pa"
-msgstr ""
+msgstr "Фагс Па"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Pinyin"
-msgstr ""
+msgstr "Піньїнь"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Polynesian"
-msgstr ""
+msgstr "Полінезійський"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Політонічна грецька"
 
 #: src/font-manager/Orthographies.vala:145
 #: src/font-manager/web/google/LanguageData.vala:156
 msgid "Rejang"
-msgstr ""
+msgstr "Реджанг"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Romanian"
-msgstr ""
+msgstr "Румунська"
 
 #: src/font-manager/Orthographies.vala:147
 #: src/font-manager/web/google/LanguageData.vala:157
 msgid "Runic"
-msgstr ""
+msgstr "Рунічний"
 
 #: src/font-manager/Orthographies.vala:148
 #: src/font-manager/web/google/LanguageData.vala:159
 msgid "Saurashtra"
-msgstr ""
+msgstr "Саураштра"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Спрощена китайська"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Sindhi"
-msgstr ""
+msgstr "Сіндхі"
 
 #: src/font-manager/Orthographies.vala:151
 #: src/font-manager/web/google/LanguageData.vala:164
 msgid "Sinhala"
-msgstr ""
+msgstr "Сингальська"
 
 #: src/font-manager/Orthographies.vala:152
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Південнокорейська ханджа"
 
 #: src/font-manager/Orthographies.vala:153
 #: src/font-manager/web/google/LanguageData.vala:168
 msgid "Sundanese"
-msgstr ""
+msgstr "Сунданська"
 
 #: src/font-manager/Orthographies.vala:154
 #: src/font-manager/web/google/LanguageData.vala:169
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Сілоті Нагрі"
 
 #. { N_("Symbols"), "symbols", "" },
 #: src/font-manager/Orthographies.vala:155
 #: src/font-manager/web/google/LanguageData.vala:171
 msgid "Syriac"
-msgstr ""
+msgstr "Сирійська"
 
 #: src/font-manager/Orthographies.vala:156
 #: src/font-manager/web/google/LanguageData.vala:174
 msgid "Tai Le"
-msgstr ""
+msgstr "Тай Ле"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Тай Тхам (Ланна)"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Viet"
-msgstr ""
+msgstr "Тай В'єт"
 
 #: src/font-manager/Orthographies.vala:159
 #: src/font-manager/web/google/LanguageData.vala:175
 msgid "Tamil"
-msgstr ""
+msgstr "Тамільська"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/LanguageData.vala:176
 msgid "Telugu"
-msgstr ""
+msgstr "Телугу"
 
 #: src/font-manager/Orthographies.vala:161
 msgid "Thaana"
-msgstr ""
+msgstr "Тана"
 
 #: src/font-manager/Orthographies.vala:162
 #: src/font-manager/web/google/LanguageData.vala:177
 msgid "Thai"
-msgstr ""
+msgstr "Тайська"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/LanguageData.vala:178
 msgid "Tibetan"
-msgstr ""
+msgstr "Тибетська"
 
 #: src/font-manager/Orthographies.vala:164
 msgid "Tifinagh"
-msgstr ""
+msgstr "Тіфінаг"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Традиційна китайська"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Turkish"
-msgstr ""
+msgstr "Турецька"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Uighur"
-msgstr ""
+msgstr "Уйгурський"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Urdu"
-msgstr ""
+msgstr "Урду"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Vai"
-msgstr ""
+msgstr "Ваі"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Ведичні розширення"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Venda"
-msgstr ""
+msgstr "Розпродаж"
 
 #: src/font-manager/Orthographies.vala:172
 #: src/font-manager/web/google/LanguageData.vala:179
 msgid "Vietnamese"
-msgstr ""
+msgstr "В'єтнамська"
 
 #: src/font-manager/Orthographies.vala:173
 msgid "Western European"
-msgstr ""
+msgstr "Західноєвропейський"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Yi"
-msgstr ""
+msgstr "Я"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Китайський Чжуїнь Фухао"
 
 #. Translators : Coverage refers to the amount of support the font provides for
 #. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/OrthographyList.vala:105
 msgid "Coverage"
-msgstr ""
+msgstr "Покриття"
 
 #: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
 msgid "Supported Orthographies"
-msgstr ""
+msgstr "Підтримувані орфографії"
 
 #: src/font-manager/OrthographyList.vala:200
 msgid "No items selected"
-msgstr ""
+msgstr "Елементи не вибрано"
 
 #: src/font-manager/OrthographyList.vala:205
 msgid "Update in progress"
-msgstr ""
+msgstr "Виконується оновлення"
 
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "Немає дійсних орфографій для вибору"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
-msgstr ""
+msgstr "Додати нову колекцію"
 
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
 msgid "Remove selected item"
-msgstr ""
+msgstr "Видалити вибраний елемент"
 
 #: src/font-manager/Sidebar.vala:67
 msgid "Edit selected item"
-msgstr ""
+msgstr "Редагувати вибраний елемент"
 
 #: src/font-manager/Utils.vala:295
 msgid "Copying files…"
-msgstr ""
+msgstr "Копіювання файлів…"
 
 #: src/font-manager/filters/Collection.vala:99
 msgid "New Collection"
-msgstr ""
+msgstr "Нова колекція"
 
 #: src/font-manager/filters/Collection.vala:100
 #, c-format
 msgid "Created : %s"
-msgstr ""
+msgstr "Створено : %s"
 
 #: src/font-manager/filters/Disabled.vala:28
 msgid "Disabled"
@@ -1700,11 +1730,11 @@ msgstr "Вимкнено"
 
 #: src/font-manager/filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
-msgstr ""
+msgstr "Шрифти, які були вимкнені"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
-msgstr ""
+msgstr "Фільтр на основі підтримуваної орфографії"
 
 #: src/font-manager/filters/Unsorted.vala:34
 msgid "Unsorted"
@@ -1712,7 +1742,7 @@ msgstr "Несортований"
 
 #: src/font-manager/filters/Unsorted.vala:35
 msgid "Fonts not present in any collection"
-msgstr ""
+msgstr "Шрифти відсутні в жодній колекції"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1720,53 +1750,57 @@ msgstr "Користувач"
 
 #: src/font-manager/filters/UserFonts.vala:28
 msgid "Fonts available only to you"
-msgstr ""
+msgstr "Шрифти, доступні тільки вам"
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
-msgstr ""
+msgstr "Шрифт інтерфейсу"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr ""
+msgstr "Шрифт, який використовується в інтерфейсі."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
-msgstr ""
+msgstr "Шрифт документа"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
-msgstr ""
+msgstr "Шрифт, який використовується для читання документів."
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
-msgstr ""
+msgstr "Моноширинний шрифт"
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
+"Моноширинний шрифт (з фіксованою шириною) для використання в таких місцях, "
+"як термінали."
 
 #: src/font-manager/preferences/Desktop.vala:54
 msgid "Text Scaling Factor"
-msgstr ""
+msgstr "Коефіцієнт масштабування тексту"
 
 #: src/font-manager/preferences/Desktop.vala:55
 msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
 msgstr ""
+"Фактор, який використовується для збільшення або зменшення відображення "
+"тексту без зміни розміру шрифту"
 
 #: src/font-manager/preferences/Desktop.vala:60
 msgid "GTK 4 Font Rendering"
-msgstr ""
+msgstr "Відтворення шрифтів GTK 4"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
-msgstr ""
+msgstr "Автоматична опція дозволяє GTK 4 ігнорувати налаштування підказок."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
 msgid "Antialiasing"
-msgstr ""
+msgstr "Згладжування"
 
 #: src/font-manager/preferences/Desktop.vala:67
 msgid ""
@@ -1775,11 +1809,15 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values. "
 msgstr ""
+"Тип згладжування для використання під час відтворення шрифтів.\n"
+"\n"
+"Примітка. Починаючи з GTK 4 RGBA більше не використовується, дійсними "
+"значеннями є лише значення None і Grayscale. "
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:96
 msgid "RGBA order"
-msgstr ""
+msgstr "Замовлення РГБА"
 
 #: src/font-manager/preferences/Desktop.vala:73
 #: src/font-manager/preferences/Desktop.vala:97
@@ -1787,17 +1825,19 @@ msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
+"Порядок субпіксельних елементів на рідкокристалічному екрані; "
+"використовується лише тоді, коли для згладжування встановлено значення rgba."
 
 #: src/font-manager/preferences/Desktop.vala:78
 #: src/font-manager/preferences/Desktop.vala:84
 #: src/font-manager/preferences/Rendering.vala:78
 msgid "Hinting"
-msgstr ""
+msgstr "Підказка"
 
 #: src/font-manager/preferences/Desktop.vala:79
 #: src/font-manager/preferences/Desktop.vala:85
 msgid "The type of hinting to use when rendering fonts."
-msgstr ""
+msgstr "Тип підказки для використання під час відтворення шрифтів."
 
 #: src/font-manager/preferences/Desktop.vala:91
 msgid ""
@@ -1806,68 +1846,72 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values."
 msgstr ""
+"Тип згладжування для використання під час відтворення шрифтів.\n"
+"\n"
+"Примітка. Починаючи з GTK 4 RGBA більше не використовується, дійсними "
+"значеннями є лише значення None і Grayscale."
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
-msgstr ""
+msgstr "Схему налаштувань робочого столу GNOME не знайдено"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "Автоматичний"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "Інструкція"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
-msgstr ""
+msgstr "Відтінки сірого"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "RGBA"
-msgstr ""
+msgstr "RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:242
 #: src/font-manager/preferences/Display.vala:91
 msgid "Subpixel Geometry"
-msgstr ""
+msgstr "Субпіксельна геометрія"
 
 #: src/font-manager/preferences/Display.vala:75
 msgid "Target DPI"
-msgstr ""
+msgstr "Цільовий DPI"
 
 #: src/font-manager/preferences/Display.vala:77
 msgid "Scale Factor"
-msgstr ""
+msgstr "Фактор масштабу"
 
 #: src/font-manager/preferences/Display.vala:83
 msgid "LCD Filter"
-msgstr ""
+msgstr "РК-фільтр"
 
 #: src/font-manager/preferences/Preferences.vala:41
 msgid "Interface"
-msgstr ""
+msgstr "Інтерфейс"
 
 #: src/font-manager/preferences/Preferences.vala:42
 msgid "Desktop"
-msgstr ""
+msgstr "Робочий стіл"
 
 #: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
-msgstr ""
+msgstr "Джерела"
 
 #: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
-msgstr ""
+msgstr "Заміни"
 
 #: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
 msgid "Display"
-msgstr ""
+msgstr "Дисплей"
 
 #: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
-msgstr ""
+msgstr "Візуалізація"
 
 #: src/font-manager/preferences/Preferences.vala:131
 msgid ""
@@ -1877,38 +1921,44 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Файл конфігурації Fontconfig буде згенеровано з цих параметрів.\n"
+"\n"
+"Запущені програми можуть вимагати перезавантаження, щоб відобразити будь-які "
+"зміни.\n"
+"\n"
+"Зауважте, що не всі середовища/програми підтримуватимуть ці налаштування."
 
 #: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
-msgstr ""
+msgstr "Скинути всі значення до стандартних"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
-msgstr ""
+msgstr "Анталія"
 
 #: src/font-manager/preferences/Rendering.vala:81
 msgid "Enable Autohinter"
-msgstr ""
+msgstr "Увімкнути Autohinter"
 
 #: src/font-manager/preferences/Rendering.vala:88
 msgid "Hinting Style"
-msgstr ""
+msgstr "Стиль підказки"
 
 #: src/font-manager/preferences/Rendering.vala:90
 msgid "Use Embedded Bitmaps"
-msgstr ""
+msgstr "Використовуйте вбудовані растрові зображення"
 
 #: src/font-manager/preferences/Substitutions.vala:153
 msgid "Font Substitutions"
-msgstr ""
+msgstr "Заміна шрифту"
 
 #: src/font-manager/preferences/Substitutions.vala:154
 msgid "Easily substitute one font family for another."
-msgstr ""
+msgstr "Легко замінюйте одне сімейство шрифтів іншим."
 
 #: src/font-manager/preferences/Substitutions.vala:155
 msgid "To add a new substitute click the add button in the toolbar."
-msgstr ""
+msgstr "Щоб додати нову заміну, натисніть кнопку додати на панелі інструментів."
 
 #: src/font-manager/preferences/UserActions.vala:232
 msgid ""
@@ -1919,78 +1969,85 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"Визначені тут дії буде додано до контекстного меню списку шрифтів. \n"
+"\n"
+"За замовчуванням шлях до файлу для вибраного шрифту буде додано в кінець "
+"списку аргументів. \n"
+"Щоб керувати місцем вставлення шляху до файлу, використовуйте FILEPATH як "
+"заповнювач. \n"
+"Якщо в списку аргументів знайдено FAMILY або STYLE, їх також буде замінено."
 
 #: src/font-manager/preferences/UserActions.vala:246
 msgid "User Actions"
-msgstr ""
+msgstr "Дії користувача"
 
 #: src/font-manager/preferences/UserActions.vala:248
 msgid "Custom context menu entries"
-msgstr ""
+msgstr "Записи контекстного меню користувача"
 
 #: src/font-manager/preferences/UserInterface.vala:78
 #: src/font-viewer/MainWindow.vala:337
 msgid "Selected setting requires restart to apply"
-msgstr ""
+msgstr "Щоб застосувати вибране налаштування, потрібен перезапуск"
 
 #: src/font-manager/preferences/UserInterface.vala:79
 #: src/font-viewer/MainWindow.vala:338
 msgid "Changes will take effect next time the application is started"
-msgstr ""
+msgstr "Зміни набудуть чинності під час наступного запуску програми"
 
 #: src/font-manager/preferences/UserInterface.vala:92
 msgid "Wide Layout"
-msgstr ""
+msgstr "Широкий макет"
 
 #: src/font-manager/preferences/UserInterface.vala:92
 msgid "Use three column layout"
-msgstr ""
+msgstr "Використовуйте макет у три колонки"
 
 #: src/font-manager/preferences/UserInterface.vala:95
 msgid "Only When Maximized"
-msgstr ""
+msgstr "Лише при розгорнутому"
 
 #: src/font-manager/preferences/UserInterface.vala:97
 msgid "Enable Animations"
-msgstr ""
+msgstr "Увімкнути анімацію"
 
 #. The added margins here are due to PreviewColors widget alignment issues
 #: src/font-manager/preferences/UserInterface.vala:98
 #: src/font-viewer/MainWindow.vala:353
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Віддавайте перевагу темній темі"
 
 #: src/font-manager/preferences/UserInterface.vala:100
 #: src/font-viewer/MainWindow.vala:358
 msgid "Use Adwaita Stylesheet"
-msgstr ""
+msgstr "Використовуйте таблицю стилів Adwaita"
 
 #: src/font-manager/preferences/UserInterface.vala:103
 msgid "Raised"
-msgstr ""
+msgstr "Піднятий"
 
 #: src/font-manager/preferences/UserInterface.vala:104
 msgid "Flat"
-msgstr ""
+msgstr "Плоский"
 
 #: src/font-manager/preferences/UserInterface.vala:106
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "Стиль кнопки заголовка"
 
 #: src/font-manager/preferences/UserInterface.vala:107
 #: src/font-viewer/MainWindow.vala:376
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Розмір лінії відображення в попередньому перегляді водоспаду"
 
 #: src/font-manager/preferences/UserInterface.vala:112
 #: src/font-viewer/MainWindow.vala:371
 msgid "Waterfall Line Spacing"
-msgstr ""
+msgstr "Водоспад Міжрядковий інтервал"
 
 #: src/font-manager/preferences/UserInterface.vala:114
 #: src/font-viewer/MainWindow.vala:372
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "Відступ у пікселях для вставки над і під рядками"
 
 #: src/font-manager/preferences/UserSources.vala:145
 msgid ""
@@ -1999,436 +2056,446 @@ msgid ""
 "They will not be visible to other applications until the source is actually "
 "enabled."
 msgstr ""
+"Шрифти з будь-яких папок, перелічених тут, будуть доступні в програмі.\n"
+"\n"
+"Вони не будуть видимі для інших програм, доки джерело не буде фактично "
+"ввімкнено."
 
 #: src/font-manager/preferences/UserSources.vala:157
 msgid "Easily add or preview fonts without actually installing them."
-msgstr ""
+msgstr "Легко додавайте або переглядайте шрифти, не встановлюючи їх."
 
 #: src/font-manager/preferences/UserSources.vala:158
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
+"Щоб додати нове джерело, просто перетягніть папку в цю область або натисніть "
+"кнопку «Додати» на панелі інструментів."
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "Доступ до мережі вимкнено"
 
 #: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "Зверніться до системного адміністратора, щоб отримати доступ."
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
-msgstr ""
+msgstr "Мережа офлайн"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:162
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"Для доступу до каталогу шрифтів Google потрібне активне підключення до "
+"Інтернету"
 
 #: src/font-manager/web/google/GoogleFonts.vala:172
 msgid "Client Error"
-msgstr ""
+msgstr "Помилка клієнта"
 
 #: src/font-manager/web/google/GoogleFonts.vala:173
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Спробуйте перезапустити програму. Якщо проблема не зникає, повідомте про "
+"помилку."
 
 #: src/font-manager/web/google/GoogleFonts.vala:176
 msgid "Server Error"
-msgstr ""
+msgstr "Помилка сервера"
 
 #. Sample strings used here should be sourced from https://fonts.google.com/
 #: src/font-manager/web/google/LanguageData.vala:33
 msgid "Adlam"
-msgstr ""
+msgstr "Відскок"
 
 #: src/font-manager/web/google/LanguageData.vala:34
 msgid "Anatolian Hieroglyphs"
-msgstr ""
+msgstr "Анатолійські ієрогліфи"
 
 #: src/font-manager/web/google/LanguageData.vala:37
 msgid "Avestan"
-msgstr ""
+msgstr "Авестійська"
 
 #: src/font-manager/web/google/LanguageData.vala:40
 msgid "Bassa Vah"
-msgstr ""
+msgstr "Басса Вах"
 
 #: src/font-manager/web/google/LanguageData.vala:41
 msgid "Batak"
-msgstr ""
+msgstr "Батак"
 
 #: src/font-manager/web/google/LanguageData.vala:43
 msgid "Bhaiksuki"
-msgstr ""
+msgstr "Байксукі"
 
 #: src/font-manager/web/google/LanguageData.vala:44
 msgid "Brahmi"
-msgstr ""
+msgstr "Брахмі"
 
 #: src/font-manager/web/google/LanguageData.vala:45
 msgid "Braille"
-msgstr ""
+msgstr "Брайля"
 
 #. { N_("Buhid"), "buhid", "" },
 #: src/font-manager/web/google/LanguageData.vala:48
 msgid "Caucasian Albanian"
-msgstr ""
+msgstr "Кавказький албанець"
 
 #: src/font-manager/web/google/LanguageData.vala:49
 msgid "Canadian Aboriginal"
-msgstr ""
+msgstr "Канадський абориген"
 
 #: src/font-manager/web/google/LanguageData.vala:54
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Китайська (Гонконг)"
 
 #: src/font-manager/web/google/LanguageData.vala:55
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Китайська (спрощена)"
 
 #: src/font-manager/web/google/LanguageData.vala:56
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Китайська (традиційна)"
 
 #: src/font-manager/web/google/LanguageData.vala:57
 msgid "Chorasmian"
-msgstr ""
+msgstr "Хоразмійський"
 
 #: src/font-manager/web/google/LanguageData.vala:59
 msgid "Cuneiform"
-msgstr ""
+msgstr "Клинопис"
 
 #: src/font-manager/web/google/LanguageData.vala:60
 msgid "Cypriot"
-msgstr ""
+msgstr "Кіпрський"
 
 #: src/font-manager/web/google/LanguageData.vala:61
 msgid "Cypro Minoan"
-msgstr ""
+msgstr "Кіпромінойська"
 
 #: src/font-manager/web/google/LanguageData.vala:62
 msgid "Cyrillic"
-msgstr ""
+msgstr "Кирилиця"
 
 #: src/font-manager/web/google/LanguageData.vala:63
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Розширена кирилиця"
 
 #: src/font-manager/web/google/LanguageData.vala:64
 msgid "Deseret"
-msgstr ""
+msgstr "Десерет"
 
 #: src/font-manager/web/google/LanguageData.vala:66
 msgid "Duployan"
-msgstr ""
+msgstr "Дуплоян"
 
 #: src/font-manager/web/google/LanguageData.vala:68
 msgid "Elbasan"
-msgstr ""
+msgstr "Ельбасан"
 
 #: src/font-manager/web/google/LanguageData.vala:69
 msgid "Elymaic"
-msgstr ""
+msgstr "Елімейський"
 
 #: src/font-manager/web/google/LanguageData.vala:74
 msgid "Grantha"
-msgstr ""
+msgstr "Гранта"
 
 #: src/font-manager/web/google/LanguageData.vala:75
 msgid "Greek"
-msgstr ""
+msgstr "Грецька"
 
 #: src/font-manager/web/google/LanguageData.vala:76
 msgid "Greek Extended"
-msgstr ""
+msgstr "Грецька розширена"
 
 #: src/font-manager/web/google/LanguageData.vala:78
 msgid "Gunjala Gondi"
-msgstr ""
+msgstr "Гунджала Гонді"
 
 #: src/font-manager/web/google/LanguageData.vala:80
 msgid "Hanifi Rohingya"
-msgstr ""
+msgstr "Ханіфі рохінджа"
 
 #: src/font-manager/web/google/LanguageData.vala:81
 msgid "Hanunoo"
-msgstr ""
+msgstr "Хануну"
 
 #: src/font-manager/web/google/LanguageData.vala:82
 msgid "Hatran"
-msgstr ""
+msgstr "Hatran"
 
 #: src/font-manager/web/google/LanguageData.vala:84
 msgid "Imperial Aramaic"
-msgstr ""
+msgstr "Імперська арамейська"
 
 #: src/font-manager/web/google/LanguageData.vala:85
 msgid "Indic Siyaq Numbers"
-msgstr ""
+msgstr "Індійські номери Siyaq"
 
 #: src/font-manager/web/google/LanguageData.vala:86
 msgid "Inscriptional Pahlavi"
-msgstr ""
+msgstr "Напис пехлеві"
 
 #: src/font-manager/web/google/LanguageData.vala:87
 msgid "Inscriptional Parthian"
-msgstr ""
+msgstr "Написовий парфянський"
 
 #: src/font-manager/web/google/LanguageData.vala:88
 msgid "Japanese"
-msgstr ""
+msgstr "Японський"
 
 #: src/font-manager/web/google/LanguageData.vala:93
 msgid "Kawi"
-msgstr ""
+msgstr "Каві"
 
 #: src/font-manager/web/google/LanguageData.vala:96
 msgid "Khojki"
-msgstr ""
+msgstr "Хойкі"
 
 #: src/font-manager/web/google/LanguageData.vala:97
 msgid "Khudawadi"
-msgstr ""
+msgstr "Худаваді"
 
 #: src/font-manager/web/google/LanguageData.vala:98
 msgid "Korean"
-msgstr ""
+msgstr "Корейська"
 
 #: src/font-manager/web/google/LanguageData.vala:101
 msgid "Latin"
-msgstr ""
+msgstr "Латинь"
 
 #: src/font-manager/web/google/LanguageData.vala:102
 msgid "Latin Extended"
-msgstr ""
+msgstr "Латинська розширена"
 
 #: src/font-manager/web/google/LanguageData.vala:104
 msgid "Linear A"
-msgstr ""
+msgstr "Лінійний А"
 
 #: src/font-manager/web/google/LanguageData.vala:105
 msgid "Linear B"
-msgstr ""
+msgstr "Лінійний Б"
 
 #: src/font-manager/web/google/LanguageData.vala:106
 msgid "Lisu"
-msgstr ""
+msgstr "Лісу"
 
 #: src/font-manager/web/google/LanguageData.vala:107
 msgid "Lycian"
-msgstr ""
+msgstr "Лікійський"
 
 #: src/font-manager/web/google/LanguageData.vala:108
 msgid "Lydian"
-msgstr ""
+msgstr "Лідійський"
 
 #: src/font-manager/web/google/LanguageData.vala:109
 msgid "Mahajani"
-msgstr ""
+msgstr "Махаджані"
 
 #: src/font-manager/web/google/LanguageData.vala:111
 msgid "Mandaic"
-msgstr ""
+msgstr "Мандаїк"
 
 #: src/font-manager/web/google/LanguageData.vala:112
 msgid "Manichaean"
-msgstr ""
+msgstr "Маніхейський"
 
 #: src/font-manager/web/google/LanguageData.vala:113
 msgid "Math"
-msgstr ""
+msgstr "Матем"
 
 #: src/font-manager/web/google/LanguageData.vala:114
 msgid "Marchen"
-msgstr ""
+msgstr "Маршень"
 
 #: src/font-manager/web/google/LanguageData.vala:115
 msgid "Masaram Gondi"
-msgstr ""
+msgstr "Масарам Гонді"
 
 #: src/font-manager/web/google/LanguageData.vala:116
 msgid "Mayan Numerals"
-msgstr ""
+msgstr "Числа майя"
 
 #: src/font-manager/web/google/LanguageData.vala:117
 msgid "Medefaidrin"
-msgstr ""
+msgstr "Медефаїдрін"
 
 #: src/font-manager/web/google/LanguageData.vala:118
 msgid "Meetei Mayek"
-msgstr ""
+msgstr "Маяк Маутек"
 
 #: src/font-manager/web/google/LanguageData.vala:120
 msgid "Meroitic"
-msgstr ""
+msgstr "Мероїтичний"
 
 #: src/font-manager/web/google/LanguageData.vala:124
 msgid "Modi"
-msgstr ""
+msgstr "Моді"
 
 #: src/font-manager/web/google/LanguageData.vala:126
 msgid "Mro"
-msgstr ""
+msgstr "Mro"
 
 #: src/font-manager/web/google/LanguageData.vala:127
 msgid "Multani"
-msgstr ""
+msgstr "Зброя"
 
 #: src/font-manager/web/google/LanguageData.vala:128
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: src/font-manager/web/google/LanguageData.vala:130
 msgid "Nabataean"
-msgstr ""
+msgstr "Набатейський"
 
 #: src/font-manager/web/google/LanguageData.vala:131
 msgid "Nag Mundari"
-msgstr ""
+msgstr "Наг Мундарі"
 
 #: src/font-manager/web/google/LanguageData.vala:132
 msgid "Nandinagari"
-msgstr ""
+msgstr "Нандінагар"
 
 #: src/font-manager/web/google/LanguageData.vala:134
 msgid "Newa"
-msgstr ""
+msgstr "Нева"
 
 #. { N_(""), "nko", "" },
 #: src/font-manager/web/google/LanguageData.vala:136
 msgid "Nüshu"
-msgstr ""
+msgstr "Нюшу"
 
 #: src/font-manager/web/google/LanguageData.vala:139
 msgid "Old Hungarian"
-msgstr ""
+msgstr "Староугорська"
 
 #: src/font-manager/web/google/LanguageData.vala:141
 msgid "Old North Arabian"
-msgstr ""
+msgstr "Старий північноаравійський"
 
 #: src/font-manager/web/google/LanguageData.vala:142
 msgid "Old Permic"
-msgstr ""
+msgstr "Старопермський"
 
 #: src/font-manager/web/google/LanguageData.vala:143
 msgid "Old Persian"
-msgstr ""
+msgstr "Староперська"
 
 #: src/font-manager/web/google/LanguageData.vala:144
 msgid "Old Sogdian"
-msgstr ""
+msgstr "старосогдійський"
 
 #: src/font-manager/web/google/LanguageData.vala:146
 msgid "Old Turkic"
-msgstr ""
+msgstr "Старотюрк"
 
 #: src/font-manager/web/google/LanguageData.vala:147
 msgid "Osage"
-msgstr ""
+msgstr "Осейдж"
 
 #: src/font-manager/web/google/LanguageData.vala:150
 msgid "Pahawh Hmong"
-msgstr ""
+msgstr "Пахавх Хмонг"
 
 #: src/font-manager/web/google/LanguageData.vala:151
 msgid "Palmyrene"
-msgstr ""
+msgstr "Пальмірен"
 
 #: src/font-manager/web/google/LanguageData.vala:152
 msgid "Pau Cin Hau"
-msgstr ""
+msgstr "Пау Син Хау"
 
 #: src/font-manager/web/google/LanguageData.vala:154
 msgid "Phoenician"
-msgstr ""
+msgstr "Фінікійський"
 
 #: src/font-manager/web/google/LanguageData.vala:155
 msgid "Psalter Pahlavi"
-msgstr ""
+msgstr "Псалтир Пехлеві"
 
 #: src/font-manager/web/google/LanguageData.vala:158
 msgid "Samaritan"
-msgstr ""
+msgstr "Самарянин"
 
 #: src/font-manager/web/google/LanguageData.vala:160
 msgid "Sharada"
-msgstr ""
+msgstr "Хвороба"
 
 #: src/font-manager/web/google/LanguageData.vala:161
 msgid "Shavian"
-msgstr ""
+msgstr "Шавіан"
 
 #: src/font-manager/web/google/LanguageData.vala:162
 msgid "Siddham"
-msgstr ""
+msgstr "Сідхем"
 
 #: src/font-manager/web/google/LanguageData.vala:163
 msgid "SignWriting"
-msgstr ""
+msgstr "Знакове письмо"
 
 #: src/font-manager/web/google/LanguageData.vala:165
 msgid "Sogdian"
-msgstr ""
+msgstr "Согдійський"
 
 #: src/font-manager/web/google/LanguageData.vala:166
 msgid "Sora Sompeng"
-msgstr ""
+msgstr "Сора Сомпенг"
 
 #: src/font-manager/web/google/LanguageData.vala:167
 msgid "Soyombo"
-msgstr ""
+msgstr "Сойомбо"
 
 #: src/font-manager/web/google/LanguageData.vala:172
 msgid "Tagalog"
-msgstr ""
+msgstr "Тагальська"
 
 #: src/font-manager/web/google/LanguageData.vala:173
 msgid "Tagbanwa"
-msgstr ""
+msgstr "Тагбанва"
 
 #. TRANSLATORS : The replacement character here refers to a language name.
 #: src/font-manager/web/google/LanguageData.vala:190
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "Немає доступних зразків для %s"
 
 #: src/font-manager/web/google/LanguageData.vala:192
 msgid "Please file an issue requesting an update to available samples."
-msgstr ""
+msgstr "Надішліть запит на оновлення доступних зразків."
 
 #: src/font-manager/web/google/PreviewPage.vala:383
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i Зразок мови доступний "
+msgstr[1] "%i Доступні зразки мов "
+msgstr[2] "%i Доступні зразків мов "
 
 #: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
-msgstr ""
+msgstr "Надлегкий"
 
 #: src/font-manager/web/google/WebFont.vala:182
 msgid "SemiBold"
-msgstr ""
+msgstr "Напівжирний"
 
 #: src/font-manager/web/google/WebFont.vala:186
 msgid "ExtraBold"
-msgstr ""
+msgstr "Наджирний"
 
 #: src/font-manager/web/google/WebFont.vala:188
 msgid "Black"
-msgstr ""
+msgstr "Чорний"
 
 #: src/font-viewer/MainWindow.vala:279
 msgid "System Font"
-msgstr ""
+msgstr "Системний шрифт"
 
 #: src/font-viewer/MainWindow.vala:281
 msgid ""
@@ -2440,122 +2507,129 @@ msgid ""
 "the system administrator to remove it or use a font management application "
 "to disable it."
 msgstr ""
+"Вибраний файл шрифту встановлено в системному каталозі або недоступний для "
+"запису поточним користувачем. \n"
+"\n"
+"Якщо ви хочете видалити цей шрифт зі списку доступних шрифтів, скористайтеся "
+"системним менеджером пакетів, щоб видалити пакет, що містить цей файл "
+"шрифту, попросіть системного адміністратора видалити його або скористайтеся "
+"програмою керування шрифтами, щоб вимкнути його."
 
 #: src/font-viewer/MainWindow.vala:284
 msgid "Newer version already installed"
-msgstr ""
+msgstr "Новіша версія вже встановлена"
 
 #: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
 msgid "Click to overwrite"
-msgstr ""
+msgstr "Натисніть, щоб перезаписати"
 
 #: src/font-viewer/MainWindow.vala:289
 msgid "Update Font"
-msgstr ""
+msgstr "Оновити шрифт"
 
 #: src/font-viewer/MainWindow.vala:294
 msgid "Remove Font"
-msgstr ""
+msgstr "Видалити шрифт"
 
 #: src/font-viewer/MainWindow.vala:298
 #: src/font-viewer/font-viewer-main-window.ui:109
 msgid "Install Font"
-msgstr ""
+msgstr "Встановити шрифт"
 
 #: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "Кольори області попереднього перегляду"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
 msgid "Select background color"
-msgstr ""
+msgstr "Виберіть колір фону"
 
 #: src/common/ui/font-manager-preview-colors.ui:23
 #: src/common/ui/font-manager-preview-colors.ui:29
 msgid "Select text color"
-msgstr ""
+msgstr "Виберіть колір тексту"
 
 #: src/font-manager/gtk/help-overlay.ui:11
 msgid "General"
-msgstr ""
+msgstr "Загальний"
 
 #: src/font-manager/gtk/help-overlay.ui:23
 msgid "Increase preview size"
-msgstr ""
+msgstr "Збільшити розмір попереднього перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:30
 msgid "Decrease preview size"
-msgstr ""
+msgstr "Зменшити розмір попереднього перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:37
 msgid "Reset preview size"
-msgstr ""
+msgstr "Скинути розмір попереднього перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:44
 msgid "Focus search entry"
-msgstr ""
+msgstr "Перейти до запису пошуку"
 
 #: src/font-manager/gtk/help-overlay.ui:51
 msgid "Reload"
-msgstr ""
+msgstr "Перезавантажити"
 
 #: src/font-manager/gtk/help-overlay.ui:58
 #: src/font-manager/gtk/help-overlay.ui:65
 msgid "Quit the application"
-msgstr ""
+msgstr "Закрийте програму"
 
 #: src/font-manager/gtk/help-overlay.ui:73
 msgid "Mode"
-msgstr ""
+msgstr "Режим"
 
 #: src/font-manager/gtk/help-overlay.ui:78
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "Перейдіть у режим керування"
 
 #: src/font-manager/gtk/help-overlay.ui:85
 msgid "Switch to Browse mode"
-msgstr ""
+msgstr "Перейдіть у режим перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:92
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "Перейдіть у режим порівняння"
 
 #: src/font-manager/gtk/help-overlay.ui:99
 msgid "Switch to Google Fonts mode"
-msgstr ""
+msgstr "Перейдіть у режим Google Fonts"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
-msgstr ""
+msgstr "Режим попереднього перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:112
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "Перейти до стандартного попереднього перегляду"
 
 #: src/font-manager/gtk/help-overlay.ui:119
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "Переключитися на попередній перегляд водоспаду"
 
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
-msgstr ""
+msgstr "Перейти до попереднього перегляду основного тексту"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:100
 msgid "Increase tile size"
-msgstr ""
+msgstr "Збільшити розмір плитки"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:109
 msgid "Decrease tile size"
-msgstr ""
+msgstr "Зменшити розмір плитки"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:149
 msgid "Toggle search entry"
-msgstr ""
+msgstr "Перемкнути пошуковий запис"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:158
 msgid "Toggle preview panel"
-msgstr ""
+msgstr "Перемкнути панель попереднього перегляду"
 
 #: src/font-manager/ui/font-manager-browse-preview.ui:160
 msgid ""
@@ -2564,78 +2638,81 @@ msgid ""
 "Disabling will prevent the selected family from being used by other "
 "applications."
 msgstr ""
+"Статус обраної сім'ї.\n"
+"\n"
+"Якщо вимкнути, вибране сімейство не буде використовуватися іншими програмами."
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
 msgid "Collection Name"
-msgstr ""
+msgstr "Назва колекції"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:45
 msgid "_Rename"
-msgstr ""
+msgstr "_Перейменувати"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:20
 msgid "Add selected font to comparison"
-msgstr ""
+msgstr "Додати вибраний шрифт для порівняння"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:33
 msgid "Remove selected font from comparison"
-msgstr ""
+msgstr "Вилучити вибраний шрифт із порівняння"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:45
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "Закріплені порівняння"
 
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
 #: src/font-manager/ui/font-manager-remove-dialog.ui:43
 #: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
 msgid "Search Families…"
-msgstr ""
+msgstr "Пошук сімей…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:29
 msgid "Search Orthographies…"
-msgstr ""
+msgstr "Пошук орфографії…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:72
 msgid "Minimum Coverage"
-msgstr ""
+msgstr "Мінімальне покриття"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:101
 msgid "Deselect All"
-msgstr ""
+msgstr "Зняти вибір із усіх"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:53
 msgid "Clear selected filter"
-msgstr ""
+msgstr "Очистити вибраний фільтр"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
 msgid "Created :"
-msgstr ""
+msgstr "Створено :"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
-msgstr ""
+msgstr "Зберегти поточне порівняння"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:45
 msgid "Remove selected comparison"
-msgstr ""
+msgstr "Видалити вибране порівняння"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:73
 msgid "Restore selected comparison"
-msgstr ""
+msgstr "Відновити вибране порівняння"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:13
 msgid "Select fonts to remove"
-msgstr ""
+msgstr "Виберіть шрифти, які потрібно видалити"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
 msgid "Delete"
-msgstr ""
+msgstr "Видалити"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
@@ -2643,12 +2720,12 @@ msgstr "Категорії"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 msgid "Smart Collections"
-msgstr ""
+msgstr "Розумні колекції"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
 msgid "Sort Order"
-msgstr ""
+msgstr "Порядок сортування"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:150
 msgid "Collections"
@@ -2656,95 +2733,95 @@ msgstr "Колекції"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:22
 msgid "Enter target family"
-msgstr ""
+msgstr "Введіть цільову сім'ю"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
-msgstr ""
+msgstr "Додати замінник"
 
 #: src/font-manager/ui/font-manager-substitute.ui:34
 msgid "Remove substitute"
-msgstr ""
+msgstr "Видалити заміну"
 
 #: src/font-manager/ui/font-manager-substitute.ui:35
 msgid "Enter substitute family"
-msgstr ""
+msgstr "Введіть замінну сім'ю"
 
 #: src/font-manager/ui/font-manager-substitute.ui:51
 msgid "prefer"
-msgstr ""
+msgstr "віддають перевагу"
 
 #: src/font-manager/ui/font-manager-substitute.ui:52
 msgid "accept"
-msgstr ""
+msgstr "прийнято"
 
 #: src/font-manager/ui/font-manager-substitute.ui:53
 msgid "default"
-msgstr ""
+msgstr "за замовчуванням"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:27
 msgid "Comment"
-msgstr ""
+msgstr "Коментар"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:42
 msgid "Executable"
-msgstr ""
+msgstr "Виконуваний файл"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:57
 msgid "Arguments"
-msgstr ""
+msgstr "Аргументи"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:39
 msgid "Newest"
-msgstr ""
+msgstr "Найновіший"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:40
 msgid "Most Popular"
-msgstr ""
+msgstr "Найпопулярніший"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Trending"
-msgstr ""
+msgstr "В тренді"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
-msgstr ""
+msgstr "Засічки"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
 msgid "Sans Serif"
-msgstr ""
+msgstr "Без зарубок"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
 msgid "Handwriting"
-msgstr ""
+msgstr "Почерк"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
 msgid "Category"
-msgstr ""
+msgstr "Категорія"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
 msgid "4+"
-msgstr ""
+msgstr "4+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
 msgid "8+"
-msgstr ""
+msgstr "8+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
 msgid "12+"
-msgstr ""
+msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
 msgid "Variations"
-msgstr ""
+msgstr "Варіації"
 
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "Preview font files before installing them."
-msgstr ""
+msgstr "Перегляньте файли шрифтів перед їх встановленням."
 
 #: src/font-viewer/font-viewer-main-window.ui:32
 msgid "To preview a font simply drag it onto this area."
-msgstr ""
+msgstr "Щоб переглянути шрифт, просто перетягніть його в цю область."
 
 #, fuzzy
 #~| msgid "Font Manager"

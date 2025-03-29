@@ -1,9 +1,9 @@
-# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2024-11-25 20:33+0000\n"
+"PO-Revision-Date: 2025-03-21 13:32+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hu/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -139,7 +139,7 @@ msgstr "Forgalmazó"
 #: C/font-manager-categories.page:74
 msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
 msgstr ""
-"A betűtípus forgalmazója szerint rendezve —A forgalmazói információnak "
+"A betűtípus forgalmazója szerint rendezve — A forgalmazói információnak "
 "szerepelnie kell a betűtípus metaadataiban."
 
 #. (itstool) path: item/title
@@ -186,7 +186,7 @@ msgstr "Karaktertérkép"
 #: C/font-manager-character-map.page:13
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
-"Kezelés módban az előnézeti ablak tartalmaz egy karakterek feliratú fület."
+"Kezelési módban az előnézeti ablak tartalmaz egy karakterek feliratú fület."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -459,7 +459,7 @@ msgstr ""
 #: C/font-manager-font-installation.page:19
 #: C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr "<gui style=\"button\">Kezelés</gui> módban"
+msgstr "<gui style=\"button\">Kezelési</gui> módban"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -555,7 +555,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr "Kattintson a <gui style=\"button\">Törlés</gui> lehetőségre"
+msgstr "Kattintson a <gui style=\"button\">Törlés</gui> gombra"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
@@ -655,8 +655,8 @@ msgstr "Válassza a források lehetőséget az oldalsávon"
 #: C/font-manager-font-sources.page:43
 msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 msgstr ""
-"Kattintson a következőre <gui> <media type=\"image\" src=\"media/list-add-"
-"symbolic.svg\"/> </gui>"
+"Kattintson a <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/"
+"> </gui> elemre"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
@@ -677,8 +677,8 @@ msgstr "Válassza ki az eltávolítani kívánt könyvtárat a megjelenő listá
 #: C/font-manager-font-sources.page:81
 msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui>"
 msgstr ""
-"Kattintson a következőre <gui> <media type=\"image\" src=\"media/list-remove-"
-"symbolic.svg\"/> </gui>"
+"Kattintson a <gui> <media type=\"image\" src="
+"\"media/list-remove-symbolic.svg\"/> </gui> elemre"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
@@ -701,7 +701,7 @@ msgstr "Válassza ki az engedélyezni vagy letiltani kívánt forrást"
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr "Kattintson a következőre <gui> Átkapcsoló </gui>"
+msgstr "Kattintson a következőre: <gui> Átkapcsoló </gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
@@ -848,7 +848,7 @@ msgstr "Licencek"
 #: C/font-manager-license.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
-"Kezelés módban az előnézeti ablaktábla tartalmaz egy licenc feliratú lapot."
+"Kezelési módban az előnézeti ablaktábla tartalmaz egy licenc feliratú lapot."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
@@ -891,15 +891,14 @@ msgstr "Metaadat"
 #: C/font-manager-metadata.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
 msgstr ""
-"Kezelés módban az előnézeti ablaktábla tartalmaz egy tulajdonságok feliratú "
+"Kezelési módban az előnézeti ablaktábla tartalmaz egy tulajdonságok feliratú "
 "lapot."
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
 msgid "Selecting this tab allows viewing metadata contained in the currently selected font."
 msgstr ""
-"Ezt a lapot választva, megtekintheti az aktuális betűtípusban található "
-"metaadatokat."
+"Ezt a lapot kiválasztva, megtekintheti az aktuális betűtípus metaadatait."
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
@@ -1058,8 +1057,8 @@ msgstr "Az összes helyettesítő eltávolításához:"
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
 msgstr ""
-"Kattintson az <gui style=\"button\"> Eldob </gui> lehetőségre a "
-"helyettesítések ablaktáblában."
+"Kattintson az <gui style=\"button\"> Eldob </gui> gombra a helyettesítések "
+"ablaktáblában."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
