@@ -38,7 +38,9 @@ namespace FontManager.FontViewer {
         List <string> installed_files;
         Gdk.Rectangle clicked_area;
         Gtk.Switch prefer_dark_theme;
+#if HAVE_ADWAITA
         Gtk.Switch use_adwaita_stylesheet;
+#endif
         PreviewColors preview_colors;
         WaterfallSettings waterfall_settings;
 
