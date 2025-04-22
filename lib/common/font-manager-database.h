@@ -40,7 +40,7 @@
 #include "font-manager-string-set.h"
 #include "font-manager-utils.h"
 
-#define FONT_MANAGER_CURRENT_DATABASE_VERSION 3
+#define FONT_MANAGER_CURRENT_DATABASE_VERSION 4
 
 #define FONT_MANAGER_TYPE_DATABASE font_manager_database_get_type()
 G_DECLARE_FINAL_TYPE(FontManagerDatabase, font_manager_database, FONT_MANAGER, DATABASE, GObject)
@@ -73,5 +73,6 @@ void font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
                                                     FontManagerStringSet *fonts,
                                                     const gchar *sql,
                                                     GError **error);
+
 
 

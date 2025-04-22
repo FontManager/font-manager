@@ -50,7 +50,7 @@ static void get_fs_type (JsonObject *json_obj, const FT_Face face);
 static void get_font_revision (JsonObject *json_obj, const FT_Face face);
 static void ensure_vendor (JsonObject *json_obj, const FT_Face face);
 static void cleanup_version_string (JsonObject *json_obj);
-static void correct_filetype (JsonObject *json_obj);
+static void correct_filetype (JsonObject *json_obj, const FT_Face face);
 
 static void
 set_error (FT_Error ft_error, const gchar *ctx, GError **error)
@@ -231,7 +231,7 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
     get_fs_type(json_obj, face);
 
     ensure_vendor(json_obj, face);
-    correct_filetype(json_obj);
+    correct_filetype(json_obj, face);
 
     /* Useful during font installation */
     if (!json_object_has_member(json_obj, "family"))
@@ -766,7 +766,7 @@ get_font_revision (JsonObject *json_obj, const FT_Face face)
 }
 
 static void
-correct_filetype (JsonObject *json_obj)
+correct_filetype (JsonObject *json_obj, const FT_Face face)
 {
     const gchar *filetype = json_object_get_string_member(json_obj, "filetype");
     /* Compact Font Format doesn't really mean much. */
@@ -780,6 +780,8 @@ correct_filetype (JsonObject *json_obj)
         else if (g_ascii_strcasecmp(ext, "ttc") == 0)
             json_object_set_string_member(json_obj, "filetype", "TrueType Collection");
     }
+    if (!FT_IS_SCALABLE(face) && !FT_HAS_COLOR(face))
+        json_object_set_string_member(json_obj, "filetype", "OpenType Bitmap");
     return;
 }
 
