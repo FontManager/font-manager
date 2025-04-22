@@ -67,7 +67,11 @@ namespace FontManager {
             var filter_name = new StringBuilder();
             filter_name.append(_("TrueType"));
             filter_name.append(", ");
+            filter_name.append(_("TrueType Collection"));
+            filter_name.append(", ");
             filter_name.append(_("OpenType"));
+            filter_name.append(", ");
+            filter_name.append(_("OpenType Bitmap"));
 #if HAVE_LIBARCHIVE
             filter_name.append(", ");
             filter_name.append(_("Archive Files"));
