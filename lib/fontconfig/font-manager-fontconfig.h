@@ -56,6 +56,7 @@ gboolean font_manager_add_application_font (const gchar *filepath);
 gboolean font_manager_add_application_font_directory (const gchar *dir);
 gboolean font_manager_update_font_configuration (void);
 GList * font_manager_list_available_font_files (void);
+FontManagerStringSet * font_manager_get_files_for_family (const char *family);
 FontManagerStringSet * font_manager_list_available_font_families (void);
 GList * font_manager_get_langs_from_fontconfig_pattern (FcPattern *pattern);
 JsonObject * font_manager_get_attributes_from_filepath (const gchar *filepath, GError **error);

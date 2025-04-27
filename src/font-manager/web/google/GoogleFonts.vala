@@ -52,24 +52,20 @@ namespace FontManager.GoogleFonts {
 
         public Catalog (GLib.Settings? settings) {
             base(settings);
+            placeholder = new PlaceHolder(null, null, null, "google-fonts-symbolic");
+            placeholder.opacity = 0.99;
+            widget_set_expand(placeholder, true);
+            widget_set_align(placeholder, Gtk.Align.FILL);
+            overlay.add_overlay(placeholder);
         }
 
-        public override void on_map () {
-            base.on_map();
-            if (initialized)
-                return;
+        bool initialize_pane () {
             var sidebar = new Sidebar();
             fontlist = new FontListView();
             preview = new PreviewPage();
             set_sidebar_widget(sidebar);
             set_list_widget(fontlist);
             set_content_widget(preview);
-            placeholder = new PlaceHolder(null, null, null, null);
-            widget_set_expand(placeholder, true);
-            widget_set_align(placeholder, Gtk.Align.FILL);
-            overlay.add_overlay(placeholder);
-            placeholder.opacity = 0.99;
-            placeholder.visible = false;
             network_monitor = NetworkMonitor.get_default();
             network_monitor.network_changed.connect(on_network_changed);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
@@ -78,12 +74,18 @@ namespace FontManager.GoogleFonts {
             sidebar.bind_property("filter", fontlist, "filter", flags);
             fontlist.bind_property("selected-item", preview, "selected-item", flags);
             sidebar.sort_changed.connect(on_sort_changed);
-            if (network_available())
-                on_network_changed();
-            else
-                update_placeholder();
             preview.restore_state(settings);
+            on_network_changed();
             initialized = true;
+            return GLib.Source.REMOVE;
+        }
+
+        public override void on_map () {
+            base.on_map();
+            if (initialized)
+                return;
+            placeholder.set_visible(true);
+            Idle.add(initialize_pane);
             return;
         }
 
@@ -98,11 +100,12 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_network_changed () {
-            if (settings != null && settings.get_boolean("restrict-network-access"))
-                return;
             update_cache.begin((obj, res) => {
                 update_cache.end(res);
-                update_placeholder();
+                Idle.add(() => {
+                    update_placeholder();
+                    return GLib.Source.REMOVE;
+                });
             });
             return;
         }
@@ -199,6 +202,8 @@ namespace FontManager.GoogleFonts {
         }
 
         async bool update_cache () {
+            if (!network_available())
+                return false;
             error = null;
             status_code = Soup.Status.OK;
             var session = new Soup.Session();

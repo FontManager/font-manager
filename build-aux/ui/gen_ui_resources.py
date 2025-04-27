@@ -33,13 +33,14 @@ icon_categories = {
 
     'actions' : [
         'action-unavailable-symbolic.svg',
+        'application-preferences-symbolic.svg',
         'document-edit-symbolic.svg',
         'edit-clear-symbolic.svg',
         'edit-clear-symbolic-rtl.svg',
         'edit-find-symbolic.svg',
         'edit-select-all-symbolic.svg',
-        'edit-undo-symbolic-rtl.svg',
         'edit-undo-symbolic.svg',
+        'edit-undo-symbolic-rtl.svg',
         'format-justify-center-symbolic.svg',
         'format-justify-fill-symbolic.svg',
         'format-justify-left-symbolic.svg',
@@ -48,6 +49,7 @@ icon_categories = {
         'go-previous-symbolic.svg',
         'list-add-symbolic.svg',
         'list-drag-handle-symbolic.svg',
+        'list-remove-all-symbolic.svg',
         'list-remove-symbolic.svg',
         'open-menu-symbolic.svg',
         'panel-right-symbolic.svg',
@@ -82,7 +84,8 @@ icon_categories = {
         'dialog-question-symbolic.svg',
         'folder-open-symbolic.svg',
         'network-error-symbolic.svg',
-        'network-offline-symbolic.svg'
+        'network-offline-symbolic.svg',
+        'google-fonts-symbolic.svg'
     ]
 
 }

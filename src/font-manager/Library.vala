@@ -120,8 +120,6 @@ namespace FontManager {
                     }
                 }
 
-                var libarchive = new ArchiveManager();
-
                 foreach (var path in filelist) {
 
                     File file = File.new_for_path(path);
@@ -133,7 +131,7 @@ namespace FontManager {
                         continue;
                     }
 
-                    if (!libarchive.extract(file, tmp)) {
+                    if (!ArchiveManager.extract(file, tmp)) {
                         critical("Failed to extract archive : %s", path);
                         continue;
                     }

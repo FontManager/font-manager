@@ -31,11 +31,9 @@ namespace FontManager {
         public StringSet? available_families { get; set; default = null; }
 
         construct {
-            update_font_configuration();
-            load_user_font_resources();
             available_families = list_available_font_families();
-            load();
             notify["sort-type"].connect_after(on_sort_type_changed);
+            load();
         }
 
         void on_sort_type_changed () {
@@ -423,7 +421,6 @@ namespace FontManager {
             var collections = ((CollectionListView) source);
             var outpath = Path.build_filename(home, collections.selected_item.name);
             var output = File.new_for_path(outpath);
-            var libarchive = new ArchiveManager();
             var filelist = ((Collection) collections.selected_item).get_filelist();
             int64 filesize = get_filelist_file_size(filelist);
             if (filesize > 125000000) {
@@ -435,7 +432,7 @@ namespace FontManager {
                 notification.set_icon(icon);
                 get_default_application().send_notification("compress-started", notification);
             }
-            bool result = libarchive.compress(filelist, output);
+            bool result = ArchiveManager.compress(filelist, output);
             task.return_boolean(result);
             return;
 #else

@@ -139,7 +139,6 @@ namespace FontManager {
                     reload();
                 } else {
                     update_font_configuration();
-                    load_user_font_resources();
                     available_fonts = get_sorted_font_list(null);
                     db.update_started.connect(() => { hold(); });
                     db.update_complete.connect(() => { GLib.stdout.printf("\n"); release(); });
@@ -169,10 +168,7 @@ namespace FontManager {
         }
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
-            update_font_configuration();
-            load_user_font_resources();
-            Json.Object _fonts = get_available_fonts(null);
-            Json.Array sorted_fonts = sort_json_font_listing(_fonts);
+            Json.Array sorted_fonts = get_sorted_font_list(null);
             return print_json_array(sorted_fonts, true);
         }
 

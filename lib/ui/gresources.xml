@@ -3,15 +3,15 @@
   <gresource prefix="/com/github/FontManager/FontManager">
     <file preprocess="xml-stripblanks" compressed="true">icons/symbolic/apps/com.github.FontManager.FontManager-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/apps/preferences-desktop-locale-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/application-preferences-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/action-unavailable-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/application-preferences-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/document-edit-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-clear-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-clear-symbolic-rtl.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-find-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-select-all-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-undo-symbolic-rtl.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-undo-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/edit-undo-symbolic-rtl.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/format-justify-center-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/format-justify-fill-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/format-justify-left-symbolic.svg</file>
@@ -20,8 +20,8 @@
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/go-previous-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/list-add-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/list-drag-handle-symbolic.svg</file>
-    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/list-remove-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/list-remove-all-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/list-remove-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/open-menu-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/panel-right-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/panel-right-symbolic-rtl.svg</file>
@@ -44,6 +44,7 @@
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/status/folder-open-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/status/network-error-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/status/network-offline-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/status/google-fonts-symbolic.svg</file>
   </gresource>
   <gresource prefix="/com/github/FontManager/FontManager/ui">
     <file compressed="true">FontManager.css</file>

@@ -1,6 +1,6 @@
 /* Substitutions.vala
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2025 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,8 +26,6 @@ namespace FontManager {
     internal Gtk.ListStore get_family_completion_model () {
         if (family_completion_model == null) {
             family_completion_model = new Gtk.ListStore(1, typeof(string));
-            update_font_configuration();
-            load_user_font_resources();
             foreach (string family in list_available_font_families()) {
                 Gtk.TreeIter iter;
                 family_completion_model.append(out iter);

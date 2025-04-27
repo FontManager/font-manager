@@ -263,7 +263,7 @@ namespace FontManager.GoogleFonts {
         }
 
         public void select_item (uint position) {
-            if (model.get_n_items() < 1)
+            if (!initialized || model == null || model.get_n_items() < 1)
                 return;
             listview.activate_action("list.select-item", "(ubb)", position, false, false);
             listview.activate_action("list.scroll-to-item", "u", position);

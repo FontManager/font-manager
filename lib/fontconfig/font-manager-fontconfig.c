@@ -201,6 +201,37 @@ font_manager_list_available_font_families (void)
 }
 
 /**
+ * font_manager_get_files_for_family:
+ *
+ * Returns: (transfer full) (nullable):
+ * a newly created #FontManagerStringSet containing filepaths or %NULL.
+ * Free the returned object using #g_object_unref
+ */
+FontManagerStringSet *
+font_manager_get_files_for_family (const char *family)
+{
+    g_return_val_if_fail(family != NULL, NULL);
+    FcPattern *pattern = FcPatternBuild (NULL, FC_FAMILY, FcTypeString, family, NULL);
+    FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, FC_FILE, NULL);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
+
+    FontManagerStringSet * result = font_manager_string_set_new();
+
+    for (int i = 0; i < fontset->nfont; i++) {
+        FcChar8 *file;
+        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch) {
+            font_manager_string_set_add(result, (const char *) file);
+        }
+    }
+
+    FcObjectSetDestroy(objectset);
+    FcPatternDestroy(pattern);
+    FcFontSetDestroy(fontset);
+    font_manager_string_set_sort(result);
+    return result;
+}
+
+/**
  * font_manager_get_available_fonts:
  * @family_name: (nullable): family name or %NULL
  *

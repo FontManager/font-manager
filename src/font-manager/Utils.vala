@@ -195,7 +195,7 @@ namespace FontManager {
 
     // Adds user configured font sources (directories) and rejected fonts to our
     // FcConfig so that we can render fonts which are not actually "installed".
-    public bool load_user_font_resources () {
+    public bool load_user_font_resources (Reject? reject = null) {
         clear_application_fonts();
         bool res = true;
         var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
@@ -217,14 +217,20 @@ namespace FontManager {
             debug("Loaded user font resource : %s", source.path);
         });
         source_model = null;
-        var reject = new Reject();
-        reject.load();
         StringSet? files = null;
-        try {
-            Database db = DatabaseProxy.get_default_db();
-            files = reject.get_rejected_files(db);
-        } catch (Error e) {
-            warning(e.message);
+        if (reject == null) {
+            var _reject = new Reject();
+            _reject.load();
+            try {
+                Database db = DatabaseProxy.get_default_db();
+                files = _reject.get_rejected_files(db);
+            } catch (Error e) {
+                warning(e.message);
+            }
+        } else {
+            files = new StringSet();
+            foreach (string family in reject)
+                files.add_all(get_files_for_family(family));
         }
         if (files != null) {
             foreach (string path in files) {
@@ -235,15 +241,46 @@ namespace FontManager {
         return res;
     }
 
+    Reject? have_missing_rejects () {
+        var res = new Reject();
+        res.load();
+        try {
+            Database db = DatabaseProxy.get_default_db();
+            StringSet? files = res.get_rejected_files(db);
+            // This means files were either removed outside of the application,
+            // the database was deleted or database version was bumped.
+            if (files.size == res.size)
+                res = null;
+        } catch (Error e) {
+            warning(e.message);
+        }
+        return res;
+    }
+
     Json.Array get_sorted_font_list (Pango.Context? ctx) {
+        Reject? reject = have_missing_rejects();
+        if (reject != null) {
+            // If there is a discrepancy between families listed as disabled
+            // and families in the database delete the configuration so that
+            // Fontconfig returns a full list.
+            File config = File.new_for_path(reject.get_filepath());
+            try {
+                config.delete();
+            } catch (Error e) {
+                warning(e.message);
+            }
+        }
         update_font_configuration();
-        if (load_user_font_resources()) {
+        if (load_user_font_resources(reject)) {
             if (ctx != null)
                 clear_pango_cache(ctx);
-        } else
+        } else {
             critical("Failed to load user font resources, will be unable to render properly");
+        }
         var fonts = get_available_fonts(null);
         var sorted_fonts = sort_json_font_listing(fonts);
+        if (reject != null)
+            reject.save();
         return sorted_fonts;
     }
 

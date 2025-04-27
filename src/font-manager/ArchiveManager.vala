@@ -22,6 +22,17 @@
 
 namespace FontManager {
 
+/**
+ * SECTION: font-manager-archive-manager
+ * @short_description: Extract and generate compressed files using libarchive.
+ * @title: Archive Manager
+ *
+ * Utility functions to extract formats supported by libarchive and generate ZIP files.
+ */
+
+    /**
+     * Mimetypes supported during extraction operations.
+     */
     public const string LIBARCHIVE_MIME_TYPES [] = {
         "application/epub+zip",
         "application/vnd.debian.binary-package",
@@ -51,7 +62,7 @@ namespace FontManager {
         "application/zip"
     };
 
-    public class ArchiveManager : Object {
+    namespace ArchiveManager {
 
         Archive.Entry add_entry (Archive.Write archive, File file, FileInfo file_info, string path) {
             Archive.Entry entry = new Archive.Entry();
@@ -117,6 +128,17 @@ namespace FontManager {
             return;
         }
 
+        /**
+         * font_manager_archive_manager_compress:
+         *
+         * Generates a ZIP archive from the provided set of file paths
+         *
+         * @self: #FontManagerArchiveManager
+         * @filelist #FontManagerStringSet of paths to include in archive
+         * @output_file #GFile used to determine name and directory of resulting archive file
+         *
+         * Returns: %TRUE if archive was successfully extracted
+         */
         public bool compress (StringSet filelist, File output_file) {
 
             return_val_if_fail(filelist.size > 0, false);
@@ -160,6 +182,17 @@ namespace FontManager {
             return true;
         }
 
+        /**
+         * font_manager_archive_manager_extract:
+         *
+         * Extract the supplied archive into the specified directory
+         *
+         * @self: #FontManagerArchiveManager
+         * @file #GFile to extract
+         * @dest_dir #GFile directory to use for extraction
+         *
+         * Returns: %TRUE if archive was successfully created
+         */
         public bool extract (File file, File dest_dir) {
 
             return_val_if_fail(file.query_exists(), false);
