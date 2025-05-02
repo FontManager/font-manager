@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024.
+# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.9.1\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2024-12-27 17:00+0000\n"
+"PO-Revision-Date: 2025-05-02 01:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
-"Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/ta/>\n"
+"Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ta/>\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -448,12 +448,12 @@ msgstr "விற்பனையாளர்"
 
 #: lib/gtk/font-manager-properties-page.c:65
 msgid "FileType"
-msgstr "பைல்டைப்"
+msgstr "கோப்புவகை"
 
 #. Keep this entry last
 #: lib/gtk/font-manager-properties-page.c:67
 msgid "Filesize"
-msgstr "கோப்பு"
+msgstr "கோப்புஅளவு"
 
 #: lib/gtk/unicode/unicode-character-map.c:850
 msgid "Copy"
@@ -683,17 +683,17 @@ msgid ""
 msgstr ""
 "\n"
 "    இந்த நிரல் இலவச மென்பொருள்: நீங்கள் அதை மறுபகிர்வு செய்யலாம் மற்றும்/அல்லது மாற்றலாம்\n"
-" இது வெளியிடப்பட்ட குனு பொது பொது உரிமத்தின் விதிமுறைகளின் கீழ்\n"
+" இது வெளியிடப்பட்ட குனு பொது பொதுமக்கள் உரிமத்தின் விதிமுறைகளின் கீழ்\n"
 " இலவச மென்பொருள் அறக்கட்டளை, உரிமத்தின் பதிப்பு 3, அல்லது\n"
-" (உங்கள் விருப்பத்தில்) பின்னர் எந்த பதிப்பும்.\n"
+" (உங்கள் விருப்பத்தில்) பின்னர் எந்தப் பதிப்பும்.\n"
 "\n"
 " இந்த நிரல் இது பயனுள்ளதாக இருக்கும் என்ற நம்பிக்கையில் விநியோகிக்கப்படுகிறது,\n"
 " ஆனால் எந்த உத்தரவாதமும் இல்லாமல்; மறைமுகமான பொறுப்பு கூட இல்லாமல்\n"
 " ஒரு குறிப்பிட்ட நோக்கத்திற்காக வணிகத்தன்மை அல்லது உடற்பயிற்சி. பார்க்க\n"
-" மேலும் விவரங்களுக்கு குனு பொது பொது உரிமம்.\n"
+" மேலும் விவரங்களுக்குக் குனு பொது பொதுமக்கள் உரிமம்.\n"
 "\n"
 " குனு பொது பொது உரிமத்தின் நகலை நீங்கள் பெற்றிருக்க வேண்டும்\n"
-" இந்த திட்டத்துடன்.\n"
+" இந்தத் திட்டத்துடன்.\n"
 "\n"
 " இல்லையென்றால், <http://www.gnu.org/licenses/gpl-3.0.txt> ஐப் பார்க்கவும்.\n"
 
@@ -703,18 +703,16 @@ msgstr "எழுத்துரு கோப்புகளை நிறுவ�
 
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
-#, fuzzy
-#| msgid "Decorative"
 msgid "Active"
-msgstr "அலங்கார"
+msgstr "செயலில்"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "செயலற்றது"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "வடிவமைத்தவர்"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -742,11 +740,11 @@ msgstr "விற்பனையாளரால் தொகுக்கப்�
 
 #: src/font-manager/Categories.vala:269
 msgid "Filetype"
-msgstr "பைல்டைப்"
+msgstr "கோப்புவகை"
 
 #: src/font-manager/Categories.vala:269
 msgid "Grouped by filetype"
-msgstr "பைல்டைப் மூலம் தொகுக்கப்பட்டது"
+msgstr "கோப்புவகை மூலம் தொகுக்கப்பட்டது"
 
 #: src/font-manager/Categories.vala:274
 msgid "All"
@@ -758,7 +756,7 @@ msgstr "அனைத்து எழுத்துருக்களும்"
 
 #: src/font-manager/Categories.vala:275
 msgid "System"
-msgstr "மண்டலம்"
+msgstr "முறைமை"
 
 #: src/font-manager/Categories.vala:275
 msgid "Fonts available to all users"
@@ -815,28 +813,29 @@ msgstr "மறுபெயரிடுங்கள்…"
 
 #: src/font-manager/Collections.vala:405
 msgid "Archive created successfully."
-msgstr ""
+msgstr "காப்பகம் வெற்றிகரமாக உருவாக்கப்பட்டது."
 
 #: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "இதன் விளைவாக கோப்பை உங்கள் வீட்டு கோப்பகத்தில் காணலாம்."
 
 #: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
-msgstr ""
+msgstr "சேகரிப்பு பிழை"
 
 #: src/font-manager/Collections.vala:409
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
+"ஒரு முனையத்திலிருந்து விண்ணப்பத்தைத் தொடங்கி மேலும் தகவலுக்கு மீண்டும் முயற்சிக்கவும்"
 
 #: src/font-manager/Collections.vala:430
 msgid "Creating archive from selected collection."
-msgstr ""
+msgstr "தேர்ந்தெடுக்கப்பட்ட சேகரிப்பிலிருந்து காப்பகத்தை உருவாக்குதல்."
 
 #: src/font-manager/Collections.vala:431
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "பெரிய சேகரிப்புகளுக்கு இது சிறிது நேரம் ஆகலாம்…"
 
 #: src/font-manager/Compare.vala:336
 msgid "Saved Comparison"
@@ -925,20 +924,16 @@ msgid "Select a Directory"
 msgstr "ஒரு கோப்பகத்தைத் தேர்ந்தெடுக்கவும்"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
-msgstr "பைல்டைப்"
+msgstr "உண்மைவகை"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
-msgstr "பைல்டைப்"
+msgstr "திறவகை"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "காப்பக கோப்புகள்"
 
 #: src/font-manager/Dialogs.vala:81
 msgid "Select Files to Install"
@@ -1007,11 +1002,11 @@ msgstr ""
 
 #: src/font-manager/FontList.vala:72
 #: src/font-manager/web/google/FontList.vala:204
-#, fuzzy, c-format
+#, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%நான் மாறுபாடு "
-msgstr[1] "%நான் மாறுபாடுகள்"
+msgstr[0] "%i மாறுபாடு "
+msgstr[1] "%i மாறுபாடுகள்"
 
 #: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:279
@@ -1045,11 +1040,11 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட பொரு�
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
-#, fuzzy, c-format
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "%நான் உருப்படியைத் தேர்ந்தெடுத்தேன்"
-msgstr[1] "%நான் உருப்படிகளைத் தேர்ந்தெடுத்தேன்"
+msgstr[0] "%i உருப்படி தேர்ந்தெடுகப்பட்டது"
+msgstr[1] "%i உருப்படிகள் தேர்ந்தெடுகப்பட்டன"
 
 #: src/font-manager/FontList.vala:607
 #: src/font-manager/preferences/Preferences.vala:45
@@ -1777,14 +1772,13 @@ msgstr ""
 "எழுத்துரு அளவை மாற்றாமல், உரை காட்சியை பெரிதாக்க அல்லது குறைக்க பயன்படுத்தப்படும் காரணி"
 
 #: src/font-manager/preferences/Desktop.vala:60
-#, fuzzy
-#| msgid "Rendering"
 msgid "GTK 4 Font Rendering"
-msgstr "வழங்குதல்"
+msgstr "சீடிகே 4 எழுத்துரு வழங்குதல்"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
 msgstr ""
+"தானியங்கி விருப்பம் சி.டி.கே 4 ஐக் குறிக்கும் அமைப்புகளை புறக்கணிக்க அனுமதிக்கிறது."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1798,6 +1792,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values. "
 msgstr ""
+"எழுத்துருக்களை வழங்கும்போது பயன்படுத்த வேண்டிய ஆன்டிலியாசிங் வகை. \n"
+"\n"
+"குறிப்பு: சி.டி.கே 4 ஆர்.சி.பி.ஏ உடன் தொடங்கி இனி பயன்படுத்தப்படாது, எதுவும் மற்றும் "
+"கிரேச்கேல் மட்டுமே செல்லுபடியாகும் மதிப்புகள். "
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:96
@@ -1831,6 +1829,10 @@ msgid ""
 "Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
 "are valid values."
 msgstr ""
+"எழுத்துருக்களை வழங்கும்போது பயன்படுத்த வேண்டிய ஆன்டிலியாசிங் வகை. \n"
+"\n"
+"குறிப்பு: சி.டி.கே 4 ஆர்.சி.பி.ஏ உடன் தொடங்கி இனி பயன்படுத்தப்படாது, எதுவும் மற்றும் "
+"கிரேச்கேல் மட்டுமே செல்லுபடியாகும் மதிப்புகள்."
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
@@ -1838,11 +1840,11 @@ msgstr "க்னோம் டெச்க்டாப் அமைப்பு�
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "தானியங்கி"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "கையேடு"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
@@ -1981,7 +1983,7 @@ msgstr "பரந்த தளவமைப்பு"
 
 #: src/font-manager/preferences/UserInterface.vala:92
 msgid "Use three column layout"
-msgstr ""
+msgstr "மூன்று நெடுவரிசை தளவமைப்பைப் பயன்படுத்தவும்"
 
 #: src/font-manager/preferences/UserInterface.vala:95
 msgid "Only When Maximized"
@@ -2021,15 +2023,13 @@ msgstr "நீர்வீழ்ச்சி முன்னோட்டத்�
 
 #: src/font-manager/preferences/UserInterface.vala:112
 #: src/font-viewer/MainWindow.vala:371
-#, fuzzy
-#| msgid "Waterfall Preview Size Settings"
 msgid "Waterfall Line Spacing"
-msgstr "நீர்வீழ்ச்சி முன்னோட்ட அளவு அமைப்புகள்"
+msgstr "நீர்வீழ்ச்சி வரி இடைவெளி"
 
 #: src/font-manager/preferences/UserInterface.vala:114
 #: src/font-viewer/MainWindow.vala:372
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "வரிசைகளுக்கு மேலேயும் கீழேயும் செருக பிக்சல்களில் திணிப்பு"
 
 #: src/font-manager/preferences/UserSources.vala:145
 msgid ""
@@ -2449,11 +2449,11 @@ msgid "Please file an issue requesting an update to available samples."
 msgstr "கிடைக்கக்கூடிய மாதிரிகளுக்கு புதுப்பிப்பைக் கோரும் சிக்கலை தாக்கல் செய்யுங்கள்."
 
 #: src/font-manager/web/google/PreviewPage.vala:383
-#, fuzzy, c-format
+#, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%நான் மொழி மாதிரி கிடைக்கிறது "
-msgstr[1] "%நான் மொழி மாதிரிகள் கிடைக்கின்றன"
+msgstr[0] "%i மொழி மாதிரி கிடைக்கிறது "
+msgstr[1] "%i மொழி மாதிரிகள் கிடைக்கின்றன"
 
 #: src/font-manager/web/google/WebFont.vala:174
 msgid "ExtraLight"
@@ -2516,7 +2516,7 @@ msgstr "எழுத்துருவை நிறுவவும்"
 
 #: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "பகுதி வண்ணங்களை முன்னோட்டமிடுங்கள்"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
