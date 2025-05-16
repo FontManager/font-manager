@@ -29,13 +29,14 @@
 # Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 # ZHAO20060708 <zxybbb7892020@outlook.com>, 2025.
 # Cassian <prismarine@epicraft.top>, 2025.
+# Steven Liu <mojang1314@outlook.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2025-02-22 15:42+0000\n"
-"Last-Translator: Cassian <prismarine@epicraft.top>\n"
+"PO-Revision-Date: 2025-05-16 16:15+0000\n"
+"Last-Translator: Steven Liu <mojang1314@outlook.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -43,7 +44,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -693,7 +694,6 @@ msgid "Show line size"
 msgstr "显示行大小"
 
 #: src/font-manager/Application.vala:5
-#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -712,24 +712,21 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 msgstr ""
 "\n"
-"    This program is free software: you can redistribute it and/or modify\n"
-"    it under the terms of the GNU General Public License as published by\n"
-"    the Free Software Foundation, either version 3 of the License, or\n"
-"    (at your option) any later version.\n"
+"    本程序是自由软件：您可以依据自由软件基金会发布的\n"
+"    GNU 通用公共许可证条款重新发布和/或修改它，\n"
+"    无论是许可证的第 3 版还是（您自行选择的）任何更新的版本。\n"
 "\n"
-"    This program is distributed in the hope that it will be useful,\n"
-"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
-"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
-"    GNU General Public License for more details.\n"
+"    本程序的分发是希望它能有用，但没有任何担保；\n"
+"    甚至没有适销性或特定用途适用性的隐含担保。\n"
+"    详情请参阅 GNU 通用公共许可证。\n"
 "\n"
-"    You should have received a copy of the GNU General Public License\n"
-"    along with this program.\n"
+"    您应该已经随本程序收到了一份 GNU 通用公共许可证的副本。\n"
 "\n"
-"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    如果没有，请参阅<http:www.gnu.org/licenses/gpl-3.0.txt>。\n"
 
 #: src/font-manager/Application.vala:133
 msgid "Installing Font Files…"
-msgstr "安装字体中……"
+msgstr "安装字体文件中……"
 
 # msgstr "手写体(Script)"
 #: src/font-manager/Browse.vala:381
@@ -743,7 +740,7 @@ msgstr "非活动"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "设计师"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -1160,53 +1157,53 @@ msgstr "基本拉丁字母"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "巴塔克文"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/LanguageData.vala:42
 msgid "Bengali"
-msgstr ""
+msgstr "孟加拉文"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "婆罗米字母"
 
 #: src/font-manager/Orthographies.vala:48
 #: src/font-manager/web/google/LanguageData.vala:46
 msgid "Buginese"
-msgstr ""
+msgstr "布吉文"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "加拿大原住民音节文字"
 
 #: src/font-manager/Orthographies.vala:50
 #: src/font-manager/web/google/LanguageData.vala:50
 msgid "Carian"
-msgstr ""
+msgstr "卡里亚文"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "加泰罗尼亚字母"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "中欧语言"
 
 #: src/font-manager/Orthographies.vala:53
 #: src/font-manager/web/google/LanguageData.vala:51
 msgid "Chakma"
-msgstr ""
+msgstr "查克马文"
 
 #: src/font-manager/Orthographies.vala:54
 #: src/font-manager/web/google/LanguageData.vala:52
 msgid "Cham"
-msgstr ""
+msgstr "占语字母"
 
 #: src/font-manager/Orthographies.vala:55
 #: src/font-manager/web/google/LanguageData.vala:53
 msgid "Cherokee"
-msgstr ""
+msgstr "切罗基语"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
@@ -1248,12 +1245,12 @@ msgstr "CJK 中日韩兼容表意文字增补"
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "克劳狄字母"
 
 #: src/font-manager/Orthographies.vala:70
 #: src/font-manager/web/google/LanguageData.vala:58
 msgid "Coptic"
-msgstr ""
+msgstr "科普特字母"
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
@@ -1345,7 +1342,7 @@ msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "伊博文"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
@@ -1381,77 +1378,77 @@ msgstr "卡纳达语"
 #: src/font-manager/Orthographies.vala:103
 #: src/font-manager/web/google/LanguageData.vala:94
 msgid "Kayah Li"
-msgstr ""
+msgstr "克耶文"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "哈萨克语"
 
 #: src/font-manager/Orthographies.vala:105
 #: src/font-manager/web/google/LanguageData.vala:92
 msgid "Kharoshthi"
-msgstr ""
+msgstr "佉卢文"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/LanguageData.vala:95
 msgid "Khmer"
-msgstr ""
+msgstr "高棉语"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "日语和制汉字"
 
 #: src/font-manager/Orthographies.vala:108
 #: src/font-manager/web/google/LanguageData.vala:99
 msgid "Lao"
-msgstr "老挝语字母"
+msgstr "老挝语"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "拉丁连字字母"
 
 #: src/font-manager/Orthographies.vala:110
 #: src/font-manager/web/google/LanguageData.vala:100
 msgid "Lepcha"
-msgstr ""
+msgstr "绒巴语"
 
 #: src/font-manager/Orthographies.vala:111
 #: src/font-manager/web/google/LanguageData.vala:103
 msgid "Limbu"
-msgstr ""
+msgstr "林布语"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "线形文字 B 表意文字"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "线形文字 B 音节文字"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/LanguageData.vala:110
 msgid "Malayalam"
-msgstr ""
+msgstr "马拉雅拉姆语"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "数学用希腊字母"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "数学用拉丁字母"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "数学用数字"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "数学运算符"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "曼尼普尔语"
 
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
