@@ -35,6 +35,7 @@
                             <property name = "model">
                                 <object class="GtkStringList">
                                     <items>
+                                      <item translatable="1">Installed</item>
                                       <item translatable="1">Name</item>
                                       <item translatable="1">Newest</item>
                                       <item translatable="1">Most Popular</item>
@@ -392,4 +393,3 @@
     </child>
   </template>
 </interface>
-

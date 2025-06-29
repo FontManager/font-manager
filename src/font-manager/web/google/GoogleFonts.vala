@@ -25,7 +25,7 @@ namespace FontManager.GoogleFonts {
     const string API_KEY = "QUl6YVN5QTlpUmZqMFlYc184RGhJR1Q1YzNGRDBWNmtSQWV5cFA4";
     const string GET = "GET";
     const string GOOGLE_FONTS_API = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
-    const string SORT_OPTIONS [5] = { "alpha", "date", "popularity", "style", "trending" };
+    const string SORT_OPTIONS [6] = { "installed", "alpha", "date", "popularity", "style", "trending" };
 
     public string get_font_directory () {
         return Path.build_filename(get_user_font_directory(), "Google Fonts");
@@ -243,7 +243,7 @@ namespace FontManager.GoogleFonts {
                 Idle.add(update_cache.callback);
                 yield;
             }
-            on_sort_changed("alpha");
+            on_sort_changed("installed");
             return true;
         }
 
