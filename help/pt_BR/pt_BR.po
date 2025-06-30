@@ -1,10 +1,10 @@
 # Marcos Leite <m.abner@live.co.uk>, 2024.
-# Paul Janzen <pj@paulgjanzen.com>, 2024.
+# Paul Janzen <pj@paulgjanzen.com>, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2024-06-23 10:09+0000\n"
+"PO-Revision-Date: 2025-06-01 17:01+0000\n"
 "Last-Translator: Paul Janzen <pj@paulgjanzen.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/pt_BR/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -224,6 +224,7 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"externo ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
@@ -243,7 +244,7 @@ msgstr "Coleções"
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>Font Manager</app> permite definir suas próprias coleções."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
@@ -251,16 +252,19 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"Coleções permitem que você organize suas fontes de uma forma que faz sentido "
+"para você e também tornar mais fácil habilitar ou desativar muitas famílias "
+"de uma só vez."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "As coleções não modificam seus arquivos de forma alguma."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "Sinta-se à vontade para criar ou excluir quantos quiser."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
