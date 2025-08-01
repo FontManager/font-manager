@@ -704,27 +704,6 @@ populate_charset (FontManagerUnicodeCharacterMap *self, const PangoFontDescripti
 }
 
 static void
-set_font_desc_internal (FontManagerUnicodeCharacterMap *self,
-                        PangoFontDescription           *font_desc)
-{
-    g_return_if_fail(font_desc != NULL);
-    if (!self->font_desc || !pango_font_description_equal(font_desc, self->font_desc)){
-        g_clear_pointer(&self->font_desc, pango_font_description_free);
-        pango_font_description_set_size(font_desc, self->preview_size * PANGO_SCALE);
-        self->font_desc = pango_font_description_copy(font_desc);
-        populate_charset(self, font_desc);
-        g_object_notify(G_OBJECT(self), "font-desc");
-    }
-    self->active_cell = 0;
-    self->page_first_cell = 0;
-    self->last_cell = get_last_index(self);
-    clear_pango_layout(self);
-    gtk_widget_queue_resize(GTK_WIDGET(self));
-    g_object_notify(G_OBJECT(self), "active-cell");
-    return;
-}
-
-static void
 on_selection_changed (FontManagerUnicodeCharacterMap *self)
 {
     if (self->charset == NULL)
@@ -1365,7 +1344,19 @@ font_manager_unicode_character_map_set_font_desc (FontManagerUnicodeCharacterMap
 {
     g_return_if_fail(FONT_MANAGER_IS_UNICODE_CHARACTER_MAP(self));
     g_return_if_fail(font_desc != NULL);
-    set_font_desc_internal(self, font_desc);
+    if (!self->font_desc || !pango_font_description_equal(font_desc, self->font_desc)){
+        self->active_cell = 0;
+        self->page_first_cell = 0;
+        self->last_cell = get_last_index(self);
+    }
+    g_clear_pointer(&self->font_desc, pango_font_description_free);
+    pango_font_description_set_size(font_desc, self->preview_size * PANGO_SCALE);
+    self->font_desc = pango_font_description_copy(font_desc);;
+    populate_charset(self, font_desc);
+    g_object_notify(G_OBJECT(self), "font-desc");
+    clear_pango_layout(self);
+    gtk_widget_queue_resize(GTK_WIDGET(self));
+    g_object_notify(G_OBJECT(self), "active-cell");
     return;
 }
 
@@ -1381,8 +1372,11 @@ font_manager_unicode_character_map_set_preview_size (FontManagerUnicodeCharacter
                                                      gdouble size)
 {
     g_return_if_fail(FONT_MANAGER_IS_UNICODE_CHARACTER_MAP(self));
+    g_return_if_fail(self->font_desc != NULL);
     self->preview_size = VALID_FONT_SIZE(size);
-    set_font_desc_internal(self, self->font_desc);
+    pango_font_description_set_size(self->font_desc, self->preview_size * PANGO_SCALE);
+    clear_pango_layout(self);
+    gtk_widget_queue_resize(GTK_WIDGET(self));
     g_object_notify(G_OBJECT(self), "preview-size");
     return;
 }
