@@ -757,8 +757,11 @@ get_font_revision (JsonObject *json_obj, const FT_Face face)
     TT_Header *head = (TT_Header *) FT_Get_Sfnt_Table(face, FT_SFNT_HEAD);
     if (head) {
         if (head->Font_Revision) {
+            g_autofree gchar *loc = g_strdup(setlocale(LC_ALL, NULL));
+            setlocale(LC_ALL, "C");
             g_autofree gchar *rev = g_strdup_printf("%.2f", (float) head->Font_Revision / 65536.0);
             json_object_set_string_member(json_obj, "version", rev);
+            setlocale(LC_ALL, loc);
             return;
         }
     }
