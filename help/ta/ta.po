@@ -1,12 +1,12 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2024.
-# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024.
+# தமிழ்நேரம் <anishprabu.t@gmail.com>, 2024, 2025.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2025-01-09 02:46+0000\n"
-"Last-Translator: Jerry Casiano <JerryCasiano@gmail.com>\n"
+"PO-Revision-Date: 2025-05-02 01:01+0000\n"
+"Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ta/>\n"
 "Language: ta\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -29,7 +29,7 @@ msgstr "தானாக உருவாக்கப்பட்ட வகைக�
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "வகைகள்"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -43,7 +43,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "அனைத்தும்"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -53,7 +53,7 @@ msgstr "கிடைக்கக்கூடிய அனைத்து எழ�
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "முறைமை"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -63,7 +63,7 @@ msgstr "எல்லா பயனர்களுக்கும் எழுத�
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "பயனர்"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -73,7 +73,7 @@ msgstr "எழுத்துருக்கள் உங்களுக்க�
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "குடும்ப வகை"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -87,17 +87,17 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "அகலம்"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr "எழுத்துரு அகல சொத்து மூலம் வரிசைப்படுத்தப்பட்டது."
+msgstr "எழுத்துரு அகல சொத்துமூலம் வரிசைப்படுத்தப்பட்டது."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "எடை"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -107,7 +107,7 @@ msgstr "எழுத்துரு எடை சொத்தால் வரி
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "சாய்ந்த"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -117,7 +117,7 @@ msgstr "எழுத்துரு சாய்ந்த சொத்துக�
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "இடைவெளி"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -127,7 +127,7 @@ msgstr "எழுத்துரு இடைவெளி சொத்து ம
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "உரிமம்"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -141,7 +141,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "விற்பனையாளர்"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -155,7 +155,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "கோப்புவகை"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -165,7 +165,7 @@ msgstr "கோப்பு வடிவத்தால் வரிசைப்�
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "வரிசைப்படுத்தப்படாதது"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -175,7 +175,7 @@ msgstr "உங்கள் எந்த சேகரிப்பிலும் 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "முடக்கப்பட்டது"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -241,7 +241,7 @@ msgstr "உங்கள் எழுத்துருக்களை ஒழு�
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "சேகரிப்புகள்"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -256,11 +256,14 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"சேகரிப்புகள் உங்கள் எழுத்துருக்களை உங்களுக்குப் புரியும் வகையில் ஒழுங்கமைக்க அனுமதிக்கின்"
+"றன, மேலும் பல குடும்பங்களை ஒரே நேரத்தில் இயக்குவதையோ அல்லது முடக்குவதையோ "
+"எளிதாக்குகின்றன."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "தொகுப்புகள் உங்கள் கோப்புகளை எந்த வகையிலும் மாற்றாது."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
@@ -354,7 +357,7 @@ msgstr "ஒரு தொகுப்பை இயக்க:"
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "<gui style=\"checkbox\"> தேர்வுப்பெட்டி </gui> ஐ சொடுக்கு"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
@@ -415,8 +418,8 @@ msgstr "செயல்படுத்தல்"
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
-"<app> எழுத்துரு மேலாளர் </app> எழுத்துரு குடும்பங்களை செயல்படுத்தவும் செயல்படுத்தவும் "
-"உங்களை அனுமதிக்கிறது."
+"<app> எழுத்துரு மேலாளர் </app> எழுத்துரு குடும்பங்களைச் செயல்படுத்தவும் உங்களை "
+"அனுமதிக்கிறது."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -447,6 +450,9 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"தேர்ந்தெடுக்கப்பட்ட எழுத்துருவை மாற்ற, நீங்கள் இருமுறை சொடுக்கு செய்து, <gui style="
+"\"button\">Space</gui> ஐ அழுத்தவும் அல்லது <gui style=\"button\">Enter</gui> ஐ "
+"அழுத்தவும்."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -484,7 +490,7 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
-"<app> எழுத்துரு மேலாளர் </app> மிகவும் பொதுவான  <link xref=\"supported-formats\""
+"<app> எழுத்துரு மேலாளர் </app> மிகவும் பொதுவான <link xref=\"supported-formats\""
 "> எழுத்துரு வடிவங்கள் </link> ஐ ஆதரிக்கிறது."
 
 #. (itstool) path: item/p
@@ -642,7 +648,7 @@ msgstr "எழுத்துரு கோப்பகங்களைச் ச�
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "மூலங்கள்"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -650,8 +656,8 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
-"<app> எழுத்துரு மேலாளர் </app> எழுத்துரு கோப்புகளுக்கு ச்கேன் செய்ய கோப்பகங்களைச் சேர்க்க "
-"அல்லது அகற்ற உங்களை அனுமதிக்கிறது. சேர்க்கப்பட்ட கோப்பகங்கள் மீண்டும் மீண்டும் ச்கேன் "
+"<app> எழுத்துரு மேலாளர் </app> எழுத்துருக் கோப்புகளுக்கு ச்கேன் செய்யக் கோப்பகங்களைச் சேர்க்"
+"க அல்லது அகற்ற உங்களை அனுமதிக்கிறது. சேர்க்கப்பட்ட கோப்பகங்கள் மீண்டும் நிகழும் வருடல் "
 "செய்யப்படுகின்றன."
 
 #. (itstool) path: page/p
@@ -923,7 +929,7 @@ msgstr "எழுத்துரு கோப்புகளில் உள்�
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr "உரிமம்"
+msgstr "உரிமம்வழங்கள்"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
@@ -1096,7 +1102,7 @@ msgid ""
 "gui> in the substitutions pane."
 msgstr ""
 "மாற்று பலகத்தில் <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\""
-"/> </gui>  என்பதைக் சொடுக்கு செய்க."
+"/> </gui> என்பதைக் சொடுக்குக."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
@@ -1252,7 +1258,7 @@ msgstr "வலைபெயர்ப்பு"
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr "குனு பொது பொது உரிமம் பதிப்பு 3"
+msgstr "குனு பொது பொதுமக்கள் உரிமம் பதிப்பு 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1264,7 +1270,9 @@ msgctxt "_"
 msgid ""
 "external ref='media/preferences-desktop-font.png' "
 "md5='f9108efe15fb60827b402b9a3a936589'"
-msgstr "வெளிப்புற ref = 'மீடியா/விருப்பத்தேர்வுகள்-டெச்க்டோப்-ஃபோன்ட்."
+msgstr ""
+"வெளிப்புற குறி = 'media/preferences-desktop-font.png' "
+"எம்டி5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
