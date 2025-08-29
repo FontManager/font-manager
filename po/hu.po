@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2025-03-21 13:32+0000\n"
+"PO-Revision-Date: 2025-06-30 04:50+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -2720,7 +2720,7 @@ msgstr "Kategóriák"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
 msgid "Smart Collections"
-msgstr "Betűtípus gyűjtemények"
+msgstr "Okos gyűjtemények"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
