@@ -41,10 +41,10 @@
                 <property name="halign">start</property>
                 <property name="margin-end">9</property>
                 <property name="margin-start">9</property>
-                <property name="vexpand">True</property>
+                <property name="vexpand">False</property>
                 <property name="valign">center</property>
                 <property name="visible">False</property>
-                <property name="editable">False</property>
+                <property name="editable">True</property>
               </object>
             </child>
             <child>

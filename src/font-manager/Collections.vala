@@ -138,9 +138,8 @@ namespace FontManager {
 
         construct {
             margin_start = 0;
-            item_label.visible = false;
             item_state.visible = item_count.visible = true;
-            edit_label.visible = drag_handle.visible = true;
+            drag_handle.visible = true;
             edit_label.changed.connect_after(() => {
                 return_if_fail(item is Collection);
                 string new_name = edit_label.text;
@@ -186,6 +185,7 @@ namespace FontManager {
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bindings.add(collection.bind_property("name", item_label, "label", flags));
             bindings.add(collection.bind_property("name", edit_label, "text", flags));
             bindings.add(collection.bind_property("active", item_state, "active", flags));
             bindings.add(collection.bind_property("inconsistent", item_state, "inconsistent", flags));
@@ -249,14 +249,8 @@ namespace FontManager {
             selection = new Gtk.SingleSelection(treemodel);
             add_drop_target(listview);
             init_context_menu();
-            selection_changed.connect_after(update_context_menu);
             collection_model.changed.connect(() => { changed(); queue_update(); });
             clicked_area = Gdk.Rectangle();
-            Gtk.Gesture click = new Gtk.GestureClick() {
-                button = Gdk.BUTTON_PRIMARY
-            };
-            ((Gtk.GestureClick) click).pressed.connect(on_click);
-            listview.add_controller(click);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("disabled-families", model, "disabled-families", flags);
             selection.set_selected(Gtk.INVALID_LIST_POSITION);
@@ -291,12 +285,16 @@ namespace FontManager {
             return;
         }
 
-        void on_click (int n_press, double x, double y) {
+        protected override void on_show_context_menu (int n_press, double x, double y) {
+            if (selected_item == null)
+                return;
             clicked_area.x = (int) x;
             clicked_area.y = (int) y;
             clicked_area.width = 2;
             clicked_area.height = 2;
             context_menu.set_pointing_to(clicked_area);
+            menu_title.set_label(selected_item.name);
+            context_menu.popup();
             return;
         }
 
@@ -355,18 +353,6 @@ namespace FontManager {
                 var item = new GLib.MenuItem(entry.display_name, entry.action_name);
                 menu.append_item(item);
             }
-            return;
-        }
-
-        void update_context_menu () {
-            menu_title.set_label(selected_item.name);
-            return;
-        }
-
-        protected override void on_show_context_menu (int n_press, double x, double y) {
-            if (selected_item == null)
-                return;
-            context_menu.popup();
             return;
         }
 
@@ -667,5 +653,6 @@ namespace FontManager {
     }
 
 }
+
 
 

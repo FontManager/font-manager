@@ -205,7 +205,7 @@ namespace FontManager {
             EXTRACT_FLAGS |= Archive.ExtractFlags.FFLAGS;
 
             Archive.Read archive = new Archive.Read();
-            Archive.WriteDisk extractor = new Archive.WriteDisk ();
+            Archive.WriteDisk extractor = new Archive.WriteDisk();
             archive.support_format_all();
             archive.support_filter_all();
             extractor.set_options(EXTRACT_FLAGS);

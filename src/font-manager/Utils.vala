@@ -89,10 +89,9 @@ namespace FontManager {
         public Gtk.TreeExpander? expander { get; set; default = null; }
         public Gtk.SelectionModel? selection { get; set; default = null; }
 
-        protected virtual void show_context_menu (Gdk.Event event ,double x, double y) {}
-
         construct {
             var click = new Gtk.GestureClick();
+            click.set_propagation_phase(Gtk.PropagationPhase.CAPTURE);
             add_controller(click);
             click.pressed.connect(on_click);
         }
@@ -105,21 +104,14 @@ namespace FontManager {
                 return;
             uint position = row.get_position();
             if (selection.is_selected(position)) {
-                if (edit_label.visible)
-                    edit_label.editable = true;
-                Gdk.Event event = click.get_current_event();
-                if (event == null)
-                    return;
-                if (event.triggers_context_menu()) {
-                    show_context_menu(event, x, y);
-                    return;
-                }
+                edit_label.visible = edit_label.editable = true;
                 bool expanded = row.expanded;
                 if (row.expandable)
                     row.expanded = !expanded;
             } else {
-                edit_label.editable = false;
+                edit_label.visible = edit_label.editable = false;
             }
+            item_label.visible = !edit_label.visible;
             return;
         }
 
@@ -420,4 +412,5 @@ namespace FontManager {
     }
 
 }
+
 
