@@ -1,0 +1,1130 @@
+# BoneNI <bounkirdni@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
+"PO-Revision-Date: 2026-08-06 11:02+0000\n"
+"Last-Translator: BoneNI <bounkirdni@gmail.com>\n"
+"Language-Team: Lao <https://hosted.weblate.org/projects/font-manager/font-"
+"manager-help-docs/lo/>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.8.1.dev0\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "bone-ni"
+
+#. (itstool) path: info/desc
+#: C/font-manager-categories.page:7
+msgid "Automatically generated categories"
+msgstr "ໝວດໝູ່ທີ່ສ້າງຂຶ້ນໂດຍອັດຕະໂນມັດ"
+
+#. (itstool) path: page/title
+#: C/font-manager-categories.page:10
+msgid "Categories"
+msgstr "ໝວດໝູ່"
+
+#. (itstool) path: page/p
+#: C/font-manager-categories.page:12
+msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
+msgstr ""
+"<app>Font Manager</app> ຈະຈັດໝວດໝູ່ຟອນຂອງທ່ານໂດຍອັດຕະໂນມັດ ອີງຕາມຄຸນສົມບັດຕ່າງໆ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:19
+msgid "All"
+msgstr "ທັງໝົດ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:20
+msgid "All available fonts."
+msgstr "ຟອນທັງໝົດທີ່ມີຢູ່."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:25
+msgid "System"
+msgstr "ລະບົບ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:26
+msgid "Fonts available to all users."
+msgstr "ຟອນທີ່ມີໃຫ້ຜູ້ໃຊ້ທຸກຄົນນຳໃຊ້ໄດ້."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:31
+msgid "User"
+msgstr "ຜູ້ໃຊ້"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:32
+msgid "Fonts available only to you."
+msgstr "ຟອນທີ່ມີໃຫ້ສະເພາະທ່ານນຳໃຊ້ໄດ້."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:37
+msgid "Family Kind"
+msgstr "ປະເພດຕະກູນ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:38
+msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
+msgstr ""
+"ຈັດລຽງຕາມຊະນິດຕະກູນຟອນ — ຕ້ອງການຂໍ້ມູນ Panose ທີ່ມີຢູ່ໃນຂໍ້ມູນກຳກັບ (metadata) ຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:43
+msgid "Width"
+msgstr "ຄວາມກວ້າງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:44
+msgid "Sorted by font width property."
+msgstr "ຈັດລຽງຕາມຄຸນສົມບັດຄວາມກວ້າງຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:49
+msgid "Weight"
+msgstr "ຄວາມໜາ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:50
+msgid "Sorted by font weight property."
+msgstr "ຈັດລຽງຕາມຄຸນສົມບັດຄວາມໜາຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:55
+msgid "Slant"
+msgstr "ຄວາມອຽງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:56
+msgid "Sorted by font slant property."
+msgstr "ຈັດລຽງຕາມຄຸນສົມບັດຄວາມອຽງຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:61
+msgid "Spacing"
+msgstr "ໄລຍະຫ່າງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:62
+msgid "Sorted by font spacing property."
+msgstr "ຈັດລຽງຕາມຄຸນສົມບັດໄລຍະຫ່າງຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:67
+msgid "License"
+msgstr "ໃບອະນຸຍາດ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:68
+msgid "Sorted by font license — Requires license information to be present in font metadata."
+msgstr ""
+"ຈັດລຽງຕາມໃບອະນຸຍາດຟອນ — ຕ້ອງການຂໍ້ມູນໃບອະນຸຍາດທີ່ມີຢູ່ໃນຂໍ້ມູນກຳກັບຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:73
+msgid "Vendor"
+msgstr "ຜູ້ຈຳໜ່າຍ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:74
+msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
+msgstr ""
+"ຈັດລຽງຕາມຜູ້ຈຳໜ່າຍຟອນ — ຕ້ອງການຂໍ້ມູນຜູ້ຈຳໜ່າຍທີ່ມີຢູ່ໃນຂໍ້ມູນກຳກັບຂອງຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:79
+msgid "Filetype"
+msgstr "ຊະນິດໄຟລ໌"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:80
+msgid "Sorted by file format."
+msgstr "ຈັດລຽງຕາມຮູບແບບໄຟລ໌."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:85
+msgid "Unsorted"
+msgstr "ບໍ່ໄດ້ຈັດລຽງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:86
+msgid "Fonts not present in any of your collections."
+msgstr "ຟອນທີ່ບໍ່ມີຢູ່ໃນຊຸດສະສົມໃດໆຂອງທ່ານ."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:91
+msgid "Disabled"
+msgstr "ປິດໃຊ້ງານ"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:92
+msgid "Currrently disabled font families."
+msgstr "ຕະກູນຟອນທີ່ຖືກປິດໃຊ້ງານຢູ່ໃນຕອນນີ້."
+
+#. (itstool) path: info/desc
+#: C/font-manager-character-map.page:8
+msgid "View individual characters and their details"
+msgstr "ເບິ່ງແຕ່ລະຕົວອັກສອນ ແລະ ລາຍລະອຽດ"
+
+#. (itstool) path: page/title
+#: C/font-manager-character-map.page:11
+msgid "Character Map"
+msgstr "ແຜນຜັງຕົວອັກສອນ"
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:13
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
+msgstr ""
+"ໃນຂະນະທີ່ຢູ່ໃນໂໝດ \"ຈັດການ\", ປ່ອງຢ້ຽມສະແດງຕົວຢ່າງຈະມີແທັບທີ່ຊື່ວ່າ \"ຕົວອັກສອນ\"."
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:17
+msgid "Selecting this tab allows viewing all glyphs contained in the currently selected font."
+msgstr ""
+"ການເລືອກແທັບນີ້ຈະຊ່ວຍໃຫ້ເບິ່ງກລິບ (glyphs) ທັງໝົດທີ່ມີຢູ່ໃນຟອນທີ່ເລືອກໄວ້."
+
+#. (itstool) path: figure/title
+#: C/font-manager-character-map.page:23
+msgid "<app>Character Map tab</app>"
+msgstr "<app>ແທັບແຜນຜັງຕົວອັກສອນ</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-character-map.page:24
+msgctxt "_"
+msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+
+#. (itstool) path: note/p
+#: C/font-manager-character-map.page:28
+msgid "Drag characters onto other applications to use them."
+msgstr "ລາກຕົວອັກສອນໄປໃສ່ແອັບພລິເຄຊັນອື່ນເພື່ອໃຊ້ງານ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-collections.page:7
+msgid "Organizing Your Fonts"
+msgstr "ການຈັດລະບຽບຟອນຂອງທ່ານ"
+
+#. (itstool) path: page/title
+#: C/font-manager-collections.page:10
+msgid "Collections"
+msgstr "ຊຸດສະສົມ"
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:12
+msgid "<app>Font Manager</app> allows you to define your own collections."
+msgstr "<app>Font Manager</app> ຊ່ວຍໃຫ້ທ່ານສາມາດກຳນົດຊຸດສະສົມຂອງທ່ານເອງໄດ້."
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:17
+msgid "Collections allow you to organize your fonts in a way that makes sense to you and also make it easier to enable or disable many families at once."
+msgstr ""
+"ຊຸດສະສົມຊ່ວຍໃຫ້ທ່ານຈັດລະບຽບຟອນໃນແບບທີ່ທ່ານຕ້ອງການ ແລະ ຍັງເຮັດໃຫ້ການເປີດ ຫຼື ປິດໃຊ້ງານຟອນຫຼາຍໆຕະກູ"
+"ນພ້ອມກັນໄດ້ງ່າຍຂຶ້ນ."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:24
+msgid "Collections do not modify your files in any way."
+msgstr "ຊຸດສະສົມຈະບໍ່ມີການດັດແກ້ໄຟລ໌ຂອງທ່ານແຕ່ຢ່າງໃດ."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:27
+msgid "Feel free to create or delete as many as you like."
+msgstr "ທ່ານສາມາດສ້າງ ຫຼື ລຶບໄດ້ຕາມທີ່ຕ້ອງການ."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:34
+msgid "To create a new collection:"
+msgstr "ວິທີສ້າງຊຸດສະສົມໃໝ່:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:40
+#: C/font-manager-font-installation.page:25
+#: C/font-manager-font-sources.page:46
+#: C/font-manager-substitutions.page:37
+#: C/font-manager-substitutions.page:51
+msgctxt "_"
+msgid "external ref='media/list-add-symbolic.svg' md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:37
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the bottom of the Collection view."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> "
+"ຢູ່ທາງລຸ່ມຂອງສ່ວນສະແດງຊຸດສະສົມ."
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:46
+msgid "Enter a name for your new collection"
+msgstr "ປ້ອນຊື່ສຳລັບຊຸດສະສົມໃໝ່ຂອງທ່ານ"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:51
+msgid "Add fonts by dragging them from the font list to your new collection."
+msgstr "ເພີ່ມຟອນໂດຍການລາກພວກມັນຈາກລາຍຊື່ຟອນໄປຫາຊຸດສະສົມໃໝ່ຂອງທ່ານ."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:59
+msgid "To delete a collection:"
+msgstr "ວິທີລຶບຊຸດສະສົມ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:62
+#: C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99
+#: C/font-manager-collections.page:117
+msgid "Select the collection"
+msgstr "ເລືອກຊຸດສະສົມ"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:70
+#: C/font-manager-collections.page:130
+#: C/font-manager-font-removal.page:38
+#: C/font-manager-font-sources.page:84
+#: C/font-manager-substitutions.page:99
+msgctxt "_"
+msgid "external ref='media/list-remove-symbolic.svg' md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:67
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the bottom of the Collection view."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> ຢູ່ທາງລຸ່ມຂອງສ່ວນສະແດງຊຸດສະສົມ."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:78
+msgid "To enable a collection:"
+msgstr "ວິທີເປີດໃຊ້ງານຊຸດສະສົມ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:86
+#: C/font-manager-collections.page:104
+#: C/font-manager-font-activation.page:35
+msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
+msgstr "ຄລິກໃສ່ <gui style=\"checkbox\"> ຊ່ອງໝາຍຕິກ </gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:96
+msgid "To disable a collection:"
+msgstr "ວິທີປິດໃຊ້ງານຊຸດສະສົມ:"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:114
+msgid "To remove families from a collection:"
+msgstr "ວິທີເອົາຕະກູນຟອນອອກຈາກຊຸດສະສົມ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:122
+msgid "Select the family or families you wish to remove"
+msgstr "ເລືອກຕະກູນຟອນທີ່ທ່ານຕ້ອງການເອົາອອກ"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:127
+msgid "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the font list."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> ຢູ່ທາງເທິງຂອງລາຍຊື່ຟອນ."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:138
+msgid "To rename a collection:"
+msgstr "ວິທີປ່ຽນຊື່ຊຸດສະສົມ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:141
+msgid "Select a collection, click it again"
+msgstr "ເລືອກຊຸດສະສົມ, ແລ້ວຄລິກໃສ່ມັນອີກຄັ້ງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:146
+msgid "Enter a new name"
+msgstr "ປ້ອນຊື່ໃໝ່"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:151
+msgid "Press <gui style=\"button\">Enter</gui>"
+msgstr "ກົດ <gui style=\"button\">Enter</gui>"
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-activation.page:8
+msgid "Activating and De-activating font families"
+msgstr "ການເປີດໃຊ້ ແລະ ປິດໃຊ້ງານຕະກູນຟອນ"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-activation.page:11
+msgid "Activation"
+msgstr "ການເປີດໃຊ້ງານ"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:13
+msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
+msgstr ""
+"<app>Font Manager</app> ຊ່ວຍໃຫ້ທ່ານສາມາດເປີດໃຊ້ ແລະ ປິດໃຊ້ງານຕະກູນຟອນໄດ້."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:18
+msgid "If you have a large number of fonts installed, font selection dialogs and lists in many applications can get very long and become uncomfortable to use, disabling fonts you do not use very often or do not need at the moment helps keep these at a reasonable size."
+msgstr ""
+"ຫາກທ່ານຕິດຕັ້ງຟອນເປັນຈຳນວນຫຼາຍ, ລາຍຊື່ຟອນໃນແອັບພລິເຄຊັນຕ່າງໆຈະຍາວຫຼາຍ ແລະ ເຮັດໃຫ້ໃຊ້ງານບໍ່ສະດວ"
+"ກ. ການປິດໃຊ້ງານຟອນທີ່ບໍ່ຄ່ອຍໄດ້ໃຊ້ຈະຊ່ວຍໃຫ້ລາຍຊື່ຟອນມີຂະໜາດທີ່ເໝາະສົມ."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-activation.page:27
+msgid "To enable or disable a font family:"
+msgstr "ວິທີເປີດ ຫຼື ປິດໃຊ້ງານຕະກູນຟອນ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-activation.page:30
+msgid "Select the family you wish to enable/disable in the font list"
+msgstr "ເລືອກຕະກູນຟອນທີ່ທ່ານຕ້ອງການເປີດ/ປິດໃນລາຍຊື່ຟອນ"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:47
+msgid "You can also double-click, press <gui style=\"button\">Space</gui> or press <gui style=\"button\">Enter</gui> to toggle the selected font."
+msgstr ""
+"ທ່ານຍັງສາມາດດັບເບິ້ລຄລິກ, ກົດ <gui style=\"button\">Space</gui> ຫຼື ກົດ <gui "
+"style=\"button\">Enter</gui> ເພື່ອສະຫຼັບການເປີດ/ປິດຟອນທີ່ເລືອກໄວ້."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:51
+msgid "<link xref=\"organize#user-collections\">Collections</link> make it easy to enable or disable multiple families at once."
+msgstr ""
+"<link xref=\"organize#user-collections\">ຊຸດສະສົມ</link> ເຮັດໃຫ້ການເປີດ ຫຼື ປິດໃຊ້ງານຟ"
+"ອນຫຼາຍໆຕະກູນພ້ອມກັນໄດ້ງ່າຍຂຶ້ນ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:58
+msgid "While any changes made using <app>Font Manager</app> are applied immediately, open applications may need to be restarted in order to reflect those changes."
+msgstr ""
+"ເຖິງວ່າການປ່ຽນແປງໃນ <app>Font Manager</app> ຈະມີຜົນທັນທີ, ແຕ່ບາງແອັບພລິເຄຊັນທີ່ເປີດຢູ່ອາດຈະຕ້ອ"
+"ງໄດ້ເລີ່ມການເຮັດງານໃໝ່ເພື່ອໃຫ້ເຫັນການປ່ຽນແປງ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-installation.page:7
+msgid "Adding fonts for your use"
+msgstr "ການເພີ່ມຟອນເພື່ອໃຊ້ງານ"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-installation.page:10
+msgid "Installation"
+msgstr "ການຕິດຕັ້ງ"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-installation.page:12
+msgid "<app>Font Manager</app> supports the most common <link xref=\"supported-formats\">font formats</link>."
+msgstr ""
+"<app>Font Manager</app> ຮອງຮັບ <link xref=\"supported-formats\">ຮູບແບບຟອນ</"
+"link> ທີ່ເປັນທີ່ນິຍົມທີ່ສຸດ."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:19
+#: C/font-manager-font-removal.page:32
+msgid "While in <gui style=\"button\">Manage</gui> mode"
+msgstr "ໃນຂະນະທີ່ຢູ່ໃນໂໝດ <gui style=\"button\">ຈັດການ</gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:22
+msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"ຄລິກ <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> ຢູ່ທາງເທິງຂອງປ່ອງຢ້ຽມ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:31
+msgid "Select the files you wish to install from the file selector dialog that is displayed and click <gui style=\"button\">Open</gui>"
+msgstr ""
+"ເລືອກໄຟລ໌ທີ່ທ່ານຕ້ອງການຕິດຕັ້ງຈາກປ່ອງຢ້ຽມເລືອກໄຟລ໌ ແລ້ວຄລິກ <gui style=\"button\">ເປີດ</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:40
+msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
+msgstr ""
+"ຮອງຮັບການລາກ ແລະ ວາງ (Drag and drop). ພຽງແຕ່ລາກໄຟລ໌ມາໃສ່ລາຍຊື່ຟອນເພື່ອຕິດຕັ້ງ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:44
+msgid "You can drag any supported filetype onto the font list. This includes font files, directories and archives."
+msgstr ""
+"ທ່ານສາມາດລາກໄຟລ໌ທີ່ຮອງຮັບມາວາງໃສ່ລາຍຊື່ຟອນໄດ້ ເຊິ່ງລວມເຖິງໄຟລ໌ຟອນ, ໂຟນເດີ ແລະ ໄຟລ໌ບີບອັດ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:51
+msgid "Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/FileRoller\">Archive Manager</link>. to enable support for compressed files."
+msgstr ""
+"ຕິດຕັ້ງ <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/"
+"FileRoller\">Archive Manager</link> ເພື່ອໃຫ້ຮອງຮັບໄຟລ໌ບີບອັດ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:59
+#: C/font-manager-font-removal.page:76
+#: C/font-manager-font-sources.page:138
+msgid "<app>Font Manager</app> will reload anytime changes require it. This may take a moment depending on number of changes."
+msgstr ""
+"<app>Font Manager</app> ຈະໂຫຼດຂໍ້ມູນໃໝ່ທຸກຄັ້ງທີ່ມີການປ່ຽນແປງ. ເຊິ່ງອາດຈະໃຊ້ເວລາໜ້ອຍໜຶ່ງຂຶ້ນຢູ່ກັບຈຳ"
+"ນວນການປ່ຽນແປງ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-removal.page:8
+msgid "Getting rid of unwanted fonts"
+msgstr "ການກຳຈັດຟອນທີ່ບໍ່ຕ້ອງການ"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-removal.page:11
+msgid "Removal"
+msgstr "ການເອົາອອກ"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:14
+msgid "The only fonts listed in the removal dialog will be those installed in your default font directory."
+msgstr ""
+"ຟອນທີ່ຈະສະແດງໃນປ່ອງຢ້ຽມການເອົາອອກແມ່ນມີພຽງແຕ່ຟອນທີ່ຕິດຕັ້ງຢູ່ໃນໂຟນເດີຟອນມາດຕະຖານຂອງທ່ານເທົ່ານັ້ນ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:18
+msgid "Font files installed system wide are typically installed as part of the operating system, as packages or by the system administrator. <app>Font Manager</app> does not provide for removal of such files at this time."
+msgstr ""
+"ໄຟລ໌ຟອນທີ່ຕິດຕັ້ງໄວ້ໃນລະບົບສ່ວນໃຫຍ່ແມ່ນມາພ້ອມກັບລະບົບປະຕິບັດການ ຫຼື ຕິດຕັ້ງໂດຍຜູ້ດູແລລະບົບ. <app>Font "
+"Manager</app> ຍັງບໍ່ທັນສາມາດລຶບໄຟລ໌ເຫຼົ່ານີ້ໄດ້ໃນຕອນນີ້."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-removal.page:29
+msgid "To remove fonts you no longer need:"
+msgstr "ວິທີລຶບຟອນທີ່ທ່ານບໍ່ຕ້ອງການແລ້ວ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:35
+msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"ຄລິກ <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> ຢູ່ທາງເທິງຂອງປ່ອງຢ້ຽມ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:44
+msgid "Select the families or individual styles you wish to remove from the list that is displayed"
+msgstr "ເລືອກຕະກູນຟອນ ຫຼື ຮູບແບບທີ່ທ່ານຕ້ອງການເອົາອອກຈາກລາຍຊື່ທີ່ສະແດງຂຶ້ນ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:50
+msgid "Click <gui style=\"button\">Delete</gui>"
+msgstr "ຄລິກ <gui style=\"button\">ລຶບ</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:60
+msgid "<app>Font Manager</app> organizes and stores installed fonts in the default user font directory."
+msgstr ""
+"<app>Font Manager</app> ຈັດລະບຽບ ແລະ ເກັບຮັກສາຟອນທີ່ຕິດຕັ້ງໄວ້ໃນໂຟນເດີຟອນມາດຕະຖານຂອງຜູ້ໃ"
+"ຊ້."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:63
+msgid "Current default user font directory is located at <code><file>~/.local/share/fonts</file></code>"
+msgstr ""
+"ໂຟນເດີຟອນມາດຕະຖານຂອງຜູ້ໃຊ້ໃນປັດຈຸບັນຕັ້ງຢູ່ທີ່ <code><file>~/.local/share/fonts</file></"
+"code>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:69
+msgid "Files are permanently deleted. Before removing any fonts ensure you have backups if there is a chance you may need them again."
+msgstr ""
+"ໄຟລ໌ຈະຖືກລຶບຢ່າງຖາວອນ. ກ່ອນທີ່ຈະເອົາຟອນໃດໆອອກ ກະລຸນາກວດສອບວ່າທ່ານມີໄຟລ໌ສຳຮອງໄວ້ແລ້ວ ຫາກທ່ານອາ"
+"ດຈະຕ້ອງໃຊ້ມັນອີກໃນອະນາຄົດ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-sources.page:7
+msgid "Adding and removing font directories"
+msgstr "ການເພີ່ມ ແລະ ເອົາໂຟນເດີຟອນອອກ"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-sources.page:10
+msgid "Sources"
+msgstr "ແຫຼ່ງຂໍ້ມູນ"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:12
+msgid "<app>Font Manager</app> allows you to add or remove directories to scan for font files. Added directories are scanned recursively."
+msgstr ""
+"<app>Font Manager</app> ຊ່ວຍໃຫ້ທ່ານສາມາດເພີ່ມ ຫຼື ເອົາໂຟນເດີອອກເພື່ອສະແກນຫາໄຟລ໌ຟອນ. ໂຟນເດີ"
+"ທີ່ເພີ່ມເຂົ້າຈະຖືກສະແກນຢ່າງລະອຽດທຸກໂຟນເດີຍ່ອຍ."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:17
+msgid "This allows keeping font files somewhere other than your home directory or temporarily \"installing\" a directory of fonts."
+msgstr ""
+"ສິ່ງນີ້ຊ່ວຍໃຫ້ທ່ານສາມາດເກັບໄຟລ໌ຟອນໄວ້ບ່ອນອື່ນນອກຈາກໂຮມໄດເຣັກທໍຣີ (home directory) ຫຼື \"ຕິດຕັ້ງ\" "
+"ໂຟນເດີຟອນແບບຊົ່ວຄາວ."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:21
+msgid "It also allows you to organize your font files anyway you like."
+msgstr "ມັນຍັງຊ່ວຍໃຫ້ທ່ານຈັດລະບຽບໄຟລ໌ຟອນໄດ້ຕາມທີ່ທ່ານຕ້ອງການ."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:27
+msgid "To add a source:"
+msgstr "ວິທີເພີ່ມແຫຼ່ງຂໍ້ມູນ:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-font-sources.page:34
+#: C/font-manager-font-sources.page:66
+#: C/font-manager-font-sources.page:98
+#: C/font-manager-substitutions.page:25
+#: C/font-manager-substitutions.page:82
+#: C/font-manager-substitutions.page:120
+msgctxt "_"
+msgid "external ref='media/preferences-system-symbolic.svg' md5='63ed081f78639fc6ec234a9351cf52e6'"
+msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:30
+#: C/font-manager-font-sources.page:62
+#: C/font-manager-substitutions.page:21
+#: C/font-manager-substitutions.page:78
+#: C/font-manager-substitutions.page:116
+msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
+msgstr ""
+"ເປີດປ່ອງຢ້ຽມການຕັ້ງຄ່າ <app>Font Manager</app> ໂດຍການຄລິກ <gui> <media "
+"type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> ຢູ່ທາງເທິງ"
+"ຂອງປ່ອງຢ້ຽມ."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:40
+#: C/font-manager-font-sources.page:72
+#: C/font-manager-font-sources.page:104
+msgid "Select \"Sources\" from the sidebar"
+msgstr "ເລືອກ \"ແຫຼ່ງຂໍ້ມູນ\" ຈາກແຖບດ້ານຂ້າງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:43
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:51
+msgid "Select the directory you wish to add from the file selector that is displayed"
+msgstr "ເລືອກໂຟນເດີທີ່ທ່ານຕ້ອງການເພີ່ມຈາກປ່ອງຢ້ຽມເລືອກໄຟລ໌ທີ່ສະແດງຂຶ້ນ"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:59
+msgid "To remove a source:"
+msgstr "ວິທີເອົາແຫຼ່ງຂໍ້ມູນອອກ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:75
+msgid "Select the directory you wish to remove from the list that is displayed"
+msgstr "ເລືອກໂຟນເດີທີ່ທ່ານຕ້ອງການເອົາອອກຈາກລາຍຊື່ທີ່ສະແດງຂຶ້ນ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:81
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui>"
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:91
+msgid "To enable or disable a source:"
+msgstr "ວິທີເປີດ ຫຼື ປິດໃຊ້ງານແຫຼ່ງຂໍ້ມູນ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:94
+msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
+msgstr ""
+"ເປີດປ່ອງຢ້ຽມການຕັ້ງຄ່າ <app>Font Manager</app> ໂດຍການຄລິກ <gui style=\"button\"> "
+"<media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> "
+"ຢູ່ທາງເທິງຂອງປ່ອງຢ້ຽມ."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:107
+msgid "Select the source you want to enable or disable"
+msgstr "ເລືອກແຫຼ່ງຂໍ້ມູນທີ່ທ່ານຕ້ອງການເປີດ ຫຼື ປິດໃຊ້ງານ"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:112
+msgid "Click the <gui> toggle switch </gui>"
+msgstr "ຄລິກທີ່ <gui> ປຸ່ມສະຫຼັບເປີດ-ປິດ </gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:124
+msgid "While sources are always available within the application they are not available to other applications until they are enabled."
+msgstr ""
+"ເຖິງວ່າແຫຼ່ງຂໍ້ມູນຈະມີໃຫ້ໃຊ້ສະເໝີພາຍໃນແອັບພລິເຄຊັນ, ແຕ່ມັນຈະບໍ່ມີໃຫ້ແອັບພລິເຄຊັນອື່ນໃຊ້ຈົນກວ່າຈະຖືກເປີດໃຊ້ງາ"
+"ນ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:131
+msgid "You can avoid having multiple copies of the same files by adding directories from other filesystems."
+msgstr ""
+"ທ່ານສາມາດຫຼີກລ່ຽງການມີໄຟລ໌ດຽວກັນຫຼາຍບ່ອນໄດ້ ໂດຍການເພີ່ມໂຟນເດີຈາກລະບົບໄຟລ໌ອື່ນໆ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-fontconfig.page:7
+msgid "Generate fontconfig configuration files"
+msgstr "ສ້າງໄຟລ໌ຕັ້ງຄ່າ fontconfig"
+
+#. (itstool) path: page/title
+#: C/font-manager-fontconfig.page:10
+msgid "Display and Rendering Preferences"
+msgstr "ການຕັ້ງຄ່າການສະແດງຜົນ ແລະ ການເຣນເດີ (Rendering)"
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:12
+msgid "The \"Display\" and \"Rendering\" panes in the preferences dialog generate valid fontconfig configuration files for the exposed properties."
+msgstr ""
+"ສ່ວນ \"ການສະແດງຜົນ\" ແລະ \"ການເຣນເດີ\" ໃນປ່ອງຢ້ຽມການຕັ້ງຄ່າຈະສ້າງໄຟລ໌ຕັ້ງຄ່າ fontconfig ທີ່ຖື"
+"ກຕ້ອງສຳລັບຄຸນສົມບັດຕ່າງໆ."
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:17
+msgid "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-user.html\">fonts-conf</link> for more details."
+msgstr ""
+"ເບິ່ງ <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
+"user.html\">fonts-conf</link> ສຳລັບລາຍລະອຽດເພີ່ມເຕີມ."
+
+#. (itstool) path: note/p
+#: C/font-manager-fontconfig.page:22
+msgid "Desktop environments and applications may rely on their own configuration mechanism."
+msgstr ""
+"ສະພາບແວດລ້ອມເດັສທັອບ (Desktop environments) ແລະ ແອັບພລິເຄຊັນບາງຕົວອາດຈະໃຊ້ກົນໄກການຕັ້ງຄ່າ"
+"ຂອງພວກເຂົາເອງ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-introduction.page:5
+msgid "Introduction to <app>Font Manager</app>."
+msgstr "ການແນະນຳກ່ຽວກັບ <app>Font Manager</app>."
+
+#. (itstool) path: page/p
+#: C/font-manager-introduction.page:10
+msgid "<app>Font Manager</app> allows you to :"
+msgstr "<app>Font Manager</app> ຊ່ວຍໃຫ້ທ່ານສາມາດ:"
+
+#. (itstool) path: page/title
+#: C/font-manager-introduction.page:12
+msgid "Introduction"
+msgstr "ບົດນຳ"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:18
+msgid "Preview font files in various ways"
+msgstr "ສະແດງຕົວຢ່າງໄຟລ໌ຟອນໃນຮູບແບບຕ່າງໆ"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:23
+msgid "View available font metadata"
+msgstr "ເບິ່ງຂໍ້ມູນກຳກັບ (metadata) ຂອງຟອນທີ່ມີຢູ່"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:28
+msgid "Install or remove fonts for your use"
+msgstr "ຕິດຕັ້ງ ຫຼື ເອົາຟອນອອກເພື່ອໃຊ້ງານ"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:33
+msgid "Group fonts into \"Collections\""
+msgstr "ຈັດກຸ່ມຟອນເຂົ້າໃນ \"ຊຸດສະສົມ\""
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:38
+msgid "Enable or disable individual font families or entire collections"
+msgstr "ເປີດ ຫຼື ປິດໃຊ້ງານແຕ່ລະຕະກູນຟອນ ຫຼື ຊຸດສະສົມທັງໝົດ"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:43
+msgid "Specify different directories to use for fonts"
+msgstr "ກຳນົດໂຟນເດີຕ່າງໆເພື່ອໃຊ້ສຳລັບຟອນ"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:48
+msgid "Perform font substitution"
+msgstr "ເຮັດການແທນທີ່ຟອນ"
+
+#. (itstool) path: figure/title
+#: C/font-manager-introduction.page:55
+msgid "<app>Font Manager</app>"
+msgstr "<app>Font Manager</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-introduction.page:57
+msgctxt "_"
+msgid "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:61
+msgid "For more information about <app>Font Manager</app>, please visit the <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
+msgstr ""
+"ສຳລັບຂໍ້ມູນເພີ່ມເຕີມກ່ຽວກັບ <app>Font Manager</app>, ກະລຸນາເຂົ້າເບິ່ງທີ່ <link href=\"http://"
+"fontmanager.github.io/\"> ໜ້າຫຼັກ </link>"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:67
+msgid "To report a bug or make a suggestion regarding the <app>Font Manager</app> application or this manual, please use the projects <link href=\"https://github.com/FontManager/master/issues\"> Issue Tracker </link>"
+msgstr ""
+"ເພື່ອລາຍງານຂໍ້ຜິດພາດ (bug) ຫຼື ໃຫ້ຄຳແນະນຳກ່ຽວກັບແອັບພລິເຄຊັນ <app>Font Manager</app> ຫຼື ຄູ່ມື"
+"ນີ້, ກະລຸນາໃຊ້ <link href=\"https://github.com/FontManager/master/issues\"> ລະບົບຕິ"
+"ດຕາມບັນຫາ (Issue Tracker) </link> ຂອງໂຄງການ"
+
+#. (itstool) path: info/desc
+#: C/font-manager-license.page:7
+msgid "View license information contained in font files"
+msgstr "ເບິ່ງຂໍ້ມູນໃບອະນຸຍາດທີ່ມີຢູ່ໃນໄຟລ໌ຟອນ"
+
+#. (itstool) path: page/title
+#: C/font-manager-license.page:10
+msgid "Licensing"
+msgstr "ໃບອະນຸຍາດ"
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:12
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
+msgstr ""
+"ໃນຂະນະທີ່ຢູ່ໃນໂໝດ \"ຈັດການ\", ປ່ອງຢ້ຽມສະແດງຕົວຢ່າງຈະມີແທັບທີ່ຊື່ວ່າ \"ໃບອະນຸຍາດ\"."
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:16
+msgid "Selecting this tab allows viewing any licensing information contained in the currently selected font."
+msgstr "ການເລືອກແທັບນີ້ຈະຊ່ວຍໃຫ້ເບິ່ງຂໍ້ມູນໃບອະນຸຍາດທີ່ມີຢູ່ໃນຟອນທີ່ເລືອກໄວ້."
+
+#. (itstool) path: figure/title
+#: C/font-manager-license.page:22
+msgid "<app>Font License tab</app>"
+msgstr "<app>ແທັບໃບອະນຸຍາດຟອນ</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-license.page:23
+msgctxt "_"
+msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+
+#. (itstool) path: note/p
+#: C/font-manager-license.page:27
+msgid "Not all font files contain licensing information."
+msgstr "ບໍ່ແມ່ນໄຟລ໌ຟອນທຸກໄຟລ໌ທີ່ຈະມີຂໍ້ມູນໃບອະນຸຍາດ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-metadata.page:7
+msgid "View metadata embedded in your font files"
+msgstr "ເບິ່ງຂໍ້ມູນກຳກັບ (metadata) ທີ່ຝັງຢູ່ໃນໄຟລ໌ຟອນຂອງທ່ານ"
+
+#. (itstool) path: page/title
+#: C/font-manager-metadata.page:10
+msgid "Metadata"
+msgstr "ຂໍ້ມູນກຳກັບ"
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:12
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
+msgstr ""
+"ໃນຂະນະທີ່ຢູ່ໃນໂໝດ \"ຈັດການ\", ປ່ອງຢ້ຽມສະແດງຕົວຢ່າງຈະມີແທັບທີ່ຊື່ວ່າ \"ຄຸນສົມບັດ\"."
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:16
+msgid "Selecting this tab allows viewing metadata contained in the currently selected font."
+msgstr "ການເລືອກແທັບນີ້ຈະຊ່ວຍໃຫ້ເບິ່ງຂໍ້ມູນກຳກັບທີ່ມີຢູ່ໃນຟອນທີ່ເລືອກໄວ້."
+
+#. (itstool) path: figure/title
+#: C/font-manager-metadata.page:22
+msgid "<app>Font Properties tab</app>"
+msgstr "<app>ແທັບຄຸນສົມບັດຟອນ</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-metadata.page:23
+msgctxt "_"
+msgid "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+
+#. (itstool) path: note/p
+#: C/font-manager-metadata.page:27
+msgid "Some properties are optional and may not be present in all font files."
+msgstr "ຄຸນສົມບັດບາງຢ່າງແມ່ນທາງເລືອກ ແລະ ອາດຈະບໍ່ມີຢູ່ໃນທຸກໄຟລ໌ຟອນ."
+
+#. (itstool) path: info/desc
+#: C/font-manager-orthographies.page:8
+msgid "View languages supported and their coverage"
+msgstr "ເບິ່ງພາສາທີ່ຮອງຮັບ ແລະ ຂອບເຂດການຮອງຮັບ"
+
+#. (itstool) path: page/title
+#: C/font-manager-orthographies.page:11
+msgid "Language Support"
+msgstr "ການຮອງຮັບພາສາ"
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:13
+msgid "While the character map is in use the sidebar will switch to displaying the orthographies supported by the currently selected font."
+msgstr ""
+"ໃນຂະນະທີ່ໃຊ້ແຜນຜັງຕົວອັກສອນ, ແຖບດ້ານຂ້າງຈະສະຫຼັບໄປສະແດງອັກຂະລະວິທີ (orthographies) ທີ່ຮອງຮັບໂ"
+"ດຍຟອນທີ່ເລືອກໄວ້."
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:18
+msgid "Selecting an orthography from the list will filter the character map so that it only displays relevant characters"
+msgstr ""
+"ການເລືອກອັກຂະລະວິທີຈາກລາຍຊື່ຈະກັ່ນຕອງແຜນຜັງຕົວອັກສອນເພື່ອໃຫ້ມັນສະແດງສະເພາະຕົວອັກສອນທີ່ກ່ຽວຂ້ອງ"
+
+#. (itstool) path: figure/title
+#: C/font-manager-orthographies.page:28
+msgid "<app>Supported Orthographies</app>"
+msgstr "<app>ອັກຂະລະວິທີທີ່ຮອງຮັບ</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-orthographies.page:29
+msgctxt "_"
+msgid "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+
+#. (itstool) path: info/desc
+#: C/font-manager-substitutions.page:7
+msgid "Substitute one font family for another"
+msgstr "ການແທນທີ່ຕະກູນຟອນໜຶ່ງດ້ວຍອີກຕະກູນໜຶ່ງ"
+
+#. (itstool) path: page/title
+#: C/font-manager-substitutions.page:10
+msgid "Substitution"
+msgstr "ການແທນທີ່"
+
+#. (itstool) path: page/p
+#: C/font-manager-substitutions.page:12
+msgid "<app>Font Manager</app> allows you to substitute one font family for another."
+msgstr ""
+"<app>Font Manager</app> ຊ່ວຍໃຫ້ທ່ານສາມາດແທນທີ່ຕະກູນຟອນໜຶ່ງດ້ວຍອີກຕະກູນໜຶ່ງໄດ້."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:18
+msgid "To add a substitute:"
+msgstr "ວິທີເພີ່ມການແທນທີ່:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:31
+#: C/font-manager-substitutions.page:88
+#: C/font-manager-substitutions.page:126
+msgid "Select \"Substitutions\" from the sidebar"
+msgstr "ເລືອກ \"ການແທນທີ່\" ຈາກແຖບດ້ານຂ້າງ"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:34
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> in the substitutions pane."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> "
+"ໃນສ່ວນການແທນທີ່."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:43
+msgid "Enter the name of the font family you wish to set up a substitute for."
+msgstr "ປ້ອນຊື່ຂອງຕະກູນຟອນທີ່ທ່ານຕ້ອງການກຳນົດການແທນທີ່."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:48
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> on the right."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> "
+"ຢູ່ທາງເບື້ອງຂວາ."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:57
+msgid "Enter the name of the substitute family and select the priority level."
+msgstr "ປ້ອນຊື່ຂອງຕະກູນຟອນທີ່ຈະນຳມາແທນທີ່ ແລະ ເລືອກລະດັບຄວາມສຳຄັນ."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:62
+msgid "Repeat steps 3 – 6 as needed."
+msgstr "ເຮັດຄືນຂັ້ນຕອນທີ 3 – 6 ຕາມທີ່ຕ້ອງການ."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:67
+#: C/font-manager-substitutions.page:105
+msgid "Click <gui style=\"button\">Save</gui> to write the configuration file when done."
+msgstr "ຄລິກ <gui style=\"button\">ບັນທຶກ</gui> ເພື່ອຂຽນໄຟລ໌ຕັ້ງຄ່າເມື່ອສຳເລັດ."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:75
+msgid "To remove a substitute:"
+msgstr "ວິທີເອົາການແທນທີ່ອອກ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:91
+msgid "Select the entry you wish to remove from the list."
+msgstr "ເລືອກລາຍການທີ່ທ່ານຕ້ອງການເອົາອອກຈາກລາຍຊື່."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:96
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> in the substitutions pane."
+msgstr ""
+"ຄລິກ <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> ໃນສ່ວນການແທນທີ່."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:113
+msgid "To remove all substitutes:"
+msgstr "ວິທີເອົາການແທນທີ່ທັງໝົດອອກ:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:129
+msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
+msgstr "ຄລິກ <gui style=\"button\"> ຍົກເລີກ </gui> ໃນສ່ວນການແທນທີ່."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:142
+msgid "Fonts matching the target family are edited to prepend the list of preferred families before the matching family, append the acceptable families after the matching family and append the default families to the end of the family list."
+msgstr ""
+"ຟອນທີ່ກົງກັບຕະກູນເປົ້າໝາຍຈະຖືກແກ້ໄຂເພື່ອເພີ່ມລາຍຊື່ຕະກູນຟອນທີ່ຕ້ອງການໄວ້ທາງໜ້າ, ເພີ່ມຕະກູນຟອນທີ່ຍອມຮັບໄດ້"
+"ໄວ້ທາງຫຼັງ ແລະ ເພີ່ມຕະກູນຟອນມາດຕະຖານໄວ້ທີ່ສ່ວນທ້າຍຂອງລາຍຊື່ຕະກູນຟອນ."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:148
+msgid "While changes are applied immediately open applications may need to be restarted."
+msgstr ""
+"ເຖິງວ່າການປ່ຽນແປງຈະມີຜົນທັນທີ, ແຕ່ແອັບພລິເຄຊັນທີ່ເປີດຢູ່ອາດຈະຕ້ອງໄດ້ເລີ່ມການເຮັດງານໃໝ່."
+
+#. (itstool) path: info/desc
+#: C/font-manager-supported-formats.page:5
+msgid "Font formats supported by <app>Font Manager</app>."
+msgstr "ຮູບແບບຟອນທີ່ຮອງຮັບໂດຍ <app>Font Manager</app>."
+
+#. (itstool) path: page/title
+#: C/font-manager-supported-formats.page:10
+msgid "Supported File Formats"
+msgstr "ຮູບແບບໄຟລ໌ທີ່ຮອງຮັບ"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:14
+msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:21
+msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+
+#. (itstool) path: info/desc
+#: C/index.page:6
+msgid "Getting started with Font Manager."
+msgstr "ເລີ່ມຕົ້ນການໃຊ້ງານ Font Manager."
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:8
+msgctxt "_"
+msgid "external ref='media/preferences-desktop-font-16.png' md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link"
+msgid "Font Manager"
+msgstr "Font Manager"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Font Manager"
+msgstr "Font Manager"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Jerry Casiano"
+msgstr "ເຈີຣີ ຄາຊຽນໂນ"
+
+#. (itstool) path: credit/years
+#: C/index.page:16
+msgid "2009–2020"
+msgstr "2009–2020"
+
+#. (itstool) path: credit/name
+#: C/index.page:20
+msgid "Weblate"
+msgstr "Weblate"
+
+#. (itstool) path: license/p
+#: C/index.page:24
+msgid "GNU General Public License Version 3"
+msgstr "ໃບອະນຸຍາດສາທາລະນະທົ່ວໄປ GNU ເວີຊັນ 3"
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:30
+msgctxt "_"
+msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
+msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> Font Manager logo </media> Font Manager"
+
+#. (itstool) path: section/title
+#: C/index.page:37
+msgid "Managing Your Fonts"
+msgstr "ການຈັດການຟອນຂອງທ່ານ"
+
+#. (itstool) path: section/title
+#: C/index.page:41
+msgid "Getting to Know Your Fonts"
+msgstr "ເຮັດຄວາມຮູ້ຈັກກັບຟອນຂອງທ່ານ"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced Features"
+msgstr "ຄຸນສົມບັດຂັ້ນສູງ"

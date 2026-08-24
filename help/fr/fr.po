@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2025-03-19 12:23+0000\n"
+"PO-Revision-Date: 2025-09-01 19:01+0000\n"
 "Last-Translator: cwpute <collan+weblate@free.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/fr/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -748,7 +748,7 @@ msgstr "Pour retirer une source :"
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
-msgstr ""
+msgstr "Choisissez le dossier que vous voulez retirer de la liste affichée"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
@@ -756,11 +756,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Cliquez sur <gui> <media type=\"image\" src="
+"\"media/list-remove-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "Pour activer ou désactiver une source :"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
@@ -769,16 +771,19 @@ msgid ""
 "\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
 "\"/> </gui> at the top of the window."
 msgstr ""
+"Ouvrez la fenêtre de préférences de <app>Gestionnaire de polices</app> en "
+"cliquant sur <gui style=\"button\"> <media type=\"image\" src="
+"\"media/preferences-system-symbolic.svg\"/> </gui> en haut de la fenêtre."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
-msgstr ""
+msgstr "Choisissez la source que vous souhaitez activer ou désactiver"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr ""
+msgstr "Cliquez sur le <gui>bouton on/off</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
@@ -786,6 +791,9 @@ msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
 msgstr ""
+"Bien que les sources soient disponibles dans l'application, elles ne sont "
+"pas disponibles pour d'autres applications tant qu'elles ne sont pas "
+"activées."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
@@ -793,6 +801,8 @@ msgid ""
 "You can avoid having multiple copies of the same files by adding directories "
 "from other filesystems."
 msgstr ""
+"Vous pouvez éviter d'avoir plusieurs copies des mêmes fichiers en ajoutant "
+"les dossiers d'autres systèmes de fichier."
 
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7

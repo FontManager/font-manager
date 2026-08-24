@@ -1,30 +1,33 @@
-# Alang Hsu <alang.hsu@gmail.com>, 2021.
+# Alang Hsu <alang.hsu@gmail.com>, 2021, 2026.
 # lemon37564 <stonydragon0701@gmail.com>, 2021.
 # D0735 <D0735@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2024-03-12 17:01+0000\n"
-"Last-Translator: D0735 <D0735@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"font-manager/font-manager-help-docs/zh_Hant/>\n"
+"PO-Revision-Date: 2026-07-31 05:01+0000\n"
+"Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/font-manager/font-manager-help-docs/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
+"Alang Hsu <alang.hsu@gmail.com>, 2021, 2026\n"
+"lemon37564 <stonydragon0701@gmail.com>, 2021\n"
+"D0735 <D0735@users.noreply.hosted.weblate.org>, 2024"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "自動產生的分類"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
@@ -36,17 +39,17 @@ msgstr "分類"
 msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
-msgstr ""
+msgstr "<app>字型總管</app>會依據各種屬性自動分類您的字型。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr "所有字體"
+msgstr "所有字型"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "所有可用的字型。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -56,7 +59,7 @@ msgstr "系統"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "所有使用者均可使用的字型。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -66,19 +69,19 @@ msgstr "使用者"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "僅供您使用的字型。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "字形家族種類"
+msgstr "字型家族種類"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
 msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
-msgstr ""
+msgstr "依字型家族種類排序——字型中繼資料需包含 Panose 資訊。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -88,7 +91,7 @@ msgstr "字寬"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "依字寬屬性排序。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -98,7 +101,7 @@ msgstr "厚度"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "依字型粗細屬性排序。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
@@ -108,7 +111,7 @@ msgstr "傾斜"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "依字型傾斜屬性排序。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -118,7 +121,7 @@ msgstr "字距"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "依字距屬性排序。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -130,7 +133,7 @@ msgstr "授權"
 msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
-msgstr ""
+msgstr "依字型授權排序——字型中繼資料需包含授權資訊。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -142,7 +145,7 @@ msgstr "供應商"
 msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
-msgstr ""
+msgstr "依字型供應商排序——字型中繼資料需包含供應商資訊。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -152,7 +155,7 @@ msgstr "檔案類型"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "依檔案格式排序。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -162,7 +165,7 @@ msgstr "未排序"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "不在您任何字集內的字型。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -172,36 +175,36 @@ msgstr "未啟用"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "目前已停用的字型家族。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "檢視個別字元及其詳細資訊"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "字元對應表"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
-msgstr ""
+msgstr "在「管理」模式下，預覽窗格包含一個名為「字元」的分頁。"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
 msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
-msgstr ""
+msgstr "選取此分頁可檢視目前所選字型中包含的所有字形。"
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>字元對應表分頁</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -213,16 +216,17 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "將字元拖曳到其他應用程式中即可使用。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "整理您的字型"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
@@ -232,29 +236,29 @@ msgstr "字集"
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>字型總管</app>讓您可以定義自己的字集。"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
 msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
-msgstr ""
+msgstr "字集讓您以合理的方式整理字型，也能更輕鬆地一次啟用或停用多個字型家族。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "字集完全不會修改您的檔案。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "您可以自由建立或刪除任意數量的字集。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "建立新字集："
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -269,6 +273,8 @@ msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -276,27 +282,29 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"在字集檢視底部點擊 <gui> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "為新字集輸入名稱"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr ""
+msgstr "將字型從字型清單拖曳到新字集中。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "刪除字集："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "選取該字集"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -311,6 +319,8 @@ msgid ""
 "external ref='media/list-remove-symbolic.svg' "
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -318,32 +328,34 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"在字集檢視底部點擊 <gui> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui>。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "啟用字集："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "點擊 <gui style=\"checkbox\"> 核取方塊 </gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "停用字集："
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "從字集移除字型家族："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "選取您要移除的字型家族"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -351,42 +363,44 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"在字型清單頂端點擊 <gui> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui>。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "重新命名字集："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "選取一個字集，再次點擊它"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "輸入新名稱"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "按下 <gui style=\"button\">Enter</gui>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "啟用與停用字型家族"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "啟用"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
-msgstr ""
+msgstr "<app>字型總管</app>讓您可以啟用與停用字型家族。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -396,16 +410,18 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
+"如果您安裝了大量字型，許多應用程式中的字型選取對話框和清單會變得非常冗長而不"
+"便使用。停用不常使用或目前不需要的字型，有助於將這些清單維持在合理的長度。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "啟用或停用字型家族："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "在字型清單中選取您要啟用/停用的字型家族"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -413,6 +429,8 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"您也可以按兩下、按下 <gui style=\"button\">Space</gui> 或按下 <gui "
+"style=\"button\">Enter</gui> 來切換選取的字型。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -420,6 +438,8 @@ msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
 msgstr ""
+"<link xref=\"organize#user-collections\">字集</link>讓您能輕鬆一次啟用或停用"
+"多個字型家族。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -428,16 +448,18 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
+"雖然透過 <app>字型總管</app> 所做的變更會立即生效，但已開啟的應用程式可能需要"
+"重新啟動才能反映這些變更。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "新增字型供您使用"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "安裝"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -445,11 +467,13 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
+"<app>字型總管</app>支援最常見的<link xref=\"supported-formats\">字型格式</"
+"link>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "在 <gui style=\"button\">管理</gui> 模式下"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -457,6 +481,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"點擊視窗頂端的 <gui style=\"button\"> <media type=\"image\" src=\"media/list-"
+"add-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -464,20 +490,22 @@ msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"在顯示的檔案選取對話框中選取要安裝的檔案，然後點擊 <gui style=\"button\">開"
+"啟</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
 msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
-msgstr ""
+msgstr "也支援拖放功能。只需將檔案拖曳到字型清單上即可安裝。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
 msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
-msgstr ""
+msgstr "您可以將任何支援的檔案類型拖曳到字型清單上，包括字型檔案、目錄和壓縮檔。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -486,6 +514,8 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"安裝 <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/"
+"FileRoller\">Archive Manager</link> 以啟用壓縮檔案的支援。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -493,24 +523,24 @@ msgstr ""
 msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
-msgstr ""
+msgstr "<app>字型總管</app>會在需要時重新載入。視變更數量而定，可能需要一些時間。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "移除不需要的字型"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "移除"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
 msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
-msgstr ""
+msgstr "移除對話框中列出的字型僅限安裝在預設字型目錄中的字型。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -519,11 +549,13 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"系統層級安裝的字型檔案通常是作業系統的一部分、以套件形式安裝，或由系統管理員"
+"安裝。<app>字型總管</app>目前不提供移除這類檔案的功能。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "移除不再需要的字型："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -531,49 +563,51 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"點擊視窗頂端的 <gui style=\"button\"> <media type=\"image\" src=\"media/list-"
+"remove-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
 msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
-msgstr ""
+msgstr "從顯示的清單中選取您要移除的字型家族或個別樣式"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "點擊 <gui style=\"button\">刪除</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
 msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
-msgstr ""
+msgstr "<app>字型總管</app>會將安裝的字型整理並儲存在預設的使用者字型目錄中。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
 msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
-msgstr ""
+msgstr "目前的預設使用者字型目錄位於 <code><file>~/.local/share/fonts</file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
 msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
-msgstr ""
+msgstr "檔案會永久刪除。在移除字型前，請務必先備份，以免日後需要。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "新增與移除字型目錄"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr "字體來源"
+msgstr "字型來源"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -581,23 +615,25 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
+"<app>字型總管</app>讓您可以新增或移除要掃描字型檔案的目錄。新增的目錄會以遞迴"
+"方式掃描。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
 msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
-msgstr ""
+msgstr "這讓您可以將字型檔案存放在家目錄以外的地方，或暫時「安裝」一個字型目錄。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
-msgstr ""
+msgstr "這也讓您可以用任何喜歡的方式整理字型檔案。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "新增來源："
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -612,6 +648,8 @@ msgid ""
 "external ref='media/preferences-system-symbolic.svg' "
 "md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
@@ -622,12 +660,14 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
+"點擊視窗頂端的 <gui> <media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/> </gui> 開啟 <app>字型總管</app> 偏好設定對話框。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "從側邊欄選取「來源」"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -635,22 +675,23 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"點擊 <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid ""
 "Select the directory you wish to add from the file selector that is displayed"
-msgstr ""
+msgstr "從顯示的檔案選取器中選取您要新增的目錄"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "移除來源："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
-msgstr ""
+msgstr "從顯示的清單中選取您要移除的目錄"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
@@ -658,11 +699,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"點擊 <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "啟用或停用來源："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
@@ -671,40 +714,43 @@ msgid ""
 "\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
 "\"/> </gui> at the top of the window."
 msgstr ""
+"點擊視窗頂端的 <gui style=\"button\"> <media type=\"image\" src=\"media/"
+"preferences-system-symbolic.svg\"/> </gui> 開啟 <app>字型總管</app> 偏好設定"
+"對話框。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
-msgstr ""
+msgstr "選取您要啟用或停用的來源"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr ""
+msgstr "點擊 <gui> 切換開關 </gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
 msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
-msgstr ""
+msgstr "雖然來源在應用程式內隨時可使用，但必須啟用後才能供其他應用程式使用。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
 msgid ""
 "You can avoid having multiple copies of the same files by adding directories "
 "from other filesystems."
-msgstr ""
+msgstr "您可以新增其他檔案系統的目錄，避免同一檔案有多個副本。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7
 msgid "Generate fontconfig configuration files"
-msgstr ""
+msgstr "產生 fontconfig 設定檔"
 
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "顯示與渲染偏好設定"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -712,6 +758,8 @@ msgid ""
 "The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
 "valid fontconfig configuration files for the exposed properties."
 msgstr ""
+"偏好設定對話框中的「顯示」和「渲染」窗格會為顯示的屬性產生有效的 fontconfig "
+"設定檔。"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
@@ -719,68 +767,70 @@ msgid ""
 "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
 "user.html\">fonts-conf</link> for more details."
 msgstr ""
+"詳情請參閱 <link href=\"https://www.freedesktop.org/software/fontconfig/"
+"fontconfig-user.html\">fonts-conf</link>。"
 
 #. (itstool) path: note/p
 #: C/font-manager-fontconfig.page:22
 msgid ""
 "Desktop environments and applications may rely on their own configuration "
 "mechanism."
-msgstr ""
+msgstr "桌面環境和應用程式可能依賴自己的設定機制。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr ""
+msgstr "<app>字型總管</app>簡介。"
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr ""
+msgstr "<app>字型總管</app>讓您可以："
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
 msgid "Introduction"
-msgstr ""
+msgstr "簡介"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr ""
+msgstr "以多種方式預覽字型檔案"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "檢視可用的字型中繼資料"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr ""
+msgstr "安裝或移除字型供您使用"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr ""
+msgstr "將字型分組至「字集」"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
-msgstr ""
+msgstr "啟用或停用個別字型家族或整個字集"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr ""
+msgstr "指定不同的目錄供字型使用"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "執行字型替代"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr ""
+msgstr "<app>字型總管</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -792,6 +842,7 @@ msgctxt "_"
 msgid ""
 "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
@@ -799,6 +850,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
+"如需更多關於 <app>字型總管</app> 的資訊，請參訪<link href=\"http://"
+"fontmanager.github.io/\">首頁</link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -807,34 +860,37 @@ msgid ""
 "application or this manual, please use the projects <link href=\"https://"
 "github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
+"若要回報 <app>字型總管</app> 應用程式或本手冊的錯誤或提出建議，請使用專案"
+"的<link href=\"https://github.com/FontManager/master/issues\">問題追蹤器</"
+"link>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr ""
+msgstr "檢視字型檔案中的授權資訊"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr ""
+msgstr "授權"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
-msgstr ""
+msgstr "在「管理」模式下，預覽窗格包含一個名為「授權」的分頁。"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
 msgid ""
 "Selecting this tab allows viewing any licensing information contained in the "
 "currently selected font."
-msgstr ""
+msgstr "選取此分頁可檢視目前所選字型中的任何授權資訊。"
 
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
 msgid "<app>Font License tab</app>"
-msgstr ""
+msgstr "<app>字型授權分頁</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -844,41 +900,41 @@ msgstr ""
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr ""
+msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
 msgid "Not all font files contain licensing information."
-msgstr ""
+msgstr "並非所有字型檔案都包含授權資訊。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "檢視字型檔案中的中繼資料"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "中繼資料"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
 "\"."
-msgstr ""
+msgstr "在「管理」模式下，預覽窗格包含一個名為「屬性」的分頁。"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
 msgid ""
 "Selecting this tab allows viewing metadata contained in the currently "
 "selected font."
-msgstr ""
+msgstr "選取此分頁可檢視目前所選字型中的中繼資料。"
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
 msgid "<app>Font Properties tab</app>"
-msgstr ""
+msgstr "<app>字型屬性分頁</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -890,40 +946,41 @@ msgctxt "_"
 msgid ""
 "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 
 #. (itstool) path: note/p
 #: C/font-manager-metadata.page:27
 msgid "Some properties are optional and may not be present in all font files."
-msgstr ""
+msgstr "某些屬性為選擇性，可能不存在於所有字型檔案中。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "檢視支援的語言及其涵蓋範圍"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "語言支援"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
 msgid ""
 "While the character map is in use the sidebar will switch to displaying the "
 "orthographies supported by the currently selected font."
-msgstr ""
+msgstr "使用字元對應表時，側邊欄會切換為顯示目前所選字型支援的拼寫體系。"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
 msgid ""
 "Selecting an orthography from the list will filter the character map so that "
 "it only displays relevant characters"
-msgstr ""
+msgstr "從清單中選取一個拼寫體系，字元對應表會過濾為僅顯示相關字元"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr ""
+msgstr "<app>支援的拼寫體系</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -935,33 +992,34 @@ msgctxt "_"
 msgid ""
 "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr ""
+msgstr "以一個字型家族替代另一個"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "替代"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
-msgstr ""
+msgstr "<app>字型總管</app>讓您可以用一個字型家族替代另一個。"
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "新增替代："
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "從側邊欄選取「替代」"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
@@ -969,11 +1027,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"在替代窗格中點擊 <gui> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
+msgstr "輸入您要設定替代的字型家族名稱。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -981,33 +1041,35 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> on the right."
 msgstr ""
+"點擊右側的 <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> "
+"</gui>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
-msgstr ""
+msgstr "輸入替代字型家族的名稱並選取優先層級。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "視需要重複步驟 3 至 6。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
 msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
-msgstr ""
+msgstr "完成後點擊 <gui style=\"button\">儲存</gui> 以寫入設定檔。"
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "移除替代："
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr ""
+msgstr "從清單中選取您要移除的項目。"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1015,16 +1077,18 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"在替代窗格中點擊 <gui> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui>。"
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "移除所有替代："
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
-msgstr ""
+msgstr "在替代窗格中點擊 <gui style=\"button\">捨棄</gui>。"
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1034,38 +1098,40 @@ msgid ""
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
+"符合目標家族的字型會被編輯：優先家族清單會附加在符合家族之前，可接受家族附加"
+"在符合家族之後，預設家族則附加在家族清單結尾。"
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
 msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
-msgstr ""
+msgstr "雖然變更會立即生效，但已開啟的應用程式可能需要重新啟動。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr ""
+msgstr "<app>字型總管</app>支援的字型格式。"
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "支援的檔案格式"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr ""
+msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr ""
+msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "開始使用字型總管。"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1078,38 +1144,40 @@ msgid ""
 "external ref='media/preferences-desktop-font-16.png' "
 "md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "字型總管"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr ""
+msgstr "字型總管"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr ""
+msgstr "Jerry Casiano"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
 msgid "2009–2020"
-msgstr ""
+msgstr "2009–2020"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "GNU 通用公眾授權條款第 3 版"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1122,6 +1190,8 @@ msgid ""
 "external ref='media/preferences-desktop-font.png' "
 "md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
@@ -1129,18 +1199,20 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> 字型總管標誌 </media> 字型總管"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "管理您的字型"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "認識您的字型"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "進階功能"

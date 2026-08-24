@@ -4,13 +4,14 @@
 # DNSE <kty5663@gmail.com>, 2022.
 # 이정희 <daemul72@gmail.com>, 2022.
 # JiYoung Park <pjiyoung4512@gmail.com>, 2022.
+# justcontributor <kty5663@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2022-12-23 13:48+0000\n"
-"Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
+"PO-Revision-Date: 2026-03-15 07:09+0000\n"
+"Last-Translator: justcontributor <kty5663@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/font-"
 "manager/ko/>\n"
 "Language: ko\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -119,10 +120,8 @@ msgid "Font Properties"
 msgstr "글꼴 속성"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "데이터베이스 업데이트 중 — 글꼴"
+msgstr "데이터베이스 업데이트 중…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:750

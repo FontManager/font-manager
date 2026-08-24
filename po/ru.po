@@ -18,19 +18,23 @@
 # Author:
 # Jerry Casiano <JerryCasiano@gmail.com>
 # Artem <KovalevArtem.ru@gmail.com>, 2021.
+# Dmitriy Q <krotesk@mail.ru>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2022-02-06 15:23+0300\n"
+"PO-Revision-Date: 2025-12-20 08:00+0000\n"
+"Last-Translator: Dmitriy Q <krotesk@mail.ru>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.15.1\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -759,11 +763,11 @@ msgstr "Декоративные"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "Неактивный"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
-msgstr ""
+msgstr "Разработано"
 
 #: src/font-manager/Categories.vala:259
 msgid "Grouped by font width"
@@ -864,20 +868,22 @@ msgstr "Переименовать…"
 
 #: src/font-manager/Collections.vala:405
 msgid "Archive created successfully."
-msgstr ""
+msgstr "Архив успешно создан."
 
 #: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "Полученный файл можно найти в вашем домашнем каталоге."
 
 #: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
-msgstr ""
+msgstr "Ошибка экспорта коллекции"
 
 #: src/font-manager/Collections.vala:409
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
+"Запустите приложение из терминала и попробуйте еще раз для получения "
+"дополнительной информации"
 
 #: src/font-manager/Collections.vala:430
 #, fuzzy
@@ -887,7 +893,7 @@ msgstr "Удалить выбранную коллекцию"
 
 #: src/font-manager/Collections.vala:431
 msgid "This may take some time for large collections…"
-msgstr ""
+msgstr "Это может занять некоторое время для больших коллекций…"
 
 #: src/font-manager/Compare.vala:336
 msgid "Saved Comparison"
@@ -943,7 +949,7 @@ msgstr "Название"
 
 #: src/font-manager/Controls.vala:131
 msgid "Size"
-msgstr ""
+msgstr "Размер"
 
 #: src/font-manager/Controls.vala:196
 msgid "Grid View"
@@ -995,7 +1001,7 @@ msgstr "Тип файла"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
-msgstr ""
+msgstr "Архивные файлы"
 
 #: src/font-manager/Dialogs.vala:81
 #, fuzzy
@@ -1753,7 +1759,7 @@ msgstr "Происходит обновление"
 #. No error and no results means this font file is likely broken or empty
 #: src/font-manager/OrthographyList.vala:231
 msgid "No valid orthographies for selection"
-msgstr ""
+msgstr "Нет возможных орфографий для выбора"
 
 #: src/font-manager/Sidebar.vala:57
 msgid "Add new collection"
@@ -1858,7 +1864,7 @@ msgstr "Отображение"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
-msgstr ""
+msgstr "Автоматическая опция позволяет GTK 4 игнорировать настройки подсказок."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
