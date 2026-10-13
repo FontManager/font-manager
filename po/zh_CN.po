@@ -30,13 +30,15 @@
 # ZHAO20060708 <zxybbb7892020@outlook.com>, 2025.
 # Cassian <prismarine@epicraft.top>, 2025.
 # Steven Liu <mojang1314@outlook.com>, 2025.
+# reducedradius <137701630+flytothehighest@users.noreply.github.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2025-05-16 16:15+0000\n"
-"Last-Translator: Steven Liu <mojang1314@outlook.com>\n"
+"PO-Revision-Date: 2026-08-16 03:51+0000\n"
+"Last-Translator: reducedradius "
+"<137701630+flytothehighest@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -44,7 +46,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 2026.9.dev0\n"
 
 # Not translate very good, just for use.
 #. Application.vala
@@ -1453,11 +1455,11 @@ msgstr "曼尼普尔语"
 #: src/font-manager/Orthographies.vala:120
 #: src/font-manager/web/google/LanguageData.vala:119
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "门德文"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "麦罗埃文草书体"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
@@ -1554,7 +1556,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Romanian"
-msgstr ""
+msgstr "罗马尼亚语"
 
 #: src/font-manager/Orthographies.vala:147
 #: src/font-manager/web/google/LanguageData.vala:157
@@ -1852,7 +1854,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:121
 msgid "GNOME desktop settings schema not found"
-msgstr ""
+msgstr "未找到GNOME 桌面设置方案"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
@@ -2529,7 +2531,7 @@ msgstr "安装字体"
 
 #: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "预览区域颜色"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
