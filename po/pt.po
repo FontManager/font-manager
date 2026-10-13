@@ -1,0 +1,2728 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# ssantos <ssantos@web.de>, 2025.
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.9.4\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. Application.vala
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.desktop.in.in:5
+#: data/com.github.FontManager.FontManager.desktop.in.in:6
+#: lib/gtk/font-manager-application-window.c:281
+#: src/font-manager/Application.vala:2
+msgid "Font Manager"
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/com.github.FontManager.FontManager.desktop.in.in:16
+#: data/com.github.FontManager.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.desktop.in.in:5
+#: data/com.github.FontManager.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:73
+#: src/font-viewer/font-viewer-main-window.ui:82
+msgid "Font Viewer"
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr ""
+
+#: extensions/nautilus/font-manager-menu-provider.c:154
+#: extensions/nemo/font-manager-menu-provider.c:147
+#: extensions/thunar/font-manager-menu-provider.c:129
+#: src/font-manager/FontList.vala:509
+msgid "Install"
+msgstr ""
+
+#: extensions/nautilus/font-manager-menu-provider.c:156
+#: extensions/nemo/font-manager-menu-provider.c:149
+#: extensions/thunar/font-manager-menu-provider.c:131
+msgid "Install the selected font file"
+msgstr ""
+
+#: extensions/nautilus/font-manager-menu-provider.c:157
+#: extensions/nemo/font-manager-menu-provider.c:150
+#: extensions/thunar/font-manager-menu-provider.c:132
+msgid "Install the selected font files"
+msgstr ""
+
+#: extensions/thunar/font-manager-renamer-provider.c:86
+msgid "Font Properties"
+msgstr ""
+
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
+msgid "Updating Database…"
+msgstr ""
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-freetype.c:750
+msgid "Unknown Vendor"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:566
+#: src/font-manager/web/google/WebFont.vala:172
+msgid "Thin"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:568
+msgid "Ultra-Light"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:923
+#: src/font-manager/web/google/WebFont.vala:176
+msgid "Light"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:572
+msgid "Semi-Light"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:574
+msgid "Book"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:880
+#: src/font-manager/preferences/Desktop.vala:236
+#: src/font-manager/web/google/WebFont.vala:180
+msgid "Medium"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:578
+msgid "Semi-Bold"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:580
+#: src/font-manager/web/google/WebFont.vala:184
+msgid "Bold"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:582
+msgid "Ultra-Bold"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:584
+msgid "Heavy"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:586
+msgid "Ultra-Heavy"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:661
+#: src/font-manager/web/google/WebFont.vala:234
+msgid "Italic"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:663
+msgid "Oblique"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:701
+msgid "Ultra-Condensed"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:703
+msgid "Extra-Condensed"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:705
+msgid "Condensed"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:707
+msgid "Semi-Condensed"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:709
+msgid "Semi-Expanded"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:711
+msgid "Expanded"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:713
+msgid "Extra-Expanded"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:715
+msgid "Ultra-Expanded"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:784
+msgid "Proportional"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:786
+msgid "Dual Width"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:788
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
+msgid "Monospace"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:790
+msgid "Charcell"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:829
+msgid "Unknown"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:831
+msgid "RGB"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:833
+msgid "BGR"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:835
+msgid "VRGB"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:837
+msgid "VBGR"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:927
+#: src/font-manager/Controls.vala:133
+#: src/font-manager/preferences/Desktop.vala:234
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "None"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:878
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Slight"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:882
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Full"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:921
+msgid "Default"
+msgstr ""
+
+#: lib/fontconfig/font-manager-fontconfig.c:925
+msgid "Legacy"
+msgstr ""
+
+#: lib/fontconfig/font-manager-source.c:305
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
+msgid "Source Unavailable"
+msgstr ""
+
+#: lib/gtk/font-manager-application-window.c:285
+#: src/font-manager/Application.vala:3
+msgid "Simple font management for GTK+ desktop environments"
+msgstr ""
+
+#: lib/gtk/font-manager-application-window.c:290
+msgid "translator-credits"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:74
+msgid "Restricted License Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:76
+msgid "Preview & Print Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:78
+msgid "Editable Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:80
+msgid "Preview & Print Embedding | No Subsetting"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:82
+msgid "Editable Embedding | No Subsetting"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:84
+msgid "Preview & Print Embedding | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:86
+msgid "Editable Embedding | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:88
+msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:90
+msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:92
+msgid "Installable Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-license-page.c:179
+msgid "File does not contain license information."
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:77
+msgid "Left Aligned"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:83
+msgid "Centered"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:89
+msgid "Fill"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:95
+msgid "Right Aligned"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
+msgid "Edit preview text"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-controls.c:350
+msgid "Undo changes"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-page.c:87
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
+msgid "Preview"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-page.c:89
+msgid "Waterfall"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:47
+#: lib/gtk/font-manager-preview-pane.c:582
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
+msgid "Characters"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:49
+#: lib/gtk/font-manager-preview-pane.c:583
+msgid "Properties"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:51
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
+msgid "License"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
+#: src/font-manager/web/google/WebFont.vala:178
+msgid "Regular"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
+msgid "Normal"
+msgstr ""
+
+#: lib/gtk/font-manager-preview-pane.c:506
+msgid "Search available characters"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:55
+msgid "PostScript Name"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:56
+msgid "Family"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:57
+msgid "Style"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:58
+#: src/font-manager/Categories.vala:259
+msgid "Width"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:59
+#: src/font-manager/Categories.vala:261
+msgid "Slant"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:60
+#: src/font-manager/Categories.vala:260
+msgid "Weight"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:61
+#: src/font-manager/Categories.vala:262
+msgid "Spacing"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:62
+msgid "Version"
+msgstr ""
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/gtk/font-manager-properties-page.c:64
+#: src/font-manager/Categories.vala:268
+msgid "Vendor"
+msgstr ""
+
+#: lib/gtk/font-manager-properties-page.c:65
+msgid "FileType"
+msgstr ""
+
+#. Keep this entry last
+#: lib/gtk/font-manager-properties-page.c:67
+msgid "Filesize"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-character-map.c:850
+msgid "Copy"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:191
+msgid "<Non Private Use High Surrogate>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:193
+msgid "<Private Use High Surrogate>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:195
+msgid "<Low Surrogate>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:197
+msgid "<Private Use>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:199
+msgid "<Plane 15 Private Use>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:201
+msgid "<Plane 16 Private Use>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:205
+msgid "<not assigned>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:222
+msgid "Other, Control"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:224
+msgid "Other, Format"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:226
+msgid "Other, Not Assigned"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:228
+msgid "Other, Private Use"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:230
+msgid "Other, Surrogate"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:232
+msgid "Letter, Lowercase"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:234
+msgid "Letter, Modifier"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:236
+msgid "Letter, Other"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:238
+msgid "Letter, Titlecase"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:240
+msgid "Letter, Uppercase"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:242
+msgid "Mark, Spacing Combining"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:244
+msgid "Mark, Enclosing"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:246
+msgid "Mark, Non-Spacing"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:248
+msgid "Number, Decimal Digit"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:250
+msgid "Number, Letter"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:252
+msgid "Number, Other"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:254
+msgid "Punctuation, Connector"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:256
+msgid "Punctuation, Dash"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:258
+msgid "Punctuation, Close"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:260
+msgid "Punctuation, Final Quote"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:262
+msgid "Punctuation, Initial Quote"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:264
+msgid "Punctuation, Other"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:266
+msgid "Punctuation, Open"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:268
+msgid "Symbol, Currency"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:270
+msgid "Symbol, Modifier"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:272
+msgid "Symbol, Math"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:274
+msgid "Symbol, Other"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:276
+msgid "Separator, Line"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:278
+msgid "Separator, Paragraph"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:280
+msgid "Separator, Space"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:37
+msgid "Up to 48 points (Linear Scaling)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:39
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:41
+msgid "Up to 96 points (Linear Scaling)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:43
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:45
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:47
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:49
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:51
+msgid "Custom Size Settings"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:197
+msgid "Waterfall Preview Size Settings"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:201
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:204
+msgid "Minimum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:206
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:208
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:236
+msgid "Show line size"
+msgstr ""
+
+#: src/font-manager/Application.vala:5
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+msgstr ""
+
+#: src/font-manager/Application.vala:133
+msgid "Installing Font Files…"
+msgstr ""
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+msgid "Active"
+msgstr ""
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr ""
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr ""
+
+#: src/font-manager/Categories.vala:259
+msgid "Grouped by font width"
+msgstr ""
+
+#: src/font-manager/Categories.vala:260
+msgid "Grouped by font weight"
+msgstr ""
+
+#: src/font-manager/Categories.vala:261
+msgid "Grouped by font angle"
+msgstr ""
+
+#: src/font-manager/Categories.vala:262
+msgid "Grouped by font spacing"
+msgstr ""
+
+#: src/font-manager/Categories.vala:266
+msgid "Grouped by license type"
+msgstr ""
+
+#: src/font-manager/Categories.vala:268
+msgid "Grouped by vendor"
+msgstr ""
+
+#: src/font-manager/Categories.vala:269
+msgid "Filetype"
+msgstr ""
+
+#: src/font-manager/Categories.vala:269
+msgid "Grouped by filetype"
+msgstr ""
+
+#: src/font-manager/Categories.vala:274
+msgid "All"
+msgstr ""
+
+#: src/font-manager/Categories.vala:274
+msgid "All Fonts"
+msgstr ""
+
+#: src/font-manager/Categories.vala:275
+msgid "System"
+msgstr ""
+
+#: src/font-manager/Categories.vala:275
+msgid "Fonts available to all users"
+msgstr ""
+
+#: src/font-manager/Categories.vala:298
+msgid "Family Kind"
+msgstr ""
+
+#: src/font-manager/Categories.vala:298
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
+msgid "Any"
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+msgid "No Fit"
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+msgid "Text and Display"
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+msgid "Script"
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+msgid "Decorative"
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+msgid "Pictorial"
+msgstr ""
+
+#: src/font-manager/Collections.vala:23
+msgid "Enter Collection Name"
+msgstr ""
+
+#: src/font-manager/Collections.vala:346
+msgid "Copy to…"
+msgstr ""
+
+#: src/font-manager/Collections.vala:347
+msgid "Compress…"
+msgstr ""
+
+#: src/font-manager/Collections.vala:348
+msgid "Rename…"
+msgstr ""
+
+#: src/font-manager/Collections.vala:405
+msgid "Archive created successfully."
+msgstr ""
+
+#: src/font-manager/Collections.vala:406
+msgid "The resulting file can be found in your home directory."
+msgstr ""
+
+#: src/font-manager/Collections.vala:408
+msgid "Error exporting collection"
+msgstr ""
+
+#: src/font-manager/Collections.vala:409
+msgid ""
+"Start the application from a terminal and try again for more information"
+msgstr ""
+
+#: src/font-manager/Collections.vala:430
+msgid "Creating archive from selected collection."
+msgstr ""
+
+#: src/font-manager/Collections.vala:431
+msgid "This may take some time for large collections…"
+msgstr ""
+
+#: src/font-manager/Compare.vala:336
+msgid "Saved Comparison"
+msgstr ""
+
+#. Translators : Please preserve the newline character somewhere in the middle of the string
+#: src/font-manager/Compare.vala:372
+msgid ""
+"Save the current comparison\n"
+"by clicking the + button"
+msgstr ""
+
+#: src/font-manager/Controls.vala:80
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
+msgid "Help"
+msgstr ""
+
+#: src/font-manager/Controls.vala:82
+msgid "About Font Manager"
+msgstr ""
+
+#: src/font-manager/Controls.vala:88
+#: src/font-viewer/font-viewer-main-window.ui:97
+msgid "Preferences"
+msgstr ""
+
+#: src/font-manager/Controls.vala:92
+msgid "Import"
+msgstr ""
+
+#: src/font-manager/Controls.vala:93
+#: src/font-manager/ui/font-manager-export-dialog.ui:25
+msgid "Export"
+msgstr ""
+
+#: src/font-manager/Controls.vala:96
+#: src/font-manager/ui/font-manager-export-dialog.ui:13
+msgid "User Data"
+msgstr ""
+
+#: src/font-manager/Controls.vala:129
+#: src/font-manager/ui/font-manager-user-action-row.ui:13
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
+msgid "Name"
+msgstr ""
+
+#: src/font-manager/Controls.vala:131
+msgid "Size"
+msgstr ""
+
+#: src/font-manager/Controls.vala:196
+msgid "Grid View"
+msgstr ""
+
+#: src/font-manager/Controls.vala:197
+msgid "List View"
+msgstr ""
+
+#: src/font-manager/Controls.vala:283
+msgid "Add Fonts"
+msgstr ""
+
+#: src/font-manager/Controls.vala:284
+msgid "Remove Fonts"
+msgstr ""
+
+#: src/font-manager/Controls.vala:300
+msgid "Back"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
+msgid "_Select"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:49
+msgid "Select Executable"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:60
+msgid "Select a Directory"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:68
+msgid "TrueType"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:70
+msgid "OpenType"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:73
+msgid "Archive Files"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:81
+msgid "Select Files to Install"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:91
+msgid "Select Source Directories"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:125
+msgid "Font Configuration"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:126
+msgid "Font Collections"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:127
+#: src/font-manager/preferences/UserSources.vala:156
+msgid "Font Sources"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:128
+msgid "Installed Fonts"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:129
+msgid "Custom Actions"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:385
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+
+#. FontList.vala
+#. *
+#. * Copyright (C) 2020-2025 Jerry Casiano
+#. *
+#. * This program is free software: you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation, either version 3 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.
+#. *
+#. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+#.
+#: src/font-manager/FontList.vala:21
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath.\n"
+"Start search using %s to filter based on characters."
+msgstr ""
+
+#: src/font-manager/FontList.vala:72
+#: src/font-manager/web/google/FontList.vala:204
+#, c-format
+msgid "%i Variation "
+msgid_plural "%i Variations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+msgid "Collapse all"
+msgstr ""
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
+#: src/font-manager/ui/font-manager-font-list-view.ui:24
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
+msgid "Expand all"
+msgstr ""
+
+#: src/font-manager/FontList.vala:510
+msgid "Copy Location"
+msgstr ""
+
+#: src/font-manager/FontList.vala:511
+msgid "Show in Folder"
+msgstr ""
+
+#: src/font-manager/FontList.vala:512
+msgid "Enable selected items"
+msgstr ""
+
+#: src/font-manager/FontList.vala:513
+msgid "Disable selected items"
+msgstr ""
+
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
+#, c-format
+msgid "%i selected item"
+msgid_plural "%i selected items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/font-manager/FontList.vala:607
+#: src/font-manager/preferences/Preferences.vala:45
+msgid "Actions"
+msgstr ""
+
+#: src/font-manager/MainWindow.vala:69
+msgid "Browse"
+msgstr ""
+
+#: src/font-manager/MainWindow.vala:71
+msgid "Compare"
+msgstr ""
+
+#: src/font-manager/MainWindow.vala:74
+msgid "Google Fonts"
+msgstr ""
+
+#: src/font-manager/MainWindow.vala:77
+msgid "Manage"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:31
+msgid "Afrikaans"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:32
+msgid "Ahom"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:33
+msgid "Aleut Cyrillic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:34
+msgid "Aleut Latin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:35
+#: src/font-manager/web/google/LanguageData.vala:35
+msgid "Arabic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:36
+msgid "Archaic Greek Letters"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:37
+#: src/font-manager/web/google/LanguageData.vala:36
+msgid "Armenian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:38
+msgid "Astronomy"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:39
+#: src/font-manager/web/google/LanguageData.vala:38
+msgid "Balinese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:40
+msgid "Baltic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:41
+#: src/font-manager/web/google/LanguageData.vala:39
+msgid "Bamum"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:42
+msgid "Basic Cyrillic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:43
+msgid "Basic Greek"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:44
+msgid "Basic Latin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:45
+msgid "Surat Batak"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:46
+#: src/font-manager/web/google/LanguageData.vala:42
+msgid "Bengali"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:47
+msgid "Brāhmī"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:48
+#: src/font-manager/web/google/LanguageData.vala:46
+msgid "Buginese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:49
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:50
+#: src/font-manager/web/google/LanguageData.vala:50
+msgid "Carian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:51
+msgid "Catalan"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:52
+msgid "Central European"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:53
+#: src/font-manager/web/google/LanguageData.vala:51
+msgid "Chakma"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:54
+#: src/font-manager/web/google/LanguageData.vala:52
+msgid "Cham"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:55
+#: src/font-manager/web/google/LanguageData.vala:53
+msgid "Cherokee"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:56
+msgid "Chess Symbols"
+msgstr ""
+
+#. CJK entries added manually
+#: src/font-manager/Orthographies.vala:59
+msgid "CJK Unified"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:60
+msgid "CJK Unified Extension A"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:61
+msgid "CJK Unified Extension B"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:62
+msgid "CJK Unified Extension C"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:63
+msgid "CJK Unified Extension D"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:64
+msgid "CJK Unified Extension E"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:65
+msgid "CJK Compatibility Ideographs"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:66
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr ""
+
+#. End CJK entries
+#: src/font-manager/Orthographies.vala:69
+msgid "Claudian Letters"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:70
+#: src/font-manager/web/google/LanguageData.vala:58
+msgid "Coptic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:71
+msgid "Currencies"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:72
+msgid "Cypriot Syllabary"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:73
+#: src/font-manager/web/google/LanguageData.vala:65
+msgid "Devanagari"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:74
+msgid "Dutch"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:75
+#: src/font-manager/web/google/LanguageData.vala:67
+msgid "Egyptian Hieroglyphs"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:76
+msgid "Emoticons"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:77
+#: src/font-manager/web/google/LanguageData.vala:70
+msgid "Ethiopic"
+msgstr ""
+
+#. This "orthography" contains only the euro symbol...
+#. { "Euro", "Euro" },
+#: src/font-manager/Orthographies.vala:82
+msgid "Farsi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:83
+msgid "Food and Drink"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:84
+msgid "Full Cyrillic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:85
+#: src/font-manager/web/google/LanguageData.vala:71
+msgid "Georgian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:86
+#: src/font-manager/web/google/LanguageData.vala:72
+msgid "Glagolitic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:87
+#: src/font-manager/web/google/LanguageData.vala:73
+msgid "Gothic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:88
+#: src/font-manager/web/google/LanguageData.vala:77
+msgid "Gujarati"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:89
+#: src/font-manager/web/google/LanguageData.vala:79
+msgid "Gurmukhi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:90
+msgid "Korean Hangul"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:91
+msgid "Hanunó'o"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:92
+#: src/font-manager/web/google/LanguageData.vala:83
+msgid "Hebrew"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:93
+#: src/font-manager/Orthographies.vala:95
+msgid "IPA"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:94
+msgid "Igbo Onwu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:96
+msgid "Korean Jamo"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:97
+#: src/font-manager/web/google/LanguageData.vala:89
+msgid "Javanese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:98
+msgid "Japanese Jinmeiyo"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:99
+msgid "Japanese Joyo"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:100
+#: src/font-manager/web/google/LanguageData.vala:90
+msgid "Kaithi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:101
+msgid "Japanese Kana"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:102
+#: src/font-manager/web/google/LanguageData.vala:91
+msgid "Kannada"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:103
+#: src/font-manager/web/google/LanguageData.vala:94
+msgid "Kayah Li"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:104
+msgid "Kazakh"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:105
+#: src/font-manager/web/google/LanguageData.vala:92
+msgid "Kharoshthi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:106
+#: src/font-manager/web/google/LanguageData.vala:95
+msgid "Khmer"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:107
+msgid "Japanese Kokuji"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:108
+#: src/font-manager/web/google/LanguageData.vala:99
+msgid "Lao"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:109
+msgid "Latin Ligatures"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:110
+#: src/font-manager/web/google/LanguageData.vala:100
+msgid "Lepcha"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:111
+#: src/font-manager/web/google/LanguageData.vala:103
+msgid "Limbu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:112
+msgid "Linear B Ideograms"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:113
+msgid "Linear B Syllabary"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:114
+#: src/font-manager/web/google/LanguageData.vala:110
+msgid "Malayalam"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:115
+msgid "Mathematical Greek"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:116
+msgid "Mathematical Latin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:117
+msgid "Mathematical Numerals"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:118
+msgid "Mathematical Operators"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:119
+msgid "Meetei Mayak"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:120
+#: src/font-manager/web/google/LanguageData.vala:119
+msgid "Mende Kikakui"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:121
+msgid "MeroiticCursive"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:122
+msgid "Meroitic Hieroglyphs"
+msgstr ""
+
+#. { N_(""), "meroitic-cursive", "" },
+#. { N_(""), "meroitic-heiroglyphs", "" },
+#: src/font-manager/Orthographies.vala:123
+#: src/font-manager/web/google/LanguageData.vala:123
+msgid "Miao"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:124
+#: src/font-manager/web/google/LanguageData.vala:125
+msgid "Mongolian"
+msgstr ""
+
+#. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+#. Contains lots of duplicates, doubt many would find it useful
+#. { "MUFI 3.0", "MUFI 3.0" },
+#: src/font-manager/Orthographies.vala:130
+#: src/font-manager/web/google/LanguageData.vala:129
+msgid "Myanmar"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:131
+#: src/font-manager/web/google/LanguageData.vala:133
+msgid "New Tai Lue"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:132
+msgid "N’Ko"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:133
+#: src/font-manager/web/google/LanguageData.vala:137
+msgid "Ogham"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:134
+#: src/font-manager/web/google/LanguageData.vala:138
+msgid "Ol Chiki"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:135
+#: src/font-manager/web/google/LanguageData.vala:140
+msgid "Old Italic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:136
+#: src/font-manager/web/google/LanguageData.vala:145
+msgid "Old South Arabian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:137
+#: src/font-manager/web/google/LanguageData.vala:149
+msgid "Oriya"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:138
+#: src/font-manager/web/google/LanguageData.vala:148
+msgid "Osmanya"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:139
+msgid "Pan African Latin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:140
+msgid "Pashto"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:141
+#: src/font-manager/web/google/LanguageData.vala:153
+msgid "Phags Pa"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:142
+msgid "Pinyin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:143
+msgid "Polynesian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:144
+msgid "Polytonic Greek"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:145
+#: src/font-manager/web/google/LanguageData.vala:156
+msgid "Rejang"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:146
+msgid "Romanian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:147
+#: src/font-manager/web/google/LanguageData.vala:157
+msgid "Runic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:148
+#: src/font-manager/web/google/LanguageData.vala:159
+msgid "Saurashtra"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:149
+msgid "Simplified Chinese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:150
+msgid "Sindhi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:151
+#: src/font-manager/web/google/LanguageData.vala:164
+msgid "Sinhala"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:152
+msgid "South Korean Hanja"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:153
+#: src/font-manager/web/google/LanguageData.vala:168
+msgid "Sundanese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:154
+#: src/font-manager/web/google/LanguageData.vala:169
+msgid "Syloti Nagri"
+msgstr ""
+
+#. { N_("Symbols"), "symbols", "" },
+#: src/font-manager/Orthographies.vala:155
+#: src/font-manager/web/google/LanguageData.vala:171
+msgid "Syriac"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:156
+#: src/font-manager/web/google/LanguageData.vala:174
+msgid "Tai Le"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:157
+msgid "Tai Tham (Lanna)"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:158
+msgid "Tai Viet"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:159
+#: src/font-manager/web/google/LanguageData.vala:175
+msgid "Tamil"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:160
+#: src/font-manager/web/google/LanguageData.vala:176
+msgid "Telugu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:161
+msgid "Thaana"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:162
+#: src/font-manager/web/google/LanguageData.vala:177
+msgid "Thai"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:163
+#: src/font-manager/web/google/LanguageData.vala:178
+msgid "Tibetan"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:164
+msgid "Tifinagh"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:165
+msgid "Traditional Chinese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:166
+msgid "Turkish"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:167
+msgid "Uighur"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:168
+msgid "Urdu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:169
+msgid "Vai"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:170
+msgid "Vedic Extensions"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:171
+msgid "Venda"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:172
+#: src/font-manager/web/google/LanguageData.vala:179
+msgid "Vietnamese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:173
+msgid "Western European"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:174
+msgid "Yi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:175
+msgid "Chinese Zhuyin Fuhao"
+msgstr ""
+
+#. Translators : Coverage refers to the amount of support the font provides for
+#. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
+#: src/font-manager/OrthographyList.vala:105
+msgid "Coverage"
+msgstr ""
+
+#: src/font-manager/OrthographyList.vala:137
+#: src/font-manager/filters/LanguageFilter.vala:55
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
+msgid "Supported Orthographies"
+msgstr ""
+
+#: src/font-manager/OrthographyList.vala:200
+msgid "No items selected"
+msgstr ""
+
+#: src/font-manager/OrthographyList.vala:205
+msgid "Update in progress"
+msgstr ""
+
+#. No error and no results means this font file is likely broken or empty
+#: src/font-manager/OrthographyList.vala:231
+msgid "No valid orthographies for selection"
+msgstr ""
+
+#: src/font-manager/Sidebar.vala:57
+msgid "Add new collection"
+msgstr ""
+
+#: src/font-manager/Sidebar.vala:61
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
+#: src/font-manager/ui/font-manager-font-list-view.ui:36
+msgid "Remove selected item"
+msgstr ""
+
+#: src/font-manager/Sidebar.vala:67
+msgid "Edit selected item"
+msgstr ""
+
+#: src/font-manager/Utils.vala:295
+msgid "Copying files…"
+msgstr ""
+
+#: src/font-manager/filters/Collection.vala:99
+msgid "New Collection"
+msgstr ""
+
+#: src/font-manager/filters/Collection.vala:100
+#, c-format
+msgid "Created : %s"
+msgstr ""
+
+#: src/font-manager/filters/Disabled.vala:28
+msgid "Disabled"
+msgstr ""
+
+#: src/font-manager/filters/Disabled.vala:29
+msgid "Fonts which have been disabled"
+msgstr ""
+
+#: src/font-manager/filters/LanguageFilter.vala:28
+msgid "Filter based on supported orthographies"
+msgstr ""
+
+#: src/font-manager/filters/Unsorted.vala:34
+msgid "Unsorted"
+msgstr ""
+
+#: src/font-manager/filters/Unsorted.vala:35
+msgid "Fonts not present in any collection"
+msgstr ""
+
+#: src/font-manager/filters/UserFonts.vala:27
+msgid "User"
+msgstr ""
+
+#: src/font-manager/filters/UserFonts.vala:28
+msgid "Fonts available only to you"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:36
+msgid "Interface Font"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:37
+msgid "Font used throughout interface."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:42
+msgid "Document Font"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:43
+msgid "Font used for reading documents."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:48
+msgid "Monospace Font"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:49
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:54
+msgid "Text Scaling Factor"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:55
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:60
+msgid "GTK 4 Font Rendering"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:61
+msgid "Automatic option allows GTK 4 to disregard hinting settings."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:90
+msgid "Antialiasing"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:67
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values. "
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:96
+msgid "RGBA order"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:97
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:78
+#: src/font-manager/preferences/Desktop.vala:84
+#: src/font-manager/preferences/Rendering.vala:78
+msgid "Hinting"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:79
+#: src/font-manager/preferences/Desktop.vala:85
+msgid "The type of hinting to use when rendering fonts."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:121
+msgid "GNOME desktop settings schema not found"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Automatic"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Manual"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "Grayscale"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "RGBA"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:242
+#: src/font-manager/preferences/Display.vala:91
+msgid "Subpixel Geometry"
+msgstr ""
+
+#: src/font-manager/preferences/Display.vala:75
+msgid "Target DPI"
+msgstr ""
+
+#: src/font-manager/preferences/Display.vala:77
+msgid "Scale Factor"
+msgstr ""
+
+#: src/font-manager/preferences/Display.vala:83
+msgid "LCD Filter"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:41
+msgid "Interface"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:42
+msgid "Desktop"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:48
+msgid "Sources"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:49
+msgid "Substitutions"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
+msgid "Display"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:51
+msgid "Rendering"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:131
+msgid ""
+"A Fontconfig configuration file will be generated from these settings.\n"
+"\n"
+"Running applications may require a restart to reflect any changes.\n"
+"\n"
+"Note that not all environments/applications will honor these settings."
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:153
+msgid "Reset all values to default"
+msgstr ""
+
+#: src/font-manager/preferences/Rendering.vala:77
+msgid "Antialias"
+msgstr ""
+
+#: src/font-manager/preferences/Rendering.vala:81
+msgid "Enable Autohinter"
+msgstr ""
+
+#: src/font-manager/preferences/Rendering.vala:88
+msgid "Hinting Style"
+msgstr ""
+
+#: src/font-manager/preferences/Rendering.vala:90
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: src/font-manager/preferences/Substitutions.vala:153
+msgid "Font Substitutions"
+msgstr ""
+
+#: src/font-manager/preferences/Substitutions.vala:154
+msgid "Easily substitute one font family for another."
+msgstr ""
+
+#: src/font-manager/preferences/Substitutions.vala:155
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:232
+msgid ""
+"Actions defined here will be added to the font list context menu.\n"
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list.\n"
+"To control where the filepath is inserted use FILEPATH as a placeholder.\n"
+"If FAMILY or STYLE are found in the argument list they will also be replaced."
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:246
+msgid "User Actions"
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:248
+msgid "Custom context menu entries"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:78
+#: src/font-viewer/MainWindow.vala:337
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:79
+#: src/font-viewer/MainWindow.vala:338
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Wide Layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Use three column layout"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:95
+msgid "Only When Maximized"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:97
+msgid "Enable Animations"
+msgstr ""
+
+#. The added margins here are due to PreviewColors widget alignment issues
+#: src/font-manager/preferences/UserInterface.vala:98
+#: src/font-viewer/MainWindow.vala:353
+msgid "Prefer Dark Theme"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:358
+msgid "Use Adwaita Stylesheet"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:103
+msgid "Raised"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:104
+msgid "Flat"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:106
+msgid "Titlebar Button Style"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:107
+#: src/font-viewer/MainWindow.vala:376
+msgid "Display line size in Waterfall Preview"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:112
+#: src/font-viewer/MainWindow.vala:371
+msgid "Waterfall Line Spacing"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:114
+#: src/font-viewer/MainWindow.vala:372
+msgid "Padding in pixels to insert above and below rows"
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:145
+msgid ""
+"Fonts in any folders listed here will be available within the application.\n"
+"\n"
+"They will not be visible to other applications until the source is actually "
+"enabled."
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:157
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:158
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:156
+msgid "Network Access Disabled"
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:157
+msgid "Contact your system administrator to request access."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:160
+msgid "Network Offline"
+msgstr ""
+
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:162
+msgid ""
+"An active internet connection is required to access the Google Fonts catalog"
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:172
+msgid "Client Error"
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:173
+msgid ""
+"Try restarting the application. If the issue persists, please file a bug."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:176
+msgid "Server Error"
+msgstr ""
+
+#. Sample strings used here should be sourced from https://fonts.google.com/
+#: src/font-manager/web/google/LanguageData.vala:33
+msgid "Adlam"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:34
+msgid "Anatolian Hieroglyphs"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:37
+msgid "Avestan"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:40
+msgid "Bassa Vah"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:41
+msgid "Batak"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:43
+msgid "Bhaiksuki"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:44
+msgid "Brahmi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:45
+msgid "Braille"
+msgstr ""
+
+#. { N_("Buhid"), "buhid", "" },
+#: src/font-manager/web/google/LanguageData.vala:48
+msgid "Caucasian Albanian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:49
+msgid "Canadian Aboriginal"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:54
+msgid "Chinese (Hong Kong)"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:55
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:56
+msgid "Chinese (Traditional)"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:57
+msgid "Chorasmian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:59
+msgid "Cuneiform"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:60
+msgid "Cypriot"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:61
+msgid "Cypro Minoan"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:62
+msgid "Cyrillic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:63
+msgid "Cyrillic Extended"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:64
+msgid "Deseret"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:66
+msgid "Duployan"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:68
+msgid "Elbasan"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:69
+msgid "Elymaic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:74
+msgid "Grantha"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:75
+msgid "Greek"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:76
+msgid "Greek Extended"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:78
+msgid "Gunjala Gondi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:80
+msgid "Hanifi Rohingya"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:81
+msgid "Hanunoo"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:82
+msgid "Hatran"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:84
+msgid "Imperial Aramaic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:85
+msgid "Indic Siyaq Numbers"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:86
+msgid "Inscriptional Pahlavi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:87
+msgid "Inscriptional Parthian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:88
+msgid "Japanese"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:93
+msgid "Kawi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:96
+msgid "Khojki"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:97
+msgid "Khudawadi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:98
+msgid "Korean"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:101
+msgid "Latin"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:102
+msgid "Latin Extended"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:104
+msgid "Linear A"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:105
+msgid "Linear B"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:106
+msgid "Lisu"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:107
+msgid "Lycian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:108
+msgid "Lydian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:109
+msgid "Mahajani"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:111
+msgid "Mandaic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:112
+msgid "Manichaean"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:113
+msgid "Math"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:114
+msgid "Marchen"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:115
+msgid "Masaram Gondi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:116
+msgid "Mayan Numerals"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:117
+msgid "Medefaidrin"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:118
+msgid "Meetei Mayek"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:120
+msgid "Meroitic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:124
+msgid "Modi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:126
+msgid "Mro"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:127
+msgid "Multani"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:128
+msgid "Music"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:130
+msgid "Nabataean"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:131
+msgid "Nag Mundari"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:132
+msgid "Nandinagari"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:134
+msgid "Newa"
+msgstr ""
+
+#. { N_(""), "nko", "" },
+#: src/font-manager/web/google/LanguageData.vala:136
+msgid "Nüshu"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:139
+msgid "Old Hungarian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:141
+msgid "Old North Arabian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:142
+msgid "Old Permic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:143
+msgid "Old Persian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:144
+msgid "Old Sogdian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:146
+msgid "Old Turkic"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:147
+msgid "Osage"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:150
+msgid "Pahawh Hmong"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:151
+msgid "Palmyrene"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:152
+msgid "Pau Cin Hau"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:154
+msgid "Phoenician"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:155
+msgid "Psalter Pahlavi"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:158
+msgid "Samaritan"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:160
+msgid "Sharada"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:161
+msgid "Shavian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:162
+msgid "Siddham"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:163
+msgid "SignWriting"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:165
+msgid "Sogdian"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:166
+msgid "Sora Sompeng"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:167
+msgid "Soyombo"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:172
+msgid "Tagalog"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:173
+msgid "Tagbanwa"
+msgstr ""
+
+#. TRANSLATORS : The replacement character here refers to a language name.
+#: src/font-manager/web/google/LanguageData.vala:190
+#, c-format
+msgid "No sample for %s available"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:192
+msgid "Please file an issue requesting an update to available samples."
+msgstr ""
+
+#: src/font-manager/web/google/PreviewPage.vala:383
+#, c-format
+msgid "%i Language Sample Available "
+msgid_plural "%i Language Samples Available"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/font-manager/web/google/WebFont.vala:174
+msgid "ExtraLight"
+msgstr ""
+
+#: src/font-manager/web/google/WebFont.vala:182
+msgid "SemiBold"
+msgstr ""
+
+#: src/font-manager/web/google/WebFont.vala:186
+msgid "ExtraBold"
+msgstr ""
+
+#: src/font-manager/web/google/WebFont.vala:188
+msgid "Black"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:279
+msgid "System Font"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:281
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:284
+msgid "Newer version already installed"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
+msgid "Click to overwrite"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:289
+msgid "Update Font"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:294
+msgid "Remove Font"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/font-viewer-main-window.ui:109
+msgid "Install Font"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:365
+msgid "Preview Area Colors"
+msgstr ""
+
+#: src/common/ui/font-manager-preview-colors.ui:9
+#: src/common/ui/font-manager-preview-colors.ui:15
+msgid "Select background color"
+msgstr ""
+
+#: src/common/ui/font-manager-preview-colors.ui:23
+#: src/common/ui/font-manager-preview-colors.ui:29
+msgid "Select text color"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:11
+msgid "General"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:23
+msgid "Increase preview size"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:30
+msgid "Decrease preview size"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:37
+msgid "Reset preview size"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:44
+msgid "Focus search entry"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:51
+msgid "Reload"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:58
+#: src/font-manager/gtk/help-overlay.ui:65
+msgid "Quit the application"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:73
+msgid "Mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:78
+msgid "Switch to Manage mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:85
+msgid "Switch to Browse mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:92
+msgid "Switch to Compare mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:99
+msgid "Switch to Google Fonts mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:107
+msgid "Preview Mode"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:112
+msgid "Switch to Standard preview"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:119
+msgid "Switch to Waterfall preview"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:126
+msgid "Switch to Body Text preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
+msgid "Increase tile size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
+msgid "Decrease tile size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
+msgid "Toggle search entry"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
+msgid "Toggle preview panel"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
+msgid "Collection Name"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:45
+msgid "_Rename"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-compare-view.ui:20
+msgid "Add selected font to comparison"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-compare-view.ui:33
+msgid "Remove selected font from comparison"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-compare-view.ui:45
+msgid "Pinned Comparisons"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-export-dialog.ui:19
+#: src/font-manager/ui/font-manager-remove-dialog.ui:19
+msgid "Cancel"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
+#: src/font-manager/ui/font-manager-font-list-view.ui:54
+#: src/font-manager/ui/font-manager-remove-dialog.ui:43
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
+msgid "Search Families…"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:29
+msgid "Search Orthographies…"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:72
+msgid "Minimum Coverage"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:101
+msgid "Deselect All"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-orthography-list.ui:53
+msgid "Clear selected filter"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
+msgid "Created :"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
+msgid "Save current comparison"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:45
+msgid "Remove selected comparison"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:73
+msgid "Restore selected comparison"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:13
+msgid "Select fonts to remove"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:25
+msgid "Delete"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-sidebar.ui:35
+msgid "Categories"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-sidebar.ui:86
+msgid "Smart Collections"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
+msgid "Collections"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:22
+msgid "Enter target family"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:32
+msgid "Add substitute"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:34
+msgid "Remove substitute"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:35
+msgid "Enter substitute family"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:51
+msgid "prefer"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:52
+msgid "accept"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:53
+msgid "default"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:27
+msgid "Comment"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:42
+msgid "Executable"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:57
+msgid "Arguments"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:39
+msgid "Newest"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:40
+msgid "Most Popular"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
+msgid "Trending"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
+msgid "Serif"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
+msgid "Sans Serif"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
+msgid "Handwriting"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
+msgid "Category"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
+msgid "4+"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
+msgid "8+"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
+msgid "12+"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
+msgid "Variations"
+msgstr ""
+
+#: src/font-viewer/font-viewer-main-window.ui:31
+msgid "Preview font files before installing them."
+msgstr ""
+
+#: src/font-viewer/font-viewer-main-window.ui:32
+msgid "To preview a font simply drag it onto this area."
+msgstr ""
