@@ -1,0 +1,2789 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# BoneNI <bounkirdni@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.9.4\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"PO-Revision-Date: 2026-08-06 11:02+0000\n"
+"Last-Translator: BoneNI <bounkirdni@gmail.com>\n"
+"Language-Team: Lao <https://hosted.weblate.org/projects/font-manager/font-"
+"manager/lo/>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2026.8.1.dev0\n"
+
+#. Application.vala
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.desktop.in.in:5
+#: data/com.github.FontManager.FontManager.desktop.in.in:6
+#: lib/gtk/font-manager-application-window.c:281
+#: src/font-manager/Application.vala:2
+msgid "Font Manager"
+msgstr "ຕົວຈັດການຟອນ"
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr "ແອັບພລິເຄຊັນຈັດການຟອນແບບງ່າຍດາຍສຳລັບສະພາບແວດລ້ອມເດັສທັອບ Gtk+"
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+"ຕົວຈັດການຟອນຖືກອອກແບບມາເພື່ອໃຫ້ຜູ້ໃຊ້ທົ່ວໄປສາມາດຈັດການຟອນໃນເດັສທັອບໄດ້ຢ່າງງ່າຍດາຍ ໂດຍບໍ່ຕ້ອງໃຊ້ເຄື່ອ"
+"ງມືຄຳສັ່ງ (command line) ຫຼື ແກ້ໄຂໄຟລ໌ກຳນົດຄ່າດ້ວຍຕົນເອງ."
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+"ເຖິງວ່າຈະຖືກອອກແບບມາສຳລັບສະພາບແວດລ້ອມເດັສທັອບ Gnome ເປັນຫຼັກ, ແຕ່ມັນກໍສາມາດເຮັດວຽກໄດ້ດີກັບສະພາ"
+"ບແວດລ້ອມເດັສທັອບ Gtk+ ອື່ນໆ."
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr "ຕົວຈັດການຟອນ ບໍ່ແມ່ນ ວິທີການຈັດການຟອນໃນລະດັບມືອາຊີບ."
+
+#: data/com.github.FontManager.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr "ເບິ່ງຕົວຢ່າງ, ປຽບທຽບ ແລະ ຈັດການຟອນ"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/com.github.FontManager.FontManager.desktop.in.in:16
+#: data/com.github.FontManager.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr "ກາຟິກ;ຕົວເບິ່ງ;GNOME;GTK;ການພິມ;"
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.desktop.in.in:5
+#: data/com.github.FontManager.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:73
+#: src/font-viewer/font-viewer-main-window.ui:82
+msgid "Font Viewer"
+msgstr "ຕົວເບິ່ງຟອນ"
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr "ແອັບພລິເຄຊັນເບິ່ງຟອນສຳລັບສະພາບແວດລ້ອມເດັສທັອບ Gtk+"
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+"ຕົວເບິ່ງຟອນຊ່ວຍໃຫ້ເບິ່ງຕົວຢ່າງໄຟລ໌ຟອນກ່ອນການຕິດຕັ້ງ. ມັນມີຫຼາຍວິທີໃນການເບິ່ງຕົວຢ່າງຟອນ ພ້ອມກັບຜັງຕົວອັກສອ"
+"ນ ແລະ ສະແດງຄຸນສົມບັດຂອງຟອນລວມທັງລາຍລະອຽດໃບອະນຸຍາດ."
+
+#: data/com.github.FontManager.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr "ແອັບພລິເຄຊັນເບິ່ງຕົວຢ່າງຟອນທີ່ມີຄຸນສົມບັດຄົບຖ້ວນ"
+
+#: extensions/nautilus/font-manager-menu-provider.c:154
+#: extensions/nemo/font-manager-menu-provider.c:147
+#: extensions/thunar/font-manager-menu-provider.c:129
+#: src/font-manager/FontList.vala:509
+msgid "Install"
+msgstr "ຕິດຕັ້ງ"
+
+#: extensions/nautilus/font-manager-menu-provider.c:156
+#: extensions/nemo/font-manager-menu-provider.c:149
+#: extensions/thunar/font-manager-menu-provider.c:131
+msgid "Install the selected font file"
+msgstr "ຕິດຕັ້ງໄຟລ໌ຟອນທີ່ເລືອກ"
+
+#: extensions/nautilus/font-manager-menu-provider.c:157
+#: extensions/nemo/font-manager-menu-provider.c:150
+#: extensions/thunar/font-manager-menu-provider.c:132
+msgid "Install the selected font files"
+msgstr "ຕິດຕັ້ງໄຟລ໌ຟອນທີ່ເລືອກທັງໝົດ"
+
+#: extensions/thunar/font-manager-renamer-provider.c:86
+msgid "Font Properties"
+msgstr "ຄຸນສົມບັດຟອນ"
+
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
+msgid "Updating Database…"
+msgstr "ກຳລັງອັບເດດຖານຂໍ້ມູນ…"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-freetype.c:750
+msgid "Unknown Vendor"
+msgstr "ບໍ່ຮູ້ຈັກຜູ້ຈຳໜ່າຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:566
+#: src/font-manager/web/google/WebFont.vala:172
+msgid "Thin"
+msgstr "ບາງຫຼາຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:568
+msgid "Ultra-Light"
+msgstr "ບາງພິເສດ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:923
+#: src/font-manager/web/google/WebFont.vala:176
+msgid "Light"
+msgstr "ບາງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:572
+msgid "Semi-Light"
+msgstr "ບາງປານກາງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:574
+msgid "Book"
+msgstr "ແບບປຶ້ມ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:880
+#: src/font-manager/preferences/Desktop.vala:236
+#: src/font-manager/web/google/WebFont.vala:180
+msgid "Medium"
+msgstr "ໜາປານກາງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:578
+msgid "Semi-Bold"
+msgstr "ເກືອບໜາ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:580
+#: src/font-manager/web/google/WebFont.vala:184
+msgid "Bold"
+msgstr "ໜາ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:582
+msgid "Ultra-Bold"
+msgstr "ໜາພິເສດ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:584
+msgid "Heavy"
+msgstr "ໜາຫຼາຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:586
+msgid "Ultra-Heavy"
+msgstr "ໜາຫຼາຍພິເສດ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:661
+#: src/font-manager/web/google/WebFont.vala:234
+msgid "Italic"
+msgstr "ໂຕເນີງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:663
+msgid "Oblique"
+msgstr "ໂຕເນີງລ່ຽມ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:701
+msgid "Ultra-Condensed"
+msgstr "ແຄບຫຼາຍພິເສດ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:703
+msgid "Extra-Condensed"
+msgstr "ແຄບຫຼາຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:705
+msgid "Condensed"
+msgstr "ແຄບ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:707
+msgid "Semi-Condensed"
+msgstr "ແຄບປານກາງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:709
+msgid "Semi-Expanded"
+msgstr "ກວ້າງປານກາງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:711
+msgid "Expanded"
+msgstr "ກວ້າງ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:713
+msgid "Extra-Expanded"
+msgstr "ກວ້າງຫຼາຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:715
+msgid "Ultra-Expanded"
+msgstr "ກວ້າງຫຼາຍພິເສດ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:784
+msgid "Proportional"
+msgstr "ຕາມສັດສ່ວນ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:786
+msgid "Dual Width"
+msgstr "ຄວາມກວ້າງຄູ່"
+
+#: lib/fontconfig/font-manager-fontconfig.c:788
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
+msgid "Monospace"
+msgstr "ໄລຍະຫ່າງຄົງທີ່"
+
+#: lib/fontconfig/font-manager-fontconfig.c:790
+msgid "Charcell"
+msgstr "ຊ່ອງຕົວອັກສອນ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:829
+msgid "Unknown"
+msgstr "ບໍ່ຮູ້ຈັກ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:831
+msgid "RGB"
+msgstr "RGB"
+
+#: lib/fontconfig/font-manager-fontconfig.c:833
+msgid "BGR"
+msgstr "BGR"
+
+#: lib/fontconfig/font-manager-fontconfig.c:835
+msgid "VRGB"
+msgstr "VRGB"
+
+#: lib/fontconfig/font-manager-fontconfig.c:837
+msgid "VBGR"
+msgstr "VBGR"
+
+#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:927
+#: src/font-manager/Controls.vala:133
+#: src/font-manager/preferences/Desktop.vala:234
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "None"
+msgstr "ບໍ່ມີ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:878
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Slight"
+msgstr "ເລັກນ້ອຍ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:882
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Full"
+msgstr "ເຕັມທີ່"
+
+#: lib/fontconfig/font-manager-fontconfig.c:921
+msgid "Default"
+msgstr "ຄ່າເລີ່ມຕົ້ນ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:925
+msgid "Legacy"
+msgstr "ແບບເກົ່າ"
+
+#: lib/fontconfig/font-manager-source.c:305
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
+msgid "Source Unavailable"
+msgstr "ບໍ່ມີແຫຼ່ງຂໍ້ມູນ"
+
+#: lib/gtk/font-manager-application-window.c:285
+#: src/font-manager/Application.vala:3
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "ການຈັດການຟອນແບບງ່າຍດາຍສຳລັບສະພາບແວດລ້ອມເດັສທັອບ GTK+"
+
+#: lib/gtk/font-manager-application-window.c:290
+msgid "translator-credits"
+msgstr "ຜູ້ແປພາສາ"
+
+#: lib/gtk/font-manager-fsType.c:74
+msgid "Restricted License Embedding"
+msgstr "ຝັງໃບອະນຸຍາດແບບຈຳກັດ"
+
+#: lib/gtk/font-manager-fsType.c:76
+msgid "Preview & Print Embedding"
+msgstr "ຝັງເພື່ອເບິ່ງຕົວຢ່າງ ແລະ ພິມ"
+
+#: lib/gtk/font-manager-fsType.c:78
+msgid "Editable Embedding"
+msgstr "ຝັງແບບແກ້ໄຂໄດ້"
+
+#: lib/gtk/font-manager-fsType.c:80
+msgid "Preview & Print Embedding | No Subsetting"
+msgstr "ຝັງເພື່ອເບິ່ງຕົວຢ່າງ ແລະ ພິມ | ບໍ່ແຍກຊຸດຍ່ອຍ"
+
+#: lib/gtk/font-manager-fsType.c:82
+msgid "Editable Embedding | No Subsetting"
+msgstr "ຝັງແບບແກ້ໄຂໄດ້ | ບໍ່ແຍກຊຸດຍ່ອຍ"
+
+#: lib/gtk/font-manager-fsType.c:84
+msgid "Preview & Print Embedding | Bitmap Embedding Only"
+msgstr "ຝັງເພື່ອເບິ່ງຕົວຢ່າງ ແລະ ພິມ | ຝັງແບບບິດແມັບເທົ່ານັ້ນ"
+
+#: lib/gtk/font-manager-fsType.c:86
+msgid "Editable Embedding | Bitmap Embedding Only"
+msgstr "ຝັງແບບແກ້ໄຂໄດ້ | ຝັງແບບບິດແມັບເທົ່ານັ້ນ"
+
+#: lib/gtk/font-manager-fsType.c:88
+msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr "ຝັງເພື່ອເບິ່ງຕົວຢ່າງ ແລະ ພິມ | ບໍ່ແຍກຊຸດຍ່ອຍ | ຝັງແບບບິດແມັບເທົ່ານັ້ນ"
+
+#: lib/gtk/font-manager-fsType.c:90
+msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr "ຝັງແບບແກ້ໄຂໄດ້ | ບໍ່ແຍກຊຸດຍ່ອຍ | ຝັງແບບບິດແມັບເທົ່ານັ້ນ"
+
+#: lib/gtk/font-manager-fsType.c:92
+msgid "Installable Embedding"
+msgstr "ຝັງແບບຕິດຕັ້ງໄດ້"
+
+#: lib/gtk/font-manager-license-page.c:179
+msgid "File does not contain license information."
+msgstr "ໄຟລ໌ນີ້ບໍ່ມີຂໍ້ມູນໃບອະນຸຍາດ."
+
+#: lib/gtk/font-manager-preview-controls.c:77
+msgid "Left Aligned"
+msgstr "ຈັດຊິດຊ້າຍ"
+
+#: lib/gtk/font-manager-preview-controls.c:83
+msgid "Centered"
+msgstr "ຈັດໄວ້ກາງ"
+
+#: lib/gtk/font-manager-preview-controls.c:89
+msgid "Fill"
+msgstr "ເຕັມຊ່ອງ"
+
+#: lib/gtk/font-manager-preview-controls.c:95
+msgid "Right Aligned"
+msgstr "ຈັດຊິດຂວາ"
+
+#: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
+msgid "Edit preview text"
+msgstr "ແກ້ໄຂຂໍ້ຄວາມຕົວຢ່າງ"
+
+#: lib/gtk/font-manager-preview-controls.c:350
+msgid "Undo changes"
+msgstr "ກັບຄືນການປ່ຽນແປງ"
+
+#: lib/gtk/font-manager-preview-page.c:87
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
+msgid "Preview"
+msgstr "ເບິ່ງຕົວຢ່າງ"
+
+#: lib/gtk/font-manager-preview-page.c:89
+msgid "Waterfall"
+msgstr "ແບບຫຼັ່ງໄຫຼ (Waterfall)"
+
+#: lib/gtk/font-manager-preview-pane.c:47
+#: lib/gtk/font-manager-preview-pane.c:582
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
+msgid "Characters"
+msgstr "ຕົວອັກສອນ"
+
+#: lib/gtk/font-manager-preview-pane.c:49
+#: lib/gtk/font-manager-preview-pane.c:583
+msgid "Properties"
+msgstr "ຄຸນສົມບັດ"
+
+#: lib/gtk/font-manager-preview-pane.c:51
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
+msgid "License"
+msgstr "ໃບອະນຸຍາດ"
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
+#: src/font-manager/web/google/WebFont.vala:178
+msgid "Regular"
+msgstr "ປົກກະຕິ"
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
+msgid "Normal"
+msgstr "ທຳມະດາ"
+
+#: lib/gtk/font-manager-preview-pane.c:506
+msgid "Search available characters"
+msgstr "ຄົ້ນຫາຕົວອັກສອນທີ່ມີ"
+
+#: lib/gtk/font-manager-properties-page.c:55
+msgid "PostScript Name"
+msgstr "ຊື່ PostScript"
+
+#: lib/gtk/font-manager-properties-page.c:56
+msgid "Family"
+msgstr "ຕະກູນຟອນ"
+
+#: lib/gtk/font-manager-properties-page.c:57
+msgid "Style"
+msgstr "ຮູບແບບ"
+
+#: lib/gtk/font-manager-properties-page.c:58
+#: src/font-manager/Categories.vala:259
+msgid "Width"
+msgstr "ຄວາມກວ້າງ"
+
+#: lib/gtk/font-manager-properties-page.c:59
+#: src/font-manager/Categories.vala:261
+msgid "Slant"
+msgstr "ຄວາມອຽງ"
+
+#: lib/gtk/font-manager-properties-page.c:60
+#: src/font-manager/Categories.vala:260
+msgid "Weight"
+msgstr "ຄວາມໜາ"
+
+#: lib/gtk/font-manager-properties-page.c:61
+#: src/font-manager/Categories.vala:262
+msgid "Spacing"
+msgstr "ໄລຍະຫ່າງ"
+
+#: lib/gtk/font-manager-properties-page.c:62
+msgid "Version"
+msgstr "ເວີຊັນ"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/gtk/font-manager-properties-page.c:64
+#: src/font-manager/Categories.vala:268
+msgid "Vendor"
+msgstr "ຜູ້ຈຳໜ່າຍ"
+
+#: lib/gtk/font-manager-properties-page.c:65
+msgid "FileType"
+msgstr "ຊະນິດໄຟລ໌"
+
+#. Keep this entry last
+#: lib/gtk/font-manager-properties-page.c:67
+msgid "Filesize"
+msgstr "ຂະໜາດໄຟລ໌"
+
+#: lib/gtk/unicode/unicode-character-map.c:850
+msgid "Copy"
+msgstr "ກັອບປີ້"
+
+#: lib/gtk/unicode/unicode-info.c:191
+msgid "<Non Private Use High Surrogate>"
+msgstr "<ຕົວແທນລະດັບສູງທີ່ບໍ່ແມ່ນສ່ວນຕົວ>"
+
+#: lib/gtk/unicode/unicode-info.c:193
+msgid "<Private Use High Surrogate>"
+msgstr "<ຕົວແທນລະດັບສູງສຳລັບສ່ວນຕົວ>"
+
+#: lib/gtk/unicode/unicode-info.c:195
+msgid "<Low Surrogate>"
+msgstr "<ຕົວແທນລະດັບຕ່ຳ>"
+
+#: lib/gtk/unicode/unicode-info.c:197
+msgid "<Private Use>"
+msgstr "<ໃຊ້ສ່ວນຕົວ>"
+
+#: lib/gtk/unicode/unicode-info.c:199
+msgid "<Plane 15 Private Use>"
+msgstr "<ລະດັບ 15 ໃຊ້ສ່ວນຕົວ>"
+
+#: lib/gtk/unicode/unicode-info.c:201
+msgid "<Plane 16 Private Use>"
+msgstr "<ລະດັບ 16 ໃຊ້ສ່ວນຕົວ>"
+
+#: lib/gtk/unicode/unicode-info.c:205
+msgid "<not assigned>"
+msgstr "<ບໍ່ໄດ້ກຳນົດ>"
+
+#: lib/gtk/unicode/unicode-info.c:222
+msgid "Other, Control"
+msgstr "ອື່ນໆ, ຄວບຄຸມ"
+
+#: lib/gtk/unicode/unicode-info.c:224
+msgid "Other, Format"
+msgstr "ອື່ນໆ, ຮູບແບບ"
+
+#: lib/gtk/unicode/unicode-info.c:226
+msgid "Other, Not Assigned"
+msgstr "ອື່ນໆ, ບໍ່ໄດ້ກຳນົດ"
+
+#: lib/gtk/unicode/unicode-info.c:228
+msgid "Other, Private Use"
+msgstr "ອື່ນໆ, ໃຊ້ສ່ວນຕົວ"
+
+#: lib/gtk/unicode/unicode-info.c:230
+msgid "Other, Surrogate"
+msgstr "ອື່ນໆ, ຕົວແທນ"
+
+#: lib/gtk/unicode/unicode-info.c:232
+msgid "Letter, Lowercase"
+msgstr "ຕົວອັກສອນ, ໂຕພິມນ້ອຍ"
+
+#: lib/gtk/unicode/unicode-info.c:234
+msgid "Letter, Modifier"
+msgstr "ຕົວອັກສອນ, ໂຕປັບແຕ່ງ"
+
+#: lib/gtk/unicode/unicode-info.c:236
+msgid "Letter, Other"
+msgstr "ຕົວອັກສອນ, ອື່ນໆ"
+
+#: lib/gtk/unicode/unicode-info.c:238
+msgid "Letter, Titlecase"
+msgstr "ຕົວອັກສອນ, ໂຕພິມຫົວຂໍ້"
+
+#: lib/gtk/unicode/unicode-info.c:240
+msgid "Letter, Uppercase"
+msgstr "ຕົວອັກສອນ, ໂຕພິມໃຫຍ່"
+
+#: lib/gtk/unicode/unicode-info.c:242
+msgid "Mark, Spacing Combining"
+msgstr "ເຄື່ອງໝາຍ, ການປະສົມໄລຍະຫ່າງ"
+
+#: lib/gtk/unicode/unicode-info.c:244
+msgid "Mark, Enclosing"
+msgstr "ເຄື່ອງໝາຍ, ລ້ອມຮອບ"
+
+#: lib/gtk/unicode/unicode-info.c:246
+msgid "Mark, Non-Spacing"
+msgstr "ເຄື່ອງໝາຍ, ບໍ່ມີໄລຍະຫ່າງ"
+
+#: lib/gtk/unicode/unicode-info.c:248
+msgid "Number, Decimal Digit"
+msgstr "ຕົວເລກ, ເລກທົດສະນິຍົມ"
+
+#: lib/gtk/unicode/unicode-info.c:250
+msgid "Number, Letter"
+msgstr "ຕົວເລກ, ຕົວອັກສອນ"
+
+#: lib/gtk/unicode/unicode-info.c:252
+msgid "Number, Other"
+msgstr "ຕົວເລກ, ອື່ນໆ"
+
+#: lib/gtk/unicode/unicode-info.c:254
+msgid "Punctuation, Connector"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ໂຕເຊື່ອມ"
+
+#: lib/gtk/unicode/unicode-info.c:256
+msgid "Punctuation, Dash"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ຂີດຕໍ່"
+
+#: lib/gtk/unicode/unicode-info.c:258
+msgid "Punctuation, Close"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ວົງເລັບປິດ"
+
+#: lib/gtk/unicode/unicode-info.c:260
+msgid "Punctuation, Final Quote"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ອັນຍະປະກາດປິດ"
+
+#: lib/gtk/unicode/unicode-info.c:262
+msgid "Punctuation, Initial Quote"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ອັນຍະປະກາດເປີດ"
+
+#: lib/gtk/unicode/unicode-info.c:264
+msgid "Punctuation, Other"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ອື່ນໆ"
+
+#: lib/gtk/unicode/unicode-info.c:266
+msgid "Punctuation, Open"
+msgstr "ເຄື່ອງໝາຍວັກຕອນ, ວົງເລັບເປີດ"
+
+#: lib/gtk/unicode/unicode-info.c:268
+msgid "Symbol, Currency"
+msgstr "ສັນຍະລັກ, ສະກຸນເງິນ"
+
+#: lib/gtk/unicode/unicode-info.c:270
+msgid "Symbol, Modifier"
+msgstr "ສັນຍະລັກ, ໂຕປັບແຕ່ງ"
+
+#: lib/gtk/unicode/unicode-info.c:272
+msgid "Symbol, Math"
+msgstr "ສັນຍະລັກ, ຄະນິດສາດ"
+
+#: lib/gtk/unicode/unicode-info.c:274
+msgid "Symbol, Other"
+msgstr "ສັນຍະລັກ, ອື່ນໆ"
+
+#: lib/gtk/unicode/unicode-info.c:276
+msgid "Separator, Line"
+msgstr "ໂຕຂັ້ນ, ແຖວ"
+
+#: lib/gtk/unicode/unicode-info.c:278
+msgid "Separator, Paragraph"
+msgstr "ໂຕຂັ້ນ, ຫຍໍ້ໜ້າ"
+
+#: lib/gtk/unicode/unicode-info.c:280
+msgid "Separator, Space"
+msgstr "ໂຕຂັ້ນ, ວ່າງ"
+
+#: src/common/WaterfallSettings.vala:37
+msgid "Up to 48 points (Linear Scaling)"
+msgstr "ສູງສຸດ 48 ພອຍ (ປັບຂະໜາດແບບເສັ້ນ)"
+
+#: src/common/WaterfallSettings.vala:39
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr "ສູງສຸດ 72 ພອຍ (ອັດຕາສ່ວນ 1.1)"
+
+#: src/common/WaterfallSettings.vala:41
+msgid "Up to 96 points (Linear Scaling)"
+msgstr "ສູງສຸດ 96 ພອຍ (ປັບຂະໜາດແບບເສັ້ນ)"
+
+#: src/common/WaterfallSettings.vala:43
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr "ສູງສຸດ 96 ພອຍ (ອັດຕາສ່ວນ 1.1)"
+
+#: src/common/WaterfallSettings.vala:45
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr "ສູງສຸດ 120 ພອຍ (ອັດຕາສ່ວນ 1.2)"
+
+#: src/common/WaterfallSettings.vala:47
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr "ສູງສຸດ 144 ພອຍ (ອັດຕາສ່ວນ 1.3)"
+
+#: src/common/WaterfallSettings.vala:49
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr "ສູງສຸດ 192 ພອຍ (ອັດຕາສ່ວນ 1.4)"
+
+#: src/common/WaterfallSettings.vala:51
+msgid "Custom Size Settings"
+msgstr "ການຕັ້ງຄ່າຂະໜາດກຳນົດເອງ"
+
+#: src/common/WaterfallSettings.vala:197
+msgid "Waterfall Preview Size Settings"
+msgstr "ຕັ້ງຄ່າຂະໜາດການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/common/WaterfallSettings.vala:201
+msgid "Higher values may adversely affect performance"
+msgstr "ຄ່າທີ່ສູງເກີນໄປອາດສົ່ງຜົນກະທົບຕໍ່ປະສິດທິພາບການເຮັດວຽກ"
+
+#: src/common/WaterfallSettings.vala:204
+msgid "Minimum Waterfall Preview Point Size"
+msgstr "ຂະໜາດພອຍຕ່ຳສຸດສຳລັບການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/common/WaterfallSettings.vala:206
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr "ອັດຕາສ່ວນຂະໜາດພອຍການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/common/WaterfallSettings.vala:208
+msgid "Maximum Waterfall Preview Point Size"
+msgstr "ຂະໜາດພອຍສູງສຸດສຳລັບການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/common/WaterfallSettings.vala:236
+msgid "Show line size"
+msgstr "ສະແດງຂະໜາດແຖວ"
+
+#: src/font-manager/Application.vala:5
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+msgstr ""
+"\n"
+"    ໂປຣແກຣມນີ້ເປັນຊອຟແວເສລີ: ທ່ານສາມາດແຈກຢາຍຕໍ່ ແລະ/ຫຼື ແກ້ໄຂມັນໄດ້\n"
+"    ພາຍໃຕ້ເງື່ອນໄຂຂອງ GNU General Public License ທີ່ຈັດພິມໂດຍ\n"
+"    Free Software Foundation, ບໍ່ວ່າຈະເປັນເວີຊັນ 3 ຫຼື\n"
+"    (ຕາມທີ່ທ່ານເລືອກ) ເວີຊັນຫຼັງຈາກນັ້ນ.\n"
+"\n"
+"    ໂປຣແກຣມນີ້ຖືກແຈກຢາຍດ້ວຍຄວາມຫວັງວ່າມັນຈະເປັນປະໂຫຍດ,\n"
+"    ແຕ່ບໍ່ມີການຮັບປະກັນໃດໆ; ບໍ່ວ່າຈະເປັນການຮັບປະກັນໂດຍນັຍຂອງ\n"
+"    ການຄ້າ ຫຼື ຄວາມເໝາະສົມສຳລັບຈຸດປະສົງໃດໜຶ່ງ. ເບິ່ງ\n"
+"    GNU General Public License ສຳລັບລາຍລະອຽດເພີ່ມເຕີມ.\n"
+"\n"
+"    ທ່ານຄວນຈະໄດ້ຮັບສຳເນົາຂອງ GNU General Public License\n"
+"    ພ້ອມກັບໂປຣແກຣມນີ້.\n"
+"\n"
+"    ຖ້າບໍ່ໄດ້ຮັບ, ເບິ່ງທີ່ <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+
+#: src/font-manager/Application.vala:133
+msgid "Installing Font Files…"
+msgstr "ກຳລັງຕິດຕັ້ງໄຟລ໌ຟອນ…"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+msgid "Active"
+msgstr "ເປີດໃຊ້ງານ"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr "ປິດໃຊ້ງານ"
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr "ອອກແບບໂດຍ"
+
+#: src/font-manager/Categories.vala:259
+msgid "Grouped by font width"
+msgstr "ຈັດກຸ່ມຕາມຄວາມກວ້າງຂອງຟອນ"
+
+#: src/font-manager/Categories.vala:260
+msgid "Grouped by font weight"
+msgstr "ຈັດກຸ່ມຕາມຄວາມໜາຂອງຟອນ"
+
+#: src/font-manager/Categories.vala:261
+msgid "Grouped by font angle"
+msgstr "ຈັດກຸ່ມຕາມມຸມອຽງຂອງຟອນ"
+
+#: src/font-manager/Categories.vala:262
+msgid "Grouped by font spacing"
+msgstr "ຈັດກຸ່ມຕາມໄລຍະຫ່າງຂອງຟອນ"
+
+#: src/font-manager/Categories.vala:266
+msgid "Grouped by license type"
+msgstr "ຈັດກຸ່ມຕາມປະເພດໃບອະນຸຍາດ"
+
+#: src/font-manager/Categories.vala:268
+msgid "Grouped by vendor"
+msgstr "ຈັດກຸ່ມຕາມຜູ້ຈຳໜ່າຍ"
+
+#: src/font-manager/Categories.vala:269
+msgid "Filetype"
+msgstr "ຊະນິດໄຟລ໌"
+
+#: src/font-manager/Categories.vala:269
+msgid "Grouped by filetype"
+msgstr "ຈັດກຸ່ມຕາມຊະນິດໄຟລ໌"
+
+#: src/font-manager/Categories.vala:274
+msgid "All"
+msgstr "ທັງໝົດ"
+
+#: src/font-manager/Categories.vala:274
+msgid "All Fonts"
+msgstr "ຟອນທັງໝົດ"
+
+#: src/font-manager/Categories.vala:275
+msgid "System"
+msgstr "ລະບົບ"
+
+#: src/font-manager/Categories.vala:275
+msgid "Fonts available to all users"
+msgstr "ຟອນທີ່ມີໃຫ້ຜູ້ໃຊ້ທຸກຄົນ"
+
+#: src/font-manager/Categories.vala:298
+msgid "Family Kind"
+msgstr "ປະເພດຕະກູນ"
+
+#: src/font-manager/Categories.vala:298
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr "ສະເພາະຟອນທີ່ມີຂໍ້ມູນ Panose ເທົ່ານັ້ນທີ່ຈະຖືກຈັດກຸ່ມຢູ່ນີ້."
+
+#: src/font-manager/Categories.vala:299
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
+msgid "Any"
+msgstr "ໃດໆກໍຕາມ"
+
+#: src/font-manager/Categories.vala:299
+msgid "No Fit"
+msgstr "ບໍ່ເໝາະສົມ"
+
+#: src/font-manager/Categories.vala:299
+msgid "Text and Display"
+msgstr "ຂໍ້ຄວາມ ແລະ ການສະແດງຜົນ"
+
+#: src/font-manager/Categories.vala:299
+msgid "Script"
+msgstr "ຕົວຂຽນ"
+
+#: src/font-manager/Categories.vala:299
+msgid "Decorative"
+msgstr "ເພື່ອການຕົບແຕ່ງ"
+
+#: src/font-manager/Categories.vala:299
+msgid "Pictorial"
+msgstr "ແບບຮູບພາບ"
+
+#: src/font-manager/Collections.vala:23
+msgid "Enter Collection Name"
+msgstr "ປ້ອນຊື່ຊຸດສະສົມ"
+
+#: src/font-manager/Collections.vala:346
+msgid "Copy to…"
+msgstr "ກັອບປີ້ໄປທີ່…"
+
+#: src/font-manager/Collections.vala:347
+msgid "Compress…"
+msgstr "ບີບອັດ…"
+
+#: src/font-manager/Collections.vala:348
+msgid "Rename…"
+msgstr "ປ່ຽນຊື່…"
+
+#: src/font-manager/Collections.vala:405
+msgid "Archive created successfully."
+msgstr "ສ້າງໄຟລ໌ຈັດເກັບສຳເລັດແລ້ວ."
+
+#: src/font-manager/Collections.vala:406
+msgid "The resulting file can be found in your home directory."
+msgstr "ທ່ານສາມາດຊອກຫາໄຟລ໌ທີ່ໄດ້ໃນໂຟນເດີຫຼັກ (home) ຂອງທ່ານ."
+
+#: src/font-manager/Collections.vala:408
+msgid "Error exporting collection"
+msgstr "ເກີດຂໍ້ຜິດພາດໃນການສົ່ງອອກຊຸດສະສົມ"
+
+#: src/font-manager/Collections.vala:409
+msgid ""
+"Start the application from a terminal and try again for more information"
+msgstr ""
+"ລອງເປີດແອັບພລິເຄຊັນຈາກເທີມີນໍ (terminal) ແລ້ວລອງໃໝ່ເພື່ອເບິ່ງຂໍ້ມູນເພີ່ມເຕີມ"
+
+#: src/font-manager/Collections.vala:430
+msgid "Creating archive from selected collection."
+msgstr "ກຳລັງສ້າງໄຟລ໌ຈັດເກັບຈາກຊຸດສະສົມທີ່ເລືອກ."
+
+#: src/font-manager/Collections.vala:431
+msgid "This may take some time for large collections…"
+msgstr "ອາດຈະໃຊ້ເວລາບຶດໜຶ່ງສຳລັບຊຸດສະສົມທີ່ມີຂະໜາດໃຫຍ່…"
+
+#: src/font-manager/Compare.vala:336
+msgid "Saved Comparison"
+msgstr "ການປຽບທຽບທີ່ບັນທຶກໄວ້"
+
+#. Translators : Please preserve the newline character somewhere in the middle of the string
+#: src/font-manager/Compare.vala:372
+msgid ""
+"Save the current comparison\n"
+"by clicking the + button"
+msgstr ""
+"ບັນທຶກການປຽບທຽບປັດຈຸບັນ\n"
+"ໂດຍການກົດປຸ່ມ +"
+
+#: src/font-manager/Controls.vala:80
+msgid "Keyboard Shortcuts"
+msgstr "ທາງລັດຄີບອດ"
+
+#: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
+msgid "Help"
+msgstr "ຊ່ວຍເຫຼືອ"
+
+#: src/font-manager/Controls.vala:82
+msgid "About Font Manager"
+msgstr "ກ່ຽວກັບ ຕົວຈັດການຟອນ"
+
+#: src/font-manager/Controls.vala:88
+#: src/font-viewer/font-viewer-main-window.ui:97
+msgid "Preferences"
+msgstr "ປັບແຕ່ງ"
+
+#: src/font-manager/Controls.vala:92
+msgid "Import"
+msgstr "ນຳເຂົ້າ"
+
+#: src/font-manager/Controls.vala:93
+#: src/font-manager/ui/font-manager-export-dialog.ui:25
+msgid "Export"
+msgstr "ສົ່ງອອກ"
+
+#: src/font-manager/Controls.vala:96
+#: src/font-manager/ui/font-manager-export-dialog.ui:13
+msgid "User Data"
+msgstr "ຂໍ້ມູນຜູ້ໃຊ້"
+
+#: src/font-manager/Controls.vala:129
+#: src/font-manager/ui/font-manager-user-action-row.ui:13
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
+msgid "Name"
+msgstr "ຊື່"
+
+#: src/font-manager/Controls.vala:131
+msgid "Size"
+msgstr "ຂະໜາດ"
+
+#: src/font-manager/Controls.vala:196
+msgid "Grid View"
+msgstr "ເບິ່ງແບບຕາຕະລາງ"
+
+#: src/font-manager/Controls.vala:197
+msgid "List View"
+msgstr "ເບິ່ງແບບລາຍການ"
+
+#: src/font-manager/Controls.vala:283
+msgid "Add Fonts"
+msgstr "ເພີ່ມຟອນ"
+
+#: src/font-manager/Controls.vala:284
+msgid "Remove Fonts"
+msgstr "ລົບຟອນ"
+
+#: src/font-manager/Controls.vala:300
+msgid "Back"
+msgstr "ກັບຄືນ"
+
+#: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
+msgid "_Select"
+msgstr "_ເລືອກ"
+
+#: src/font-manager/Dialogs.vala:49
+msgid "Select Executable"
+msgstr "ເລືອກໄຟລ໌ທີ່ສາມາດເປີດໄດ້"
+
+#: src/font-manager/Dialogs.vala:60
+msgid "Select a Directory"
+msgstr "ເລືອກໄດເຣັກທໍຣີ (ໂຟນເດີ)"
+
+#: src/font-manager/Dialogs.vala:68
+msgid "TrueType"
+msgstr "TrueType"
+
+#: src/font-manager/Dialogs.vala:70
+msgid "OpenType"
+msgstr "OpenType"
+
+#: src/font-manager/Dialogs.vala:73
+msgid "Archive Files"
+msgstr "ໄຟລ໌ຈັດເກັບ"
+
+#: src/font-manager/Dialogs.vala:81
+msgid "Select Files to Install"
+msgstr "ເລືອກໄຟລ໌ທີ່ຈະຕິດຕັ້ງ"
+
+#: src/font-manager/Dialogs.vala:91
+msgid "Select Source Directories"
+msgstr "ເລືອກໄດເຣັກທໍຣີແຫຼ່ງຂໍ້ມູນ"
+
+#: src/font-manager/Dialogs.vala:125
+msgid "Font Configuration"
+msgstr "ການກຳນົດຄ່າຟອນ"
+
+#: src/font-manager/Dialogs.vala:126
+msgid "Font Collections"
+msgstr "ຊຸດສະສົມຟອນ"
+
+#: src/font-manager/Dialogs.vala:127
+#: src/font-manager/preferences/UserSources.vala:156
+msgid "Font Sources"
+msgstr "ແຫຼ່ງຂໍ້ມູນຟອນ"
+
+#: src/font-manager/Dialogs.vala:128
+msgid "Installed Fonts"
+msgstr "ຟອນທີ່ຕິດຕັ້ງແລ້ວ"
+
+#: src/font-manager/Dialogs.vala:129
+msgid "Custom Actions"
+msgstr "ການດຳເນີນການກຳນົດເອງ"
+
+#: src/font-manager/Dialogs.vala:385
+msgid "Fonts installed in your home directory will appear here."
+msgstr "ຟອນທີ່ຕິດຕັ້ງໄວ້ໃນໂຟນເດີຫຼັກ (home) ຂອງທ່ານຈະສະແດງຢູ່ນີ້."
+
+#. FontList.vala
+#. *
+#. * Copyright (C) 2020-2025 Jerry Casiano
+#. *
+#. * This program is free software: you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation, either version 3 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.
+#. *
+#. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+#.
+#: src/font-manager/FontList.vala:21
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath.\n"
+"Start search using %s to filter based on characters."
+msgstr ""
+"ຄົ້ນຫາຊື່ຕະກູນຟອນໂດຍບໍ່ສົນໃຈໂຕພິມໃຫຍ່ນ້ອຍ.\n"
+"\n"
+"ເລີ່ມການຄົ້ນຫາໂດຍໃຊ້ %s ເພື່ອກັ່ນຕອງຕາມທີ່ຢູ່ໄຟລ໌.\n"
+"ເລີ່ມການຄົ້ນຫາໂດຍໃຊ້ %s ເພື່ອກັ່ນຕອງຕາມຕົວອັກສອນ."
+
+#: src/font-manager/FontList.vala:72
+#: src/font-manager/web/google/FontList.vala:204
+#, c-format
+msgid "%i Variation "
+msgid_plural "%i Variations"
+msgstr[0] "%i ຮູບແບບ"
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+msgid "Collapse all"
+msgstr "ຫຍໍ້ທັງໝົດ"
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
+#: src/font-manager/ui/font-manager-font-list-view.ui:24
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
+msgid "Expand all"
+msgstr "ຂະຫຍາຍທັງໝົດ"
+
+#: src/font-manager/FontList.vala:510
+msgid "Copy Location"
+msgstr "ກັອບປີ້ທີ່ຢູ່ໄຟລ໌"
+
+#: src/font-manager/FontList.vala:511
+msgid "Show in Folder"
+msgstr "ສະແດງໃນໂຟນເດີ"
+
+#: src/font-manager/FontList.vala:512
+msgid "Enable selected items"
+msgstr "ເປີດໃຊ້ງານລາຍການທີ່ເລືອກ"
+
+#: src/font-manager/FontList.vala:513
+msgid "Disable selected items"
+msgstr "ປິດໃຊ້ງານລາຍການທີ່ເລືອກ"
+
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
+#, c-format
+msgid "%i selected item"
+msgid_plural "%i selected items"
+msgstr[0] "ເລືອກແລ້ວ %i ລາຍການ"
+
+#: src/font-manager/FontList.vala:607
+#: src/font-manager/preferences/Preferences.vala:45
+msgid "Actions"
+msgstr "ການດຳເນີນການ"
+
+#: src/font-manager/MainWindow.vala:69
+msgid "Browse"
+msgstr "ເລືອກເບິ່ງ"
+
+#: src/font-manager/MainWindow.vala:71
+msgid "Compare"
+msgstr "ປຽບທຽບ"
+
+#: src/font-manager/MainWindow.vala:74
+msgid "Google Fonts"
+msgstr "Google Fonts"
+
+#: src/font-manager/MainWindow.vala:77
+msgid "Manage"
+msgstr "ຈັດການ"
+
+#: src/font-manager/Orthographies.vala:31
+msgid "Afrikaans"
+msgstr "ພາສາອາຟຣິກາກັນ"
+
+#: src/font-manager/Orthographies.vala:32
+msgid "Ahom"
+msgstr "ພາສາອາຮົມ"
+
+#: src/font-manager/Orthographies.vala:33
+msgid "Aleut Cyrillic"
+msgstr "ພາສາອາລີອຸດ (ຊີຣິລລິກ)"
+
+#: src/font-manager/Orthographies.vala:34
+msgid "Aleut Latin"
+msgstr "ພາສາອາລີອຸດ (ລາຕິນ)"
+
+#: src/font-manager/Orthographies.vala:35
+#: src/font-manager/web/google/LanguageData.vala:35
+msgid "Arabic"
+msgstr "ພາສາອາຣັບ"
+
+#: src/font-manager/Orthographies.vala:36
+msgid "Archaic Greek Letters"
+msgstr "ຕົວອັກສອນກຣີກບູຮານ"
+
+#: src/font-manager/Orthographies.vala:37
+#: src/font-manager/web/google/LanguageData.vala:36
+msgid "Armenian"
+msgstr "ພາສາອາເມເນຍ"
+
+#: src/font-manager/Orthographies.vala:38
+msgid "Astronomy"
+msgstr "ດາລາສາດ"
+
+#: src/font-manager/Orthographies.vala:39
+#: src/font-manager/web/google/LanguageData.vala:38
+msgid "Balinese"
+msgstr "ພາສາບາຫຼີ"
+
+#: src/font-manager/Orthographies.vala:40
+msgid "Baltic"
+msgstr "ພາສາບານຕິກ"
+
+#: src/font-manager/Orthographies.vala:41
+#: src/font-manager/web/google/LanguageData.vala:39
+msgid "Bamum"
+msgstr "ພາສາບາມູມ"
+
+#: src/font-manager/Orthographies.vala:42
+msgid "Basic Cyrillic"
+msgstr "ຊີຣິລລິກພື້ນຖານ"
+
+#: src/font-manager/Orthographies.vala:43
+msgid "Basic Greek"
+msgstr "ກຣີກພື້ນຖານ"
+
+#: src/font-manager/Orthographies.vala:44
+msgid "Basic Latin"
+msgstr "ລາຕິນພື້ນຖານ"
+
+#: src/font-manager/Orthographies.vala:45
+msgid "Surat Batak"
+msgstr "ພາສາບາຕັກ"
+
+#: src/font-manager/Orthographies.vala:46
+#: src/font-manager/web/google/LanguageData.vala:42
+msgid "Bengali"
+msgstr "ພາສາເບັງການີ"
+
+#: src/font-manager/Orthographies.vala:47
+msgid "Brāhmī"
+msgstr "ພາສາພຣາມີ"
+
+#: src/font-manager/Orthographies.vala:48
+#: src/font-manager/web/google/LanguageData.vala:46
+msgid "Buginese"
+msgstr "ພາສາບູກີ"
+
+#: src/font-manager/Orthographies.vala:49
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr "ຕົວອັກສອນຊົນເຜົ່າພື້ນເມືອງແຄນນາດາ"
+
+#: src/font-manager/Orthographies.vala:50
+#: src/font-manager/web/google/LanguageData.vala:50
+msgid "Carian"
+msgstr "ພາສາຄາຣຽນ"
+
+#: src/font-manager/Orthographies.vala:51
+msgid "Catalan"
+msgstr "ພາສາກາຕາລັງ"
+
+#: src/font-manager/Orthographies.vala:52
+msgid "Central European"
+msgstr "ຢູໂຣບກາງ"
+
+#: src/font-manager/Orthographies.vala:53
+#: src/font-manager/web/google/LanguageData.vala:51
+msgid "Chakma"
+msgstr "ພາສາຈັກມາ"
+
+#: src/font-manager/Orthographies.vala:54
+#: src/font-manager/web/google/LanguageData.vala:52
+msgid "Cham"
+msgstr "ພາສາຈາມ"
+
+#: src/font-manager/Orthographies.vala:55
+#: src/font-manager/web/google/LanguageData.vala:53
+msgid "Cherokee"
+msgstr "ພາສາເຊໂຣກີ"
+
+#: src/font-manager/Orthographies.vala:56
+msgid "Chess Symbols"
+msgstr "ສັນຍະລັກໝາກຣຸກ"
+
+#. CJK entries added manually
+#: src/font-manager/Orthographies.vala:59
+msgid "CJK Unified"
+msgstr "CJK ແບບຮ່ວມ"
+
+#: src/font-manager/Orthographies.vala:60
+msgid "CJK Unified Extension A"
+msgstr "CJK ສ່ວນຂະຫຍາຍ A"
+
+#: src/font-manager/Orthographies.vala:61
+msgid "CJK Unified Extension B"
+msgstr "CJK ສ່ວນຂະຫຍາຍ B"
+
+#: src/font-manager/Orthographies.vala:62
+msgid "CJK Unified Extension C"
+msgstr "CJK ສ່ວນຂະຫຍາຍ C"
+
+#: src/font-manager/Orthographies.vala:63
+msgid "CJK Unified Extension D"
+msgstr "CJK ສ່ວນຂະຫຍາຍ D"
+
+#: src/font-manager/Orthographies.vala:64
+msgid "CJK Unified Extension E"
+msgstr "CJK ສ່ວນຂະຫຍາຍ E"
+
+#: src/font-manager/Orthographies.vala:65
+msgid "CJK Compatibility Ideographs"
+msgstr "ອັກສອນພາບ CJK ເພື່ອຄວາມເຂົ້າກັນໄດ້"
+
+#: src/font-manager/Orthographies.vala:66
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr "ອັກສອນພາບ CJK ສ່ວນເພີ່ມເຕີມ"
+
+#. End CJK entries
+#: src/font-manager/Orthographies.vala:69
+msgid "Claudian Letters"
+msgstr "ຕົວອັກສອນຄລໍເດຍ"
+
+#: src/font-manager/Orthographies.vala:70
+#: src/font-manager/web/google/LanguageData.vala:58
+msgid "Coptic"
+msgstr "ພາສາຄອບຕິກ"
+
+#: src/font-manager/Orthographies.vala:71
+msgid "Currencies"
+msgstr "ສະກຸນເງິນ"
+
+#: src/font-manager/Orthographies.vala:72
+msgid "Cypriot Syllabary"
+msgstr "ຕົວອັກສອນໄຊພຣຽດ"
+
+#: src/font-manager/Orthographies.vala:73
+#: src/font-manager/web/google/LanguageData.vala:65
+msgid "Devanagari"
+msgstr "ພາສາເທວະນາຄະລີ"
+
+#: src/font-manager/Orthographies.vala:74
+msgid "Dutch"
+msgstr "ພາສາດັດ"
+
+#: src/font-manager/Orthographies.vala:75
+#: src/font-manager/web/google/LanguageData.vala:67
+msgid "Egyptian Hieroglyphs"
+msgstr "ອັກສອນເຮຍໂຣກລິຟອີຢິບບູຮານ"
+
+#: src/font-manager/Orthographies.vala:76
+msgid "Emoticons"
+msgstr "ອິໂມຕິຄອນ"
+
+#: src/font-manager/Orthographies.vala:77
+#: src/font-manager/web/google/LanguageData.vala:70
+msgid "Ethiopic"
+msgstr "ພາສາເອທິໂອປິກ"
+
+#. This "orthography" contains only the euro symbol...
+#. { "Euro", "Euro" },
+#: src/font-manager/Orthographies.vala:82
+msgid "Farsi"
+msgstr "ພາສາຟາຊີ"
+
+#: src/font-manager/Orthographies.vala:83
+msgid "Food and Drink"
+msgstr "ອາຫານ ແລະ ເຄື່ອງດື່ມ"
+
+#: src/font-manager/Orthographies.vala:84
+msgid "Full Cyrillic"
+msgstr "ຊີຣິລລິກເຕັມຮູບແບບ"
+
+#: src/font-manager/Orthographies.vala:85
+#: src/font-manager/web/google/LanguageData.vala:71
+msgid "Georgian"
+msgstr "ພາສາຈໍເຈຍ"
+
+#: src/font-manager/Orthographies.vala:86
+#: src/font-manager/web/google/LanguageData.vala:72
+msgid "Glagolitic"
+msgstr "ພາສາກລາໂກລິດຕິກ"
+
+#: src/font-manager/Orthographies.vala:87
+#: src/font-manager/web/google/LanguageData.vala:73
+msgid "Gothic"
+msgstr "ພາສາກັອດທິກ"
+
+#: src/font-manager/Orthographies.vala:88
+#: src/font-manager/web/google/LanguageData.vala:77
+msgid "Gujarati"
+msgstr "ພາສາກຸຊະຣາດ"
+
+#: src/font-manager/Orthographies.vala:89
+#: src/font-manager/web/google/LanguageData.vala:79
+msgid "Gurmukhi"
+msgstr "ພາສາກຸຣຸມຸກຂີ"
+
+#: src/font-manager/Orthographies.vala:90
+msgid "Korean Hangul"
+msgstr "ພາສາເກົາຫຼີ (ຮັນກຶລ)"
+
+#: src/font-manager/Orthographies.vala:91
+msgid "Hanunó'o"
+msgstr "ພາສາຮານູນູໂອ"
+
+#: src/font-manager/Orthographies.vala:92
+#: src/font-manager/web/google/LanguageData.vala:83
+msgid "Hebrew"
+msgstr "ພາສາຮີບຣູ"
+
+#: src/font-manager/Orthographies.vala:93
+#: src/font-manager/Orthographies.vala:95
+msgid "IPA"
+msgstr "ສັນຍະລັກສຽງສາກົນ (IPA)"
+
+#: src/font-manager/Orthographies.vala:94
+msgid "Igbo Onwu"
+msgstr "ພາສາອິກໂບ"
+
+#: src/font-manager/Orthographies.vala:96
+msgid "Korean Jamo"
+msgstr "ພາສາເກົາຫຼີ (ຮັນຈາ/ຈາໂມ)"
+
+#: src/font-manager/Orthographies.vala:97
+#: src/font-manager/web/google/LanguageData.vala:89
+msgid "Javanese"
+msgstr "ພາສາຊວາ"
+
+#: src/font-manager/Orthographies.vala:98
+msgid "Japanese Jinmeiyo"
+msgstr "ພາສາຍີ່ປຸ່ນ (ຊື່ຄົນ)"
+
+#: src/font-manager/Orthographies.vala:99
+msgid "Japanese Joyo"
+msgstr "ພາສາຍີ່ປຸ່ນ (ໃຊ້ທົ່ວໄປ)"
+
+#: src/font-manager/Orthographies.vala:100
+#: src/font-manager/web/google/LanguageData.vala:90
+msgid "Kaithi"
+msgstr "ພາສາໄກຖີ"
+
+#: src/font-manager/Orthographies.vala:101
+msgid "Japanese Kana"
+msgstr "ພາສາຍີ່ປຸ່ນ (ການະ)"
+
+#: src/font-manager/Orthographies.vala:102
+#: src/font-manager/web/google/LanguageData.vala:91
+msgid "Kannada"
+msgstr "ພາສາກັນນາດາ"
+
+#: src/font-manager/Orthographies.vala:103
+#: src/font-manager/web/google/LanguageData.vala:94
+msgid "Kayah Li"
+msgstr "ພາສາກະຢາ"
+
+#: src/font-manager/Orthographies.vala:104
+msgid "Kazakh"
+msgstr "ພາສາກາຊັກ"
+
+#: src/font-manager/Orthographies.vala:105
+#: src/font-manager/web/google/LanguageData.vala:92
+msgid "Kharoshthi"
+msgstr "ພາສາຂະໂຣສຖີ"
+
+#: src/font-manager/Orthographies.vala:106
+#: src/font-manager/web/google/LanguageData.vala:95
+msgid "Khmer"
+msgstr "ພາສາຂະແມ"
+
+#: src/font-manager/Orthographies.vala:107
+msgid "Japanese Kokuji"
+msgstr "ພາສາຍີ່ປຸ່ນ (ຄັນຈິທີ່ສ້າງເອງ)"
+
+#: src/font-manager/Orthographies.vala:108
+#: src/font-manager/web/google/LanguageData.vala:99
+msgid "Lao"
+msgstr "ພາສາລາວ"
+
+#: src/font-manager/Orthographies.vala:109
+msgid "Latin Ligatures"
+msgstr "ອັກສອນຄວບລາຕິນ"
+
+#: src/font-manager/Orthographies.vala:110
+#: src/font-manager/web/google/LanguageData.vala:100
+msgid "Lepcha"
+msgstr "ພາສາເລັບຊາ"
+
+#: src/font-manager/Orthographies.vala:111
+#: src/font-manager/web/google/LanguageData.vala:103
+msgid "Limbu"
+msgstr "ພາສາລິມບູ"
+
+#: src/font-manager/Orthographies.vala:112
+msgid "Linear B Ideograms"
+msgstr "ອັກສອນພາບລີເນຍ B"
+
+#: src/font-manager/Orthographies.vala:113
+msgid "Linear B Syllabary"
+msgstr "ຕົວອັກສອນລີເນຍ B"
+
+#: src/font-manager/Orthographies.vala:114
+#: src/font-manager/web/google/LanguageData.vala:110
+msgid "Malayalam"
+msgstr "ພາສາມາລາຢາລຳ"
+
+#: src/font-manager/Orthographies.vala:115
+msgid "Mathematical Greek"
+msgstr "ສັນຍະລັກຄະນິດສາດກຣີກ"
+
+#: src/font-manager/Orthographies.vala:116
+msgid "Mathematical Latin"
+msgstr "ສັນຍະລັກຄະນິດສາດລາຕິນ"
+
+#: src/font-manager/Orthographies.vala:117
+msgid "Mathematical Numerals"
+msgstr "ຕົວເລກຄະນິດສາດ"
+
+#: src/font-manager/Orthographies.vala:118
+msgid "Mathematical Operators"
+msgstr "ຕົວດຳເນີນການຄະນິດສາດ"
+
+#: src/font-manager/Orthographies.vala:119
+msgid "Meetei Mayak"
+msgstr "ພາສາມະນີປຸຣີ"
+
+#: src/font-manager/Orthographies.vala:120
+#: src/font-manager/web/google/LanguageData.vala:119
+msgid "Mende Kikakui"
+msgstr "ພາສາເມນເດ"
+
+#: src/font-manager/Orthographies.vala:121
+msgid "MeroiticCursive"
+msgstr "ພາສາເມໂຣອິດຕິກ (ໂຕຂຽນ)"
+
+#: src/font-manager/Orthographies.vala:122
+msgid "Meroitic Hieroglyphs"
+msgstr "ອັກສອນເຮຍໂຣກລິຟເມໂຣອິດຕິກ"
+
+#. { N_(""), "meroitic-cursive", "" },
+#. { N_(""), "meroitic-heiroglyphs", "" },
+#: src/font-manager/Orthographies.vala:123
+#: src/font-manager/web/google/LanguageData.vala:123
+msgid "Miao"
+msgstr "ພາສາມົ້ງ (ມຽວ)"
+
+#: src/font-manager/Orthographies.vala:124
+#: src/font-manager/web/google/LanguageData.vala:125
+msgid "Mongolian"
+msgstr "ພາສາມົງໂກລີ"
+
+#. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+#. Contains lots of duplicates, doubt many would find it useful
+#. { "MUFI 3.0", "MUFI 3.0" },
+#: src/font-manager/Orthographies.vala:130
+#: src/font-manager/web/google/LanguageData.vala:129
+msgid "Myanmar"
+msgstr "ພາສາມຽນມາ"
+
+#: src/font-manager/Orthographies.vala:131
+#: src/font-manager/web/google/LanguageData.vala:133
+msgid "New Tai Lue"
+msgstr "ພາສາໄທລື້ໃໝ່"
+
+#: src/font-manager/Orthographies.vala:132
+msgid "N’Ko"
+msgstr "ພາສາເອັນໂກ"
+
+#: src/font-manager/Orthographies.vala:133
+#: src/font-manager/web/google/LanguageData.vala:137
+msgid "Ogham"
+msgstr "ພາສາອອກກຳ"
+
+#: src/font-manager/Orthographies.vala:134
+#: src/font-manager/web/google/LanguageData.vala:138
+msgid "Ol Chiki"
+msgstr "ພາສາໂອຊິກິ"
+
+#: src/font-manager/Orthographies.vala:135
+#: src/font-manager/web/google/LanguageData.vala:140
+msgid "Old Italic"
+msgstr "ອິຕາລິກບູຮານ"
+
+#: src/font-manager/Orthographies.vala:136
+#: src/font-manager/web/google/LanguageData.vala:145
+msgid "Old South Arabian"
+msgstr "ອາຣັບໃຕ້ບູຮານ"
+
+#: src/font-manager/Orthographies.vala:137
+#: src/font-manager/web/google/LanguageData.vala:149
+msgid "Oriya"
+msgstr "ພາສາໂອຣິຢາ"
+
+#: src/font-manager/Orthographies.vala:138
+#: src/font-manager/web/google/LanguageData.vala:148
+msgid "Osmanya"
+msgstr "ພາສາອອສມັນຢາ"
+
+#: src/font-manager/Orthographies.vala:139
+msgid "Pan African Latin"
+msgstr "ລາຕິນອາຟຣິກາຮ່ວມ"
+
+#: src/font-manager/Orthographies.vala:140
+msgid "Pashto"
+msgstr "ພາສາປາສໂຕ"
+
+#: src/font-manager/Orthographies.vala:141
+#: src/font-manager/web/google/LanguageData.vala:153
+msgid "Phags Pa"
+msgstr "ພາສາພັກສະປາ"
+
+#: src/font-manager/Orthographies.vala:142
+msgid "Pinyin"
+msgstr "ພິນອິນ"
+
+#: src/font-manager/Orthographies.vala:143
+msgid "Polynesian"
+msgstr "ພາສາໂພລີນີຊຽນ"
+
+#: src/font-manager/Orthographies.vala:144
+msgid "Polytonic Greek"
+msgstr "ກຣີກແບບໂພລີໂທນິກ"
+
+#: src/font-manager/Orthographies.vala:145
+#: src/font-manager/web/google/LanguageData.vala:156
+msgid "Rejang"
+msgstr "ພາສາເຣຈັງ"
+
+#: src/font-manager/Orthographies.vala:146
+msgid "Romanian"
+msgstr "ພາສາໂຣມາເນຍ"
+
+#: src/font-manager/Orthographies.vala:147
+#: src/font-manager/web/google/LanguageData.vala:157
+msgid "Runic"
+msgstr "ພາສາຣູນິກ"
+
+#: src/font-manager/Orthographies.vala:148
+#: src/font-manager/web/google/LanguageData.vala:159
+msgid "Saurashtra"
+msgstr "ພາສາໂສຣັດຕຣາ"
+
+#: src/font-manager/Orthographies.vala:149
+msgid "Simplified Chinese"
+msgstr "ພາສາຈີນ (ໂຕຢໍ້)"
+
+#: src/font-manager/Orthographies.vala:150
+msgid "Sindhi"
+msgstr "ພາສາສິນທີ"
+
+#: src/font-manager/Orthographies.vala:151
+#: src/font-manager/web/google/LanguageData.vala:164
+msgid "Sinhala"
+msgstr "ພາສາສິງຫົນ"
+
+#: src/font-manager/Orthographies.vala:152
+msgid "South Korean Hanja"
+msgstr "ພາສາເກົາຫຼີໃຕ້ (ຮັນຈາ)"
+
+#: src/font-manager/Orthographies.vala:153
+#: src/font-manager/web/google/LanguageData.vala:168
+msgid "Sundanese"
+msgstr "ພາສາຊັນດາ"
+
+#: src/font-manager/Orthographies.vala:154
+#: src/font-manager/web/google/LanguageData.vala:169
+msgid "Syloti Nagri"
+msgstr "ພາສາຊີໂລຕິນາຄະລີ"
+
+#. { N_("Symbols"), "symbols", "" },
+#: src/font-manager/Orthographies.vala:155
+#: src/font-manager/web/google/LanguageData.vala:171
+msgid "Syriac"
+msgstr "ພາສາຊີຣີແອກ"
+
+#: src/font-manager/Orthographies.vala:156
+#: src/font-manager/web/google/LanguageData.vala:174
+msgid "Tai Le"
+msgstr "ພາສາໄທເລີ"
+
+#: src/font-manager/Orthographies.vala:157
+msgid "Tai Tham (Lanna)"
+msgstr "ພາສາໄທທຳ (ລ້ານນາ)"
+
+#: src/font-manager/Orthographies.vala:158
+msgid "Tai Viet"
+msgstr "ພາສາໄທຫວຽດ"
+
+#: src/font-manager/Orthographies.vala:159
+#: src/font-manager/web/google/LanguageData.vala:175
+msgid "Tamil"
+msgstr "ພາສາທະມິນ"
+
+#: src/font-manager/Orthographies.vala:160
+#: src/font-manager/web/google/LanguageData.vala:176
+msgid "Telugu"
+msgstr "ພາສາເຕລູກູ"
+
+#: src/font-manager/Orthographies.vala:161
+msgid "Thaana"
+msgstr "ພາສາທານາ"
+
+#: src/font-manager/Orthographies.vala:162
+#: src/font-manager/web/google/LanguageData.vala:177
+msgid "Thai"
+msgstr "ພາສາໄທ"
+
+#: src/font-manager/Orthographies.vala:163
+#: src/font-manager/web/google/LanguageData.vala:178
+msgid "Tibetan"
+msgstr "ພາສາທິເບດ"
+
+#: src/font-manager/Orthographies.vala:164
+msgid "Tifinagh"
+msgstr "ພາສາຕີຟີນາກ"
+
+#: src/font-manager/Orthographies.vala:165
+msgid "Traditional Chinese"
+msgstr "ພາສາຈີນ (ໂຕເຕັມ)"
+
+#: src/font-manager/Orthographies.vala:166
+msgid "Turkish"
+msgstr "ພາສາຕຸຣາກີ"
+
+#: src/font-manager/Orthographies.vala:167
+msgid "Uighur"
+msgstr "ພາສາວີກູ"
+
+#: src/font-manager/Orthographies.vala:168
+msgid "Urdu"
+msgstr "ພາສາອູຣະດູ"
+
+#: src/font-manager/Orthographies.vala:169
+msgid "Vai"
+msgstr "ພາສາໄວ"
+
+#: src/font-manager/Orthographies.vala:170
+msgid "Vedic Extensions"
+msgstr "ສ່ວນຂະຫຍາຍເວທະ"
+
+#: src/font-manager/Orthographies.vala:171
+msgid "Venda"
+msgstr "ພາສາເວນດາ"
+
+#: src/font-manager/Orthographies.vala:172
+#: src/font-manager/web/google/LanguageData.vala:179
+msgid "Vietnamese"
+msgstr "ພາສາຫວຽດນາມ"
+
+#: src/font-manager/Orthographies.vala:173
+msgid "Western European"
+msgstr "ຢູໂຣບຕາເວັນຕົກ"
+
+#: src/font-manager/Orthographies.vala:174
+msgid "Yi"
+msgstr "ພາສາຢີ"
+
+#: src/font-manager/Orthographies.vala:175
+msgid "Chinese Zhuyin Fuhao"
+msgstr "ພາສາຈີນ (ຈູອິນ)"
+
+#. Translators : Coverage refers to the amount of support the font provides for
+#. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
+#: src/font-manager/OrthographyList.vala:105
+msgid "Coverage"
+msgstr "ການຮອງຮັບ"
+
+#: src/font-manager/OrthographyList.vala:137
+#: src/font-manager/filters/LanguageFilter.vala:55
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
+msgid "Supported Orthographies"
+msgstr "ລະບົບການຂຽນທີ່ຮອງຮັບ"
+
+#: src/font-manager/OrthographyList.vala:200
+msgid "No items selected"
+msgstr "ບໍ່ມີລາຍການທີ່ເລືອກ"
+
+#: src/font-manager/OrthographyList.vala:205
+msgid "Update in progress"
+msgstr "ກຳລັງອັບເດດ"
+
+#. No error and no results means this font file is likely broken or empty
+#: src/font-manager/OrthographyList.vala:231
+msgid "No valid orthographies for selection"
+msgstr "ບໍ່ມີລະບົບການຂຽນທີ່ຖືກຕ້ອງສຳລັບລາຍການທີ່ເລືອກ"
+
+#: src/font-manager/Sidebar.vala:57
+msgid "Add new collection"
+msgstr "ເພີ່ມຊຸດສະສົມໃໝ່"
+
+#: src/font-manager/Sidebar.vala:61
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
+#: src/font-manager/ui/font-manager-font-list-view.ui:36
+msgid "Remove selected item"
+msgstr "ລົບລາຍການທີ່ເລືອກ"
+
+#: src/font-manager/Sidebar.vala:67
+msgid "Edit selected item"
+msgstr "ແກ້ໄຂລາຍການທີ່ເລືອກ"
+
+#: src/font-manager/Utils.vala:295
+msgid "Copying files…"
+msgstr "ກຳລັງກັອບປີ້ໄຟລ໌…"
+
+#: src/font-manager/filters/Collection.vala:99
+msgid "New Collection"
+msgstr "ຊຸດສະສົມໃໝ່"
+
+#: src/font-manager/filters/Collection.vala:100
+#, c-format
+msgid "Created : %s"
+msgstr "ສ້າງເມື່ອ : %s"
+
+#: src/font-manager/filters/Disabled.vala:28
+msgid "Disabled"
+msgstr "ປິດໃຊ້ງານ"
+
+#: src/font-manager/filters/Disabled.vala:29
+msgid "Fonts which have been disabled"
+msgstr "ຟອນທີ່ຖືກປິດໃຊ້ງານ"
+
+#: src/font-manager/filters/LanguageFilter.vala:28
+msgid "Filter based on supported orthographies"
+msgstr "ກັ່ນຕອງຕາມລະບົບການຂຽນທີ່ຮອງຮັບ"
+
+#: src/font-manager/filters/Unsorted.vala:34
+msgid "Unsorted"
+msgstr "ບໍ່ໄດ້ຈັດລຽງ"
+
+#: src/font-manager/filters/Unsorted.vala:35
+msgid "Fonts not present in any collection"
+msgstr "ຟອນທີ່ບໍ່ມີຢູ່ໃນຊຸດສະສົມໃດໆ"
+
+#: src/font-manager/filters/UserFonts.vala:27
+msgid "User"
+msgstr "ຜູ້ໃຊ້"
+
+#: src/font-manager/filters/UserFonts.vala:28
+msgid "Fonts available only to you"
+msgstr "ຟອນທີ່ມີໃຫ້ສະເພາະທ່ານເທົ່ານັ້ນ"
+
+#: src/font-manager/preferences/Desktop.vala:36
+msgid "Interface Font"
+msgstr "ຟອນຂອງສ່ວນຕິດຕໍ່ຜູ້ໃຊ້"
+
+#: src/font-manager/preferences/Desktop.vala:37
+msgid "Font used throughout interface."
+msgstr "ຟອນທີ່ໃຊ້ໃນສ່ວນຕິດຕໍ່ຜູ້ໃຊ້ທັງໝົດ."
+
+#: src/font-manager/preferences/Desktop.vala:42
+msgid "Document Font"
+msgstr "ຟອນເອກະສານ"
+
+#: src/font-manager/preferences/Desktop.vala:43
+msgid "Font used for reading documents."
+msgstr "ຟອນທີ່ໃຊ້ສຳລັບການອ່ານເອກະສານ."
+
+#: src/font-manager/preferences/Desktop.vala:48
+msgid "Monospace Font"
+msgstr "ຟອນໄລຍະຫ່າງຄົງທີ່"
+
+#: src/font-manager/preferences/Desktop.vala:49
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr ""
+"ຟອນທີ່ມີໄລຍະຫ່າງຄົງທີ່ (ຄວາມກວ້າງຄົງທີ່) ສຳລັບໃຊ້ໃນບ່ອນຕ່າງໆ ເຊັ່ນ ເທີມີນໍ (terminals)."
+
+#: src/font-manager/preferences/Desktop.vala:54
+msgid "Text Scaling Factor"
+msgstr "ອັດຕາສ່ວນການປັບຂະໜາດຂໍ້ຄວາມ"
+
+#: src/font-manager/preferences/Desktop.vala:55
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr ""
+"ອັດຕາສ່ວນທີ່ໃຊ້ເພື່ອຂະຫຍາຍ ຫຼື ຫຼຸດການສະແດງຜົນຂໍ້ຄວາມ ໂດຍບໍ່ປ່ຽນຂະໜາດຟອນ"
+
+#: src/font-manager/preferences/Desktop.vala:60
+msgid "GTK 4 Font Rendering"
+msgstr "ການສະແດງຜົນຟອນ GTK 4"
+
+#: src/font-manager/preferences/Desktop.vala:61
+msgid "Automatic option allows GTK 4 to disregard hinting settings."
+msgstr "ຕົວເລືອກແບບອັດຕະໂນມັດຊ່ວຍໃຫ້ GTK 4 ບໍ່ສົນໃຈການຕັ້ງຄ່າ hinting."
+
+#: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:90
+msgid "Antialiasing"
+msgstr "ການເຮັດໃຫ້ຂອບລຽບ (Antialiasing)"
+
+#: src/font-manager/preferences/Desktop.vala:67
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values. "
+msgstr ""
+"ປະເພດຂອງການເຮັດໃຫ້ຂອບລຽບທີ່ຈະໃຊ້ເມື່ອສະແດງຜົນຟອນ.\n"
+"\n"
+"ໝາຍເຫດ: ເລີ່ມແຕ່ GTK 4 ເປັນຕົ້ນໄປ RGBA ຈະບໍ່ຖືກໃຊ້ອີກ, ມີພຽງແຕ່ \"ບໍ່ມີ\" ແລະ \"ລະດັບສີເທົາ\" ເທົ່"
+"ານັ້ນທີ່ໃຊ້ໄດ້. "
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:96
+msgid "RGBA order"
+msgstr "ລຳດັບ RGBA"
+
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:97
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr ""
+"ລຳດັບຂອງອົງປະກອບພິກເຊລຍ່ອຍເທິງໜ້າຈໍ LCD; ໃຊ້ສະເພາະເມື່ອຕັ້ງຄ່າ antialiasing ເປັນ rgba ເທົ່ານັ້"
+"ນ."
+
+#: src/font-manager/preferences/Desktop.vala:78
+#: src/font-manager/preferences/Desktop.vala:84
+#: src/font-manager/preferences/Rendering.vala:78
+msgid "Hinting"
+msgstr "ການປັບຊ່ອງໄຟ (Hinting)"
+
+#: src/font-manager/preferences/Desktop.vala:79
+#: src/font-manager/preferences/Desktop.vala:85
+msgid "The type of hinting to use when rendering fonts."
+msgstr "ປະເພດຂອງ hinting ທີ່ຈະໃຊ້ເມື່ອສະແດງຜົນຟອນ."
+
+#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values."
+msgstr ""
+"ປະເພດຂອງການເຮັດໃຫ້ຂອບລຽບທີ່ຈະໃຊ້ເມື່ອສະແດງຜົນຟອນ.\n"
+"\n"
+"ໝາຍເຫດ: ເລີ່ມແຕ່ GTK 4 ເປັນຕົ້ນໄປ RGBA ຈະບໍ່ຖືກໃຊ້ອີກ, ມີພຽງແຕ່ \"ບໍ່ມີ\" ແລະ \"ລະດັບສີເທົາ\" ເທົ່"
+"ານັ້ນທີ່ໃຊ້ໄດ້."
+
+#: src/font-manager/preferences/Desktop.vala:121
+msgid "GNOME desktop settings schema not found"
+msgstr "ບໍ່ພົບສະກີມາ (schema) ການຕັ້ງຄ່າເດັສທັອບ GNOME"
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Automatic"
+msgstr "ອັດຕະໂນມັດ"
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Manual"
+msgstr "ກຳນົດເອງ"
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "Grayscale"
+msgstr "ລະດັບສີເທົາ"
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "RGBA"
+msgstr "RGBA"
+
+#: src/font-manager/preferences/Desktop.vala:242
+#: src/font-manager/preferences/Display.vala:91
+msgid "Subpixel Geometry"
+msgstr "ເລຂາຄະນິດພິກເຊລຍ່ອຍ"
+
+#: src/font-manager/preferences/Display.vala:75
+msgid "Target DPI"
+msgstr "DPI ເປົ້າໝາຍ"
+
+#: src/font-manager/preferences/Display.vala:77
+msgid "Scale Factor"
+msgstr "ອັດຕາສ່ວນການປັບຂະໜາດ"
+
+#: src/font-manager/preferences/Display.vala:83
+msgid "LCD Filter"
+msgstr "ຕົວຕອງ LCD"
+
+#: src/font-manager/preferences/Preferences.vala:41
+msgid "Interface"
+msgstr "ສ່ວນຕິດຕໍ່ຜູ້ໃຊ້"
+
+#: src/font-manager/preferences/Preferences.vala:42
+msgid "Desktop"
+msgstr "ເດັສທັອບ"
+
+#: src/font-manager/preferences/Preferences.vala:48
+msgid "Sources"
+msgstr "ແຫຼ່ງຂໍ້ມູນ"
+
+#: src/font-manager/preferences/Preferences.vala:49
+msgid "Substitutions"
+msgstr "ການແທນທີ່"
+
+#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
+msgid "Display"
+msgstr "ການສະແດງຜົນ"
+
+#: src/font-manager/preferences/Preferences.vala:51
+msgid "Rendering"
+msgstr "ການສະແດງພາບ"
+
+#: src/font-manager/preferences/Preferences.vala:131
+msgid ""
+"A Fontconfig configuration file will be generated from these settings.\n"
+"\n"
+"Running applications may require a restart to reflect any changes.\n"
+"\n"
+"Note that not all environments/applications will honor these settings."
+msgstr ""
+"ໄຟລ໌ກຳນົດຄ່າ Fontconfig ຈະຖືກສ້າງຂຶ້ນຈາກການຕັ້ງຄ່າເຫຼົ່ານີ້.\n"
+"\n"
+"ແອັບພລິເຄຊັນທີ່ກຳລັງເຮັດວຽກຢູ່ອາດຈະຕ້ອງໄດ້ເລີ່ມໃໝ່ເພື່ອໃຫ້ການປ່ຽນແປງມີຜົນ.\n"
+"\n"
+"ໝາຍເຫດ: ບໍ່ແມ່ນທຸກສະພາບແວດລ້ອມ ຫຼື ແອັບພລິເຄຊັນ ທີ່ຈະປະຕິບັດຕາມການຕັ້ງຄ່າເຫຼົ່ານີ້."
+
+#: src/font-manager/preferences/Preferences.vala:153
+msgid "Reset all values to default"
+msgstr "ຕັ້ງຄ່າທັງໝົດຄືນເປັນຄ່າເລີ່ມຕົ້ນ"
+
+#: src/font-manager/preferences/Rendering.vala:77
+msgid "Antialias"
+msgstr "ເຮັດໃຫ້ຂອບລຽບ"
+
+#: src/font-manager/preferences/Rendering.vala:81
+msgid "Enable Autohinter"
+msgstr "ເປີດໃຊ້ Autohinter"
+
+#: src/font-manager/preferences/Rendering.vala:88
+msgid "Hinting Style"
+msgstr "ຮູບແບບ Hinting"
+
+#: src/font-manager/preferences/Rendering.vala:90
+msgid "Use Embedded Bitmaps"
+msgstr "ໃຊ້ບິດແມັບທີ່ຝັງມາ"
+
+#: src/font-manager/preferences/Substitutions.vala:153
+msgid "Font Substitutions"
+msgstr "ການແທນທີ່ຟອນ"
+
+#: src/font-manager/preferences/Substitutions.vala:154
+msgid "Easily substitute one font family for another."
+msgstr "ແທນທີ່ຕະກູນຟອນໜຶ່ງດ້ວຍອີກຕະກູນໜຶ່ງໄດ້ຢ່າງງ່າຍດາຍ."
+
+#: src/font-manager/preferences/Substitutions.vala:155
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr "ເພື່ອເພີ່ມການແທນທີ່ໃໝ່ ໃຫ້ກົດປຸ່ມເພີ່ມໃນແຖບເຄື່ອງມື."
+
+#: src/font-manager/preferences/UserActions.vala:232
+msgid ""
+"Actions defined here will be added to the font list context menu.\n"
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list.\n"
+"To control where the filepath is inserted use FILEPATH as a placeholder.\n"
+"If FAMILY or STYLE are found in the argument list they will also be replaced."
+msgstr ""
+"ການດຳເນີນການທີ່ກຳນົດຢູ່ນີ້ຈະຖືກເພີ່ມເຂົ້າໃນເມນູຄລິກຂວາຂອງລາຍການຟອນ.\n"
+"\n"
+"ໂດຍຄ່າເລີ່ມຕົ້ນ, ທີ່ຢູ່ໄຟລ໌ຂອງຟອນທີ່ເລືອກຈະຖືກເພີ່ມເຂົ້າໃນຕອນທ້າຍຂອງລາຍການອາກິວເມນ (argument "
+"list).\n"
+"ເພື່ອຄວບຄຸມຕຳແໜ່ງທີ່ຈະແຊກທີ່ຢູ່ໄຟລ໌ ໃຫ້ໃຊ້ FILEPATH ເປັນຕົວແທນ.\n"
+"ຖ້າພົບ FAMILY ຫຼື STYLE ໃນລາຍການອາກິວເມນ, ພວກມັນກໍຈະຖືກແທນທີ່ຄືກັນ."
+
+#: src/font-manager/preferences/UserActions.vala:246
+msgid "User Actions"
+msgstr "ການດຳເນີນການຂອງຜູ້ໃຊ້"
+
+#: src/font-manager/preferences/UserActions.vala:248
+msgid "Custom context menu entries"
+msgstr "ລາຍການເມນູຄລິກຂວາທີ່ກຳນົດເອງ"
+
+#: src/font-manager/preferences/UserInterface.vala:78
+#: src/font-viewer/MainWindow.vala:337
+msgid "Selected setting requires restart to apply"
+msgstr "ການຕັ້ງຄ່າທີ່ເລືອກຕ້ອງມີການເລີ່ມໃໝ່ເພື່ອໃຫ້ມີຜົນ"
+
+#: src/font-manager/preferences/UserInterface.vala:79
+#: src/font-viewer/MainWindow.vala:338
+msgid "Changes will take effect next time the application is started"
+msgstr "ການປ່ຽນແປງຈະມີຜົນໃນຄັ້ງຕໍ່ໄປທີ່ເປີດແອັບພລິເຄຊັນ"
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Wide Layout"
+msgstr "ຮູບແບບແບບກວ້າງ"
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Use three column layout"
+msgstr "ໃຊ້ຮູບແບບແບບສາມຖັນ"
+
+#: src/font-manager/preferences/UserInterface.vala:95
+msgid "Only When Maximized"
+msgstr "ສະເພາະຕອນຂະຫຍາຍເຕັມໜ້າຈໍເທົ່ານັ້ນ"
+
+#: src/font-manager/preferences/UserInterface.vala:97
+msgid "Enable Animations"
+msgstr "ເປີດໃຊ້ພາບເຄື່ອນໄຫວ"
+
+#. The added margins here are due to PreviewColors widget alignment issues
+#: src/font-manager/preferences/UserInterface.vala:98
+#: src/font-viewer/MainWindow.vala:353
+msgid "Prefer Dark Theme"
+msgstr "ໃຊ້ຮູບແບບສີເຂັ້ມ"
+
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:358
+msgid "Use Adwaita Stylesheet"
+msgstr "ໃຊ້ຮູບແບບ Adwaita"
+
+#: src/font-manager/preferences/UserInterface.vala:103
+msgid "Raised"
+msgstr "ນູນຂຶ້ນ"
+
+#: src/font-manager/preferences/UserInterface.vala:104
+msgid "Flat"
+msgstr "ແບນ"
+
+#: src/font-manager/preferences/UserInterface.vala:106
+msgid "Titlebar Button Style"
+msgstr "ຮູບແບບປຸ່ມໃນແຖບຫົວຂໍ້"
+
+#: src/font-manager/preferences/UserInterface.vala:107
+#: src/font-viewer/MainWindow.vala:376
+msgid "Display line size in Waterfall Preview"
+msgstr "ສະແດງຂະໜາດແຖວໃນການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/font-manager/preferences/UserInterface.vala:112
+#: src/font-viewer/MainWindow.vala:371
+msgid "Waterfall Line Spacing"
+msgstr "ໄລຍະຫ່າງແຖວແບບຫຼັ່ງໄຫຼ"
+
+#: src/font-manager/preferences/UserInterface.vala:114
+#: src/font-viewer/MainWindow.vala:372
+msgid "Padding in pixels to insert above and below rows"
+msgstr "ໄລຍະຫ່າງ (ເປັນພິກເຊລ) ທີ່ຈະແຊກໃສ່ເທິງ ແລະ ລຸ່ມຂອງແຖວ"
+
+#: src/font-manager/preferences/UserSources.vala:145
+msgid ""
+"Fonts in any folders listed here will be available within the application.\n"
+"\n"
+"They will not be visible to other applications until the source is actually "
+"enabled."
+msgstr ""
+"ຟອນໃນໂຟນເດີໃດໆທີ່ຢູ່ໃນລາຍການຢູ່ນີ້ຈະມີໃຫ້ໃຊ້ພາຍໃນແອັບພລິເຄຊັນ.\n"
+"\n"
+"ພວກມັນຈະບໍ່ສາມາດເຫັນໄດ້ໂດຍແອັບພລິເຄຊັນອື່ນ ຈົນກວ່າແຫຼ່ງຂໍ້ມູນຈະຖືກເປີດໃຊ້ງານແທ້ໆ."
+
+#: src/font-manager/preferences/UserSources.vala:157
+msgid "Easily add or preview fonts without actually installing them."
+msgstr "ເພີ່ມ ຫຼື ເບິ່ງຕົວຢ່າງຟອນໄດ້ຢ່າງງ່າຍດາຍໂດຍບໍ່ຕ້ອງຕິດຕັ້ງແທ້ໆ."
+
+#: src/font-manager/preferences/UserSources.vala:158
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+"ເພື່ອເພີ່ມແຫຼ່ງຂໍ້ມູນໃໝ່ ພຽງແຕ່ລາກໂຟນເດີມາໃສ່ບໍລິເວນນີ້ ຫຼື ກົດປຸ່ມເພີ່ມໃນແຖບເຄື່ອງມື."
+
+#: src/font-manager/web/google/GoogleFonts.vala:156
+msgid "Network Access Disabled"
+msgstr "ການເຂົ້າເຖິງເຄືອຂ່າຍຖືກປິດໃຊ້ງານ"
+
+#: src/font-manager/web/google/GoogleFonts.vala:157
+msgid "Contact your system administrator to request access."
+msgstr "ຕິດຕໍ່ຜູ້ດູແລລະບົບຂອງທ່ານເພື່ອຂໍສິດເຂົ້າເຖິງ."
+
+#: src/font-manager/web/google/GoogleFonts.vala:160
+msgid "Network Offline"
+msgstr "ເຄືອຂ່າຍອອຟລາຍ"
+
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:162
+msgid ""
+"An active internet connection is required to access the Google Fonts catalog"
+msgstr "ຕ້ອງມີການເຊື່ອມຕໍ່ອິນເຕີເນັດເພື່ອເຂົ້າເຖິງລາຍການ Google Fonts"
+
+#: src/font-manager/web/google/GoogleFonts.vala:172
+msgid "Client Error"
+msgstr "ຂໍ້ຜິດພາດຈາກໄຄລແອນ"
+
+#: src/font-manager/web/google/GoogleFonts.vala:173
+msgid ""
+"Try restarting the application. If the issue persists, please file a bug."
+msgstr "ລອງເລີ່ມແອັບພລິເຄຊັນໃໝ່. ຖ້າບັນຫາຍັງຄົງຢູ່, ກະລຸນາແຈ້ງບັກ."
+
+#: src/font-manager/web/google/GoogleFonts.vala:176
+msgid "Server Error"
+msgstr "ຂໍ້ຜິດພາດຈາກເຊີບເວີ"
+
+#. Sample strings used here should be sourced from https://fonts.google.com/
+#: src/font-manager/web/google/LanguageData.vala:33
+msgid "Adlam"
+msgstr "ພາສາອັດລາມ"
+
+#: src/font-manager/web/google/LanguageData.vala:34
+msgid "Anatolian Hieroglyphs"
+msgstr "ອັກສອນເຮຍໂຣກລິຟອານາໂຕເລຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:37
+msgid "Avestan"
+msgstr "ພາສາອາເວສຕະ"
+
+#: src/font-manager/web/google/LanguageData.vala:40
+msgid "Bassa Vah"
+msgstr "ພາສາບັດຊາ"
+
+#: src/font-manager/web/google/LanguageData.vala:41
+msgid "Batak"
+msgstr "ພາສາບາຕັກ"
+
+#: src/font-manager/web/google/LanguageData.vala:43
+msgid "Bhaiksuki"
+msgstr "ພາສາໄພສຸກີ"
+
+#: src/font-manager/web/google/LanguageData.vala:44
+msgid "Brahmi"
+msgstr "ພາສາພຣາມີ"
+
+#: src/font-manager/web/google/LanguageData.vala:45
+msgid "Braille"
+msgstr "ອັກສອນເບຣວ"
+
+#. { N_("Buhid"), "buhid", "" },
+#: src/font-manager/web/google/LanguageData.vala:48
+msgid "Caucasian Albanian"
+msgstr "ພາສາອານບາເນຍຄໍເຄຊຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:49
+msgid "Canadian Aboriginal"
+msgstr "ພາສາຊົນເຜົ່າພື້ນເມືອງແຄນນາດາ"
+
+#: src/font-manager/web/google/LanguageData.vala:54
+msgid "Chinese (Hong Kong)"
+msgstr "ພາສາຈີນ (ຮົງກົງ)"
+
+#: src/font-manager/web/google/LanguageData.vala:55
+msgid "Chinese (Simplified)"
+msgstr "ພາສາຈີນ (ໂຕຢໍ້)"
+
+#: src/font-manager/web/google/LanguageData.vala:56
+msgid "Chinese (Traditional)"
+msgstr "ພາສາຈີນ (ໂຕເຕັມ)"
+
+#: src/font-manager/web/google/LanguageData.vala:57
+msgid "Chorasmian"
+msgstr "ພາສາຄໍຣັດເມຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:59
+msgid "Cuneiform"
+msgstr "ອັກສອນຄູນີຟອມ"
+
+#: src/font-manager/web/google/LanguageData.vala:60
+msgid "Cypriot"
+msgstr "ພາສາໄຊພຣຽດ"
+
+#: src/font-manager/web/google/LanguageData.vala:61
+msgid "Cypro Minoan"
+msgstr "ພາສາໄຊໂປຣມີໂນອັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:62
+msgid "Cyrillic"
+msgstr "ພາສາຊີຣິລລິກ"
+
+#: src/font-manager/web/google/LanguageData.vala:63
+msgid "Cyrillic Extended"
+msgstr "ຊີຣິລລິກສ່ວນຂະຫຍາຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:64
+msgid "Deseret"
+msgstr "ພາສາເດເຊີເຣັດ"
+
+#: src/font-manager/web/google/LanguageData.vala:66
+msgid "Duployan"
+msgstr "ພາສາທູໂພລີຢັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:68
+msgid "Elbasan"
+msgstr "ພາສາເອລບາຊັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:69
+msgid "Elymaic"
+msgstr "ພາສາເອລີເມອິກ"
+
+#: src/font-manager/web/google/LanguageData.vala:74
+msgid "Grantha"
+msgstr "ພາສາກຣັນຖະ"
+
+#: src/font-manager/web/google/LanguageData.vala:75
+msgid "Greek"
+msgstr "ພາສາກຣີກ"
+
+#: src/font-manager/web/google/LanguageData.vala:76
+msgid "Greek Extended"
+msgstr "ກຣີກສ່ວນຂະຫຍາຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:78
+msgid "Gunjala Gondi"
+msgstr "ພາສາກຸນຈາລາ ກົນດີ"
+
+#: src/font-manager/web/google/LanguageData.vala:80
+msgid "Hanifi Rohingya"
+msgstr "ພາສາໂຣຮິງຢາ"
+
+#: src/font-manager/web/google/LanguageData.vala:81
+msgid "Hanunoo"
+msgstr "ພາສາຮານູນູໂອ"
+
+#: src/font-manager/web/google/LanguageData.vala:82
+msgid "Hatran"
+msgstr "ພາສາຮັດທຣັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:84
+msgid "Imperial Aramaic"
+msgstr "ພາສາອາຣາເມອິກ"
+
+#: src/font-manager/web/google/LanguageData.vala:85
+msgid "Indic Siyaq Numbers"
+msgstr "ຕົວເລກອິນດິກ ຊີຢັກ"
+
+#: src/font-manager/web/google/LanguageData.vala:86
+msgid "Inscriptional Pahlavi"
+msgstr "ພາສາພັດລາວີ"
+
+#: src/font-manager/web/google/LanguageData.vala:87
+msgid "Inscriptional Parthian"
+msgstr "ພາສາພາທຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:88
+msgid "Japanese"
+msgstr "ພາສາຍີ່ປຸ່ນ"
+
+#: src/font-manager/web/google/LanguageData.vala:93
+msgid "Kawi"
+msgstr "ພາສາກະວີ"
+
+#: src/font-manager/web/google/LanguageData.vala:96
+msgid "Khojki"
+msgstr "ພາສາໂຄດຊະກີ"
+
+#: src/font-manager/web/google/LanguageData.vala:97
+msgid "Khudawadi"
+msgstr "ພາສາຄຸດດາວາດີ"
+
+#: src/font-manager/web/google/LanguageData.vala:98
+msgid "Korean"
+msgstr "ພາສາເກົາຫຼີ"
+
+#: src/font-manager/web/google/LanguageData.vala:101
+msgid "Latin"
+msgstr "ພາສາລາຕິນ"
+
+#: src/font-manager/web/google/LanguageData.vala:102
+msgid "Latin Extended"
+msgstr "ລາຕິນສ່ວນຂະຫຍາຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:104
+msgid "Linear A"
+msgstr "ລີເນຍ A"
+
+#: src/font-manager/web/google/LanguageData.vala:105
+msgid "Linear B"
+msgstr "ລີເນຍ B"
+
+#: src/font-manager/web/google/LanguageData.vala:106
+msgid "Lisu"
+msgstr "ພາສາລີຊໍ"
+
+#: src/font-manager/web/google/LanguageData.vala:107
+msgid "Lycian"
+msgstr "ພາສາໄລຊຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:108
+msgid "Lydian"
+msgstr "ພາສາລິເດຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:109
+msgid "Mahajani"
+msgstr "ພາສາມະຫາຊະນີ"
+
+#: src/font-manager/web/google/LanguageData.vala:111
+msgid "Mandaic"
+msgstr "ພາສາມັນດາອິກ"
+
+#: src/font-manager/web/google/LanguageData.vala:112
+msgid "Manichaean"
+msgstr "ພາສາມານິສຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:113
+msgid "Math"
+msgstr "ຄະນິດສາດ"
+
+#: src/font-manager/web/google/LanguageData.vala:114
+msgid "Marchen"
+msgstr "ພາສາມາເຊັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:115
+msgid "Masaram Gondi"
+msgstr "ພາສາມາຊາຣາມ ກົນດີ"
+
+#: src/font-manager/web/google/LanguageData.vala:116
+msgid "Mayan Numerals"
+msgstr "ຕົວເລກມາຢັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:117
+msgid "Medefaidrin"
+msgstr "ພາສາເມເດໄຟດຣິນ"
+
+#: src/font-manager/web/google/LanguageData.vala:118
+msgid "Meetei Mayek"
+msgstr "ມີໄຕ ມາເຢັກ"
+
+#: src/font-manager/web/google/LanguageData.vala:120
+msgid "Meroitic"
+msgstr "ພາສາເມໂຣອິດຕິກ"
+
+#: src/font-manager/web/google/LanguageData.vala:124
+msgid "Modi"
+msgstr "ພາສາໂມທີ"
+
+#: src/font-manager/web/google/LanguageData.vala:126
+msgid "Mro"
+msgstr "ພາສາມະໂຣ"
+
+#: src/font-manager/web/google/LanguageData.vala:127
+msgid "Multani"
+msgstr "ພາສາມູນຕານີ"
+
+#: src/font-manager/web/google/LanguageData.vala:128
+msgid "Music"
+msgstr "ດົນຕີ"
+
+#: src/font-manager/web/google/LanguageData.vala:130
+msgid "Nabataean"
+msgstr "ພາສານາບາທຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:131
+msgid "Nag Mundari"
+msgstr "ພາສານາກ ມຸນດາຣີ"
+
+#: src/font-manager/web/google/LanguageData.vala:132
+msgid "Nandinagari"
+msgstr "ພາສານັນທິນາຄະລີ"
+
+#: src/font-manager/web/google/LanguageData.vala:134
+msgid "Newa"
+msgstr "ພາສາເນວາ"
+
+#. { N_(""), "nko", "" },
+#: src/font-manager/web/google/LanguageData.vala:136
+msgid "Nüshu"
+msgstr "ພາສາໜູຊູ"
+
+#: src/font-manager/web/google/LanguageData.vala:139
+msgid "Old Hungarian"
+msgstr "ຮັງກາຣີບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:141
+msgid "Old North Arabian"
+msgstr "ອາຣັບເໜືອບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:142
+msgid "Old Permic"
+msgstr "ເປີມິກບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:143
+msgid "Old Persian"
+msgstr "ເປີເຊຍບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:144
+msgid "Old Sogdian"
+msgstr "ຊັອກເດຍບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:146
+msgid "Old Turkic"
+msgstr "ເທີກິກບູຮານ"
+
+#: src/font-manager/web/google/LanguageData.vala:147
+msgid "Osage"
+msgstr "ພາສາໂອເຊຈ"
+
+#: src/font-manager/web/google/LanguageData.vala:150
+msgid "Pahawh Hmong"
+msgstr "ຕົວອັກສອນມົ້ງ (ປາເຮົາ)"
+
+#: src/font-manager/web/google/LanguageData.vala:151
+msgid "Palmyrene"
+msgstr "ພາສາປາມີຣີນ"
+
+#: src/font-manager/web/google/LanguageData.vala:152
+msgid "Pau Cin Hau"
+msgstr "ພາສາປົວສິນເຮົາ"
+
+#: src/font-manager/web/google/LanguageData.vala:154
+msgid "Phoenician"
+msgstr "ພາສາຟີນີເຊຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:155
+msgid "Psalter Pahlavi"
+msgstr "ພາສາພັດລາວີ (ເພງສັນລະເສີນ)"
+
+#: src/font-manager/web/google/LanguageData.vala:158
+msgid "Samaritan"
+msgstr "ພາສາຊາມາລີທັນ"
+
+#: src/font-manager/web/google/LanguageData.vala:160
+msgid "Sharada"
+msgstr "ພາສາຊາຣະທາ"
+
+#: src/font-manager/web/google/LanguageData.vala:161
+msgid "Shavian"
+msgstr "ພາສາເຊວຽນ"
+
+#: src/font-manager/web/google/LanguageData.vala:162
+msgid "Siddham"
+msgstr "ພາສາສິດທຳ"
+
+#: src/font-manager/web/google/LanguageData.vala:163
+msgid "SignWriting"
+msgstr "ພາສາສັນຍະລັກ (ຂຽນ)"
+
+#: src/font-manager/web/google/LanguageData.vala:165
+msgid "Sogdian"
+msgstr "ພາສາຊັອກເດຍ"
+
+#: src/font-manager/web/google/LanguageData.vala:166
+msgid "Sora Sompeng"
+msgstr "ພາສາໂສຣະ ສົມເປັງ"
+
+#: src/font-manager/web/google/LanguageData.vala:167
+msgid "Soyombo"
+msgstr "ພາສາໂຊຢົມໂບ"
+
+#: src/font-manager/web/google/LanguageData.vala:172
+msgid "Tagalog"
+msgstr "ພາສາຕາກາລັອກ"
+
+#: src/font-manager/web/google/LanguageData.vala:173
+msgid "Tagbanwa"
+msgstr "ພາສາຕັກບັນວາ"
+
+#. TRANSLATORS : The replacement character here refers to a language name.
+#: src/font-manager/web/google/LanguageData.vala:190
+#, c-format
+msgid "No sample for %s available"
+msgstr "ບໍ່ມີຂໍ້ຄວາມຕົວຢ່າງສຳລັບ %s"
+
+#: src/font-manager/web/google/LanguageData.vala:192
+msgid "Please file an issue requesting an update to available samples."
+msgstr "ກະລຸນາແຈ້ງບັນຫາເພື່ອຂໍອັບເດດຂໍ້ຄວາມຕົວຢ່າງທີ່ມີຢູ່."
+
+#: src/font-manager/web/google/PreviewPage.vala:383
+#, c-format
+msgid "%i Language Sample Available "
+msgid_plural "%i Language Samples Available"
+msgstr[0] "ມີຂໍ້ຄວາມຕົວຢ່າງ %i ພາສາ"
+
+#: src/font-manager/web/google/WebFont.vala:174
+msgid "ExtraLight"
+msgstr "ບາງຫຼາຍ"
+
+#: src/font-manager/web/google/WebFont.vala:182
+msgid "SemiBold"
+msgstr "ເກືອບໜາ"
+
+#: src/font-manager/web/google/WebFont.vala:186
+msgid "ExtraBold"
+msgstr "ໜາຫຼາຍ"
+
+#: src/font-manager/web/google/WebFont.vala:188
+msgid "Black"
+msgstr "ດຳ (ໜາທີ່ສຸດ)"
+
+#: src/font-viewer/MainWindow.vala:279
+msgid "System Font"
+msgstr "ຟອນລະບົບ"
+
+#: src/font-viewer/MainWindow.vala:281
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+"ໄຟລ໌ຟອນທີ່ເລືອກອາດຈະຖືກຕິດຕັ້ງຢູ່ໃນໄດເຣັກທໍຣີລະບົບ ຫຼື ຜູ້ໃຊ້ປັດຈຸບັນບໍ່ມີສິດຂຽນ.\n"
+"\n"
+"ຖ້າທ່ານຕ້ອງການລົບຟອນນີ້ອອກຈາກລາຍການຟອນທີ່ມີຢູ່ ໃຫ້ໃຊ້ຕົວຈັດການແພັກເກັດຂອງລະບົບເພື່ອລົບແພັກເກັດທີ່ມີໄຟລ໌ຟ"
+"ອນນີ້, ຂໍໃຫ້ຜູ້ດູແລລະບົບລົບອອກໃຫ້ ຫຼື ໃຊ້ແອັບພລິເຄຊັນຈັດການຟອນເພື່ອປິດໃຊ້ງານມັນ."
+
+#: src/font-viewer/MainWindow.vala:284
+msgid "Newer version already installed"
+msgstr "ມີເວີຊັນທີ່ໃໝ່ກວ່າຕິດຕັ້ງຢູ່ແລ້ວ"
+
+#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
+msgid "Click to overwrite"
+msgstr "ຄລິກເພື່ອຂຽນທັບ"
+
+#: src/font-viewer/MainWindow.vala:289
+msgid "Update Font"
+msgstr "ອັບເດດຟອນ"
+
+#: src/font-viewer/MainWindow.vala:294
+msgid "Remove Font"
+msgstr "ລົບຟອນ"
+
+#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/font-viewer-main-window.ui:109
+msgid "Install Font"
+msgstr "ຕິດຕັ້ງຟອນ"
+
+#: src/font-viewer/MainWindow.vala:365
+msgid "Preview Area Colors"
+msgstr "ສີຂອງບໍລິເວນເບິ່ງຕົວຢ່າງ"
+
+#: src/common/ui/font-manager-preview-colors.ui:9
+#: src/common/ui/font-manager-preview-colors.ui:15
+msgid "Select background color"
+msgstr "ເລືອກສີພື້ນຫຼັງ"
+
+#: src/common/ui/font-manager-preview-colors.ui:23
+#: src/common/ui/font-manager-preview-colors.ui:29
+msgid "Select text color"
+msgstr "ເລືອກສີຂໍ້ຄວາມ"
+
+#: src/font-manager/gtk/help-overlay.ui:11
+msgid "General"
+msgstr "ທົ່ວໄປ"
+
+#: src/font-manager/gtk/help-overlay.ui:23
+msgid "Increase preview size"
+msgstr "ເພີ່ມຂະໜາດຕົວຢ່າງ"
+
+#: src/font-manager/gtk/help-overlay.ui:30
+msgid "Decrease preview size"
+msgstr "ຫຼຸດຂະໜາດຕົວຢ່າງ"
+
+#: src/font-manager/gtk/help-overlay.ui:37
+msgid "Reset preview size"
+msgstr "ຕັ້ງຄ່າຂະໜາດຕົວຢ່າງຄືນໃໝ່"
+
+#: src/font-manager/gtk/help-overlay.ui:44
+msgid "Focus search entry"
+msgstr "ໄປທີ່ຊ່ອງຄົ້ນຫາ"
+
+#: src/font-manager/gtk/help-overlay.ui:51
+msgid "Reload"
+msgstr "ໂຫຼດໃໝ່"
+
+#: src/font-manager/gtk/help-overlay.ui:58
+#: src/font-manager/gtk/help-overlay.ui:65
+msgid "Quit the application"
+msgstr "ອອກຈາກແອັບພລິເຄຊັນ"
+
+#: src/font-manager/gtk/help-overlay.ui:73
+msgid "Mode"
+msgstr "ໂໝດ"
+
+#: src/font-manager/gtk/help-overlay.ui:78
+msgid "Switch to Manage mode"
+msgstr "ປ່ຽນເປັນໂໝດຈັດການ"
+
+#: src/font-manager/gtk/help-overlay.ui:85
+msgid "Switch to Browse mode"
+msgstr "ປ່ຽນເປັນໂໝດເລືອກເບິ່ງ"
+
+#: src/font-manager/gtk/help-overlay.ui:92
+msgid "Switch to Compare mode"
+msgstr "ປ່ຽນເປັນໂໝດປຽບທຽບ"
+
+#: src/font-manager/gtk/help-overlay.ui:99
+msgid "Switch to Google Fonts mode"
+msgstr "ປ່ຽນເປັນໂໝດ Google Fonts"
+
+#: src/font-manager/gtk/help-overlay.ui:107
+msgid "Preview Mode"
+msgstr "ໂໝດເບິ່ງຕົວຢ່າງ"
+
+#: src/font-manager/gtk/help-overlay.ui:112
+msgid "Switch to Standard preview"
+msgstr "ປ່ຽນເປັນການເບິ່ງຕົວຢ່າງແບບມາດຕະຖານ"
+
+#: src/font-manager/gtk/help-overlay.ui:119
+msgid "Switch to Waterfall preview"
+msgstr "ປ່ຽນເປັນການເບິ່ງຕົວຢ່າງແບບຫຼັ່ງໄຫຼ"
+
+#: src/font-manager/gtk/help-overlay.ui:126
+msgid "Switch to Body Text preview"
+msgstr "ປ່ຽນເປັນການເບິ່ງຕົວຢ່າງແບບຂໍ້ຄວາມເນື້ອຫາ"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
+msgid "Increase tile size"
+msgstr "ເພີ່ມຂະໜາດຕາຕະລາງ"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
+msgid "Decrease tile size"
+msgstr "ຫຼຸດຂະໜາດຕາຕະລາງ"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
+msgid "Toggle search entry"
+msgstr "ເປີດ/ປິດ ຊ່ອງຄົ້ນຫາ"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
+msgid "Toggle preview panel"
+msgstr "ເປີດ/ປິດ ແຖບເບິ່ງຕົວຢ່າງ"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
+"ສະຖານະຂອງຕະກູນຟອນທີ່ເລືອກ.\n"
+"\n"
+"ການປິດໃຊ້ງານຈະເຮັດໃຫ້ແອັບພລິເຄຊັນອື່ນບໍ່ສາມາດໃຊ້ຟອນໃນຕະກູນນີ້ໄດ້."
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
+msgid "Collection Name"
+msgstr "ຊື່ຊຸດສະສົມ"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:45
+msgid "_Rename"
+msgstr "_ປ່ຽນຊື່"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:20
+msgid "Add selected font to comparison"
+msgstr "ເພີ່ມຟອນທີ່ເລືອກເຂົ້າໃນການປຽບທຽບ"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:33
+msgid "Remove selected font from comparison"
+msgstr "ລົບຟອນທີ່ເລືອກອອກຈາກການປຽບທຽບ"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:45
+msgid "Pinned Comparisons"
+msgstr "ການປຽບທຽບທີ່ປັກໝຸດໄວ້"
+
+#: src/font-manager/ui/font-manager-export-dialog.ui:19
+#: src/font-manager/ui/font-manager-remove-dialog.ui:19
+msgid "Cancel"
+msgstr "ຍົກເລີກ"
+
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
+#: src/font-manager/ui/font-manager-font-list-view.ui:54
+#: src/font-manager/ui/font-manager-remove-dialog.ui:43
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
+msgid "Search Families…"
+msgstr "ຄົ້ນຫາຕະກູນຟອນ…"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:29
+msgid "Search Orthographies…"
+msgstr "ຄົ້ນຫາລະບົບການຂຽນ…"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:72
+msgid "Minimum Coverage"
+msgstr "ການຮອງຮັບຕ່ຳສຸດ"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:101
+msgid "Deselect All"
+msgstr "ຍົກເລີກການເລືອກທັງໝົດ"
+
+#: src/font-manager/ui/font-manager-orthography-list.ui:53
+msgid "Clear selected filter"
+msgstr "ລ້າງຕົວຕອງທີ່ເລືອກ"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
+msgid "Created :"
+msgstr "ສ້າງເມື່ອ :"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
+msgid "Save current comparison"
+msgstr "ບັນທຶກການປຽບທຽບປັດຈຸບັນ"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:45
+msgid "Remove selected comparison"
+msgstr "ລົບການປຽບທຽບທີ່ເລືອກ"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:73
+msgid "Restore selected comparison"
+msgstr "ຄືນຄ່າການປຽບທຽບທີ່ເລືອກ"
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:13
+msgid "Select fonts to remove"
+msgstr "ເລືອກຟອນທີ່ຈະລົບ"
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:25
+msgid "Delete"
+msgstr "ລົບ"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:35
+msgid "Categories"
+msgstr "ໝວດໝູ່"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:86
+msgid "Smart Collections"
+msgstr "ຊຸດສະສົມອັດສະລິຍະ"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "ລຳດັບການຈັດລຽງ"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
+msgid "Collections"
+msgstr "ຊຸດສະສົມ"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:22
+msgid "Enter target family"
+msgstr "ປ້ອນຕະກູນຟອນເປົ້າໝາຍ"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:32
+msgid "Add substitute"
+msgstr "ເພີ່ມການແທນທີ່"
+
+#: src/font-manager/ui/font-manager-substitute.ui:34
+msgid "Remove substitute"
+msgstr "ລົບການແທນທີ່"
+
+#: src/font-manager/ui/font-manager-substitute.ui:35
+msgid "Enter substitute family"
+msgstr "ປ້ອນຕະກູນຟອນທີ່ຈະແທນທີ່"
+
+#: src/font-manager/ui/font-manager-substitute.ui:51
+msgid "prefer"
+msgstr "ມັກໃຊ້ (prefer)"
+
+#: src/font-manager/ui/font-manager-substitute.ui:52
+msgid "accept"
+msgstr "ຍອມຮັບ (accept)"
+
+#: src/font-manager/ui/font-manager-substitute.ui:53
+msgid "default"
+msgstr "ຄ່າເລີ່ມຕົ້ນ (default)"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:27
+msgid "Comment"
+msgstr "ຄຳອະທິບາຍ"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:42
+msgid "Executable"
+msgstr "ໄຟລ໌ທີ່ເປີດໄດ້"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:57
+msgid "Arguments"
+msgstr "ອາກິວເມນ (Arguments)"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:39
+msgid "Newest"
+msgstr "ໃໝ່ທີ່ສຸດ"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:40
+msgid "Most Popular"
+msgstr "ຍອດນິຍົມທີ່ສຸດ"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
+msgid "Trending"
+msgstr "ກຳລັງມາແຮງ"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
+msgid "Serif"
+msgstr "ເຊຣິຟ (ມີຫົວ)"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
+msgid "Sans Serif"
+msgstr "ຊານເຊຣິຟ (ບໍ່ມີຫົວ)"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
+msgid "Handwriting"
+msgstr "ຕົວຂຽນດ້ວຍມື"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
+msgid "Category"
+msgstr "ໝວດໝູ່"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
+msgid "4+"
+msgstr "4+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
+msgid "8+"
+msgstr "8+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
+msgid "12+"
+msgstr "12+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
+msgid "Variations"
+msgstr "ຮູບແບບ"
+
+#: src/font-viewer/font-viewer-main-window.ui:31
+msgid "Preview font files before installing them."
+msgstr "ເບິ່ງຕົວຢ່າງໄຟລ໌ຟອນກ່ອນທີ່ຈະຕິດຕັ້ງພວກມັນ."
+
+#: src/font-viewer/font-viewer-main-window.ui:32
+msgid "To preview a font simply drag it onto this area."
+msgstr "ເພື່ອເບິ່ງຕົວຢ່າງຟອນ ພຽງແຕ່ລາກມັນມາໃສ່ບໍລິເວນນີ້."
