@@ -1,6 +1,6 @@
 /* Categories.vala
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,6 +83,8 @@ namespace FontManager {
     public class CategoryListRow : TreeListItemRow {
 
         ulong handler_id = 0;
+
+        public CategoryListRow () { editable = false; }
 
         protected override void reset () {
             item_label.set_text("");

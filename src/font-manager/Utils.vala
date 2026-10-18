@@ -1,6 +1,6 @@
 /* Utils.vala
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,6 +86,7 @@ namespace FontManager {
 
     public class TreeListItemRow : ListItemRow {
 
+        public bool editable { get; set; default = true; }
         public Gtk.TreeExpander? expander { get; set; default = null; }
         public Gtk.SelectionModel? selection { get; set; default = null; }
 
@@ -103,7 +104,7 @@ namespace FontManager {
             if (row == null)
                 return;
             uint position = row.get_position();
-            if (selection.is_selected(position)) {
+            if (editable && selection.is_selected(position)) {
                 edit_label.visible = edit_label.editable = true;
                 bool expanded = row.expanded;
                 if (row.expandable)
