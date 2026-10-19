@@ -1,6 +1,6 @@
 /* font-manager-database.c
  *
- * Copyright (C) 2009-2024 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,11 +39,11 @@
 "width INTEGER, description TEXT );\n"
 
 #define CREATE_INFO_TABLE "CREATE TABLE IF NOT EXISTS Metadata ( " \
-"uid INTEGER PRIMARY KEY, filepath TEXT, findex INTEGER, family TEXT, " \
-"style TEXT, owner INTEGER, psname TEXT, filetype TEXT, 'n-glyphs' INTEGER, " \
-"copyright TEXT, version TEXT, description TEXT, 'license-data' TEXT, " \
-"'license-url' TEXT, vendor TEXT, designer TEXT, 'designer-url' TEXT, " \
-"'license-type' TEXT, fsType INTEGER, filesize TEXT, checksum TEXT );\n"
+"uid INTEGER PRIMARY KEY, filepath TEXT, findex INTEGER, family TEXT, style TEXT, " \
+"owner INTEGER, psname TEXT, filetype TEXT, 'n-glyphs' INTEGER, copyright TEXT, " \
+"version TEXT, description TEXT, 'license-data' TEXT, 'license-url' TEXT, vendor TEXT, " \
+"designer TEXT, 'designer-url' TEXT, 'license-type' TEXT, " \
+"fsType INTEGER, filesize TEXT, checksum TEXT, revision TEXT );\n"
 
 #define CREATE_PANOSE_TABLE "CREATE TABLE IF NOT EXISTS Panose ( " \
 "uid INTEGER PRIMARY KEY, P0 INTEGER, P1 INTEGER, P2 INTEGER, P3 INTEGER, " \
@@ -67,7 +67,7 @@
 #define DROP_PANOSE_MATCH_INDEX "DROP INDEX IF EXISTS panose_match_idx;\n"
 
 #define INSERT_FONT_ROW "INSERT OR REPLACE INTO Fonts VALUES (NULL,?,?,?,?,?,?,?,?,?);"
-#define INSERT_INFO_ROW "INSERT OR REPLACE INTO Metadata VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
+#define INSERT_INFO_ROW "INSERT OR REPLACE INTO Metadata VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
 #define INSERT_PANOSE_ROW "INSERT OR REPLACE INTO Panose VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?);"
 #define INSERT_ORTH_ROW "INSERT OR REPLACE INTO Orthography VALUES (NULL, ?, ?, ?, ?);"
 

@@ -1,6 +1,6 @@
 /* font-manager-font-info.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,6 +49,7 @@ static const FontManagerJsonProxyProperty InfoProperties [] =
     { "fsType", G_TYPE_INT64, "Embedding restrictions" },
     { "filesize", G_TYPE_STRING, "Size on disk" },
     { "checksum", G_TYPE_STRING, "MD5 checksum" },
+    { "revision", G_TYPE_STRING, "Full revision number" },
     { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" },
     { "panose", G_TYPE_BOXED, "Panose information as a JsonArray" }
 };

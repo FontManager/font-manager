@@ -69,6 +69,7 @@ FontPropertyRow [] =
 
 #define N_FONT_PROPERTIES G_N_ELEMENTS(FontPropertyRow)
 #define FILESIZE_PROPERTY (N_FONT_PROPERTIES - 1)
+#define VERSION_PROPERTY (N_FONT_PROPERTIES - 4)
 
 static GtkWidget *
 create_title_label (FontManagerPropertiesPage *self, gint property)
@@ -239,6 +240,10 @@ update (FontManagerPropertiesPage *self)
         } else {
             gtk_label_set_label(GTK_LABEL(widget), value);
             gtk_widget_set_tooltip_text(widget, value);
+            if (i == VERSION_PROPERTY && json_object_has_member(self->properties, "revision")) {
+                const gchar *revision = json_object_get_string_member(self->properties, "revision");
+                gtk_widget_set_tooltip_text(widget, revision);
+            }
         }
 
     }

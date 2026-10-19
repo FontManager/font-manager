@@ -1,6 +1,6 @@
 /* font-manager-font-info.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,8 @@
  *   "fsType" : int,
  *   "filesize" : string,
  *   "checksum" : string,
- *   "panose": [ ],
+ *   "revision" : string,
+ *   "panose": [ ]
  * }
  * ]|
  *

@@ -1,6 +1,6 @@
 /* font-manager-freetype.c
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -761,6 +761,8 @@ get_font_revision (JsonObject *json_obj, const FT_Face face)
             setlocale(LC_ALL, "C");
             g_autofree gchar *rev = g_strdup_printf("%.2f", (float) head->Font_Revision / 65536.0);
             json_object_set_string_member(json_obj, "version", rev);
+            g_autofree gchar *rev_full = g_strdup_printf("%f", (float) head->Font_Revision / 65536.0);
+            json_object_set_string_member(json_obj, "revision", rev_full);
             setlocale(LC_ALL, loc);
             return;
         }
