@@ -19,6 +19,9 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.56.3')
     error('Vala compiler version is @0@ but project requires >= 0.56.3'.format(valac.version()))
 endif
+if valac.version().version_compare('>= 0.56.19')
+    add_global_arguments('-D', 'VALA_0_56_19_OR_NEWER', language: 'vala')
+endif
 
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)

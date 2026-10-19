@@ -669,7 +669,11 @@ namespace FontManager {
             widget_set_name(drag_count, "FontManagerListDragCount");
             drag_icon.add_overlay(drag_count);
             drag_count.set_label(selected_items.length.to_string());
-            var gtk_drag_icon = (Gtk.DragIcon) new Gtk.DragIcon.get_for_drag(drag);
+            #if VALA_0_56_19_OR_NEWER
+                var gtk_drag_icon = (Gtk.DragIcon) new Gtk.DragIcon.get_for_drag(drag);
+            #else
+                var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
+            #endif
             gtk_drag_icon.set_child(drag_icon);
             return;
         }
