@@ -3,20 +3,21 @@
 # JI YH <3178879831@qq.com>, 2021.
 # joe <ourmicroid@outlook.com>, 2022.
 # Eric <alchemillatruth@purelymail.com>, 2022.
+# Cassian <prismarine@epicraft.top>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-01-23 13:53+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"font-manager/font-manager-help-docs/zh_Hans/>\n"
+"PO-Revision-Date: 2025-08-04 04:01+0000\n"
+"Last-Translator: Cassian <prismarine@epicraft.top>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -439,7 +440,8 @@ msgid ""
 "While any changes made using <app>Font Manager</app> are applied "
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
-msgstr ""
+msgstr "尽管 <app>Font Manager</app> "
+"做出的更改将立即应用，打开的应用程序可能需要重新启动来反映这些更改。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
@@ -485,14 +487,15 @@ msgstr "‎文件选择器对话框中选择要安装的文件后单击‎<gui s
 msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
-msgstr ""
+msgstr "拖放也受支持。将文件拖到字体列表中来安装它们。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
 msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
-msgstr ""
+msgstr "您可以将任何受支持的字体类型拖放到字体列表中。这包括字体文件、目录和归档文件"
+"。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -501,6 +504,9 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"安装<link action=\"install:file-roller\" href="
+"\"https://wiki.gnome.org/Apps/FileRoller\">Archive Manager</link> "
+"来启用压缩文件支持。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -513,12 +519,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "摆脱不想要的字体"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "移除"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
@@ -538,7 +544,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "要移除您不再需要的字体："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -546,6 +552,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"单击窗口顶端的 <gui style=\"button\"> <media type=\"image\" src="
+"\"media/list-remove-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -557,33 +565,33 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "单击 <gui style=\"button\">删除</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
 msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
-msgstr ""
+msgstr "<app>字体管理器</app> 在默认用户字体目录中组织和存储安装的字体。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
 msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
-msgstr ""
+msgstr "当前用户字体目录位于 <code><file>~/.local/share/fonts</file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
 msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
-msgstr ""
+msgstr "文件已永久删除。在移除任何字体前请确保您拥有备份，以防您可能还会需要它们。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "增删字体目录"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
@@ -595,24 +603,25 @@ msgstr "字体源"
 msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
-msgstr ""
+msgstr "<app>字体管理器</app> "
+"允许您增删要扫描字体文件的目录。增添的目录会被递归扫描。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
 msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
-msgstr ""
+msgstr "这允许您在家目录以外的地方保留字体文件或者临时“安装”一个目录的字体。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
-msgstr ""
+msgstr "这也允许您以您想要的任何方式组织字体文件。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "要添加源："
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -637,12 +646,15 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
+"通过单击窗口顶端的<gui><media type=\"image\" src="
+"\"media/preferences-system-symbolic.svg\""
+"/></gui>来打开<app>字体管理器</app>首选项对话框。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "在侧栏中选择“源”"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -650,6 +662,7 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"单击 <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
