@@ -1,12 +1,13 @@
 # liimee <alt3753.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
 # Reza Almanda <rezaalmanda27@gmail.com>, 2021, 2022.
+# Arif Budiman <arifpedia@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-06-05 04:36+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"PO-Revision-Date: 2026-02-14 13:09+0000\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/id/>\n"
 "Language: id\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -155,7 +156,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr "tipe file"
+msgstr "Tipe file"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -190,7 +191,7 @@ msgstr "Informasi masing-masing karakter dan detailnya"
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Peta Karakter"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
@@ -198,6 +199,7 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
 msgstr ""
+"Saat dalam mode \"Kelola\", panel pratinjau berisi tab berlabel \"Karakter\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -205,11 +207,13 @@ msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
 msgstr ""
+"Memilih tab ini memungkinkan melihat semua mesin terbang yang terdapat dalam "
+"font yang saat ini dipilih."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Tab Peta Karakter</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -221,11 +225,12 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Seret karakter ke aplikasi lain untuk menggunakannya."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
@@ -241,6 +246,7 @@ msgstr "Koleksi"
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
 msgstr ""
+"<app>Font Manager</app> memungkinkan Anda menentukan koleksi Anda sendiri."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
@@ -248,21 +254,24 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"Koleksi memungkinkan Anda mengatur font dengan cara yang masuk akal bagi "
+"Anda dan juga mempermudah mengaktifkan atau menonaktifkan banyak keluarga "
+"sekaligus."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "Koleksi tidak mengubah file Anda dengan cara apa pun."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "Jangan ragu untuk membuat atau menghapus sebanyak yang Anda suka."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "Untuk membuat koleksi baru:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -277,6 +286,8 @@ msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -284,16 +295,19 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> di bagian bawah tampilan Koleksi."
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "Masukkan nama untuk koleksi baru Anda"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
 msgstr ""
+"Tambahkan font dengan menyeretnya dari daftar font ke koleksi baru Anda."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
@@ -319,6 +333,8 @@ msgid ""
 "external ref='media/list-remove-symbolic.svg' "
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -326,11 +342,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> di bagian bawah tampilan Koleksi."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "Untuk mengaktifkan koleksi:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
@@ -351,7 +369,7 @@ msgstr "Untuk menghapus keluarga dari koleksi:"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "Pilih keluarga atau keluarga yang ingin Anda hapus"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -359,21 +377,23 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> di bagian atas daftar font."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "Untuk mengganti nama koleksi:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "Pilih koleksi, klik lagi"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "Masukkan nama baru"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
@@ -406,16 +426,20 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
+"Jika Anda memiliki banyak font yang terinstal, dialog pemilihan font dan "
+"daftar di banyak aplikasi dapat menjadi sangat panjang dan tidak nyaman "
+"digunakan, menonaktifkan font yang tidak sering Anda gunakan atau tidak Anda "
+"perlukan saat ini membantu menjaga ukuran yang wajar."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "Untuk mengaktifkan atau menonaktifkan keluarga font:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "Pilih keluarga yang ingin Anda aktifkan/nonaktifkan di daftar font"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -423,6 +447,9 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"Anda juga dapat mengklik dua kali, menekan <gui style=\"button\">Spasi</gui> "
+"atau menekan <gui style=\"button\">Enter</gui> untuk mengalihkan font yang "
+"dipilih."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -430,6 +457,8 @@ msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
 msgstr ""
+"<link xref=\"organize#user-collections\">Koleksi</link> memudahkan untuk "
+"mengaktifkan atau menonaktifkan beberapa keluarga sekaligus."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -438,11 +467,14 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
+"Meskipun perubahan apa pun yang dibuat menggunakan <app>Font Manager</app> "
+"diterapkan segera, aplikasi yang terbuka mungkin perlu dimulai ulang agar "
+"mencerminkan perubahan tersebut."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "Menambahkan font untuk penggunaan Anda"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
@@ -455,11 +487,13 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
+"<app>Font Manager</app> mendukung <link xref=\"supported-formats\">format "
+"font</link> yang paling umum."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "Saat dalam mode <gui style=\"button\">Kelola</gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -467,6 +501,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Klik <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> di bagian atas jendela"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -474,6 +510,8 @@ msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"Pilih file yang ingin Anda instal dari dialog pemilih file yang ditampilkan "
+"dan klik <gui style=\"button\">Buka</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
@@ -481,6 +519,8 @@ msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
 msgstr ""
+"Seret dan lepas juga didukung. Cukup seret file ke daftar font untuk "
+"menginstalnya."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
@@ -488,6 +528,8 @@ msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
 msgstr ""
+"Anda dapat menyeret jenis file yang didukung apa pun ke daftar font. Ini "
+"termasuk file font, direktori, dan arsip."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -496,6 +538,9 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"Instal <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
+"Apps/FileRoller\">Archive Manager</link> untuk mengaktifkan dukungan untuk "
+"file terkompresi."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -504,16 +549,18 @@ msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
 msgstr ""
+"<app>Font Manager</app> akan memuat ulang kapan pun perubahan memerlukannya. "
+"Ini mungkin memakan waktu sejenak tergantung pada jumlah perubahan."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "Menyingkirkan font yang tidak diinginkan"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "Penghapusan"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
@@ -521,6 +568,8 @@ msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
 msgstr ""
+"Satu-satunya font yang tercantum dalam dialog penghapusan adalah yang "
+"diinstal di direktori font default Anda."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -529,11 +578,14 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"File font yang diinstal di seluruh sistem biasanya diinstal sebagai bagian "
+"dari sistem operasi, sebagai paket, atau oleh administrator sistem. <app>"
+"Font Manager</app> tidak menyediakan penghapusan file tersebut saat ini."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Untuk menghapus font yang tidak lagi Anda perlukan:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -541,6 +593,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Klik <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> di bagian atas jendela"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -548,11 +602,13 @@ msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
 msgstr ""
+"Pilih keluarga atau gaya individual yang ingin Anda hapus dari daftar yang "
+"ditampilkan"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "Klik <gui style=\"button\">Hapus</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
@@ -560,6 +616,8 @@ msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
 msgstr ""
+"<app>Font Manager</app> mengatur dan menyimpan font yang terinstal di "
+"direktori font pengguna default."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
@@ -567,6 +625,8 @@ msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
 msgstr ""
+"Direktori font pengguna default saat ini terletak di <code><file>~/.local/"
+"share/fonts</file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
@@ -574,11 +634,13 @@ msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
 msgstr ""
+"File dihapus secara permanen. Sebelum menghapus font apa pun, pastikan Anda "
+"memiliki cadangan jika ada kemungkinan Anda memerlukannya lagi."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "Menambahkan dan menghapus direktori font"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
@@ -591,6 +653,9 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
+"<app>Font Manager</app> memungkinkan Anda menambahkan atau menghapus "
+"direktori untuk memindai file font. Direktori yang ditambahkan dipindai "
+"secara rekursif."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
@@ -598,16 +663,20 @@ msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
 msgstr ""
+"Ini memungkinkan penyimpanan file font di tempat lain selain direktori home "
+"Anda atau \"menginstal\" direktori font sementara."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
 msgstr ""
+"Ini juga memungkinkan Anda mengatur file font dengan cara apa pun yang Anda "
+"suka."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "Untuk menambahkan sumber:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -622,6 +691,8 @@ msgid ""
 "external ref='media/preferences-system-symbolic.svg' "
 "md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
@@ -632,12 +703,15 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
+"Buka dialog preferensi <app>Font Manager</app> dengan mengklik <gui> <media "
+"type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> di "
+"bagian atas jendela."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "Pilih \"Sumber\" dari sidebar"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -645,22 +719,24 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid ""
 "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
+"Pilih direktori yang ingin Anda tambahkan dari pemilih file yang ditampilkan"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "Untuk menghapus sumber:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
-msgstr ""
+msgstr "Pilih direktori yang ingin Anda hapus dari daftar yang ditampilkan"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
@@ -668,11 +744,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "Untuk mengaktifkan atau menonaktifkan sumber:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
@@ -681,16 +759,19 @@ msgid ""
 "\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
 "\"/> </gui> at the top of the window."
 msgstr ""
+"Buka dialog preferensi <app>Font Manager</app> dengan mengklik <gui "
+"style=\"button\"> <media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/> </gui> di bagian atas jendela."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
-msgstr ""
+msgstr "Pilih sumber yang ingin Anda aktifkan atau nonaktifkan"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr ""
+msgstr "Klik <gui> tombol alih </gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
@@ -698,6 +779,8 @@ msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
 msgstr ""
+"Meskipun sumber selalu tersedia di dalam aplikasi, mereka tidak tersedia "
+"untuk aplikasi lain sampai diaktifkan."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
@@ -705,16 +788,18 @@ msgid ""
 "You can avoid having multiple copies of the same files by adding directories "
 "from other filesystems."
 msgstr ""
+"Anda dapat menghindari memiliki beberapa salinan file yang sama dengan "
+"menambahkan direktori dari sistem file lain."
 
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7
 msgid "Generate fontconfig configuration files"
-msgstr ""
+msgstr "Hasilkan file konfigurasi fontconfig"
 
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "Preferensi Tampilan dan Rendering"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -722,6 +807,8 @@ msgid ""
 "The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
 "valid fontconfig configuration files for the exposed properties."
 msgstr ""
+"Panel \"Tampilan\" dan \"Rendering\" di dialog preferensi menghasilkan file "
+"konfigurasi fontconfig yang valid untuk properti yang diekspos."
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
@@ -729,6 +816,8 @@ msgid ""
 "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
 "user.html\">fonts-conf</link> for more details."
 msgstr ""
+"Lihat <link href=\"https://www.freedesktop.org/software/fontconfig/"
+"fontconfig-user.html\">fonts-conf</link> untuk detail lebih lanjut."
 
 #. (itstool) path: note/p
 #: C/font-manager-fontconfig.page:22
@@ -736,56 +825,58 @@ msgid ""
 "Desktop environments and applications may rely on their own configuration "
 "mechanism."
 msgstr ""
+"Lingkungan desktop dan aplikasi mungkin mengandalkan mekanisme konfigurasi "
+"mereka sendiri."
 
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr ""
+msgstr "Pengantar <app>Font Manager</app>."
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr ""
+msgstr "<app>Font Manager</app> memungkinkan Anda:"
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
 msgid "Introduction"
-msgstr ""
+msgstr "Pengantar"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr ""
+msgstr "Pratinjau file font dengan berbagai cara"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "Lihat metadata font yang tersedia"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr ""
+msgstr "Instal atau hapus font untuk penggunaan Anda"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr ""
+msgstr "Kelompokkan font ke dalam \"Koleksi\""
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
-msgstr ""
+msgstr "Aktifkan atau nonaktifkan keluarga font individual atau seluruh koleksi"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr ""
+msgstr "Tentukan direktori yang berbeda untuk digunakan untuk font"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "Lakukan substitusi font"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
@@ -810,6 +901,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
+"Untuk informasi lebih lanjut tentang <app>Font Manager</app>, silakan "
+"kunjungi <link href=\"http://fontmanager.github.io/\"> Beranda </link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -818,11 +911,14 @@ msgid ""
 "application or this manual, please use the projects <link href=\"https://"
 "github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
+"Untuk melaporkan bug atau membuat saran tentang aplikasi <app>Font Manager</"
+"app> atau manual ini, silakan gunakan <link href=\"https://github.com/"
+"FontManager/master/issues\"> Issue Tracker </link> proyek"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr ""
+msgstr "Lihat informasi lisensi yang terdapat dalam file font"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
@@ -834,6 +930,7 @@ msgstr "Lisensi"
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
+"Saat dalam mode \"Kelola\", panel pratinjau berisi tab berlabel \"Lisensi\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
@@ -841,6 +938,8 @@ msgid ""
 "Selecting this tab allows viewing any licensing information contained in the "
 "currently selected font."
 msgstr ""
+"Memilih tab ini memungkinkan melihat informasi lisensi apa pun yang terdapat "
+"dalam font yang saat ini dipilih."
 
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
@@ -860,7 +959,7 @@ msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
 msgid "Not all font files contain licensing information."
-msgstr ""
+msgstr "Tidak semua file font berisi informasi lisensi."
 
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
@@ -878,6 +977,7 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
 "\"."
 msgstr ""
+"Saat dalam mode \"Kelola\", panel pratinjau berisi tab berlabel \"Properti\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
@@ -885,6 +985,8 @@ msgid ""
 "Selecting this tab allows viewing metadata contained in the currently "
 "selected font."
 msgstr ""
+"Memilih tab ini memungkinkan melihat metadata yang terdapat dalam font yang "
+"saat ini dipilih."
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
@@ -907,11 +1009,12 @@ msgstr ""
 #: C/font-manager-metadata.page:27
 msgid "Some properties are optional and may not be present in all font files."
 msgstr ""
+"Beberapa properti bersifat opsional dan mungkin tidak ada di semua file font."
 
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "Lihat bahasa yang didukung dan cakupannya"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
@@ -924,6 +1027,8 @@ msgid ""
 "While the character map is in use the sidebar will switch to displaying the "
 "orthographies supported by the currently selected font."
 msgstr ""
+"Saat peta karakter digunakan, sidebar akan beralih untuk menampilkan "
+"ortografi yang didukung oleh font yang saat ini dipilih."
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
@@ -931,11 +1036,13 @@ msgid ""
 "Selecting an orthography from the list will filter the character map so that "
 "it only displays relevant characters"
 msgstr ""
+"Memilih ortografi dari daftar akan memfilter peta karakter sehingga hanya "
+"menampilkan karakter yang relevan"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr ""
+msgstr "<app>Ortografi yang Didukung</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -947,11 +1054,12 @@ msgctxt "_"
 msgid ""
 "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr ""
+msgstr "Substitusikan satu keluarga font dengan yang lain"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
@@ -989,7 +1097,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
+msgstr "Masukkan nama keluarga font yang ingin Anda atur substitusinya."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -1045,7 +1153,7 @@ msgstr "Untuk mencopot semua subtitusi:"
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
-msgstr ""
+msgstr "Klik <gui style=\"button\"> Buang </gui> di panel substitusi."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1055,6 +1163,10 @@ msgid ""
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
+"Font yang cocok dengan keluarga target diedit untuk menambahkan daftar "
+"keluarga yang disukai sebelum keluarga yang cocok, menambahkan keluarga yang "
+"dapat diterima setelah keluarga yang cocok dan menambahkan keluarga default "
+"ke akhir daftar keluarga."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
@@ -1062,6 +1174,8 @@ msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
 msgstr ""
+"Meskipun perubahan diterapkan segera, aplikasi yang terbuka mungkin perlu "
+"dimulai ulang."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
