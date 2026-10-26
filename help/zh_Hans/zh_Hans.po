@@ -4,12 +4,13 @@
 # joe <ourmicroid@outlook.com>, 2022.
 # Eric <alchemillatruth@purelymail.com>, 2022.
 # Cassian <prismarine@epicraft.top>, 2025.
+# jywondf <99643089+JoyWonderful@users.noreply.github.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2025-08-04 04:01+0000\n"
-"Last-Translator: Cassian <prismarine@epicraft.top>\n"
+"PO-Revision-Date: 2026-10-26 00:51+0000\n"
+"Last-Translator: jywondf <99643089+JoyWonderful@users.noreply.github.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -17,12 +18,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "翻译器信用"
+msgstr ""
+"玉堂白鹤 <yjwork@qq.com>, 2021\n"
+"匿名 <https://me-qr.com/entry/vcard/Wr2h6tBO>\n"
+"复予 <clonewith@qq.com>, 2024"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -96,7 +100,7 @@ msgstr "按字宽分类。"
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "字体粗细"
+msgstr "字重"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -160,7 +164,7 @@ msgstr "按字体格式分类。"
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr "未排序"
+msgstr "未分类"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
