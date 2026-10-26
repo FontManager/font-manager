@@ -1,16 +1,19 @@
 # Languages add-on <noreply-addon-languages@weblate.org>, 2025.
+# ssantos <ssantos@web.de>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-08-07 14:02+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -20,172 +23,184 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "Categorias geradas automaticamente"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Categorias"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
 msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
 msgstr ""
+"<app>Font Manager</app> categoriza automaticamente as suas fontes com base "
+"em várias propriedades."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Todas"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Todas as fontes disponíveis."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Fontes disponíveis para todos os utilizadores."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Utilizador"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Fontes disponíveis somente para si."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Tipo de família"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
 msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
 msgstr ""
+"Classificado por Tipo de Família — Requer informações Panose para estar "
+"presente nos metadados de fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Largura"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Ordenada por largura da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Ordenado por peso da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Inclinação"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Ordenado por inclinação da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Espaçamento"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Ordenado por espaçamento da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licença"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
 msgid "Sorted by font license — Requires license information to be present in font metadata."
 msgstr ""
+"Ordenado por licença da fonte — Requer informações de licença presentes nos "
+"metadados da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Fornecedor"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
 msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
 msgstr ""
+"Ordenado por fornecedor da fonte — Requer informações do fornecedor "
+"presentes nos metadados da fonte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Tipo de ficheiro"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Ordenado por tipo de ficheiro."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Sem classificação"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Fontes não presentes em nenhuma das suas coleções."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Desativada"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Famílias de fonte atualmente desativadas."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Ver caracteres individuais e os seus pormenores"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Mapa de Caracteres"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
+"No modo \"Gerir\" o painel de visualização contém uma guia rotulada "
+"\"Caracteres\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
 msgid "Selecting this tab allows viewing all glyphs contained in the currently selected font."
 msgstr ""
+"A seleção dessa guia permite visualizar todos os glifos contidos na fonte "
+"selecionada no momento."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Guia Mapa de Caracteres</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -196,46 +211,50 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"externo ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Arraste caracteres em outras aplicações para usá-los."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "A organizar as suas fontes"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Coleções"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>Font Manager</app> permite definir as suas próprias coleções."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
 msgid "Collections allow you to organize your fonts in a way that makes sense to you and also make it easier to enable or disable many families at once."
 msgstr ""
+"Coleções permitem que organize as suas fontes de uma forma que faz sentido "
+"para si e também tornar mais fácil ativar ou desativar muitas famílias de "
+"uma só vez."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "As coleções não modificam os seus ficheiros de forma alguma."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "Sinta-se à vontade para criar ou apagar quantos quiser."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "Para criar uma nova coleção:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -259,7 +278,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "Digite o nome da nova coleção"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
@@ -313,7 +332,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "Para desativar uma coleção:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
@@ -358,12 +377,12 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "Ativação"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
-msgstr ""
+msgstr "<app>Font Manager</app> permite que ative e desative famílias de fonte."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -373,12 +392,12 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "Para ativar ou desativar uma família de fonte:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "Selecione a família que quer ativar/desativar na lista de fontes"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -398,12 +417,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "A adicionar fontes para o seu uso"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "Instalação"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -430,6 +449,8 @@ msgstr ""
 #: C/font-manager-font-installation.page:40
 msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
 msgstr ""
+"Arrastar e soltar também é suportado. Simplesmente arraste os ficheiros para "
+"a lista de fontes para instalar."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
@@ -451,12 +472,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "A remover fontes indesejadas"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "Remoção"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
@@ -471,7 +492,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Para remover fontes que não precisa mais:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -506,12 +527,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "A adicionar e remover diretórios de fontes"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Origens"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -526,12 +547,12 @@ msgstr ""
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
-msgstr ""
+msgstr "Também permite que organize os seus ficheiros de fonte como desejar."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "Para adicionar uma origem:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -562,7 +583,7 @@ msgstr ""
 #: C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "Selecione \"Origens\" na barra lateral"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -573,16 +594,18 @@ msgstr ""
 #: C/font-manager-font-sources.page:51
 msgid "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
+"Selecione o diretório que deseja adicionar no seletor de ficheiro que é "
+"exibido"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "Para remover uma origem:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
-msgstr ""
+msgstr "Selecione o diretório que deseja remover da lista exibida"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
@@ -592,7 +615,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "Para ativar ou desativar uma origem:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
@@ -602,7 +625,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
-msgstr ""
+msgstr "Selecione a origem que deseja ativar ou desativar"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
@@ -622,12 +645,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7
 msgid "Generate fontconfig configuration files"
-msgstr ""
+msgstr "A gerar ficheiros de configuração fontconfig"
 
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "Preferências de Exibição e Renderização"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -647,27 +670,27 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr ""
+msgstr "Introdução ao <app>Font Manager</app>."
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr ""
+msgstr "<app>Font Manager</app> permite-o:"
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
 msgid "Introduction"
-msgstr ""
+msgstr "Introdução"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr ""
+msgstr "Visualizar fontes de várias maneiras"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "Visualizar metadados disponíveis da fonte"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
@@ -677,27 +700,27 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr ""
+msgstr "Agrupe fontes em \"Coleções\""
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
-msgstr ""
+msgstr "Ative ou desative famílias de fontes individuais ou coleções inteiras"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr ""
+msgstr "Especifique diretórios diferentes para usar com as fontes"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "Realizar substituição de fonte"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr ""
+msgstr "<app>Gestor de fontes</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -727,7 +750,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr ""
+msgstr "Licenciamento"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
@@ -757,17 +780,17 @@ msgstr ""
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
 msgid "Not all font files contain licensing information."
-msgstr ""
+msgstr "Nem todos os ficheiros de fonte contêm informações de licenciamento."
 
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "Visualizar metadados incorporados nos seus ficheiros de fonte"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "Metadados"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
@@ -807,7 +830,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Apoio a idiomas"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
@@ -935,7 +958,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "Formatos de Ficheiro Suportados"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
@@ -950,7 +973,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "Como iniciar com o Gestor de Fontes."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -966,13 +989,13 @@ msgstr ""
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "Gestor de fontes"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr ""
+msgstr "Gestor de fontes"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
@@ -987,12 +1010,12 @@ msgstr ""
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "Licença Pública Geral GNU Versão 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1012,14 +1035,14 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "A gerir as suas fontes"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "Conhecer as suas fontes"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "Recursos avançados"
