@@ -4,13 +4,15 @@
 # DNSE <kty5663@gmail.com>, 2022.
 # 이정희 <daemul72@gmail.com>, 2022.
 # JiYoung Park <pjiyoung4512@gmail.com>, 2022.
+# justcontributor <kty5663@gmail.com>, 2026.
+# justcontributor <kty5663@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2025-03-07 19:41-0500\n"
-"PO-Revision-Date: 2022-12-23 13:48+0000\n"
-"Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
+"PO-Revision-Date: 2026-10-26 00:51+0000\n"
+"Last-Translator: justcontributor <kty5663@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/font-"
 "manager/ko/>\n"
 "Language: ko\n"
@@ -18,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
@@ -119,10 +121,8 @@ msgid "Font Properties"
 msgstr "글꼴 속성"
 
 #: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
-#, fuzzy
-#| msgid "Updating Database — Fonts"
 msgid "Updating Database…"
-msgstr "데이터베이스 업데이트 중 — 글꼴"
+msgstr "데이터베이스 업데이트 중…"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:750
@@ -236,7 +236,7 @@ msgstr "고정폭"
 
 #: lib/fontconfig/font-manager-fontconfig.c:790
 msgid "Charcell"
-msgstr ""
+msgstr "격자꼴"
 
 #: lib/fontconfig/font-manager-fontconfig.c:829
 msgid "Unknown"
@@ -376,7 +376,7 @@ msgstr "미리보기"
 
 #: lib/gtk/font-manager-preview-page.c:89
 msgid "Waterfall"
-msgstr ""
+msgstr "미리보기"
 
 #: lib/gtk/font-manager-preview-pane.c:47
 #: lib/gtk/font-manager-preview-pane.c:582
@@ -397,11 +397,11 @@ msgstr "라이선스"
 #: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
-msgstr ""
+msgstr "일반"
 
 #: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
 msgid "Normal"
-msgstr ""
+msgstr "보통"
 
 #: lib/gtk/font-manager-preview-pane.c:506
 msgid "Search available characters"
@@ -464,31 +464,31 @@ msgstr "복사하기"
 
 #: lib/gtk/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr ""
+msgstr "<비사용자 영역 높은 서로게이트>"
 
 #: lib/gtk/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr ""
+msgstr "<사용자 영역 높은 서로게이트>"
 
 #: lib/gtk/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
-msgstr ""
+msgstr "<낮은 서로게이트>"
 
 #: lib/gtk/unicode/unicode-info.c:197
 msgid "<Private Use>"
-msgstr ""
+msgstr "<사용자 영역>"
 
 #: lib/gtk/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr ""
+msgstr "<평면 15 사용자 영역>"
 
 #: lib/gtk/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr ""
+msgstr "<평면 16 사용자 영역>"
 
 #: lib/gtk/unicode/unicode-info.c:205
 msgid "<not assigned>"
-msgstr ""
+msgstr "<미할당>"
 
 #: lib/gtk/unicode/unicode-info.c:222
 msgid "Other, Control"
@@ -504,139 +504,139 @@ msgstr "기타, 할당되지 않은"
 
 #: lib/gtk/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr ""
+msgstr "기타, 사용자 영역"
 
 #: lib/gtk/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
-msgstr ""
+msgstr "기타, 서로게이트"
 
 #: lib/gtk/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
-msgstr ""
+msgstr "문자, 소문자"
 
 #: lib/gtk/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
-msgstr ""
+msgstr "문자, 수정자"
 
 #: lib/gtk/unicode/unicode-info.c:236
 msgid "Letter, Other"
-msgstr ""
+msgstr "문자, 기타"
 
 #: lib/gtk/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
-msgstr ""
+msgstr "문자, 제목 표기"
 
 #: lib/gtk/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
-msgstr ""
+msgstr "문자, 대문자"
 
 #: lib/gtk/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr ""
+msgstr "조합 부호, 폭 있는 결합 문자"
 
 #: lib/gtk/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
-msgstr ""
+msgstr "조합 부호, 둘러싸는 문자"
 
 #: lib/gtk/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr ""
+msgstr "조합 부호, 폭 없는 문자"
 
 #: lib/gtk/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
-msgstr ""
+msgstr "숫자, 십진숫자"
 
 #: lib/gtk/unicode/unicode-info.c:250
 msgid "Number, Letter"
-msgstr ""
+msgstr "숫자, 문자"
 
 #: lib/gtk/unicode/unicode-info.c:252
 msgid "Number, Other"
-msgstr ""
+msgstr "숫자, 기타"
 
 #: lib/gtk/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "문장 부호, 연결 문자"
 
 #: lib/gtk/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
-msgstr ""
+msgstr "문장 부호, 대시"
 
 #: lib/gtk/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
-msgstr ""
+msgstr "문장 부호, 닫는 부호"
 
 #: lib/gtk/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "문장 부호, 마침 따옴표"
 
 #: lib/gtk/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "문장 부호, 시작 따옴표"
 
 #: lib/gtk/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
-msgstr ""
+msgstr "문장 부호, 기타"
 
 #: lib/gtk/unicode/unicode-info.c:266
 msgid "Punctuation, Open"
-msgstr ""
+msgstr "문장 부호, 여는 부호"
 
 #: lib/gtk/unicode/unicode-info.c:268
 msgid "Symbol, Currency"
-msgstr ""
+msgstr "기호, 통화"
 
 #: lib/gtk/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
-msgstr ""
+msgstr "기호, 수정자"
 
 #: lib/gtk/unicode/unicode-info.c:272
 msgid "Symbol, Math"
-msgstr ""
+msgstr "기호, 수학"
 
 #: lib/gtk/unicode/unicode-info.c:274
 msgid "Symbol, Other"
-msgstr ""
+msgstr "기호, 기타"
 
 #: lib/gtk/unicode/unicode-info.c:276
 msgid "Separator, Line"
-msgstr ""
+msgstr "구분자, 선"
 
 #: lib/gtk/unicode/unicode-info.c:278
 msgid "Separator, Paragraph"
-msgstr ""
+msgstr "구분자, 단락"
 
 #: lib/gtk/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr ""
+msgstr "구분자, 공백"
 
 #: src/common/WaterfallSettings.vala:37
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "최대 48포인트 (선형 스케일링)"
 
 #: src/common/WaterfallSettings.vala:39
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "최대 72포인트 (배율 1.1)"
 
 #: src/common/WaterfallSettings.vala:41
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "최대 96포인트 (선형 스케일링)"
 
 #: src/common/WaterfallSettings.vala:43
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "최대 96포인트 (배율 1.1)"
 
 #: src/common/WaterfallSettings.vala:45
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "최대 120포인트 (배율 1.2)"
 
 #: src/common/WaterfallSettings.vala:47
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "최대 144포인트 (배율 1.3)"
 
 #: src/common/WaterfallSettings.vala:49
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "최대 192포인트 (배율 1.4)"
 
 #: src/common/WaterfallSettings.vala:51
 msgid "Custom Size Settings"
@@ -644,7 +644,7 @@ msgstr "사용자 지정 크기 설정"
 
 #: src/common/WaterfallSettings.vala:197
 msgid "Waterfall Preview Size Settings"
-msgstr ""
+msgstr "폭포식 미리보기 크기 설정"
 
 #: src/common/WaterfallSettings.vala:201
 msgid "Higher values may adversely affect performance"
@@ -652,21 +652,19 @@ msgstr "값이 높을수록 성능에 악영향을 미칠 수 있음"
 
 #: src/common/WaterfallSettings.vala:204
 msgid "Minimum Waterfall Preview Point Size"
-msgstr ""
+msgstr "폭포식 미리보기 최소 포인트 크기"
 
 #: src/common/WaterfallSettings.vala:206
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr ""
+msgstr "폭포식 미리보기 포인트 크기 배율"
 
 #: src/common/WaterfallSettings.vala:208
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "폭포식 미리보기 최대 포인트 크기"
 
 #: src/common/WaterfallSettings.vala:236
-#, fuzzy
-#| msgid "Show in Folder"
 msgid "Show line size"
-msgstr "폴더에 표시"
+msgstr "선 크기 표시"
 
 #: src/font-manager/Application.vala:5
 #, fuzzy
@@ -719,21 +717,17 @@ msgstr ""
 "    "
 
 #: src/font-manager/Application.vala:133
-#, fuzzy
-#| msgid "Install Font"
 msgid "Installing Font Files…"
-msgstr "글꼴 설치"
+msgstr "글꼴 파일 설치 중…"
 
 #: src/font-manager/Browse.vala:381
 #: src/font-manager/ui/font-manager-browse-preview.ui:171
-#, fuzzy
-#| msgid "Actions"
 msgid "Active"
-msgstr "작업"
+msgstr "활성"
 
 #: src/font-manager/Browse.vala:385
 msgid "Inactive"
-msgstr ""
+msgstr "비활성"
 
 #: src/font-manager/Browse.vala:426
 msgid "Designed by"
@@ -842,7 +836,7 @@ msgstr ""
 
 #: src/font-manager/Collections.vala:406
 msgid "The resulting file can be found in your home directory."
-msgstr ""
+msgstr "홈 경로에서 결과 파일을 찾을 수 있습니다."
 
 #: src/font-manager/Collections.vala:408
 msgid "Error exporting collection"
@@ -885,15 +879,13 @@ msgid "Help"
 msgstr "지원"
 
 #: src/font-manager/Controls.vala:82
-#, fuzzy
-#| msgid "Font Manager"
 msgid "About Font Manager"
-msgstr "글꼴 관리자"
+msgstr "글꼴 관리자 정보"
 
 #: src/font-manager/Controls.vala:88
 #: src/font-viewer/font-viewer-main-window.ui:97
 msgid "Preferences"
-msgstr ""
+msgstr "설정"
 
 #: src/font-manager/Controls.vala:92
 msgid "Import"
@@ -917,7 +909,7 @@ msgstr "이름"
 
 #: src/font-manager/Controls.vala:131
 msgid "Size"
-msgstr ""
+msgstr "크기"
 
 #: src/font-manager/Controls.vala:196
 msgid "Grid View"
@@ -944,44 +936,32 @@ msgid "_Select"
 msgstr ""
 
 #: src/font-manager/Dialogs.vala:49
-#, fuzzy
-#| msgid "Select executable"
 msgid "Select Executable"
 msgstr "실행 파일 선택"
 
 #: src/font-manager/Dialogs.vala:60
-#, fuzzy
-#| msgid "Select text color"
 msgid "Select a Directory"
-msgstr "텍스트 색상 선택"
+msgstr "경로 선택"
 
 #: src/font-manager/Dialogs.vala:68
-#, fuzzy
-#| msgid "FileType"
 msgid "TrueType"
-msgstr "파일 유형"
+msgstr "TrueType"
 
 #: src/font-manager/Dialogs.vala:70
-#, fuzzy
-#| msgid "FileType"
 msgid "OpenType"
-msgstr "파일 유형"
+msgstr "OpenType"
 
 #: src/font-manager/Dialogs.vala:73
 msgid "Archive Files"
 msgstr ""
 
 #: src/font-manager/Dialogs.vala:81
-#, fuzzy
-#| msgid "Select files to install"
 msgid "Select Files to Install"
 msgstr "설치할 파일 선택"
 
 #: src/font-manager/Dialogs.vala:91
-#, fuzzy
-#| msgid "Select source folders"
 msgid "Select Source Directories"
-msgstr "원본 폴더 선택"
+msgstr "원본 경로 선택"
 
 #: src/font-manager/Dialogs.vala:125
 msgid "Font Configuration"
@@ -1045,8 +1025,7 @@ msgstr ""
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "변형 %i"
 
 #: src/font-manager/FontList.vala:281
 #: src/font-manager/web/google/FontList.vala:279
@@ -1099,10 +1078,8 @@ msgid "Compare"
 msgstr "비교"
 
 #: src/font-manager/MainWindow.vala:74
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
-msgstr "글꼴 삭제"
+msgstr "Google Fonts"
 
 #: src/font-manager/MainWindow.vala:77
 msgid "Manage"
@@ -1732,17 +1709,12 @@ msgstr "새 컬렉션 추가"
 #: src/font-manager/Sidebar.vala:61
 #: src/font-manager/ui/font-manager-font-list-controls.ui:32
 #: src/font-manager/ui/font-manager-font-list-view.ui:36
-#, fuzzy
-#| msgid "Remove selected alias"
 msgid "Remove selected item"
-msgstr "선택한 앨리어스 제거"
+msgstr "선택한 항목 제거"
 
 #: src/font-manager/Sidebar.vala:67
-#, fuzzy
-#| msgid "%i selected item"
-#| msgid_plural "%i selected items"
 msgid "Edit selected item"
-msgstr "%i 항목을 선택했습니다"
+msgstr "선택한 항목 편집"
 
 #: src/font-manager/Utils.vala:295
 msgid "Copying files…"
@@ -1811,7 +1783,7 @@ msgstr "터미널과 같은 위치에서 사용할 수 있는 단일 간격(고�
 
 #: src/font-manager/preferences/Desktop.vala:54
 msgid "Text Scaling Factor"
-msgstr ""
+msgstr "텍스트 스케일링 배율"
 
 #: src/font-manager/preferences/Desktop.vala:55
 msgid ""
@@ -1821,11 +1793,11 @@ msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:60
 msgid "GTK 4 Font Rendering"
-msgstr ""
+msgstr "GTK 4 글꼴 렌더링"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Automatic option allows GTK 4 to disregard hinting settings."
-msgstr ""
+msgstr "자동 설정을 사용하면 GTK 4에서 힌팅 설정을 무시할 수 있습니다."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1879,19 +1851,19 @@ msgstr "GNOME 데스크톱 설정 스키마를 찾을 수 없습니다"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Automatic"
-msgstr ""
+msgstr "자동"
 
 #: src/font-manager/preferences/Desktop.vala:215
 msgid "Manual"
-msgstr ""
+msgstr "수동"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "Grayscale"
-msgstr ""
+msgstr "회색조"
 
 #: src/font-manager/preferences/Desktop.vala:234
 msgid "RGBA"
-msgstr ""
+msgstr "RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:242
 #: src/font-manager/preferences/Display.vala:91
@@ -1904,7 +1876,7 @@ msgstr "대상 DPI"
 
 #: src/font-manager/preferences/Display.vala:77
 msgid "Scale Factor"
-msgstr ""
+msgstr "스케일 배율"
 
 #: src/font-manager/preferences/Display.vala:83
 msgid "LCD Filter"
@@ -1920,11 +1892,11 @@ msgstr "데스크톱"
 
 #: src/font-manager/preferences/Preferences.vala:48
 msgid "Sources"
-msgstr ""
+msgstr "소스"
 
 #: src/font-manager/preferences/Preferences.vala:49
 msgid "Substitutions"
-msgstr ""
+msgstr "교체"
 
 #: src/font-manager/preferences/Preferences.vala:50
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
@@ -1933,7 +1905,7 @@ msgstr "표시"
 
 #: src/font-manager/preferences/Preferences.vala:51
 msgid "Rendering"
-msgstr ""
+msgstr "렌더링"
 
 #: src/font-manager/preferences/Preferences.vala:131
 #, fuzzy
@@ -1960,7 +1932,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:153
 msgid "Reset all values to default"
-msgstr ""
+msgstr "모든 값을 기본값으로 초기화"
 
 #: src/font-manager/preferences/Rendering.vala:77
 msgid "Antialias"
@@ -2035,7 +2007,7 @@ msgstr "넓은 레이아웃"
 
 #: src/font-manager/preferences/UserInterface.vala:92
 msgid "Use three column layout"
-msgstr ""
+msgstr "3열 레이아웃 사용"
 
 #: src/font-manager/preferences/UserInterface.vala:95
 msgid "Only When Maximized"
@@ -2071,17 +2043,17 @@ msgstr "제목 표시줄 단추 스타일"
 #: src/font-manager/preferences/UserInterface.vala:107
 #: src/font-viewer/MainWindow.vala:376
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "폭포식 미리보기에서 표시할 줄 크기"
 
 #: src/font-manager/preferences/UserInterface.vala:112
 #: src/font-viewer/MainWindow.vala:371
 msgid "Waterfall Line Spacing"
-msgstr ""
+msgstr "폭포식 미리보기 줄 간격"
 
 #: src/font-manager/preferences/UserInterface.vala:114
 #: src/font-viewer/MainWindow.vala:372
 msgid "Padding in pixels to insert above and below rows"
-msgstr ""
+msgstr "행의 상하단에 삽입할 픽셀 단위의 여백"
 
 #: src/font-manager/preferences/UserSources.vala:145
 #, fuzzy
@@ -2120,11 +2092,11 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:156
 msgid "Network Access Disabled"
-msgstr ""
+msgstr "네트워크 접근 꺼짐"
 
 #: src/font-manager/web/google/GoogleFonts.vala:157
 msgid "Contact your system administrator to request access."
-msgstr ""
+msgstr "시스템 관리자에게 접근 권한을 요청하십시오."
 
 #: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Network Offline"
@@ -2562,10 +2534,8 @@ msgid "Black"
 msgstr ""
 
 #: src/font-viewer/MainWindow.vala:279
-#, fuzzy
-#| msgid "System"
 msgid "System Font"
-msgstr "시스템"
+msgstr "시스템 글꼴"
 
 #: src/font-viewer/MainWindow.vala:281
 msgid ""
@@ -2584,7 +2554,7 @@ msgstr "새 버전이 이미 설치됨"
 
 #: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
 msgid "Click to overwrite"
-msgstr ""
+msgstr "눌러서 덮어쓰기"
 
 #: src/font-viewer/MainWindow.vala:289
 msgid "Update Font"
@@ -2601,7 +2571,7 @@ msgstr "글꼴 설치"
 
 #: src/font-viewer/MainWindow.vala:365
 msgid "Preview Area Colors"
-msgstr ""
+msgstr "미리보기 영역 색상"
 
 #: src/common/ui/font-manager-preview-colors.ui:9
 #: src/common/ui/font-manager-preview-colors.ui:15
@@ -2659,10 +2629,8 @@ msgid "Switch to Compare mode"
 msgstr "비교 모드로 전환"
 
 #: src/font-manager/gtk/help-overlay.ui:99
-#, fuzzy
-#| msgid "Switch to Manage mode"
 msgid "Switch to Google Fonts mode"
-msgstr "관리 모드로 전환"
+msgstr "Google Fonts 모드로 전환"
 
 #: src/font-manager/gtk/help-overlay.ui:107
 msgid "Preview Mode"
@@ -2674,23 +2642,19 @@ msgstr "표준 미리 보기로 전환"
 
 #: src/font-manager/gtk/help-overlay.ui:119
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "폭포식 미리보기로 전환"
 
 #: src/font-manager/gtk/help-overlay.ui:126
 msgid "Switch to Body Text preview"
 msgstr "본문 텍스트 미리 보기로 전환"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:100
-#, fuzzy
-#| msgid "Increase preview size"
 msgid "Increase tile size"
-msgstr "미리보기 크기 증가"
+msgstr "타일 크기 증가"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:109
-#, fuzzy
-#| msgid "Decrease preview size"
 msgid "Decrease tile size"
-msgstr "미리보기 크기 감소"
+msgstr "타일 크기 감소"
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:149
 msgid "Toggle search entry"
@@ -2731,7 +2695,7 @@ msgstr "고정 비교"
 #: src/font-manager/ui/font-manager-export-dialog.ui:19
 #: src/font-manager/ui/font-manager-remove-dialog.ui:19
 msgid "Cancel"
-msgstr ""
+msgstr "취소"
 
 #: src/font-manager/ui/font-manager-font-list-controls.ui:51
 #: src/font-manager/ui/font-manager-font-list-view.ui:54
@@ -2757,10 +2721,8 @@ msgid "Clear selected filter"
 msgstr "선택한 필터 지우기"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
-#, fuzzy
-#| msgid "Created : "
 msgid "Created :"
-msgstr "작성됨: "
+msgstr "작성됨:"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
 msgid "Save current comparison"
@@ -2780,17 +2742,15 @@ msgstr "제거할 글꼴 선택"
 
 #: src/font-manager/ui/font-manager-remove-dialog.ui:25
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:35
 msgid "Categories"
 msgstr "범주"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:86
-#, fuzzy
-#| msgid "Font Collections"
 msgid "Smart Collections"
-msgstr "글꼴 컬렉션"
+msgstr "스마트 컬렉션"
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
@@ -2855,15 +2815,15 @@ msgstr "트렌드"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
 msgid "Serif"
-msgstr ""
+msgstr "세리프"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
 msgid "Sans Serif"
-msgstr ""
+msgstr "산세리프"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
 msgid "Handwriting"
-msgstr ""
+msgstr "필기체"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
 msgid "Category"
@@ -2871,19 +2831,19 @@ msgstr "범주"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
 msgid "4+"
-msgstr ""
+msgstr "4+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
 msgid "8+"
-msgstr ""
+msgstr "8+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
 msgid "12+"
-msgstr ""
+msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
 msgid "Variations"
-msgstr ""
+msgstr "변형"
 
 #: src/font-viewer/font-viewer-main-window.ui:31
 msgid "Preview font files before installing them."

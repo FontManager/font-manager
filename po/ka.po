@@ -1,0 +1,2730 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.9.4\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"PO-Revision-Date: 2026-07-19 08:01+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ka/>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.8.dev0\n"
+
+#. Application.vala
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.desktop.in.in:5
+#: data/com.github.FontManager.FontManager.desktop.in.in:6
+#: lib/gtk/font-manager-application-window.c:281
+#: src/font-manager/Application.vala:2
+msgid "Font Manager"
+msgstr "ფონტების მმართველი"
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:15
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:18
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:23
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.appdata.xml.in.in:27
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr ""
+
+#: data/com.github.FontManager.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/com.github.FontManager.FontManager.desktop.in.in:16
+#: data/com.github.FontManager.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr "Graphics;Viewer;GNOME;GTK;Publishing;გრაფიკა;დათვალიერება;"
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.desktop.in.in:5
+#: data/com.github.FontManager.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
+#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/font-viewer-main-window.ui:30
+#: src/font-viewer/font-viewer-main-window.ui:73
+#: src/font-viewer/font-viewer-main-window.ui:82
+msgid "Font Viewer"
+msgstr "ფონტის გადახედვა"
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:15
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.appdata.xml.in.in:18
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+
+#: data/com.github.FontManager.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr ""
+
+#: extensions/nautilus/font-manager-menu-provider.c:154
+#: extensions/nemo/font-manager-menu-provider.c:147
+#: extensions/thunar/font-manager-menu-provider.c:129
+#: src/font-manager/FontList.vala:509
+msgid "Install"
+msgstr "დაყენება"
+
+#: extensions/nautilus/font-manager-menu-provider.c:156
+#: extensions/nemo/font-manager-menu-provider.c:149
+#: extensions/thunar/font-manager-menu-provider.c:131
+msgid "Install the selected font file"
+msgstr "მონიშნული ფონტის ფაილის დაყენება"
+
+#: extensions/nautilus/font-manager-menu-provider.c:157
+#: extensions/nemo/font-manager-menu-provider.c:150
+#: extensions/thunar/font-manager-menu-provider.c:132
+msgid "Install the selected font files"
+msgstr "მონიშნული ფონტის ფაილების დაყენება"
+
+#: extensions/thunar/font-manager-renamer-provider.c:86
+msgid "Font Properties"
+msgstr "ფონტის თვისებები"
+
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
+msgid "Updating Database…"
+msgstr "ბაზის განახლება…"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-freetype.c:750
+msgid "Unknown Vendor"
+msgstr "უცნობი მომწოდებელი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:566
+#: src/font-manager/web/google/WebFont.vala:172
+msgid "Thin"
+msgstr "თხელი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:568
+msgid "Ultra-Light"
+msgstr "ულტრამსუბუქი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:570
+#: lib/fontconfig/font-manager-fontconfig.c:923
+#: src/font-manager/web/google/WebFont.vala:176
+msgid "Light"
+msgstr "ღია"
+
+#: lib/fontconfig/font-manager-fontconfig.c:572
+msgid "Semi-Light"
+msgstr "ნახევრადმსუბუქი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:574
+msgid "Book"
+msgstr "წიგნი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:576
+#: lib/fontconfig/font-manager-fontconfig.c:880
+#: src/font-manager/preferences/Desktop.vala:236
+#: src/font-manager/web/google/WebFont.vala:180
+msgid "Medium"
+msgstr "საშუალო"
+
+#: lib/fontconfig/font-manager-fontconfig.c:578
+msgid "Semi-Bold"
+msgstr "ნახევრადსქელი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:580
+#: src/font-manager/web/google/WebFont.vala:184
+msgid "Bold"
+msgstr "სქელი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:582
+msgid "Ultra-Bold"
+msgstr "ულტრასქელი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:584
+msgid "Heavy"
+msgstr "მძიმე"
+
+#: lib/fontconfig/font-manager-fontconfig.c:586
+msgid "Ultra-Heavy"
+msgstr "ულტრამძიმე"
+
+#: lib/fontconfig/font-manager-fontconfig.c:661
+#: src/font-manager/web/google/WebFont.vala:234
+msgid "Italic"
+msgstr "კურსივი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:663
+msgid "Oblique"
+msgstr "ირიბი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:701
+msgid "Ultra-Condensed"
+msgstr "ულტრაშეკუმშული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:703
+msgid "Extra-Condensed"
+msgstr "ძალიანშეკუმშული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:705
+msgid "Condensed"
+msgstr "შესქელებული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:707
+msgid "Semi-Condensed"
+msgstr "ნახევრადშეკუმშული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:709
+msgid "Semi-Expanded"
+msgstr "ნახევრადგაფართოებული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:711
+msgid "Expanded"
+msgstr "ჩამოშლილია"
+
+#: lib/fontconfig/font-manager-fontconfig.c:713
+msgid "Extra-Expanded"
+msgstr "ძალიანგაფართოებული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:715
+msgid "Ultra-Expanded"
+msgstr "ულტრაგაფართოებული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:784
+msgid "Proportional"
+msgstr "პროპორციული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:786
+msgid "Dual Width"
+msgstr "ორმაგი სიგანე"
+
+#: lib/fontconfig/font-manager-fontconfig.c:788
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
+msgid "Monospace"
+msgstr "ერთსიგანიანი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:790
+msgid "Charcell"
+msgstr "სიმბოლოს უჯრედი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:829
+msgid "Unknown"
+msgstr "უცნობი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:831
+msgid "RGB"
+msgstr "RGB"
+
+#: lib/fontconfig/font-manager-fontconfig.c:833
+msgid "BGR"
+msgstr "BGR"
+
+#: lib/fontconfig/font-manager-fontconfig.c:835
+msgid "VRGB"
+msgstr "VRGB"
+
+#: lib/fontconfig/font-manager-fontconfig.c:837
+msgid "VBGR"
+msgstr "VBGR"
+
+#: lib/fontconfig/font-manager-fontconfig.c:839
+#: lib/fontconfig/font-manager-fontconfig.c:884
+#: lib/fontconfig/font-manager-fontconfig.c:927
+#: src/font-manager/Controls.vala:133
+#: src/font-manager/preferences/Desktop.vala:234
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "None"
+msgstr "არცერთი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:878
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Slight"
+msgstr "ოდნავ"
+
+#: lib/fontconfig/font-manager-fontconfig.c:882
+#: src/font-manager/preferences/Desktop.vala:236
+msgid "Full"
+msgstr "სრული"
+
+#: lib/fontconfig/font-manager-fontconfig.c:921
+msgid "Default"
+msgstr "ნაგულისხმევი"
+
+#: lib/fontconfig/font-manager-fontconfig.c:925
+msgid "Legacy"
+msgstr "მოძველებული"
+
+#: lib/fontconfig/font-manager-source.c:305
+#: lib/fontconfig/font-manager-source.c:321
+#: lib/fontconfig/font-manager-source.c:322
+msgid "Source Unavailable"
+msgstr "წყარო ხელმიუწვდომელია"
+
+#: lib/gtk/font-manager-application-window.c:285
+#: src/font-manager/Application.vala:3
+msgid "Simple font management for GTK+ desktop environments"
+msgstr ""
+
+#: lib/gtk/font-manager-application-window.c:290
+msgid "translator-credits"
+msgstr "თემური დოღონაძე"
+
+#: lib/gtk/font-manager-fsType.c:74
+msgid "Restricted License Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:76
+msgid "Preview & Print Embedding"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:78
+msgid "Editable Embedding"
+msgstr "ჩასწორებადი ჩაშენება"
+
+#: lib/gtk/font-manager-fsType.c:80
+msgid "Preview & Print Embedding | No Subsetting"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:82
+msgid "Editable Embedding | No Subsetting"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:84
+msgid "Preview & Print Embedding | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:86
+msgid "Editable Embedding | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:88
+msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:90
+msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr ""
+
+#: lib/gtk/font-manager-fsType.c:92
+msgid "Installable Embedding"
+msgstr "დაყენებადი ჩაშენება"
+
+#: lib/gtk/font-manager-license-page.c:179
+msgid "File does not contain license information."
+msgstr "ფაილი ლიცენზიის ინფორმაციას არ შეიცავს."
+
+#: lib/gtk/font-manager-preview-controls.c:77
+msgid "Left Aligned"
+msgstr "მარცხნივ სწორებული"
+
+#: lib/gtk/font-manager-preview-controls.c:83
+msgid "Centered"
+msgstr "შუაზე გასწორებული"
+
+#: lib/gtk/font-manager-preview-controls.c:89
+msgid "Fill"
+msgstr "შევსება"
+
+#: lib/gtk/font-manager-preview-controls.c:95
+msgid "Right Aligned"
+msgstr "მარჯვნივ სწორებული"
+
+#: lib/gtk/font-manager-preview-controls.c:349
+#: src/font-manager/ui/font-manager-browse-pane.ui:168
+msgid "Edit preview text"
+msgstr "მინიატურის ტექსტის ჩასწორება"
+
+#: lib/gtk/font-manager-preview-controls.c:350
+msgid "Undo changes"
+msgstr "ცვლილებების გაუქმება"
+
+#: lib/gtk/font-manager-preview-page.c:87
+#: src/font-manager/ui/font-manager-browse-preview.ui:122
+msgid "Preview"
+msgstr "მინიატურა"
+
+#: lib/gtk/font-manager-preview-page.c:89
+msgid "Waterfall"
+msgstr "ჩანჩქერი"
+
+#: lib/gtk/font-manager-preview-pane.c:47
+#: lib/gtk/font-manager-preview-pane.c:582
+#: src/font-manager/ui/font-manager-browse-preview.ui:132
+msgid "Characters"
+msgstr "სიმბოლოები"
+
+#: lib/gtk/font-manager-preview-pane.c:49
+#: lib/gtk/font-manager-preview-pane.c:583
+msgid "Properties"
+msgstr "თვისებები"
+
+#: lib/gtk/font-manager-preview-pane.c:51
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
+msgid "License"
+msgstr "ლიცენზია"
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
+#: src/font-manager/web/google/WebFont.vala:178
+msgid "Regular"
+msgstr "ჩვეულებრივი"
+
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
+msgid "Normal"
+msgstr "ნორმალური"
+
+#: lib/gtk/font-manager-preview-pane.c:506
+msgid "Search available characters"
+msgstr "ხელმისაწვდომი სიმბოლოების ძებნა"
+
+#: lib/gtk/font-manager-properties-page.c:55
+msgid "PostScript Name"
+msgstr "PostScript-ის სახელი"
+
+#: lib/gtk/font-manager-properties-page.c:56
+msgid "Family"
+msgstr "ოჯახი"
+
+#: lib/gtk/font-manager-properties-page.c:57
+msgid "Style"
+msgstr "სტილი"
+
+#: lib/gtk/font-manager-properties-page.c:58
+#: src/font-manager/Categories.vala:259
+msgid "Width"
+msgstr "სიგანე"
+
+#: lib/gtk/font-manager-properties-page.c:59
+#: src/font-manager/Categories.vala:261
+msgid "Slant"
+msgstr "დაცერება"
+
+#: lib/gtk/font-manager-properties-page.c:60
+#: src/font-manager/Categories.vala:260
+msgid "Weight"
+msgstr "წონა"
+
+#: lib/gtk/font-manager-properties-page.c:61
+#: src/font-manager/Categories.vala:262
+msgid "Spacing"
+msgstr "გამოტოვება"
+
+#: lib/gtk/font-manager-properties-page.c:62
+msgid "Version"
+msgstr "ვერსია"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/gtk/font-manager-properties-page.c:64
+#: src/font-manager/Categories.vala:268
+msgid "Vendor"
+msgstr "მომწოდებელი"
+
+#: lib/gtk/font-manager-properties-page.c:65
+msgid "FileType"
+msgstr "ფაილის ტიპი"
+
+#. Keep this entry last
+#: lib/gtk/font-manager-properties-page.c:67
+msgid "Filesize"
+msgstr "ფაილისზომა"
+
+#: lib/gtk/unicode/unicode-character-map.c:850
+msgid "Copy"
+msgstr "კოპირება"
+
+#: lib/gtk/unicode/unicode-info.c:191
+msgid "<Non Private Use High Surrogate>"
+msgstr "<მაღალ რეგისტრში გადაყვანა>"
+
+#: lib/gtk/unicode/unicode-info.c:193
+msgid "<Private Use High Surrogate>"
+msgstr "<მომხმარებლის ტექსტის მაღალ რეგისტრში გადაყვანა>"
+
+#: lib/gtk/unicode/unicode-info.c:195
+msgid "<Low Surrogate>"
+msgstr "<დაბალ რეგისტრში გადაყვანა>"
+
+#: lib/gtk/unicode/unicode-info.c:197
+msgid "<Private Use>"
+msgstr "<მომხმარებლის ტექსტი>"
+
+#: lib/gtk/unicode/unicode-info.c:199
+msgid "<Plane 15 Private Use>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:201
+msgid "<Plane 16 Private Use>"
+msgstr ""
+
+#: lib/gtk/unicode/unicode-info.c:205
+msgid "<not assigned>"
+msgstr "<მინიჭებული არაა>"
+
+#: lib/gtk/unicode/unicode-info.c:222
+msgid "Other, Control"
+msgstr "სხვა, საკონტროლო"
+
+#: lib/gtk/unicode/unicode-info.c:224
+msgid "Other, Format"
+msgstr "სხვა, ფორმატი"
+
+#: lib/gtk/unicode/unicode-info.c:226
+msgid "Other, Not Assigned"
+msgstr "სხვა, მიუნიჭებელი"
+
+#: lib/gtk/unicode/unicode-info.c:228
+msgid "Other, Private Use"
+msgstr "სხვა, პირადი"
+
+#: lib/gtk/unicode/unicode-info.c:230
+msgid "Other, Surrogate"
+msgstr "სხვა, სუროგატი"
+
+#: lib/gtk/unicode/unicode-info.c:232
+msgid "Letter, Lowercase"
+msgstr "წერილი, პატარა სიმბოლოები"
+
+#: lib/gtk/unicode/unicode-info.c:234
+msgid "Letter, Modifier"
+msgstr "წერილი, მოდიფიკატორი"
+
+#: lib/gtk/unicode/unicode-info.c:236
+msgid "Letter, Other"
+msgstr "წერილი, სხვა"
+
+#: lib/gtk/unicode/unicode-info.c:238
+msgid "Letter, Titlecase"
+msgstr "წერილი, ზემოდან დასაწერი"
+
+#: lib/gtk/unicode/unicode-info.c:240
+msgid "Letter, Uppercase"
+msgstr "წერილი, დიდი სიმბოლოები"
+
+#: lib/gtk/unicode/unicode-info.c:242
+msgid "Mark, Spacing Combining"
+msgstr "ნიშანი, დაშორების შეკრება"
+
+#: lib/gtk/unicode/unicode-info.c:244
+msgid "Mark, Enclosing"
+msgstr "ნიშანი, ჩასმა"
+
+#: lib/gtk/unicode/unicode-info.c:246
+msgid "Mark, Non-Spacing"
+msgstr "ნიშანი, დაშორების-გარეშე"
+
+#: lib/gtk/unicode/unicode-info.c:248
+msgid "Number, Decimal Digit"
+msgstr "რიცხვი, ათეული ციფრი"
+
+#: lib/gtk/unicode/unicode-info.c:250
+msgid "Number, Letter"
+msgstr "რიცხვი, სიმბოლო"
+
+#: lib/gtk/unicode/unicode-info.c:252
+msgid "Number, Other"
+msgstr "რიცხვი, სხვა"
+
+#: lib/gtk/unicode/unicode-info.c:254
+msgid "Punctuation, Connector"
+msgstr "პუნქტუაცია, შემაერთებელი"
+
+#: lib/gtk/unicode/unicode-info.c:256
+msgid "Punctuation, Dash"
+msgstr "პუნქტუაცია, ტირე"
+
+#: lib/gtk/unicode/unicode-info.c:258
+msgid "Punctuation, Close"
+msgstr "პუნქტუაცია, დახურვა"
+
+#: lib/gtk/unicode/unicode-info.c:260
+msgid "Punctuation, Final Quote"
+msgstr "პუნქტუაცია, დამხურავი ბრჭყალი"
+
+#: lib/gtk/unicode/unicode-info.c:262
+msgid "Punctuation, Initial Quote"
+msgstr "პუნქტუაცია, გამხსნელი ბრჭყალი"
+
+#: lib/gtk/unicode/unicode-info.c:264
+msgid "Punctuation, Other"
+msgstr "პუნქტუაცია, სხვა"
+
+#: lib/gtk/unicode/unicode-info.c:266
+msgid "Punctuation, Open"
+msgstr "პუნქტუაცია, გახსნა"
+
+#: lib/gtk/unicode/unicode-info.c:268
+msgid "Symbol, Currency"
+msgstr "სიმბოლო, ფულის"
+
+#: lib/gtk/unicode/unicode-info.c:270
+msgid "Symbol, Modifier"
+msgstr "სიმბოლო, მოდიფიკატორი"
+
+#: lib/gtk/unicode/unicode-info.c:272
+msgid "Symbol, Math"
+msgstr "სიმბოლო, მათემატიკური"
+
+#: lib/gtk/unicode/unicode-info.c:274
+msgid "Symbol, Other"
+msgstr "სიმბოლო, სხვა"
+
+#: lib/gtk/unicode/unicode-info.c:276
+msgid "Separator, Line"
+msgstr "გამყოფი, ხაზი"
+
+#: lib/gtk/unicode/unicode-info.c:278
+msgid "Separator, Paragraph"
+msgstr "გამყოფი, პარაგრაფი"
+
+#: lib/gtk/unicode/unicode-info.c:280
+msgid "Separator, Space"
+msgstr "გამყოფი, ჰარე"
+
+#: src/common/WaterfallSettings.vala:37
+msgid "Up to 48 points (Linear Scaling)"
+msgstr "48 წერტილამდე (წრფივი მასშტაბი)"
+
+#: src/common/WaterfallSettings.vala:39
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr "72 წერტილამდე (1.1 საერთო ფარდობა)"
+
+#: src/common/WaterfallSettings.vala:41
+msgid "Up to 96 points (Linear Scaling)"
+msgstr "96 წერტილამდე (წრფივი მასშტაბი)"
+
+#: src/common/WaterfallSettings.vala:43
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr "96 წერტილამდე (1.1 საერთო ფარდობა)"
+
+#: src/common/WaterfallSettings.vala:45
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr "120 წერტილამდე (1.2 საერთო ფარდობა)"
+
+#: src/common/WaterfallSettings.vala:47
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr "144 წერტილამდე (1.3 საერთო ფარდობა)"
+
+#: src/common/WaterfallSettings.vala:49
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr "192 წერტილამდე (1.4 საერთო ფარდობა)"
+
+#: src/common/WaterfallSettings.vala:51
+msgid "Custom Size Settings"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:197
+msgid "Waterfall Preview Size Settings"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:201
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:204
+msgid "Minimum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:206
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:208
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/common/WaterfallSettings.vala:236
+msgid "Show line size"
+msgstr "ხაზის ზომის ჩვენება"
+
+#: src/font-manager/Application.vala:5
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+msgstr ""
+
+#: src/font-manager/Application.vala:133
+msgid "Installing Font Files…"
+msgstr "ფონტის ფაილების დაყენება…"
+
+#: src/font-manager/Browse.vala:381
+#: src/font-manager/ui/font-manager-browse-preview.ui:171
+msgid "Active"
+msgstr "აქტიური"
+
+#: src/font-manager/Browse.vala:385
+msgid "Inactive"
+msgstr "არააქტიური"
+
+#: src/font-manager/Browse.vala:426
+msgid "Designed by"
+msgstr "დიზაინის ავტორი"
+
+#: src/font-manager/Categories.vala:259
+msgid "Grouped by font width"
+msgstr "დაჯგუფებული ფონტის სიგანით"
+
+#: src/font-manager/Categories.vala:260
+msgid "Grouped by font weight"
+msgstr "დაჯგუფებული ფონტის წონით"
+
+#: src/font-manager/Categories.vala:261
+msgid "Grouped by font angle"
+msgstr "დაჯგუფებული ფონტის კუთხით"
+
+#: src/font-manager/Categories.vala:262
+msgid "Grouped by font spacing"
+msgstr "დაჯგუფებული ფონტის დაშორებით"
+
+#: src/font-manager/Categories.vala:266
+msgid "Grouped by license type"
+msgstr "დაჯგუფებულია ფონტის ლიცენზიის ტიპით"
+
+#: src/font-manager/Categories.vala:268
+msgid "Grouped by vendor"
+msgstr "დაჯგუფებულია მომწოდებლით"
+
+#: src/font-manager/Categories.vala:269
+msgid "Filetype"
+msgstr "ფაილის ტიპი"
+
+#: src/font-manager/Categories.vala:269
+msgid "Grouped by filetype"
+msgstr "დაჯგუფებულია ფაილის ტიპით"
+
+#: src/font-manager/Categories.vala:274
+msgid "All"
+msgstr "ყველა"
+
+#: src/font-manager/Categories.vala:274
+msgid "All Fonts"
+msgstr "ყველა ფონტი"
+
+#: src/font-manager/Categories.vala:275
+msgid "System"
+msgstr "სისტემა"
+
+#: src/font-manager/Categories.vala:275
+msgid "Fonts available to all users"
+msgstr ""
+
+#: src/font-manager/Categories.vala:298
+msgid "Family Kind"
+msgstr "ოჯახის ტიპი"
+
+#: src/font-manager/Categories.vala:298
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr ""
+
+#: src/font-manager/Categories.vala:299
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
+msgid "Any"
+msgstr "ნებისმიერი"
+
+#: src/font-manager/Categories.vala:299
+msgid "No Fit"
+msgstr "ჩატევის გარეშე"
+
+#: src/font-manager/Categories.vala:299
+msgid "Text and Display"
+msgstr "ტექსტი და ჩვენება"
+
+#: src/font-manager/Categories.vala:299
+msgid "Script"
+msgstr "სკრიპტი"
+
+#: src/font-manager/Categories.vala:299
+msgid "Decorative"
+msgstr "დეკორატიული"
+
+#: src/font-manager/Categories.vala:299
+msgid "Pictorial"
+msgstr "ილუსტრირებული"
+
+#: src/font-manager/Collections.vala:23
+msgid "Enter Collection Name"
+msgstr "შეიყვანეთ კოლექციის სახელი"
+
+#: src/font-manager/Collections.vala:346
+msgid "Copy to…"
+msgstr "კოპირება…"
+
+#: src/font-manager/Collections.vala:347
+msgid "Compress…"
+msgstr "შეკუმშვა…"
+
+#: src/font-manager/Collections.vala:348
+msgid "Rename…"
+msgstr "სახელის გადარქმევა…"
+
+#: src/font-manager/Collections.vala:405
+msgid "Archive created successfully."
+msgstr ""
+
+#: src/font-manager/Collections.vala:406
+msgid "The resulting file can be found in your home directory."
+msgstr ""
+
+#: src/font-manager/Collections.vala:408
+msgid "Error exporting collection"
+msgstr "კოლექციის გატანის შეცდომა"
+
+#: src/font-manager/Collections.vala:409
+msgid ""
+"Start the application from a terminal and try again for more information"
+msgstr ""
+
+#: src/font-manager/Collections.vala:430
+msgid "Creating archive from selected collection."
+msgstr ""
+
+#: src/font-manager/Collections.vala:431
+msgid "This may take some time for large collections…"
+msgstr ""
+
+#: src/font-manager/Compare.vala:336
+msgid "Saved Comparison"
+msgstr "შენახული შედარება"
+
+#. Translators : Please preserve the newline character somewhere in the middle of the string
+#: src/font-manager/Compare.vala:372
+msgid ""
+"Save the current comparison\n"
+"by clicking the + button"
+msgstr ""
+
+#: src/font-manager/Controls.vala:80
+msgid "Keyboard Shortcuts"
+msgstr "კლავიატურის მალსახმობები"
+
+#: src/font-manager/Controls.vala:81 src/font-manager/gtk/help-overlay.ui:16
+msgid "Help"
+msgstr "დახმარება"
+
+#: src/font-manager/Controls.vala:82
+msgid "About Font Manager"
+msgstr "ფონტების მმართველის შესახებ"
+
+#: src/font-manager/Controls.vala:88
+#: src/font-viewer/font-viewer-main-window.ui:97
+msgid "Preferences"
+msgstr "მორგება"
+
+#: src/font-manager/Controls.vala:92
+msgid "Import"
+msgstr "შემოტანა"
+
+#: src/font-manager/Controls.vala:93
+#: src/font-manager/ui/font-manager-export-dialog.ui:25
+msgid "Export"
+msgstr "გატანა"
+
+#: src/font-manager/Controls.vala:96
+#: src/font-manager/ui/font-manager-export-dialog.ui:13
+msgid "User Data"
+msgstr "მომხმარებლის მონაცემები"
+
+#: src/font-manager/Controls.vala:129
+#: src/font-manager/ui/font-manager-user-action-row.ui:13
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
+msgid "Name"
+msgstr "სახელი"
+
+#: src/font-manager/Controls.vala:131
+msgid "Size"
+msgstr "ზომა"
+
+#: src/font-manager/Controls.vala:196
+msgid "Grid View"
+msgstr "ბადის ხედი"
+
+#: src/font-manager/Controls.vala:197
+msgid "List View"
+msgstr "სიის ხედი"
+
+#: src/font-manager/Controls.vala:283
+msgid "Add Fonts"
+msgstr "ფონტების დამატება"
+
+#: src/font-manager/Controls.vala:284
+msgid "Remove Fonts"
+msgstr "ფონტების წაშლა"
+
+#: src/font-manager/Controls.vala:300
+msgid "Back"
+msgstr "უკან"
+
+#: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
+msgid "_Select"
+msgstr "_მონიშვნა"
+
+#: src/font-manager/Dialogs.vala:49
+msgid "Select Executable"
+msgstr "აირჩიეთ გამშვები ფაილი"
+
+#: src/font-manager/Dialogs.vala:60
+msgid "Select a Directory"
+msgstr "აირჩიეთ საქაღალდე"
+
+#: src/font-manager/Dialogs.vala:68
+msgid "TrueType"
+msgstr "TrueType"
+
+#: src/font-manager/Dialogs.vala:70
+msgid "OpenType"
+msgstr "OpenType"
+
+#: src/font-manager/Dialogs.vala:73
+msgid "Archive Files"
+msgstr "არქივის ფაილები"
+
+#: src/font-manager/Dialogs.vala:81
+msgid "Select Files to Install"
+msgstr "აირჩიეთ დასაყენებელი ფაილები"
+
+#: src/font-manager/Dialogs.vala:91
+msgid "Select Source Directories"
+msgstr "აირჩიეთ წყარო საქაღალდეები"
+
+#: src/font-manager/Dialogs.vala:125
+msgid "Font Configuration"
+msgstr "ფონტის მორგება"
+
+#: src/font-manager/Dialogs.vala:126
+msgid "Font Collections"
+msgstr "ფონტის კოლექციები"
+
+#: src/font-manager/Dialogs.vala:127
+#: src/font-manager/preferences/UserSources.vala:156
+msgid "Font Sources"
+msgstr "ფონტის წყაროები"
+
+#: src/font-manager/Dialogs.vala:128
+msgid "Installed Fonts"
+msgstr "დაყენებული ფონტები"
+
+#: src/font-manager/Dialogs.vala:129
+msgid "Custom Actions"
+msgstr "მორგებული ქმედებები"
+
+#: src/font-manager/Dialogs.vala:385
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+
+#. FontList.vala
+#. *
+#. * Copyright (C) 2020-2025 Jerry Casiano
+#. *
+#. * This program is free software: you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation, either version 3 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.
+#. *
+#. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+#.
+#: src/font-manager/FontList.vala:21
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath.\n"
+"Start search using %s to filter based on characters."
+msgstr ""
+
+#: src/font-manager/FontList.vala:72
+#: src/font-manager/web/google/FontList.vala:204
+#, c-format
+msgid "%i Variation "
+msgid_plural "%i Variations"
+msgstr[0] "%i ვარიაცია "
+msgstr[1] "%i ვარიაცია"
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+msgid "Collapse all"
+msgstr "ყველას ჩაკეცვა"
+
+#: src/font-manager/FontList.vala:281
+#: src/font-manager/web/google/FontList.vala:279
+#: src/font-manager/ui/font-manager-font-list-controls.ui:21
+#: src/font-manager/ui/font-manager-font-list-view.ui:24
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:28
+msgid "Expand all"
+msgstr "ყველას ამოკეცვა"
+
+#: src/font-manager/FontList.vala:510
+msgid "Copy Location"
+msgstr "მდებარეობის კოპირება"
+
+#: src/font-manager/FontList.vala:511
+msgid "Show in Folder"
+msgstr "საქაღალდეში ჩვენება"
+
+#: src/font-manager/FontList.vala:512
+msgid "Enable selected items"
+msgstr "მონიშნული ელემენტების ჩართვა"
+
+#: src/font-manager/FontList.vala:513
+msgid "Disable selected items"
+msgstr "მონიშნული ელემენტების გამორთვა"
+
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:589
+#, c-format
+msgid "%i selected item"
+msgid_plural "%i selected items"
+msgstr[0] "%i მონიშნული ელემენტი"
+msgstr[1] "%i მონიშნული ელემენტი"
+
+#: src/font-manager/FontList.vala:607
+#: src/font-manager/preferences/Preferences.vala:45
+msgid "Actions"
+msgstr "ქმედებები"
+
+#: src/font-manager/MainWindow.vala:69
+msgid "Browse"
+msgstr "პოვნა"
+
+#: src/font-manager/MainWindow.vala:71
+msgid "Compare"
+msgstr "შედარება"
+
+#: src/font-manager/MainWindow.vala:74
+msgid "Google Fonts"
+msgstr "Google-ის ფონტები"
+
+#: src/font-manager/MainWindow.vala:77
+msgid "Manage"
+msgstr "მართვა"
+
+#: src/font-manager/Orthographies.vala:31
+msgid "Afrikaans"
+msgstr "აფრიკაანსი"
+
+#: src/font-manager/Orthographies.vala:32
+msgid "Ahom"
+msgstr "აჰომი"
+
+#: src/font-manager/Orthographies.vala:33
+msgid "Aleut Cyrillic"
+msgstr "ალეუტური კირილიცა"
+
+#: src/font-manager/Orthographies.vala:34
+msgid "Aleut Latin"
+msgstr "ალეუტური ლათინური"
+
+#: src/font-manager/Orthographies.vala:35
+#: src/font-manager/web/google/LanguageData.vala:35
+msgid "Arabic"
+msgstr "არაბული"
+
+#: src/font-manager/Orthographies.vala:36
+msgid "Archaic Greek Letters"
+msgstr "არქაული ბერძნული ასოები"
+
+#: src/font-manager/Orthographies.vala:37
+#: src/font-manager/web/google/LanguageData.vala:36
+msgid "Armenian"
+msgstr "სომხური"
+
+#: src/font-manager/Orthographies.vala:38
+msgid "Astronomy"
+msgstr "ასტრონომია"
+
+#: src/font-manager/Orthographies.vala:39
+#: src/font-manager/web/google/LanguageData.vala:38
+msgid "Balinese"
+msgstr "ბალინური"
+
+#: src/font-manager/Orthographies.vala:40
+msgid "Baltic"
+msgstr "ბალტიური"
+
+#: src/font-manager/Orthographies.vala:41
+#: src/font-manager/web/google/LanguageData.vala:39
+msgid "Bamum"
+msgstr "ბამუმი"
+
+#: src/font-manager/Orthographies.vala:42
+msgid "Basic Cyrillic"
+msgstr "ძირითადი კირილიცა"
+
+#: src/font-manager/Orthographies.vala:43
+msgid "Basic Greek"
+msgstr "ძირითადი ბერძნული"
+
+#: src/font-manager/Orthographies.vala:44
+msgid "Basic Latin"
+msgstr "საბაზისო ლათინური"
+
+#: src/font-manager/Orthographies.vala:45
+msgid "Surat Batak"
+msgstr "სურატბატაკი"
+
+#: src/font-manager/Orthographies.vala:46
+#: src/font-manager/web/google/LanguageData.vala:42
+msgid "Bengali"
+msgstr "ბენგალური"
+
+#: src/font-manager/Orthographies.vala:47
+msgid "Brāhmī"
+msgstr "ბრაჰამი"
+
+#: src/font-manager/Orthographies.vala:48
+#: src/font-manager/web/google/LanguageData.vala:46
+msgid "Buginese"
+msgstr "ბუგინური"
+
+#: src/font-manager/Orthographies.vala:49
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr "კანადური აბორიგინალური"
+
+#: src/font-manager/Orthographies.vala:50
+#: src/font-manager/web/google/LanguageData.vala:50
+msgid "Carian"
+msgstr "კარიული"
+
+#: src/font-manager/Orthographies.vala:51
+msgid "Catalan"
+msgstr "კატალანური"
+
+#: src/font-manager/Orthographies.vala:52
+msgid "Central European"
+msgstr "ცენტრალურ ევროპული"
+
+#: src/font-manager/Orthographies.vala:53
+#: src/font-manager/web/google/LanguageData.vala:51
+msgid "Chakma"
+msgstr "ჩაკმა"
+
+#: src/font-manager/Orthographies.vala:54
+#: src/font-manager/web/google/LanguageData.vala:52
+msgid "Cham"
+msgstr "ჩამური"
+
+#: src/font-manager/Orthographies.vala:55
+#: src/font-manager/web/google/LanguageData.vala:53
+msgid "Cherokee"
+msgstr "ჩეროკი"
+
+#: src/font-manager/Orthographies.vala:56
+msgid "Chess Symbols"
+msgstr "ჭადრაკის სიმბოლოები"
+
+#. CJK entries added manually
+#: src/font-manager/Orthographies.vala:59
+msgid "CJK Unified"
+msgstr "CJK ერთიანი"
+
+#: src/font-manager/Orthographies.vala:60
+msgid "CJK Unified Extension A"
+msgstr "CJK გაერთიანებული გაფართოება A"
+
+#: src/font-manager/Orthographies.vala:61
+msgid "CJK Unified Extension B"
+msgstr "CJK გაერთიანებული გაფართოება B"
+
+#: src/font-manager/Orthographies.vala:62
+msgid "CJK Unified Extension C"
+msgstr "CJK გაერთიანებული გაფართოება C"
+
+#: src/font-manager/Orthographies.vala:63
+msgid "CJK Unified Extension D"
+msgstr "CJK გაერთიანებული გაფართოება D"
+
+#: src/font-manager/Orthographies.vala:64
+msgid "CJK Unified Extension E"
+msgstr "CJK გაერთიანებული გაფართოება E"
+
+#: src/font-manager/Orthographies.vala:65
+msgid "CJK Compatibility Ideographs"
+msgstr "CJK თავსებადი იდეოგრაფები"
+
+#: src/font-manager/Orthographies.vala:66
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr "CJK თავსებადი იდეოგრაფების დამატებები"
+
+#. End CJK entries
+#: src/font-manager/Orthographies.vala:69
+msgid "Claudian Letters"
+msgstr "კლავდიუსის ასოები"
+
+#: src/font-manager/Orthographies.vala:70
+#: src/font-manager/web/google/LanguageData.vala:58
+msgid "Coptic"
+msgstr "კოპტური"
+
+#: src/font-manager/Orthographies.vala:71
+msgid "Currencies"
+msgstr "ვალუტები"
+
+#: src/font-manager/Orthographies.vala:72
+msgid "Cypriot Syllabary"
+msgstr "კვიპრიოტული მარცვლოვანი ანბანი"
+
+#: src/font-manager/Orthographies.vala:73
+#: src/font-manager/web/google/LanguageData.vala:65
+msgid "Devanagari"
+msgstr "დევაგანური"
+
+#: src/font-manager/Orthographies.vala:74
+msgid "Dutch"
+msgstr "ჰოლანდიური"
+
+#: src/font-manager/Orthographies.vala:75
+#: src/font-manager/web/google/LanguageData.vala:67
+msgid "Egyptian Hieroglyphs"
+msgstr "ეგვიპტური იეროგლიფები"
+
+#: src/font-manager/Orthographies.vala:76
+msgid "Emoticons"
+msgstr "ემოციები"
+
+#: src/font-manager/Orthographies.vala:77
+#: src/font-manager/web/google/LanguageData.vala:70
+msgid "Ethiopic"
+msgstr "ეთიოპიური"
+
+#. This "orthography" contains only the euro symbol...
+#. { "Euro", "Euro" },
+#: src/font-manager/Orthographies.vala:82
+msgid "Farsi"
+msgstr "სპარსული"
+
+#: src/font-manager/Orthographies.vala:83
+msgid "Food and Drink"
+msgstr "საჭმელ-სასმელი"
+
+#: src/font-manager/Orthographies.vala:84
+msgid "Full Cyrillic"
+msgstr "სრული კირილიცა"
+
+#: src/font-manager/Orthographies.vala:85
+#: src/font-manager/web/google/LanguageData.vala:71
+msgid "Georgian"
+msgstr "ქართული"
+
+#: src/font-manager/Orthographies.vala:86
+#: src/font-manager/web/google/LanguageData.vala:72
+msgid "Glagolitic"
+msgstr "გლაგოლიტური"
+
+#: src/font-manager/Orthographies.vala:87
+#: src/font-manager/web/google/LanguageData.vala:73
+msgid "Gothic"
+msgstr "გოთური"
+
+#: src/font-manager/Orthographies.vala:88
+#: src/font-manager/web/google/LanguageData.vala:77
+msgid "Gujarati"
+msgstr "გუჯარათული"
+
+#: src/font-manager/Orthographies.vala:89
+#: src/font-manager/web/google/LanguageData.vala:79
+msgid "Gurmukhi"
+msgstr "გურმუხული"
+
+#: src/font-manager/Orthographies.vala:90
+msgid "Korean Hangul"
+msgstr "კორეული ჰანგული"
+
+#: src/font-manager/Orthographies.vala:91
+msgid "Hanunó'o"
+msgstr "ჰანუნოო"
+
+#: src/font-manager/Orthographies.vala:92
+#: src/font-manager/web/google/LanguageData.vala:83
+msgid "Hebrew"
+msgstr "ივრითი"
+
+#: src/font-manager/Orthographies.vala:93
+#: src/font-manager/Orthographies.vala:95
+msgid "IPA"
+msgstr "IPA"
+
+#: src/font-manager/Orthographies.vala:94
+msgid "Igbo Onwu"
+msgstr "იგბო ონვუ"
+
+#: src/font-manager/Orthographies.vala:96
+msgid "Korean Jamo"
+msgstr "კორეული ჯამო"
+
+#: src/font-manager/Orthographies.vala:97
+#: src/font-manager/web/google/LanguageData.vala:89
+msgid "Javanese"
+msgstr "იავური"
+
+#: src/font-manager/Orthographies.vala:98
+msgid "Japanese Jinmeiyo"
+msgstr "იაპონური ჯინმეიო"
+
+#: src/font-manager/Orthographies.vala:99
+msgid "Japanese Joyo"
+msgstr "იაპონური ჯოიო"
+
+#: src/font-manager/Orthographies.vala:100
+#: src/font-manager/web/google/LanguageData.vala:90
+msgid "Kaithi"
+msgstr "კაიტხი"
+
+#: src/font-manager/Orthographies.vala:101
+msgid "Japanese Kana"
+msgstr "იაპონური კანა"
+
+#: src/font-manager/Orthographies.vala:102
+#: src/font-manager/web/google/LanguageData.vala:91
+msgid "Kannada"
+msgstr "კანნადა"
+
+#: src/font-manager/Orthographies.vala:103
+#: src/font-manager/web/google/LanguageData.vala:94
+msgid "Kayah Li"
+msgstr "კაია-ლი"
+
+#: src/font-manager/Orthographies.vala:104
+msgid "Kazakh"
+msgstr "ყაზახური"
+
+#: src/font-manager/Orthographies.vala:105
+#: src/font-manager/web/google/LanguageData.vala:92
+msgid "Kharoshthi"
+msgstr "ხაროშტი"
+
+#: src/font-manager/Orthographies.vala:106
+#: src/font-manager/web/google/LanguageData.vala:95
+msgid "Khmer"
+msgstr "კხმერული"
+
+#: src/font-manager/Orthographies.vala:107
+msgid "Japanese Kokuji"
+msgstr "იაპონური კოკუჯი"
+
+#: src/font-manager/Orthographies.vala:108
+#: src/font-manager/web/google/LanguageData.vala:99
+msgid "Lao"
+msgstr "ლაოსური"
+
+#: src/font-manager/Orthographies.vala:109
+msgid "Latin Ligatures"
+msgstr "ლათინური ლიგატურები"
+
+#: src/font-manager/Orthographies.vala:110
+#: src/font-manager/web/google/LanguageData.vala:100
+msgid "Lepcha"
+msgstr "ლეპჩა"
+
+#: src/font-manager/Orthographies.vala:111
+#: src/font-manager/web/google/LanguageData.vala:103
+msgid "Limbu"
+msgstr "ლიმბუ"
+
+#: src/font-manager/Orthographies.vala:112
+msgid "Linear B Ideograms"
+msgstr "წრფივი B იდეოგრამები"
+
+#: src/font-manager/Orthographies.vala:113
+msgid "Linear B Syllabary"
+msgstr "წრფივი B მარცვლოვანი ანბანი"
+
+#: src/font-manager/Orthographies.vala:114
+#: src/font-manager/web/google/LanguageData.vala:110
+msgid "Malayalam"
+msgstr "მალაიამი"
+
+#: src/font-manager/Orthographies.vala:115
+msgid "Mathematical Greek"
+msgstr "მათემატიკური ბერძნული ენა"
+
+#: src/font-manager/Orthographies.vala:116
+msgid "Mathematical Latin"
+msgstr "მათემატიკური ლათინური"
+
+#: src/font-manager/Orthographies.vala:117
+msgid "Mathematical Numerals"
+msgstr "მათემატიკური ციფრები"
+
+#: src/font-manager/Orthographies.vala:118
+msgid "Mathematical Operators"
+msgstr "მათემატიკური ოპერატორები"
+
+#: src/font-manager/Orthographies.vala:119
+msgid "Meetei Mayak"
+msgstr "მიიტეი მაიეკი"
+
+#: src/font-manager/Orthographies.vala:120
+#: src/font-manager/web/google/LanguageData.vala:119
+msgid "Mende Kikakui"
+msgstr "მენდე კიკაკუი"
+
+#: src/font-manager/Orthographies.vala:121
+msgid "MeroiticCursive"
+msgstr "მეროიტულიკურსივი"
+
+#: src/font-manager/Orthographies.vala:122
+msgid "Meroitic Hieroglyphs"
+msgstr "მეროიტული იეროგლიფები"
+
+#. { N_(""), "meroitic-cursive", "" },
+#. { N_(""), "meroitic-heiroglyphs", "" },
+#: src/font-manager/Orthographies.vala:123
+#: src/font-manager/web/google/LanguageData.vala:123
+msgid "Miao"
+msgstr "მიაო"
+
+#: src/font-manager/Orthographies.vala:124
+#: src/font-manager/web/google/LanguageData.vala:125
+msgid "Mongolian"
+msgstr "მონღოლური"
+
+#. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+#. Contains lots of duplicates, doubt many would find it useful
+#. { "MUFI 3.0", "MUFI 3.0" },
+#: src/font-manager/Orthographies.vala:130
+#: src/font-manager/web/google/LanguageData.vala:129
+msgid "Myanmar"
+msgstr "მიანმარი"
+
+#: src/font-manager/Orthographies.vala:131
+#: src/font-manager/web/google/LanguageData.vala:133
+msgid "New Tai Lue"
+msgstr "ახალი ტაი ლუ"
+
+#: src/font-manager/Orthographies.vala:132
+msgid "N’Ko"
+msgstr "ნკო"
+
+#: src/font-manager/Orthographies.vala:133
+#: src/font-manager/web/google/LanguageData.vala:137
+msgid "Ogham"
+msgstr "ოგამი"
+
+#: src/font-manager/Orthographies.vala:134
+#: src/font-manager/web/google/LanguageData.vala:138
+msgid "Ol Chiki"
+msgstr "ოლ ჩიკი"
+
+#: src/font-manager/Orthographies.vala:135
+#: src/font-manager/web/google/LanguageData.vala:140
+msgid "Old Italic"
+msgstr "ძველი დახრილი"
+
+#: src/font-manager/Orthographies.vala:136
+#: src/font-manager/web/google/LanguageData.vala:145
+msgid "Old South Arabian"
+msgstr "ძველი სამხრეთ არაბული"
+
+#: src/font-manager/Orthographies.vala:137
+#: src/font-manager/web/google/LanguageData.vala:149
+msgid "Oriya"
+msgstr "ორია"
+
+#: src/font-manager/Orthographies.vala:138
+#: src/font-manager/web/google/LanguageData.vala:148
+msgid "Osmanya"
+msgstr "ოსმანია"
+
+#: src/font-manager/Orthographies.vala:139
+msgid "Pan African Latin"
+msgstr "პანაფრიკული ლათინური"
+
+#: src/font-manager/Orthographies.vala:140
+msgid "Pashto"
+msgstr "პაშტო"
+
+#: src/font-manager/Orthographies.vala:141
+#: src/font-manager/web/google/LanguageData.vala:153
+msgid "Phags Pa"
+msgstr "Phags Pa"
+
+#: src/font-manager/Orthographies.vala:142
+msgid "Pinyin"
+msgstr "პინინი"
+
+#: src/font-manager/Orthographies.vala:143
+msgid "Polynesian"
+msgstr "პოლინეზიური"
+
+#: src/font-manager/Orthographies.vala:144
+msgid "Polytonic Greek"
+msgstr "პოლიტონური ბერძნული"
+
+#: src/font-manager/Orthographies.vala:145
+#: src/font-manager/web/google/LanguageData.vala:156
+msgid "Rejang"
+msgstr "რეჯანგი"
+
+#: src/font-manager/Orthographies.vala:146
+msgid "Romanian"
+msgstr "რუმინული"
+
+#: src/font-manager/Orthographies.vala:147
+#: src/font-manager/web/google/LanguageData.vala:157
+msgid "Runic"
+msgstr "რუნები"
+
+#: src/font-manager/Orthographies.vala:148
+#: src/font-manager/web/google/LanguageData.vala:159
+msgid "Saurashtra"
+msgstr "საურაშტრა"
+
+#: src/font-manager/Orthographies.vala:149
+msgid "Simplified Chinese"
+msgstr "გამარტივებული ჩინური"
+
+#: src/font-manager/Orthographies.vala:150
+msgid "Sindhi"
+msgstr "სინდი"
+
+#: src/font-manager/Orthographies.vala:151
+#: src/font-manager/web/google/LanguageData.vala:164
+msgid "Sinhala"
+msgstr "სინჰალა"
+
+#: src/font-manager/Orthographies.vala:152
+msgid "South Korean Hanja"
+msgstr "სამხრეთკორეული ჰანჯა"
+
+#: src/font-manager/Orthographies.vala:153
+#: src/font-manager/web/google/LanguageData.vala:168
+msgid "Sundanese"
+msgstr "სუნდური"
+
+#: src/font-manager/Orthographies.vala:154
+#: src/font-manager/web/google/LanguageData.vala:169
+msgid "Syloti Nagri"
+msgstr "Syloti Nagri"
+
+#. { N_("Symbols"), "symbols", "" },
+#: src/font-manager/Orthographies.vala:155
+#: src/font-manager/web/google/LanguageData.vala:171
+msgid "Syriac"
+msgstr "სირიული"
+
+#: src/font-manager/Orthographies.vala:156
+#: src/font-manager/web/google/LanguageData.vala:174
+msgid "Tai Le"
+msgstr "ტაი ლე"
+
+#: src/font-manager/Orthographies.vala:157
+msgid "Tai Tham (Lanna)"
+msgstr "ტაი თამი (ლანა)"
+
+#: src/font-manager/Orthographies.vala:158
+msgid "Tai Viet"
+msgstr "ტაი ვიეტური"
+
+#: src/font-manager/Orthographies.vala:159
+#: src/font-manager/web/google/LanguageData.vala:175
+msgid "Tamil"
+msgstr "თამილური"
+
+#: src/font-manager/Orthographies.vala:160
+#: src/font-manager/web/google/LanguageData.vala:176
+msgid "Telugu"
+msgstr "ტელუგური"
+
+#: src/font-manager/Orthographies.vala:161
+msgid "Thaana"
+msgstr "თაანური"
+
+#: src/font-manager/Orthographies.vala:162
+#: src/font-manager/web/google/LanguageData.vala:177
+msgid "Thai"
+msgstr "ტაილანდური"
+
+#: src/font-manager/Orthographies.vala:163
+#: src/font-manager/web/google/LanguageData.vala:178
+msgid "Tibetan"
+msgstr "ტიბეტური"
+
+#: src/font-manager/Orthographies.vala:164
+msgid "Tifinagh"
+msgstr "ტიფინაგური"
+
+#: src/font-manager/Orthographies.vala:165
+msgid "Traditional Chinese"
+msgstr "ტრადიციული ჩინური"
+
+#: src/font-manager/Orthographies.vala:166
+msgid "Turkish"
+msgstr "თურქული"
+
+#: src/font-manager/Orthographies.vala:167
+msgid "Uighur"
+msgstr "უიღური"
+
+#: src/font-manager/Orthographies.vala:168
+msgid "Urdu"
+msgstr "ურდუ"
+
+#: src/font-manager/Orthographies.vala:169
+msgid "Vai"
+msgstr "ვაი"
+
+#: src/font-manager/Orthographies.vala:170
+msgid "Vedic Extensions"
+msgstr "ვედიიური გაფართოებები"
+
+#: src/font-manager/Orthographies.vala:171
+msgid "Venda"
+msgstr "ვენდა"
+
+#: src/font-manager/Orthographies.vala:172
+#: src/font-manager/web/google/LanguageData.vala:179
+msgid "Vietnamese"
+msgstr "ვიეტნამური"
+
+#: src/font-manager/Orthographies.vala:173
+msgid "Western European"
+msgstr "დასავლეთ ევროპული"
+
+#: src/font-manager/Orthographies.vala:174
+msgid "Yi"
+msgstr "იოქტი"
+
+#: src/font-manager/Orthographies.vala:175
+msgid "Chinese Zhuyin Fuhao"
+msgstr "ჩინური ჟუიინ ფუჰაო"
+
+#. Translators : Coverage refers to the amount of support the font provides for
+#. an orthography. This will be displayed as "Coverage : XXX%" in the interface.
+#: src/font-manager/OrthographyList.vala:105
+msgid "Coverage"
+msgstr "დაფარვა"
+
+#: src/font-manager/OrthographyList.vala:137
+#: src/font-manager/filters/LanguageFilter.vala:55
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
+msgid "Supported Orthographies"
+msgstr "მხარდაჭერილი ორთოგრაფიები"
+
+#: src/font-manager/OrthographyList.vala:200
+msgid "No items selected"
+msgstr "მონიშნული ჩანაწერების გარეშე"
+
+#: src/font-manager/OrthographyList.vala:205
+msgid "Update in progress"
+msgstr "მიმდინარეობს განახლება"
+
+#. No error and no results means this font file is likely broken or empty
+#: src/font-manager/OrthographyList.vala:231
+msgid "No valid orthographies for selection"
+msgstr ""
+
+#: src/font-manager/Sidebar.vala:57
+msgid "Add new collection"
+msgstr "ახალი კოლექციის დამატება"
+
+#: src/font-manager/Sidebar.vala:61
+#: src/font-manager/ui/font-manager-font-list-controls.ui:32
+#: src/font-manager/ui/font-manager-font-list-view.ui:36
+msgid "Remove selected item"
+msgstr "მონიშნული ელემენტის წაშლა"
+
+#: src/font-manager/Sidebar.vala:67
+msgid "Edit selected item"
+msgstr "მონიშნული ელემენტის ჩასწორება"
+
+#: src/font-manager/Utils.vala:295
+msgid "Copying files…"
+msgstr "ფაილების კოპირება…"
+
+#: src/font-manager/filters/Collection.vala:99
+msgid "New Collection"
+msgstr "ახალი კოლექცია"
+
+#: src/font-manager/filters/Collection.vala:100
+#, c-format
+msgid "Created : %s"
+msgstr "შეიქმნა : %s"
+
+#: src/font-manager/filters/Disabled.vala:28
+msgid "Disabled"
+msgstr "გამორთულია"
+
+#: src/font-manager/filters/Disabled.vala:29
+msgid "Fonts which have been disabled"
+msgstr "ფონტები, რომლებიც გამორთულია"
+
+#: src/font-manager/filters/LanguageFilter.vala:28
+msgid "Filter based on supported orthographies"
+msgstr ""
+
+#: src/font-manager/filters/Unsorted.vala:34
+msgid "Unsorted"
+msgstr "დაულაგებელი"
+
+#: src/font-manager/filters/Unsorted.vala:35
+msgid "Fonts not present in any collection"
+msgstr ""
+
+#: src/font-manager/filters/UserFonts.vala:27
+msgid "User"
+msgstr "მომხმარებელი"
+
+#: src/font-manager/filters/UserFonts.vala:28
+msgid "Fonts available only to you"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:36
+msgid "Interface Font"
+msgstr "ინტერფეისის ფონტი"
+
+#: src/font-manager/preferences/Desktop.vala:37
+msgid "Font used throughout interface."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:42
+msgid "Document Font"
+msgstr "დოკუმენტის ფონტი"
+
+#: src/font-manager/preferences/Desktop.vala:43
+msgid "Font used for reading documents."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:48
+msgid "Monospace Font"
+msgstr "ერთსიგანიან ფონტი"
+
+#: src/font-manager/preferences/Desktop.vala:49
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:54
+msgid "Text Scaling Factor"
+msgstr "ტექსტის მასშტაბის კოეფიციენტი"
+
+#: src/font-manager/preferences/Desktop.vala:55
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:60
+msgid "GTK 4 Font Rendering"
+msgstr "GTK 4-ის ფონტის რენდერი"
+
+#: src/font-manager/preferences/Desktop.vala:61
+msgid "Automatic option allows GTK 4 to disregard hinting settings."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:90
+msgid "Antialiasing"
+msgstr "მომრგვალება"
+
+#: src/font-manager/preferences/Desktop.vala:67
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values. "
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:96
+msgid "RGBA order"
+msgstr "RGBA მიმდევრობა"
+
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:97
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:78
+#: src/font-manager/preferences/Desktop.vala:84
+#: src/font-manager/preferences/Rendering.vala:78
+msgid "Hinting"
+msgstr "მოგლუვება"
+
+#: src/font-manager/preferences/Desktop.vala:79
+#: src/font-manager/preferences/Desktop.vala:85
+msgid "The type of hinting to use when rendering fonts."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:91
+msgid ""
+"The type of antialiasing to use when rendering fonts.\n"
+"\n"
+"Note : Starting with GTK 4 RGBA is no longer used, only None and Grayscale "
+"are valid values."
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:121
+msgid "GNOME desktop settings schema not found"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Automatic"
+msgstr "ავტომატური"
+
+#: src/font-manager/preferences/Desktop.vala:215
+msgid "Manual"
+msgstr "ხელით"
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "Grayscale"
+msgstr "ნაცრისფერი"
+
+#: src/font-manager/preferences/Desktop.vala:234
+msgid "RGBA"
+msgstr "RGBA"
+
+#: src/font-manager/preferences/Desktop.vala:242
+#: src/font-manager/preferences/Display.vala:91
+msgid "Subpixel Geometry"
+msgstr "ქვეპიქსელის გეომეტრია"
+
+#: src/font-manager/preferences/Display.vala:75
+msgid "Target DPI"
+msgstr "სამიზნე DPI"
+
+#: src/font-manager/preferences/Display.vala:77
+msgid "Scale Factor"
+msgstr "გადიდების ფაქტორი"
+
+#: src/font-manager/preferences/Display.vala:83
+msgid "LCD Filter"
+msgstr "LCD ფილტრი"
+
+#: src/font-manager/preferences/Preferences.vala:41
+msgid "Interface"
+msgstr "ინტერფეისი"
+
+#: src/font-manager/preferences/Preferences.vala:42
+msgid "Desktop"
+msgstr "სამუშაო მაგიდა"
+
+#: src/font-manager/preferences/Preferences.vala:48
+msgid "Sources"
+msgstr "წყაროები"
+
+#: src/font-manager/preferences/Preferences.vala:49
+msgid "Substitutions"
+msgstr "შენაცვლებები"
+
+#: src/font-manager/preferences/Preferences.vala:50
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
+msgid "Display"
+msgstr "ჩვენება"
+
+#: src/font-manager/preferences/Preferences.vala:51
+msgid "Rendering"
+msgstr "რენდერი"
+
+#: src/font-manager/preferences/Preferences.vala:131
+msgid ""
+"A Fontconfig configuration file will be generated from these settings.\n"
+"\n"
+"Running applications may require a restart to reflect any changes.\n"
+"\n"
+"Note that not all environments/applications will honor these settings."
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:153
+msgid "Reset all values to default"
+msgstr "ყველა მნიშვნელობის ნაგულისხმევზე ჩამოყრა"
+
+#: src/font-manager/preferences/Rendering.vala:77
+msgid "Antialias"
+msgstr "მოგლუვება"
+
+#: src/font-manager/preferences/Rendering.vala:81
+msgid "Enable Autohinter"
+msgstr "autohinter-ის ჩართვა"
+
+#: src/font-manager/preferences/Rendering.vala:88
+msgid "Hinting Style"
+msgstr "მომრგვალების სტილი"
+
+#: src/font-manager/preferences/Rendering.vala:90
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: src/font-manager/preferences/Substitutions.vala:153
+msgid "Font Substitutions"
+msgstr "ფონტის ჩანაცვლებები"
+
+#: src/font-manager/preferences/Substitutions.vala:154
+msgid "Easily substitute one font family for another."
+msgstr ""
+
+#: src/font-manager/preferences/Substitutions.vala:155
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:232
+msgid ""
+"Actions defined here will be added to the font list context menu.\n"
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list.\n"
+"To control where the filepath is inserted use FILEPATH as a placeholder.\n"
+"If FAMILY or STYLE are found in the argument list they will also be replaced."
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:246
+msgid "User Actions"
+msgstr "მომხმარებლის ქმედებები"
+
+#: src/font-manager/preferences/UserActions.vala:248
+msgid "Custom context menu entries"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:78
+#: src/font-viewer/MainWindow.vala:337
+msgid "Selected setting requires restart to apply"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:79
+#: src/font-viewer/MainWindow.vala:338
+msgid "Changes will take effect next time the application is started"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Wide Layout"
+msgstr "ფართო განლაგება"
+
+#: src/font-manager/preferences/UserInterface.vala:92
+msgid "Use three column layout"
+msgstr "სამი სვეტის განლაგების გამოყენება"
+
+#: src/font-manager/preferences/UserInterface.vala:95
+msgid "Only When Maximized"
+msgstr "მხოლოდ, როცა გაშლილია"
+
+#: src/font-manager/preferences/UserInterface.vala:97
+msgid "Enable Animations"
+msgstr "ანიმაციების ჩართვა"
+
+#. The added margins here are due to PreviewColors widget alignment issues
+#: src/font-manager/preferences/UserInterface.vala:98
+#: src/font-viewer/MainWindow.vala:353
+msgid "Prefer Dark Theme"
+msgstr "მუქი თემის გამოყენება"
+
+#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-viewer/MainWindow.vala:358
+msgid "Use Adwaita Stylesheet"
+msgstr "Adwaita-ის სტილების ცხრილის გამოყენება"
+
+#: src/font-manager/preferences/UserInterface.vala:103
+msgid "Raised"
+msgstr "აწეული"
+
+#: src/font-manager/preferences/UserInterface.vala:104
+msgid "Flat"
+msgstr "ბრტყელი"
+
+#: src/font-manager/preferences/UserInterface.vala:106
+msgid "Titlebar Button Style"
+msgstr "სათაურის ზოლის ღილაკის სტილი"
+
+#: src/font-manager/preferences/UserInterface.vala:107
+#: src/font-viewer/MainWindow.vala:376
+msgid "Display line size in Waterfall Preview"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:112
+#: src/font-viewer/MainWindow.vala:371
+msgid "Waterfall Line Spacing"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:114
+#: src/font-viewer/MainWindow.vala:372
+msgid "Padding in pixels to insert above and below rows"
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:145
+msgid ""
+"Fonts in any folders listed here will be available within the application.\n"
+"\n"
+"They will not be visible to other applications until the source is actually "
+"enabled."
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:157
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
+
+#: src/font-manager/preferences/UserSources.vala:158
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:156
+msgid "Network Access Disabled"
+msgstr "ქსელში წვდომა გამორთულია"
+
+#: src/font-manager/web/google/GoogleFonts.vala:157
+msgid "Contact your system administrator to request access."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:160
+msgid "Network Offline"
+msgstr "ქსელი გათიშულია"
+
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:162
+msgid ""
+"An active internet connection is required to access the Google Fonts catalog"
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:172
+msgid "Client Error"
+msgstr "კლიენტის შეცდომა"
+
+#: src/font-manager/web/google/GoogleFonts.vala:173
+msgid ""
+"Try restarting the application. If the issue persists, please file a bug."
+msgstr ""
+
+#: src/font-manager/web/google/GoogleFonts.vala:176
+msgid "Server Error"
+msgstr "სერვერის შეცდომა"
+
+#. Sample strings used here should be sourced from https://fonts.google.com/
+#: src/font-manager/web/google/LanguageData.vala:33
+msgid "Adlam"
+msgstr "ადლამი"
+
+#: src/font-manager/web/google/LanguageData.vala:34
+msgid "Anatolian Hieroglyphs"
+msgstr "ანატოლიური იეროგლიფები"
+
+#: src/font-manager/web/google/LanguageData.vala:37
+msgid "Avestan"
+msgstr "ავესტანი"
+
+#: src/font-manager/web/google/LanguageData.vala:40
+msgid "Bassa Vah"
+msgstr "ბასა ვაჰ"
+
+#: src/font-manager/web/google/LanguageData.vala:41
+msgid "Batak"
+msgstr "ბატაკი"
+
+#: src/font-manager/web/google/LanguageData.vala:43
+msgid "Bhaiksuki"
+msgstr "ბჰაიკსუკი"
+
+#: src/font-manager/web/google/LanguageData.vala:44
+msgid "Brahmi"
+msgstr "ბრაჰმი"
+
+#: src/font-manager/web/google/LanguageData.vala:45
+msgid "Braille"
+msgstr "ბრაილი"
+
+#. { N_("Buhid"), "buhid", "" },
+#: src/font-manager/web/google/LanguageData.vala:48
+msgid "Caucasian Albanian"
+msgstr "კავკასიური ალბანური"
+
+#: src/font-manager/web/google/LanguageData.vala:49
+msgid "Canadian Aboriginal"
+msgstr "კანადური აბორიგინალური"
+
+#: src/font-manager/web/google/LanguageData.vala:54
+msgid "Chinese (Hong Kong)"
+msgstr "ჩინური (ჰონგ კონგი)"
+
+#: src/font-manager/web/google/LanguageData.vala:55
+msgid "Chinese (Simplified)"
+msgstr "ჩინური (გამარტივებული)"
+
+#: src/font-manager/web/google/LanguageData.vala:56
+msgid "Chinese (Traditional)"
+msgstr "ჩინური (ტრადიციული)"
+
+#: src/font-manager/web/google/LanguageData.vala:57
+msgid "Chorasmian"
+msgstr "ხორასნული"
+
+#: src/font-manager/web/google/LanguageData.vala:59
+msgid "Cuneiform"
+msgstr "ლურსმული"
+
+#: src/font-manager/web/google/LanguageData.vala:60
+msgid "Cypriot"
+msgstr "კვიპრიოტი"
+
+#: src/font-manager/web/google/LanguageData.vala:61
+msgid "Cypro Minoan"
+msgstr "კრიპტო-მინოური"
+
+#: src/font-manager/web/google/LanguageData.vala:62
+msgid "Cyrillic"
+msgstr "კირილიცა"
+
+#: src/font-manager/web/google/LanguageData.vala:63
+msgid "Cyrillic Extended"
+msgstr "კირილიცა გაფართოებული"
+
+#: src/font-manager/web/google/LanguageData.vala:64
+msgid "Deseret"
+msgstr "უდაბნოური"
+
+#: src/font-manager/web/google/LanguageData.vala:66
+msgid "Duployan"
+msgstr "დუპლოის სტენოგრაფია"
+
+#: src/font-manager/web/google/LanguageData.vala:68
+msgid "Elbasan"
+msgstr "ელბასანი"
+
+#: src/font-manager/web/google/LanguageData.vala:69
+msgid "Elymaic"
+msgstr "ელიმაური"
+
+#: src/font-manager/web/google/LanguageData.vala:74
+msgid "Grantha"
+msgstr "გრანტა"
+
+#: src/font-manager/web/google/LanguageData.vala:75
+msgid "Greek"
+msgstr "ბერძნული"
+
+#: src/font-manager/web/google/LanguageData.vala:76
+msgid "Greek Extended"
+msgstr "გაფართოებული ბერძნული"
+
+#: src/font-manager/web/google/LanguageData.vala:78
+msgid "Gunjala Gondi"
+msgstr "გუნჯალა გონდი"
+
+#: src/font-manager/web/google/LanguageData.vala:80
+msgid "Hanifi Rohingya"
+msgstr "ჰანიფი როჰინგია"
+
+#: src/font-manager/web/google/LanguageData.vala:81
+msgid "Hanunoo"
+msgstr "ჰანუნოო"
+
+#: src/font-manager/web/google/LanguageData.vala:82
+msgid "Hatran"
+msgstr "ჰატრანული"
+
+#: src/font-manager/web/google/LanguageData.vala:84
+msgid "Imperial Aramaic"
+msgstr "იმპერიული არამეული"
+
+#: src/font-manager/web/google/LanguageData.vala:85
+msgid "Indic Siyaq Numbers"
+msgstr "ინდური სიაქის რიცხვები"
+
+#: src/font-manager/web/google/LanguageData.vala:86
+msgid "Inscriptional Pahlavi"
+msgstr "ფეჰლევის დამწერლობა"
+
+#: src/font-manager/web/google/LanguageData.vala:87
+msgid "Inscriptional Parthian"
+msgstr "პართიული დამწერლობა"
+
+#: src/font-manager/web/google/LanguageData.vala:88
+msgid "Japanese"
+msgstr "იაპონური"
+
+#: src/font-manager/web/google/LanguageData.vala:93
+msgid "Kawi"
+msgstr "კავი"
+
+#: src/font-manager/web/google/LanguageData.vala:96
+msgid "Khojki"
+msgstr "ქოჯკი"
+
+#: src/font-manager/web/google/LanguageData.vala:97
+msgid "Khudawadi"
+msgstr "ქუდავადი"
+
+#: src/font-manager/web/google/LanguageData.vala:98
+msgid "Korean"
+msgstr "კორეული"
+
+#: src/font-manager/web/google/LanguageData.vala:101
+msgid "Latin"
+msgstr "ლათინური"
+
+#: src/font-manager/web/google/LanguageData.vala:102
+msgid "Latin Extended"
+msgstr "ლათინური გაფართოებული"
+
+#: src/font-manager/web/google/LanguageData.vala:104
+msgid "Linear A"
+msgstr "ხაზოვანი A"
+
+#: src/font-manager/web/google/LanguageData.vala:105
+msgid "Linear B"
+msgstr "წრფივი B"
+
+#: src/font-manager/web/google/LanguageData.vala:106
+msgid "Lisu"
+msgstr "ლისუ"
+
+#: src/font-manager/web/google/LanguageData.vala:107
+msgid "Lycian"
+msgstr "ლიდიის"
+
+#: src/font-manager/web/google/LanguageData.vala:108
+msgid "Lydian"
+msgstr "ლიდიური"
+
+#: src/font-manager/web/google/LanguageData.vala:109
+msgid "Mahajani"
+msgstr "მაჰაჯანი"
+
+#: src/font-manager/web/google/LanguageData.vala:111
+msgid "Mandaic"
+msgstr "მანდეური"
+
+#: src/font-manager/web/google/LanguageData.vala:112
+msgid "Manichaean"
+msgstr "მანიქეური"
+
+#: src/font-manager/web/google/LanguageData.vala:113
+msgid "Math"
+msgstr "მათემატიკა"
+
+#: src/font-manager/web/google/LanguageData.vala:114
+msgid "Marchen"
+msgstr "მარჩენი"
+
+#: src/font-manager/web/google/LanguageData.vala:115
+msgid "Masaram Gondi"
+msgstr "მასარამი გონდი"
+
+#: src/font-manager/web/google/LanguageData.vala:116
+msgid "Mayan Numerals"
+msgstr "მაიას ციფრები"
+
+#: src/font-manager/web/google/LanguageData.vala:117
+msgid "Medefaidrin"
+msgstr "მედეფედრინი"
+
+#: src/font-manager/web/google/LanguageData.vala:118
+msgid "Meetei Mayek"
+msgstr "მანიპურული"
+
+#: src/font-manager/web/google/LanguageData.vala:120
+msgid "Meroitic"
+msgstr "მეროიტული"
+
+#: src/font-manager/web/google/LanguageData.vala:124
+msgid "Modi"
+msgstr "მოდი"
+
+#: src/font-manager/web/google/LanguageData.vala:126
+msgid "Mro"
+msgstr "მრო"
+
+#: src/font-manager/web/google/LanguageData.vala:127
+msgid "Multani"
+msgstr "მულტანი"
+
+#: src/font-manager/web/google/LanguageData.vala:128
+msgid "Music"
+msgstr "მუსიკა"
+
+#: src/font-manager/web/google/LanguageData.vala:130
+msgid "Nabataean"
+msgstr "ნაბატეური"
+
+#: src/font-manager/web/google/LanguageData.vala:131
+msgid "Nag Mundari"
+msgstr "ნაგ-მუნდარი"
+
+#: src/font-manager/web/google/LanguageData.vala:132
+msgid "Nandinagari"
+msgstr "ნანდინაგარი"
+
+#: src/font-manager/web/google/LanguageData.vala:134
+msgid "Newa"
+msgstr "ნევა"
+
+#. { N_(""), "nko", "" },
+#: src/font-manager/web/google/LanguageData.vala:136
+msgid "Nüshu"
+msgstr "ნიუშუ"
+
+#: src/font-manager/web/google/LanguageData.vala:139
+msgid "Old Hungarian"
+msgstr "ძველი უნგრული"
+
+#: src/font-manager/web/google/LanguageData.vala:141
+msgid "Old North Arabian"
+msgstr "ძველი ჩრდილო არაბული"
+
+#: src/font-manager/web/google/LanguageData.vala:142
+msgid "Old Permic"
+msgstr "ძველი პერმული"
+
+#: src/font-manager/web/google/LanguageData.vala:143
+msgid "Old Persian"
+msgstr "ძველი სპარსული"
+
+#: src/font-manager/web/google/LanguageData.vala:144
+msgid "Old Sogdian"
+msgstr "ძველი სოგდანური"
+
+#: src/font-manager/web/google/LanguageData.vala:146
+msgid "Old Turkic"
+msgstr "ძველი თურქული"
+
+#: src/font-manager/web/google/LanguageData.vala:147
+msgid "Osage"
+msgstr "ოსეიჯი"
+
+#: src/font-manager/web/google/LanguageData.vala:150
+msgid "Pahawh Hmong"
+msgstr "პაჰაუ ჰმონგი"
+
+#: src/font-manager/web/google/LanguageData.vala:151
+msgid "Palmyrene"
+msgstr "პალმირული"
+
+#: src/font-manager/web/google/LanguageData.vala:152
+msgid "Pau Cin Hau"
+msgstr "Pau Cin Hau"
+
+#: src/font-manager/web/google/LanguageData.vala:154
+msgid "Phoenician"
+msgstr "ფონეტიკური"
+
+#: src/font-manager/web/google/LanguageData.vala:155
+msgid "Psalter Pahlavi"
+msgstr "ფსალტერული პაჰლავი"
+
+#: src/font-manager/web/google/LanguageData.vala:158
+msgid "Samaritan"
+msgstr "სამარიტული"
+
+#: src/font-manager/web/google/LanguageData.vala:160
+msgid "Sharada"
+msgstr "შარადა"
+
+#: src/font-manager/web/google/LanguageData.vala:161
+msgid "Shavian"
+msgstr "შავიური"
+
+#: src/font-manager/web/google/LanguageData.vala:162
+msgid "Siddham"
+msgstr "სიდჰამი"
+
+#: src/font-manager/web/google/LanguageData.vala:163
+msgid "SignWriting"
+msgstr "საინრაითინგი"
+
+#: src/font-manager/web/google/LanguageData.vala:165
+msgid "Sogdian"
+msgstr "სოღდური"
+
+#: src/font-manager/web/google/LanguageData.vala:166
+msgid "Sora Sompeng"
+msgstr "სორანგ სომპენგი"
+
+#: src/font-manager/web/google/LanguageData.vala:167
+msgid "Soyombo"
+msgstr "სოიომბო"
+
+#: src/font-manager/web/google/LanguageData.vala:172
+msgid "Tagalog"
+msgstr "ტაგალოგური"
+
+#: src/font-manager/web/google/LanguageData.vala:173
+msgid "Tagbanwa"
+msgstr "ტაგბანვა"
+
+#. TRANSLATORS : The replacement character here refers to a language name.
+#: src/font-manager/web/google/LanguageData.vala:190
+#, c-format
+msgid "No sample for %s available"
+msgstr ""
+
+#: src/font-manager/web/google/LanguageData.vala:192
+msgid "Please file an issue requesting an update to available samples."
+msgstr ""
+
+#: src/font-manager/web/google/PreviewPage.vala:383
+#, c-format
+msgid "%i Language Sample Available "
+msgid_plural "%i Language Samples Available"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/font-manager/web/google/WebFont.vala:174
+msgid "ExtraLight"
+msgstr "ძალიან მსუბუქი"
+
+#: src/font-manager/web/google/WebFont.vala:182
+msgid "SemiBold"
+msgstr "ნახევრად-სქელი"
+
+#: src/font-manager/web/google/WebFont.vala:186
+msgid "ExtraBold"
+msgstr "ძალიანსქელი"
+
+#: src/font-manager/web/google/WebFont.vala:188
+msgid "Black"
+msgstr "შავი"
+
+#: src/font-viewer/MainWindow.vala:279
+msgid "System Font"
+msgstr "სისტემური ფონტი"
+
+#: src/font-viewer/MainWindow.vala:281
+msgid ""
+"Selected font file is either installed in a system directory or is not "
+"writable by the current user.\n"
+"\n"
+"If you wish to remove this font from the list of available fonts use the "
+"system package manager to remove the package containing this font file, ask "
+"the system administrator to remove it or use a font management application "
+"to disable it."
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:284
+msgid "Newer version already installed"
+msgstr "უკვე დაყენებულია უფრო ახალი ვერსია"
+
+#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
+msgid "Click to overwrite"
+msgstr "დააწკაპუნეთ თავზე გადასაწერად"
+
+#: src/font-viewer/MainWindow.vala:289
+msgid "Update Font"
+msgstr "ფონტის განახლება"
+
+#: src/font-viewer/MainWindow.vala:294
+msgid "Remove Font"
+msgstr "ფონტის წაშლა"
+
+#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/font-viewer-main-window.ui:109
+msgid "Install Font"
+msgstr "ფონტის დაყენება"
+
+#: src/font-viewer/MainWindow.vala:365
+msgid "Preview Area Colors"
+msgstr "მინიატურის არეს ფერები"
+
+#: src/common/ui/font-manager-preview-colors.ui:9
+#: src/common/ui/font-manager-preview-colors.ui:15
+msgid "Select background color"
+msgstr "აირჩიეთ ფონის ფერი"
+
+#: src/common/ui/font-manager-preview-colors.ui:23
+#: src/common/ui/font-manager-preview-colors.ui:29
+msgid "Select text color"
+msgstr "აირჩიეთ ტექსტის ფერი"
+
+#: src/font-manager/gtk/help-overlay.ui:11
+msgid "General"
+msgstr "ზოგადი"
+
+#: src/font-manager/gtk/help-overlay.ui:23
+msgid "Increase preview size"
+msgstr "მინიატურის ზომის გაზრდა"
+
+#: src/font-manager/gtk/help-overlay.ui:30
+msgid "Decrease preview size"
+msgstr "მინიატურის ზომის შემცირება"
+
+#: src/font-manager/gtk/help-overlay.ui:37
+msgid "Reset preview size"
+msgstr "მინიატურის ზომის ჩამოყრა"
+
+#: src/font-manager/gtk/help-overlay.ui:44
+msgid "Focus search entry"
+msgstr "ფოკუსი ძებნის ჩანაწერზე"
+
+#: src/font-manager/gtk/help-overlay.ui:51
+msgid "Reload"
+msgstr "თავიდან ჩატვირთვა"
+
+#: src/font-manager/gtk/help-overlay.ui:58
+#: src/font-manager/gtk/help-overlay.ui:65
+msgid "Quit the application"
+msgstr "აპლიკაციიდან გასვლა"
+
+#: src/font-manager/gtk/help-overlay.ui:73
+msgid "Mode"
+msgstr "რეჟიმი"
+
+#: src/font-manager/gtk/help-overlay.ui:78
+msgid "Switch to Manage mode"
+msgstr "გადართვა მართვის რეჟიმზე"
+
+#: src/font-manager/gtk/help-overlay.ui:85
+msgid "Switch to Browse mode"
+msgstr "გადართვა დათვალიერების რეჟიმზე"
+
+#: src/font-manager/gtk/help-overlay.ui:92
+msgid "Switch to Compare mode"
+msgstr "გადართვა შედარების რეჟიმზე"
+
+#: src/font-manager/gtk/help-overlay.ui:99
+msgid "Switch to Google Fonts mode"
+msgstr "გადართვა Google-ის ფონტების რეჟიმზე"
+
+#: src/font-manager/gtk/help-overlay.ui:107
+msgid "Preview Mode"
+msgstr "გადახედვის რეჟიმი"
+
+#: src/font-manager/gtk/help-overlay.ui:112
+msgid "Switch to Standard preview"
+msgstr "გადართვა სტანდარტულ მინიატურაზე"
+
+#: src/font-manager/gtk/help-overlay.ui:119
+msgid "Switch to Waterfall preview"
+msgstr ""
+
+#: src/font-manager/gtk/help-overlay.ui:126
+msgid "Switch to Body Text preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:100
+msgid "Increase tile size"
+msgstr "ფილის ზომის გაზრდა"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:109
+msgid "Decrease tile size"
+msgstr "ფილის ზომის შემცირება"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:149
+msgid "Toggle search entry"
+msgstr "ძებნის ჩანაწერის გადართვა"
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:158
+msgid "Toggle preview panel"
+msgstr "მინიატურის პანელის გადართვა"
+
+#: src/font-manager/ui/font-manager-browse-preview.ui:160
+msgid ""
+"Status of selected family.\n"
+"\n"
+"Disabling will prevent the selected family from being used by other "
+"applications."
+msgstr ""
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:19
+msgid "Collection Name"
+msgstr "კოლექციის სახელი"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:45
+msgid "_Rename"
+msgstr "_სახელის გადარქმევა"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:20
+msgid "Add selected font to comparison"
+msgstr "მონიშნული ფონტის დამატება შედარებაში"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:33
+msgid "Remove selected font from comparison"
+msgstr "მონიშნული ფონტის წაშლა შედარებიდან"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:45
+msgid "Pinned Comparisons"
+msgstr "ამაგრებული შედარებები"
+
+#: src/font-manager/ui/font-manager-export-dialog.ui:19
+#: src/font-manager/ui/font-manager-remove-dialog.ui:19
+msgid "Cancel"
+msgstr "გაუქმება"
+
+#: src/font-manager/ui/font-manager-font-list-controls.ui:51
+#: src/font-manager/ui/font-manager-font-list-view.ui:54
+#: src/font-manager/ui/font-manager-remove-dialog.ui:43
+#: src/font-manager/web/google/ui/google-fonts-font-list-view.ui:44
+msgid "Search Families…"
+msgstr "ოჯახების ძებნა…"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:29
+msgid "Search Orthographies…"
+msgstr "ორთოგრაფიების ძებნა…"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:72
+msgid "Minimum Coverage"
+msgstr "მინიმალური დაფარვა"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:101
+msgid "Deselect All"
+msgstr "მონიშვნის მოხსნა"
+
+#: src/font-manager/ui/font-manager-orthography-list.ui:53
+msgid "Clear selected filter"
+msgstr "მონიშნული ფილტრის გასუფთავება"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:22
+msgid "Created :"
+msgstr "შეიქმნა :"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:23
+msgid "Save current comparison"
+msgstr "მიმდინარე შედარების შენახვა"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:45
+msgid "Remove selected comparison"
+msgstr "მონიშნული შედარების წაშლა"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:73
+msgid "Restore selected comparison"
+msgstr "მონიშნული შედარების აღდგენა"
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:13
+msgid "Select fonts to remove"
+msgstr "მონიშნეთ წასაშლელი ფონტები"
+
+#: src/font-manager/ui/font-manager-remove-dialog.ui:25
+msgid "Delete"
+msgstr "წაშლა"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:35
+msgid "Categories"
+msgstr "კატეგორიები"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:86
+msgid "Smart Collections"
+msgstr "ჭკვიანი კოლექციები"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:142
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+msgid "Sort Order"
+msgstr "დალაგების წესი"
+
+#: src/font-manager/ui/font-manager-sidebar.ui:150
+msgid "Collections"
+msgstr "კოლექციები"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:22
+msgid "Enter target family"
+msgstr "შეიყვანეთ სამიზნე ოჯახი"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:32
+msgid "Add substitute"
+msgstr "ჩანაცვლების დამატება"
+
+#: src/font-manager/ui/font-manager-substitute.ui:34
+msgid "Remove substitute"
+msgstr "ჩანაცვლების წაშლა"
+
+#: src/font-manager/ui/font-manager-substitute.ui:35
+msgid "Enter substitute family"
+msgstr "შეიყვანეთ ჩანაცვლების ოჯახი"
+
+#: src/font-manager/ui/font-manager-substitute.ui:51
+msgid "prefer"
+msgstr "სასურველი"
+
+#: src/font-manager/ui/font-manager-substitute.ui:52
+msgid "accept"
+msgstr "თანხმობა"
+
+#: src/font-manager/ui/font-manager-substitute.ui:53
+msgid "default"
+msgstr "ნაგულისხმევი"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:27
+msgid "Comment"
+msgstr "კომენტარი"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:42
+msgid "Executable"
+msgstr "შესრულებადი"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:57
+msgid "Arguments"
+msgstr "არგუმენტები"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:39
+msgid "Newest"
+msgstr "უახლესი"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:40
+msgid "Most Popular"
+msgstr "პოპულარული"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
+msgid "Trending"
+msgstr "ტრენდები"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
+msgid "Serif"
+msgstr "Serif"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
+msgid "Sans Serif"
+msgstr "შესახებ"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
+msgid "Handwriting"
+msgstr "ხელნაწერი"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
+msgid "Category"
+msgstr "კატეგორია"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
+msgid "4+"
+msgstr "4+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
+msgid "8+"
+msgstr "8+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
+msgid "12+"
+msgstr "12+"
+
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
+msgid "Variations"
+msgstr "ნაირსახეობები"
+
+#: src/font-viewer/font-viewer-main-window.ui:31
+msgid "Preview font files before installing them."
+msgstr ""
+
+#: src/font-viewer/font-viewer-main-window.ui:32
+msgid "To preview a font simply drag it onto this area."
+msgstr ""
