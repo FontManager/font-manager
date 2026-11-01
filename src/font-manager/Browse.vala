@@ -1,6 +1,6 @@
 /* Browse.vala
  *
- * Copyright (C) 2020-2025 Jerry Casiano
+ * Copyright (C) 2020-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -463,6 +463,7 @@ namespace FontManager {
             Pango.FontDescription font_desc = Pango.FontDescription.from_string(selected_font.description);
             font_desc.set_size(10 * Pango.SCALE);
             character_map.set_font_desc(font_desc);
+            character_map.queue_draw();
             preview_page.set_font(selected_font);
             return;
         }
@@ -470,6 +471,7 @@ namespace FontManager {
         protected void setup_style_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var child = new Gtk.Label(null);
+            widget_set_name(child, "FontManagerBrowsePaneStylePopoverLabel");
             child.add_css_class("heading");
             list_item.set_child(child);
             return;
@@ -508,6 +510,7 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Entry preview_entry;
         [GtkChild] unowned Gtk.SearchBar search_bar;
         [GtkChild] unowned Gtk.SearchEntry search_entry;
+        [GtkChild] unowned Gtk.MenuButton filter_menu_button;
         [GtkChild] unowned Gtk.ToggleButton edit_toggle;
         [GtkChild] unowned Gtk.ToggleButton panel_toggle;
         [GtkChild] unowned Gtk.ToggleButton search_toggle;
@@ -538,7 +541,7 @@ namespace FontManager {
             install_action("decrease-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
         }
 
-        public BrowsePane () {
+        public BrowsePane (CollectionListModel collection_model) {
             widget_set_name(this, "FontManagerBrowsePane");
             gridview_container = new Gtk.ScrolledWindow();
             gridview = new FontGridView(gridview_container);
@@ -556,6 +559,8 @@ namespace FontManager {
             panel_revealer.add_css_class(STYLE_CLASS_VIEW);
             pane.set_start_child(gridview_container);
             pane.set_end_child(panel_revealer);
+            var popover = new BrowseFilterPopover(collection_model);
+            filter_menu_button.set_popover(popover);
             set_fontscale_margins();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             gridview.bind_property("model", preview, "model", flags);
@@ -583,6 +588,11 @@ namespace FontManager {
             notify["mode"].connect(on_mode_changed);
             notify["waterfall-settings"].connect_after(() => {
                 preview.waterfall_settings = waterfall_settings;
+            });
+            popover.selection_changed.connect((filter) => {
+                gridview.model.filter = filter;
+                listview.font_model.filter = filter;
+                listview.queue_update();
             });
         }
 
@@ -714,5 +724,6 @@ namespace FontManager {
     }
 
 }
+
 
 

@@ -1,6 +1,6 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,9 +111,10 @@ namespace FontManager {
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
 
+        public BrowsePane browse_pane { get; set; default = null; }
+
         Gtk.Stack main_stack;
         MainPane main_pane;
-        public BrowsePane browse_pane { get; set; default = null; }
         PreferencePane prefs_pane;
         HeaderBarWidgets header_widgets;
 
@@ -169,7 +170,7 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane(settings);
-            browse_pane = new BrowsePane();
+            browse_pane = new BrowsePane(collection_model);
             prefs_pane = new PreferencePane(settings);
             var waterfall_settings = new WaterfallSettings(settings);
             main_pane.waterfall_settings = waterfall_settings;

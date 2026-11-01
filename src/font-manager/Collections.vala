@@ -253,7 +253,6 @@ namespace FontManager {
             clicked_area = Gdk.Rectangle();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("disabled-families", model, "disabled-families", flags);
-            selection.set_selected(Gtk.INVALID_LIST_POSITION);
             notify["disabled-families"].connect_after(() => {
                 if (disabled_families != null) {
                     disabled_families.changed.connect_after(() => {

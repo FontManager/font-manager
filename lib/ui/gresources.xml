@@ -26,6 +26,8 @@
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/panel-right-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/panel-right-symbolic-rtl.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/system-run-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/view-filter-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/view-filter-symbolic-rtl.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/view-grid-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/view-list-symbolic.svg</file>
     <file preprocess="xml-stripblanks" compressed="true">icons/scalable/actions/view-more-symbolic.svg</file>

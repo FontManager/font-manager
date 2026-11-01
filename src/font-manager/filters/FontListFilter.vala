@@ -1,6 +1,6 @@
 /* FontListFilter.vala
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ namespace FontManager {
         public virtual string comment { owned get; set; }
         public virtual int index { get; set; default = 0; }
         public virtual int size { get { return 0; } }
+        public virtual string size_str { get; }
         public virtual int depth { get; set; default = 0; }
 
         public virtual async void update () {}
@@ -122,8 +123,8 @@ namespace FontManager {
                     return;
                 selection.set_autoselect(false);
                 selection.set_can_unselect(true);
+                selection.set_selected(Gtk.INVALID_LIST_POSITION);
                 selection.selection_changed.connect(on_selection_changed);
-                BindingFlags flags = BindingFlags.SYNC_CREATE;
             });
         }
 

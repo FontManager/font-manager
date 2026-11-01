@@ -1,0 +1,162 @@
+/* BrowseFilter.vala
+ *
+ * Copyright (C) 2020-2026 Jerry Casiano
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.
+ *
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+*/
+
+namespace FontManager {
+
+    public class BrowseFilterListRow : TreeListItemRow {
+
+        construct {
+            margin_start = 0;
+            item_count.visible = true;
+            drag_handle.visible = false;
+            item_state.visible = false;
+            editable = false;
+        }
+
+        public override void reset () {
+            item_count.set_label(null);
+            item_label.set_label(null);
+            return;
+        }
+
+        protected override void on_item_set () {
+            reset();
+            if (item == null)
+                return;
+            var filter = (FontListFilter) item;
+            item_count.set_label(filter.size.to_string());
+            item_label.set_label(filter.name);
+            return;
+        }
+
+    }
+
+    public class BrowseFilterListView : FilterListView {
+
+        uint update_timeout = 0;
+
+        construct {
+            widget_set_name(listview, "FontManagerBrowseFilterListView");
+        }
+
+        public static ListModel? get_null_model (Object item) {
+            return null;
+        }
+
+        public void set_model (CollectionListModel model) {
+            treemodel = new Gtk.TreeListModel(model,
+                                              false,
+                                              true,
+                                              get_null_model);
+            selection = new Gtk.SingleSelection(treemodel);
+            model.changed.connect(() => { queue_update(); });
+            return;
+        }
+
+        bool update () {
+            // Force complete update
+            listview.set_model(null);
+            listview.set_model(selection);
+            update_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        public void queue_update () {
+            if (update_timeout != 0)
+                GLib.Source.remove(update_timeout);
+            update_timeout = Timeout.add(333, update);
+            return;
+        }
+
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var tree_expander = new Gtk.TreeExpander();
+            tree_expander.set_indent_for_icon(false);
+            var row = new BrowseFilterListRow();
+            row.expander = tree_expander;
+            row.selection = selection;
+            tree_expander.set_child(row);
+            list_item.set_child(tree_expander);
+            return;
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            uint position = list_item.get_position();
+            var list_row = treemodel.get_row(position);
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.set_list_row(list_row);
+            var row = (BrowseFilterListRow) tree_expander.get_child();
+            Object? object = list_row.get_item();
+            var collection = (Collection) object;
+            collection.depth = (int) list_row.get_depth();
+            // Setting item triggers update to row widget
+            row.item = object;
+            return;
+        }
+
+    }
+
+    class BrowseFilterPopover : Gtk.Popover {
+
+        public signal void selection_changed (FontListFilter? filter);
+
+        CollectionListModel model;
+        BrowseFilterListView view;
+
+        public BrowseFilterPopover (CollectionListModel? collection_model) {
+            model = collection_model != null ? collection_model : new CollectionListModel();
+            view = new BrowseFilterListView();
+            var categories = get_base_categories();
+            for (int i = 0; i <= CategoryIndex.USER; i++) {
+                var category = ((Category) categories[i]);
+                var collection = new Collection(category.name, null);
+                collection.add(category.families);
+                model.items.insert(i, collection);
+            }
+            view.set_model(model);
+            set_child(view);
+            view.selection_changed.connect((f) => {
+                selection_changed(f);
+                Idle.add(() => {
+                    popdown();
+                    return GLib.Source.REMOVE;
+                });
+            });
+            map.connect(on_map);
+        }
+
+        void on_map () {
+            var categories = get_base_categories();
+            for (int i = 0; i <= CategoryIndex.USER; i++) {
+                Category category = categories[i];
+                category.update();
+                Collection collection = ((Collection) model.items[i]);
+                collection.families.clear();
+                collection.add(category.families);
+                view.queue_update();
+            }
+            return;
+        }
+
+    }
+
+}
+

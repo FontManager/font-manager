@@ -149,6 +149,15 @@
                 <property name="tooltip-text" translatable="yes">Toggle search entry</property>
               </object>
             </child>
+            <child type="start">
+              <object class="GtkMenuButton" id="filter_menu_button">
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">view-filter-symbolic</property>
+                <property name="valign">center</property>
+                <property name="tooltip-text" translatable="yes">Filter font families</property>
+              </object>
+            </child>
             <child type="end">
               <object class="GtkToggleButton" id="panel_toggle">
                 <property name="halign">center</property>
@@ -177,3 +186,4 @@
     </child>
   </template>
 </interface>
+

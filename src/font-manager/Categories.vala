@@ -146,7 +146,6 @@ namespace FontManager {
                     disabled_families.changed.connect(() => { update_disabled(); });
                 update_disabled();
             });
-            selection.set_selected(Gtk.INVALID_LIST_POSITION);
         }
 
         public void select_item (uint position) {

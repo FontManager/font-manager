@@ -1,6 +1,6 @@
 /* Compare.vala
  *
- * Copyright (C) 2009-2025 Jerry Casiano
+ * Copyright (C) 2009-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -201,9 +201,11 @@ namespace FontManager {
             if (settings == null)
                 return;
             preview_colors.restore_state(settings);
+#if HAVE_ADWAITA
             use_adwaita = settings.get_boolean("use-adwaita-stylesheet");
             if (use_adwaita)
                 add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+#endif
             preview_size = settings.get_double("compare-font-size");
             entry.text = settings.get_string("compare-preview-text");
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;

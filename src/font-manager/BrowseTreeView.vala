@@ -81,10 +81,11 @@ namespace FontManager {
 
         construct {
             widget_set_name(this, "BrowseListView");
+            remove_css_class(STYLE_CLASS_VIEW);
             model = null;
             widget_set_expand(this, true);
             widget_set_margin(this, 12);
-            set_enable_tree_lines(true);
+            set_enable_tree_lines(false);
             var cell_renderer = new CellRendererHeader();
             insert_column_with_data_func(0, "", cell_renderer, cell_data_func);
             get_column(0).set_expand(true);
