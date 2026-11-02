@@ -60,13 +60,17 @@ namespace FontManager {
             return null;
         }
 
-        public void set_model (CollectionListModel model) {
-            treemodel = new Gtk.TreeListModel(model,
-                                              false,
-                                              true,
-                                              get_null_model);
-            selection = new Gtk.SingleSelection(treemodel);
-            model.changed.connect(() => { queue_update(); });
+        public void set_model (CollectionListModel? model) {
+            if (model != null) {
+                treemodel = new Gtk.TreeListModel(model,
+                                                  false,
+                                                  true,
+                                                  get_null_model);
+                selection = new Gtk.SingleSelection(treemodel);
+                model.changed.connect(() => { queue_update(); });
+            } else {
+                selection = new Gtk.SingleSelection(null);
+            }
             return;
         }
 
@@ -120,18 +124,13 @@ namespace FontManager {
 
         CollectionListModel model;
         BrowseFilterListView view;
+        CollectionListModel _model;
 
         public BrowseFilterPopover (CollectionListModel? collection_model) {
-            model = collection_model != null ? collection_model : new CollectionListModel();
+            _model = collection_model;
+            model = new CollectionListModel();
             view = new BrowseFilterListView();
-            var categories = get_base_categories();
-            for (int i = 0; i <= CategoryIndex.USER; i++) {
-                var category = ((Category) categories[i]);
-                var collection = new Collection(category.name, null);
-                collection.add(category.families);
-                model.items.insert(i, collection);
-            }
-            view.set_model(model);
+            on_map();
             set_child(view);
             view.selection_changed.connect((f) => {
                 selection_changed(f);
@@ -144,15 +143,31 @@ namespace FontManager {
         }
 
         void on_map () {
+            view.set_model(null);
+            model.items = null;
+            model.items = new GenericArray <FontListFilter> ();
+            foreach (var collection in _model.items)
+                model.items.add(collection);
             var categories = get_base_categories();
-            for (int i = 0; i <= CategoryIndex.USER; i++) {
-                Category category = categories[i];
-                category.update();
-                Collection collection = ((Collection) model.items[i]);
-                collection.families.clear();
+            var category = ((Category) categories[CategoryIndex.ALL]);
+            var collection = new Collection(category.name, null);
+            category.update.begin(() => {
                 collection.add(category.families);
-                view.queue_update();
-            }
+                model.items.insert(CategoryIndex.ALL, collection);
+                category = ((Category) categories[CategoryIndex.SYSTEM]);
+                collection = new Collection(category.name, null);
+                category.update.begin(() => {
+                    collection.add(category.families);
+                    model.items.insert(CategoryIndex.SYSTEM, collection);
+                    category = ((Category) categories[CategoryIndex.USER]);
+                    collection = new Collection(category.name, null);
+                    category.update.begin(() => {
+                        collection.add(category.families);
+                        model.items.insert(CategoryIndex.USER, collection);
+                        view.set_model(model);
+                    });
+                });
+            });
             return;
         }
 
