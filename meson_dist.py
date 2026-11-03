@@ -38,3 +38,9 @@ for f in glob("README.*.md"):
     except FileNotFoundError:
         pass
 
+with open("README.md", "r") as readme:
+    lines = readme.readlines()
+with open("README.md", "w") as readme:
+    readme.writelines(lines[2:])
+
+
