@@ -123,8 +123,10 @@ namespace FontManager {
         void update_model () {
             store = new Gtk.TreeStore(1, typeof(Json.Object));
             uint item_count = font_model.get_n_items();
-            if (item_count < 1)
+            if (item_count < 1) {
+                model = store;
                 return;
+            }
             for (int i = 0; i < item_count; i++) {
                 var item = font_model.get_item(i);
                 assert(item != null);

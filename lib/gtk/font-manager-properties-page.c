@@ -138,6 +138,8 @@ construct_end_child (FontManagerPropertiesPage *self)
     gtk_label_set_wrap_mode(GTK_LABEL(self->description), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_selectable(GTK_LABEL(self->copyright), TRUE);
     gtk_label_set_selectable(GTK_LABEL(self->description), TRUE);
+    gtk_widget_set_can_focus(GTK_WIDGET(self->copyright), FALSE);
+    gtk_widget_set_can_focus(GTK_WIDGET(self->description), FALSE);
     gtk_box_append(GTK_BOX(box), self->copyright);
     gtk_box_append(GTK_BOX(box), self->description);
     gtk_widget_set_size_request(box, 0, 0);
