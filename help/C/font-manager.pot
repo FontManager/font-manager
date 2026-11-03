@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"POT-Creation-Date: 2026-11-03 16:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -435,11 +435,6 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: ../help/C/font-manager-font-installation.page:51
-msgid "Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/FileRoller\">Archive Manager</link>. to enable support for compressed files."
-msgstr ""
-
-#. (itstool) path: note/p
-#: ../help/C/font-manager-font-installation.page:59
 #: ../help/C/font-manager-font-removal.page:76
 #: ../help/C/font-manager-font-sources.page:138
 msgid "<app>Font Manager</app> will reload anytime changes require it. This may take a moment depending on number of changes."

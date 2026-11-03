@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.9.4\n"
+"Project-Id-Version: font-manager 0.9.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2025-03-07 19:41-0500\n"
+"POT-Creation-Date: 2026-11-03 16:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,8 +20,8 @@ msgstr ""
 
 #. Application.vala
 #: data/com.github.FontManager.FontManager.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontManager.desktop.in.in:4
 #: data/com.github.FontManager.FontManager.desktop.in.in:5
-#: data/com.github.FontManager.FontManager.desktop.in.in:6
 #: lib/gtk/font-manager-application-window.c:281
 #: src/font-manager/Application.vala:2
 msgid "Font Manager"
@@ -48,22 +48,22 @@ msgstr ""
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
 
-#: data/com.github.FontManager.FontManager.desktop.in.in:7
+#: data/com.github.FontManager.FontManager.desktop.in.in:6
 msgid "Preview, Compare and Manage Fonts"
 msgstr ""
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/com.github.FontManager.FontManager.desktop.in.in:16
-#: data/com.github.FontManager.FontViewer.desktop.in.in:16
+#: data/com.github.FontManager.FontManager.desktop.in.in:15
+#: data/com.github.FontManager.FontViewer.desktop.in.in:15
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr ""
 
 #: data/com.github.FontManager.FontViewer.appdata.xml.in.in:14
+#: data/com.github.FontManager.FontViewer.desktop.in.in:4
 #: data/com.github.FontManager.FontViewer.desktop.in.in:5
-#: data/com.github.FontManager.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:87 src/font-viewer/Application.vala:107
-#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:156
-#: src/font-viewer/MainWindow.vala:236
+#: src/font-viewer/Application.vala:131 src/font-viewer/MainWindow.vala:158
+#: src/font-viewer/MainWindow.vala:238
 #: src/font-viewer/font-viewer-main-window.ui:30
 #: src/font-viewer/font-viewer-main-window.ui:73
 #: src/font-viewer/font-viewer-main-window.ui:82
@@ -81,7 +81,7 @@ msgid ""
 "font properties and license details."
 msgstr ""
 
-#: data/com.github.FontManager.FontViewer.desktop.in.in:7
+#: data/com.github.FontManager.FontViewer.desktop.in.in:6
 msgid "Full featured font file preview application"
 msgstr ""
 
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Font Properties"
 msgstr ""
 
-#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:147
+#: lib/common/font-manager-database.c:582 src/font-manager/Application.vala:146
 msgid "Updating Database…"
 msgstr ""
 
@@ -117,159 +117,159 @@ msgstr ""
 msgid "Unknown Vendor"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:566
+#: lib/fontconfig/font-manager-fontconfig.c:597
 #: src/font-manager/web/google/WebFont.vala:172
 msgid "Thin"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:568
+#: lib/fontconfig/font-manager-fontconfig.c:599
 msgid "Ultra-Light"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:570
-#: lib/fontconfig/font-manager-fontconfig.c:923
+#: lib/fontconfig/font-manager-fontconfig.c:601
+#: lib/fontconfig/font-manager-fontconfig.c:954
 #: src/font-manager/web/google/WebFont.vala:176
 msgid "Light"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:572
+#: lib/fontconfig/font-manager-fontconfig.c:603
 msgid "Semi-Light"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:574
+#: lib/fontconfig/font-manager-fontconfig.c:605
 msgid "Book"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:576
-#: lib/fontconfig/font-manager-fontconfig.c:880
+#: lib/fontconfig/font-manager-fontconfig.c:607
+#: lib/fontconfig/font-manager-fontconfig.c:911
 #: src/font-manager/preferences/Desktop.vala:236
 #: src/font-manager/web/google/WebFont.vala:180
 msgid "Medium"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:578
+#: lib/fontconfig/font-manager-fontconfig.c:609
 msgid "Semi-Bold"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:580
+#: lib/fontconfig/font-manager-fontconfig.c:611
 #: src/font-manager/web/google/WebFont.vala:184
 msgid "Bold"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:582
+#: lib/fontconfig/font-manager-fontconfig.c:613
 msgid "Ultra-Bold"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:584
+#: lib/fontconfig/font-manager-fontconfig.c:615
 msgid "Heavy"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:586
+#: lib/fontconfig/font-manager-fontconfig.c:617
 msgid "Ultra-Heavy"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:661
+#: lib/fontconfig/font-manager-fontconfig.c:692
 #: src/font-manager/web/google/WebFont.vala:234
 msgid "Italic"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:663
+#: lib/fontconfig/font-manager-fontconfig.c:694
 msgid "Oblique"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:701
+#: lib/fontconfig/font-manager-fontconfig.c:732
 msgid "Ultra-Condensed"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:703
+#: lib/fontconfig/font-manager-fontconfig.c:734
 msgid "Extra-Condensed"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:705
+#: lib/fontconfig/font-manager-fontconfig.c:736
 msgid "Condensed"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:707
+#: lib/fontconfig/font-manager-fontconfig.c:738
 msgid "Semi-Condensed"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:709
+#: lib/fontconfig/font-manager-fontconfig.c:740
 msgid "Semi-Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:711
+#: lib/fontconfig/font-manager-fontconfig.c:742
 msgid "Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:713
+#: lib/fontconfig/font-manager-fontconfig.c:744
 msgid "Extra-Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:715
+#: lib/fontconfig/font-manager-fontconfig.c:746
 msgid "Ultra-Expanded"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:784
+#: lib/fontconfig/font-manager-fontconfig.c:815
 msgid "Proportional"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:786
+#: lib/fontconfig/font-manager-fontconfig.c:817
 msgid "Dual Width"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:788
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:184
+#: lib/fontconfig/font-manager-fontconfig.c:819
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:185
 msgid "Monospace"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:790
+#: lib/fontconfig/font-manager-fontconfig.c:821
 msgid "Charcell"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:829
+#: lib/fontconfig/font-manager-fontconfig.c:860
 msgid "Unknown"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:831
+#: lib/fontconfig/font-manager-fontconfig.c:862
 msgid "RGB"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:833
+#: lib/fontconfig/font-manager-fontconfig.c:864
 msgid "BGR"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:835
+#: lib/fontconfig/font-manager-fontconfig.c:866
 msgid "VRGB"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:837
+#: lib/fontconfig/font-manager-fontconfig.c:868
 msgid "VBGR"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:839
-#: lib/fontconfig/font-manager-fontconfig.c:884
-#: lib/fontconfig/font-manager-fontconfig.c:927
+#: lib/fontconfig/font-manager-fontconfig.c:870
+#: lib/fontconfig/font-manager-fontconfig.c:915
+#: lib/fontconfig/font-manager-fontconfig.c:958
 #: src/font-manager/Controls.vala:133
 #: src/font-manager/preferences/Desktop.vala:234
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "None"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:878
+#: lib/fontconfig/font-manager-fontconfig.c:909
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Slight"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:882
+#: lib/fontconfig/font-manager-fontconfig.c:913
 #: src/font-manager/preferences/Desktop.vala:236
 msgid "Full"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:921
+#: lib/fontconfig/font-manager-fontconfig.c:952
 msgid "Default"
 msgstr ""
 
-#: lib/fontconfig/font-manager-fontconfig.c:925
+#: lib/fontconfig/font-manager-fontconfig.c:956
 msgid "Legacy"
 msgstr ""
 
@@ -349,7 +349,7 @@ msgid "Right Aligned"
 msgstr ""
 
 #: lib/gtk/font-manager-preview-controls.c:349
-#: src/font-manager/ui/font-manager-browse-pane.ui:168
+#: src/font-manager/ui/font-manager-browse-pane.ui:177
 msgid "Edit preview text"
 msgstr ""
 
@@ -378,16 +378,16 @@ msgid "Properties"
 msgstr ""
 
 #: lib/gtk/font-manager-preview-pane.c:51
-#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:266
+#: lib/gtk/font-manager-preview-pane.c:584 src/font-manager/Categories.vala:267
 msgid "License"
 msgstr ""
 
-#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:331
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:332
 #: src/font-manager/web/google/WebFont.vala:178
 msgid "Regular"
 msgstr ""
 
-#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:326
+#: lib/gtk/font-manager-preview-pane.c:450 src/font-manager/Categories.vala:327
 msgid "Normal"
 msgstr ""
 
@@ -404,26 +404,27 @@ msgid "Family"
 msgstr ""
 
 #: lib/gtk/font-manager-properties-page.c:57
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
 msgid "Style"
 msgstr ""
 
 #: lib/gtk/font-manager-properties-page.c:58
-#: src/font-manager/Categories.vala:259
+#: src/font-manager/Categories.vala:260
 msgid "Width"
 msgstr ""
 
 #: lib/gtk/font-manager-properties-page.c:59
-#: src/font-manager/Categories.vala:261
+#: src/font-manager/Categories.vala:262
 msgid "Slant"
 msgstr ""
 
 #: lib/gtk/font-manager-properties-page.c:60
-#: src/font-manager/Categories.vala:260
+#: src/font-manager/Categories.vala:261
 msgid "Weight"
 msgstr ""
 
 #: lib/gtk/font-manager-properties-page.c:61
-#: src/font-manager/Categories.vala:262
+#: src/font-manager/Categories.vala:263
 msgid "Spacing"
 msgstr ""
 
@@ -433,7 +434,7 @@ msgstr ""
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/gtk/font-manager-properties-page.c:64
-#: src/font-manager/Categories.vala:268
+#: src/font-manager/Categories.vala:269
 msgid "Vendor"
 msgstr ""
 
@@ -446,7 +447,7 @@ msgstr ""
 msgid "Filesize"
 msgstr ""
 
-#: lib/gtk/unicode/unicode-character-map.c:850
+#: lib/gtk/unicode/unicode-character-map.c:829
 msgid "Copy"
 msgstr ""
 
@@ -690,84 +691,84 @@ msgstr ""
 msgid "Designed by"
 msgstr ""
 
-#: src/font-manager/Categories.vala:259
+#: src/font-manager/Categories.vala:260
 msgid "Grouped by font width"
 msgstr ""
 
-#: src/font-manager/Categories.vala:260
+#: src/font-manager/Categories.vala:261
 msgid "Grouped by font weight"
 msgstr ""
 
-#: src/font-manager/Categories.vala:261
+#: src/font-manager/Categories.vala:262
 msgid "Grouped by font angle"
 msgstr ""
 
-#: src/font-manager/Categories.vala:262
+#: src/font-manager/Categories.vala:263
 msgid "Grouped by font spacing"
 msgstr ""
 
-#: src/font-manager/Categories.vala:266
+#: src/font-manager/Categories.vala:267
 msgid "Grouped by license type"
 msgstr ""
 
-#: src/font-manager/Categories.vala:268
+#: src/font-manager/Categories.vala:269
 msgid "Grouped by vendor"
 msgstr ""
 
-#: src/font-manager/Categories.vala:269
+#: src/font-manager/Categories.vala:270
 msgid "Filetype"
 msgstr ""
 
-#: src/font-manager/Categories.vala:269
+#: src/font-manager/Categories.vala:270
 msgid "Grouped by filetype"
 msgstr ""
 
-#: src/font-manager/Categories.vala:274
+#: src/font-manager/Categories.vala:275
 msgid "All"
 msgstr ""
 
-#: src/font-manager/Categories.vala:274
+#: src/font-manager/Categories.vala:275
 msgid "All Fonts"
 msgstr ""
 
-#: src/font-manager/Categories.vala:275
+#: src/font-manager/Categories.vala:276
 msgid "System"
 msgstr ""
 
-#: src/font-manager/Categories.vala:275
+#: src/font-manager/Categories.vala:276
 msgid "Fonts available to all users"
 msgstr ""
 
-#: src/font-manager/Categories.vala:298
+#: src/font-manager/Categories.vala:299
 msgid "Family Kind"
 msgstr ""
 
-#: src/font-manager/Categories.vala:298
+#: src/font-manager/Categories.vala:299
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:262
+#: src/font-manager/Categories.vala:300
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:263
 msgid "Any"
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
+#: src/font-manager/Categories.vala:300
 msgid "No Fit"
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
+#: src/font-manager/Categories.vala:300
 msgid "Text and Display"
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
+#: src/font-manager/Categories.vala:300
 msgid "Script"
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
+#: src/font-manager/Categories.vala:300
 msgid "Decorative"
 msgstr ""
 
-#: src/font-manager/Categories.vala:299
+#: src/font-manager/Categories.vala:300
 msgid "Pictorial"
 msgstr ""
 
@@ -775,49 +776,49 @@ msgstr ""
 msgid "Enter Collection Name"
 msgstr ""
 
-#: src/font-manager/Collections.vala:346
+#: src/font-manager/Collections.vala:341
 msgid "Copy to…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:347
+#: src/font-manager/Collections.vala:342
 msgid "Compress…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:348
+#: src/font-manager/Collections.vala:343
 msgid "Rename…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:405
+#: src/font-manager/Collections.vala:388
 msgid "Archive created successfully."
 msgstr ""
 
-#: src/font-manager/Collections.vala:406
+#: src/font-manager/Collections.vala:389
 msgid "The resulting file can be found in your home directory."
 msgstr ""
 
-#: src/font-manager/Collections.vala:408
+#: src/font-manager/Collections.vala:391
 msgid "Error exporting collection"
 msgstr ""
 
-#: src/font-manager/Collections.vala:409
+#: src/font-manager/Collections.vala:392
 msgid ""
 "Start the application from a terminal and try again for more information"
 msgstr ""
 
-#: src/font-manager/Collections.vala:430
+#: src/font-manager/Collections.vala:412
 msgid "Creating archive from selected collection."
 msgstr ""
 
-#: src/font-manager/Collections.vala:431
+#: src/font-manager/Collections.vala:413
 msgid "This may take some time for large collections…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:336
+#: src/font-manager/Compare.vala:338
 msgid "Saved Comparison"
 msgstr ""
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:372
+#: src/font-manager/Compare.vala:374
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -901,49 +902,57 @@ msgid "TrueType"
 msgstr ""
 
 #: src/font-manager/Dialogs.vala:70
+msgid "TrueType Collection"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:72
 msgid "OpenType"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:73
+#: src/font-manager/Dialogs.vala:74
+msgid "OpenType Bitmap"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:77
 msgid "Archive Files"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:81
+#: src/font-manager/Dialogs.vala:85
 msgid "Select Files to Install"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:91
+#: src/font-manager/Dialogs.vala:95
 msgid "Select Source Directories"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:125
+#: src/font-manager/Dialogs.vala:129
 msgid "Font Configuration"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:126
+#: src/font-manager/Dialogs.vala:130
 msgid "Font Collections"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:127
+#: src/font-manager/Dialogs.vala:131
 #: src/font-manager/preferences/UserSources.vala:156
 msgid "Font Sources"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:128
+#: src/font-manager/Dialogs.vala:132
 msgid "Installed Fonts"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:129
+#: src/font-manager/Dialogs.vala:133
 msgid "Custom Actions"
 msgstr ""
 
-#: src/font-manager/Dialogs.vala:385
+#: src/font-manager/Dialogs.vala:389
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
 #. FontList.vala
 #. *
-#. * Copyright (C) 2020-2025 Jerry Casiano
+#. * Copyright (C) 2020-2026 Jerry Casiano
 #. *
 #. * This program is free software: you can redistribute it and/or modify
 #. * it under the terms of the GNU General Public License as published by
@@ -1634,7 +1643,7 @@ msgstr ""
 
 #: src/font-manager/OrthographyList.vala:137
 #: src/font-manager/filters/LanguageFilter.vala:55
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:362
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:363
 msgid "Supported Orthographies"
 msgstr ""
 
@@ -1665,7 +1674,7 @@ msgstr ""
 msgid "Edit selected item"
 msgstr ""
 
-#: src/font-manager/Utils.vala:295
+#: src/font-manager/Utils.vala:325
 msgid "Copying files…"
 msgstr ""
 
@@ -1845,7 +1854,7 @@ msgid "Substitutions"
 msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:50
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:150
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:151
 msgid "Display"
 msgstr ""
 
@@ -1882,15 +1891,15 @@ msgstr ""
 msgid "Use Embedded Bitmaps"
 msgstr ""
 
-#: src/font-manager/preferences/Substitutions.vala:153
+#: src/font-manager/preferences/Substitutions.vala:151
 msgid "Font Substitutions"
 msgstr ""
 
-#: src/font-manager/preferences/Substitutions.vala:154
+#: src/font-manager/preferences/Substitutions.vala:152
 msgid "Easily substitute one font family for another."
 msgstr ""
 
-#: src/font-manager/preferences/Substitutions.vala:155
+#: src/font-manager/preferences/Substitutions.vala:153
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 
@@ -1913,12 +1922,12 @@ msgid "Custom context menu entries"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:78
-#: src/font-viewer/MainWindow.vala:337
+#: src/font-viewer/MainWindow.vala:339
 msgid "Selected setting requires restart to apply"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:79
-#: src/font-viewer/MainWindow.vala:338
+#: src/font-viewer/MainWindow.vala:340
 msgid "Changes will take effect next time the application is started"
 msgstr ""
 
@@ -1940,12 +1949,12 @@ msgstr ""
 
 #. The added margins here are due to PreviewColors widget alignment issues
 #: src/font-manager/preferences/UserInterface.vala:98
-#: src/font-viewer/MainWindow.vala:353
+#: src/font-viewer/MainWindow.vala:355
 msgid "Prefer Dark Theme"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:100
-#: src/font-viewer/MainWindow.vala:358
+#: src/font-viewer/MainWindow.vala:360
 msgid "Use Adwaita Stylesheet"
 msgstr ""
 
@@ -1962,17 +1971,17 @@ msgid "Titlebar Button Style"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:107
-#: src/font-viewer/MainWindow.vala:376
+#: src/font-viewer/MainWindow.vala:378
 msgid "Display line size in Waterfall Preview"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:112
-#: src/font-viewer/MainWindow.vala:371
+#: src/font-viewer/MainWindow.vala:373
 msgid "Waterfall Line Spacing"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:114
-#: src/font-viewer/MainWindow.vala:372
+#: src/font-viewer/MainWindow.vala:374
 msgid "Padding in pixels to insert above and below rows"
 msgstr ""
 
@@ -1994,34 +2003,34 @@ msgid ""
 "button in the toolbar."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:156
+#: src/font-manager/web/google/GoogleFonts.vala:159
 msgid "Network Access Disabled"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:157
+#: src/font-manager/web/google/GoogleFonts.vala:160
 msgid "Contact your system administrator to request access."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:160
+#: src/font-manager/web/google/GoogleFonts.vala:163
 msgid "Network Offline"
 msgstr ""
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:162
+#: src/font-manager/web/google/GoogleFonts.vala:165
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:172
+#: src/font-manager/web/google/GoogleFonts.vala:175
 msgid "Client Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:173
+#: src/font-manager/web/google/GoogleFonts.vala:176
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:176
+#: src/font-manager/web/google/GoogleFonts.vala:179
 msgid "Server Error"
 msgstr ""
 
@@ -2409,11 +2418,11 @@ msgstr ""
 msgid "Black"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:279
+#: src/font-viewer/MainWindow.vala:281
 msgid "System Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:281
+#: src/font-viewer/MainWindow.vala:283
 msgid ""
 "Selected font file is either installed in a system directory or is not "
 "writable by the current user.\n"
@@ -2424,28 +2433,28 @@ msgid ""
 "to disable it."
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:284
+#: src/font-viewer/MainWindow.vala:286
 msgid "Newer version already installed"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:286 src/font-viewer/MainWindow.vala:291
+#: src/font-viewer/MainWindow.vala:288 src/font-viewer/MainWindow.vala:293
 msgid "Click to overwrite"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:289
+#: src/font-viewer/MainWindow.vala:291
 msgid "Update Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:294
+#: src/font-viewer/MainWindow.vala:296
 msgid "Remove Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:298
+#: src/font-viewer/MainWindow.vala:300
 #: src/font-viewer/font-viewer-main-window.ui:109
 msgid "Install Font"
 msgstr ""
 
-#: src/font-viewer/MainWindow.vala:365
+#: src/font-viewer/MainWindow.vala:367
 msgid "Preview Area Colors"
 msgstr ""
 
@@ -2537,6 +2546,10 @@ msgid "Toggle search entry"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-browse-pane.ui:158
+msgid "Filter font families"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-browse-pane.ui:167
 msgid "Toggle preview panel"
 msgstr ""
 
@@ -2629,7 +2642,7 @@ msgid "Smart Collections"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-sidebar.ui:142
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:50
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:51
 msgid "Sort Order"
 msgstr ""
 
@@ -2685,39 +2698,39 @@ msgstr ""
 msgid "Most Popular"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:41
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:42
 msgid "Trending"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:116
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:117
 msgid "Serif"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:133
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:134
 msgid "Sans Serif"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:167
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:168
 msgid "Handwriting"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:198
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:199
 msgid "Category"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:272
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:273
 msgid "4+"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:282
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:283
 msgid "8+"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:292
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:293
 msgid "12+"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:305
+#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:306
 msgid "Variations"
 msgstr ""
 

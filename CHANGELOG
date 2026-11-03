@@ -1,3 +1,26 @@
+ 0.9.4 -> 0.9.5
+- Enable basic filtering for Browse mode. Issue #466
+- Change settings to use Adwaita stylesheet by default for consistency,
+  has no effect if compile time option is not enabled.
+- Show full font revision number in Version label tooltip. Issue #460
+- Fix disappearing labels in Category list. Issue #461
+- Make Copyright and Description fields selectable. Issue #464
+- Fix build failures with Vala versions >= 0.56.19. Issue #467
+- Fix RPM packaging error. Commit 647271e
+- Fix click handling in collection list due to editable labels
+- Avoid localized values for font version field in properties page. Issue #454
+- Fix character map not applying preview size correctly. Issue #455
+- Workaround missing disabled fonts. Issue #446
+- Add filetype filter for bitmap extension to OpenType. Issue #445
+- Add style option to Google Fonts sort order dropdown.
+- Fix searching by filepath. Issue #443
+- Fix segfault when we have an override but no schema. Issue #440.
+- Fix problem with reproducible build. Issue #439
+- Update Unicode data to 18.0
+- Update Vendor list
+- Update translations
+- Update Debian package dependencies.
+
 0.9.3 -> 0.9.4
 - Fix segfault reported in Issue #436
 

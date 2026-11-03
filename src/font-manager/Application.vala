@@ -2,7 +2,7 @@
 public const string DISPLAY_NAME = _("Font Manager");
 public const string COMMENT = _("Simple font management for GTK+ desktop environments");
 public const string COPYRIGHT = "Copyright © 2009-2025 Jerry Casiano";
-public const string LICENSE = _("""
+public const string LICENSE = """
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -17,7 +17,7 @@ public const string LICENSE = _("""
     along with this program.
 
     If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-""");
+""";
 
 namespace FontManager {
 

@@ -2,13 +2,13 @@
 project(
     'font-manager',
     ['c', 'vala'],
-    version: '0.9.4',
+    version: '0.9.5',
     license: 'GPL-3.0-or-later',
     license_files: ['COPYING'],
     meson_version: '>= 1.1.0'
 )
 
-release_date = '2025-03-07'
+release_date = '2026-11-03'
 
 if meson.version().version_compare('< 1.1.0')
     error('Meson version is @0@ but project requires >= 1.1.0'.format(meson.version()))
