@@ -126,20 +126,37 @@ namespace FontManager {
         BrowseFilterListView view;
         CollectionListModel _model;
 
+        ulong signal_id = 0;
+        FontListFilter? current_selection = null;
+
         public BrowseFilterPopover (CollectionListModel? collection_model) {
             _model = collection_model;
             model = new CollectionListModel();
             view = new BrowseFilterListView();
             on_map();
             set_child(view);
-            view.selection_changed.connect((f) => {
+            map.connect(on_map);
+        }
+
+        void connect_selection_signal () {
+            signal_id = view.selection_changed.connect((f) => {
+                current_selection = f;
                 selection_changed(f);
                 Idle.add(() => {
                     popdown();
                     return GLib.Source.REMOVE;
                 });
             });
-            map.connect(on_map);
+            return;
+        }
+
+        int get_current_index () {
+            if (current_selection == null || model == null)
+                return CategoryIndex.ALL;
+            for (int i = 0; i < model.items.length; i++)
+                if (current_selection.name == model.items[i].name)
+                    return i;
+            return CategoryIndex.ALL;
         }
 
         void on_map () {
@@ -165,6 +182,10 @@ namespace FontManager {
                         collection.add(category.families);
                         model.items.insert(CategoryIndex.USER, collection);
                         view.set_model(model);
+                        if (signal_id !=  0)
+                            SignalHandler.disconnect(view, signal_id);
+                        view.selection.set_selected(get_current_index());
+                        connect_selection_signal();
                     });
                 });
             });

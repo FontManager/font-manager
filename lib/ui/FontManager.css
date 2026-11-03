@@ -137,6 +137,12 @@ row:selected .count {
     background-color: shade(@theme_selected_bg_color, 0.75);
 }
 
+colorswatch {
+	border-style: inset;
+	border-width: 0.5px;
+	border-radius: 6px;
+}
+
 .InlineHelp {
     background: transparent;
 }
