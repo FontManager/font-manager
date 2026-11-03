@@ -3,13 +3,13 @@ Priority: optional
 Maintainer: Jerry Casiano <JerryCasiano@gmail.com>
 Build-Depends:
  debhelper (>= 12~),
- valac (>= 0.42),
- meson (>= 0.46),
+ valac (>= 0.56.3),
+ meson (>= 1.1.0),
  libxml2-dev,
  libarchive-dev,
  libfreetype-dev,
  libfontconfig-dev (>= 2.12),
- libglib2.0-dev (>= 2.62),
+ libglib2.0-dev (>= 2.64),
  libjson-glib-dev,
  libcairo2-dev,
  libgtk-4-dev (>= 4.12),
@@ -34,7 +34,6 @@ Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  font-viewer,
- file-roller,
  yelp
 Suggests: nautilus-font-manager
 Description: Simple font management application for Gtk+ Desktop Environments

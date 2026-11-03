@@ -47,14 +47,6 @@
         </p>
     </note>
 
-    <note style="tip">
-        <p>
-            Install
-            <link action="install:file-roller" href="https://wiki.gnome.org/Apps/FileRoller">Archive Manager</link>.
-            to enable support for compressed files.
-        </p>
-    </note>
-
     <note style="important">
         <p>
         <app>Font Manager</app> will reload anytime changes require it.
