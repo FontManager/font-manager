@@ -67,7 +67,8 @@ update-headers: $(PACKAGE_NAME)-license.h $(PACKAGE_NAME)-vendor.h unicode-heade
 update: update-headers $(PACKAGE_NAME).pot
 
 rpm:
-	@echo -e "\n**** Need to ensure build dependencies are installed\n";
+	@echo -e "\n\n**** Need to ensure build dependencies are installed\n\n";
+	sleep 3
 	pkexec dnf install rpmdevtools
 	pkexec dnf builddep $(ABS_TOP_SRCDIR)/fedora/$(PACKAGE_NAME).spec
 	rpmdev-setuptree
@@ -81,6 +82,7 @@ BUILD_DEPENDS = \
 	debhelper \
 	valac \
 	meson \
+	libarchive-dev \
 	libxml2-dev \
 	libfreetype-dev \
 	libfontconfig-dev \
@@ -103,12 +105,14 @@ BUILD_DEPENDS = \
 	libthunarx-3-dev
 
 deb:
-	@echo -e '\n*** Need to ensure build dependencies are installed ***\n\n'
+	@echo -e '\n\n*** Need to ensure build dependencies are installed ***\n\n'
+	sleep 3
 	pkexec apt install $(BUILD_DEPENDS)
 	cd $(ABS_TOP_SRCDIR) || exit && \
 	meson setup build && \
-	ninja -C build dist && \
-	cd build/meson-dist/ || exit && \
+	cd build && \
+	meson dist --allow-dirty && \
+	cd meson-dist/ || exit && \
 	tar -xvf $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz && \
 	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz \
 	./$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.xz && \

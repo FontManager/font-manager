@@ -55,6 +55,8 @@ icon_categories = {
         'panel-right-symbolic.svg',
         'panel-right-symbolic-rtl.svg',
         'system-run-symbolic.svg',
+        'view-filter-symbolic.svg',
+        'view-filter-symbolic-rtl.svg',
         'view-grid-symbolic.svg',
         'view-list-symbolic.svg',
         'view-more-symbolic.svg',
