@@ -31,8 +31,8 @@ namespace FontManager {
         }
 
         public override void reset () {
-            item_count.set_label(null);
-            item_label.set_label(null);
+            item_count.set_label("");
+            item_label.set_label("");
             return;
         }
 
@@ -60,14 +60,13 @@ namespace FontManager {
             return null;
         }
 
-        public void set_model (CollectionListModel? model) {
+        public void set_model (FontListFilterModel? model) {
             if (model != null) {
                 treemodel = new Gtk.TreeListModel(model,
                                                   false,
                                                   true,
                                                   get_null_model);
                 selection = new Gtk.SingleSelection(treemodel);
-                model.changed.connect(() => { queue_update(); });
             } else {
                 selection = new Gtk.SingleSelection(null);
             }
@@ -109,8 +108,8 @@ namespace FontManager {
             tree_expander.set_list_row(list_row);
             var row = (BrowseFilterListRow) tree_expander.get_child();
             Object? object = list_row.get_item();
-            var collection = (Collection) object;
-            collection.depth = (int) list_row.get_depth();
+            var filter = (FontListFilter) object;
+            filter.depth = (int) list_row.get_depth();
             // Setting item triggers update to row widget
             row.item = object;
             return;
@@ -122,17 +121,26 @@ namespace FontManager {
 
         public signal void selection_changed (FontListFilter? filter);
 
-        CollectionListModel model;
+
+        Category all;
+        Category system;
+        Category user;
+
+        FontListFilterModel model;
         BrowseFilterListView view;
         CollectionListModel _model;
 
         ulong signal_id = 0;
         FontListFilter? current_selection = null;
 
-        public BrowseFilterPopover (CollectionListModel? collection_model) {
+        public BrowseFilterPopover (CategoryListModel category_model,
+                                    CollectionListModel? collection_model) {
             _model = collection_model;
-            model = new CollectionListModel();
+            model = new FontListFilterModel();
             view = new BrowseFilterListView();
+            all = (Category) category_model.get_item(CategoryIndex.ALL);
+            system = (Category) category_model.get_item(CategoryIndex.SYSTEM);
+            user = (Category) category_model.get_item(CategoryIndex.USER);
             on_map();
             set_child(view);
             map.connect(on_map);
@@ -161,34 +169,17 @@ namespace FontManager {
 
         void on_map () {
             view.set_model(null);
-            model.items = null;
             model.items = new GenericArray <FontListFilter> ();
             foreach (var collection in _model.items)
                 model.items.add(collection);
-            var categories = get_base_categories();
-            var category = ((Category) categories[CategoryIndex.ALL]);
-            var collection = new Collection(category.name, null);
-            category.update.begin(() => {
-                collection.add(category.families);
-                model.items.insert(CategoryIndex.ALL, collection);
-                category = ((Category) categories[CategoryIndex.SYSTEM]);
-                collection = new Collection(category.name, null);
-                category.update.begin(() => {
-                    collection.add(category.families);
-                    model.items.insert(CategoryIndex.SYSTEM, collection);
-                    category = ((Category) categories[CategoryIndex.USER]);
-                    collection = new Collection(category.name, null);
-                    category.update.begin(() => {
-                        collection.add(category.families);
-                        model.items.insert(CategoryIndex.USER, collection);
-                        view.set_model(model);
-                        if (signal_id !=  0)
-                            SignalHandler.disconnect(view, signal_id);
-                        view.selection.set_selected(get_current_index());
-                        connect_selection_signal();
-                    });
-                });
-            });
+            model.items.insert(CategoryIndex.ALL, all);
+            model.items.insert(CategoryIndex.SYSTEM, system);
+            model.items.insert(CategoryIndex.USER, user);
+            view.set_model(model);
+            if (signal_id != 0)
+                SignalHandler.disconnect(view, signal_id);
+            view.selection.set_selected(get_current_index());
+            connect_selection_signal();
             return;
         }
 

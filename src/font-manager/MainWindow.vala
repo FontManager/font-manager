@@ -170,7 +170,7 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane(settings);
-            browse_pane = new BrowsePane(collection_model);
+            browse_pane = new BrowsePane(category_model, collection_model);
             prefs_pane = new PreferencePane(settings);
             var waterfall_settings = new WaterfallSettings(settings);
             main_pane.waterfall_settings = waterfall_settings;

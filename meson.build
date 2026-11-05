@@ -10,10 +10,6 @@ project(
 
 release_date = '2026-11-03'
 
-if meson.version().version_compare('< 1.1.0')
-    error('Meson version is @0@ but project requires >= 1.1.0'.format(meson.version()))
-endif
-
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.56.3')

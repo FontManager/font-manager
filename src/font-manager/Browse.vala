@@ -424,7 +424,7 @@ namespace FontManager {
             designer_label.label = designer;
             designer_label.set_visible(designer != null);
             string designed_by = _("Designed by");
-            var builder = new StringBuilder(null);
+            var builder = new StringBuilder("");
             if (designer != null)
                 append_metadata(builder, @"$designed_by $designer");
             append_metadata(builder, copyright);
@@ -541,7 +541,7 @@ namespace FontManager {
             install_action("decrease-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
         }
 
-        public BrowsePane (CollectionListModel collection_model) {
+        public BrowsePane (CategoryListModel category_model, CollectionListModel? collection_model) {
             widget_set_name(this, "FontManagerBrowsePane");
             gridview_container = new Gtk.ScrolledWindow();
             gridview = new FontGridView(gridview_container);
@@ -559,7 +559,7 @@ namespace FontManager {
             panel_revealer.add_css_class(STYLE_CLASS_VIEW);
             pane.set_start_child(gridview_container);
             pane.set_end_child(panel_revealer);
-            var popover = new BrowseFilterPopover(collection_model);
+            var popover = new BrowseFilterPopover(category_model, collection_model);
             filter_menu_button.set_popover(popover);
             set_fontscale_margins();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
