@@ -1,3 +1,4 @@
 build
 build-aux/results
+Makefile
 po/POTFILES
