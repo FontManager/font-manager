@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 9
-%global PatchVersion 5
+%global PatchVersion 6
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName com.github.FontManager.FontManager
 %global DBusName2 com.github.FontManager.FontViewer
@@ -199,5 +199,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.metain
 %endif
 
 %changelog
-* Tue Nov 3 2026 JerryCasiano <JerryCasiano@gmail.com> 0.9.5-1
+* Tue Nov 3 2026 JerryCasiano <JerryCasiano@gmail.com> 0.9.6-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

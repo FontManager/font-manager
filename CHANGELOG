@@ -1,3 +1,7 @@
+ 0.9.5 -> 0.9.6
+- Fix regression introduced in last release which results in long load times
+  and possible crashes intermittently.
+
  0.9.4 -> 0.9.5
 - Enable basic filtering for Browse mode. Issue #466
 - Change settings to use Adwaita stylesheet by default for consistency,

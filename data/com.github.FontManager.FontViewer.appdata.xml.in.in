@@ -70,10 +70,17 @@
                 </ul>
             </description>
         </release>
+        <release version="0.9.5" date="2026-11-04">
+            <description translate="no">
+                <ul>
+                    <li>https://github.com/FontManager/font-manager/releases/tag/0.9.5</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.9.4" date="2025-03-07">
             <description translate="no">
                 <ul>
-                    <li>https://github.com/FontManager/font-manager/releases/tag/0.9.3</li>
+                    <li>https://github.com/FontManager/font-manager/releases/tag/0.9.4</li>
                 </ul>
             </description>
         </release>

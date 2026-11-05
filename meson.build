@@ -2,13 +2,13 @@
 project(
     'font-manager',
     ['c', 'vala'],
-    version: '0.9.5',
+    version: '0.9.6',
     license: 'GPL-3.0-or-later',
     license_files: ['COPYING'],
     meson_version: '>= 1.1.0'
 )
 
-release_date = '2026-11-03'
+release_date = '2026-11-04'
 
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
