@@ -195,9 +195,6 @@ namespace FontManager {
             if (!(item is Family))
                 return null;
             var child = new VariantModel();
-            BindingFlags flags = BindingFlags.SYNC_CREATE;
-            bind_property("filter", child, "filter", flags, null, null);
-            bind_property("search-term", child, "search-term", flags, null, null);
             child.entries = ((Family) item).variations;
             return child;
         }
