@@ -31,7 +31,6 @@ namespace FontManager {
         public virtual string comment { owned get; set; }
         public virtual int index { get; set; default = 0; }
         public virtual int size { get { return 0; } }
-        public virtual string size_str { get; }
         public virtual int depth { get; set; default = 0; }
 
         public virtual async void update () {}

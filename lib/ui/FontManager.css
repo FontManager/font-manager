@@ -302,6 +302,7 @@ colorswatch {
     min-width: 0px;
 }
 
+.FontManagerBrowseFilterListView row,
 .FontManagerCategoryListView row,
 .FontManagerCollectionListView row,
 .FontManagerFontListView row,

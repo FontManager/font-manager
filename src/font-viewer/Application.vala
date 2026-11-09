@@ -65,7 +65,6 @@ namespace FontManager {
             }
 
             protected override void activate () {
-                register_session = true;
                 if (main_window == null) {
                     settings = get_gsettings(BUS_ID);
                     main_window = new MainWindow(settings);

@@ -20,23 +20,25 @@
 
 namespace FontManager {
 
-    public class BrowseFilterListRow : TreeListItemRow {
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-browse-filter-list-row.ui")]
+    public class BrowseFilterListRow : Gtk.Box {
+
+        public Object? item { get; set; default = null; }
+
+        [GtkChild] unowned Gtk.Label item_label;
+        [GtkChild] unowned Gtk.Label item_count;
 
         construct {
-            margin_start = 0;
-            item_count.visible = true;
-            drag_handle.visible = false;
-            item_state.visible = false;
-            editable = false;
+            notify["item"].connect((pspec) => { on_item_set(); });
         }
 
-        public override void reset () {
+        public void reset () {
             item_count.set_label("");
             item_label.set_label("");
             return;
         }
 
-        protected override void on_item_set () {
+        protected void on_item_set () {
             reset();
             if (item == null)
                 return;
@@ -48,138 +50,83 @@ namespace FontManager {
 
     }
 
-    public class BrowseFilterListView : FilterListView {
-
-        uint update_timeout = 0;
-
-        construct {
-            widget_set_name(listview, "FontManagerBrowseFilterListView");
-        }
-
-        public static ListModel? get_null_model (Object item) {
-            return null;
-        }
-
-        public void set_model (FontListFilterModel? model) {
-            if (model != null) {
-                treemodel = new Gtk.TreeListModel(model,
-                                                  false,
-                                                  true,
-                                                  get_null_model);
-                selection = new Gtk.SingleSelection(treemodel);
-            } else {
-                selection = new Gtk.SingleSelection(null);
-            }
-            return;
-        }
-
-        bool update () {
-            // Force complete update
-            listview.set_model(null);
-            listview.set_model(selection);
-            update_timeout = 0;
-            return GLib.Source.REMOVE;
-        }
-
-        public void queue_update () {
-            if (update_timeout != 0)
-                GLib.Source.remove(update_timeout);
-            update_timeout = Timeout.add(333, update);
-            return;
-        }
-
-        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
-            Gtk.ListItem list_item = (Gtk.ListItem) item;
-            var tree_expander = new Gtk.TreeExpander();
-            tree_expander.set_indent_for_icon(false);
-            var row = new BrowseFilterListRow();
-            row.expander = tree_expander;
-            row.selection = selection;
-            tree_expander.set_child(row);
-            list_item.set_child(tree_expander);
-            return;
-        }
-
-        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
-            Gtk.ListItem list_item = (Gtk.ListItem) item;
-            uint position = list_item.get_position();
-            var list_row = treemodel.get_row(position);
-            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
-            tree_expander.set_list_row(list_row);
-            var row = (BrowseFilterListRow) tree_expander.get_child();
-            Object? object = list_row.get_item();
-            var filter = (FontListFilter) object;
-            filter.depth = (int) list_row.get_depth();
-            // Setting item triggers update to row widget
-            row.item = object;
-            return;
-        }
-
-    }
-
-    class BrowseFilterPopover : Gtk.Popover {
+    public class BrowseFilterPopover : Gtk.Popover {
 
         public signal void selection_changed (FontListFilter? filter);
 
+        public Gtk.SingleSelection selection { get; private set; }
+        public CategoryListModel categories { get; private set; }
+        public CollectionListModel collections { get; private set; }
 
-        Category all;
-        Category system;
-        Category user;
-
-        FontListFilterModel model;
-        BrowseFilterListView view;
-        CollectionListModel _model;
-
-        ulong signal_id = 0;
+        Gtk.ListView list;
+        GLib.ListStore model;
+        Gtk.SignalListItemFactory factory;
         FontListFilter? current_selection = null;
 
         public BrowseFilterPopover (CategoryListModel category_model,
-                                    CollectionListModel? collection_model) {
-            _model = collection_model;
-            model = new FontListFilterModel();
-            view = new BrowseFilterListView();
-            all = (Category) category_model.get_item(CategoryIndex.ALL);
-            system = (Category) category_model.get_item(CategoryIndex.SYSTEM);
-            user = (Category) category_model.get_item(CategoryIndex.USER);
-            on_map();
-            set_child(view);
-            map.connect(on_map);
+                                    CollectionListModel collection_model) {
+            widget_set_name(this, "FontManagerBrowseFilterListView");
+            widget_set_expand(this, true);
+            categories = category_model;
+            collections = collection_model;
+            model = new GLib.ListStore(typeof(FontListFilter));
+            selection = new Gtk.SingleSelection(model);
+            selection.set_can_unselect(false);
+            factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect(setup_list_row);
+            factory.bind.connect(bind_list_row);
+            list = new Gtk.ListView(selection, factory);
+            update();
+            set_child(list);
+            map.connect(() => { update(); });
+            selection.selection_changed.connect(on_selection_changed);
         }
 
-        void connect_selection_signal () {
-            signal_id = view.selection_changed.connect((f) => {
-                current_selection = f;
-                selection_changed(f);
-                Idle.add(() => {
-                    popdown();
-                    return GLib.Source.REMOVE;
-                });
-            });
+        public void update () {
+            model.remove_all();
+            for (int i = 0; i <= CategoryIndex.USER; i++)
+                model.append(categories.get_item(i));
+            foreach (var collection in collections.items)
+                model.append(collection);
+            selection.set_selected(get_current_index());
+        }
+
+        protected void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            list_item.set_child(new BrowseFilterListRow());
+            return;
+        }
+
+        protected void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var row = (BrowseFilterListRow) list_item.get_child();
+            row.item = list_item.get_item();
             return;
         }
 
         int get_current_index () {
             if (current_selection == null || model == null)
                 return CategoryIndex.ALL;
-            for (int i = 0; i < model.items.length; i++)
-                if (current_selection.name == model.items[i].name)
+            for (int i = 0; i < model.get_n_items(); i++) {
+                var entry_name = ((FontListFilter) model.get_item(i)).name;
+                if (current_selection.name == entry_name)
                     return i;
+            }
             return CategoryIndex.ALL;
         }
 
-        void on_map () {
-            view.set_model(null);
-            model.items = new GenericArray <FontListFilter> ();
-            foreach (var collection in _model.items)
-                model.items.add(collection);
-            model.items.insert(CategoryIndex.ALL, all);
-            model.items.insert(CategoryIndex.SYSTEM, system);
-            model.items.insert(CategoryIndex.USER, user);
-            view.set_model(model);
-            if (signal_id != 0)
-                SignalHandler.disconnect(view, signal_id);
-            view.selection.set_selected(get_current_index());
-            connect_selection_signal();
+        void on_selection_changed (uint position, uint n_items)
+        requires (selection != null && model != null) {
+            // position is not accurate, not reliably accurate anyway...
+            // The minimum value present in this bitset accurately points
+            // to the currently selected row in the ListView.
+            Gtk.Bitset selections = selection.get_selection();
+            if (selections.get_size() == 0)
+                return;
+            uint i = selections.get_minimum();
+            Object? item = model.get_item(i);
+            current_selection = (FontListFilter) item;
+            selection_changed(current_selection);
             return;
         }
 

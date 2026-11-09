@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.18"/>
+  <template class="FontManagerBrowseFilterListRow" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="hexpand">True</property>
+    <property name="margin-top">3</property>
+    <property name="margin-bottom">3</property>
+    <property name="margin-start">3</property>
+    <property name="margin-end">3</property>
+    <child>
+      <object class="GtkCenterBox">
+        <property name="hexpand">True</property>
+        <child type="start">
+          <object class="GtkLabel" id="item_label">
+            <property name="halign">start</property>
+            <property name="hexpand">True</property>
+            <property name="margin-end">9</property>
+            <property name="margin-start">9</property>
+            <property name="valign">center</property>
+            <property name="ellipsize">3</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkLabel" id="item_count">
+            <property name="hexpand">False</property>
+            <property name="halign">center</property>
+            <property name="margin-end">6</property>
+            <property name="margin-start">6</property>
+            <property name="valign">center</property>
+            <style>
+              <class name="count"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

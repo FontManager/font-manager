@@ -3,6 +3,7 @@
     <gresource prefix="/com/github/FontManager/FontManager">
         <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-pane.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-filter-list-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-preview.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-collection-rename-popover.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
