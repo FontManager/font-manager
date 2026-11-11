@@ -61,12 +61,13 @@ namespace FontManager {
         Gtk.ListView list;
         GLib.ListStore model;
         Gtk.SignalListItemFactory factory;
-        FontListFilter? current_selection = null;
+        uint current_position = Gtk.INVALID_LIST_POSITION;
+        string current_filter = "All";
 
         public BrowseFilterPopover (CategoryListModel category_model,
                                     CollectionListModel collection_model) {
             widget_set_name(this, "FontManagerBrowseFilterListView");
-            widget_set_expand(this, true);
+            set_position(Gtk.PositionType.TOP);
             categories = category_model;
             collections = collection_model;
             model = new GLib.ListStore(typeof(FontListFilter));
@@ -75,58 +76,52 @@ namespace FontManager {
             factory = new Gtk.SignalListItemFactory();
             factory.setup.connect(setup_list_row);
             factory.bind.connect(bind_list_row);
-            list = new Gtk.ListView(selection, factory);
-            update();
+            list = new Gtk.ListView(selection, factory) {
+                single_click_activate = true
+            };
+            list.activate.connect(on_list_activated);
             set_child(list);
-            map.connect(() => { update(); });
-            selection.selection_changed.connect(on_selection_changed);
+            map.connect(on_map);
         }
 
-        public void update () {
+        void on_list_activated (uint position) {
+            var filter = (FontListFilter) model.get_item(position);
+            current_position = position;
+            current_filter = filter.name;
+            selection_changed(filter);
+            Idle.add(() => {
+                popdown();
+                return GLib.Source.REMOVE;
+            });
+            return;
+        }
+
+        void on_map () {
             model.remove_all();
             for (int i = 0; i <= CategoryIndex.USER; i++)
                 model.append(categories.get_item(i));
             foreach (var collection in collections.items)
                 model.append(collection);
-            selection.set_selected(get_current_index());
+            if (current_position != Gtk.INVALID_LIST_POSITION) {
+                var target = (FontListFilter) model.get_item(current_position);
+                if (target.name != current_filter) {
+                    current_position = Gtk.INVALID_LIST_POSITION;
+                    current_filter = "All";
+                }
+            }
+            selection.set_selected(current_position);
         }
 
-        protected void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             list_item.set_child(new BrowseFilterListRow());
             return;
         }
 
-        protected void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var row = (BrowseFilterListRow) list_item.get_child();
             row.item = list_item.get_item();
-            return;
-        }
-
-        int get_current_index () {
-            if (current_selection == null || model == null)
-                return CategoryIndex.ALL;
-            for (int i = 0; i < model.get_n_items(); i++) {
-                var entry_name = ((FontListFilter) model.get_item(i)).name;
-                if (current_selection.name == entry_name)
-                    return i;
-            }
-            return CategoryIndex.ALL;
-        }
-
-        void on_selection_changed (uint position, uint n_items)
-        requires (selection != null && model != null) {
-            // position is not accurate, not reliably accurate anyway...
-            // The minimum value present in this bitset accurately points
-            // to the currently selected row in the ListView.
-            Gtk.Bitset selections = selection.get_selection();
-            if (selections.get_size() == 0)
-                return;
-            uint i = selections.get_minimum();
-            Object? item = model.get_item(i);
-            current_selection = (FontListFilter) item;
-            selection_changed(current_selection);
             return;
         }
 
