@@ -110,7 +110,7 @@ namespace FontManager {
 
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
-
+        public FontModel? font_model { get; set; default = null; }
         public BrowsePane browse_pane { get; set; default = null; }
 
         Gtk.Stack main_stack;
@@ -169,8 +169,9 @@ namespace FontManager {
             set_titlebar(header);
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
-            main_pane = new MainPane(settings);
-            browse_pane = new BrowsePane(category_model, collection_model);
+            font_model = new FontModel();
+            main_pane = new MainPane(settings, font_model);
+            browse_pane = new BrowsePane(category_model, collection_model, font_model);
             prefs_pane = new PreferencePane(settings);
             var waterfall_settings = new WaterfallSettings(settings);
             main_pane.waterfall_settings = waterfall_settings;
@@ -188,10 +189,9 @@ namespace FontManager {
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("available-fonts", font_model, "entries", flags);
             bind_property("mode", main_pane, "mode", flags);
-            bind_property("available-fonts", main_pane, "available-fonts", flags);
             bind_property("disabled-families", main_pane, "disabled-families", flags);
-            bind_property("available-fonts", browse_pane, "available-fonts", flags);
             bind_property("disabled-families", browse_pane, "disabled-families", flags);
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
@@ -217,23 +217,20 @@ namespace FontManager {
             connect_signals();
             restore_state();
             update_layout_orientation();
+            var preview_colors = new PreviewColors();
+            preview_colors.restore_state(settings);
             map.connect_after(() => {
                 if (settings != null)
                     mode = (Mode) settings.get_enum("mode");
                 else
                     mode = Mode.BROWSE;
-                // TODO : Figure out why this is needed.
-                // This ensures our PreviewColors CSS is applied to browse preview area.
-                // CSS fails to apply until mode changes.
+            });
+            browse_pane.realize.connect_after(() => {
                 Idle.add(() => {
-                    if (mode == Mode.BROWSE) {
-                        mode = Mode.MANAGE;
-                        mode = Mode.BROWSE;
-                    }
+                    browse_pane.restore_state(settings);
                     return GLib.Source.REMOVE;
                 });
             });
-            browse_pane.realize.connect_after(() => { browse_pane.restore_state(settings); });
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             overlay.add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);

@@ -196,15 +196,15 @@ namespace FontManager {
 
         public FontGridView (Gtk.ScrolledWindow parent) {
             container = parent;
-            model = new FontModel();
             parent.map.connect(() => {
                 if (list == null)
-                    create_gridview();
-                queue_update();
+                    Idle.add(() => {
+                        create_gridview();
+                        return GLib.Source.REMOVE;
+                    });
             });
             notify["size"].connect(() => { queue_update(); });
             notify["preview-text"].connect_after(() => { queue_update(); });
-            bind_property("available-fonts", model, "entries", BindingFlags.DEFAULT, null, null);
         }
 
         public void set_search_entry (Gtk.SearchEntry entry) {
@@ -272,7 +272,7 @@ namespace FontManager {
 
         public Reject? disabled_families { get; set; default = null; }
         public Object? selected_item { get; protected set; default = null; }
-        public BaseFontModel? model { get; protected set; default = null; }
+        public BaseFontModel? model { get; set; default = null; }
         public PreviewPage preview_page { get; protected set; default = null; }
         public UnicodeCharacterMap character_map { get; protected set; default = null; }
 
@@ -435,7 +435,7 @@ namespace FontManager {
         }
 
         void on_item_selected () {
-            if (selected_item == null)
+            if (selected_item == null || model == null)
                 return;
             Family family = ((Family) selected_item);
             int default_index = family.get_default_index();
@@ -499,7 +499,6 @@ namespace FontManager {
     public class BrowsePane : Gtk.Box {
 
         public double pane_position { get; set; default = 55.0f; }
-        public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
         public BrowseMode mode { get; set; default = BrowseMode.GRID; }
@@ -541,7 +540,9 @@ namespace FontManager {
             install_action("decrease-size", "s", (Gtk.WidgetActionActivateFunc) on_zoom);
         }
 
-        public BrowsePane (CategoryListModel category_model, CollectionListModel? collection_model) {
+        public BrowsePane (CategoryListModel category_model,
+                           CollectionListModel? collection_model,
+                           FontModel font_model) {
             widget_set_name(this, "FontManagerBrowsePane");
             gridview_container = new Gtk.ScrolledWindow();
             gridview = new FontGridView(gridview_container);
@@ -550,6 +551,9 @@ namespace FontManager {
             preview = new BrowsePreview();
             preview.margin_bottom = 0;
             preview.margin_end = 6;
+            gridview.model = font_model;
+            preview.model = font_model;
+            listview.font_model = font_model;
             panel_revealer = new Gtk.Revealer() {
                 reveal_child = false,
                 visible = false,
@@ -563,10 +567,7 @@ namespace FontManager {
             filter_menu_button.set_popover(popover);
             set_fontscale_margins();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-            gridview.bind_property("model", preview, "model", flags);
-            gridview.bind_property("model", listview, "font-model", flags);
             gridview.bind_property("selected-item", preview, "selected-item", flags);
-            bind_property("available-fonts", gridview, "available-fonts", flags, null, null);
             bind_property("disabled-families", gridview, "disabled-families", flags, null, null);
             bind_property("disabled-families", preview, "disabled-families", flags, null, null);
             preview_entry.bind_property("text", gridview, "preview-text", flags);
@@ -584,7 +585,6 @@ namespace FontManager {
             gridview.activated.connect(() => {
                 panel_toggle.set_active(!panel_toggle.active);
             });
-            map.connect_after(on_map);
             notify["mode"].connect(on_mode_changed);
             notify["waterfall-settings"].connect_after(() => {
                 preview.waterfall_settings = waterfall_settings;
@@ -592,7 +592,7 @@ namespace FontManager {
             popover.selection_changed.connect((filter) => {
                 gridview.model.filter = filter;
                 listview.font_model.filter = filter;
-                listview.queue_update();
+                queue_update();
             });
         }
 
@@ -643,21 +643,12 @@ namespace FontManager {
                 control_stack.set_visible_child_name("fontscale");
             else if (mode == BrowseMode.GRID && !edit_toggle.active)
                 control_stack.set_visible_child_name("scale");
-            return;
-        }
-
-        void on_map () {
-            if (listview != null)
-                listview.model = null;
             queue_update();
             return;
         }
 
         public void restore_state (GLib.Settings settings) {
             pane_position = settings.get_double("browse-pane-position");
-            panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
-            panel_revealer.set_reveal_child(panel_toggle.active);
-            panel_revealer.set_visible(panel_toggle.active);
             listview.preview_size = settings.get_double("browse-font-size");
             preview_entry.text = settings.get_string("browse-preview-text");
             settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
@@ -674,8 +665,13 @@ namespace FontManager {
         }
 
         public void queue_update () {
-            gridview.queue_update();
-            listview.queue_update();
+            Idle.add(() => {
+                if (mode == BrowseMode.GRID)
+                    gridview.queue_update();
+                if (mode == BrowseMode.LIST)
+                    listview.queue_update();
+                return GLib.Source.REMOVE;
+            });
             return;
         }
 
@@ -724,6 +720,7 @@ namespace FontManager {
     }
 
 }
+
 
 
 

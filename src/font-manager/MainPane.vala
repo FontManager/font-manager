@@ -58,10 +58,10 @@ namespace FontManager {
             install_property_action("show-line-size", "show-line-size");
         }
 
-        public MainPane (GLib.Settings? settings) {
+        public MainPane (GLib.Settings? settings, FontModel font_model) {
             base(settings);
             sidebar = new SidebarStack(settings);
-            fontlist = new FontListView();
+            fontlist = new FontListView(font_model);
             preview = new PreviewPane();
             var preview_colors = new PreviewColors();
             compare = new ComparePane();
@@ -75,7 +75,6 @@ namespace FontManager {
             set_list_widget(fontlist);
             set_content_widget(content);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-            bind_property("available-fonts", fontlist, "available-fonts", flags);
             bind_property("available-fonts", sidebar, "available-fonts", flags);
             bind_property("user-actions", fontlist, "user-actions", flags);
             bind_property("user-sources", fontlist, "user-sources", flags);

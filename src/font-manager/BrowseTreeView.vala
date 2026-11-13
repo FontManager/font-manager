@@ -73,7 +73,7 @@ namespace FontManager {
 
         public double preview_size { get; set; default = 16; }
         public string? preview_text { get; set; default = null; }
-        public BaseFontModel? font_model { get; protected set; default = null; }
+        public BaseFontModel? font_model { get; set; default = null; }
 
         bool update_required = false;
 
@@ -93,13 +93,6 @@ namespace FontManager {
             set_headers_visible(false);
             set_show_expanders(false);
             set_level_indentation(24);
-            map.connect(() => {
-                if (model == null && store == null)
-                    queue_update();
-                else if (model == null && store != null)
-                    model = store;
-                expand_all();
-            });
             // XXX : ??? : Unclear why but keeping this model around breaks waterfall
             // rendering in our preview pane. Rendering is done in an Idle callback
             // for each line and rendering all at once seems to somewhat help but also

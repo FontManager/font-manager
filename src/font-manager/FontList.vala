@@ -94,12 +94,11 @@ namespace FontManager {
         public signal void activated (uint position);
         public signal void selection_changed (Object? item);
 
-        public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
 
-        public BaseFontModel? model { get; protected set; default = null; }
-        protected Gtk.SelectionModel? selection { get; protected set; default = null; }
+        public BaseFontModel? model { get; set; default = null; }
+        public Gtk.SelectionModel? selection { get; set; default = null; }
         protected Gtk.ListBase? list { get; protected set; default = null; }
         protected unowned Gtk.SearchEntry? search_entry { get; protected set; default = null; }
 
@@ -143,7 +142,6 @@ namespace FontManager {
             });
             notify["model"].connect(() => {
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-                bind_property("available-fonts", model, "entries", flags, null, null);
                 bind_property("filter", model, "filter", flags, null, null);
             });
             notify["search-entry"].connect(() => {
@@ -286,7 +284,7 @@ namespace FontManager {
 
     public class BaseFontListView : FontListBase {
 
-        protected Gtk.TreeListModel treemodel;
+        public Gtk.TreeListModel treemodel { get; protected set; }
 
         protected FontListControls controls;
 
@@ -295,17 +293,21 @@ namespace FontManager {
             list = new Gtk.ListView(null, null) { hexpand = true, vexpand = true };
             var scroll = new Gtk.ScrolledWindow();
             scroll.set_child(list);
-            model = new FontModel();
-            treemodel = new Gtk.TreeListModel(model,
-                                              false,
-                                              false,
-                                              ((FontModel) model).get_child_model);
-            selection = new Gtk.MultiSelection(treemodel);
             append(scroll);
             prepend(controls);
             search_entry = controls.search;
             controls.expander_activated.connect(on_expander_activated);
             ((Gtk.ListView) list).activate.connect(on_activate);
+            notify["model"].connect(() => { on_model_set(); });
+        }
+
+        void on_model_set () {
+            treemodel = new Gtk.TreeListModel(model,
+                                              false,
+                                              false,
+                                              ((FontModel) model).get_child_model);
+            selection = new Gtk.MultiSelection(treemodel);
+            return;
         }
 
         public void focus_search_entry () {
@@ -397,7 +399,8 @@ namespace FontManager {
             install_action("disable-selected", null, (Gtk.WidgetActionActivateFunc) disable_selected);
         }
 
-        construct {
+        public FontListView (FontModel font_model) {
+            model = font_model;
             widget_set_name(list, "FontManagerFontListView");
             widget_set_margin(list, 6);
             add_css_class(STYLE_CLASS_VIEW);
@@ -766,9 +769,7 @@ namespace FontManager {
         construct {
             widget_set_name(list, "FontManagerRemoveListView");
             controls.visible = false;
-            treemodel.set_autoexpand(true);
             selected_files = new StringSet();
-            selection = new Gtk.NoSelection(treemodel);
             filter = new UserFonts();
             filter.update.begin();
         }

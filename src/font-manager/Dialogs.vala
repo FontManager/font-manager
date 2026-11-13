@@ -372,7 +372,11 @@ namespace FontManager {
             });
             update_item_preview_text(sorted_fonts);
             remove_list.set_search_entry(entry);
-            remove_list.available_fonts = sorted_fonts;
+            var model = new FontModel();
+            model.entries = sorted_fonts;
+            remove_list.model = model;
+            remove_list.selection = new Gtk.NoSelection(remove_list.treemodel);
+            remove_list.treemodel.set_autoexpand(true);
             delete_button.set_sensitive(false);
             remove_list.changed.connect(() => {
                 bool sensitive = remove_list.selected_files.size > 0;
@@ -475,4 +479,5 @@ namespace FontManager {
     }
 
 }
+
 
