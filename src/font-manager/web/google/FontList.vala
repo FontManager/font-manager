@@ -247,6 +247,11 @@ namespace FontManager.GoogleFonts {
         construct {
             widget_set_name(listview, "FontManagerGoogleFontsFontListView");
             widget_set_margin(listview, 6);
+            var fontmodel = new FontModel();
+            treemodel = new Gtk.TreeListModel(fontmodel,
+                                              false,
+                                              false,
+                                              fontmodel.get_child_model);
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -285,22 +290,21 @@ namespace FontManager.GoogleFonts {
         public void on_map () {
             if (initialized)
                 return;
-            var fontmodel = new FontModel();
-            treemodel = new Gtk.TreeListModel(fontmodel,
-                                              false,
-                                              false,
-                                              fontmodel.get_child_model);
             selection = new Gtk.SingleSelection(treemodel);
             listview.set_factory(get_factory());
             listview.set_model(selection);
             selection.selection_changed.connect(on_selection_changed);
             BindingFlags flags = BindingFlags.SYNC_CREATE;
-            bind_property("filter", fontmodel, "filter", flags, null, null);
+            bind_property("filter", model, "filter", flags, null, null);
             bind_property("available-families", model, "entries", flags, null, null);
             search.search_changed.connect(queue_refilter);
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
             search.previous_match.connect(previous_match);
+            Idle.add(() => {
+                queue_update();
+                return GLib.Source.REMOVE;
+            });
             initialized = true;
             return;
         }

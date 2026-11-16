@@ -217,6 +217,7 @@ namespace FontManager {
             connect_signals();
             restore_state();
             update_layout_orientation();
+            // Make sure our CSS gets applied to all preview areas
             var preview_colors = new PreviewColors();
             preview_colors.restore_state(settings);
             map.connect_after(() => {
