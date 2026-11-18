@@ -98,6 +98,7 @@ namespace FontManager {
         void restore_state () {
             if (settings == null) {
                 warning("NULL settings instance in use : Preview Colors will not work as expected");
+                return;
             }
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind_with_mapping("preview-foreground-color",
