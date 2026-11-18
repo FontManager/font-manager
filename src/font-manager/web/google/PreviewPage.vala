@@ -183,6 +183,7 @@ namespace FontManager.GoogleFonts {
         FontScale fontscale;
         PreviewEntry entry;
         PreviewControls preview_controls;
+        PreviewColorsCSSProvider preview_colors_provider;
         SampleList samples;
         Gdk.Rectangle clicked_area;
         WebKit.WebView? webview;
@@ -231,7 +232,6 @@ namespace FontManager.GoogleFonts {
             samples = new SampleList();
             sample_button.set_popover(samples);
             set_preview_page_mode_menu_and_actions(this, menu_button, (Callback) on_mode_action_activated);
-            preview_colors.style_updated.connect(() => { reload_preview(); });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("preview-size", fontscale, "value", flags);
             bind_property("preview-text", entry, "placeholder-text", flags);
@@ -289,7 +289,9 @@ namespace FontManager.GoogleFonts {
         public void restore_state (GLib.Settings? settings) {
             if (settings == null)
                 return;
-            preview_colors.restore_state(settings);
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
+            preview_colors_provider.register_controls(preview_colors);
+            preview_colors_provider.style_updated.connect(() => { reload_preview(); });
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("preview-font-size", this, "preview-size", flags);
             settings.bind("preview-mode", this, "preview-mode", flags);
@@ -414,8 +416,8 @@ namespace FontManager.GoogleFonts {
                 }
             }
             return HEADER.printf(dir == Pango.Direction.RTL ? "rtl" : "ltr",
-                                 preview_colors.foreground_color.to_string(),
-                                 preview_colors.background_color.to_string(),
+                                 preview_colors_provider.foreground_color.to_string(),
+                                 preview_colors_provider.background_color.to_string(),
                                  justify, preview_size,
                                  font.family, font.style, font.weight,
                                  font.to_font_face_rule());

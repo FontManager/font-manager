@@ -153,6 +153,7 @@ namespace FontManager {
         bool use_adwaita = false;
         string? _preview_text = null;
         string? default_preview_text = null;
+        PreviewColorsCSSProvider preview_colors_provider;
 
         public ComparePane () {
             widget_set_name(this, "FontManagerCompare");
@@ -189,7 +190,12 @@ namespace FontManager {
         public void restore_state (GLib.Settings? settings) {
             if (settings == null)
                 return;
-            preview_colors.restore_state(settings);
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
+            preview_colors_provider.register_controls(preview_colors);
+            preview_colors_provider.style_updated.connect(() => {
+                list.grab_focus();
+                list.queue_draw();
+            });
 #if HAVE_ADWAITA
             use_adwaita = settings.get_boolean("use-adwaita-stylesheet");
             if (use_adwaita)

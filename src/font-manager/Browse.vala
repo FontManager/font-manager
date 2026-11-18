@@ -524,6 +524,7 @@ namespace FontManager {
         Gtk.ScrolledWindow gridview_container;
         BrowsePreview preview;
         FontGridView gridview;
+        PreviewColorsCSSProvider preview_colors_provider;
 
         static construct {
             install_action("toggle-panel", null, (Gtk.WidgetActionActivateFunc) toggle_panel);
@@ -656,6 +657,10 @@ namespace FontManager {
             settings.bind("browse-preview-tile-size", gridview, "size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-font-size", listview, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-preview-text", preview_entry, "text", SettingsBindFlags.DEFAULT);
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
+            preview_colors_provider.style_updated.connect(() => {
+                preview.queue_draw();
+            });
             return;
         }
 

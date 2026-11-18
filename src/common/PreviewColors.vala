@@ -20,8 +20,19 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-colors.ui")]
-    public class PreviewColors : Gtk.Box {
+    const string TEXT_PREVIEW_CSS = """
+    .FontManagerFontPreviewArea, .FontManagerPreviewArea text {
+        color: %s;
+        background-color: %s;
+    }
+    .FontManagerFontPreviewArea text selection {
+        color: %s;
+        background-color: %s;
+    }
+    """;
+
+    [SingleInstance]
+    public class PreviewColorsCSSProvider : Object {
 
         public signal void style_updated ();
 
@@ -29,20 +40,32 @@ namespace FontManager {
         public Gdk.RGBA background_color { get; set; }
         public GLib.Settings settings { get; set; }
 
-        [GtkChild] unowned Gtk.ColorDialogButton bg_color_button;
-        [GtkChild] unowned Gtk.ColorDialogButton fg_color_button;
-
         Gtk.CssProvider css_provider;
 
+        construct {
+            css_provider = new Gtk.CssProvider();
+            Gdk.Display display = Gdk.Display.get_default();
+            Gtk.StyleContext.add_provider_for_display(display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+        }
+
+        public PreviewColorsCSSProvider (GLib.Settings? settings) {
+            Object(settings: settings);
+            restore_state();
+        }
+
         public void update_style () {
-            css_provider.load_from_string(@".FontManagerFontPreviewArea {color: $foreground_color;background-color: $background_color;} .FontManagerFontPreviewArea text selection {color: $background_color;background-color: $foreground_color;}");
+            string bg = background_color.to_string();
+            string fg = foreground_color.to_string();
+            string CSS = TEXT_PREVIEW_CSS.printf(fg, bg, bg, fg);
+            css_provider.load_from_string(CSS);
             style_updated();
             return;
         }
 
-        void flatten_color_button (Gtk.ColorDialogButton button) {
-            button.get_first_child().remove_css_class("color");
-            button.get_first_child().add_css_class("flat");
+        public void register_controls (PreviewColors controls) {
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("background-color", controls.bg_color_button, "rgba", flags);
+            bind_property("foreground-color", controls.fg_color_button, "rgba", flags);
             return;
         }
 
@@ -72,24 +95,24 @@ namespace FontManager {
             return;
         }
 
-        public void restore_state (GLib.Settings settings) {
-            this.settings = settings;
-            if (settings == null)
-                return;
+        void restore_state () {
+            if (settings == null) {
+                warning("NULL settings instance in use : Preview Colors will not work as expected");
+            }
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind_with_mapping("preview-foreground-color",
-                                       fg_color_button,
-                                       "rgba",
+                                       this,
+                                       "foreground-color",
                                        flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColorsCSSProvider.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColorsCSSProvider.to_setting,
                                        null, null);
             settings.bind_with_mapping("preview-background-color",
-                                       bg_color_button,
-                                       "rgba",
+                                       this,
+                                       "background-color",
                                        flags,
-                                       (GLib.SettingsBindGetMappingShared) PreviewColors.from_setting,
-                                       (GLib.SettingsBindSetMappingShared) PreviewColors.to_setting,
+                                       (GLib.SettingsBindGetMappingShared) PreviewColorsCSSProvider.from_setting,
+                                       (GLib.SettingsBindSetMappingShared) PreviewColorsCSSProvider.to_setting,
                                        null, null);
             settings.changed.connect((key) => {
                 if (key.contains("color"))
@@ -101,23 +124,6 @@ namespace FontManager {
             });
             update_default_colors_if_needed();
             update_style();
-            return;
-        }
-
-        public override void constructed () {
-            flatten_color_button(bg_color_button);
-            flatten_color_button(fg_color_button);
-            css_provider = new Gtk.CssProvider();
-            Gdk.Display display = Gdk.Display.get_default();
-            Gtk.StyleContext.add_provider_for_display(display, css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            bg_color_button.bind_property("rgba", this, "background-color", flags);
-            fg_color_button.bind_property("rgba", this, "foreground-color", flags);
-            map.connect(() => {
-                update_default_colors_if_needed();
-                update_style();
-            });
-            base.constructed();
             return;
         }
 
@@ -135,6 +141,30 @@ namespace FontManager {
             return result;
         }
 
+
+    }
+
+
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-colors.ui")]
+    public class PreviewColors : Gtk.Box {
+
+        [GtkChild] public unowned Gtk.ColorDialogButton bg_color_button { get; }
+        [GtkChild] public unowned Gtk.ColorDialogButton fg_color_button { get; }
+
+        void flatten_color_button (Gtk.ColorDialogButton button) {
+            button.get_first_child().remove_css_class("color");
+            button.get_first_child().add_css_class("flat");
+            return;
+        }
+
+        public override void constructed () {
+            flatten_color_button(bg_color_button);
+            flatten_color_button(fg_color_button);
+            base.constructed();
+            return;
+        }
+
     }
 
 }
+

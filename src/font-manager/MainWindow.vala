@@ -117,6 +117,7 @@ namespace FontManager {
         MainPane main_pane;
         PreferencePane prefs_pane;
         HeaderBarWidgets header_widgets;
+        PreviewColorsCSSProvider preview_colors_provider;
 
         Mode _mode = Mode.MANAGE;
 
@@ -147,6 +148,8 @@ namespace FontManager {
 
         public MainWindow (GLib.Settings? settings) {
             Object(settings: settings);
+            // Make sure our CSS gets applied to all preview areas
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
             var overlay = new Gtk.Overlay();
             progress = new Gtk.ProgressBar() {
                 halign = Gtk.Align.FILL,
@@ -217,9 +220,6 @@ namespace FontManager {
             connect_signals();
             restore_state();
             update_layout_orientation();
-            // Make sure our CSS gets applied to all preview areas
-            var preview_colors = new PreviewColors();
-            preview_colors.restore_state(settings);
             map.connect_after(() => {
                 if (settings != null)
                     mode = (Mode) settings.get_enum("mode");

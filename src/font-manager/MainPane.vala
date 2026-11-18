@@ -52,6 +52,8 @@ namespace FontManager {
         FontListView fontlist;
         ComparePane compare;
         PreviewPane preview;
+        PreviewColors preview_colors;
+        PreviewColorsCSSProvider preview_colors_provider;
 
         static construct {
             install_property_action("predefined-size", "predefined-size");
@@ -63,7 +65,12 @@ namespace FontManager {
             sidebar = new SidebarStack(settings);
             fontlist = new FontListView(font_model);
             preview = new PreviewPane();
-            var preview_colors = new PreviewColors();
+            preview_colors = new PreviewColors();
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
+            preview_colors_provider.register_controls(preview_colors);
+            preview_colors_provider.style_updated.connect(() => {
+               preview.queue_draw();
+            });
             compare = new ComparePane();
             content = new Gtk.Stack() {
                 transition_type = Gtk.StackTransitionType.CROSSFADE,
@@ -111,10 +118,8 @@ namespace FontManager {
                 preview_colors.set_visible(preview.page == FontManager.PreviewPanePage.PREVIEW);
             });
             preview.realize.connect_after(() => {
-                preview.restore_state(settings);
                 preview.add_action_widget(preview_colors, Gtk.PackType.END);
                 preview_colors.set_visible(preview.page == FontManager.PreviewPanePage.PREVIEW);
-                preview_colors.restore_state(settings);
             });
             compare.realize.connect_after(() => { compare.restore_state(settings); });
         }
@@ -180,6 +185,7 @@ namespace FontManager {
     }
 
 }
+
 
 
 

@@ -42,6 +42,7 @@ namespace FontManager.FontViewer {
         Gtk.Switch use_adwaita_stylesheet;
 #endif
         PreviewColors preview_colors;
+        PreviewColorsCSSProvider preview_colors_provider;
         WaterfallSettings waterfall_settings;
 
         Font? font = null;
@@ -350,7 +351,6 @@ namespace FontManager.FontViewer {
         void populate_preference_list () {
             preference_list.set_selection_mode(Gtk.SelectionMode.NONE);
             prefer_dark_theme = new Gtk.Switch();
-            // The added margins here are due to PreviewColors widget alignment issues
             var row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6, margin_end = 6 };
             row.set_child(new PreferenceRow(_("Prefer Dark Theme"), null, null, prefer_dark_theme));
             preference_list.insert(row, -1);
@@ -361,7 +361,11 @@ namespace FontManager.FontViewer {
             preference_list.insert(row, -1);
 #endif
             preview_colors = new PreviewColors();
-            preview_colors.restore_state(settings);
+            preview_colors_provider = new PreviewColorsCSSProvider(settings);
+            preview_colors_provider.register_controls(preview_colors);
+            preview_colors_provider.style_updated.connect(() => {
+               preview_pane.queue_draw();
+            });
             widget_set_margin(preview_colors, 0);
             row = new Gtk.ListBoxRow() { activatable = false, selectable = false, margin_start = 6 };
             row.set_child(new PreferenceRow(_("Preview Area Colors"), null, null, preview_colors));
