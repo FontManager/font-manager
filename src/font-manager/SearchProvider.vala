@@ -1,6 +1,6 @@
 /* SearchProvider.vala
  *
- * Copyright (C) 2020-2025 Jerry Casiano
+ * Copyright (C) 2020-2026 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,6 @@ namespace FontManager {
 
         enum ID {
             FILEPATH,
-            INDEX,
             FAMILY,
             STYLE;
         }
@@ -49,8 +48,7 @@ namespace FontManager {
                 Json.Object fonts = node.get_object();
                 fonts.foreach_member((obj, name, node) => {
                     Json.Object font = node.get_object();
-                    result_set += "%s::%i::%s::%s".printf(font.get_string_member("filepath"),
-                                                          (int) font.get_int_member("findex"),
+                    result_set += "%s::%s::%s".printf(font.get_string_member("filepath"),
                                                           font.get_string_member("family"),
                                                           font.get_string_member("style"));
                 });
@@ -64,12 +62,11 @@ namespace FontManager {
             try {
                 Database db = DatabaseProxy.get_default_db();
                 search_term = search_term.replace("'", "''");
-                string QUERY = "SELECT filepath, findex, family, style from Fonts " +
-                               @"WHERE family LIKE '%$search_term%' ORDER BY weight;";
+                string QUERY = "SELECT filepath, family, style from Fonts WHERE " +
+                               @"family LIKE '%$search_term%' ORDER BY weight;";
                 db.execute_query(QUERY);
                 foreach (unowned Sqlite.Statement row in db)
-                    result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
-                                                          row.column_int(ID.INDEX),
+                    result_set += "%s::%s::%s".printf(row.column_text(ID.FILEPATH),
                                                           row.column_text(ID.FAMILY),
                                                           row.column_text(ID.STYLE));
                 db.end_query();
@@ -103,7 +100,7 @@ namespace FontManager {
             foreach (string entry in results) {
                 string [] data = entry.split("::");
                 var meta = new HashTable <string, Variant> (str_hash, str_equal);
-                meta.insert("id", "%s::%s".printf(data[ID.FILEPATH], data[ID.INDEX]));
+                meta.insert("id", data[ID.FILEPATH]);
                 meta.insert("name", data[ID.FAMILY]);
                 meta.insert("description", data[ID.STYLE]);
                 metas.add(meta);
@@ -116,14 +113,13 @@ namespace FontManager {
         throws GLib.DBusError, GLib.IOError {
             string [] data = result.split("::");
             File file = File.new_for_path(data[ID.FILEPATH]);
-            int findex = int.parse(data[ID.INDEX]);
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
                 conn.call.begin(FontViewer.BUS_ID,
                                 FontViewer.BUS_PATH,
                                 FontViewer.BUS_ID,
                                 "ShowUri",
-                                new Variant("(si)", file.get_uri(), findex),
+                                new Variant("(s)", file.get_uri()),
                                 null,
                                 DBusCallFlags.NONE,
                                 -1,
@@ -176,4 +172,5 @@ namespace FontManager {
     }
 
 }
+
 

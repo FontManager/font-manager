@@ -1,7 +1,7 @@
 /* Application.vala */
 public const string DISPLAY_NAME = _("Font Manager");
 public const string COMMENT = _("Simple font management for GTK+ desktop environments");
-public const string COPYRIGHT = "Copyright © 2009-2025 Jerry Casiano";
+public const string COPYRIGHT = "Copyright © 2009-2026 Jerry Casiano";
 public const string LICENSE = """
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -96,14 +96,13 @@ namespace FontManager {
         }
 
         public override void open (File [] files, string hint) {
-            int index = hint != "" ? int.parse(hint) : 0;
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
                 conn.call_sync(FontViewer.BUS_ID,
                                 FontViewer.BUS_PATH,
                                 FontViewer.BUS_ID,
                                 "ShowUri",
-                                new Variant("(si)", files[0].get_uri(), index),
+                                new Variant("(s)", files[0].get_uri()),
                                 null,
                                 DBusCallFlags.NONE,
                                 -1,
